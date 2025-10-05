@@ -1,0 +1,23 @@
+﻿<crystalThemes:CrystalWindow x:Class="C3201App.Views.Shell"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:crystal="http://schemas.crystal.com"
+                             xmlns:crystalThemes="http://schemas.crystal.com/themes"
+                             xmlns:infrastructure="clr-namespace:C3201SolutionCore;assembly=C3201SolutionCore"
+                             crystal:ViewModelLocator.AutoWireViewModel="True"
+                             Title="{Binding Title}" Height="450" Width="600">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <ContentControl Grid.Column="0"
+                    crystal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.LeftRegion}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"/>
+    <ContentControl Grid.Column="1"
+                    crystal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.RightRegion}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"/>
+  </Grid>
+</crystalThemes:CrystalWindow>

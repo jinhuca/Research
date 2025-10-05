@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>ModuleA</AssemblyName>
+    <RootNamespace>ModuleA</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Crystal.Desktop" Version="2.2.3.8" />
+    <PackageReference Include="Crystal.Themes" Version="2.2.4.5" />
+  </ItemGroup>
+
+</Project>

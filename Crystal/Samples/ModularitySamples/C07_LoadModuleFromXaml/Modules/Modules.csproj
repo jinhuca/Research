@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <AssemblyName>Modules</AssemblyName>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <Page Remove="ModuleCatalog.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+	  <PackageReference Include="Crystal.Desktop" Version="2.2.3.8" />
+	  <PackageReference Include="Crystal.Themes" Version="2.2.4.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ModuleCatalog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModuleA\ModuleA.csproj" />
+  </ItemGroup>
+</Project>

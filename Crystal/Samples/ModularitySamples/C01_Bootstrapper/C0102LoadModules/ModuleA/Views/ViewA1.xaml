@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="C0102ModuleA.Views.ViewA1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <UserControl.Resources>
+      <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+          <ResourceDictionary Source="pack://application:,,,/Crystal.Themes;component/Styles/Controls.xaml" />
+          <ResourceDictionary Source="pack://application:,,,/Crystal.Themes;component/Styles/Fonts.xaml" />
+          <ResourceDictionary Source="pack://application:,,,/Crystal.Themes;component/Styles/Themes/Light.Blue.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
+  </UserControl.Resources>
+  <StackPanel>
+		<TextBlock Text="ViewA1" FontSize="35" FontWeight="Black" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Button Content="Crystal" Width="150" Height="45" FontSize="25"/>
+  </StackPanel>
+</UserControl>
