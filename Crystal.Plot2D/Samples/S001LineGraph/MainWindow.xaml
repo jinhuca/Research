@@ -1,0 +1,10 @@
+﻿<Window x:Class="S001LineGraph.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cp="http://schemas.crystal.com/Plot2D"
+        Loaded="Window_Loaded"
+        Title="MainWindow">
+  <Grid>
+    <cp:Plotter x:Name="plotter"/>
+  </Grid>
+</Window>

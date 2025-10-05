@@ -1,0 +1,40 @@
+﻿<Window x:Class="E003StartToEnd.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:p2="http://schemas.crystal.com/Plot2D"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:E003StartToEnd"
+        xmlns:shapes="clr-namespace:Crystal.Plot2D.Shapes;assembly=Crystal.Plot2D"
+        xmlns:navigation="clr-namespace:Crystal.Plot2D.Navigation;assembly=Crystal.Plot2D"
+        mc:Ignorable="d" Background="DarkGray"
+        Title="MainWindow" Height="700" Width="1250">
+  <Window.Resources>
+    <LinearGradientBrush x:Key="BackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#FF292929" Offset="0.0"/>
+      <GradientStop Color="#FF191919" Offset="0.5"/>
+      <GradientStop Color="#FF292929" Offset="1.0"/>
+    </LinearGradientBrush>
+  </Window.Resources>
+  <Grid>
+    <p2:Plotter x:Name="_plotter" Background="{StaticResource BackgroundBrush}"
+                Foreground="White" Margin="20">
+      <p2:HorizontalAxisTitle Content="Time (second)" Margin="0,5"
+                              FontFamily="Impact" FontSize="20"/>
+      <p2:HorizontalAxisTitle Content="State" Margin="0,5" Placement="Top" HorizontalContentAlignment="Stretch"
+                              HorizontalAlignment="Stretch"
+                              FontFamily="Impact" FontSize="20"/>
+      <p2:VerticalAxisTitle Content="Temperature (C)" Margin="10,0" Background="DarkGreen"
+                            FontFamily="Impact" FontSize="20"/>
+      <shapes:VerticalRange StartValue="0" EndValue="12" Fill="LightBlue">
+        <TextBlock Text="Transition" Foreground="Red" FontSize="20"/>
+      </shapes:VerticalRange>
+      <!--<p2:CursorCoordinateGraph FollowMouse="False" Cursor="No" LineStrokeThickness="5"/>-->
+      <!--<p2:AxisCursorGraph></p2:AxisCursorGraph>-->
+      <p2:HorizontalLine Value="0" StrokeThickness="4"></p2:HorizontalLine>
+      <shapes:VerticalRange StartValue="13" EndValue="38" Fill="Aquamarine">
+        <TextBlock Text="Ablation" Foreground="Blue" FontSize="20"/>
+      </shapes:VerticalRange>
+    </p2:Plotter>
+  </Grid>
+</Window>

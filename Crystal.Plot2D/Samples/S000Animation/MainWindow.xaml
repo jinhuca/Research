@@ -1,0 +1,10 @@
+﻿<Window x:Class="S000Animation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cp="http://schemas.crystal.com/Plot2D"
+        Title="Animation Sample"
+        Loaded="Window_Loaded">
+  <Grid>
+    <cp:Plotter x:Name="plotter" Margin="10"/>
+  </Grid>
+</Window>

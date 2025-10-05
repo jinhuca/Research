@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Jin Hu</Authors>
+    <Description>A collection of 3D components for .NET.</Description>
+    <PackageProjectUrl>https://github.com/jinhuca/Crystal.Graphics</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jinhuca/Crystal.Graphics</RepositoryUrl>
+    <PackageTags>.NET</PackageTags>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <FileVersion>1.0.0.3</FileVersion>
+    <Version>1.0.0.3</Version>
+    <PackageIcon>CrystalGraphics.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ShaderEffects\AnaglyphEffect.ps" />
+    <None Remove="ShaderEffects\InterlacedEffect.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ShaderEffects\AnaglyphEffect.ps">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ShaderEffects\InterlacedEffect.ps">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CrystalGraphics.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
