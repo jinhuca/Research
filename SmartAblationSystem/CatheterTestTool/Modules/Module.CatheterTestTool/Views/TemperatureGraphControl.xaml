@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Module.CatheterTestTool.Views.TemperatureGraphControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:charting="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Module.Infrastructure;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="GraphBorderStyle" TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource TemperatureBorderBrush}"/>
+                <Setter Property="Background" Value="#5544558B"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Style="{StaticResource GraphBorderStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Temperature (°C)" Style="{StaticResource GraphsTitleTextBlockStyle}"/>
+            <WindowsFormsHost Grid.Row="1" Margin="5,0,5,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <WindowsFormsHost.Child>
+                    <charting:Chart x:Name="chartTemperature" BackColor="#FF292929">
+                        <charting:Chart.Series>
+                            <charting:Series Name="temperatureSeries" ChartType="Spline" Color="Red"/>
+                        </charting:Chart.Series>
+                        <charting:Chart.ChartAreas>
+                            <charting:ChartArea Name="temperatureArea"  BackColor="#FF191919">
+                                <charting:ChartArea.AxisX>
+                                    <charting:Axis Minimum="0" Maximum="60" LineColor="#FF505050" LineWidth="3">
+                                        <charting:Axis.MajorGrid>
+                                            <charting:Grid LineColor="#FF464646" Interval="10"/>
+                                        </charting:Axis.MajorGrid>
+                                        <charting:Axis.LabelStyle>
+                                            <charting:LabelStyle ForeColor="LightBlue" Interval="10" IsEndLabelVisible="True"/>
+                                        </charting:Axis.LabelStyle>
+                                    </charting:Axis>
+                                </charting:ChartArea.AxisX>
+                                <charting:ChartArea.AxisY>
+                                    <charting:Axis Minimum="-60" Maximum="40" LineColor="#FF505050" LineWidth="3">
+                                        <charting:Axis.MajorGrid>
+                                            <charting:Grid LineColor="#FF464646"/>
+                                        </charting:Axis.MajorGrid>
+                                        <charting:Axis.LabelStyle>
+                                            <charting:LabelStyle ForeColor="LightYellow" Interval="20" IsEndLabelVisible="True">
+                                            </charting:LabelStyle>
+                                        </charting:Axis.LabelStyle>
+                                    </charting:Axis>
+                                </charting:ChartArea.AxisY>
+                            </charting:ChartArea>
+                        </charting:Chart.ChartAreas>
+                    </charting:Chart>
+                </WindowsFormsHost.Child>
+            </WindowsFormsHost>
+        </Grid>
+    </Border>
+</UserControl>

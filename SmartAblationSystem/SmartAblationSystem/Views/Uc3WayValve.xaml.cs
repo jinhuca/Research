@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace SmartAblationSystem.Views
+{
+    /// <summary>
+    /// Interaction logic for OpenValve.xaml    
+    /// . Safety classification: No injury or damage to health is possible (IEC 62304 Class A).
+    /// </summary>
+    public partial class Uc3WayValve : UserControl
+    {
+        public Uc3WayValve()
+        {
+            InitializeComponent();
+        }
+    }
+}

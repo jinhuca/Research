@@ -1,0 +1,193 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="Shared.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <ControlTemplate x:Key="ListViewItemControlTemplate" TargetType="ListViewItem">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Hovering">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                       Storyboard.TargetName="hoverRectangle" 
+                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1"/>
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+   
+      <Storyboard x:Key="Selecting">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                       Storyboard.TargetName="selectedRectangle" 
+                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1"/>
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+
+			<Storyboard x:Key="SelectedUnfocused">
+				<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" 
+				                               Storyboard.TargetName="SelectedUnfocusedRectangle" 
+				                               Storyboard.TargetProperty="(UIElement.Opacity)">
+					<SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1"/>
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+
+      <Storyboard x:Key="Focusing">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                       Storyboard.TargetName="focusRectangle" 
+                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1"/>
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+
+      <Storyboard x:Key="Disabling">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                       Storyboard.TargetName="disableRectangle" 
+                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1"/>
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+
+    </ControlTemplate.Resources>
+
+    <Grid x:Name="itemGrid" Background="Black" SnapsToDevicePixels="True" Margin="2,1">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver" Storyboard="{StaticResource Hovering}"/>
+          <VisualState x:Name="Disabled" Storyboard="{StaticResource Disabling}"/>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="FocusStates">
+          <VisualState x:Name="Focused" Storyboard="{StaticResource Focusing}"/>
+          <VisualState x:Name="Unfocused"/>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="SelectionStates">
+          <VisualState x:Name="Selected" Storyboard="{StaticResource Selecting}"/>
+          <VisualState x:Name="Unselected"/>
+					<VisualState x:Name="SelectedUnfocused" Storyboard="{StaticResource SelectedUnfocused}"/>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ValidationStates">
+          <VisualState x:Name="Valid"/>
+          <VisualState x:Name="InvalidFocused"/>
+          <VisualState x:Name="InvalidUnfocused"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Rectangle x:Name="backRectangle" 
+                 IsHitTestVisible="False"
+                 Opacity="0.7"
+                 Stroke="{StaticResource Brush_Border_Normal}"
+                 StrokeThickness="0.3"
+                 Fill="{StaticResource Brush_Background_Normal}" 
+                 RadiusX="1" RadiusY="1"
+                 Margin="0,1,0,1"/>
+      <Rectangle x:Name="hoverRectangle"
+                 IsHitTestVisible="False" 
+                 Opacity="0" 
+                 Fill="{StaticResource Brush_Background_MouseOver}"
+                 StrokeThickness="0.5"
+                 Stroke="{StaticResource Brush_Border_MouseOver}"
+                 RadiusX="1" RadiusY="1"/>
+      <Rectangle x:Name="selectedRectangle" 
+                 IsHitTestVisible="False" 
+                 Opacity="0" 
+                 Fill="{StaticResource Brush_Border_Disable}" 
+                 Stroke="{StaticResource Brush_Border_Selected}"
+                 StrokeThickness="0.5"
+                 RadiusX="1" RadiusY="1"/>
+			<Rectangle x:Name="SelectedUnfocusedRectangle" 
+                 IsHitTestVisible="False" 
+                 Opacity="0" 
+                 Fill="{StaticResource Brush_Border_SelectedUnfocused}" 
+                 Stroke="{StaticResource Brush_Border_Selected}"
+                 StrokeThickness="0.5"
+                 RadiusX="1" RadiusY="1"/>
+			<GridViewRowPresenter x:Name="presenter"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                            Margin="0,2,0,2" 
+                            VerticalAlignment="Stretch"/>
+      <Rectangle x:Name="focusRectangle" 
+                 Stroke="{StaticResource Brush_Border_Focused}" 
+                 StrokeThickness="1" RadiusX="1" RadiusY="1" Opacity="0"/>
+      <Rectangle x:Name="disableRectangle"
+                 Stroke="{StaticResource Brush_Border_Disable}"
+                 StrokeThickness="1" RadiusX="1" RadiusY="1" Opacity="0"/>
+    </Grid>
+
+    <ControlTemplate.Triggers>
+
+      <Trigger Property="IsEnabled" Value="false">
+        <Setter Property="Foreground" Value="{StaticResource Brush_Foreground_Disable}"/>
+      </Trigger>
+
+      <!--<Trigger Property="IsSelected" Value="true">
+        <Trigger.EnterActions>
+          <BeginStoryboard x:Name="SelectedOn_BeginStoryboard" Storyboard="{StaticResource Selecting}"/>
+        </Trigger.EnterActions>
+        <Trigger.ExitActions>
+          <BeginStoryboard x:Name="SelectedOff_BeginStoryboard" Storyboard="{StaticResource SelectedOff}"/>
+        </Trigger.ExitActions>
+      </Trigger>-->
+
+      <!--<MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsMouseOver" Value="True"/>
+          <Condition Property="Selector.IsSelected" Value="False"/>
+        </MultiTrigger.Conditions>
+        <MultiTrigger.EnterActions>
+          <BeginStoryboard Storyboard="{StaticResource Hovering}"/>
+        </MultiTrigger.EnterActions>
+        <MultiTrigger.ExitActions>
+          <BeginStoryboard x:Name="HoverOff_BeginStoryboard" Storyboard="{StaticResource HoverOff}"/>
+        </MultiTrigger.ExitActions>
+      </MultiTrigger>-->
+
+      <!--<MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="Selector.IsSelected" Value="True"/>
+          <Condition Property="IsMouseOver" Value="True"/>
+        </MultiTrigger.Conditions>
+      </MultiTrigger>
+      
+      <MultiTrigger>
+        <MultiTrigger.Conditions>
+          <Condition Property="IsSelected" Value="true"/>
+          <Condition Property="Selector.IsSelectionActive" Value="false"/>
+        </MultiTrigger.Conditions>
+      </MultiTrigger>-->
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="ListViewItemFocusVisual">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Stroke="{StaticResource Brush_Border_Focused}" 
+                     StrokeThickness="0" RadiusX="2" RadiusY="2" 
+                     Fill="Transparent"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ListViewItemNewStyle" TargetType="ListViewItem">
+    <Setter Property="Foreground" Value="{StaticResource Brush_Foreground_Normal}"/>
+    <Setter Property="FocusVisualStyle" Value="{StaticResource ListViewItemFocusVisual}"/>
+    <Setter Property="Background" Value="{StaticResource Brush_Background_Normal}"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Margin" Value="1,2,0,0"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="Template" Value="{StaticResource ResourceKey=ListViewItemControlTemplate}"/>
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="Foreground" Value="{StaticResource Brush_Foreground_MouseOver}"/>
+      </Trigger>
+      <Trigger Property="ItemsControl.AlternationCount" Value="0">
+        <Setter Property="Background" Value="Transparent"/>
+      </Trigger>
+      <Trigger Property="ItemsControl.AlternationCount" Value="1">
+        <Setter Property="Background" Value="DarkCyan"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

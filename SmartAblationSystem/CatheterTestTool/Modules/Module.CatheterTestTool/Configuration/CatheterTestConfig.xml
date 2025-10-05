@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+	<CatheterTestConfig catheterId="1">
+		<IBPInflationSetting stableValue="2.5" offset="0.3"/>
+		<TestCriteriaConfig>
+			<TestCriteria Sensor="TEMP" Min="-50.0" Max="-20.0" />
+			<TestCriteria Sensor="IBP" Min="2.0" Max="3.7" />
+			<TestCriteria Sensor="OBP" Min="-14.7" Max="-10.0" />
+			<TestCriteria Sensor="PT2" Min="400" Max="510" />
+			<TestCriteria Sensor="PT3" Min="6.0" Max="11.0" />
+			<TestCriteria Sensor="PT4" Min="3.8" Max="6.0" />
+			<TestCriteria Sensor="FM1" Min="7600" Max="8200" />
+		</TestCriteriaConfig>
+	</CatheterTestConfig>
+
+	<CatheterTestConfig catheterId="2">
+		<!-- <IBPInflationSetting stableValue="2.5" offset="0.3"/> -->
+		<!-- <TestCriteriaConfig> -->
+		<!-- 	<TestCriteria Sensor="TEMP" Min="-50.0" Max="-20.0" /> -->
+		<!-- 	<TestCriteria Sensor="IBP" Min="2.0" Max="3.7" /> -->
+		<!-- 	<TestCriteria Sensor="OBP" Min="-14.7" Max="-10.0" /> -->
+		<!-- 	<TestCriteria Sensor="PT2" Min="400" Max="510" /> -->
+		<!-- 	<TestCriteria Sensor="PT3" Min="6.0" Max="11.0" /> -->
+		<!-- 	<TestCriteria Sensor="PT4" Min="3.8" Max="6.0" /> -->
+		<!-- 	<TestCriteria Sensor="FM1" Min="7600" Max="8200" /> -->
+		<!-- </TestCriteriaConfig> -->
+		<IBPInflationSetting stableValue="7.5" offset="0.3"/>
+		<TestCriteriaConfig>
+			<TestCriteria Sensor="TEMP" Min="-50.0" Max="-25.0" />
+			<TestCriteria Sensor="IBP" Min="7.3" Max="7.7" />
+			<TestCriteria Sensor="OBP" Min="-14.7" Max="-10.0" />
+			<TestCriteria Sensor="PT2" Min="400" Max="510" />
+			<TestCriteria Sensor="PT3" Min="6.0" Max="11.0" />
+			<TestCriteria Sensor="PT4" Min="3.8" Max="6.0" />
+			<TestCriteria Sensor="FM1" Min="8500" Max="8900" />
+		</TestCriteriaConfig>
+	</CatheterTestConfig>
+</Configuration>

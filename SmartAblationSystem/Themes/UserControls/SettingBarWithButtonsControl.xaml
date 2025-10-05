@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="CustomControls.UserControls.SettingBarWithButtonsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:userControls="clr-namespace:CustomControls.UserControls"
+             mc:Ignorable="d" >
+  <Viewbox Stretch="Uniform">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions> 
+      <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0, 0, 0, 20">
+        <TextBlock Text="{Binding Path=Description, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                   Foreground="#ffcdc2c5" FontFamily="{StaticResource Lato}" FontSize="18"/>
+        <TextBlock Text="{Binding Path=Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                   Foreground="#ffffffff" FontFamily="{StaticResource Lato}" FontSize="18" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding Path=Unit, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                   Foreground="#ffffffff" FontFamily="{StaticResource Lato}" FontSize="18" />
+      </StackPanel> 
+
+      <StackPanel Grid.Row="1" Name="_mainGrid" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" >
+
+        <Button Style="{StaticResource SettingLeftArrowButtonStyle}" Width="32" Margin="0, 0, 15, 0" VerticalAlignment="Top" 
+                Command="{Binding DecrementalCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+       
+        <userControls:ProgressSettingBarControl Width="150" Height="45" Margin="0,3,0,0"
+                                         MinValue="{Binding Path=MinValue, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                         MaxValue="{Binding Path=MaxValue, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                         Value="{Binding Path=Value, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+
+        <Button Style="{StaticResource SettingRightArrowButtonStyle}" Width="32" Margin="15, 0, 0, 0" VerticalAlignment="Top"
+                Command="{Binding IncrementalCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+      </StackPanel>
+    </Grid>
+  </Viewbox>
+</UserControl>

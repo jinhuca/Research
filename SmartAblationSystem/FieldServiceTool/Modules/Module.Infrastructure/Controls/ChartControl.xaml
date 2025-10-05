@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Module.Infrastructure.Controls.ChartControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Module.Infrastructure.Constants"
+             xmlns:charting="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="350">
+	<WindowsFormsHost>
+		<charting:Chart x:Name="WinChart" BackColor="#FF000000">
+			<charting:Chart.Series>
+				<charting:Series x:Name="WinChartSeries" ChartType="Spline" BorderWidth="2"/>
+			</charting:Chart.Series>
+			<charting:Chart.ChartAreas>
+				<charting:ChartArea Name="myChartArea" BackColor="#FF050505" BorderColor="#FF606060" BorderDashStyle="Dash">
+					<charting:ChartArea.AxisX>
+						<charting:Axis x:Name="XAxis" Minimum="0" Maximum="240" LineColor="#FF505050" LineWidth="5">
+							<charting:Axis.MajorGrid>
+								<charting:Grid LineColor="#FF464646" Interval="10"/>
+							</charting:Axis.MajorGrid>
+							<charting:Axis.MinorGrid>
+								<charting:Grid x:Name="XMinorGrid" Interval="1" LineColor="#FF464646"/>
+							</charting:Axis.MinorGrid>
+							<charting:Axis.LabelStyle>
+								<charting:LabelStyle x:Name="XAxisStyle" ForeColor="LightYellow" Interval="10" IsEndLabelVisible="True"/>
+							</charting:Axis.LabelStyle>
+						</charting:Axis>
+					</charting:ChartArea.AxisX>
+					<charting:ChartArea.AxisY>
+						<charting:Axis x:Name="YAxis" LineColor="#FF505050" LineWidth="3" TextOrientation="Stacked">
+							<charting:Axis.MajorGrid>
+								<charting:Grid LineColor="#FF464646"/>
+							</charting:Axis.MajorGrid>
+							<charting:Axis.LabelStyle>
+								<charting:LabelStyle x:Name="YAxisStyle" ForeColor="LightYellow" IsEndLabelVisible="True" Enabled="True"/>
+							</charting:Axis.LabelStyle>
+						</charting:Axis>
+					</charting:ChartArea.AxisY>
+					<charting:ChartArea.AxisY2>
+						<charting:Axis x:Name="Y2Axis" LineColor="#FF505050" LineWidth="5" TextOrientation="Stacked">
+							<charting:Axis.MajorGrid>
+								<charting:Grid LineColor="#FF464646"/>
+							</charting:Axis.MajorGrid>
+							<charting:Axis.LabelStyle>
+								<charting:LabelStyle x:Name="Y2AxisStyle" ForeColor="LightYellow" IsEndLabelVisible="True" Enabled="True"/>
+							</charting:Axis.LabelStyle>
+						</charting:Axis>
+					</charting:ChartArea.AxisY2>
+				</charting:ChartArea>
+			</charting:Chart.ChartAreas>
+		</charting:Chart>
+	</WindowsFormsHost>
+</UserControl>

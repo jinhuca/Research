@@ -1,0 +1,1861 @@
+﻿<local:CryoTherapyChartViewBase x:Class="SmartAblationSystem.Views.CryoTherapyNormalView"
+                                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                                xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+                                xmlns:convertersNew="clr-namespace:SmartAblationSystem.ConvertersNew"
+                                xmlns:local="clr-namespace:SmartAblationSystem.Views"
+                                xmlns:constants="clr-namespace:SmartAblationSystem"
+                                xmlns:userControls="clr-namespace:CustomControls.UserControls;assembly=CustomControls"
+                                xmlns:selectors="clr-namespace:SmartAblationSystem.Selectors"
+                                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                                xmlns:behaviors="clr-namespace:CustomControls.Behaviors;assembly=CustomControls"
+                                Loaded="CryoTherapyNormalView_Loaded"
+                                Unloaded="UserControl_Unloaded"
+                                IsVisibleChanged="CryoTherapyNormalView_OnIsVisibleChanged"
+                                mc:Ignorable="d" 
+                                SnapsToDevicePixels="True"
+                                d:DesignHeight="1000" d:DesignWidth="1920" d:DataContext="{d:DesignData}"
+                                Height="1000" Width="1920">
+  <UserControl.Resources>
+    <selectors:SystemInfoDataTemplateSelector x:Key="SystemInfoDataTemplateSelector_"/>
+    <convertersNew:BoolToStringConverter x:Key="BoolToStringConverter_"/>
+    <convertersNew:BoolReverseConverter x:Key="BoolReverseConverter_"/>
+    <convertersNew:BoolToVisibilityConverter x:Key="BoolToVisibilityNewConverter_"/>
+    <convertersNew:LowFlowEnableConverter x:Key="LowFlowEnableConverter_"/>
+    <converters:StateAndBooleanToEnableConverter x:Key="stateAndBooleanToEnableConverter"/>
+    <convertersNew:PlaybackAblationTimeVisibilityConverter x:Key="PlaybackAblationTimeVisibilityConverter_"/>
+    <convertersNew:PlaybackTotalThawingTimeVisibilityConverter x:Key="PlaybackTotalThawingTimeVisibilityConverter_"/>
+    <convertersNew:ETSTemperatureToStringConverter x:Key="etsTemperatureToStringConverter"/>
+    <convertersNew:SystemStateAndAlertStateToColorConverter x:Key="StateAndAlertStateToColorConverter_" />
+    <convertersNew:SystemStateAndAlertsToFlashStateConverter x:Key="StateAndAlertsToFlashStateConverter_" />
+    <convertersNew:SystemStateToBoolConverter x:Key="SystemStateToBoolConverter_"/>
+    <convertersNew:SystemStateToEnabledConverter x:Key="SystemStateToEnabledConverter_"/>
+    <convertersNew:CatheterConnectionConverter x:Key="CatheterConnectionConverter_"/>
+    <convertersNew:TTIValueConverter x:Key="TTIValueConverter_"/>
+    <convertersNew:SystemStateToVisibilityConverter x:Key="StateToVisibleConverter_"/>
+    <convertersNew:AblationTimeTitleConverter x:Key="AblationTimeTitleConverter_"/>
+    <convertersNew:PlaybackBorderOpacityConverter x:Key="PlaybackVisibilityConverter_"/>
+    <convertersNew:EmptyAblationTimeConverter x:Key="emptyConverter"/>
+    <convertersNew:PlaybackTimeConverter x:Key="PlaybackTimeConverter"/>
+    <convertersNew:PlaybackTimeTitleVisibilityConverter x:Key="PlaybackTimeTitleVisibilityConverter"/>
+    <convertersNew:GasLevelConverter x:Key="GasLevelConverter_"/>
+    <convertersNew:AblationStateToEnabledConverter x:Key="AblationStateToEnabledConverter"/>
+    <converters:GasSateToColor x:Key="gasSateToColor" />
+    <converters:WeightToLevelConverter x:Key="weightToLevelConverter" />
+    <converters:BooleanToStringConverter x:Key="booleanToStringConverter" />
+    <converters:DiaphragmMovementToStringConverter x:Key="diaphragmMovementToStringConverter"/>
+    <converters:IntToPercentageConverter x:Key="intToPercentageConverter" />
+    <converters:AblationSiteToStringConverter x:Key="ablationSiteToStringConverter"/>
+    <converters:AblationSummaryToString x:Key="ablationSummaryToString"/>
+    <converters:BooleanAndStateToVisibilityConverter x:Key="booleanAndStateToVisibilityConverter"/>
+    <converters:BooleanAndStateToNotVisibilityConverter x:Key="booleanAndStateToNotVisibilityConverter"/>
+    <converters:BooleanAndStateToTextValueConverter x:Key="booleanAndStateToTextValueConverter"/>
+    <converters:ThawTimeToStringTimeToTargetTemperatureAndVeinIsolationDuration x:Key="thawTimeToStringTimeToTargetTemperatureAndVeinIsolationDuration"/>
+    <converters:StateToVisibilityConverter x:Key="stateToVisibility" />
+    <converters:StateToEnableConverter x:Key="stateToEnable" />
+    <converters:BooleanToNotVisibilityConverter x:Key="booleanToNotVisibilityConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    <converters:CoolingTimeTextConverter x:Key="coolingTimeTextConverter"/>
+    <converters:StateToEnableConverter x:Key="StateToEnableConverter"/>
+    <converters:PWReverseVisibilityConverter x:Key="pwvReverseConverter"/>
+    <converters:PWVisibilityConverter x:Key="pwvConverter"/>
+    <converters:PatientNameVisibilityConverter x:Key="patientNameVisibilityConverter"/>
+    <converters:PatientStyleVisibilityConverter x:Key="patientStyleVisibilityConverter"/>
+    <converters:ProcedureToStringConverter x:Key="procedureToStringConverter"/>
+    <converters:StringToMaskConverter x:Key="stringMaskConverter"/>
+    <converters:DateTimeToStringConverter x:Key="dateTimeToStringConverter" />
+    <converters:StringToIntConverter x:Key="stringToIntConverter"/>
+    <converters:CryoTherapyTimeConverter x:Key="cryoTherapyTimeConverter"/>
+    <converters:StringTodoubleConverter x:Key="stringTodoubleConverter"/>
+    <converters:NumberOfTreatmentsAndStateToEnableConverter x:Key="numberOfTreatmentsAndStateToEnableConverter"/>
+    <converters:TTIStatusConverter x:Key="ttiStatusConverter"/>
+    <converters:TimeTTIConverter x:Key="timeTTIConverter"/>
+    <converters:BooleanToOpacityConverter x:Key="booleanToOpacityConverter" />
+    <converters:StateAndTimeToVisibilityConverter x:Key="stateAndTimeToVisibilityConverter" />
+    <converters:StatesAndBalloonToPictuersConverter x:Key="statesAndBalloonToPictuersConverter" />
+    <converters:DoubleToStringConverter x:Key="doubleToStringConverter" />
+    <converters:CryoTherapyViewPopIsOpenConverter x:Key="cryoTherapyViewPopIsOpenConverter" />
+    <converters:ShortToRefrigerantUnitConverter x:Key="shortToRefrigerantUnitConverter"/>
+    <converters:CatheterIDToName x:Key="catheterIDToName"/>
+  </UserControl.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="60"/>
+      <RowDefinition Height="840"/>
+      <RowDefinition Height="120"/>
+      <RowDefinition Height="60"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="132"/>
+      <ColumnDefinition Width="1475"/>
+      <ColumnDefinition Width="313"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- First Row: Title -->
+    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
+			        CornerRadius="8" Margin="0,0">
+      <Grid Margin="20,0,0,0" 
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="850"/>
+          <ColumnDefinition Width="220"/>
+          <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="400"/>
+          </Grid.ColumnDefinitions>
+          <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"
+                      Margin="0,0,0,0">
+            <TextBlock Text="{Binding CatheterType, Converter={StaticResource catheterIDToName}, ConverterParameter=CatheterDescriptionSplit}" 
+                       Margin="23,10,0,0" 
+                       Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Text="{Binding CatheterType, Converter={StaticResource catheterIDToName}, ConverterParameter=CatheterDescriptionTM}" 
+                       Margin="2,12,0,0" 
+                       Style="{StaticResource TradeMarkTextBlockStyle_}"/>
+            <TextBlock Text="{Binding CatheterType, Converter={StaticResource catheterIDToName}, ConverterParameter=CatheterDescription}"
+                       Margin="12,10,0,0"
+                       Style="{StaticResource  CatheterTypeTextBlockStyle_}"/>
+          </StackPanel>
+          <Border Grid.Column="1" 
+                  Style="{StaticResource TestCatheterInformationBorderStyle_}"
+                  Visibility="{Binding IsUsedForEngineering, Converter={StaticResource booleanToVisibilityConverter}}">
+            <Grid Width="342" Height="40">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Image Grid.Column="0" 
+                     Style="{StaticResource TestCatheterImageStyle_}"/>
+              <TextBlock Grid.Column="1" 
+                         Style="{StaticResource TestCatheterTextBlockStyle_}"/>
+            </Grid>
+          </Border>
+        </Grid>
+        <Grid Grid.Column="1" 
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center"
+								Margin="0,10,20,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <CheckBox Grid.Column="0" Grid.ColumnSpan="2"
+						          x:Name="PatientNameCheckBox" 
+						          HorizontalAlignment="Center"
+						          IsChecked="{Binding IsPatientNameVisible}">
+            <CheckBox.Style>
+              <Style TargetType="CheckBox">
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                      <StackPanel Orientation="Horizontal" Background="Transparent" Width="150" Height="50">
+                        <Image x:Name="checkBoxImage" 
+													       Height="22" 
+                                 Margin="20,0,0,0"
+													       Source="../Images/ShowInfo.png"/>
+                        <ContentPresenter/>
+                        <TextBlock Grid.Column="1" 
+		           Text="PATIENT:"
+										 Margin="10,0,0,0"
+		           Style="{StaticResource InfoTextBlockStyle}"/>
+                      </StackPanel>
+                      <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                          <Setter TargetName="checkBoxImage" Property="Source" Value="../Images/HideInfo.png"/>
+                          <Setter TargetName="checkBoxImage" Property="Height" Value="26"/>
+                        </Trigger>
+                      </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+              </Style>
+            </CheckBox.Style>
+          </CheckBox>
+          <TextBlock Grid.Column="2" 
+            x:Name="patientMask">
+            <TextBlock.Style>
+              <MultiBinding Converter="{StaticResource patientStyleVisibilityConverter}">
+                <Binding ElementName="PatientNameCheckBox" Path="IsChecked" />
+                <Binding Source="{StaticResource InfoTextBlockStyle}" />
+                <Binding Source="{StaticResource MaskTextBlockStyle}" />
+              </MultiBinding>
+            </TextBlock.Style>
+            <TextBlock.Text>
+              <MultiBinding Converter="{StaticResource patientNameVisibilityConverter}" ConverterParameter="FULLNAME">
+                <Binding Path="CurrentPatient"/>
+                <Binding ElementName="PatientNameCheckBox" Path="IsChecked"/>
+              </MultiBinding>
+            </TextBlock.Text>
+          </TextBlock>
+        </Grid>
+        <Grid Grid.Column="2"
+					      VerticalAlignment="Center"
+					      Margin="20,10,0,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="35"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.ColumnSpan="3" 
+           Style="{StaticResource InfoTextBlockStyle}"
+           Text="{Binding InBodyTime, StringFormat='In body time:  {0}  min'}"/>
+        </Grid>
+        <Grid Grid.Column="3"
+								VerticalAlignment="Center"
+					      Margin="0,10,30,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.ColumnSpan="2" 
+           Style="{StaticResource InfoTextBlockStyle}"
+           Text="{Binding CurrentTime, Converter={StaticResource dateTimeToStringConverter}, StringFormat='Time:  {0}'}"/>
+        </Grid>
+      </Grid>
+    </Border>
+
+    <!-- Second Row, First Column: Control Panel -->
+    <Grid Grid.Row="1" Grid.Column="0" Margin="25,10,6,14">
+      <Border Background="{StaticResource TherapyControlPanelBackground}"
+				        CornerRadius="12"
+				        Margin="12,0,4,0">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <StackPanel Grid.Row="0">
+            <Button Visibility="{Binding SystemState, ConverterParameter=ABLATION_SITE, Converter={StaticResource stateToVisibility}}"
+							        IsEnabled="{Binding SystemState, ConverterParameter=ABLATION_SITE, Converter={StaticResource stateToEnable}}"
+							        Command="{Binding AblationSiteCommand}" 
+                      Background="Transparent">
+              <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource HeartSiteButtonStyle_}">
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsAblationSiteChanged}" Value="True">
+                      <DataTrigger.EnterActions>
+                        <BeginStoryboard Name="_flashStoryboard" Storyboard="{StaticResource ButtonFlashStoryboard}" />
+                      </DataTrigger.EnterActions>
+                      <DataTrigger.ExitActions>
+                        <StopStoryboard BeginStoryboardName="_flashStoryboard" />
+                      </DataTrigger.ExitActions>
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </Button.Style>
+              <Button.Content>
+                <StackPanel>
+                  <Image Style="{StaticResource HeartImageStyle_}"/>
+                  <TextBlock Text="{Binding AblationSite, Converter={StaticResource ablationSiteToStringConverter}, Mode=OneWay}"
+                           Style="{StaticResource HeartSiteTextBlockStyle}" TextAlignment="Center" Height="40" Width="80"/>
+                </StackPanel>
+              </Button.Content>
+            </Button>
+          </StackPanel>
+          <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Visibility="{Binding IsSystemUsingDASBalloon, Converter={StaticResource booleanToVisibilityConverter}}">
+            <Button Style="{StaticResource PlusBalloonButtonStyle_}" 
+                      Command="{Binding EnableDASBallonCommand}" Height="60" Width="80"
+                      Visibility="{Binding IsBalloonRampDownActivated, Converter={StaticResource booleanToNotVisibilityConverter}}"/>
+            <Button Style="{StaticResource MinusBalloonButtonStyle_}"
+                      Command="{Binding EnableDASBallonCommand}" Height="60" Width="80"
+                      Visibility="{Binding IsBalloonRampDownActivated, Converter={StaticResource booleanToVisibilityConverter}}"/>
+          </Grid>
+          <Grid Grid.Row="1"  Grid.RowSpan="3">
+
+            <Button x:Name="VeinIsolationButton"
+                    IsEnabled="{Binding IsIsolatingVein}" Height="115" Width="80" Focusable="False"
+                    Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource booleanToNotVisibilityConverter}, ConverterParameter=HIDDEN}"
+                    Style="{StaticResource TTIIconButtonStyle_}">
+              <TextBlock Style="{StaticResource TTITextBlockStyle_}"
+                 VerticalAlignment="Bottom"
+                 HorizontalAlignment="Center"
+                 TextWrapping="Wrap">
+                <TextBlock.Text>
+                  <MultiBinding Converter="{StaticResource ttiStatusConverter}">
+                    <Binding Path="VeinIsolationDuration"/>
+                    <Binding Path="SystemState"/>
+                    <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                  </MultiBinding>
+                </TextBlock.Text>
+              </TextBlock>
+            </Button>
+            <Button x:Name="UpdateVeinIsolationButton"
+                IsEnabled="{Binding IsTreatmentNumberAndPlayBackVisible}"
+                Command="{Binding UpdateVeinIsolationDurationCommand}" 
+                Height="80" 
+                Focusable="False"
+                Width="80"
+                Background="Transparent" 
+                Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter=HIDDEN}"
+                Style="{StaticResource TTIIconButtonStyle_}">
+            </Button>
+
+          </Grid>
+
+          <Button Grid.Row="3" FocusVisualStyle="{x:Null}"
+                  Visibility="{Binding SystemState, ConverterParameter=TREATMENT_NOTES, Converter={StaticResource stateToVisibility}}"
+                  Command="{Binding TreatmentNotesCommand}" Height="60" Width="80"
+                  Style="{StaticResource NoteIconButtonStyle_}">
+            <Button.IsEnabled>
+              <MultiBinding Converter="{StaticResource numberOfTreatmentsAndStateToEnableConverter}" ConverterParameter="VerifyState">
+                <Binding Path="SystemState"/>
+                <Binding Path="TotalTreatmentNumber"/>
+                <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+              </MultiBinding>
+            </Button.IsEnabled>
+          </Button>
+          <Button Grid.Row="4" 
+                  Command="{Binding NotificationsCommand}" Height="60" Width="80"
+                  Visibility="{Binding SystemState, ConverterParameter=TARGET_TEMPERATURE, Converter={StaticResource stateToVisibility}}"
+                  IsEnabled="{Binding SystemState, ConverterParameter=TARGET_TEMPERATURE, Converter={StaticResource stateToEnable}}"
+                  Style="{StaticResource SettingsIconButtonStyle_}" FocusVisualStyle="{x:Null}"/>
+          <CheckBox Grid.Row="5" 
+                    Style="{StaticResource FootSwitchControlStyle_}" Height="60" Width="80"
+                    IsChecked="{Binding LockTheFootSwitch, Converter={StaticResource BoolReverseConverter_}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          <Button Grid.Row="6" 
+                  Style="{StaticResource LowFlowButtonStyle_}"  Height="60" Width="80"
+                  Visibility="{Binding IsUsingLowFlow, Converter={StaticResource BoolToVisibilityNewConverter_}}"
+                  Command="{Binding ActivateLowFlowCommand}">
+            <Button.IsEnabled>
+              <MultiBinding Converter="{StaticResource LowFlowEnableConverter_}">
+                <Binding Path="IsUsingLowFlow"/>
+                <Binding Path="AllowUserToActivateLowFlow"/>
+                <Binding Path="IsLowFlowActivated"/>
+              </MultiBinding>
+            </Button.IsEnabled>
+          </Button>
+        </Grid>
+      </Border>
+    </Grid>
+
+    <!-- Second Row, Second Column: Main Panel -->
+    <Grid Grid.Row="1" Grid.Column="1" Margin="9,7,11,9">
+      <Border Background="Transparent" x:Name="_playbackModeBorder"
+              BorderBrush="{StaticResource PlaybackBorderBrush_}"
+              BorderThickness="5"
+              CornerRadius="8"
+              Margin="1"
+              Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource booleanToVisibilityConverter}}">
+        <Border.Effect>
+          <DropShadowEffect Color="{StaticResource PlaybackBorderColor_}"
+                            ShadowDepth="0" 
+                            BlurRadius="13" 
+                            RenderingBias="Performance" 
+                            Opacity="1"
+                            Direction="0"/>
+        </Border.Effect>
+      </Border>
+      <Border x:Name="_mainBorder"
+              Background="{StaticResource TherapyControlPanelBackground}" 
+              BorderThickness="5"
+              CornerRadius="8"
+              Margin="1">
+        <i:Interaction.Behaviors>
+          <behaviors:StoryboardSyncBehavior SyncGroupName="AlertGroup"/>
+        </i:Interaction.Behaviors>
+        <Border.BorderBrush>
+          <SolidColorBrush Opacity="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource PlaybackVisibilityConverter_}}">
+            <SolidColorBrush.Color>
+              <MultiBinding Converter="{StaticResource StateAndAlertStateToColorConverter_}">
+                <Binding Path="SystemState"/>
+                <Binding Path="DiaphragmAmplitudeThresholdReached"/>
+                <Binding Path="IsEsophagusTemperatureConditionAlertsMeet"/>
+              </MultiBinding>
+            </SolidColorBrush.Color>
+          </SolidColorBrush>
+        </Border.BorderBrush>
+        <Border.Effect>
+          <DropShadowEffect Color="{Binding ElementName=_mainBorder, Path=BorderBrush.Color}" 
+                            ShadowDepth="0" 
+                            BlurRadius="30" 
+                            RenderingBias="Performance" 
+                            Opacity="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource PlaybackVisibilityConverter_}}"
+                            Direction="0"/>
+        </Border.Effect>
+        <Border.Style>
+          <Style>
+            <Style.Triggers>
+              <DataTrigger Value="True">
+                <DataTrigger.Binding>
+                  <MultiBinding Converter="{StaticResource StateAndAlertsToFlashStateConverter_}">
+                    <Binding Path="SystemState"/>
+                    <Binding Path="DiaphragmAmplitudeThresholdReached"/>
+                    <Binding Path="IsEsophagusTemperatureConditionAlertsMeet"/>
+                    <Binding Path="EnabaleEnhancedAudio" />
+                  </MultiBinding>
+                </DataTrigger.Binding>
+                <DataTrigger.EnterActions>
+                  <BeginStoryboard Name="_borderFlashStoryboard" Storyboard="{StaticResource FlashBorderStoryboard}"/>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                  <StopStoryboard BeginStoryboardName="_borderFlashStoryboard"/>
+                </DataTrigger.ExitActions>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </Border.Style>
+        <Grid Margin="1">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="82"/>
+            <RowDefinition Height="474"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="370"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <!-- Catheter Information Panel -->
+          <Grid Grid.Row="0" Grid.Column="0">
+          </Grid>
+
+          <!-- Status Panel -->
+          <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="130"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="STATUS:"
+                       HorizontalAlignment="Left" Margin="40,0,0,0"
+                       Style="{StaticResource StateIndicatorTextStyle}"/>
+            <Border Grid.Column="1"
+                    Height="2" Width="800"
+                    Margin="30,0,0,0"
+                    Background="{StaticResource AblationInfoBorderBrush}"/>
+            <Grid Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left" 
+                  Margin="0,0,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="183"/>
+                <ColumnDefinition Width="183"/>
+                <ColumnDefinition Width="183"/>
+                <ColumnDefinition Width="183"/>
+                <ColumnDefinition Width="183"/>
+              </Grid.ColumnDefinitions>
+              <ContentControl Grid.Column="0"
+                              IsEnabled="{Binding SystemState, Converter={StaticResource SystemStateToBoolConverter_}, ConverterParameter={x:Static constants:UIConstants.IdleState}}"
+                              Style="{StaticResource IdleStateIndicatorStyle_}"/>
+              <ContentControl Grid.Column="1" 
+                              IsEnabled="{Binding SystemState, Converter={StaticResource SystemStateToBoolConverter_}, ConverterParameter={x:Static constants:UIConstants.ReadyState}}"
+                              Style="{StaticResource ReadyStateIndicatorStyle_}"/>
+              <ContentControl Grid.Column="2"
+                              IsEnabled="{Binding SystemState, Converter={StaticResource SystemStateToBoolConverter_}, ConverterParameter={x:Static constants:UIConstants.InflationState}}"
+                              Style="{StaticResource InflationIndicatorStyle_}"/>
+              <ContentControl Grid.Column="3"
+                              IsEnabled="{Binding SystemState, Converter={StaticResource SystemStateToBoolConverter_}, ConverterParameter={x:Static constants:UIConstants.AblationState}}"
+                              Style="{StaticResource AblationIndicatorStyle_}"/>
+              <ContentControl Grid.Column="4"
+                              IsEnabled="{Binding SystemState, Converter={StaticResource SystemStateToBoolConverter_}, ConverterParameter={x:Static constants:UIConstants.ThawingState}}"
+                              Style="{StaticResource ThawingIndicatorStyle_}"/>
+            </Grid>
+            <ContentControl Grid.Column="1"
+                            Style="{StaticResource PlaybackIndicatorStyle_}"
+                            Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource booleanToVisibilityConverter}}"/>
+          </Grid>
+
+          <!-- Ablation Temperature and Time -->
+          <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="40"/>
+              <RowDefinition Height="110"/>
+              <RowDefinition Height="70"/>
+              <RowDefinition Height="80"/>
+              <RowDefinition Height="20"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="TEMPERATURE"
+                       Style="{StaticResource TemperatureTextBlockStyle}"/>
+            <Grid Grid.Row="1">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.4*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0"
+                         Text="{Binding TC1Reading, Converter={StaticResource stringToIntConverter}}"
+                         Style="{StaticResource TemperatureValueStyle}"/>
+              <TextBlock Grid.Column="1"
+                         Text="°C"
+                         Style="{StaticResource TemperatureUnitStyle}"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+              <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource booleanAndStateToNotVisibilityConverter}" ConverterParameter="OcclusionPressureInflationShow">
+                  <Binding Path="SystemState"/>
+                  <Binding Path="EnabledIsBloodPressureSensorConnected"/>
+                  <Binding Path="IsMonitoringBloodPressure"/>
+                </MultiBinding>
+              </Grid.Visibility>
+              <TextBlock Text="ABLATION TIME" 
+                         Style="{StaticResource AblationTimeTitleStyle}">
+                <TextBlock.Visibility>
+                  <MultiBinding Converter="{StaticResource AblationTimeTitleConverter_}" 
+                                ConverterParameter="ABLATION">
+                    <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                    <Binding Path="SystemState"/>
+                  </MultiBinding>
+                </TextBlock.Visibility>
+              </TextBlock>
+              <TextBlock Text="THAWING TIME"
+                         Style="{StaticResource AblationTimeTitleStyle}">
+                <TextBlock.Visibility>
+                  <MultiBinding Converter="{StaticResource AblationTimeTitleConverter_}"
+                                ConverterParameter="THAWING">
+                    <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                    <Binding Path="SystemState"/>
+                  </MultiBinding>
+                </TextBlock.Visibility>
+              </TextBlock>
+            </Grid>
+
+            <!-- Playback Information -->
+            <Grid Grid.Row="2" Grid.RowSpan="2" 
+                  Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource booleanToVisibilityConverter}}">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="80"/>
+              </Grid.RowDefinitions>
+              <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel.Visibility>
+                  <MultiBinding Converter="{StaticResource PlaybackTimeTitleVisibilityConverter}" 
+                                ConverterParameter="ABLATION">
+                    <Binding Path="CryoTherapyTime"/>
+                    <Binding Path="TemporaryManualAblationTime"/>
+                    <Binding Path="ActualAblationTime"/>
+                  </MultiBinding>
+                </StackPanel.Visibility>
+                <TextBlock Text="ABLATION TIME" 
+                           FontWeight="Bold"
+                           Style="{StaticResource AblationTimeTitleStyle}"/>
+                <TextBlock Text=" / SET TIMER"
+                           Style="{StaticResource TotalTimeTextBlockStyle_}"/>
+              </StackPanel>
+              <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel.Visibility>
+                  <MultiBinding Converter="{StaticResource PlaybackTimeTitleVisibilityConverter}" 
+                                ConverterParameter="THAWING">
+                    <Binding Path="CryoTherapyTime"/>
+                    <Binding Path="TemporaryManualAblationTime"/>
+                    <Binding Path="ActualAblationTime"/>
+                  </MultiBinding>
+                </StackPanel.Visibility>
+                <TextBlock Text="THAW TIME"
+                           FontWeight="Bold"
+                           Style="{StaticResource AblationTimeTitleStyle}"/>
+                <TextBlock Text=" / TOTAL THAW TIME"
+                           Style="{StaticResource TotalTimeTextBlockStyle_}"/>
+              </StackPanel>
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           Style="{StaticResource AblationTimeValueStyle}">
+                  <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource PlaybackTimeConverter}">
+                      <Binding Path="CryoTherapyTime"/>
+                      <Binding Path="TemporaryManualAblationTime"/>
+                      <Binding Path="ActualAblationTime"/>
+                      <Binding Path="ThawingElapsedTime"/>
+                    </MultiBinding>
+                  </TextBlock.Text>
+                </TextBlock>
+              </Grid>
+            </Grid>
+            <Grid Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+              <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource emptyConverter}">
+                  <Binding Path="SystemState"/>
+                  <Binding Path="EnabledIsBloodPressureSensorConnected"/>
+                  <Binding Path="IsMonitoringBloodPressure"/>
+                </MultiBinding>
+              </Grid.Visibility>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" HorizontalAlignment="Center"
+                         Text="-" Margin="0,0,20,16"
+                         Style="{StaticResource TemperatureValueStyle}"/>
+            </Grid>
+            <Grid Grid.Row="3" Margin="0,0,20,0">
+              <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource booleanAndStateToNotVisibilityConverter}" ConverterParameter="OcclusionPressureInflationShow">
+                  <Binding Path="SystemState"/>
+                  <Binding Path="EnabledIsBloodPressureSensorConnected"/>
+                  <Binding Path="IsMonitoringBloodPressure"/>
+                </MultiBinding>
+              </Grid.Visibility>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.4*"/>
+                <ColumnDefinition Width="6"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Grid Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,13,0">
+                <TextBlock Grid.Column="0" 
+                           Style="{StaticResource AblationTimeValueStyle}" >
+                  <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource StateToVisibleConverter_}" ConverterParameter="ABLATION">
+                      <Binding Path="SystemState" />
+                      <Binding Path="IsTreatmentNumberAndPlayBackVisible" />
+                    </MultiBinding>
+                  </TextBlock.Visibility>
+                  <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource cryoTherapyTimeConverter}">
+                      <Binding Path="IsCatheterCableConnected"/>
+                      <Binding Path="CryoTherapyTime"/>
+                    </MultiBinding>
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="{Binding ThawingElapsedTime}" 
+                           Style="{StaticResource AblationTimeValueStyle}" >
+                  <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource StateToVisibleConverter_}" ConverterParameter="THAWING">
+                      <Binding Path="SystemState" />
+                      <Binding Path="IsTreatmentNumberAndPlayBackVisible" />
+                    </MultiBinding>
+                  </TextBlock.Visibility>
+                </TextBlock>
+              </Grid>
+              <Border Grid.Column="1" Height="28" Width="1" Margin="0,0,0,0"
+								        HorizontalAlignment="Stretch"
+												VerticalAlignment="Stretch"
+								        Background="{StaticResource InformationForeground}"
+                        Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource PlaybackVisibilityConverter_}}"/>
+              <StackPanel Grid.Column="2" 
+                          Margin="10,0,0,0" 
+                          HorizontalAlignment="Left" 
+                          VerticalAlignment="Center">
+                <TextBlock Text="{Binding RequiredAblationTimeAccordingToState}"
+                           Style="{StaticResource RequiredAblationTimeTextStyle}">
+                  <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource PlaybackAblationTimeVisibilityConverter_}">
+                      <Binding Path="CryoTherapyTime"/>
+                      <Binding Path="ActualAblationTime"/>
+                      <Binding Path="SystemState"/>
+                      <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                    </MultiBinding>
+                  </TextBlock.Visibility>
+                </TextBlock>
+                <TextBlock Text="{Binding ThawingElapsedTime}"
+                           Style="{StaticResource RequiredAblationTimeTextStyle}">
+                  <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource PlaybackTotalThawingTimeVisibilityConverter_}"
+                                  ConverterParameter="THAWING">
+                      <Binding Path="CryoTherapyTime"/>
+                      <Binding Path="ActualAblationTime"/>
+                      <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                    </MultiBinding>
+                  </TextBlock.Visibility>
+                </TextBlock>
+                <TextBlock Text="sec"
+                           Style="{StaticResource TimeUnitStyle_}"/>
+              </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.RowSpan="2">
+              <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource booleanAndStateToVisibilityConverter}" ConverterParameter="OcclusionPressureInflationShow">
+                  <Binding Path="SystemState"/>
+                  <Binding Path="EnabledIsBloodPressureSensorConnected"/>
+                  <Binding Path="IsMonitoringBloodPressure"/>
+                </MultiBinding>
+              </Grid.Visibility>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0"
+                         Style="{StaticResource BloodPressureValueTextStyle}"
+                         Text="{Binding BloodPressureMaximumValueDuringOneSecond}"/>
+              <TextBlock Grid.Column="1"
+                         Style="{StaticResource BloodPressureUnitTextStyle}"
+                         Text="mmHg"/>
+            </Grid>
+
+            <Grid Grid.Row="4" HorizontalAlignment="Stretch"
+                  Visibility="{Binding IsConsoleUsingDeflateAfterThawing, Converter={StaticResource BoolToVisibilityNewConverter_}, ConverterParameter=REVERSE, Mode=OneWay}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0"
+                         Text="Deflate At Thaw:"
+                         Margin="0" HorizontalAlignment="Right"
+                         Style="{StaticResource AblationTimeTitleStyle}"/>
+              <TextBlock Grid.Column="1"
+                         Text="{Binding DeflateAfterThaw, Converter={StaticResource BoolToStringConverter_}, ConverterParameter=DeflateAfterThaw}" 
+                         HorizontalAlignment="Left" Margin="5,0,0,0"
+                         Style="{StaticResource AblationSettingSubTitleStyle}"/>
+            </Grid>
+
+            <Border Grid.Row="5" 
+                    BorderBrush="{StaticResource AblationInfoBorderBrush}"
+                    BorderThickness="2"
+                    CornerRadius="5"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="65,10,62,16">
+              <Grid>
+                <Grid VerticalAlignment="Center">
+                  <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top"
+                              Margin="0,5,0,0"
+                              Visibility="{Binding IsLowFlowActivated, Converter={StaticResource booleanToVisibilityConverter}}">
+                    <Image Source="{StaticResource LowFlowDrawingImage_}" 
+                           Width="23" Height="23" HorizontalAlignment="Right" 
+                           Margin="0,3,8,0"/>
+                    <TextBlock Text="Flow" 
+                               Margin="0,7,10,0"
+                               Style="{StaticResource LowFlowTextStyle_}"/>
+                  </StackPanel>
+                  <Image Height="115" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Image.Source>
+                      <MultiBinding Converter="{StaticResource statesAndBalloonToPictuersConverter}" >
+                        <Binding Path="SystemState" />
+                        <Binding Path="IsUsingDASBalloon" />
+                        <Binding Path="ISThePressureSetPointReached"/>
+                        <Binding Path="PressureSetPoint"/>
+                        <Binding Path="CP1Reading"/>
+                        <Binding Path="IsTreatmentNumberAndPlayBackVisible" />
+                      </MultiBinding>
+                    </Image.Source>
+                  </Image>
+                </Grid>
+              </Grid>
+            </Border>
+          </Grid>
+
+          <!-- Ablation Information Panel -->
+          <Border Grid.Row="1" Grid.Column="1">
+            <Grid>
+              <Grid>
+                <Grid.Visibility>
+                  <MultiBinding Converter="{StaticResource booleanAndStateToNotVisibilityConverter}" ConverterParameter="OcclusionPressureInflationShow">
+                    <Binding Path="SystemState"/>
+                    <Binding Path="EnabledIsBloodPressureSensorConnected"/>
+                    <Binding Path="IsMonitoringBloodPressure"/>
+                  </MultiBinding>
+                </Grid.Visibility>
+                <TextBlock Text="TEMPERATURE °C" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Top" 
+                           Margin="40,-10,0,0" 
+                           Style="{StaticResource AblationSubTitleStyle}"/>
+                <StackPanel Name="StackPanelTemperature"/>
+              </Grid>
+
+              <Grid>
+                <Grid.Visibility>
+                  <MultiBinding Converter="{StaticResource booleanAndStateToVisibilityConverter}" 
+                                ConverterParameter="OcclusionPressureInflationShow">
+                    <Binding Path="SystemState"/>
+                    <Binding Path="EnabledIsBloodPressureSensorConnected"/>
+                    <Binding Path="IsMonitoringBloodPressure"/>
+                  </MultiBinding>
+                </Grid.Visibility>
+                <StackPanel x:Name="StackPanelBloodPressure"/>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="0" 
+                             Text="OCCLUSION PRESSURE mmHg"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             Margin="40, -15, 0, 10"
+                             Style="{StaticResource AblationSubTitleStyle}"/>
+                  <Button Grid.Column="1" Margin="0,-20,50,0" Style="{StaticResource OcclusionPressureButtonStyle_}" 
+                          Command="{Binding OcclusionPressureSettingsChangeCommand}"/>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Border>
+
+          <!-- Ablation Panel -->
+          <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+										CornerRadius="0,0, 10,10"
+										Background="{StaticResource DetailPanelBackgroundBrush}"
+										BorderBrush="{StaticResource AblationInfoBorderBrush}"
+										BorderThickness="0,3,0,0">
+            <Grid Margin="0"
+							      HorizontalAlignment="Stretch"
+							      VerticalAlignment="Stretch">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.37*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="3*"/>
+              </Grid.ColumnDefinitions>
+              <Grid Grid.Column="0" Margin="2">
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Name="AblationData_Grid_Panel">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="1.85*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+											           Text="MIN TEMP"
+																 VerticalAlignment="Bottom"
+											           Style="{StaticResource AblationSubTitleStyle}"/>
+                    <Grid Grid.Row="1" HorizontalAlignment="Center">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <Grid Grid.Column="0" HorizontalAlignment="Right">
+                        <TextBlock Style="{StaticResource AblationValueStyle}">
+                          <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource booleanAndStateToTextValueConverter}" ConverterParameter="VerifyState">
+                              <Binding Path="IsCatheterCableConnected" />
+                              <Binding Path="SystemState" />
+                              <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                              <Binding Path="MaxTemperatureRate"/>
+                            </MultiBinding>
+                          </TextBlock.Text>
+                        </TextBlock>
+                      </Grid>
+                      <TextBlock Grid.Column="1" 
+												           Text="°C"
+																	 FontSize="18" 
+												           HorizontalAlignment="Left" 
+												           Margin="4,2,0,0"
+												           Style="{StaticResource AblationValueStyle}"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="1.85*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" 
+											HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                      <TextBlock Text="COOLING TIME TO"
+                        Style="{StaticResource AblationSubTitleStyle}"/>
+                      <TextBlock Style="{StaticResource AblationSettingSubTitleStyle}">
+                        <TextBlock.Text>
+                          <MultiBinding StringFormat="{} {0}°C" Converter="{StaticResource coolingTimeTextConverter}">
+                            <Binding Path="IsCatheterCableConnected" />
+                            <Binding Path="RequiredTargetTemperatureBinding" />
+                          </MultiBinding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <TextBlock Grid.Column="0" HorizontalAlignment="Right"
+																	 Margin="0,0,0,0"
+												           Style="{StaticResource AblationValueStyle}">
+                        <TextBlock.Text>
+                          <MultiBinding Converter="{StaticResource thawTimeToStringTimeToTargetTemperatureAndVeinIsolationDuration}">
+                            <Binding Path="TimeToTargetTemperature" />
+                            <Binding Path="IsTargetTemperatureReached" />
+                            <Binding Path="SystemState" />
+                            <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                          </MultiBinding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                      <TextBlock Grid.Column="1" 
+                                 Text="sec"
+                                 FontSize="18"
+                                 Margin="8,0,0,0"
+                                 HorizontalAlignment="Left"
+                                 Style="{StaticResource AblationValueStyle}"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="1.85*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="TTI"
+                               VerticalAlignment="Bottom"
+                               Style="{StaticResource AblationSubTitleStyle}"/>
+                    <Grid Grid.Row="1" HorizontalAlignment="Center">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <TextBlock Grid.Column="0"
+                                 Style="{StaticResource TTIValueStyle}">
+                        <TextBlock.Text>
+                          <MultiBinding Converter="{StaticResource thawTimeToStringTimeToTargetTemperatureAndVeinIsolationDuration}">
+                            <Binding Path="VeinIsolationDuration" />
+                            <Binding Path="IsVeinIsolated" />
+                            <Binding Path="SystemState" />
+                            <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                          </MultiBinding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                      <TextBlock Grid.Column="1" 
+                                 Text="sec"
+                                 HorizontalAlignment="Left"
+                                 Margin="8,0,0,0" 
+                                 Style="{StaticResource TTIUnitStyle}"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="1.85*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+											           Text="TEMP @ TTI"
+											           Style="{StaticResource AblationSubTitleStyle}"/>
+                    <Grid Grid.Row="1" HorizontalAlignment="Center">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <TextBlock Grid.Column="0" 
+                                 VerticalAlignment="Top" 
+                                 HorizontalAlignment="Right" 
+                                 Style="{StaticResource AblationValueStyle}">
+                        <TextBlock.Text>
+                          <MultiBinding Converter="{StaticResource TTIValueConverter_}">
+                            <Binding Path="TEMPTTI"/>
+                            <Binding Path="IsVeinIsolated"/>
+                            <Binding Path="SystemState" />
+                            <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                          </MultiBinding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                      <TextBlock Grid.Column="1" 
+												           Text="°C"
+												           FontSize="18"
+																	 HorizontalAlignment="Left"
+																	 Margin="4,0,0,26"
+												           Style="{StaticResource AblationValueStyle}"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="1.85*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+											           Text="TIME SINCE TTI"
+											           Style="{StaticResource AblationSubTitleStyle}"/>
+                    <Grid Grid.Row="1" HorizontalAlignment="Center">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <TextBlock Grid.Column="0"
+																	 HorizontalAlignment="Right"
+																	 VerticalAlignment="Top"
+																	 Margin="0,0,0,0"
+												           Style="{StaticResource AblationValueStyle}">
+                        <TextBlock.Text>
+                          <MultiBinding Converter="{StaticResource timeTTIConverter}">
+                            <Binding Path="IsCatheterCableConnected" />
+                            <Binding Path="CryoTherapyTime" />
+                            <Binding Path="VeinIsolationDuration" />
+                            <Binding Path="SystemState" />
+                            <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                            <Binding Path="TimeInAblationMax" />
+                          </MultiBinding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                      <TextBlock Grid.Column="1" 
+												           Text="sec"
+												           FontSize="18"
+												           HorizontalAlignment="Left"
+												           Margin="8,0,0,25"
+												           Style="{StaticResource AblationValueStyle}"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="1.85*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                      <TextBlock Text="TIME TO " Style="{StaticResource AblationSubTitleStyle}"/>
+                      <TextBlock Style="{StaticResource AblationSettingSubTitleStyle}">
+                        <TextBlock.Text>
+                          <Binding Path="ThawTimerToTemperatureBinding" StringFormat="{}{0}°C"/>
+                        </TextBlock.Text>
+                      </TextBlock>
+                    </StackPanel>
+                    <Grid Grid.Row="1" HorizontalAlignment="Center">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <TextBlock Grid.Column="0"
+																	 VerticalAlignment="Top"
+																	 HorizontalAlignment="Right"
+																	 Margin="0,0,6,0"
+												           Style="{StaticResource AblationValueStyle}">
+                        <TextBlock.Text>
+                          <MultiBinding Converter="{StaticResource thawTimeToStringTimeToTargetTemperatureAndVeinIsolationDuration}">
+                            <Binding Path="TimeToThawTemperature" />
+                            <Binding Path="IsThawTemperatureReached" />
+                            <Binding Path="SystemState" />
+                            <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+                          </MultiBinding>
+                        </TextBlock.Text>
+                      </TextBlock>
+                      <TextBlock Grid.Column="1" 
+												           Text="sec"
+												           FontSize="18"
+																	 HorizontalAlignment="Left"
+																	 Margin="4,0,0,25"
+												           Style="{StaticResource AblationValueStyle}"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Border Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource AblationInfoBorderBrush}"/>
+              <Grid Grid.Column="2" Name="DMS_ETS_Grid_Panel" Margin="20,0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="50"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="18"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="390"/>
+                  <ColumnDefinition Width="10"/>
+                  <ColumnDefinition Width="190"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource DMSETSTitleTextStyle}" FontSize="12" TextAlignment="Center" 
+                             Text="For reference only.  Never rely solely on these indicators"/>
+                <Grid Grid.Row="0" Grid.Column="0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition  Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Button  Grid.Column="0" Style="{StaticResource DmsSettingButtonStyle_}" Name="ALERTSAndINDICATORSLabel" Margin="0, 0, 0, 0" 
+                             Command="{Binding NotificationsChangeCommand}" />
+                  <TextBlock Grid.Column="1" Text="DIAPHRAGM MOVEMENT" Style="{StaticResource DMSETSTitleTextStyle}" />
+                  <Image Grid.Column="2" Style="{StaticResource DmsIllustrationIconStyle_}" Width="38" Margin="0,10,35,-10" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="PacingDetection">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="1" Style="{StaticResource DMSETSTitleTextStyle}" Margin="-40,145,0,0" FontSize="12" TextAlignment="Center"
+                               Text="{Binding DiaphragmSensorGain, StringFormat={}ZOOM : {0}%}"/>
+                  <userControls:ETSCircleControl Grid.Column="0" Name="PaceLevel_Circle" Margin="5, 0,0,0" Panel.ZIndex="1" 
+                                                   Unit="{Binding DiaphragmMovementPercentageSelected, ConverterParameter=DiaphragmMovementUnit, Converter={StaticResource booleanToStringConverter}}"
+                                                   SettingValue="{Binding DiaphragmAmplitude}" IsAlert="{Binding DiaphragmAmplitudeThresholdReached}"
+                                                   Value="{Binding DiaphragmMovementPercentageOrGReading, Converter={StaticResource diaphragmMovementToStringConverter}}" 
+                                                   Visibility="{Binding IgnoreMinimumDiaphragmMovementBindingValue, Converter={StaticResource booleanToNotVisibilityConverter}}"/>
+                  <userControls:ETSCircleControl Grid.Column="0" Name="PaceLevel_Circle_Disabled" Margin="5, 0,0,0" Panel.ZIndex="1" 
+                                                   Unit="" SettingValue="" IsAlert="False" Value="-" 
+                                                   Visibility="{Binding IgnoreMinimumDiaphragmMovementBindingValue, Converter={StaticResource booleanToVisibilityConverter}}"/>
+
+                  <Grid Grid.Column="1" VerticalAlignment="Center" >
+                    <Path  Width="277" Height="120" Stretch="uniform" Margin="-40, 0, 0,0" Panel.ZIndex="0"
+                             Data="M 0,14.41
+                             C 0,6.45 5.49,0 12.27,0 
+                             L 265.03,0 
+                             C 271.81,0 277.30,6.45 277.30,14.41 
+                             L 277.30,105.24 
+                             C 277.30,113.20 271.81,119.65 265.03,119.65 
+                             L 12.27,119.65
+                             C 5.49,119.65 0,113.20 0,105.24
+                             m 0,0
+                             Z" 
+                             Stroke="#ff4e4e5a"   />
+                    <TextBlock Text="DMS Disabled" Style="{StaticResource DMSETSTitleTextStyle}" 
+                                 Visibility="{Binding IgnoreMinimumDiaphragmMovementBindingValue, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                    <Grid Visibility="{Binding IgnoreMinimumDiaphragmMovementBindingValue, Converter={StaticResource booleanToNotVisibilityConverter}}">
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                      </Grid.RowDefinitions>
+                      <TextBlock Text="No Pacing Detected" Style="{StaticResource DMSETSTitleTextStyle}" Visibility="{Binding IsDiaphragmMovementDetected, Converter={StaticResource booleanToNotVisibilityConverter}}" />
+                      <StackPanel Grid.Row="1" Name="StackPanelDiaphragmMovement" VerticalAlignment="Center" Width="230" Margin="-15,0,0,0" />
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2">
+                  <userControls:ETSCircleControl Name="ETS_Temperature_Circle" Unit="°C"
+                                                   SettingValue="{Binding EsophagusBindingTemperature}" IsAlert="{Binding IsEsophagusTemperatureConditionAlertsMeet}"
+                                                   Value="{Binding EcgChannel5And6Reading, Converter={StaticResource etsTemperatureToStringConverter}}"/>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Name="ETSCircaControlPanel" >
+                  <userControls:ETSTemperatureGraph Visibility="{Binding IsMultiEtsSesnorConnected, Converter={StaticResource booleanToNotVisibilityConverter}}" 
+                                                      Temperature="{Binding EcgChannel5And6Reading}" GraphMode="{Binding EtsGraphDisplayMode}"
+                                                      PlaybackData="{Binding EtsPlaybackData}"
+                                                      VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                  <Grid Name="ETSCircaControls" Visibility="{Binding IsMultiEtsSesnorConnected, Converter={StaticResource booleanToVisibilityConverter}}" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="20"/>
+                      <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Name="ETSProbeBarControl" Margin="10, 10, 0, 0">
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                      </Grid.RowDefinitions>
+                      <Grid  Grid.Row="0">
+                        <Grid.Resources>
+                          <Style TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+                            <Setter Property="FontWeight" Value="Medium"/>
+                            <Setter Property="Foreground" Value="#FFCEC3C6"/>
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                          </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                          <RowDefinition/>
+                          <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="ESOPHAGUS TEMPERATURE" FontSize="14" Margin="0,5"/>
+                        <TextBlock Grid.Row="1" Text="Probe Temperature / 0 - 40 °C" FontSize="12" Margin="0,5"/>
+                      </Grid>
+                      <userControls:ETSProbeBarControl Grid.Row="1" Width="290"
+                                                ETSSensorData ="{Binding EcgSensorData}" EtsTemperature="{Binding EsophagusBindingTemperature}" 
+                                                ChannelStatus="{Binding EcgChannelStatus}" MinTemperature="{Binding EcgChannel5And6Reading}"/>
+                    </Grid>
+                    <userControls:ETSCircaSensorControl Grid.Column="2" Height="212" Name="ETSCircaSensorControl" HorizontalAlignment="Center" VerticalAlignment="Bottom"   
+                                                     ETSSensorData ="{Binding EcgSensorData}" EtsTemperature="{Binding EsophagusBindingTemperature}" 
+                                                     ChannelStatus="{Binding EcgChannelStatus}" MinTemperature="{Binding EcgChannel5And6Reading}"/>
+
+
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Border>
+        </Grid>
+      </Border>
+    </Grid>
+
+    <!-- Second Row, Third Column: Information Panel -->
+    <Grid Grid.Row="1" Grid.Column="2" Margin="5,10,0,0" >
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="400"/>
+          <RowDefinition Height="440"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- DMS Quick Settings Popup -->
+        <Popup Grid.Row="0" Grid.RowSpan="2" Name="DMSSettingPopup" Style="{StaticResource QuickSettingsPopupStyle}" 
+                 PlacementTarget="{Binding ElementName=AblationSummaryPanel_}" IsOpen="{Binding IsDMSSettingPopupShow}">
+          <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Closed">
+              <i:InvokeCommandAction Command="{Binding CloseDMSQuickSettingsCommand}"/>
+            </i:EventTrigger>
+          </i:Interaction.Triggers>
+          <local:DMSQuickSettingsView DataContext="{Binding .}"/>
+        </Popup>
+        <!-- Occlusion Pressure Quick Settings Popup -->
+        <Popup Grid.Row="0" Grid.RowSpan="2" Name="BloodPressureSettingsPopup" Style="{StaticResource QuickSettingsPopupStyle}"
+                 PlacementTarget="{Binding ElementName=AblationSummaryPanel_}" >
+          <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Closed">
+              <i:InvokeCommandAction Command="{Binding CloseOcclusionPressureSettingsCommand}"/>
+            </i:EventTrigger>
+          </i:Interaction.Triggers>
+          <Popup.IsOpen>
+            <MultiBinding Converter="{StaticResource cryoTherapyViewPopIsOpenConverter}" ConverterParameter="NormalView" Mode="OneWay">
+              <Binding Path="IsBloodPressureSettingsPopupShow" />
+              <Binding Path="IsSimpleTherapyViewVisible" />
+            </MultiBinding>
+          </Popup.IsOpen>
+          <local:OcclusionPressureSettingsView DataContext="{Binding .}"/>
+        </Popup>
+
+        <!-- Ablation Summary -->
+        <Border Grid.Row="0" Name="AblationSummaryPanel_" 
+                  CornerRadius="12" 
+                  Background="{StaticResource TherapyControlPanelBackground}" 
+                  Margin="4,0,32,26">
+          <Grid Margin="10,5" 
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="60"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="5"/>
+              <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+							           Text="Ablation Summary"
+							           Style="{StaticResource SummaryTextBlockStyle_}"/>
+            <Grid Grid.Row="1"
+							      Margin="18,10,0,0">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Row="0" Grid.Column="0"
+								           Text="SITE"
+								           Style="{StaticResource SiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Row="0" Grid.Column="1"
+								           Text="AMOUNT"
+								           Style="{StaticResource SiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Row="0" Grid.Column="2"
+								           Text="DURATION"
+								           Style="{StaticResource SiteTitleTextBlockStyle_}"/>
+
+              <TextBlock Grid.Row="2" Grid.Column="0"
+								           Text="LSPV"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="2" Grid.Column="1"
+								           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLSPV, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="2" Grid.Column="2" 
+                      HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+									           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLSPVDuration, Mode=OneWay}" 
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="3" Grid.Column="0"
+								           Text="LIPV"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="3" Grid.Column="1"
+								           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLIPV, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+									           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLIPVDuration, Mode=OneWay}"
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="5" Grid.Column="0"
+								           Text="RSPV"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="5" Grid.Column="1"
+								           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRSPV, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+									           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRSPVDuration, Mode=OneWay}"
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="4" Grid.Column="0"
+								           Text="RIPV"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="4" Grid.Column="1"
+								           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRIPV, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+									           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRIPVDuration, Mode=OneWay}"
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="6" Grid.Column="0"
+								           Text="LCPV"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="6" Grid.Column="1"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLCPV, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                             Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLCPVDuration, Mode=OneWay}"
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="7" Grid.Column="0"
+								           Text="RMPV"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="7" Grid.Column="1"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRMPV, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                             Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRMPVDuration, Mode=OneWay}"
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="8" Grid.Column="0"
+								           Text="OTHER"
+								           Style="{StaticResource AblationSiteInfoTextBlockStyle_}"/>
+              <TextBlock Grid.Row="8" Grid.Column="1"
+								           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalOther, Mode=OneWay}" 
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Row="8" Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+									           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalOtherDuration, Mode=OneWay}" 
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+
+            </Grid>
+            <Border Grid.Row="2" 
+                      Background="{StaticResource SeparatorForeground}" 
+                      HorizontalAlignment="Stretch" 
+                      Margin="20,2,20,0" 
+                      Height="1"/>
+            <Grid Grid.Row="3" Margin="18,0,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0"
+								           Text="TOTAL"
+								           Style="{StaticResource SiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Column="1"
+								           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalAblation, Mode=OneWay}"
+								           Style="{StaticResource SiteInfoTextStyle_}"/>
+              <Grid Grid.Column="2" HorizontalAlignment="Stretch"
+								      Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+									           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalAblationDuration, Mode=OneWay}"
+									           Style="{StaticResource SiteDurationTextStyle_}"/>
+                <TextBlock Grid.Column="1"
+									           Text="sec"
+									           Style="{StaticResource SiteInfoTextStyle_}"/>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Border>
+
+        <!-- System Information -->
+        <Border Grid.Row="1" 
+                  CornerRadius="12" 
+                  Background="{StaticResource TherapyControlPanelBackground}" 
+                  Margin="4,0,32,20">
+          <Border.Style>
+            <Style TargetType="Border">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDMSSettingPopupShow}" Value="True" >
+                  <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsBloodPressureSettingsPopupShow}" Value="True" >
+                  <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Border.Style>
+          <Grid Margin="10, 5"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="60"/>
+              <RowDefinition Height="85"/>
+              <RowDefinition Height="5"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="5"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+							           Text="System Information"
+							           Style="{StaticResource SummaryTextBlockStyle_}"/>
+            <Grid Grid.Row="1">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <!-- Catheter Electrically Connected-->
+              <CheckBox Grid.Column="0" 
+													HorizontalAlignment="Left"
+													VerticalAlignment="Center"
+													Margin="24,0,0,20"
+								          Style="{StaticResource MechanicalConnectionCheckBoxStyle_}" 
+													IsChecked="{Binding IsCatheterCableConnected}"/>
+              <!-- Catheter Mechanically Connected -->
+              <CheckBox Grid.Column="1" 
+								          HorizontalAlignment="Left"
+								          VerticalAlignment="Center"
+								          Margin="24,0,0,40"
+								          Style="{StaticResource ElectricalConnectionCheckBoxStyle_}" 
+								          IsChecked="{Binding SystemState, Converter={StaticResource CatheterConnectionConverter_}, ConverterParameter=CatheterMechanicalConnection}"/>
+            </Grid>
+
+            <Border Grid.Row="2"
+							        Background="{StaticResource SeparatorForeground}"
+							        HorizontalAlignment="Stretch"
+							        Margin="20,0,20,0"
+							        Height="1"/>
+            <Grid Grid.Row="3"
+                    Margin="0,8,0,0">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Viewbox Grid.Column="0" Grid.RowSpan="2" Grid.Row="0" Stretch="Uniform"
+								         HorizontalAlignment="Right" Margin="0,13,40,0">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="12"/>
+                  </Grid.RowDefinitions>
+                  <ProgressBar Grid.Row="0" 
+                                 Orientation="Vertical"
+                                 Style="{StaticResource TankFillMeterStyle}"
+                                 IsIndeterminate="False"
+                                 Minimum="0" 
+                                 Maximum="100"
+                                 Value="{Binding LC1Reading, Converter={StaticResource weightToLevelConverter}}" 
+                                 Width="22" Height="100"/>
+                </Grid>
+              </Viewbox>
+              <Grid Grid.Row="0" Grid.Column="1" 
+											HorizontalAlignment="Left"
+											VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+														 HorizontalAlignment="Right"
+									           Style="{StaticResource TankValueTextBlockStyle}">
+                  <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource GasLevelConverter_}" ConverterParameter="Weight">
+                      <Binding Path="LC1Reading"/>
+                      <Binding Path="DASBalloonEnabled"/>
+                      <Binding Path="IsLowFlowActivated"/>
+                      <Binding Path="RequiredAblationTime"/>
+                    </MultiBinding>
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding RefrigerantLevelUnit, Converter={StaticResource shortToRefrigerantUnitConverter}, ConverterParameter=NewUI}" 
+                           HorizontalAlignment="Left" 
+                           Margin="10,0,0,0" 
+                           Style="{StaticResource TankValueTextBlockStyle}"/>
+              </Grid>
+              <Grid Grid.Row="1" Grid.Column="1" 
+											HorizontalAlignment="Left"
+											VerticalAlignment="Top"
+								      Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"
+														 HorizontalAlignment="Right"
+														 Margin="0,0,10,5"
+									           Style="{StaticResource TankDetailsTextBlockStyle}">
+                  <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource GasLevelConverter_}" ConverterParameter="Ablation">
+                      <Binding Path="LC1Reading"/>
+                      <Binding Path="DASBalloonEnabled"/>
+                      <Binding Path="IsLowFlowActivated"/>
+                      <Binding Path="RequiredAblationTime"/>
+                    </MultiBinding>
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="abl" 
+                             Margin="0,0,0,5"
+									           Style="{StaticResource TankDetailsTextBlockStyle}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0"
+									           HorizontalAlignment="Right"
+									           Margin="0,0,10,0"
+									           Style="{StaticResource TankDetailsTextBlockStyle}">
+                  <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource GasLevelConverter_}" ConverterParameter="Min">
+                      <Binding Path="LC1Reading"/>
+                      <Binding Path="DASBalloonEnabled" />
+                      <Binding Path="IsLowFlowActivated" />
+                      <Binding Path="RequiredAblationTime" />
+                    </MultiBinding>
+                  </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="min" 
+									           Style="{StaticResource TankDetailsTextBlockStyle}"/>
+              </Grid>
+            </Grid>
+            <Border Grid.Row="4"
+							        Background="{StaticResource SeparatorForeground}"
+							        HorizontalAlignment="Stretch"
+							        Margin="20,2,20,0"
+							        Height="1"/>
+            <ContentControl Grid.Row="5" 
+                              Margin="20,10,20,0"
+                              Content="{Binding CurrentUser}"
+                              ContentTemplateSelector="{StaticResource SystemInfoDataTemplateSelector_}">
+              <ContentControl.Resources>
+                <DataTemplate x:Key="DoctorDataTemplate_">
+                  <Grid Height="80" 
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          DataContext="{Binding RelativeSource={RelativeSource AncestorType=ContentControl},Path=DataContext}">
+                    <Grid.RowDefinitions>
+                      <RowDefinition/>
+                      <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal"
+                                  HorizontalAlignment="Center">
+                      <TextBlock Text="Pressure : " 
+                                   Style="{StaticResource SystemInfoTitleDoctorStyle_}"/>
+                      <TextBlock Text="{Binding PT2Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig}"
+                                   Style="{StaticResource SystemInfoValueDoctorStyle_}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal"
+                                  HorizontalAlignment="Center">
+                      <TextBlock Text="Flow : " Style="{StaticResource SystemInfoTitleDoctorStyle_}"/>
+                      <TextBlock Text="{Binding FM1Reading, Converter={StaticResource stringTodoubleConverter}}"
+                                   Style="{StaticResource SystemInfoValueDoctorStyle_}"/>
+                    </StackPanel>
+                  </Grid>
+                </DataTemplate>
+                <DataTemplate x:Key="BSCDataTemplate_">
+                  <Grid Height="100" 
+                          DataContext="{Binding RelativeSource={RelativeSource AncestorType=ContentControl},Path=DataContext}">
+                    <Grid.RowDefinitions>
+                      <RowDefinition/>
+                      <RowDefinition/>
+                      <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal">
+                      <TextBlock Text="Pressure : " 
+                                   Style="{StaticResource SystemInfoTitleBSCStyle_}"/>
+                      <TextBlock Text="{Binding PT2Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig}" 
+                                   Style="{StaticResource SystemInfoValueBSCStyle_}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal">
+                      <TextBlock Text="Flow : " 
+                                   Style="{StaticResource SystemInfoTitleBSCStyle_}"/>
+                      <TextBlock Text="{Binding FM1Reading, Converter={StaticResource stringTodoubleConverter}}"
+                                   Style="{StaticResource SystemInfoValueBSCStyle_}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Orientation="Horizontal">
+                      <TextBlock Text="IBP : "
+                                   Style="{StaticResource SystemInfoTitleBSCStyle_}"/>
+                      <TextBlock Text="{Binding TipOrBalloonPressureReading, Converter={StaticResource doubleToStringConverter}, ConverterParameter=TipOrBalloonPressure, Mode=OneWay}"
+                                   Style="{StaticResource SystemInfoValueBSCStyle_}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
+                      <TextBlock Text="OBP : "
+                                   Style="{StaticResource SystemInfoTitleBSCStyle_}"/>
+                      <TextBlock Text="{Binding CP2Reading, ConverterParameter=OBP, Converter={StaticResource doubleToStringConverter}, Mode=OneWay}" 
+                                   Style="{StaticResource SystemInfoValueBSCStyle_}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
+                      <TextBlock Text="PSP : "
+                                   Style="{StaticResource SystemInfoTitleBSCStyle_}"/>
+                      <TextBlock Text="{Binding PressureSetPoint, ConverterParameter=OBP, Converter={StaticResource doubleToStringConverter}, Mode=OneWay}" 
+                                   Style="{StaticResource SystemInfoValueBSCStyle_}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
+                      <TextBlock Text="BDI : "
+                                   Style="{StaticResource SystemInfoTitleBSCStyle_}"/>
+                      <TextBlock Text="{Binding BloodDetecorImValue, ConverterParameter=BloodDetecorImValue, Converter={StaticResource doubleToStringConverter}, Mode=OneWay}" 
+                                   Style="{StaticResource SystemInfoValueBSCStyle_}"/>
+                    </StackPanel>
+                  </Grid>
+                </DataTemplate>
+              </ContentControl.Resources>
+            </ContentControl>
+            <!--<Grid Grid.Row="5" Height="80">
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal"
+								            HorizontalAlignment="Center">
+                  <TextBlock Text="Pressure: " 
+									           Style="{StaticResource SystemInfoStyle1}"/>
+                  <TextBlock Text="{Binding PT2Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig}"
+									           Style="{StaticResource SystemInfoStyle1}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal"
+								            HorizontalAlignment="Center">
+                  <TextBlock Text="Flow: " Style="{StaticResource SystemInfoStyle1}"/>
+                  <TextBlock Text="{Binding FM1Reading, Converter={StaticResource stringTodoubleConverter}}"
+									           Style="{StaticResource SystemInfoStyle1}"/>
+                </StackPanel>
+              </Grid>-->
+          </Grid>
+        </Border>
+      </Grid>
+    </Grid>
+
+    <!-- Third Row: Ablation Control Panel -->
+    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+			      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+      <Border Background="{StaticResource TherapyControlPanelBackground}"
+				        CornerRadius="8"
+				        HorizontalAlignment="Stretch"
+				        VerticalAlignment="Stretch"
+				        Margin="36,10,40,20">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition Width="1022"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.IsEnabled>
+              <MultiBinding  Converter="{StaticResource stateAndBooleanToEnableConverter}" ConverterParameter="RequiredTime">
+                <Binding Path="SystemState"/>
+                <Binding Path="IsTreatmentNumberAndPlayBackVisible"/>
+              </MultiBinding>
+            </Grid.IsEnabled>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="150"/>
+              <ColumnDefinition Width="270"/>
+              <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="30,6,0,0"
+										 Style="{StaticResource InfoTextBlockStyle}"
+										 Text="ABLATION&#x0a;TIMER:"/>
+            <Grid Grid.Column="1">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+              </Grid.ColumnDefinitions>
+              <Button Grid.Column="0" 
+								        Command="{Binding IncreaseTimeCommand}"
+								        Visibility="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToVisibility}}"
+								        IsEnabled="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToEnable}}"
+								        Style="{StaticResource UpArrowButtonStyle_}"/>
+              <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+									           Text="{Binding RequiredAblationTime}"
+									           Style="{StaticResource AblationTimeTextBlockStyle}"
+									           Visibility="{Binding IsRequiredAblationTimeVisible, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter=IsRequiredAblationTimeVisible}"/>
+                <TextBlock Grid.Column="1" 
+                           Text="sec" 
+                           Style="{StaticResource AblationTimeUnitStyle}"/>
+              </Grid>
+              <Button Grid.Column="2" 
+								        Command="{Binding DecreaseTimeCommand}"
+								        Visibility="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToVisibility}}"
+								        IsEnabled="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToEnable}}"
+								        Style="{StaticResource DownArrowButtonStyle_}"/>
+            </Grid>
+            <Grid Grid.Column="2">
+              <ContentControl Content="{StaticResource BicycleImage_}" 
+                              Margin="20,11,0,0"
+                              Visibility="{Binding ISTTISelected, Converter={StaticResource booleanToVisibilityConverter}}"/>
+            </Grid>
+          </Grid>
+          <Grid Grid.Column="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" 
+                    Style="{StaticResource VacuumOffButtonStyle}" 
+                    IsEnabled="{Binding IsCatheterConnectedAndInIReadyState}"
+                    Command="{Binding ConnectCommand}"/>
+
+            <Button Grid.Column="1" 
+							        Style="{StaticResource VacuumOnButtonStyle}" 
+							        IsEnabled="{Binding IsCatheterElectricallyConnectedAndInIdleState}"
+							        Command="{Binding ConnectCommand}"/>
+
+            <Button Grid.Column="2" 
+							        Style="{StaticResource InflationButtonStyle}" 
+							        Command="{Binding StartCommand}"
+							        IsEnabled="{Binding SystemState, Converter={StaticResource SystemStateToEnabledConverter_}, ConverterParameter={x:Static constants:ActionConstants.Inflate}}"/>
+
+            <Button Grid.Column="3" 
+		        Style="{StaticResource AblationButtonStyle}" 
+		        Command="{Binding StartCommand}">
+              <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource AblationStateToEnabledConverter}" ConverterParameter="{x:Static constants:ActionConstants.Ablate}">
+                  <Binding Path="IsThawingTemperatureSetPointReached"/>
+                  <Binding Path="SystemState"/>
+                  <Binding Path="IsInDASBalloonTransition" />
+                </MultiBinding>
+              </Button.IsEnabled>
+            </Button>
+
+            <Button Grid.Column="4" 
+							        Style="{StaticResource StopButtonStyle}" 
+							        Command="{Binding StopCommand}"
+							        IsEnabled="{Binding SystemState, Converter={StaticResource StateToEnableConverter}, ConverterParameter={x:Static constants:ActionConstants.Stop}}"/>
+          </Grid>
+          <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="60"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Style="{StaticResource LeftArrowButtonStyle_}" 
+                    Command="{Binding AblationNumberBackwardCommand}"
+                    Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource BoolToVisibilityNewConverter_}}"/>
+            <Grid Grid.Column="1" Margin="20,10,0,0"
+							      HorizontalAlignment="Center"
+							      VerticalAlignment="Center">
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <TextBlock Grid.Row="0"
+								           Text="Treatment"
+													 HorizontalAlignment="Center"
+								           Style="{StaticResource TreatmentTextStyle}"/>
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+									           Text="{Binding TreatmentNumber}"
+														 HorizontalAlignment="Right"
+									           Style="{StaticResource TreatmentTextStyle}"/>
+                <TextBlock Grid.Column="1"
+									           Text=" of"
+									           Style="{StaticResource TreatmentTextStyle}"/>
+                <TextBlock Grid.Column="2"
+									           Text="{Binding TotalTreatmentNumber}"
+									           Style="{StaticResource TreatmentTextStyle}"/>
+              </Grid>
+            </Grid>
+            <Button Grid.Column="2" 
+                    Style="{StaticResource RightArrowButtonStyle_}" 
+                    Command="{Binding AblationNumberForwardCommand}"
+                    Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource BoolToVisibilityNewConverter_}}"/>
+          </Grid>
+        </Grid>
+      </Border>
+    </Grid>
+
+    <!-- Fourth Row: Home Panel, to be defined in Home Page -->
+    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"/>
+  </Grid>
+
+</local:CryoTherapyChartViewBase>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Module.CatheterTestTool.Views.CatheterTestStep3View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Module.CatheterTestTool.Views"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CatheterTestThemes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Style="{StaticResource TestStepBorderStyle}" Margin="0,0,0,2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Step Info -->
+            <Grid Grid.Row="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10">
+                    <TextBlock Text="Step 3" Foreground="{StaticResource StepTextBrush}" FontWeight="Bold" FontSize="32"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,10">
+                    <TextBlock Text="Data Analysis" Style="{StaticResource StepDescriptionTextBlockStyle}" />
+                </StackPanel>
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ProgressBar Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical"
+                                 Style="{StaticResource VerticalProgressBar}"
+                                 Width="15" Height="80" Margin="0,0,10,0" 
+                                 HorizontalAlignment="Right" 
+                                 Value="{Binding TestStatusProgress.Step3Progress}"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding TestStatusProgress.Step3Progress, StringFormat={}{0}%}" Style="{StaticResource StepPercentTextBlockStyle}"/>
+                        <TextBlock Text="PASS" Style="{StaticResource StepPassTextBlockStyle}" Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <local:DataAnalysisUserControl Grid.Row="1" Margin="20" DataContext="{Binding TestDataValidationResults}"/>
+        </Grid>
+    </Border>
+</UserControl>

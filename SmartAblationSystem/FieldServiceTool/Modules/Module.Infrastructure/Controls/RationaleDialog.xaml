@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Module.Infrastructure.Controls.RationaleDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:Module.Infrastructure.Converters"
+             Width="750" Height="450"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="800">
+	<prism:Dialog.WindowStyle>
+		<Style TargetType="Window">
+			<Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen"/>
+			<Setter Property="ShowInTaskbar" Value="False"/>
+			<Setter Property="WindowStyle" Value="None"/>
+			<Setter Property="AllowsTransparency" Value="True"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Topmost" Value="True"/>
+		</Style>
+	</prism:Dialog.WindowStyle>
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<converters:StringToBoolConverter x:Key="stringBoolConverter"/>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="../Themes/PrismDialog.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Border Style="{StaticResource RationaleMainBorderStyle}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="45"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource RationaleDialogTitleTextBlockStyle}"/>
+			<Border Grid.Row="1" Style="{StaticResource MessageBorderStyle}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="55"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RationaleContentBorderStyle}">
+						<TextBox x:Name="txtRationale" Text="{Binding Message}" Style="{StaticResource RationaleMessageTextBoxStyle}"
+                                 TextWrapping="Wrap" MaxLength="{Binding MaxTextLength}" VerticalScrollBarVisibility="Auto">
+							<TextBox.Resources>
+								<Style TargetType="Border">
+									<Setter Property="CornerRadius" Value="10"/>
+									<Setter Property="Padding" Value="3"/>
+								</Style>
+							</TextBox.Resources>
+						</TextBox>
+					</Border>
+					<Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+							<Button Style="{StaticResource ButtonOnDialogStyle}" Content="OK" Command="{Binding CloseDialogCommand}" CommandParameter="OK"
+							        IsEnabled="{Binding ElementName=txtRationale, Path=Text, Converter={StaticResource stringBoolConverter}}"/>
+						</StackPanel>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+	</Border>
+</UserControl>

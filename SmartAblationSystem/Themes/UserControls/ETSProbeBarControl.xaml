@@ -1,0 +1,160 @@
+﻿<userControls:ETSSensorControlBase x:Class="CustomControls.UserControls.ETSProbeBarControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:userControls="clr-namespace:CustomControls.UserControls"
+                      mc:Ignorable="d">
+  <UserControl.Resources>
+    <Color x:Key="ETSTemperatureLineColor">#ff984c00</Color>
+    <SolidColorBrush x:Key="ETSTemperatureLineBrush" Color="{StaticResource ETSTemperatureLineColor}" />
+    <LinearGradientBrush x:Key="etsBarBrush">
+      <LinearGradientBrush.GradientStops>
+        <GradientStop Offset="0.00" Color="#ffdbdbdb"/>
+        <GradientStop Offset="1.00" Color="#ff696977"/>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="etsBarWarningBrush">
+      <LinearGradientBrush.GradientStops>
+        <GradientStop Offset="0.00" Color="#ffff862e"/>
+        <GradientStop Offset="1.00" Color="#FF7b441d"/>
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Style TargetType="Border" x:Key="ETSBar">
+      <Setter Property="Background" Value="{StaticResource etsBarBrush}"/>
+      <Setter Property="CornerRadius" Value="3,3,0,0" />
+      <Setter Property="VerticalAlignment" Value="Bottom"/>
+      <Setter Property="Width" Value="18" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="etsNumText">
+      <Setter Property="Foreground" Value="#ffcdc2c5" />
+      <Setter Property="FontFamily" Value="Arial" />
+      <Setter Property="FontWeight" Value="Regular" />
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="etsTempText">
+      <Setter Property="Foreground" Value="#ffffffff" />
+      <Setter Property="FontFamily" Value="Arial" />
+      <Setter Property="FontWeight" Value="Medium" />
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="etsTempGuideLineText">
+      <Setter Property="Foreground" Value="#ffcdc2c5" />
+      <Setter Property="FontFamily" Value="Arial" />
+      <Setter Property="FontWeight" Value="Regular" />
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="Margin" Value="0,0,0, -3" />
+    </Style>
+
+  </UserControl.Resources>
+  <Viewbox>
+    <Grid Height="156">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <Grid Grid.Column="0">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Text="40 -" Style="{StaticResource etsTempGuideLineText}"/>
+          <TextBlock Grid.Row="1" Text="30 -" Style="{StaticResource etsTempGuideLineText}"/>
+          <TextBlock Grid.Row="2" Text="20 -" Style="{StaticResource etsTempGuideLineText}"/>
+          <TextBlock Grid.Row="3" Text="10 -" Style="{StaticResource etsTempGuideLineText}"/>
+          <TextBlock Grid.Row="4" Text="0 -" Style="{StaticResource etsTempGuideLineText}"/>
+          <TextBlock Grid.Row="5" Height="{Binding ElementName=PART_etsProbNumberText, Path=Height}" Text="" Margin="0,0"/>
+        </Grid>
+        <Path StrokeThickness="1.0" Stroke="#FFA7A7A7" StrokeMiterLimit="1.0" 
+              Data="M 0 0 L 0 136" HorizontalAlignment="Right"/>
+      </Grid>
+      <Path Grid.Column="0" Grid.ColumnSpan="2" StrokeThickness="1" Stroke="#ffa7a7a7" StrokeMiterLimit="1"
+            Data="M 20,136 L 290,136" HorizontalAlignment="Left"/>
+
+      <Grid Grid.Column="1" Margin="1,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="20" Name="PART_etsProbNumberText"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="_etsSensorValue1" Grid.Row="0" Grid.Column="0" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue2" Grid.Row="0" Grid.Column="1" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue3" Grid.Row="0" Grid.Column="2" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue4" Grid.Row="0" Grid.Column="3" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue5" Grid.Row="0" Grid.Column="4" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue6" Grid.Row="0" Grid.Column="5" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue7" Grid.Row="0" Grid.Column="6" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue8" Grid.Row="0" Grid.Column="7" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue9" Grid.Row="0" Grid.Column="8" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue10" Grid.Row="0" Grid.Column="9" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue11" Grid.Row="0" Grid.Column="10" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValue12" Grid.Row="0" Grid.Column="11" Text="37" Style="{StaticResource etsTempText}"/>
+        <TextBlock Name="_etsSensorValueP" Grid.Row="0" Grid.Column="12" Text="37" Style="{StaticResource etsTempText}"/>
+
+        <Border Name="_etsSensorBar1" Grid.Row="1" Grid.Column="0" Height="110" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar2" Grid.Row="1" Grid.Column="1" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar3" Grid.Row="1" Grid.Column="2" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar4" Grid.Row="1" Grid.Column="3" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar5" Grid.Row="1" Grid.Column="4" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar6" Grid.Row="1" Grid.Column="5" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar7" Grid.Row="1" Grid.Column="6" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar8" Grid.Row="1" Grid.Column="7" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar9" Grid.Row="1" Grid.Column="8" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar10" Grid.Row="1" Grid.Column="9" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar11" Grid.Row="1" Grid.Column="10" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBar12" Grid.Row="1" Grid.Column="11" Height="100" Style="{StaticResource ETSBar}" />
+        <Border Name="_etsSensorBarP" Grid.Row="1" Grid.Column="12" Height="100" Style="{StaticResource ETSBar}" />
+        <Path Name="_etsTemperatureSettingLine" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="14" StrokeThickness="0.75" Stroke="{StaticResource ETSTemperatureLineBrush}" 
+              StrokeMiterLimit="1" StrokeDashArray="3,3" Data="M 0 11 L 268 11" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Name="_etsSensorIndex1" Text="1" Style="{StaticResource etsNumText}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Name="_etsSensorIndex2" Text="2" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Name="_etsSensorIndex3" Text="3" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Name="_etsSensorIndex4" Text="4" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="4" Name="_etsSensorIndex5" Text="5" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="5" Name="_etsSensorIndex6" Text="6" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="6" Name="_etsSensorIndex7" Text="7" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="7" Name="_etsSensorIndex8" Text="8" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="8" Name="_etsSensorIndex9" Text="9" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="9" Name="_etsSensorIndex10" Text="10" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="10" Name="_etsSensorIndex11" Text="11" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="11" Name="_etsSensorIndex12" Text="12" Style="{StaticResource etsNumText}"/>
+        <TextBlock Grid.Row="2" Grid.Column="12" Name="_etsSensorIndexP" Text="P" Style="{StaticResource etsNumText}"/>
+      </Grid>
+    </Grid>
+  </Viewbox>
+</userControls:ETSSensorControlBase>

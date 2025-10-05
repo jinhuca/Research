@@ -1,0 +1,188 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:userControls="clr-namespace:CustomControls.UserControls">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Shared.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+  <ControlTemplate TargetType="Button" x:Key="UpArrowTemplate">
+    <Viewbox>
+      <Border Background="Transparent" x:Name="_mainGrid" BorderThickness="0" CornerRadius="5" Height="30" Width="30">
+        <Path x:Name="PART_Path" Width="20" Height="9" Stretch="uniform" Data="M 0,9 L 10,0 L 20 9" Stroke="#ffa7a1a3" 
+              VerticalAlignment="Center" HorizontalAlignment="Center"/>
+      </Border>
+    </Viewbox>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter TargetName="PART_Path" Property="Stroke" Value="#ffffffff"/>
+        <Setter TargetName="_mainGrid" Property="Background" Value="#ffa7a1a3" />
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <ControlTemplate TargetType="Button" x:Key="DownArrowTemplate">
+    <Viewbox>
+      <Border Background="Transparent" x:Name="_mainGrid" BorderThickness="0" CornerRadius="5" Height="30" Width="30">
+        <Path x:Name="PART_Path" Width="20" Height="9" Stretch="uniform" Data="M 0,0 L 10,9 L 20,0" Stroke="#ffa7a1a3" 
+              VerticalAlignment="Center" HorizontalAlignment="Center"/>
+      </Border>
+    </Viewbox>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter TargetName="PART_Path" Property="Stroke" Value="#ffffffff"/>
+        <Setter TargetName="_mainGrid" Property="Background" Value="#ffa7a1a3" />
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style TargetType="Button" x:Key="UpArrowBtnStyle">
+    <Setter Property="Template" Value="{StaticResource UpArrowTemplate}" />
+  </Style>
+
+  <Style TargetType="Button" x:Key="DownArrowBtnStyle">
+    <Setter Property="Template" Value="{StaticResource DownArrowTemplate}" />
+  </Style>
+
+  <!--In this example, an implicit style for Calendar is defined elsewhere 
+  in the application.  DatePickerCalendarStyle is based on the implicit 
+  style so that the DatePicker will use the application's calendar style.-->
+  <Style x:Key="DatePickerCalendarStyle" TargetType="{x:Type Calendar}" >
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Calendar">
+          <userControls:CryoCalendar x:Name="PART_CryoCalendar" 
+                                     SelectedDate="{Binding SelectedDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--The template for the button that displays the calendar.-->
+  <Style x:Key="DatePickerDropDownButtonStyle" TargetType="Button">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Grid Background="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+            <Canvas  Width="15" Height="17" HorizontalAlignment="Left" >
+              <Path  Width="15" Height="15" Stretch="uniform" 
+                     Data="M 6.270214557647705 6 L 18.66171836853027 6 C 19.63937950134277 6 20.43193244934082 6.79255199432373 20.43193244934082 7.770214557647705 L 20.43193244934082 20.16171836853027 C 20.43193244934082 21.13938140869141 19.63937950134277 21.93193244934082 18.66171836853027 21.93193244934082 L 6.270214557647705 21.93193244934082 C 5.292552471160889 21.93193244934082 4.5 21.13938140869141 4.5 20.16171836853027 L 4.5 7.770214557647705 C 4.5 6.792551517486572 5.292552471160889 5.999999523162842 6.270214557647705 6 Z" Stroke="#ffcec3c6" Canvas.Left="0" Canvas.Top="1.77020263671875"  />
+              <Path  Width="3" Height="5" Stretch="uniform" 
+                     Data="M 24 3 L 24 6.540429592132568" Stroke="#ffcec3c6" Canvas.Left="9" Canvas.Top="0"  />
+              <Path  Width="3" Height="5" Stretch="uniform" 
+                     Data="M 12 3 L 12 6.540429592132568" Stroke="#ffcec3c6" Canvas.Left="3" Canvas.Top="0"  />
+              <Path  Width="15" Height="3" Stretch="uniform" 
+                     Data="M 4.5 15 L 20.43193244934082 15" Stroke="#ffcec3c6" Canvas.Left="0" Canvas.Top="6"  />
+            </Canvas>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="DatePickerTextBox" x:Key="DatePickerTextBoxStyle">
+    <Setter Property="IsHitTestVisible" Value="False"/>
+    <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="Background" Value="#FF26262E" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="DatePickerTextBox">
+          <userControls:CustomTextBox Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="{StaticResource Lato}" FontSize="16" 
+                   VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderThickness="0" IsReadOnly="True" 
+                   IsHitTestVisible="True"
+                   Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type DatePicker}" x:Key="PatientInfoDatePickerStyle">
+    <Setter Property="Foreground" Value="#ffffffff" />
+    <Setter Property="IsTodayHighlighted" Value="True" />
+    <Setter Property="SelectedDateFormat" Value="Long" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="CalendarStyle" Value="{DynamicResource DatePickerCalendarStyle}" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type DatePicker}">
+          <Border BorderThickness="{TemplateBinding BorderThickness}" x:Name="PART_Border"
+                  Background="#FF26262E" BorderBrush="#FF4F4E57" CornerRadius="5" VerticalAlignment="Center">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="Disabled">
+                  <Storyboard>
+                    <DoubleAnimation Duration="0"
+                                   To="1"
+                                   Storyboard.TargetProperty="Opacity"
+                                   Storyboard.TargetName="PART_DisabledVisual" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid x:Name="PART_Root"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Button x:Name="PART_Button"
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    Width="{TemplateBinding ActualWidth}"
+                    Background="Transparent"
+                    Foreground="{TemplateBinding Foreground}"
+                    Focusable="False"
+                    HorizontalAlignment="Left"
+                    Margin="5,0,5,0"
+                    Grid.Row="0"
+                    Style="{StaticResource DatePickerDropDownButtonStyle}"
+                    VerticalAlignment="Center" />
+              <DatePickerTextBox x:Name="PART_NewTextBox"
+                                 Grid.Column="2"
+                                 Foreground="{TemplateBinding Foreground}"
+                                 Focusable="{TemplateBinding Focusable}"
+                                 IsReadOnly="True"
+                                 Grid.Row="0" 
+                                 Text="{Binding SelectedDate, StringFormat='MMMM dd, yyyy', RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                 VerticalAlignment="Center"
+                                 Style="{StaticResource DatePickerTextBoxStyle}"
+                                 Height="{TemplateBinding Height}"/>
+              <Grid x:Name="PART_DisabledVisual"
+                  Grid.ColumnSpan="2"
+                  Grid.Column="0"
+                  IsHitTestVisible="False"
+                  Opacity="0"
+                  Grid.Row="0">
+                <Popup x:Name="PART_Popup"
+                     AllowsTransparency="True"
+                     Placement="Bottom"
+                     PlacementTarget="{Binding ElementName=PART_NewTextBox}"
+                     StaysOpen="False"/>
+              </Grid>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="SelectedDate" Value="{x:Null}">
+              <Setter TargetName="PART_NewTextBox" Property="Text" Value="Select a date" />
+              <Setter TargetName="PART_NewTextBox" Property="Foreground" Value="DimGray" />
+              <Setter TargetName="PART_NewTextBox" Property="FontStyle" Value="Italic" />
+            </Trigger>
+            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.MenuDropAlignment}}" Value="False">
+              <Setter TargetName="PART_Popup" Property="HorizontalOffset" Value ="-35" />
+            </DataTrigger>
+
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="SelectedDate" Value="{x:Null}">
+        <Setter Property="Text" Value=""/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>

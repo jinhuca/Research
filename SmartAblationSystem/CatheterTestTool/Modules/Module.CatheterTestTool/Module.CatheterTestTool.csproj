@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3DD34CD-39A4-48BC-A2D4-E162215F2A6D}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Module.CatheterTestTool</RootNamespace>
+    <AssemblyName>Module.CatheterTestTool</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Prism.Unity.8.1.97\lib\net47\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Core.5.0.0\lib\net472\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Interfaces.5.0.0\lib\net472\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Linq.5.0.0\lib\net472\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.5.11.10\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.5.11.10\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CatheterTestToolModule.cs" />
+    <Compile Include="Configuration\ICatheterTestConfiguration.cs" />
+    <Compile Include="Converters\BooleanToStyleConverter.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Converters\SystemStateToVisibilityConverter.cs" />
+    <Compile Include="Converters\TestStatusDetailsConverter.cs" />
+    <Compile Include="Data\TesterInfoData.cs" />
+    <Compile Include="Configuration\CatheterTestConfiguration.cs" />
+    <Compile Include="Models\CatheterTestConstants.cs" />
+    <Compile Include="Models\CatheterTestData.cs" />
+    <Compile Include="Models\CatheterTestResultFile.cs" />
+    <Compile Include="Models\CatheterTestSensorParametersModel.cs" />
+    <Compile Include="Models\TestDataValidationResult.cs" />
+    <Compile Include="Models\TestReportData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PubSubEvents\USBConnectionEvent.cs" />
+    <Compile Include="Services\CatheterTestService.cs" />
+    <Compile Include="Services\CatheterTestServiceBase.cs" />
+    <Compile Include="Services\CatheterVisualTestService.cs" />
+    <Compile Include="Services\ICatheterVisualTestService.cs" />
+    <Compile Include="Services\ITestDataFileManager.cs" />
+    <Compile Include="Services\ITestDataValidationService.cs" />
+    <Compile Include="Services\ICatheterTestService.cs" />
+    <Compile Include="Services\ITestDataManager.cs" />
+    <Compile Include="Services\TestDataFileManager.cs" />
+    <Compile Include="Services\TestDataManager.cs" />
+    <Compile Include="Services\TestDataValidationService.cs" />
+    <Compile Include="ViewModels\CatheterTestMainWindowViewModel.Commands.cs" />
+    <Compile Include="ViewModels\CatheterTestMainWindowViewModel.cs" />
+    <Compile Include="ViewModels\CatheterTestMainWindowViewModel.EventHandlers.cs" />
+    <Compile Include="ViewModels\CatheterTestMainWindowViewModel.Fields.cs" />
+    <Compile Include="ViewModels\CatheterTestMainWindowViewModel.Properties.cs" />
+    <Compile Include="ViewModels\CatheterTestPopupMessageViewModel.cs" />
+    <Compile Include="ViewModels\CatheterTestResultDialogViewModel.cs" />
+    <Compile Include="ViewModels\TestResultFileSelectorViewModel.cs" />
+    <Compile Include="Views\CatheterTestMainWindow.xaml.cs">
+      <DependentUpon>CatheterTestMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatheterTestPopupMessageView.xaml.cs">
+      <DependentUpon>CatheterTestPopupMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatheterTestResultDialog.xaml.cs">
+      <DependentUpon>CatheterTestResultDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatheterTestStep1View.xaml.cs">
+      <DependentUpon>CatheterTestStep1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatheterTestStep2View.xaml.cs">
+      <DependentUpon>CatheterTestStep2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatheterTestStep3View.xaml.cs">
+      <DependentUpon>CatheterTestStep3View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataAnalysisUserControl.xaml.cs">
+      <DependentUpon>DataAnalysisUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GridSheetControl.cs" />
+    <Compile Include="Views\SensorParametersUserControl.xaml.cs">
+      <DependentUpon>SensorParametersUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemperatureGraphControl.xaml.cs">
+      <DependentUpon>TemperatureGraphControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestResultFileSelector.xaml.cs">
+      <DependentUpon>TestResultFileSelector.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Console\Console.csproj">
+      <Project>{19626db0-54d5-4d8c-b9bd-3c3b71d970e0}</Project>
+      <Name>Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{d7dcbe9f-0217-41a6-a5b4-11bf8f832e96}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Shared.csproj">
+      <Project>{b708d9d4-a101-45a6-9f40-fdae4a7a8e06}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\FieldServiceTool\Modules\Module.Console\Module.Console.csproj">
+      <Project>{c3f4c6be-217c-4cb3-b2f0-183089965e57}</Project>
+      <Name>Module.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\FieldServiceTool\Modules\Module.Infrastructure\Module.Infrastructure.csproj">
+      <Project>{b550b00f-67b1-492b-a621-e9075bcd46f1}</Project>
+      <Name>Module.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\FieldServiceTool\Modules\Module.SystemParameters\Module.SystemParameters.csproj">
+      <Project>{6bf1df98-54ce-4222-b7cd-0125d9c59d8f}</Project>
+      <Name>Module.SystemParameters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\USBDriveConnectionManager\USBDriveConnectionManager.csproj">
+      <Project>{35378a6d-546e-4387-8ac3-2e39e8192ff5}</Project>
+      <Name>USBDriveConnectionManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Views\CatheterTestMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatheterTestPopupMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatheterTestResultDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatheterTestStep1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatheterTestStep2View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatheterTestStep3View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatheterTestThemes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataAnalysisUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SensorParametersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TemperatureGraphControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestResultFileSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configuration\CatheterTestConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\CatheterTestApp\Images\HomeButton.png">
+      <Link>Images\HomeButton.png</Link>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

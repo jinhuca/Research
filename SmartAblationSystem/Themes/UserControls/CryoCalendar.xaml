@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="CustomControls.UserControls.CryoCalendar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.UserControls"
+             mc:Ignorable="d" >
+  <UserControl.Resources>
+    <Style TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}" />
+      <Setter Property="FontSize" Value="18" />
+      <Setter Property="TextAlignment" Value="Center"/>
+      <Setter Property="Foreground" Value="#5fcec3c6" />
+    </Style>
+    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+  </UserControl.Resources>
+  <Border BorderBrush="#ff707070" BorderThickness="0" Background="#FF26262E" CornerRadius="5" >
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid Height="35" Width="327" HorizontalAlignment="Center" Name="_SelectDateTextGrid" 
+            Visibility="{Binding ShowSelectDateCaption, Converter={StaticResource booleanToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+        <TextBlock Grid.Row="0" Text="SELECT DATE" FontSize="14" Foreground="#ffdbdbdb" VerticalAlignment="Bottom" TextAlignment="Center" />
+      </Grid>
+      <Canvas Grid.Row="1" Width="327" Height="267" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+        <!-- <Canvas  Width="283" Height="34" Canvas.Left="22" Canvas.Top="51" > -->
+        <Path  Width="283" Height="34" Stretch="uniform" Data="M 10 0 L 273 0 C 278.5228576660156 0 283 4.477152347564697 283 10 L 283 24 C 283 29.52284812927246 278.5228576660156 34 273 34 L 10 34 C 4.477152347564697 34 0 29.52284812927246 0 24 L 0 10 C 0 4.477152347564697 4.477152347564697 0 10 0 Z" Fill="#ff2b2b33" Stroke="#ff4f4e57" 
+               Canvas.Left="22" Canvas.Top="17" />
+
+        <Button Style="{StaticResource UpArrowBtnStyle}"  Canvas.Left="55" Canvas.Top="18" 
+              Command="{Binding GoToPreviousMonth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <Button Style="{StaticResource UpArrowBtnStyle}" Canvas.Left="150" Canvas.Top="18" 
+              Command="{Binding GoToPreviousDay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <Button Style="{StaticResource UpArrowBtnStyle}" Canvas.Left="245" Canvas.Top="18" 
+              Command="{Binding GoToPreviousYear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+
+        <TextBlock  Text="{Binding PreviousMonth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Canvas.Left="55" Canvas.Top="67"  />
+        <TextBlock  Text="{Binding SelectedMonth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Foreground="#ffffffff" Canvas.Left="55" Canvas.Top="123"  FontWeight="DemiBold" />
+        <TextBlock  Text="{Binding NextMonth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Canvas.Left="55" Canvas.Top="177"  />
+
+        <Line  X1="0" Y1="0" X2="275" Y2="0" Stroke="#ff484852" Canvas.Left="30.5" Canvas.Top="104.5"  />
+
+        <TextBlock  Text="{Binding PreviousDay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Canvas.Left="155" Canvas.Top="67"  />
+        <TextBlock  Text="{Binding SelectedDay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Foreground="#ffffffff" Canvas.Left="155" Canvas.Top="123"  FontWeight="DemiBold" />
+        <TextBlock  Text="{Binding NextDay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Canvas.Left="155" Canvas.Top="177"  />
+
+        <Line  X1="0" Y1="0" X2="275" Y2="0" Stroke="#ff484852" Canvas.Left="30.5" Canvas.Top="161.5"  />
+
+        <TextBlock  Text="{Binding PreviousYear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Canvas.Left="235" Canvas.Top="67"  />
+        <TextBlock  Text="{Binding SelectedYear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Foreground="#ffffffff" Canvas.Left="235" Canvas.Top="123" FontWeight="DemiBold" />
+        <TextBlock  Text="{Binding NextYear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                  Canvas.Left="235" Canvas.Top="177"  />
+
+        <Path  Width="283" Height="34" Stretch="uniform" Data="M 10,0 L 273,0 C 278.52,0 283,4.48 283,10 
+             L 283,24 C 283,29.52 278.52,34 273,34 L 10,34 C 4.45,34 0,29.52 0,24 L 0,10 C 0,4.48 4.48,0 10,0 Z" 
+             Fill="#ff2b2b33" Stroke="#ff4f4e57" Canvas.Left="22" Canvas.Top="217"  />
+        <Button Style="{StaticResource DownArrowBtnStyle}" Canvas.Left="55" Canvas.Top="220" 
+              Command="{Binding GoToNextMonth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        <Button Style="{StaticResource DownArrowBtnStyle}" Canvas.Left="150" Canvas.Top="220" 
+              Command="{Binding GoToNextDay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        <Button Style="{StaticResource DownArrowBtnStyle}" Canvas.Left="245" Canvas.Top="220" 
+              Command="{Binding GoToNextYear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+
+        <Path  Width="283" Height="40" Stretch="uniform" Data="M 10,0 L 273,0 C 278.52,0 283,4.48 283,10 
+             L 283,24 C 283,29.52 278.52,34 273,34 L 10,34 C 4.45,34 0,29.52 0,24 L 0,10 C 0,4.48 4.48,0 10,0 Z" 
+             Fill="Transparent" Stroke="Transparent" Canvas.Left="22" Canvas.Top="115" 
+             MouseUp="OnCurrentDateMouseTouchDown" TouchDown="OnCurrentDateMouseTouchDown"/>
+      </Canvas>
+    </Grid>
+  </Border>
+</UserControl>

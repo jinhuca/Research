@@ -1,0 +1,1454 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="TextNormalColor_">#DBDBDB</Color>
+  <Color x:Key="TextHighlightColor_">#FFFFFFFF</Color>
+  <Color x:Key="GeometryNormalColor_">#FFE5DEE0</Color>
+  <Color x:Key="BorderNormalColor_">#FF36476B</Color>
+  <Color x:Key="BorderHighColor_">#99FFFFFF</Color>
+  <Color x:Key="TitleBackgroundColor_">#ff475E8B</Color>
+  <Color x:Key="BorderBackgroundColor_">#ff2B2B33</Color>
+
+  <SolidColorBrush x:Key="TitleBackgroundBrush_" Color="{StaticResource TitleBackgroundColor_}"/>
+  <SolidColorBrush x:Key="TextNormalBrush_" Color="{StaticResource TextNormalColor_}"/>
+  <SolidColorBrush x:Key="TextHighlightBrush_" Color="{StaticResource TextHighlightColor_}"/>
+  <SolidColorBrush x:Key="GeometryNormalBrush_" Color="{StaticResource GeometryNormalColor_}"/>
+  <SolidColorBrush x:Key="BorderBackgroundBrush_" Color="{StaticResource BorderBackgroundColor_}"/>
+
+  <!-- Service Tool Drawing -->
+  <Geometry x:Key="ServiceToolGeometry1_">F1 M69.558,68.345z M0,0z M7.473,67.631A3.862,3.862,0,0,1,5.815,64.784L7.477,21.307A11.052,11.052,0,0,1,0,10.85C0,6.89 3.477,3.311 6.909,1.179 7.161,1.021 6.909,9.96 6.909,9.96A12.309,12.309,0,0,0,11.047,10.849A11.218,11.218,0,0,0,15.063,9.96C15.063,9.96 14.535,-0.267999999999999 15.063,0.00500000000000078 18.321,1.669 22.1,6.561 22.1,10.85A11.052,11.052,0,0,1,14.623,21.308L16.28,64.785A3.862,3.862,0,0,1,14.622,67.632A6.112,6.112,0,0,1,11.047,68.968A6.112,6.112,0,0,1,7.473,67.631z</Geometry>
+  <Geometry x:Key="ServiceToolGeometry2_">F1 M69.558,68.345z M0,0z M7.679,0C12.679,0.031 10.537,3.372 11.517,6.876 11.646,7.324 13.3,8.476 13.3,9.217L14.324,22.8C14.324,27.109 11.931,30.6 7.649,30.6 3.367,30.6 0.975,27.106 0.975,22.8L2.107,9.217C2.107,8.708 3.707,7.596 3.848,6.876 4.488,3.516 2.681,-0.031 7.679,0z</Geometry>
+  <Geometry x:Key="ServiceToolGeometry3_">F1 M69.558,68.345z M0,0z M5.288,26.06L3.624,26.06C1.991,26.042,1.961,25.82,1.961,24.324L1.961,10.61 -0.049,8.469 2.944,-1.814 5.937,-1.814 8.863,8.469 6.952,10.506 6.952,24.324C6.952,25.698 7.067,26.068 5.69,26.068 5.568,26.069 5.435,26.066 5.288,26.06z</Geometry>
+  <Geometry x:Key="ServiceToolGeometry4_">F1 M69.558,68.345z M0,0z M0,5.5L0,11</Geometry>
+  <Geometry x:Key="ServiceToolGeometry5_">F1 M69.558,68.345z M0,0z M0,6.188L0,11</Geometry>
+  <DrawingGroup x:Key="ServiceToolDrawingGroup_" ClipGeometry="M0,0 V68.345 H69.558 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="0.048999998718500137" Y="1.8140000104904175" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-817.032,-228.369">
+      <DrawingGroup Opacity="1" Transform="0.998,0.07,-0.07,0.998,823.264,226.84">
+        <DrawingGroup Transform="0.777145961456971,0.629320391049837,-0.629320391049837,0.777145961456971,42.321,0.001">
+          <GeometryDrawing Geometry="{StaticResource ServiceToolGeometry1_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,9.283,54.406">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="1.744" RadiusY="1.744" Center="1.744,1.744"/>
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="0.694658370458997,-0.719339800338651,0.719339800338651,0.694658370458997,-34.607,803.598">
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,24,0.129">
+          <DrawingGroup Opacity="1" Transform="1,0,0,1,976.498,230.375">
+            <DrawingGroup Transform="1,0,0,1,-1.174,38.678">
+              <GeometryDrawing Geometry="{StaticResource ServiceToolGeometry2_}">
+                <GeometryDrawing.Pen>
+                  <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round"/>
+                </GeometryDrawing.Pen>
+              </GeometryDrawing>
+            </DrawingGroup>
+            <DrawingGroup Transform="1,0,0,1,2.029,0.008">
+              <GeometryDrawing Geometry="{StaticResource ServiceToolGeometry3_}">
+                <GeometryDrawing.Pen>
+                  <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round"/>
+                </GeometryDrawing.Pen>
+              </GeometryDrawing>
+            </DrawingGroup>
+          </DrawingGroup>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,1009.473,258.5">
+          <GeometryDrawing Geometry="{StaticResource ServiceToolGeometry4_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,1004.473,258.5">
+          <GeometryDrawing Geometry="{StaticResource ServiceToolGeometry5_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- Manage User Drawing -->
+  <Geometry x:Key="ManageUserGeometry1_">F1 M71.455,42.936z M0,0z M-16975.955,-11152.648C-16975.955,-11152.648 -16978.06,-11161.177 -16972.912,-11166.535 -16970.394,-11169.16 -16964.689,-11171.219 -16957.912,-11171.219 -16951.726,-11171.219 -16945.928,-11169.869 -16943.066,-11167.289 -16937.466,-11162.238 -16939.478,-11153.17 -16939.478,-11153.17</Geometry>
+  <Geometry x:Key="ManageUserGeometry2_">F1 M71.455,42.936z M0,0z M-16976.1,-11156.686C-16976.1,-11156.686 -16977.489,-11163.362 -16974.092,-11167.553 -16972.432,-11169.608 -16968.67,-11171.219 -16964.207,-11171.219 -16960.125,-11171.219 -16956.307,-11170.164 -16954.416,-11168.143A8.636,8.636,0,0,1,-16953.168,-11166.375</Geometry>
+  <Geometry x:Key="ManageUserGeometry3_">F1 M71.455,42.936z M0,0z M-16953.447,-11156.686C-16953.447,-11156.686 -16952.058,-11163.362 -16955.455,-11167.553 -16957.115,-11169.608 -16960.877,-11171.219 -16965.34,-11171.219 -16969.422,-11171.219 -16973.24,-11170.164 -16975.131,-11168.143A8.636,8.636,0,0,0,-16976.379,-11166.375</Geometry>
+  <DrawingGroup x:Key="ManageUserDrawingGroup_" ClipGeometry="M0,0 V42.936 H71.455 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="16976.380859375" Y="11171.21875" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-386.195,-344.409">
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,412.287,344.409">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <EllipseGeometry RadiusX="9.018" RadiusY="9.018" Center="10.018,10.018" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,17380.256,11539.754">
+        <GeometryDrawing Geometry="{StaticResource ManageUserGeometry1_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,436.555,346.659">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <EllipseGeometry RadiusX="6.839" RadiusY="6.839" Center="7.839,7.839" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,391.564,346.659">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <EllipseGeometry RadiusX="6.839" RadiusY="6.839" Center="7.839,7.839"/>
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,17363.699,11536.757">
+        <GeometryDrawing Geometry="{StaticResource ManageUserGeometry2_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,17409.697,11536.757">
+        <GeometryDrawing Geometry="{StaticResource ManageUserGeometry3_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="{StaticResource GeometryNormalBrush_}" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- Catheter Tool Drawing -->
+  <Geometry x:Key="CatheterGeometry1_">F1 M53,74z M0,0z M20.595,11.78A10.97,10.97,0,0,1,20.524,12.896A8.652,8.652,0,0,1,14.292,20.211A8.8,8.8,0,0,1,5.11,6.059A8.944,8.944,0,0,1,14.475,3.395</Geometry>
+  <Geometry x:Key="CatheterGeometry2_">F1 M53,74z M0,0z M24.057,6L15.936,14.129 13.5,11.693</Geometry>
+  <Geometry x:Key="CatheterGeometry3_">F1 M53,74z M0,0z M23102.5,10818.78C23101.4,10818.78,23100.5,10818.18,23100.5,10817.427L23101.5,10811.35C23101.5,10810.607,23102.395,10809.997,23103.5,10809.997L23110.865,10809.997A5.214,5.214,0,0,1,23109.496,10806.497A6.025,6.025,0,0,1,23121.496,10806.497A5.214,5.214,0,0,1,23120.127,10809.997L23127.494,10809.997C23128.601,10809.997,23129.494,10810.606,23129.494,10811.35L23130.494,10817.427C23130.494,10818.176,23129.601,10818.78,23128.494,10818.78z</Geometry>
+  <DrawingGroup x:Key="CatheterDrawingGroup_" ClipGeometry="M0,0 V74 H53 V0 H0 Z">
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-1776,-544">
+      <DrawingGroup Transform="1,0,0,1,1777,557">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,51,60" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,1794.297,578.446">
+        <DrawingGroup Transform="1,0,0,1,-3,-3.029">
+          <GeometryDrawing Geometry="{StaticResource CatheterGeometry1_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1"/>
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,-6.462,-4.422">
+          <GeometryDrawing Geometry="{StaticResource CatheterGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1"/>
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,1783,561">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter"/>
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,40,51"/>
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-21312.5,-10256">
+        <GeometryDrawing Brush="#333D5A" Geometry="{StaticResource CatheterGeometry3_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- DateTime Drawing -->
+  <Geometry x:Key="DateTimeGeometry1_">F1 M69.005,67z M0,0z M28.362,0L51.052,0A9.739,9.739,0,0,1,60.506,10L60.506,45A9.739,9.739,0,0,1,51.052,55L16.452,55A9.739,9.739,0,0,1,7,45L7,30</Geometry>
+  <Geometry x:Key="DateTimeGeometry2_">F1 M69.005,67z M0,0z M52.361,0L0,0</Geometry>
+  <DrawingGroup x:Key="DateTimeDrawingGroup_" ClipGeometry="M0,0 V67 H69.005 V0 H0 Z">
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-390.498,-509">
+      <DrawingGroup Transform="-1,1.22460635382238E-16,-1.22460635382238E-16,-1,452.004,569">
+        <GeometryDrawing Geometry="{StaticResource DateTimeGeometry1_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,251.816,-115">
+        <DrawingGroup Transform="1,0,0,1,152.184,625">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,8" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,167.184,625">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,8" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,181.184,625">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,8" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,391.816,528">
+        <GeometryDrawing Geometry="{StaticResource DateTimeGeometry2_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Square" EndLineCap="Square" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,172,-113">
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,231,650">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <RectangleGeometry RadiusX="0.5" RadiusY="0.5" Rect="0.5,0.5,6,6" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,243,650">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <RectangleGeometry RadiusX="0.5" RadiusY="0.5" Rect="0.5,0.5,6,6" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,255,650">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <RectangleGeometry RadiusX="0.5" RadiusY="0.5" Rect="0.5,0.5,6,6" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,231,663">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <RectangleGeometry RadiusX="0.5" RadiusY="0.5" Rect="0.5,0.5,6,6" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,243,663">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <RectangleGeometry RadiusX="0.5" RadiusY="0.5" Rect="0.5,0.5,6,6" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,170.816,-111.687">
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,259,658">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="13.843" RadiusY="13.843" Center="14.843,14.843" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,272.97,665.985">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,6.985" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="-0.5,0.866025403784439,-0.866025403784439,-0.5,279.021,676.463">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,6.985" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- ErrorLog Drawing -->
+  <Geometry x:Key="ErrorLogIconGeometry1_">F1 M59.291,58.244z M0,0z M22.587,51.762L2.823,51.762A2.823,2.823,0,0,1,0,48.938L0,2.823A2.823,2.823,0,0,1,2.823,0L40.468,0A2.823,2.823,0,0,1,43.291,2.823L43.291,24.469</Geometry>
+  <Geometry x:Key="ErrorLogIconGeometry2_">F1 M59.291,58.244z M0,0z M11750.708,-365.9L11773.343,-365.9</Geometry>
+  <Geometry x:Key="ErrorLogIconGeometry3_">F1 M59.291,58.244z M0,0z M11750.708,-365.9L11773.343,-365.9</Geometry>
+  <Geometry x:Key="ErrorLogIconGeometry4_">F1 M59.291,58.244z M0,0z M11750.708,-365.9L11773.343,-365.9</Geometry>
+  <Geometry x:Key="ErrorLogIconGeometry5_">F1 M59.291,58.244z M0,0z M11750.709,-365.9L11760.18,-365.9</Geometry>
+  <Geometry x:Key="ErrorLogIconGeometry6_">F1 M59.291,58.244z M0,0z M13.959,2.939A2,2,0,0,1,17.409,2.939L29.6,23.708A2,2,0,0,1,27.875,26.72L3.493,26.72A2,2,0,0,1,1.768,23.708z</Geometry>
+  <DrawingGroup x:Key="ErrorLogIconDrawingGroup_" ClipGeometry="M0,0 V58.244 H59.291 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="1.7780168093395332E-07" Y="365.89999389648438" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-833.5,-835.121">
+      <DrawingGroup Transform="1,0,0,1,834.5,836.121">
+        <GeometryDrawing Geometry="{StaticResource ErrorLogIconGeometry1_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-10906.3,1211.82">
+        <GeometryDrawing Geometry="{StaticResource ErrorLogIconGeometry2_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-10906.3,1228.76">
+        <GeometryDrawing Geometry="{StaticResource ErrorLogIconGeometry3_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-10906.3,1220.29">
+        <GeometryDrawing Geometry="{StaticResource ErrorLogIconGeometry4_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-10906.3,1243.818">
+        <GeometryDrawing Geometry="{StaticResource ErrorLogIconGeometry5_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,861.884,865.644">
+        <DrawingGroup Transform="1,0,0,1,15.686,9.875">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,6.971" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Geometry="{StaticResource ErrorLogIconGeometry6_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,14.524,20.331">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="0.662" RadiusY="0.662" Center="1.162,1.162" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- Update Drawing -->
+  <Geometry x:Key="UpdateIconGeometry1_">F1 M67,67z M0,0z M47.688,30.407A16.687,16.687,0,0,1,38.189,0</Geometry>
+  <Geometry x:Key="UpdateIconGeometry2_">F1 M67,67z M0,0z M4.455,0L6.155,6.045 0,7.638</Geometry>
+  <Geometry x:Key="UpdateIconGeometry3_">F1 M67,67z M0,0z M31,0A16.687,16.687,0,0,1,40.5,30.408</Geometry>
+  <Geometry x:Key="UpdateIconGeometry4_">F1 M67,67z M0,0z M4.455,0L6.155,6.045 0,7.638</Geometry>
+  <DrawingGroup x:Key="UpdateIconDrawingGroup_" ClipGeometry="M0,0 V67 H67 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="0" Y="3.0138818374325638E-07" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-1250,-509">
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,1267.154,525.83">
+        <DrawingGroup Transform="1,0,0,1,-31,2.11">
+          <GeometryDrawing Geometry="{StaticResource UpdateIconGeometry1_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="0.325568154457157,-0.945518575599317,0.945518575599317,0.325568154457157,0.109,5.35">
+          <GeometryDrawing Geometry="{StaticResource UpdateIconGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,1250,509">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <EllipseGeometry RadiusX="32.5" RadiusY="32.5" Center="33.5,33.5" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,1283.154,525.364">
+        <DrawingGroup Transform="1,0,0,1,-31,0">
+          <GeometryDrawing Geometry="{StaticResource UpdateIconGeometry3_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="-0.325568154457157,0.945518575599317,-0.945518575599317,-0.325568154457157,16.579,27.167">
+          <GeometryDrawing Geometry="{StaticResource UpdateIconGeometry4_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- ActionLog Drawing -->
+  <Geometry x:Key="ActionLogGeometry1_">F1 M54.426,63.669z M0,0z M21.681,51.845L2.828,51.845A2.828,2.828,0,0,1,0,49.017L0,2.828A2.828,2.828,0,0,1,2.828,0L40.533,0A2.828,2.828,0,0,1,43.361,2.828L43.361,31.107</Geometry>
+  <Geometry x:Key="ActionLogGeometry2_">F1 M54.426,63.669z M0,0z M27.051,14.991A14.994,14.994,0,0,1,26.951,16.516A11.827,11.827,0,0,1,18.433,26.516A12.025,12.025,0,0,1,5.884,7.171A12.226,12.226,0,0,1,18.684,3.529</Geometry>
+  <Geometry x:Key="ActionLogGeometry3_">F1 M54.426,63.669z M0,0z M27.931,6L16.83,17.112 13.5,13.782</Geometry>
+  <Geometry x:Key="ActionLogGeometry4_">F1 M54.426,63.669z M0,0z M11750.708,-365.9L11773.379,-365.9</Geometry>
+  <Geometry x:Key="ActionLogGeometry5_">F1 M54.426,63.669z M0,0z M11750.708,-365.9L11773.379,-365.9</Geometry>
+  <Geometry x:Key="ActionLogGeometry6_">F1 M54.426,63.669z M0,0z M11750.708,-365.9L11773.379,-365.9</Geometry>
+  <Geometry x:Key="ActionLogGeometry7_">F1 M54.426,63.669z M0,0z M11750.709,-365.9L11760.194,-365.9</Geometry>
+  <DrawingGroup x:Key="ActionLogDrawingGroup_" ClipGeometry="M0,0 V63.669 H54.426 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="1.2877788028650694E-12" Y="365.89999389648438" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-657.301,-858.979">
+      <DrawingGroup Transform="1,0,0,1,658.301,859.979">
+        <GeometryDrawing Geometry="{StaticResource ActionLogGeometry1_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,686.261,897.65">
+        <DrawingGroup Transform="1,0,0,1,-3,-3.029">
+          <GeometryDrawing Geometry="{StaticResource ActionLogGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,-3.88,-3.844">
+          <GeometryDrawing Geometry="{StaticResource ActionLogGeometry3_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-11082.482,1235.694">
+        <GeometryDrawing Geometry="{StaticResource ActionLogGeometry4_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-11082.482,1252.661">
+        <GeometryDrawing Geometry="{StaticResource ActionLogGeometry5_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-11082.482,1244.178">
+        <GeometryDrawing Geometry="{StaticResource ActionLogGeometry6_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-11082.483,1267.744">
+        <GeometryDrawing Geometry="{StaticResource ActionLogGeometry7_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFD9D9D9" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- Maintenance Icon -->
+  <Geometry x:Key="MaintenanceGeometry1_">F1 M59.835,64.554z M0,0z M19.9878387451172,33.1217002868652L20.4547595977783,28.5575313568115 21.5641212463379,28.1030120849609C22.4939212799072,27.7220611572266,23.3711910247803,27.2199516296387,24.1715507507324,26.610631942749L25.1170806884766,25.8907814025879 29.2796020507813,27.7574729919434 32.0727844238281,22.9193840026856 28.4398097991943,20.2997016906738 28.6129302978516,19.1004314422607C28.6936206817627,18.5414028167725 28.7345409393311,17.9759216308594 28.7345409393311,17.4196929931641 28.7345409393311,16.9333114624023 28.7035598754883,16.4403419494629 28.6424713134766,15.9544916152954L28.4944801330566,14.777642250061 32.0683288574219,12.1976099014282 29.2767333984375,7.36105728149414 25.3180599212646,9.13654232025146 24.3654499053955,8.37937164306641C23.5046100616455,7.6951322555542,22.5535507202148,7.13886213302612,21.5386905670166,6.72599220275879L20.4250297546387,6.2729320526123 19.988094329834,2.00000214576721 14.4024791717529,2.00000214576721 13.9674205780029,6.27331209182739 12.8527202606201,6.72642183303833C11.8395500183106,7.13827228546143,10.8887605667114,7.69422197341919,10.0267505645752,8.37882232666016L9.07329082489014,9.13605213165283 5.11867570877075,7.35809087753296 2.32642030715942,12.1957893371582 5.90169048309326,14.7767124176025 5.75175046920776,15.955322265625C5.69089031219482,16.4337329864502 5.66003036499023,16.9264125823975 5.66003036499023,17.4196929931641 5.66003036499023,17.9820728302002 5.70084047317505,18.5476112365723 5.78132057189941,19.1006126403809L5.95594024658203,20.3004417419434 2.32364630699158,22.9229354858398 5.11429738998413,27.7590007781982 9.27448081970215,25.8916110992432 10.2201404571533,26.610481262207C11.0238103866577,27.2214221954346,11.9007902145386,27.7234725952148,12.8267002105713,28.1026916503906L13.9365301132202,28.5572414398193 14.4025192260742,33.1217002868652 19.9878387451172,33.1217002868652 M20.8428001403809,35.1217002868652L13.5517807006836,35.1217002868652C12.9735507965088,35.1217002868652,12.5091905593872,34.7391204833984,12.5091905593872,34.2684211730957L12.0686807632446,29.9534816741943C10.9687099456787,29.5029716491699,9.94290065765381,28.9120025634766,9.00979042053223,28.202672958374L5.06986045837402,29.97119140625C4.66289091110229,30.2080497741699,4.09702014923096,29.9954605102539,3.80834031105042,29.4974021911621L0.165040418505669,23.1837425231934C-0.123629577457905,22.6856327056885,-0.0229995790868998,22.0904026031494,0.383970409631729,21.8565711975098L3.80217051506042,19.3886528015137C3.70859050750732,18.7456512451172 3.66003036499023,18.0886821746826 3.66003036499023,17.4196929931641 3.66003036499023,16.8382511138916 3.69623041152954,16.2650413513184 3.76774048805237,15.7029218673706L0.386620432138443,13.2621517181397C-0.0203495789319277,13.0252923965454,-0.117449581623077,12.4330921173096,0.167690426111221,11.9350318908691L3.81188035011292,5.62132215499878C4.10055017471313,5.12331199645996,4.66554021835327,4.91067218780518,5.07251024246216,5.14450216293335L8.78291034698486,6.81266212463379C9.78312015533447,6.01830196380615,10.8980903625488,5.36205196380615,12.0995807647705,4.87365198135376L12.5091905593872,0.850352048873901C12.5091905593872,0.376572042703628,12.9735507965088,2.05078117687663E-06,13.5517807006836,2.05078117687663E-06L20.8428001403809,2.05078117687663E-06C21.4139709472656,2.05078117687663E-06,21.8809700012207,0.376572042703628,21.8809700012207,0.850352048873901L22.292350769043,4.87343215942383C23.4938411712646,5.36222219467163,24.6097011566162,6.01869201660156,25.6099109649658,6.81370210647583L29.3247203826904,5.14759206771851C29.731689453125,4.91067314147949,30.2940292358398,5.1233115196228,30.5818195343018,5.62132215499878L34.2260093688965,11.9350318908691C34.5155715942383,12.4330921173096,34.4175796508789,13.0252923965454,34.0106086730957,13.2621517181397L30.6268405914307,15.7049617767334C30.6974697113037,16.2666416168213 30.7345409393311,16.838752746582 30.7345409393311,17.4196929931641 30.7345409393311,18.0878028869629 30.6851100921631,18.7439918518066 30.5924110412598,19.3861713409424L34.0141410827637,21.8535327911377C34.4237594604492,22.0904026031494,34.5182189941406,22.6856327056885,34.2295417785645,23.1837425231934L30.5844707489014,29.4974021911621C30.2966804504394,29.992431640625,29.7378711700439,30.2080497741699,29.3282508850098,29.97119140625L25.3830299377441,28.2019519805908C24.4507904052734,28.9116725921631,23.4223308563232,29.5030326843262,22.3223705291748,29.9537029266357L21.8809700012207,34.2684211730957C21.8809700012207,34.7391204833984,21.4139709472656,35.1217002868652,20.8428001403809,35.1217002868652z</Geometry>
+  <Geometry x:Key="MaintenanceGeometry2_">F1 M59.835,64.554z M0,0z M-22380.164,-9908.475C-22378.019,-9911.189 -22372.964,-9913.921 -22369.883,-9913.701 -22365.02,-9913.285 -22363.742,-9912.12 -22358.278,-9911.134 -22353.051,-9910.19 -22347.95,-9910.314 -22346.95,-9908.992 -22345.95,-9907.67 -22347.356,-9906.392 -22349.692,-9905.598A7.336,7.336,0,0,1,-22352.43,-9905.216C-22355.207,-9905.439,-22362.164,-9905.216,-22362.164,-9905.216</Geometry>
+  <Geometry x:Key="MaintenanceGeometry3_">F1 M59.835,64.554z M0,0z M-22371.783,-9896.447C-22371.103,-9896.795 -22369.273,-9898.147 -22368.012,-9898.32 -22366.751,-9898.493 -22354.303,-9895.792 -22351.153,-9895.914 -22348.003,-9896.036 -22333.44,-9910.102 -22329.753,-9913.321 -22326.066,-9916.54 -22329.714,-9917.321 -22331.925,-9916.552 -22334.136,-9915.783 -22344.966,-9909.813 -22344.966,-9909.813</Geometry>
+  <DrawingGroup x:Key="MaintenanceDrawingGroup_" ClipGeometry="M0,0 V64.554 H59.835 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="22380.1640625" Y="9916.826171875" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-1255.116,-688.298">
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,1216.514,133.026">
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,56.486,555.272">
+          <GeometryDrawing Brush="#FFDBDBDB" Geometry="{StaticResource MaintenanceGeometry1_}" />
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,67.799,566.89">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="4.876" RadiusY="4.876" Center="5.876,5.876" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="0.992546151641322,0.121869343405147,-0.121869343405147,0.992546151641322,-312.26,-269.56">
+        <DrawingGroup Opacity="1" Transform="0.875,-0.485,0.485,0.875,1677.74,802.979">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <RectangleGeometry RadiusX="1" RadiusY="1" Rect="1,1,5.063,17.861" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,24065.053,10710.625">
+          <GeometryDrawing Geometry="{StaticResource MaintenanceGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,24064.07,10711.736">
+          <GeometryDrawing Geometry="{StaticResource MaintenanceGeometry3_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- Language Icon -->
+  <Geometry x:Key="LanguageIconGeometry1_">F1 M53.033,35.997z M0,0z M6.658,0.345C8.976,1.286 12.736,3.239 15.695,3.527 21.442,4.087 25.027,1.004 25.027,2.242L25.027,31.378C25.027,31.378 20.334,34.545 15.695,33.832 11.056,33.119 9.842,31.586 7,30.4 4.158,29.214 -0.146,31.459 -0.146,31.459L-0.146,31.159 -0.146,2.242C-0.146,1,3.9,-0.775,6.658,0.345z</Geometry>
+  <Geometry x:Key="LanguageIconGeometry2_">F1 M53.033,35.997z M0,0z M18.37,0.345C16.052,1.286 12.292,3.239 9.332,3.527 3.585,4.087 0,1 0,2.242L0,31.378C0,31.378 4.693,34.545 9.332,33.832 13.971,33.119 15.186,31.586 18.023,30.4 20.86,29.214 25.246,31.433 25.246,31.433L25.246,2.242C25.246,1,21.131,-0.775,18.37,0.345z</Geometry>
+  <Geometry x:Key="LanguageIconGeometry3_">F1 M53.033,35.997z M0,0z M11849.476,231.7L11851.576,231.7 11851.576,237.816</Geometry>
+  <Geometry x:Key="LanguageIconGeometry4_">F1 M53.033,35.997z M0,0z M-0.359,0L4.541,0</Geometry>
+  <DrawingGroup x:Key="LanguageDrawingGroup_" ClipGeometry="M0,0 V35.997 H53.033 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="0.35899999737739563" Y="0.010398832149803638" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-372.939,-234.285">
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,1,0">
+        <DrawingGroup Transform="1,0,0,1,398.946,235.318">
+          <GeometryDrawing Geometry="{StaticResource LanguageIconGeometry1_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,372.939,235.318">
+          <GeometryDrawing Geometry="{StaticResource LanguageIconGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,409.467,243.187">
+          <DrawingGroup Transform="1,0,0,1,-11849.112,-223.423">
+            <GeometryDrawing Geometry="{StaticResource LanguageIconGeometry3_}">
+              <GeometryDrawing.Pen>
+                <Pen Brush="#FFDBDBDB" Thickness="3" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+              </GeometryDrawing.Pen>
+            </GeometryDrawing>
+          </DrawingGroup>
+          <DrawingGroup Transform="1,0,0,1,0.011,0">
+            <GeometryDrawing Brush="#FFDBDBDB">
+              <GeometryDrawing.Geometry>
+                <EllipseGeometry RadiusX="2.031" RadiusY="2.031" Center="2.031,2.031" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+          </DrawingGroup>
+          <DrawingGroup Transform="1,0,0,1,0.359,15.694">
+            <GeometryDrawing Geometry="{StaticResource LanguageIconGeometry4_}">
+              <GeometryDrawing.Pen>
+                <Pen Brush="#FFDBDBDB" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+              </GeometryDrawing.Pen>
+            </GeometryDrawing>
+          </DrawingGroup>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- User Icon -->
+  <Geometry x:Key="UserIconGeometry1_">F1 M70,70z M0,0z M34,0A34,34,0,1,1,0,34A34,34,0,0,1,34,0z</Geometry>
+  <Geometry x:Key="UserIconGeometry2_">F1 M70,70z M0,0z M-16975.8,-11150.075C-16975.8,-11150.075 -16978.648,-11159.787 -16971.691,-11165.886 -16968.291,-11168.875 -16960.58,-11171.218 -16951.427,-11171.218 -16943.06,-11171.218 -16935.227,-11169.683 -16931.361,-11166.745 -16923.785,-11160.993 -16926.511,-11150.671 -16926.511,-11150.671</Geometry>
+  <DrawingGroup x:Key="UserIconDrawingGroup_" ClipGeometry="M0,0 V70 H70 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="16976.376953125" Y="11171.2177734375" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-210.621,-372">
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,211.621,373">
+        <GeometryDrawing Geometry="{StaticResource UserIconGeometry1_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,22.592,9.523">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="10.405" RadiusY="10.405" Center="11.405,11.405" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,16985.518,11207.873">
+          <GeometryDrawing Geometry="{StaticResource UserIconGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <!-- Doctor Icon -->
+  <Geometry x:Key="DoctorIconGeometry1_">F1 M70,70z M0,0z M34,0A34,34,0,1,1,0,34A34,34,0,0,1,34,0z</Geometry>
+  <Geometry x:Key="DoctorIconGeometry2_">F1 M70,70z M0,0z M-16975.8,-11149.728C-16975.8,-11149.728 -16978.632,-11159.599 -16971.716,-11165.799 -16968.329,-11168.837 -16960.665,-11171.218 -16951.568,-11171.218 -16943.25,-11171.218 -16935.463,-11169.658 -16931.617,-11166.672 -16924.086,-11160.825 -16926.799,-11150.333 -16926.799,-11150.333</Geometry>
+  <Geometry x:Key="DoctorIconGeometry3_">F1 M70,70z M0,0z M6.354,0.107L0,9.434</Geometry>
+  <Geometry x:Key="DoctorIconGeometry4_">F1 M70,70z M0,0z M1.508,-0.062L7.94,9.438</Geometry>
+  <Geometry x:Key="DoctorIconGeometry5_">F1 M70,70z M0,0z M-22843.152,-10386.374C-22840.914,-10383.783,-22840.976,-10377.893,-22840.976,-10377.893</Geometry>
+  <Geometry x:Key="DoctorIconGeometry6_">F1 M70,70z M0,0z M-22842.955,-10386.549C-22842.955,-10386.549,-22843.082,-10386.186,-22843.988,-10384.018A18.954,18.954,0,0,0,-22845,-10378.547</Geometry>
+  <Geometry x:Key="DoctorIconGeometry7_">F1 M70,70z M0,0z M8.612,8.206A10.8,10.8,0,0,0,7.956,2.954A4.879,4.879,0,0,0,4.345,0A4.879,4.879,0,0,0,0.734,2.954A10.8,10.8,0,0,0,0.078,8.206</Geometry>
+  <DrawingGroup x:Key="DoctorIconDrawingGroup_" ClipGeometry="M0,0 V70 H70 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="22845" Y="11171.2177734375" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1" Transform="1,0,0,1,-210.621,-372">
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,211.621,373">
+        <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry1_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,22.404,9.68">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="10.592" RadiusY="10.592" Center="11.592,11.592" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,16985.67,11207.601">
+          <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry2_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,33.814,44.896">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <LineGeometry StartPoint="0,0" EndPoint="0,22.46" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,33.714,37.054">
+          <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry3_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Transform="1,0,0,1,25.753,37.054">
+          <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry4_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="1,0,0,1,254.583,417.631">
+        <GeometryDrawing>
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+          <GeometryDrawing.Geometry>
+            <EllipseGeometry RadiusX="2.589" RadiusY="2.589" Center="3.589,3.589" />
+          </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,23099.879,10796.808">
+        <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry5_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,23076.055,10797.524">
+        <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry6_}">
+          <GeometryDrawing.Pen>
+            <Pen Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+          </GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingGroup>
+      <DrawingGroup Opacity="1" Transform="0.996,-0.087,0.087,0.996,226.337,419.218">
+        <DrawingGroup Transform="1,0,0,1,1.235,0">
+          <GeometryDrawing Geometry="{StaticResource DoctorIconGeometry7_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,0,7.549">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="0.313" RadiusY="0.641" Center="1.313,1.641" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,8.534,7.549">
+          <GeometryDrawing>
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFE5DEE0" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <EllipseGeometry RadiusX="0.313" RadiusY="0.641" Center="1.313,1.641" />
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+
+  <Style x:Key="SystemSettingTitleTextStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontSize" Value="22"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="8,0,0,0"/>
+    <Setter Property="Foreground" Value="{StaticResource TextNormalBrush_}"/>
+  </Style>
+
+  <Style x:Key="SystemSettingSubTitleTextStyle_" TargetType="TextBlock"
+         BasedOn="{StaticResource SystemSettingTitleTextStyle_}">
+    <Setter Property="Margin" Value="8,8,0,0"/>
+    <Setter Property="FontSize" Value="12"/>
+  </Style>
+
+  <ControlTemplate x:Key="SystemSettingsButtonTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Pressed_">
+        <DoubleAnimation Storyboard.TargetName="effect_"
+                       Storyboard.TargetProperty="Opacity"
+                       To=".3"
+                       Duration="0:0:0.1"/>
+        <ColorAnimation Storyboard.TargetName="border_"
+                        Storyboard.TargetProperty="BorderBrush.Color"
+                        To="{StaticResource BorderHighColor_}"
+                        Duration="0:0:0.1"/>
+      </Storyboard>
+      <Storyboard x:Key="Disabled_">
+        <DoubleAnimation Storyboard.TargetName="contentPresenter_" 
+                         Storyboard.TargetProperty="Opacity" 
+                         To="0.2" 
+                         Duration="0:0:0.1"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid Width="{TemplateBinding Width}"
+          Height="{TemplateBinding Height}"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          x:Name="gridMain_">
+      <Grid.Effect>
+        <DropShadowEffect x:Name="effect_" 
+                          Color="White" 
+                          ShadowDepth="0" 
+                          BlurRadius="4" 
+                          RenderingBias="Performance" 
+                          Opacity="0"
+                          Direction="0"/>
+      </Grid.Effect>
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="Disabled" Storyboard="{StaticResource Disabled_}"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressed_}">
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Image Source="../Images/SettingButtonBK.png" 
+             Stretch="UniformToFill"
+             x:Name="backgroundImage_"/>
+      <Border BorderBrush="#FF36476B" BorderThickness="4" CornerRadius="30" 
+              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+              x:Name="border_">
+      </Border>
+      <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                        Margin="{TemplateBinding Padding}" 
+                        Focusable="False" 
+                        RecognizesAccessKey="True"
+                        x:Name="contentPresenter_"/>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <EventTrigger RoutedEvent="TouchDown">
+        <EventTrigger.Actions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="effect_"
+                               Storyboard.TargetProperty="Opacity"
+                               To=".3"
+                               Duration="0:0:0.1"/>
+              <ColorAnimation Storyboard.TargetName="border_"
+                              Storyboard.TargetProperty="BorderBrush.Color"
+                              To="{StaticResource BorderHighColor_}"
+                              Duration="0:0:0.1"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger.Actions>
+      </EventTrigger>
+      <EventTrigger RoutedEvent="TouchUp">
+        <EventTrigger.Actions>
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="effect_"
+                               Storyboard.TargetProperty="Opacity"
+                               To="0"
+                               Duration="0:0:0.1"/>
+              <ColorAnimation Storyboard.TargetName="border_"
+                              Storyboard.TargetProperty="BorderBrush.Color"
+                              To="{StaticResource BorderNormalColor_}"
+                              Duration="0:0:0.1"/>
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger.Actions>
+      </EventTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="SystemSettingsButtonStyle_" TargetType="Button" x:Shared="False">
+    <Setter Property="Template" Value="{StaticResource SystemSettingsButtonTemplate_}"/>
+    <Setter Property="Width" Value="359"/>
+    <Setter Property="Height" Value="123"/>
+  </Style>
+
+  <Style x:Key="ManageUsersButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="0,0,28,0"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Center" 
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource ManageUserDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Manage Users"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ServiceToolButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Center" 
+              Margin="34,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource ServiceToolDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Service Tool"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="CatheterButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="30,0,0,0"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Center" 
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource CatheterDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Catheter Tool"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="DateTimeButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="0,0,28,0"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Center" 
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource DateTimeDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Date and Time"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ErrorLogButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Left" 
+              VerticalAlignment="Center" 
+              Margin="34,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource ErrorLogIconDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Error Log"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="UpdateButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="30,0,0,0"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Center" 
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource UpdateIconDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Update"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ActionLogButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="0,0,28,0"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Center" 
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource ActionLogDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="Action Log"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="MaintenanceButtonStyle_" 
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Left" 
+              VerticalAlignment="Center" 
+              Margin="34,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource MaintenanceDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,4,6">
+            <TextBlock x:Name="ButtonCaption_" 
+                       Text="Maintenance" 
+                       Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+            <TextBlock Text="Qualified person only" 
+                       Style="{StaticResource SystemSettingSubTitleTextStyle_}"/>
+          </StackPanel>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="NewUserButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="0,0,0,0"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch"
+              VerticalAlignment="Center"
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource UserIconDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="New User"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="NewDoctorButtonStyle_"
+         TargetType="Button"
+         BasedOn="{StaticResource SystemSettingsButtonStyle_}">
+    <Setter Property="Margin" Value="0,0,0,0"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <Grid HorizontalAlignment="Stretch"
+              VerticalAlignment="Center"
+              Margin="30,0,0,5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="269"/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0" Width="66" Height="66"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.Background>
+              <DrawingBrush Drawing="{StaticResource DoctorIconDrawingGroup_}"
+                            Stretch="Uniform" TileMode="None"/>
+            </Grid.Background>
+          </Grid>
+          <TextBlock x:Name="ButtonCaption_" 
+                     Grid.Column="1" 
+                     Text="New Doctor"
+                     Style="{StaticResource SystemSettingTitleTextStyle_}"/>
+        </Grid>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <SolidColorBrush x:Key="ComboboxNormalBackground" Color="#ff26262e"/>
+  <SolidColorBrush x:Key="ComboBoxForeground" Color="#ffffffff"/>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush" Color="#ff2B2B33"/>
+  <SolidColorBrush x:Key="ActiveBrush" Color="#ff4f4e57"/>
+  <SolidColorBrush x:Key="ArrowForeground" Color="#ffdadada"/>
+  <SolidColorBrush x:Key="ArrowHighlightBrush_" Color="#ffffffff"/>
+  <SolidColorBrush x:Key="NormalBackgroundBrush" Color="#ff26262e"/>
+  <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#ff888888" />
+  <Color x:Key="ComboBoxItemMouseOverBackgroundColor">#ff475e8b</Color>
+
+  <ControlTemplate x:Key="ComboBoxToggleButtonTemplate" TargetType="ToggleButton">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="40"/>
+      </Grid.ColumnDefinitions>
+      <Border Grid.Column="0" Grid.ColumnSpan="2"
+				        Name="Border"
+				        BorderBrush="Transparent"
+				        BorderThickness="1"
+				        Background="Transparent"/>
+      <Separator Grid.Column="0" Grid.ColumnSpan="2"
+                 BorderBrush="#ff394d6a"
+                 Height="8"
+                 Margin="0,0,0,-5"
+                 Background="#ff394d6a"
+                 VerticalAlignment="Bottom"/>
+      <Border Grid.Column="1" 
+              Name="ButtonBorder" 
+              Margin="1, 4, 3, 4" 
+              BorderBrush="{StaticResource ActiveBrush}" 
+              CornerRadius="0, 10, 10, 0" 
+              BorderThickness="0,0,0,0" 
+              Background="Transparent"/>
+      <Path Name="ArrowNormalPath_" Grid.Column="1" StrokeThickness="2.0"
+				      Stroke="{StaticResource ArrowForeground}"
+				      StrokeStartLineCap="Round"
+				      StrokeEndLineCap="Round" 
+              StrokeLineJoin="Round"
+				      HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+				      Data="F1 M 1.000,1.000 L 7.267,6.813 L 13.533,1.000"/>
+      <Path Name="ArrowHighlightPath_" 
+            Grid.Column="1" 
+            StrokeThickness="2.0"
+            Stroke="{StaticResource ArrowHighlightBrush_}"
+            StrokeStartLineCap="Round"
+            StrokeEndLineCap="Round" 
+            StrokeLineJoin="Round"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="Hidden"
+            Data="F1 M 1.000,1.000 L 7.267,6.813 L 13.533,1.000"/>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="UIElement.IsMouseOver" Value="True">
+        <Setter TargetName="ArrowHighlightPath_" Property="Visibility" Value="Visible"/>
+        <Setter TargetName="ArrowNormalPath_" Property="Visibility" Value="Hidden"/>
+      </Trigger>
+      <Trigger Property="ToggleButton.IsChecked" Value="True">
+        <!--<Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxForeground}"/>-->
+        <!--<Setter Property="Shape.Fill" TargetName="ArrowNormalPath_" Value="{StaticResource ComboBoxForeground}"/>-->
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+
+  <Style x:Key="ComboBoxItem" TargetType="ComboBoxItem">
+    <Setter Property="SnapsToDevicePixels" Value="true"/>
+    <Setter Property="OverridesDefaultStyle" Value="true"/>
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontSize" Value="22"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="Foreground" Value="#FFCEC3C6"/>
+    <Setter Property="Margin" Value="0,0,0,0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ComboBoxItem">
+          <Border x:Name="Border" SnapsToDevicePixels="true" Background="Transparent" Margin="10,0" Height="30">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                      <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ComboBoxItemMouseOverBackgroundColor}" />
+                    </ColorAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="Disabled" />
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <ContentPresenter x:Name="Presenter" VerticalAlignment="Center"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="IsSelected" Value="True">
+        <Setter Property="Foreground" Value="#FFFFFFFF"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style TargetType="ScrollBar">
+    <Setter Property="Width" Value="15"/>
+    <Setter Property="Padding" Value="3"/>
+    <Setter Property="Background" Value="#383843"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ScrollBar">
+          <Grid x:Name="GridRoot" Width="{TemplateBinding Width}" Background="Transparent">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="4"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="4"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="5"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Border Grid.RowSpan="3" Grid.ColumnSpan="3" CornerRadius="7" Grid.ZIndex="-1" 
+                  Background="{TemplateBinding Background}" 
+                  BorderBrush="{TemplateBinding BorderBrush}" 
+                  BorderThickness="{TemplateBinding BorderThickness}"/>
+            <Track Name="PART_Track" 
+                 ViewportSize="NaN"
+                 IsDirectionReversed="true"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Grid.ZIndex="-1">
+              <Track.Thumb>
+                <Thumb Style="{StaticResource sf.Scrollbar.Thumb}"/>
+              </Track.Thumb>
+              <Track.IncreaseRepeatButton>
+                <RepeatButton x:Name="PageUp" 
+                            Style="{StaticResource RepeatButtonPageStyle}" 
+                            Command="ScrollBar.PageDownCommand"/>
+              </Track.IncreaseRepeatButton>
+              <Track.DecreaseRepeatButton>
+                <RepeatButton x:Name="PageDown" 
+                            Style="{StaticResource RepeatButtonPageStyle}" 
+                            Command="ScrollBar.PageUpCommand"/>
+              </Track.DecreaseRepeatButton>
+            </Track>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+              <Setter Property="LayoutTransform" TargetName="GridRoot">
+                <Setter.Value>
+                  <RotateTransform Angle="-90"/>
+                </Setter.Value>
+              </Setter>
+              <Setter TargetName="PART_Track" Property="Orientation" Value="Vertical" />
+              <Setter Property="Command" Value="ScrollBar.PageLeftCommand" TargetName="PageDown" />
+              <Setter Property="Command" Value="ScrollBar.PageRightCommand" TargetName="PageUp" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ComboBoxStyle_" TargetType="ComboBox">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="OverridesDefaultStyle" Value="True"/>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
+    <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+    <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxForeground}"/>
+    <Setter Property="FontSize" Value="22"/>
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Normal"/>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    <Setter Property="Width" Value="165"/>
+    <Setter Property="Height" Value="36"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ComboBox">
+          <Grid>
+            <ToggleButton Name="ToggleButton"
+                          ClickMode="Press"
+                          Focusable="False"
+                          IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                          Margin="0,0,0,0"
+                          Template="{StaticResource ComboBoxToggleButtonTemplate}"/>
+            <ContentPresenter Name="ContentSite"
+                              Margin="8, 0, 0, 10"
+                              IsHitTestVisible="False"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}"
+                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+            <TextBox Name="PART_EditableTextBox"
+                     Margin="3, 3, 3, 3"
+                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                     Visibility="Hidden"
+                     Background="Transparent"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Focusable="True">
+              <TextBox.Template>
+                <ControlTemplate TargetType="TextBox">
+                  <Border Name="PART_ContentHost" Focusable="False"/>
+                </ControlTemplate>
+              </TextBox.Template>
+            </TextBox>
+            <Popup Name="Popup"
+                   Placement="Bottom"
+                   Focusable="False"
+                   AllowsTransparency="True"
+                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                   PopupAnimation="Slide">
+              <Grid Name="DropDown"
+                    SnapsToDevicePixels="True"
+                    MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                    MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                <Border Name="DropDownBorder"
+                        Background="{StaticResource ComboboxNormalBackground}"
+                        CornerRadius="2"
+                        BorderThickness="1,1,1,1"
+                        BorderBrush="{StaticResource ActiveBrush}"/>
+                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                  <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
+                </ScrollViewer>
+              </Grid>
+            </Popup>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="ItemsControl.HasItems" Value="False">
+              <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+              <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+            </Trigger>
+            <Trigger Property="ItemsControl.IsGrouping" Value="True">
+              <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+            </Trigger>
+            <Trigger Property="ComboBox.IsEditable" Value="True">
+              <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+              <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
+              <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

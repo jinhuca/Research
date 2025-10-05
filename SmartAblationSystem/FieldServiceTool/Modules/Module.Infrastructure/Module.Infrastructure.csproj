@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B550B00F-67B1-492B-A621-E9075BCD46F1}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Module.Infrastructure</RootNamespace>
+    <AssemblyName>Module.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ServiceTool</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MahApps.Metro.2.4.9\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Prism.Unity.8.1.97\lib\net47\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.Abstractions.5.11.7\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.Container.5.11.11\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppLog\FieldServiceTrace.cs" />
+    <Compile Include="AppLog\Level.cs" />
+    <Compile Include="Constants\MonitorConstants.cs" />
+    <Compile Include="Constants\ParameterCheckState.cs" />
+    <Compile Include="Constants\TestParameter.cs" />
+    <Compile Include="Constants\AblationTestState.cs" />
+    <Compile Include="Constants\AppCommandNames.cs" />
+    <Compile Include="Constants\AppCommandParameterName.cs" />
+    <Compile Include="Constants\IdleStateConstants.cs" />
+    <Compile Include="Constants\ReadyStateConstants.cs" />
+    <Compile Include="Constants\StepId.cs" />
+    <Compile Include="Constants\TestId.cs" />
+    <Compile Include="Controls\CatheterMechanicalPopupView.xaml.cs">
+      <DependentUpon>CatheterMechanicalPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CatheterMechanicalPopupViewModel.cs" />
+    <Compile Include="Controls\ChangeTankDialog.xaml.cs">
+      <DependentUpon>ChangeTankDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChangeTankDialogViewModel.cs" />
+    <Compile Include="Controls\ConsoleExceptionDialog.xaml.cs">
+      <DependentUpon>ConsoleExceptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ErrorMessageDialog.xaml.cs">
+      <DependentUpon>ErrorMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ErrorMessageDialogViewModel.cs" />
+    <Compile Include="Controls\ChartControl.xaml.cs">
+      <DependentUpon>ChartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContinueDialog.xaml.cs">
+      <DependentUpon>ContinueDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageDialogViewModel.cs" />
+    <Compile Include="Controls\PerformanceTestFailureDialog.xaml.cs">
+      <DependentUpon>PerformanceTestFailureDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RationaleDialog.xaml.cs">
+      <DependentUpon>RationaleDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RetryStopDialog.xaml.cs">
+      <DependentUpon>RetryStopDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SmoothnessVerificationDialog.xaml.cs">
+      <DependentUpon>SmoothnessVerificationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SmoothnessVerificationDialogViewModel.cs" />
+    <Compile Include="Controls\StateCheckFailureDialog.xaml.cs">
+      <DependentUpon>StateCheckFailureDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TestStartMsgDialog.xaml.cs">
+      <DependentUpon>TestStartMsgDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BooleanToSwitchStringConverter.cs" />
+    <Compile Include="Converters\BooleanToUSBConnectionConverter.cs" />
+    <Compile Include="Converters\CatheterStatusFlashConverter.cs" />
+    <Compile Include="Converters\InvertBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\SessionFlashConverter.cs" />
+    <Compile Include="Converters\SessionStatusToStopTextConverter.cs" />
+    <Compile Include="Converters\Int64ToVersionConverter.cs" />
+    <Compile Include="Converters\StepFlashConverter.cs" />
+    <Compile Include="Converters\StepStatusToThreeStateConverter.cs" />
+    <Compile Include="Converters\StringToBoolConverter.cs" />
+    <Compile Include="Converters\SystemStateFlashConverter.cs" />
+    <Compile Include="Converters\TestDetailVisibilityConverter.cs" />
+    <Compile Include="Converters\USBConnectionFlashConverter.cs" />
+    <Compile Include="Converters\USBStatusToBrushConverter.cs" />
+    <Compile Include="Converters\VacuumFlashConverter.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Helpers\USBManager.cs" />
+    <Compile Include="Helpers\ThreadHelpers.cs" />
+    <Compile Include="PubSubEvents\ConsoleSerialNumberEvent.cs" />
+    <Compile Include="PubSubEvents\ErrorListUpdateEvent.cs" />
+    <Compile Include="PubSubEvents\FstVersionEvent.cs" />
+    <Compile Include="PubSubEvents\GenerateReportEvent.cs" />
+    <Compile Include="PubSubEvents\HospitalNameEvent.cs" />
+    <Compile Include="PubSubEvents\RetryRationaleEvent.cs" />
+    <Compile Include="PubSubEvents\TimeEvent.cs" />
+    <Compile Include="PubSubEvents\TimeOutEvent.cs" />
+    <Compile Include="PubSubEvents\USBConnectionEvent.cs" />
+    <Compile Include="Constants\ConfigurationConstants.cs" />
+    <Compile Include="Statuses\CatheterStatus.cs" />
+    <Compile Include="Statuses\SessionStatus.cs" />
+    <Compile Include="Statuses\StepStatus.cs" />
+    <Compile Include="Constants\Strings.cs" />
+    <Compile Include="Constants\UserCommand.cs" />
+    <Compile Include="Controls\ConfirmationDialog.xaml.cs">
+      <DependentUpon>ConfirmationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DialogServiceExtensions.cs" />
+    <Compile Include="Controls\DialogViewModel.cs" />
+    <Compile Include="Controls\Logon.xaml.cs">
+      <DependentUpon>Logon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RetryTestDialog.xaml.cs">
+      <DependentUpon>RetryTestDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DoubleToPercentConverter.cs" />
+    <Compile Include="Converters\NullableBoolConverter.cs" />
+    <Compile Include="Converters\SessionStatusToPauseTextConverter.cs" />
+    <Compile Include="Converters\StepStatusToSolidColorBrushConverter.cs" />
+    <Compile Include="Converters\TestStatusToEnabledBoolConverter.cs" />
+    <Compile Include="Converters\SessionStatusToSolidColorBrushConverter.cs" />
+    <Compile Include="Converters\TestStatusToThreeStateConverter.cs" />
+    <Compile Include="Converters\TestStatusToVisibilityConverter.cs" />
+    <Compile Include="Interfaces\IMachine.cs" />
+    <Compile Include="InfrastructureModule.cs" />
+    <Compile Include="Interfaces\IConsoleService.cs" />
+    <Compile Include="Interfaces\IDataAccessService.cs" />
+    <Compile Include="Interfaces\IOutputService.cs" />
+    <Compile Include="Constants\KnownRegionNames.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PubSubEvents\SessionEvent.cs" />
+    <Compile Include="PubSubEvents\StepEvent.cs" />
+    <Compile Include="PubSubEvents\SummaryEvent.cs" />
+    <Compile Include="PubSubEvents\TesterInfoEvent.cs" />
+    <Compile Include="PubSubEvents\TestEvent.cs" />
+    <Compile Include="PubSubEvents\UserCommandEvent.cs" />
+    <Compile Include="Statuses\TestStatus.cs" />
+    <Compile Include="TestEntities\StepEntity.cs" />
+    <Compile Include="TestEntities\TestEntity.cs" />
+    <Compile Include="TestInterfaces\ISessionModel.cs" />
+    <Compile Include="TestInterfaces\IStepModel.cs" />
+    <Compile Include="TestInterfaces\ITestModel.cs" />
+    <Compile Include="TestResults\Implementation\AblationDetails.cs" />
+    <Compile Include="TestResults\Implementation\AblationTestResult.cs" />
+    <Compile Include="TestResults\Implementation\AudibleTestResult.cs" />
+    <Compile Include="TestResults\Implementation\ConsoleErrorResult.cs" />
+    <Compile Include="TestResults\Implementation\DmsTestResult.cs" />
+    <Compile Include="TestResults\Implementation\EtsTestResult.cs" />
+    <Compile Include="TestResults\Implementation\GeneralInformation.cs" />
+    <Compile Include="TestResults\Implementation\IdleStateCheckDetails.cs" />
+    <Compile Include="TestResults\Implementation\InputTestResult.cs" />
+    <Compile Include="TestResults\Implementation\OpsTestResult.cs" />
+    <Compile Include="TestResults\Implementation\ReadyStateCheckDetails.cs" />
+    <Compile Include="TestResults\Implementation\ReadyStateCheckResult.cs" />
+    <Compile Include="TestResults\Implementation\RetryRationaleResult.cs" />
+    <Compile Include="TestResults\Implementation\Treatment.cs" />
+    <Compile Include="TestResults\Implementation\VersionTestResult.cs" />
+    <Compile Include="TestResults\Implementation\VisualTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IAblationDetails.cs" />
+    <Compile Include="TestResults\Interfaces\IAblationTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IAudibleTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IConsoleErrorResult.cs" />
+    <Compile Include="TestResults\Interfaces\IDmsTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IEtsTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IGeneralInformation.cs" />
+    <Compile Include="TestResults\Interfaces\IIdleStateCheckDetails.cs" />
+    <Compile Include="TestResults\Interfaces\IInputTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IOpsTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IReadyStateCheckDetails.cs" />
+    <Compile Include="TestResults\Interfaces\IRetryRationaleResult.cs" />
+    <Compile Include="TestResults\Interfaces\ITreatment.cs" />
+    <Compile Include="TestResults\Interfaces\IVersionTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\IVisualTestResult.cs" />
+    <Compile Include="TestResults\Interfaces\ISessionResult.cs" />
+    <Compile Include="TestResults\Interfaces\IStepResult.cs" />
+    <Compile Include="TestResults\Interfaces\ITestOperations.cs" />
+    <Compile Include="TestResults\Interfaces\ITestInfo.cs" />
+    <Compile Include="TestResults\Implementation\TestInfo.cs" />
+    <Compile Include="TestResults\TestResultStatus.cs" />
+    <Compile Include="TestResults\Implementation\IdleStateCheckResult.cs" />
+    <Compile Include="TestResults\Interfaces\IIdleStateCheckResult.cs" />
+    <Compile Include="TestResults\Interfaces\IReadyStateCheckResult.cs" />
+    <Compile Include="UIContext\IUIContext.cs" />
+    <Compile Include="UIContext\WpfContext.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\CatheterMechanicalPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ChangeTankDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ChartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ConfirmationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ConsoleExceptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ContinueDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ErrorMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Logon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PerformanceTestFailureDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RationaleDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RetryStopDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RetryTestDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SmoothnessVerificationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StateCheckFailureDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TestStartMsgDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Borders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\PrismDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Shared.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Failed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Passed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BSC_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SmartFreeze.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Shared.csproj">
+      <Project>{B708D9D4-A101-45A6-9F40-FDAE4A7A8E06}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\..\SmartAblationSystem\Images\VolumeLow.png">
+      <Link>Images\VolumeLow.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\..\SmartAblationSystem\Images\Arrow.png">
+      <Link>Images\Arrow.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\connector off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Connector on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Warningbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mutebutton.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

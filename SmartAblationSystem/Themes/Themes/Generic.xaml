@@ -1,0 +1,3748 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib" >
+
+
+	<!--Varibales for set colors and Fonts-->
+	<Color x:Key="CryterionColorBlue">#00afef</Color>
+
+	<SolidColorBrush x:Key="CryterionBrushColorBlue" Color="#00afef" />
+	<SolidColorBrush x:Key="CryterionBrushColorYellow" Color="Yellow" />
+	<SolidColorBrush x:Key="CryterionBrushBoardInActive" Color="#FF565656" />
+	<SolidColorBrush x:Key="CryterionBrushOnFocusBackColor" Color="#FFD3D3D3" />
+	<SolidColorBrush x:Key="CryterionBrushInActiveBackground" Color="Black" />
+
+	<SolidColorBrush x:Key="CryterionBrushAlternatingRowBackground" Color="#404040" />
+	<SolidColorBrush x:Key="CryterionBrushWhiteAlternatingRowBackground" Color="#D3D3D3" />
+	<SolidColorBrush x:Key="CryterionBrushPinkground" Color="#a54685"/>
+	<SolidColorBrush x:Key="CryterionBrushGreenground" Color="#00a54f"/>
+  <SolidColorBrush x:Key="CryterionBrushLightGreen" Color="#01DF01"/>
+  <!-- Cryterion Grey Border and grid header color -->
+	<SolidColorBrush x:Key="CryterionSectionHeaderBrush" Color="Gray" />
+	<SolidColorBrush x:Key="CryoTherapyHeaderBackgroundBrush" Color="#FF6C6D70"></SolidColorBrush>
+	<Color x:Key="CryterionSectionBorderColor">#808080</Color>
+
+	<Color x:Key="CryterionOnFocus" A="100" B="211" G="211" R="211"></Color>
+	<Style x:Key="CryterionFontSize" TargetType="TextBoxBase">
+		<Setter Property="FontSize" Value="26" />
+	</Style>
+	<!-- Cryterion ComboBox -->
+	<SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
+	<SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
+	<SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
+	<SolidColorBrush x:Key="CryterionBrushNormalBackground" Color="Black" />
+	<ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="40" />
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.ColumnSpan="2" Name="Border"
+                    BorderBrush="{StaticResource CryterionBrushBoardInActive}"
+                    CornerRadius="10" BorderThickness="4, 4, 4 ,4"
+                    Background="{StaticResource CryterionBrushNormalBackground}" />
+			<Border Grid.Column="1" Margin="1, 4, 3, 4" BorderBrush="{StaticResource CryterionBrushBoardInActive}" Name="ButtonBorder"
+                    CornerRadius="0, 10, 10, 0" BorderThickness="0,0,0,0"
+                     Background="{StaticResource CryterionBrushColorBlue}" />
+			<!--combo BorderThickness and below Margin -->
+
+			<Path Name="Arrow" Grid.Column="1"
+            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+            HorizontalAlignment="Center" Fill="#444"
+            VerticalAlignment="Center"
+            Margin="0,0,5,0" />
+		</Grid>
+		<ControlTemplate.Triggers>
+			<Trigger Property="UIElement.IsMouseOver" Value="True">
+				<!--This is the Arrow button backcolor-->
+				<Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource CryterionBrushOnFocusBackColor}" />
+			</Trigger>
+			<Trigger Property="ToggleButton.IsChecked" Value="True">
+				<Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource CryterionBrushOnFocusBackColor}" />
+				<Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E" />
+			</Trigger>
+			<Trigger Property="UIElement.IsEnabled" Value="False">
+				<Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}" />
+				<Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}" />
+				<Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}" />
+				<Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}" />
+				<Setter Property="Shape.Fill" TargetName="Arrow" Value="#999" />
+			</Trigger>
+			<!--TODO: Clean up or remove this test code-->
+			<!--<Trigger Property="UIElement.IsFocused" Value="False">
+                    <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource CryterionBrushOnFocusBackColor}" />
+                    -->
+			<!--<Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource CryterionBrushOnFocusBackColor}" />-->
+			<!--
+                    <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource CryterionBrushColorBlue}" />
+                    <Setter Property="BorderBrush" TargetName="Border" Value="{StaticResource CryterionBrushColorBlue}" />
+                    -->
+			<!--<Setter Property="TextElement.Foreground" Value="RED" />
+                    <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999" />-->
+			<!--
+                </Trigger>-->
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<Style x:Key="ComboBoxCryterionStyle" TargetType="{x:Type ComboBox}">
+		<Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+		<Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+		<Setter Property="TextElement.Foreground" Value="White" />
+		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ComboBox">
+					<Grid>
+						<ToggleButton Name="ToggleButton"
+                                ClickMode="Press" Focusable="False"
+                                IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                Template="{StaticResource ComboBoxToggleButtonTemplate}" />
+
+						<ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False" 
+                              HorizontalAlignment="Left" VerticalAlignment="Center"
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}"  MaxWidth="324" 
+                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+						<TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3" 
+                                 IsReadOnly="{TemplateBinding IsReadOnly}"
+                                 Visibility="Hidden" Background="Transparent" 
+                                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                                 Focusable="True">
+							<TextBox.Template>
+								<ControlTemplate TargetType="TextBox" >
+                  <Border Name="PART_ContentHost" Focusable="False" />
+								</ControlTemplate>
+							</TextBox.Template>
+						</TextBox>
+						<!-- Popup showing items -->
+						<Popup Name="Popup" Placement="Bottom"
+                                Focusable="False" AllowsTransparency="True"
+                                 IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                                 PopupAnimation="Slide">
+							<Grid Name="DropDown" SnapsToDevicePixels="True"
+                                    MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                    MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+								<Border Name="DropDownBorder" Background="{StaticResource CryterionBrushOnFocusBackColor}" Margin="0, 1, 0, 0"
+                                    CornerRadius="10" BorderThickness="4,4,4,4"
+                                    BorderBrush="{StaticResource CryterionBrushBoardInActive}" />
+								<ScrollViewer Margin="4" SnapsToDevicePixels="True">
+									<ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+								</ScrollViewer>
+							</Grid>
+						</Popup>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="ItemsControl.HasItems" Value="False">
+							<Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95" />
+						</Trigger>
+						<Trigger Property="UIElement.IsEnabled" Value="False">
+							<Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}" />
+						</Trigger>
+						<Trigger Property="ItemsControl.IsGrouping" Value="True">
+							<Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+						</Trigger>
+						<Trigger Property="ComboBox.IsEditable" Value="True">
+							<Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+							<Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible" />
+							<Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+
+			</Setter.Value>
+		</Setter>
+  </Style>
+
+	<!-- End of Cryterion ComboBox -->
+  <!-- Maintenance Combobox -->
+  <Style x:Key="MaintenanceComboBoxCryterionStyle" TargetType="{x:Type ComboBox}">
+    <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+    <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+    <Setter Property="TextElement.Foreground" Value="White" />
+    <Setter Property="FontSize" Value="24" />
+    <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ComboBox">
+          <Grid>
+            <ToggleButton Name="ToggleButton"
+                              ClickMode="Press" Focusable="False"
+                              IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                              Template="{StaticResource ComboBoxToggleButtonTemplate}" />
+
+            <ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False" 
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Content="{TemplateBinding ComboBox.SelectionBoxItem}"  MaxWidth="324" 
+                            ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+            <TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3" 
+                               IsReadOnly="{TemplateBinding IsReadOnly}"
+                               Visibility="Hidden" Background="Transparent" 
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Focusable="True">
+              <TextBox.Template>
+                <ControlTemplate TargetType="TextBox" >
+                  <Border Name="PART_ContentHost" Focusable="False" />
+                </ControlTemplate>
+              </TextBox.Template>
+            </TextBox>
+            <!-- Popup showing items -->
+            <Popup Name="Popup" Placement="Bottom"
+                              Focusable="False" AllowsTransparency="True"
+                               IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                               PopupAnimation="Slide">
+              <Grid Name="DropDown" SnapsToDevicePixels="True"
+                                  MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                  MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                <Border Name="DropDownBorder" Background="{StaticResource CryterionBrushOnFocusBackColor}" Margin="0, 1, 0, 0"
+                                  CornerRadius="10" BorderThickness="4,4,4,4"
+                                  BorderBrush="{StaticResource CryterionBrushBoardInActive}" />
+                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                  <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained">
+                    <ItemsPresenter.Resources>
+                      <Style TargetType="ComboBoxItem">
+                        <Setter Property="TextElement.Foreground" Value="White"/>
+                      </Style>
+                    </ItemsPresenter.Resources>
+                  </ItemsPresenter>
+                </ScrollViewer>
+              </Grid>
+            </Popup>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="ItemsControl.HasItems" Value="False">
+              <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95" />
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+              <Setter Property="TextElement.Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="ItemsControl.IsGrouping" Value="True">
+              <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+            </Trigger>
+            <Trigger Property="ComboBox.IsEditable" Value="True">
+              <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+              <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible" />
+              <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- End of Maintenance Cryterion ComboBox -->
+  <!--Cryterion style Text Box-->
+	<Style TargetType="{x:Type TextBoxBase}" x:Key="CryterionTextBox">
+		<Setter Property="FontSize" Value="24" />
+    <Setter Property="Foreground" Value="{StaticResource CryterionBrushBoardInActive}"/>
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate  TargetType="{x:Type TextBoxBase}">
+					<Border Background="Black"
+                        x:Name="Bd" BorderBrush="{StaticResource CryterionBrushBoardInActive}"
+                        BorderThickness="4" CornerRadius="10"
+                        Height="50">
+						<ScrollViewer x:Name="PART_ContentHost" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Background" Value="Transparent" TargetName="Bd" />
+							<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ActiveCaptionColor}}" />
+							<Setter Property="FontFamily" Value="Franklin Gothic Medium"></Setter>
+						</Trigger>
+						<Trigger Property="Width" Value="Auto">
+							<Setter Property="MinWidth" Value="100" />
+						</Trigger>
+						<Trigger Property="Height" Value="Auto">
+							<Setter Property="MinHeight" Value="50" />
+						</Trigger>
+						<Trigger Property="IsFocused" Value="True">
+							<Setter Property="FontSize" Value="30"></Setter>
+							<Setter Property="FontWeight" Value="Normal"></Setter>
+							<Setter TargetName="Bd" Property="BorderBrush" Value="#00afef" />
+							<!--Onfocus Back colorcolor-->
+							<!--<Setter TargetName="Bd" Property="Background" Value="#FF4881B0" />-->
+							<Setter TargetName="Bd" Property="Background" Value="#FFD4D3D3" />
+						</Trigger>
+						<Trigger Property="Validation.HasError" Value="true">
+							<Setter TargetName="Bd" Property="Background" Value="Red" />
+							<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--White Cryterion style Text Box-->
+	<Style TargetType="{x:Type TextBoxBase}" x:Key="CryterionTextBoxWhite">
+		<Setter Property="FontSize" Value="30" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Background" Value="White" />
+		<Setter Property="Foreground" Value="Black" />
+		<Setter Property="FontWeight" Value="ExtraBold" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBoxBase}">
+					<Border Background="White"
+                        x:Name="Bd" BorderBrush="{StaticResource CryterionBrushBoardInActive}"
+                        BorderThickness="4" CornerRadius="10"
+                        Height="50">
+						<ScrollViewer x:Name="PART_ContentHost" />
+					</Border>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="Validation.HasError" Value="true">
+							<Setter TargetName="Bd" Property="Background" Value="Red" />
+							<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style  x:Key="CryterionTextBox2" TargetType="{x:Type TextBox}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBoxBase}">
+					<Border Background="Black"
+                    x:Name="Bd" BorderBrush="#00afef"
+                    BorderThickness="4" CornerRadius="10">
+						<ScrollViewer x:Name="PART_ContentHost" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd" />
+							<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+						</Trigger>
+						<Trigger Property="Width" Value="Auto">
+							<Setter Property="MinWidth" Value="100" />
+						</Trigger>
+						<Trigger Property="Height" Value="Auto">
+							<Setter Property="MinHeight" Value="50" />
+						</Trigger>
+						<Trigger Property="Validation.HasError" Value="true">
+							<Setter Property="Background" Value="Red" />
+							<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!-- Cryterion TextBox -->
+	<ControlTemplate x:Key="CryterionTextBoxold" TargetType="{x:Type TextBoxBase}">
+		<!--<Setter Property="FontFamily" Value="Tahoma"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Background" Value="Gray" />
+                                    <Style.Triggers>
+                                        <Trigger Property="Validation.HasError" Value="true">
+                                            <Setter Property="Background" Value="Red" />
+                                            <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+
+            -->
+		<Border Background="Gray"
+                    x:Name="Bd" BorderBrush="#00afef"
+                    BorderThickness="4" CornerRadius="10">
+			<ScrollViewer x:Name="PART_ContentHost" />
+		</Border>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd" />
+				<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+			</Trigger>
+			<Trigger Property="Width" Value="Auto">
+				<Setter Property="MinWidth" Value="100" />
+			</Trigger>
+			<Trigger Property="Height" Value="Auto">
+				<Setter Property="MinHeight" Value="50" />
+			</Trigger>
+			<Trigger Property="IsFocused" Value="True">
+				<Setter Property="Background" Value="Purple"></Setter>
+				<Setter Property="Foreground" Value="DarkCyan"></Setter>
+				<Setter Property="FontSize" Value="10"></Setter>
+				<Setter Property="FontWeight" Value="Normal"></Setter>
+				<Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource Accent}" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<!-- test button-->
+	<Style x:Key="ButtonFocusVisual">
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+		<GradientStop Color="#F3F3F3" Offset="0" />
+		<GradientStop Color="#EBEBEB" Offset="0.5" />
+		<GradientStop Color="#DDDDDD" Offset="0.5" />
+		<GradientStop Color="#CDCDCD" Offset="1" />
+	</LinearGradientBrush>
+
+	<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070" />
+
+	<Style x:Key="CryotherapyButtonStyle" TargetType="{x:Type TextBlock}">
+		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="VerticalAlignment" Value="Bottom" />
+		<Setter Property="FontSize" Value="20" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Margin" Value="0,50,0,0" />
+	</Style>
+
+	<Style x:Key="CircularButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+		<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding IsDefaulted}" SnapsToDevicePixels="true" Margin="-20" Opacity="0" />
+						<Ellipse Fill="#FFF4F4F5" Margin="-5,-15,-5,-10" Stroke="Black" RenderTransformOrigin="0.65,0.5" Height="90" Width="90" Opacity="0" />
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true">
+							<Setter Property="RenderDefaulted" TargetName="Chrome" Value="true" />
+						</Trigger>
+						<Trigger Property="ToggleButton.IsChecked" Value="true">
+							<Setter Property="RenderPressed" TargetName="Chrome" Value="true" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="#ADADAD" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- end -->
+	<Style x:Key="ButtonImageNotifier" TargetType="{x:Type Button}">
+		<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+		<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding IsDefaulted}" SnapsToDevicePixels="true" Margin="-20" Opacity="0" />
+						<Ellipse Fill="#FFF4F4F5" Margin="-5,-15,-5,-10" Stroke="Black" RenderTransformOrigin="0.65,0.5" Height="90" Width="90" Opacity="0" />
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true">
+							<Setter Property="RenderDefaulted" TargetName="Chrome" Value="true" />
+						</Trigger>
+						<Trigger Property="ToggleButton.IsChecked" Value="true">
+							<Setter Property="RenderPressed" TargetName="Chrome" Value="true" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="#ADADAD" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="GlassButton" TargetType="{x:Type Button}">
+		<Setter Property="SnapsToDevicePixels" Value="True" />
+		<Setter Property="OverridesDefaultStyle" Value="True" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<!-- Background Layer -->
+						<Ellipse Fill="{TemplateBinding Background}" />
+						<!-- Refraction Layer -->
+						<Ellipse x:Name="RefractionLayer">
+							<Ellipse.Fill>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00000000" />
+									<GradientStop Offset="0.4" Color="#FFFFFFFF" />
+								</RadialGradientBrush>
+							</Ellipse.Fill>
+						</Ellipse>
+						<!-- Reflection Layer -->
+						<Path x:Name="ReflectionLayer" VerticalAlignment="Top" Stretch="Fill">
+							<Path.RenderTransform>
+								<ScaleTransform ScaleY="0.5" />
+							</Path.RenderTransform>
+							<Path.Data>
+								<PathGeometry>
+									<PathFigure IsClosed="True" StartPoint="98.999,45.499">
+										<BezierSegment Point1="98.999,54.170" Point2="89.046,52.258" Point3="85.502,51.029" />
+										<BezierSegment
+                                    IsSmoothJoin="True"
+                                    Point1="75.860,47.685"
+                                    Point2="69.111,45.196"
+                                    Point3="50.167,45.196" />
+										<BezierSegment Point1="30.805,45.196" Point2="20.173,47.741" Point3="10.665,51.363" />
+										<BezierSegment
+                                    IsSmoothJoin="True"
+                                    Point1="7.469,52.580"
+                                    Point2="1.000,53.252"
+                                    Point3="1.000,44.999" />
+										<BezierSegment Point1="1.000,39.510" Point2="0.884,39.227" Point3="2.519,34.286" />
+										<BezierSegment
+                                    IsSmoothJoin="True"
+                                    Point1="9.106,14.370"
+                                    Point2="27.875,0"
+                                    Point3="50,0" />
+										<BezierSegment Point1="72.198,0" Point2="91.018,14.466" Point3="97.546,34.485" />
+										<BezierSegment
+                                    IsSmoothJoin="True"
+                                    Point1="99.139,39.369"
+                                    Point2="98.999,40.084"
+                                    Point3="98.999,45.499" />
+									</PathFigure>
+								</PathGeometry>
+							</Path.Data>
+							<Path.Fill>
+								<RadialGradientBrush GradientOrigin="0.498,0.526">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform
+                                       CenterX="0.5"
+                                       CenterY="0.5"
+                                       ScaleX="1"
+                                       ScaleY="1.997" />
+											<TranslateTransform X="0" Y="0.5" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#FFFFFFFF" />
+									<GradientStop Offset="0.85" Color="#92FFFFFF" />
+									<GradientStop Offset="0" Color="#00000000" />
+								</RadialGradientBrush>
+							</Path.Fill>
+						</Path>
+						<!-- ContentPresenter -->
+						<ContentPresenter Margin="0,2,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="RefractionLayer" Property="Fill">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform
+                                          CenterX="0.5"
+                                          CenterY="0.5"
+                                          ScaleX="1.5"
+                                          ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Offset="1" Color="#00000000" />
+										<GradientStop Offset="0.45" Color="#FFFFFFFF" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+							<Setter TargetName="ReflectionLayer" Property="Fill">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.498,0.526">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform
+                                          CenterX="0.5"
+                                          CenterY="0.5"
+                                          ScaleX="1"
+                                          ScaleY="1.997" />
+												<TranslateTransform X="0" Y="0.5" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Offset="1" Color="#FFFFFFFF" />
+										<GradientStop Offset="0.85" Color="#BBFFFFFF" />
+										<GradientStop Offset="0" Color="#00000000" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="RefractionLayer" Property="Fill">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform
+                                          CenterX="0.5"
+                                          CenterY="0.5"
+                                          ScaleX="1.5"
+                                          ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Offset="1" Color="#00000000" />
+										<GradientStop Offset="0.3" Color="#FFFFFFFF" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+							<Setter TargetName="ReflectionLayer" Property="Fill">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.498,0.526">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform
+                                          CenterX="0.5"
+                                          CenterY="0.5"
+                                          ScaleX="1"
+                                          ScaleY="1.997" />
+												<TranslateTransform X="0" Y="0.5" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Offset="1" Color="#CCFFFFFF" />
+										<GradientStop Offset="0.85" Color="#66FFFFFF" />
+										<GradientStop Offset="0" Color="#00000000" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Group Box style -->
+
+	<Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GroupBox}">
+					<Border BorderThickness="1" BorderBrush="#00afef"
+                    Background="#00afef"
+                    CornerRadius="0">
+						<Grid SnapsToDevicePixels="true">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="auto" />
+							</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" Foreground="Red" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentPresenter ContentSource="Header" />
+							</TextBlock>
+							<ContentPresenter Grid.Row="1" Margin="{TemplateBinding Padding}" />
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- check box style-->
+	<Style x:Key="FocusVisual">
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Border>
+						<Rectangle
+            Margin="15,0,0,0"
+            StrokeThickness="1"
+            Stroke="#60000000"
+            StrokeDashArray="1 2" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="CryterionCheckBox"  TargetType="{x:Type CheckBox}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="FontFamily" Value="{DynamicResource MetroFontRegular}" />
+		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+		<Setter Property="Foreground" Value="#999999" />
+		<!--<Setter Property="Foreground" Value="{StaticResource CryterionBrushColorBlue}" />-->
+		<Setter Property="Background" Value="#3f3f3f" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CheckBox">
+					<BulletDecorator Background="Transparent">
+						<BulletDecorator.Bullet>
+							<Border x:Name="BorderCheck"
+                              Width="13"
+                              Height="13"
+                              CornerRadius="2"
+                              Background="{StaticResource CryterionBrushInActiveBackground}"
+                              BorderBrush="{StaticResource CryterionBrushBoardInActive}"
+                              BorderThickness="2">
+								<Path
+                                                    Width="7" Height="7"
+                                                    x:Name="CheckMark"
+                                                    SnapsToDevicePixels="False"
+                                                    Stroke="{StaticResource CryterionBrushColorBlue}"
+                                                    StrokeThickness="2"
+                                                    Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+							</Border>
+						</BulletDecorator.Bullet>
+						<ContentPresenter Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True" />
+					</BulletDecorator>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="false">
+							<Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="IsChecked" Value="{x:Null}">
+							<Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter TargetName="BorderCheck" Property="Background" Value="#454545" />
+							<Setter TargetName="BorderCheck" Property="BorderBrush" Value="{DynamicResource ApplicationAccentBrush}" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="#c1c1c1" />
+						</Trigger>
+						<Trigger Property="IsFocused" Value="True">
+							<Setter TargetName="BorderCheck" Property="BorderBrush" Value="{StaticResource CryterionBrushColorBlue}" />
+							<Setter TargetName="BorderCheck" Property="Background" Value="{StaticResource CryterionBrushOnFocusBackColor}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="CheckBoxFocusVisual"  TargetType="{x:Type CheckBox}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="FontFamily" Value="{DynamicResource MetroFontRegular}" />
+		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+		<Setter Property="Foreground" Value="#999999" />
+		<Setter Property="Background" Value="#3f3f3f" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CheckBox">
+					<BulletDecorator Background="Transparent">
+						<BulletDecorator.Bullet>
+							<Border x:Name="Border"
+                              Width="13"
+                              Height="13"
+                              CornerRadius="0"
+                              Background="#3f3f3f"
+                              BorderBrush="#999999"
+                              BorderThickness="1">
+								<Path
+                                    Width="7" Height="7"
+                                    x:Name="CheckMark"
+                                    SnapsToDevicePixels="False"
+                                    Stroke="#979797"
+                                    StrokeThickness="2"
+                                    Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+							</Border>
+						</BulletDecorator.Bullet>
+						<ContentPresenter Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True" />
+					</BulletDecorator>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="false">
+							<Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="IsChecked" Value="{x:Null}">
+							<Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+							<Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+						</Trigger>
+
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter TargetName="Border" Property="Background" Value="#454545" />
+							<Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ApplicationAccentBrush}" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="#c1c1c1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="CheckBoxBigFocusVisual"  TargetType="{x:Type CheckBox}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="FontFamily" Value="{DynamicResource MetroFontRegular}" />
+		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+		<Setter Property="Foreground" Value="#999999" />
+		<Setter Property="Background" Value="#3f3f3f" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CheckBox">
+					<BulletDecorator Background="Transparent">
+						<BulletDecorator.Bullet>
+							<Border x:Name="Border"
+                              Width="25"
+                              Height="25"
+                              CornerRadius="0"
+                              Background="#3f3f3f"
+                              BorderBrush="#999999"
+                              BorderThickness="1">
+								<Path
+                                                    Width="15" Height="15"
+                                                    x:Name="CheckMark"
+                                                    SnapsToDevicePixels="False"
+                                                    Stroke="#979797"
+                                                    StrokeThickness="2"
+                                                    Data="M 0 0 L 15 15 M 0 15 L 15 0" />
+							</Border>
+						</BulletDecorator.Bullet>
+						<ContentPresenter Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True" />
+					</BulletDecorator>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="false">
+							<Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="IsChecked" Value="{x:Null}">
+							<Setter TargetName="CheckMark" Property="Data" Value="M 0 15 L 15 0" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter TargetName="Border" Property="Background" Value="#454545" />
+							<Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource ApplicationAccentBrush}" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="#c1c1c1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Animated switch -->
+	<Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Foreground" Value="Black" />
+		<Setter Property="Background" Value="#FAFAFB" />
+		<Setter Property="BorderBrush" Value="#EAEAEB" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ToggleButton">
+					<Viewbox Stretch="Uniform">
+						<Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+							<Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5" />
+							<Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5" />
+							<Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0.5,0,0.5" />
+							<Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.3">
+								<Ellipse.RenderTransform>
+									<TranslateTransform X="0" Y="0" />
+								</Ellipse.RenderTransform>
+								<Ellipse.BitmapEffect>
+									<DropShadowBitmapEffect Softness="0.1" ShadowDepth="0.7" Direction="270" Color="#BBBBBB" />
+								</Ellipse.BitmapEffect>
+							</Ellipse>
+						</Canvas>
+					</Viewbox>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Trigger.EnterActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<ColorAnimation Storyboard.TargetProperty="Background.Color" To="#52D468" Duration="0:0:0.2" />
+										<ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#41C955" Duration="0:0:0.2" />
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+											<SplineDoubleKeyFrame KeyTime="0" Value="0" />
+											<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</BeginStoryboard>
+							</Trigger.EnterActions>
+							<Trigger.ExitActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+										<ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#EAEAEB" Duration="0:0:0.2" />
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+											<SplineDoubleKeyFrame KeyTime="0" Value="15" />
+											<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</BeginStoryboard>
+							</Trigger.ExitActions>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#e3e9ef" />
+	<SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#fff" />
+	<Style x:Key="ComboBoxFlatStyle"  TargetType="{x:Type ComboBox}">
+		<Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+		<Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+		<Setter Property="TextElement.Foreground" Value="Black" />
+		<Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ComboBox">
+					<Grid>
+						<ToggleButton Name="ToggleButton"
+                ClickMode="Press" Focusable="False"
+                IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                Template="{StaticResource ComboBoxToggleButtonTemplate}" />
+
+						<ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False"
+                              HorizontalAlignment="Left" VerticalAlignment="Center"
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}"
+                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" />
+						<TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3"
+                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                     Visibility="Hidden" Background="Transparent"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                     Focusable="True">
+							<TextBox.Template>
+								<ControlTemplate TargetType="TextBox">
+									<Border Name="PART_ContentHost" Focusable="False" />
+								</ControlTemplate>
+							</TextBox.Template>
+						</TextBox>
+						<!-- Popup showing items -->
+						<Popup Name="Popup" Placement="Bottom"
+                   Focusable="False" AllowsTransparency="True"
+                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                   PopupAnimation="Slide">
+							<Grid Name="DropDown" SnapsToDevicePixels="True"
+                    MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                    MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+								<Border Name="DropDownBorder" Background="White" Margin="0, 1, 0, 0"
+                        CornerRadius="0" BorderThickness="1,1,1,1"
+                        BorderBrush="{StaticResource ComboBoxNormalBorderBrush}" />
+								<ScrollViewer Margin="4" SnapsToDevicePixels="True">
+									<ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+								</ScrollViewer>
+							</Grid>
+						</Popup>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="ItemsControl.HasItems" Value="False">
+							<Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95" />
+						</Trigger>
+						<Trigger Property="UIElement.IsEnabled" Value="False">
+							<Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}" />
+						</Trigger>
+						<Trigger Property="ItemsControl.IsGrouping" Value="True">
+							<Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+						</Trigger>
+						<Trigger Property="ComboBox.IsEditable" Value="True">
+							<Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+							<Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible" />
+							<Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!-- End of Flat ComboBox -->
+
+	<!-- Buttons styles-->
+	<Style x:Key="ChangeTankButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width" Value="50" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/ChangeTank_75.png" />
+						<Image Name="Pressed" Source="/Images/ChangeTank.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/ChangeTank_50.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="CryoTherapyButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width" Value="50" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/CryoTherapy_75.png" />
+						<Image Name="Pressed" Source="/Images/CryoTherapy.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/CryoTherapy_50.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="MaintenanceButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width" Value="50" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Maintenance_75.png" />
+						<Image Name="Pressed" Source="/Images/Maintenance.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Maintenance_50.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RecordsButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width" Value="50" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Records_75.png" />
+						<Image Name="Pressed" Source="/Images/Records.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Records_50.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ShutDownButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width" Value="50" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/ShutDown_75.png" />
+						<Image Name="Pressed" Source="/Images/ShutDown.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/ShutDown_50.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Home button -->
+	<Style x:Key="HomeButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/HomeButton.png" />
+						<Image Name="Pressed" Source="/Images/HomeButton.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/HomeButton.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Question button -->
+	<Style x:Key="QuestionButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/QuestionButton.png" />
+						<Image Name="Pressed" Source="/Images/QuestionButton.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/QuestionButton.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Warning button -->
+	<Style x:Key="WarningButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Warningbutton.png" />
+						<Image Name="Pressed" Source="/Images/Warningbutton.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Warningbutton.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--Logout button -->
+	<Style x:Key="LogoutButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Logout.png" />
+						<Image Name="Pressed" Source="/Images/Logout.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Logout.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--Notes button -->
+	<Style x:Key="NotesButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Notes Button.png" />
+						<Image Name="Pressed" Source="/Images/Notes Button.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Notes Button.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--Notes yellow button -->
+	<Style x:Key="NotesYellowButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Notes.png" />
+						<Image Name="Pressed" Source="/Images/Notes.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Notes.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Notes yellow button -->
+	<Style x:Key="TreatmentNotesButton" TargetType="{x:Type Button}" x:Shared="False">
+		<Setter Property="Height" Value="60" />
+		<Setter Property="Width" Value="60" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/TreatmentNotesSymbol.png" />
+						<Image Name="Pressed" Source="/Images/TreatmentNotesSymbol.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/TreatmentNotesSymbol.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<!--Outcome button -->
+	<Style x:Key="OutcomeButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Outcome.png" />
+						<Image Name="Pressed" Source="/Images/Outcome.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Outcome.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--user manual button -->
+	<Style x:Key="UserManualButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/UserManual.png" />
+						<Image Name="Pressed" Source="/Images/UserManual.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/UserManual.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ViewChangeButtonStyle" TargetType="Button">
+		<Setter Property="Height" Value="70"/>
+		<Setter Property="Width" Value="70"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/ViewChange.png"/>
+						<Image Name="Pressed" Source="/Images/ViewChange.png" Visibility="Hidden"/>
+						<Image Name="Disabled" Source="/Images/ViewChange.png" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Opacity" Value="0.9"/>
+							<!--<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>-->
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="QuickAssistButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="70" />
+		<Setter Property="Width" Value="70" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/quickassist.png" />
+						<Image Name="Pressed" Source="/Images/quickassist.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/quickassist.png" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Disabled" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<!-- button without corner -->
+	<Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="FontSize" Value="25" />
+		<Setter Property="Width" Value="175" />
+		<Setter Property="Height" Value="55" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#4b4b4d" />
+									<GradientStop Offset="0.3" Color="#4b4b4d" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="#00000000" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+
+
+	<!-- button without corner -->
+	<Style x:Key="RoundCornerLight" TargetType="{x:Type Button}">
+
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="FontSize" Value="20" />
+		<Setter Property="Width" Value="180" />
+		<Setter Property="Height" Value="45" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="#00000000" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<ScrollViewer x:Key="MyScrollViewer"   CanContentScroll="true"  HorizontalScrollBarVisibility="Auto" x:Name="PART_ContentHost"    IsTabStop="true">
+		<ScrollViewer.Resources>
+			<Style TargetType="ScrollBar">
+				<Style.Triggers>
+					<Trigger Property="Orientation" Value="Vertical">
+						<Setter Property="Width" Value="30"/>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidth}">150</sys:Double>-->
+		</ScrollViewer.Resources>
+		<ScrollViewer.Background>
+			<LinearGradientBrush EndPoint="0.5,1"    StartPoint="0.5,0">
+				<GradientStop Color="{DynamicResource ControlLightColor}"   Offset="0" />
+				<GradientStop Color="{DynamicResource ControlMediumColor}"  Offset="1" />
+			</LinearGradientBrush>
+		</ScrollViewer.Background>
+
+	</ScrollViewer>
+
+	<Style x:Key="MyDocumentViewer" TargetType="{x:Type DocumentViewer}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type DocumentViewer}">
+					<Border BorderThickness="{TemplateBinding BorderThickness}"  BorderBrush="{TemplateBinding BorderBrush}" Focusable="False">
+						<Grid KeyboardNavigation.TabNavigation="Local">
+							<Grid.Background>
+								<SolidColorBrush Color="{DynamicResource ControlLightColor}" />
+							</Grid.Background>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<ToolBar ToolBarTray.IsLocked="True"
+                     KeyboardNavigation.TabNavigation="Continue">
+								<!--<Button Command="ApplicationCommands.Print"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      Content="Print" />-->
+								<Button Command="ApplicationCommands.Copy"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      Content="Copy" />
+								<Separator />
+								<Button Command="NavigationCommands.IncreaseZoom"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      Content="Zoom In" />
+								<Button Command="NavigationCommands.DecreaseZoom"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      Content="Zoom Out" />
+								<Separator />
+								<Button Command="NavigationCommands.Zoom"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      CommandParameter="100.0"
+                      Content="Actual Size" />
+								<Button Command="DocumentViewer.FitToWidthCommand"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      Content="Fit to Width" />
+								<Button Command="DocumentViewer.FitToMaxPagesAcrossCommand"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      CommandParameter="1"
+                      Content="Whole Page" />
+								<Button Command="DocumentViewer.FitToMaxPagesAcrossCommand"
+                      CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      CommandParameter="2"
+                      Content="Two Pages" />
+							</ToolBar>
+
+
+							<ScrollViewer Grid.Row="1"   CanContentScroll="true"  HorizontalScrollBarVisibility="Auto" x:Name="PART_ContentHost"    IsTabStop="true">
+								<ScrollViewer.Resources>
+									<Style TargetType="ScrollBar">
+										<Style.Triggers>
+											<Trigger Property="Orientation" Value="Vertical">
+												<Setter Property="Width" Value="30"/>
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+									<!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidth}">150</sys:Double>-->
+								</ScrollViewer.Resources>
+								<ScrollViewer.Background>
+									<LinearGradientBrush EndPoint="0.5,1"    StartPoint="0.5,0">
+										<GradientStop Color="{DynamicResource ControlLightColor}"   Offset="0" />
+                    <GradientStop Color="{DynamicResource ControlLightColor}"  Offset="1" />
+									</LinearGradientBrush>
+								</ScrollViewer.Background>
+
+							</ScrollViewer>
+
+							<ContentControl Grid.Row="2"
+                            x:Name="PART_FindToolBarHost"/>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+	<!-- Button in Blue, no border Boarder, Rounded corner  -->
+	<Style x:Key="ButtonCryterion" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DodgerBlue" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with Image  -->
+	<Style x:Key="ImageButtonStyleBase" TargetType="Button">
+		<Setter Property="Height" Value="110"/>
+		<Setter Property="Width" Value="110"/>
+	</Style>
+
+	<!--Manage Users button -->
+	<Style x:Key="ManageUsersButton" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/NewUser.png"/>
+						<Image Name="Pressed" Source="/Images/NewUser.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    <!-- Button with Image  -->
+	<!--Add Doctor button -->
+	<Style x:Key="AddDoctorButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="130" />
+		<Setter Property="Width" Value="130" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/doctor.png" />
+						<Image Name="Pressed" Source="/Images/doctor.png" Height="110" Width="110" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with Image  -->
+	<!--Edit User button -->
+	<Style x:Key="EditUserButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="125" />
+		<Setter Property="Width" Value="125" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/EditUser.png" />
+						<Image Name="Pressed" Source="/Images/EditUser.png" Height="100" Width="100" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with Image  -->
+	<!-- Delete User button -->
+	<Style x:Key="DeleteUserButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="125" />
+		<Setter Property="Width" Value="125" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/DeleteUser.png" />
+						<Image Name="Pressed" Source="/Images/DeleteUser.png" Height="100" Width="100" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with Image  -->
+	<!--Reset User Password button -->
+	<Style x:Key="ResetUserPasswordButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="125" />
+		<Setter Property="Width" Value="125" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/ResetPassword.png" />
+						<Image Name="Pressed" Source="/Images/ResetPassword.png" Height="100" Width="100" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--Date Time Button -->
+	<Style x:Key="DateTimeButton" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/DateTime.png"/>
+						<Image Name="Pressed" Source="/Images/DateTime.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with Image  -->
+	<!--Maintenance Button -->
+	<Style x:Key="MaintenanceIconButton" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/MaintenanceIcon.png"/>
+						<Image Name="Pressed" Source="/Images/MaintenanceIcon.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="UpdateIconButton" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/UpdateIcon.png"/>
+						<Image Name="Pressed" Source="/Images/UpdateIcon.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" Value="0.25"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Service Tool Button -->
+	<Style x:Key="ServiceToolButtonStyle" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+                        <Image Name="Normal" Source="/Images/Field Service.png"/>
+                        <Image Name="Pressed" Source="/Images/Field Service.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" Value="0.25"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Catheter Tool Button -->
+	<Style x:Key="CatheterToolButtonStyle" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/CatheterTest.png"/>
+						<Image Name="Pressed" Source="/Images/CatheterTest.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" Value="0.25"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+	<!-- Button with Image  -->
+	<!--Action Log Button -->
+	<Style x:Key="ActionLogButton" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/ActionLog.png"/>
+						<Image Name="Pressed" Source="/Images/ActionLog.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<!-- Button with Image  -->
+	<!--Error Log Button -->
+	<Style x:Key="ErrorLogButton" TargetType="Button" BasedOn="{StaticResource ImageButtonStyleBase}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Grid>
+						<Image Name="Normal" Source="/Images/Error Log.png"/>
+						<Image Name="Pressed" Source="/Images/Error Log.png" Height="90" Width="90" Visibility="Hidden"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+	<!-- Button with Image  -->
+	<!--Action Log Button -->
+	<Style x:Key="ResetFactory" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="200" />
+		<Setter Property="Width" Value="200" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/delete.png"/>
+						<Image Name="Pressed" Source="/Images/delete.png" Height="125" Width="125" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Button with Image  -->
+	<!--User Manual (on Maintenance page) Button -->
+	<Style x:Key="UserManualMaintenanceButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="150" />
+		<Setter Property="Width" Value="150" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/UserManual.png" />
+						<Image Name="Pressed" Source="/Images/UserManual.png" Height="125" Width="125" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ArchiveButton" TargetType="{x:Type Button}">
+		<Setter Property="Height" Value="110"/>
+		<Setter Property="Width" Value="110"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<Image Name="Normal" Source="/Images/archive.png" />
+						<Image Name="Pressed" Source="/Images/archive.png" Height="90" Width="90" Visibility="Hidden" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter TargetName="Normal" Property="Visibility" Value="Hidden" />
+							<Setter TargetName="Pressed" Property="Visibility" Value="Visible" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<!-- Button in Blue, no border Boarder, Rounded corner  -->
+	<Style x:Key="ButtonLeftFlatCryterion" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="0,8,8,0" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DodgerBlue" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Label in Blue, no border, Rounded corner.  Same style as ButtonCryterion  -->
+	<Style x:Key="LabelCryterion" TargetType="{x:Type Label}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Label}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- play back button-->
+	<Style x:Key="PlayBackButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="Yellow" />
+									<GradientStop Offset="0.3" Color="Yellow" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DodgerBlue" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!-- end play back -->
+
+	<!--Rouded corner with light effect-->
+	<Style x:Key="RoundCornerWithLight" TargetType="{x:Type Button}">
+
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#4f7aa5" />
+									<GradientStop Offset="0.8" Color="Blue" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="#00000000" Offset="1" />
+										<GradientStop Color="#4f7aa5" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="BorderBrush" TargetName="border" Value="#FF33962B" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--end -->
+
+	<!--Rouded corner with light effect-->
+	<Style x:Key="StartButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="START" />
+		<Setter Property="Height" Value="65" />
+		<Setter Property="Width" Value="185" />
+		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="MediumSeaGreen" />
+									<GradientStop Offset="0.3" Color="MediumSeaGreen" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DarkGreen" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--end -->
+
+	<Style x:Key="XButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="X" />
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width" Value="50" />
+		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="Transparent" />
+									<GradientStop Offset="0.3" Color="Transparent" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- end stop button-->
+
+
+	<!--Stop Button -->
+	<Style x:Key="StopButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="STOP" />
+		<Setter Property="Height" Value="65" />
+		<Setter Property="Width" Value="185" />
+		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="Orange" />
+									<GradientStop Offset="0.3" Color="Orange" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DarkOrange" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- end stop button-->
+
+	<Style x:Key="OcclusionSettingChangeButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Image Name="Normal" Source="/Images/gear.png" HorizontalAlignment="Right"  Height="30" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SettingChangeButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="STOP" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="Gray"  />
+									<GradientStop Offset="0.3" Color="Gray" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+						<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+							<Image Name="Normal" Source="/Images/Settings.png" HorizontalAlignment="Right"  Height="30" />
+						</StackPanel>
+
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+	<!--Connect Button-->
+	<Style x:Key="ConnectButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="VACUUM ON" />
+		<Setter Property="Height" Value="65" />
+		<Setter Property="Width" Value="185" />
+		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="BlueViolet" />
+									<GradientStop Offset="0.3" Color="BlueViolet" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DarkViolet" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+						<DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" 
+                         Value="True">
+
+							<DataTrigger.EnterActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="1.0" To="0.1"
+                                             Duration="0:0:1"
+                                             AutoReverse="True"
+                                             RepeatBehavior="Forever" />
+									</Storyboard>
+								</BeginStoryboard>
+							</DataTrigger.EnterActions>
+						</DataTrigger>
+
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--end-->
+
+	<!--Disconnect Button-->
+	<Style x:Key="DisconnectButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="VACUUM OFF" />
+		<Setter Property="Height" Value="65" />
+		<Setter Property="Width" Value="185" />
+		<Setter Property="FontSize" Value="24" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="BlueViolet" />
+									<GradientStop Offset="0.3" Color="BlueViolet" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DarkViolet" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--end-->
+
+	<!-- Vein Isolation Button-->
+	<Style x:Key="VeinIsolationButton" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Content" Value="Vein Isolated" />
+		<Setter Property="Height" Value="65" />
+		<Setter Property="Width" Value="150" />
+		<Setter Property="FontSize" Value="20" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#99cc33" />
+									<GradientStop Offset="0.3" Color="#99cc33" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DarkGreen" Offset="1" />
+										<GradientStop Color="DarkGreen" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- end -->
+
+	<!--Playback Label -->
+	<Style x:Key="PlaybackLabel" TargetType="{x:Type Label}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="Content" Value="Playback Mode" />
+		<Setter Property="Width" Value="125" />
+		<Setter Property="FontSize" Value="22" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="Black" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Label}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="0">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                                            ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="Yellow" />
+									<GradientStop Offset="0.3" Color="Yellow" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--end-->
+
+	<!--TabButton-->
+	<Style x:Key="ReportToggleButton" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid SnapsToDevicePixels="True">
+						<Image Name="Normal" Source="/Images/ReportTab.png" />
+						<Image Name="Pressed" Source="/Images/ReportTab.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/ReportTab.png" Visibility="Hidden" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="PatientToggleButton" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid SnapsToDevicePixels="True">
+						<Image Name="Normal" Source="/Images/Patient Info Tab.png" />
+						<Image Name="Pressed" Source="/Images/Patient Info Tab.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/Patient Info Tab.png" Visibility="Hidden" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="TherapyToggleButton" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid SnapsToDevicePixels="True">
+						<Image Name="Normal" Source="/Images/TherapyTab.png" />
+						<Image Name="Pressed" Source="/Images/TherapyTab.png" Visibility="Hidden" />
+						<Image Name="Disabled" Source="/Images/TherapyTab.png" Visibility="Hidden" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--end-->
+
+	<!-- end buttons style-->
+
+	<Style x:Key="ImageBlinking" TargetType="{x:Type Image}">
+		<Style.Triggers>
+			<DataTrigger Binding="{Binding SystemState}" Value="1280">
+				<DataTrigger.EnterActions>
+					<BeginStoryboard x:Name="blinking">
+						<Storyboard RepeatBehavior="Forever">
+							<DoubleAnimation Storyboard.TargetProperty="Opacity" AutoReverse="True"
+                                             To="0.1" Duration="0:0:0.5">
+							</DoubleAnimation>
+						</Storyboard>
+					</BeginStoryboard>
+				</DataTrigger.EnterActions>
+				<DataTrigger.ExitActions>
+					<StopStoryboard BeginStoryboardName="blinking" />
+				</DataTrigger.ExitActions>
+			</DataTrigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style x:Key="ImageVisibleBlinking" TargetType="{x:Type Image}">
+		<Style.Triggers>
+			<EventTrigger RoutedEvent="Loaded">
+				<BeginStoryboard x:Name="blinking">
+					<Storyboard RepeatBehavior="Forever">
+						<DoubleAnimation Storyboard.TargetProperty="Opacity" AutoReverse="True"
+                                         To="0.5" Duration="0:0:1">
+						</DoubleAnimation>
+					</Storyboard>
+				</BeginStoryboard>
+			</EventTrigger>
+		</Style.Triggers>
+	</Style>
+
+
+	<Style x:Key="ServiceToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ToggleButton}"  >
+					<Border HorizontalAlignment="Center" VerticalAlignment="Center"  x:Name="border" Padding="5,5,5,5" CornerRadius="5,5,5,5" Background="#00afef" BorderBrush="#FF000000" BorderThickness="1,1,1,1" SnapsToDevicePixels="True" Width="260" Height="40">
+						<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center"/>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="true">
+							<Setter Property="Background" TargetName="border" Value="#fffaf0"/>
+						</Trigger>
+						<Trigger Property="IsChecked" Value="false">
+							<Setter Property="Background" TargetName="border" Value="#00afef"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Testing New style -->
+	<Style x:Key="ButtonStyleBlack" TargetType="{x:Type Button}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF19191D"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF151517"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF3D3DCD"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFC9BABF"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="#FFF4F4F5" Stroke="Black"/>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True"/>
+						<Trigger Property="IsDefaulted" Value="True"/>
+						<Trigger Property="IsMouseOver" Value="True"/>
+						<Trigger Property="IsPressed" Value="True"/>
+						<Trigger Property="IsEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ButtonStyleTransparent" TargetType="{x:Type Button}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF19191D"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF151517"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF3D3DCD"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFC9BABF"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="White" Stroke="Black"/>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True"/>
+						<Trigger Property="IsDefaulted" Value="True"/>
+						<Trigger Property="IsMouseOver" Value="True"/>
+						<Trigger Property="IsPressed" Value="True"/>
+						<Trigger Property="IsEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="ButtonStyleTriangle" TargetType="{x:Type Button}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF28282C"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF585868"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF1C1C6E"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFD3D3D6"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="#FFF4F4F5" Stroke="Black"/>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True"/>
+						<Trigger Property="IsDefaulted" Value="True"/>
+						<Trigger Property="IsMouseOver" Value="True"/>
+						<Trigger Property="IsPressed" Value="True"/>
+						<Trigger Property="IsEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="styleCalendar" TargetType="{x:Type Calendar}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Calendar}">
+					<!-- Wrapping in ViewBox will enlarge calendar of that size.-->
+					<Viewbox Height="400"
+                         Width="400">
+						<CalendarItem x:Name="PART_CalendarItem"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"/>
+					</Viewbox>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="dynamicLabel" TargetType="{x:Type Label}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="FontSize" Value="18" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Label}">
+
+					<Border x:Name="border"  BorderBrush="Transparent">
+						<ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center"  TextElement.FontWeight="Bold"></ContentPresenter>
+					</Border>
+					<ControlTemplate.Triggers>
+						<DataTrigger Binding="{Binding CanOcclusionPressureShow}"  Value="false">
+							<Setter Property="FontSize" Value="20"/>
+						</DataTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="dynamicImage" TargetType="{x:Type Image}">
+		<Setter Property="Height" Value="50" />
+		<Setter Property="Width"  Value="50" />
+		<Setter Property="Visibility"  Value="{Binding VisibilityValue }" />
+		<Style.Triggers>
+			<DataTrigger Binding="{Binding CanOcclusionPressureShow}"  Value="false">
+				<Setter Property="Height" Value="70" />
+				<Setter Property="Width"  Value="70" />
+			</DataTrigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style x:Key="dynamicLabel2" TargetType="{x:Type Label}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="FontSize" Value="18" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="#00afef" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Label}">
+
+					<Border x:Name="border"  BorderBrush="Transparent">
+						<ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center"  TextElement.FontWeight="Bold"></ContentPresenter>
+					</Border>
+					<ControlTemplate.Triggers>
+						<DataTrigger Binding="{Binding CanOcclusionPressureShow}"  Value="false">
+							<Setter Property="FontSize" Value="25"/>
+						</DataTrigger>
+					</ControlTemplate.Triggers>
+
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="dynamicLabel3" TargetType="{x:Type Label}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="FontSize" Value="40" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="#00afef" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Label}">
+
+					<Border x:Name="border"  BorderBrush="Transparent">
+						<ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center"  TextElement.FontWeight="Bold"></ContentPresenter>
+					</Border>
+					<ControlTemplate.Triggers>
+						<DataTrigger Binding="{Binding CanOcclusionPressureShow}"  Value="false">
+							<Setter Property="FontSize" Value="100"/>
+						</DataTrigger>
+					</ControlTemplate.Triggers>
+
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--Slider blue-->
+	<LinearGradientBrush x:Key="HorizontalBrushBlue" StartPoint="0,0" EndPoint="1,0">
+		<GradientStop Color="#00afef" Offset="1.0" />
+	</LinearGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonDefaultBrushBlue">
+		<GradientStop Color="#00afef" Offset="1"/>
+	</RadialGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonPressedBrushBlue">
+		<GradientStop Color="#00afef" Offset="1"/>
+	</RadialGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonMouseOverBrushBlue">
+		<GradientStop Color="#00afef" Offset="1"/>
+	</RadialGradientBrush>
+	<ControlTemplate x:Key="RoundButtonTemplateBlue" TargetType="RepeatButton">
+		<Grid>
+			<Ellipse Name="PART_Ellipse" 
+                         Width="40"
+                         Height="40" 
+                         Stroke="Black"
+                         Fill="{StaticResource RoundButtonDefaultBrushBlue}"/>
+			<ContentPresenter Name="PART_ContentPresenter"  ContentSource="Content" Margin="0,0,0,6" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"
+                                  TextBlock.Foreground="White"
+                                  TextBlock.FontSize="18"
+                                  TextBlock.FontWeight="Bold"/>
+		</Grid>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource RoundButtonMouseOverBrushBlue}" />
+				<Setter TargetName="PART_ContentPresenter" Property="TextBlock.Foreground" Value="White" />
+			</Trigger>
+			<Trigger Property="IsPressed" Value="True">
+				<Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource RoundButtonPressedBrushBlue}" />
+				<Setter TargetName="PART_ContentPresenter" Property="TextBlock.Foreground" Value="White" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<Style x:Key="SliderButtonStyleBlue" TargetType="{x:Type RepeatButton}">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="IsTabStop" Value="false"/>
+		<Setter Property="Focusable" Value="false"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RepeatButton}">
+					<Border Background="Transparent" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RoundButtonStyleBlue" TargetType="RepeatButton">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="Template" Value="{StaticResource RoundButtonTemplateBlue}" />
+	</Style>
+
+	<Style x:Key="SliderThumbStyleBlue" TargetType="Thumb">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="false"/>
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="15"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Thumb">
+					<Canvas>
+						<Path Margin="0,5,0,0" Data="M 8,3 L 0,15 0,30 15,30 15,15 8,3" Stroke="Black"
+                              Name="Ellipse" Fill="#EAE9E4" />
+					</Canvas>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="Ellipse" Property="Fill" Value="#EAE9E4"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter TargetName="Ellipse" Property="Fill" Value="#EAE9E4"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SliderBlue" TargetType="Slider">
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Slider">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" Name="row" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="*" Name="column" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
+
+						<RepeatButton Name="PART_DecreaseRepeatButton" 
+                                  Grid.Row="1" Grid.Column="0" 
+                                  Style="{StaticResource RoundButtonStyleBlue}" 
+                                  Content="-" Command="Slider.DecreaseSmall" />
+
+						<RepeatButton Name="PART_IncreaseRepeatButton" 
+                                  Grid.Row="1" Grid.Column="2" 
+                                  Style="{StaticResource RoundButtonStyleBlue}" 
+                                  Content="+" Command="Slider.IncreaseSmall" />
+
+						<Border Name="PART_Border" 
+                            BorderBrush="Black" BorderThickness="1" 
+                            Padding="2"
+                            CornerRadius="5" 
+                            Grid.Row="1" Grid.Column="1"
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}"
+                            Background="{StaticResource HorizontalBrushBlue}"
+                            HorizontalAlignment="Stretch"  
+                            VerticalAlignment="Center" />
+
+						<Track Name="PART_Track" 
+                               HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Center"   
+                               Grid.Row="1" Grid.Column="1"
+                               Width="{TemplateBinding Width}" 
+                               Height="{TemplateBinding Height}">
+							<Track.DecreaseRepeatButton>
+								<RepeatButton Command="Slider.DecreaseLarge" 
+                                          Style="{StaticResource SliderButtonStyleBlue}" />
+							</Track.DecreaseRepeatButton>
+							<Track.Thumb>
+								<Thumb Style="{StaticResource SliderThumbStyleBlue}" />
+							</Track.Thumb>
+							<Track.IncreaseRepeatButton>
+								<RepeatButton Command="Slider.IncreaseLarge" 
+                                          Style="{StaticResource SliderButtonStyleBlue}" />
+							</Track.IncreaseRepeatButton>
+						</Track>
+					</Grid>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="Orientation" Value="Vertical">
+							<Setter TargetName="PART_Border" Property="HorizontalAlignment" Value="Center" />
+							<Setter TargetName="PART_Border" Property="VerticalAlignment" Value="Stretch" />
+							<Setter TargetName="PART_Track" Property="HorizontalAlignment" Value="Center" />
+							<Setter TargetName="PART_Track" Property="VerticalAlignment" Value="Stretch" />
+							<Setter TargetName="row" Property="Height" Value="*" />
+							<Setter TargetName="column" Property="Width" Value="auto" />
+							<Setter TargetName="PART_DecreaseRepeatButton" Property="Grid.Row" Value="2" />
+							<Setter TargetName="PART_DecreaseRepeatButton" Property="Grid.Column" Value="1" />
+							<Setter TargetName="PART_IncreaseRepeatButton" Property="Grid.Row" Value="0" />
+							<Setter TargetName="PART_IncreaseRepeatButton" Property="Grid.Column" Value="1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+	<!--Slider Green-->
+	<LinearGradientBrush x:Key="HorizontalBrushGreen" StartPoint="0,0" EndPoint="1,0">
+		<GradientStop Color="Green" Offset="1.0" />
+	</LinearGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonDefaultBrushGreen">
+		<GradientStop Color="Green" Offset="1"/>
+	</RadialGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonPressedBrushGreen">
+		<GradientStop Color="Green" Offset="1"/>
+	</RadialGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonMouseOverBrushGreen">
+		<GradientStop Color="Green" Offset="1"/>
+	</RadialGradientBrush>
+	<ControlTemplate x:Key="RoundButtonTemplateGreen" TargetType="RepeatButton">
+		<Grid>
+			<Ellipse Name="PART_Ellipse" 
+                         Width="40"
+                         Height="40" 
+                         Stroke="Black"
+                         Fill="{StaticResource RoundButtonDefaultBrushGreen}"/>
+			<ContentPresenter Name="PART_ContentPresenter"  ContentSource="Content" Margin="0,0,0,6" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"
+                                  TextBlock.Foreground="White"
+                                  TextBlock.FontSize="18"
+                                  TextBlock.FontWeight="Bold"/>
+		</Grid>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource RoundButtonMouseOverBrushGreen}" />
+				<Setter TargetName="PART_ContentPresenter" Property="TextBlock.Foreground" Value="White" />
+			</Trigger>
+			<Trigger Property="IsPressed" Value="True">
+				<Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource RoundButtonPressedBrushGreen}" />
+				<Setter TargetName="PART_ContentPresenter" Property="TextBlock.Foreground" Value="White" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<Style x:Key="SliderButtonStyleGreen" TargetType="{x:Type RepeatButton}">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="IsTabStop" Value="false"/>
+		<Setter Property="Focusable" Value="false"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RepeatButton}">
+					<Border Background="Transparent" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RoundButtonStyleGreen" TargetType="RepeatButton">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="Template" Value="{StaticResource RoundButtonTemplateGreen}" />
+	</Style>
+
+	<Style x:Key="SliderThumbStyleGreen" TargetType="Thumb">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="false"/>
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="15"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Thumb">
+					<Canvas>
+						<Path Margin="0,5,0,0" Data="M 8,3 L 0,15 0,30 15,30 15,15 8,3" Stroke="Black"
+                              Name="Ellipse" Fill="#EAE9E4" />
+					</Canvas>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="Ellipse" Property="Fill" Value="#EAE9E4"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter TargetName="Ellipse" Property="Fill" Value="#EAE9E4"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SliderGreen" TargetType="Slider">
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Slider">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" Name="row" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="*" Name="column" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
+
+						<RepeatButton Name="PART_DecreaseRepeatButton" 
+                                  Grid.Row="1" Grid.Column="0" 
+                                  Style="{StaticResource RoundButtonStyleGreen}" 
+                                  Content="-" Command="Slider.DecreaseSmall" />
+
+						<RepeatButton Name="PART_IncreaseRepeatButton" 
+                                  Grid.Row="1" Grid.Column="2" 
+                                  Style="{StaticResource RoundButtonStyleGreen}" 
+                                  Content="+" Command="Slider.IncreaseSmall" />
+
+						<Border Name="PART_Border" 
+                            BorderBrush="Black" BorderThickness="1" 
+                            Padding="2"
+                            CornerRadius="5" 
+                            Grid.Row="1" Grid.Column="1"
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}"
+                            Background="{StaticResource HorizontalBrushGreen}"
+                            HorizontalAlignment="Stretch"  
+                            VerticalAlignment="Center" />
+
+						<Track Name="PART_Track" 
+                               HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Center"   
+                               Grid.Row="1" Grid.Column="1"
+                               Width="{TemplateBinding Width}" 
+                               Height="{TemplateBinding Height}">
+							<Track.DecreaseRepeatButton>
+								<RepeatButton Command="Slider.DecreaseLarge" 
+                                          Style="{StaticResource SliderButtonStyleGreen}" />
+							</Track.DecreaseRepeatButton>
+							<Track.Thumb>
+								<Thumb Style="{StaticResource SliderThumbStyleGreen}" />
+							</Track.Thumb>
+							<Track.IncreaseRepeatButton>
+								<RepeatButton Command="Slider.IncreaseLarge" 
+                                          Style="{StaticResource SliderButtonStyleGreen}" />
+							</Track.IncreaseRepeatButton>
+						</Track>
+					</Grid>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="Orientation" Value="Vertical">
+							<Setter TargetName="PART_Border" Property="HorizontalAlignment" Value="Center" />
+							<Setter TargetName="PART_Border" Property="VerticalAlignment" Value="Stretch" />
+							<Setter TargetName="PART_Track" Property="HorizontalAlignment" Value="Center" />
+							<Setter TargetName="PART_Track" Property="VerticalAlignment" Value="Stretch" />
+							<Setter TargetName="row" Property="Height" Value="*" />
+							<Setter TargetName="column" Property="Width" Value="auto" />
+							<Setter TargetName="PART_DecreaseRepeatButton" Property="Grid.Row" Value="2" />
+							<Setter TargetName="PART_DecreaseRepeatButton" Property="Grid.Column" Value="1" />
+							<Setter TargetName="PART_IncreaseRepeatButton" Property="Grid.Row" Value="0" />
+							<Setter TargetName="PART_IncreaseRepeatButton" Property="Grid.Column" Value="1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+
+
+
+	<!--Slider Gray-->
+	<LinearGradientBrush x:Key="HorizontalBrushGray" StartPoint="0,0" EndPoint="1,0">
+		<GradientStop Color="Gray" Offset="1.0" />
+	</LinearGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonDefaultBrushGray">
+		<GradientStop Color="Gray" Offset="1"/>
+	</RadialGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonPressedBrushGray">
+		<GradientStop Color="Gray" Offset="1"/>
+	</RadialGradientBrush>
+	<RadialGradientBrush x:Key="RoundButtonMouseOverBrushGray">
+		<GradientStop Color="Gray" Offset="1"/>
+	</RadialGradientBrush>
+	<ControlTemplate x:Key="RoundButtonTemplateGray" TargetType="RepeatButton">
+		<Grid>
+			<Ellipse Name="PART_Ellipse" 
+                         Width="40"
+                         Height="40" 
+                         Stroke="Black"
+                         Fill="{StaticResource RoundButtonDefaultBrushGray}"/>
+			<ContentPresenter Name="PART_ContentPresenter"  ContentSource="Content" Margin="0,0,0,6" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"
+                                  TextBlock.Foreground="White"
+                                  TextBlock.FontSize="18"
+                                  TextBlock.FontWeight="Bold"/>
+		</Grid>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource RoundButtonMouseOverBrushGray}" />
+				<Setter TargetName="PART_ContentPresenter" Property="TextBlock.Foreground" Value="White" />
+			</Trigger>
+			<Trigger Property="IsPressed" Value="True">
+				<Setter TargetName="PART_Ellipse" Property="Fill" Value="{StaticResource RoundButtonPressedBrushGray}" />
+				<Setter TargetName="PART_ContentPresenter" Property="TextBlock.Foreground" Value="White" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<Style x:Key="SliderButtonStyleGray" TargetType="{x:Type RepeatButton}">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="IsTabStop" Value="false"/>
+		<Setter Property="Focusable" Value="false"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RepeatButton}">
+					<Border Background="Transparent" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RoundButtonStyleGray" TargetType="RepeatButton">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="Template" Value="{StaticResource RoundButtonTemplateGray}" />
+	</Style>
+
+	<Style x:Key="SliderThumbStyleGray" TargetType="Thumb">
+		<Setter Property="SnapsToDevicePixels" Value="true"/>
+		<Setter Property="OverridesDefaultStyle" Value="false"/>
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Width" Value="15"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Thumb">
+					<Canvas>
+						<Path Margin="0,5,0,0" Data="M 8,3 L 0,15 0,30 15,30 15,15 8,3" Stroke="Black"
+                              Name="Ellipse" Fill="#EAE9E4" />
+					</Canvas>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="Ellipse" Property="Fill" Value="#EAE9E4"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter TargetName="Ellipse" Property="Fill" Value="#EAE9E4"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SliderGray" TargetType="Slider">
+		<Setter Property="OverridesDefaultStyle" Value="true"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Slider">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" Name="row" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="*" Name="column" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
+
+						<RepeatButton Name="PART_DecreaseRepeatButton" 
+                                  Grid.Row="1" Grid.Column="0" 
+                                  Style="{StaticResource RoundButtonStyleGray}" 
+                                  Content="-" Command="Slider.DecreaseSmall" />
+
+						<RepeatButton Name="PART_IncreaseRepeatButton" 
+                                  Grid.Row="1" Grid.Column="2" 
+                                  Style="{StaticResource RoundButtonStyleGray}" 
+                                  Content="+" Command="Slider.IncreaseSmall" />
+
+						<Border Name="PART_Border" 
+                            BorderBrush="Black" BorderThickness="1" 
+                            Padding="2"
+                            CornerRadius="5" 
+                            Grid.Row="1" Grid.Column="1"
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}"
+                            Background="{StaticResource HorizontalBrushGray}"
+                            HorizontalAlignment="Stretch"  
+                            VerticalAlignment="Center" />
+
+						<Track Name="PART_Track" 
+                               HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Center"   
+                               Grid.Row="1" Grid.Column="1"
+                               Width="{TemplateBinding Width}" 
+                               Height="{TemplateBinding Height}">
+							<Track.DecreaseRepeatButton>
+								<RepeatButton Command="Slider.DecreaseLarge" 
+                                          Style="{StaticResource SliderButtonStyleGray}" />
+							</Track.DecreaseRepeatButton>
+							<Track.Thumb>
+								<Thumb Style="{StaticResource SliderThumbStyleGray}" />
+							</Track.Thumb>
+							<Track.IncreaseRepeatButton>
+								<RepeatButton Command="Slider.IncreaseLarge" 
+                                          Style="{StaticResource SliderButtonStyleGray}" />
+							</Track.IncreaseRepeatButton>
+						</Track>
+					</Grid>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="Orientation" Value="Vertical">
+							<Setter TargetName="PART_Border" Property="HorizontalAlignment" Value="Center" />
+							<Setter TargetName="PART_Border" Property="VerticalAlignment" Value="Stretch" />
+							<Setter TargetName="PART_Track" Property="HorizontalAlignment" Value="Center" />
+							<Setter TargetName="PART_Track" Property="VerticalAlignment" Value="Stretch" />
+							<Setter TargetName="row" Property="Height" Value="*" />
+							<Setter TargetName="column" Property="Width" Value="auto" />
+							<Setter TargetName="PART_DecreaseRepeatButton" Property="Grid.Row" Value="2" />
+							<Setter TargetName="PART_DecreaseRepeatButton" Property="Grid.Column" Value="1" />
+							<Setter TargetName="PART_IncreaseRepeatButton" Property="Grid.Row" Value="0" />
+							<Setter TargetName="PART_IncreaseRepeatButton" Property="Grid.Column" Value="1" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ButtonYellow" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="20" BorderBrush="yellow" BorderThickness="1">
+
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+
+									<GradientStop Offset="1" Color="Yellow" />
+									<GradientStop Offset="0.3" Color="Yellow" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+
+					<!--<ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding X}"  Value="1">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#00ace8" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding X}"  Value="2">
+                            <Setter Property="BorderBrush" TargetName="border" Value="black"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>-->
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="ButtonTransparent" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="20" BorderBrush="Transparent"  BorderThickness="1">
+
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+
+									<GradientStop Offset="1" Color="Transparent"  />
+									<GradientStop Offset="0.3" Color="Transparent" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+	<Style x:Key="ButtonRed" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="20" BorderBrush="Red" BorderThickness="1">
+
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+
+									<GradientStop Offset="1" Color="Red" />
+									<GradientStop Offset="0.3" Color="Red" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SimulatorICBETSConnection" TargetType="{x:Type Ellipse}">
+		<Setter Property="Height" Value="28" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Opacity" Value="1"/>
+	</Style>
+
+	<Style x:Key="SimulatorICBDMSConnection" TargetType="{x:Type Ellipse}">
+		<Setter Property="Height" Value="28" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Opacity" Value="1"/>
+	</Style>
+
+	<Style x:Key="SimulatorICBCatheterConnection" TargetType="{x:Type Ellipse}">
+		<Setter Property="Height" Value="28" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Opacity" Value="1"/>
+	</Style>
+
+	<Style x:Key="SimulatorICBPressureSensorConnection" TargetType="{x:Type Ellipse}">
+		<Setter Property="Height" Value="28" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Opacity" Value="1"/>
+	</Style>
+
+	<Style x:Key="SimulatorICBRemoteControlConnection" TargetType="{x:Type Ellipse}">
+		<Setter Property="Height" Value="28" />
+		<Setter Property="Width" Value="28" />
+		<Setter Property="Opacity" Value="1"/>
+	</Style>
+</ResourceDictionary>

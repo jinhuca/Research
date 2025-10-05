@@ -1,0 +1,257 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    mc:Ignorable="d">
+  <!-- RepeatButton style used by Slider -->
+
+  <!-- style shared by Button and ToolBar -->
+  <Style x:Key="ButtonFocusVisual">
+    <Setter Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border>
+            <Rectangle Margin="2" 
+                       StrokeThickness="1" 
+                       Stroke="{DynamicResource Brush_Border_Focused}" 
+                       StrokeDashArray="1 2"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- 
+  1. CommonStates Colors and Brushes: Background, Foreground, and Border 
+-->
+
+  <!-- 1.1 CommonStates Background Colors and Brushes -->
+
+  <!-- Normal Background -->
+  <Color x:Key="Color_Background_Normal">#FF2d2d30</Color>
+  <SolidColorBrush x:Key="Brush_Background_Normal" Color="{StaticResource Color_Background_Normal}"/>
+
+  <Color x:Key="Color_Background_Normal_Darker">#FF2c2c2c</Color>
+  <SolidColorBrush x:Key="Brush_Background_Normal_Darker" Color="{StaticResource Color_Background_Normal_Darker}"/>
+
+  <!-- Control Content Background: List, TextBlock, TextBox ... -->
+  <Color x:Key="Color_Background_Normal_Content">#FF1e1e1e</Color>
+  <SolidColorBrush x:Key="Brush_Background_Normal_Content" Color="{StaticResource Color_Background_Normal_Content}"/>
+
+  <!-- Header Background -->
+  <Color x:Key="Color_Background_Normal_Header">#FF333337</Color>
+  <SolidColorBrush x:Key="Brush_Background_Normal_Header" Color="{StaticResource Color_Background_Normal_Header}"/>
+
+  <!-- Track Background -->
+  <Color x:Key="Color_Background_Normal_Track">#FF3e3e42</Color>
+  <SolidColorBrush x:Key="Brush_Background_Normal_Track" Color="{StaticResource Color_Background_Normal_Track}"/>
+
+  <!-- Track Bar Background -->
+  <Color x:Key="Color_Background_Normal_TrackBar">#FF686868</Color>
+  <SolidColorBrush x:Key="Brush_Background_Normal_TrackBar" Color="{StaticResource Color_Background_Normal_TrackBar}"/>
+
+  <!-- Track Bar Background MouseOver -->
+  <Color x:Key="Color_Background_MouseOver_TrackBar">#FF9e9e9e</Color>
+  <SolidColorBrush x:Key="Brush_Background_MouseOver_TrackBar" Color="{StaticResource Color_Background_MouseOver_TrackBar}"/>
+
+  <!-- Track Bar Background Pressed -->
+  <Color x:Key="Color_Background_Pressed_TrackBar">#FFefebef</Color>
+  <SolidColorBrush x:Key="Brush_Background_Pressed_TrackBar" Color="{StaticResource Color_Background_Pressed_TrackBar}"/>
+
+  <Color x:Key="Color_Background_MouseOver">#FF3e3e40</Color>
+  <SolidColorBrush x:Key="Brush_Background_MouseOver" Color="{StaticResource Color_Background_MouseOver}"/>
+
+  <Color x:Key="Color_Background_MouseOver_Blue">#FF1c97ea</Color>
+  <SolidColorBrush x:Key="Brush_Background_MouseOver_Blue" Color="{StaticResource Color_Background_MouseOver_Blue}"/>
+
+  <Color x:Key="Color_Background_Selected">#007acc</Color>
+  <SolidColorBrush x:Key="Brush_Background_Selected" Color="{StaticResource Color_Background_Selected}"/>
+
+  <Color x:Key="Color_Background_Pressed">#1b1b1c</Color>
+  <SolidColorBrush x:Key="Brush_Background_Pressed" Color="{StaticResource Color_Background_Pressed}"/>
+
+  <Color x:Key="Color_Background_Disable">#FF4e4e50</Color>
+  <SolidColorBrush x:Key="Brush_Background_Disable" Color="{StaticResource Color_Background_Disable}"/>
+
+  <Color x:Key="Color_Background_Checked">#0f0f0f</Color>
+  <SolidColorBrush x:Key="Brush_Background_Checked" Color="{StaticResource Color_Background_Checked}"/>
+
+  <!-- 1.2 CommonStates Foreground Colors and Brushes -->
+  <Color x:Key="Color_Foreground_Normal">#FFf1f1f1</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Normal" Color="{StaticResource Color_Foreground_Normal}"/>
+
+	<Color x:Key="Color_CheckStroke_Normal">#FF00AFEF</Color>
+	<SolidColorBrush x:Key="Brush_CheckStroke_Normal" Color="{StaticResource Color_CheckStroke_Normal}"/>
+
+  <Color x:Key="Color_Foreground_MouseOver">#FFf1f1f1</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_MouseOver" Color="{StaticResource Color_Foreground_MouseOver}"/>
+
+  <Color x:Key="Color_Foreground_Pressed">#FFf1f1f1</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Pressed" Color="{StaticResource Color_Foreground_Pressed}"/>
+
+  <Color x:Key="Color_Foreground_Selected">#FFf1f1f1</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Selected" Color="{StaticResource Color_Foreground_Selected}"/>
+
+  <Color x:Key="Color_Foreground_Disable">#f0f0f0</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Disable" Color="{StaticResource Color_Foreground_Disable}"/>
+
+  <!-- 1.3 CommonStates Border Colors and Brushes -->
+  <Color x:Key="Color_Border_Normal">#FF787878</Color>
+  <SolidColorBrush x:Key="Brush_Border_Normal" Color="{StaticResource Color_Border_Normal}"/>
+
+  <Color x:Key="Color_Border_MouseOver">#FF249EFA</Color>
+  <SolidColorBrush x:Key="Brush_Border_MouseOver" Color="{StaticResource Color_Border_MouseOver}"/>
+
+  <Color x:Key="Color_Border_Pressed">#FF0492FD</Color>
+  <SolidColorBrush x:Key="Brush_Border_Pressed" Color="{StaticResource Color_Border_Pressed}"/>
+
+  <Color x:Key="Color_Border_Selected">#FF007ACC</Color>
+  <SolidColorBrush x:Key="Brush_Border_Selected" Color="{StaticResource Color_Border_Selected}"/>
+
+  <Color x:Key="Color_Border_Disable">#FF555555</Color>
+  <SolidColorBrush x:Key="Brush_Border_Disable" Color="{StaticResource Color_Border_Disable}"/>
+
+  <Color x:Key="Color_Border_SelectedUnfocused">#FF656575</Color>
+	<SolidColorBrush x:Key="Brush_Border_SelectedUnfocused" Color="{StaticResource Color_Border_SelectedUnfocused}"/>
+
+	<!-- 
+  2. FocusStates Colors and Brushes: Background, Foreground, and Border 
+-->
+
+  <!-- 2.1 FocusStates Background Colors and Brushes -->
+  <Color x:Key="Color_Background_Focused">#FF404040</Color>
+  <SolidColorBrush x:Key="Brush_Background_Focused" Color="{StaticResource Color_Background_Focused}"/>
+
+  <Color x:Key="Color_Background_Unfocused">#FFB0B0B0</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_Unfocused" Color="{StaticResource Color_Background_Unfocused}"/>
+
+  <!-- 2.2 FocusStates Border Colors and Brushes -->
+  <Color x:Key="Color_Border_Focused">#FF99D1FB</Color>
+  <SolidColorBrush x:Key="Brush_Border_Focused" Color="{StaticResource Color_Border_Focused}"/>
+
+  <Color x:Key="Color_Border_Unfocused">#FFAAAAAA</Color>
+  <SolidColorBrush x:Key="Brush_Border_Unfocused" Color="{StaticResource Color_Border_Unfocused}"/>
+
+  <!-- 2.3 FocusStates Foreground Colors and Brushes -->
+  <Color x:Key="Color_Foreground_Focused">#FF4A4A4A</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Focused" Color="{StaticResource Color_Foreground_Focused}"/>
+
+  <Color x:Key="Color_Foreground_Unfocused">#FF444444</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Unfocused" Color="{StaticResource Color_Foreground_Unfocused}"/>
+
+  <!-- 
+  3. CheckStates Colors and Brushes: Background, Foreground, and Border 
+-->
+
+  <!-- 3.1 CheckStates Background Colors and Brushes -->
+  <Color x:Key="Color_Background_Indeterminate">#FF00AFEF</Color>
+  <SolidColorBrush x:Key="Brush_Background_Indeterminate" Color="{StaticResource Color_Background_Indeterminate}"/>
+
+  <!-- 3.2 CheckStates Foreground Colors and Brushes -->
+  <Color x:Key="Color_Foreground_Checked">Black</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Checked" Color="{StaticResource Color_Foreground_Checked}"/>
+
+  <Color x:Key="Color_Foreground_Indeterminate">#FF1E1E1E</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_Indeterminate" Color="{StaticResource Color_Foreground_Indeterminate}"/>
+
+  <!-- 3.3 CheckStates Border Colors and Brushes -->
+  <Color x:Key="Color_Border_Checked">#FF111111</Color>
+  <SolidColorBrush x:Key="Brush_Border_Checked" Color="{StaticResource Color_Border_Checked}"/>
+
+
+  <!-- 
+  4. ValidationStates Colors and Brushes: Background, Foreground, and Border 
+-->
+
+  <!-- 4.1 ValidationStates Background Colors and Brushes -->
+  <Color x:Key="Color_Background_InvalidFocused">#FF7E7D7D</Color>
+  <SolidColorBrush x:Key="Brush_Background_InvalidFocused" Color="{StaticResource Color_Background_InvalidFocused}"/>
+
+  <Color x:Key="Color_Background_InvalidUnfocused">#FFCCCCCC</Color>
+  <SolidColorBrush x:Key="Brush_Background_InvalidUnfocused" Color="{StaticResource Color_Background_InvalidUnfocused}"/>
+
+  <!-- 4.2 ValidationStates Foreground Colors and Brushes -->
+  <Color x:Key="Color_Foreground_InvalidFocused">#FF848383</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_InvalidFocused" Color="{StaticResource Color_Foreground_InvalidFocused}"/>
+
+  <Color x:Key="Color_Foreground_InvalidUnfocused">#FFCCCCCC</Color>
+  <SolidColorBrush x:Key="Brush_Foreground_InvalidUnfocused" Color="{StaticResource Color_Foreground_InvalidUnfocused}"/>
+
+  <!-- 4.3 ValidationStates Border Colors and Brushes -->
+  <Color x:Key="Color_Border_InvalidFocused">#FFEF5454</Color>
+  <SolidColorBrush x:Key="Brush_Border_InvalidFocused" Color="{StaticResource Color_Border_InvalidFocused}"/>
+
+  <Color x:Key="Color_Border_InvalidUnfocused">#FF9E3737</Color>
+  <SolidColorBrush x:Key="Brush_Border_InvalidUnfocused" Color="{StaticResource Color_Border_InvalidUnfocused}"/>
+
+  <Color x:Key="CtrlBackgroundColor_Current">#FF232323</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_Current" Color="{StaticResource CtrlBackgroundColor_Current}"/>
+
+  <Color x:Key="CtrlBackgroundColor_MouseOver_Editing">#FF454545</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_MouseOver_Editing" Color="{StaticResource CtrlBackgroundColor_MouseOver_Editing}"/>
+
+  <Color x:Key="CtrlBackgroundColor_MouseOver_Selected">#FF404040</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_MouseOver_Selected" Color="{StaticResource CtrlBackgroundColor_MouseOver_Selected}"/>
+
+  <Color x:Key="CtrlBackgroundColor_MouseOver_Unfocused_Editing">#FF353535</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_MouseOver_Unfocused_Editing" Color="{StaticResource CtrlBackgroundColor_MouseOver_Unfocused_Editing}"/>
+
+  <Color x:Key="CtrlBackgroundColor_MouseOver_Unfocused_Selected">#FF303030</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_MouseOver_Unfocused_Selected" Color="{StaticResource CtrlBackgroundColor_MouseOver_Unfocused_Selected}"/>
+
+  <Color x:Key="CtrlBackgroundColor_Normal_AlternatingRow">#FF252525</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_Normal_AlternatingRow" Color="{StaticResource CtrlBackgroundColor_Normal_AlternatingRow}"/>
+
+  <Color x:Key="CtrlBackgroundColor_Normal_Editing">#FF202020</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_Normal_Editing" Color="{StaticResource CtrlBackgroundColor_Normal_Editing}"/>
+
+  <Color x:Key="CtrlBackgroundColor_Unfocused_Editing">#FF151515</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_Unfocused_Editing" Color="{StaticResource CtrlBackgroundColor_Unfocused_Editing}"/>
+
+  <Color x:Key="CtrlBackgroundColor_Unfocused_Selected">#FF797979</Color>
+  <SolidColorBrush x:Key="CtrlBackgroundBrush_Unfocused_Selected" Color="{StaticResource CtrlBackgroundColor_Unfocused_Selected}"/>
+
+
+  <Color x:Key="CntBackgroundColor_Normal">#FF333333</Color>
+  <SolidColorBrush x:Key="CntBackgroundBrush_Normal" Color="{StaticResource CntBackgroundColor_Normal}"/>
+
+  <!-- Foreground Colors and Brushes -->
+
+
+  <Color x:Key="CtrlForegroundColor_MouseOver_Editing">#FF72CAF4</Color>
+  <SolidColorBrush x:Key="CtrlForegroundBrush_MouseOver_Editing" Color="{StaticResource CtrlForegroundColor_MouseOver_Editing}"/>
+
+  <Color x:Key="CtrlForegroundColor_MouseOver_Selected">#FF72CA44</Color>
+  <SolidColorBrush x:Key="CtrlForegroundBrush_MouseOver_Selected" Color="{StaticResource CtrlForegroundColor_MouseOver_Selected}"/>
+
+  <Color x:Key="CtrlForegroundColor_MouseOver_Unfocused_Editing">#FF555555</Color>
+  <SolidColorBrush x:Key="CtrlForegroundBrush_MouseOver_Unfocused_Editing" Color="{StaticResource CtrlForegroundColor_MouseOver_Unfocused_Editing}"/>
+
+  <Color x:Key="CtrlForegroundColor_MouseOver_Unfocused_Selected">#FF404040</Color>
+  <SolidColorBrush x:Key="CtrlForegroundBrush_MouseOver_Unfocused_Selected" Color="{StaticResource CtrlForegroundColor_MouseOver_Unfocused_Selected}"/>
+
+  <Color x:Key="CtrlForegroundColor_SelectedUnfocused">#EEBBBBBB</Color>
+  <SolidColorBrush x:Key="CtrlForegroundBrush_SelectedUnfocused" Color="{StaticResource CtrlForegroundColor_SelectedUnfocused}"/>
+
+  <!-- Border Colors and Brushes -->
+  <Color x:Key="CtrlBorderColor_MouseOver_Editing">#FF72CAF4</Color>
+  <SolidColorBrush x:Key="CtrlBorderBrush_MouseOver_Editing" Color="{StaticResource CtrlBorderColor_MouseOver_Editing}"/>
+
+  <!--<Color x:Key="CtrlBorderColor_MouseOver_Selected">#FF72CA44</Color>
+  <SolidColorBrush x:Key="CtrlBorderBrush_MouseOver_Selected" Color="{StaticResource CtrlBorderColor_MouseOver_Selected}"/>-->
+
+  <Color x:Key="CtrlBorderColor_MouseOver_Unfocused_Editing">#FF555555</Color>
+  <SolidColorBrush x:Key="CtrlBorderBrush_MouseOver_Unfocused_Editing" Color="{StaticResource CtrlBorderColor_MouseOver_Unfocused_Editing}"/>
+
+  <Color x:Key="CtrlBorderColor_MouseOver_Unfocused_Selected">#FF404040</Color>
+  <SolidColorBrush x:Key="CtrlBorderBrush_MouseOver_Unfocused_Selected" Color="{StaticResource CtrlBorderColor_MouseOver_Unfocused_Selected}"/>
+
+  <Color x:Key="CtrlBorderColor_Unfocused_Selected">#FFEEEEEE</Color>
+  <SolidColorBrush x:Key="CtrlBorderBrush_Unfocused_Selected" Color="{StaticResource CtrlBorderColor_Unfocused_Selected}"/>
+
+  <Color x:Key="GeneralBackgroundColor">#FF222222</Color>
+  <SolidColorBrush x:Key="GeneralBackgroundBrush" Color="{StaticResource GeneralBackgroundColor}"/>
+
+</ResourceDictionary>
+

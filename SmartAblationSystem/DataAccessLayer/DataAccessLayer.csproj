@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D7DCBE9F-0217-41A6-A5B4-11BF8F832E96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccessLayer</RootNamespace>
+    <AssemblyName>DataAccessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ablation.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AblationData.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Action.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BalloonParameters.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatheterInformation.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatheterType.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMCRegisterValue.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CMCUPIDLogs.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Console.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsoleVersion.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess.Cache.cs" />
+    <Compile Include="DataAccess.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccess.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccess.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataBaseVersion.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Error.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLog.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorMessage.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorType.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FailuresLogs.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUIField.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HardDrive.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalInformation.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICacheableDataAccess.cs" />
+    <Compile Include="IDataAccess.cs" />
+    <Compile Include="Language.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patient.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Physician.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMCRegisterValue.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMCUPIDLogs.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="preference.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Procedure.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcedureLog.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemState.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tank.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TankTypes.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Translation.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Type.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAction.cs">
+      <DependentUpon>DataAccess.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataAccess.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataAccess.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataAccess.edmx.diagram">
+      <DependentUpon>DataAccess.edmx</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataAccess.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataAccess.Context.cs</LastGenOutput>
+      <DependentUpon>DataAccess.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccess.edmx.sql" />
+    <Content Include="DataAccess.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataAccess.cs</LastGenOutput>
+      <DependentUpon>DataAccess.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileSerializer\FileManager.csproj">
+      <Project>{2205b180-9847-454f-a03f-dd7e20c251f2}</Project>
+      <Name>FileManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RijndaelCryptography\RijndaelCryptography.csproj">
+      <Project>{8d4a7c17-cf57-4973-b399-fa8dc5512a64}</Project>
+      <Name>RijndaelCryptography</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

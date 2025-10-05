@@ -1,0 +1,306 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Shared.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+	<Style x:Key="RegionTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="Foreground" Value="AntiqueWhite"/>
+		<Setter Property="Margin" Value="18,0,0,0"/>
+	</Style>
+
+	<Style x:Key="RegionSubTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Margin" Value="20,0,0,0"/>
+	</Style>
+
+	<Style x:Key="ProgressTitleTextStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="FontSize" Value="23"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Margin" Value="20,0,10,0"/>
+	</Style>
+
+	<Style x:Key="AccessoriesTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccessoriesBorderBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+	</Style>
+
+	<Style x:Key="GraphsTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource GraphBorderBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- Begin: Sensors Styles -->
+
+	<!-- TextBlock style for Sensor Section Title -->
+	<Style x:Key="SystemParameterTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource SensorsTextBlockBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+	</Style>
+
+	<!-- TextBlock style for Sensor Parameter Titles -->
+	<Style x:Key="SensorParamTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource SensorsTextBlockBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Margin" Value="0,0,10,0"/>
+	</Style>
+
+	<!-- TextBlock style for Sensor Parameter Values -->
+	<Style x:Key="SensorsParamValueStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccentColorWhiteSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- End: Sensors Styles -->
+
+	<!-- Begin: Version Styles -->
+
+	<!-- TextBlock style for Version Section Title -->
+	<Style x:Key="VersionsTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource VersionsTextBlockBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+	</Style>
+
+	<!-- TextBlock style for Version Titles -->
+	<Style x:Key="VersionsTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource VersionsTextBlockBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="15"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Margin" Value="0,0,10,0"/>
+	</Style>
+
+	<Style x:Key="VersionValueStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccentColorWhiteSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="15"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<Style x:Key="VersionValueBlackStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccentColorWhiteSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Consolas"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- End: Version Styles -->
+
+	<Style x:Key="Step1VersionVerificationTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccentColorBlueSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic"/>
+		<Setter Property="FontSize" Value="21"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Margin" Value="0,0,10,0"/>
+	</Style>
+
+	<Style x:Key="StepPercentTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccentColorWhiteSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<Style x:Key="StepPassTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource AccentColorGreenSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<Style x:Key="StepTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Opacity" Value="1"/>
+		<Setter Property="Foreground" Value="{StaticResource AccentColorBlueSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontStyle" Value="Oblique"/>
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Style.Triggers>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Foreground" Value="DarkGray"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style x:Key="StepDescriptionTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Opacity" Value="1"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontStyle" Value="Oblique"/>
+		<Setter Property="FontSize" Value="26"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Style.Triggers>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Foreground" Value="DarkGray"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style x:Key="TestStatusTitleStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontWeight" Value="Normal"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Margin" Value="30,0,0,0"/>
+	</Style>
+
+	<Style x:Key="StatusTitleTextStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontSize" Value="22"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Margin" Value="20,0,0,0"/>
+	</Style>
+
+	<Style x:Key="TestStatusTextStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="FontSize" Value="22"/>
+		<Setter Property="Margin" Value="20,0,0,0"/>
+	</Style>
+
+	<Style x:Key="TestDetailsTitleStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontStyle" Value="Italic"/>
+		<Setter Property="FontSize" Value="19"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Margin" Value="10,0,0,0"/>
+	</Style>
+
+	<Style x:Key="TestDetailsTextStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="Orange"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontStyle" Value="Italic"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Margin" Value="10,0,0,0"/>
+	</Style>
+
+	<Style x:Key="TesterTextTitleStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="AntiqueWhite"/>
+		<Setter Property="FontSize" Value="11"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+	</Style>
+
+	<Style x:Key="ConsoleSNTitleStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="AntiqueWhite"/>
+		<Setter Property="FontSize" Value="11"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+	</Style>
+
+	<Style x:Key="TesterTextStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="#FF00AAFF"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontSize" Value="14"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+	</Style>
+
+	<Style x:Key="ConsoleSnTextStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="Orange"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontSize" Value="14"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+	</Style>
+
+	<Style x:Key="TestTextStyle" TargetType="TextBlock">
+		<Setter Property="Opacity" Value="1"/>
+		<Setter Property="Foreground" Value="{StaticResource AccentColorBlueSolidBrush}"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontStyle" Value="Oblique"/>
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="HorizontalAlignment" Value="left"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+		<Setter Property="Margin" Value="80,0,0,0"/>
+	</Style>
+
+	<Style x:Key="SystemStateTextStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="Margin" Value="0,0,0,0"/>
+	</Style>
+	
+	<Style x:Key="SystemStateTitleTextStyle" TargetType="TextBlock">
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="FontSize" Value="14"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Margin" Value="0,0,0,0"/>
+	</Style>
+
+	<Style TargetType="TextBlock" x:Key="FlashTextBlockStyle">
+		<Style.Resources>
+			<Storyboard x:Key="FlashStoryboard">
+				<DoubleAnimation Storyboard.TargetProperty="Foreground.Opacity"
+				                 From="0.5" To="1" Duration="0:0:1"
+				                 RepeatBehavior="Forever"
+				                 AutoReverse="True"/>
+			</Storyboard>
+		</Style.Resources>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="Margin" Value="20,0,0,0"/>
+		<Style.Triggers>
+			<EventTrigger RoutedEvent="Loaded">
+				<BeginStoryboard Storyboard="{StaticResource FlashStoryboard}"/>
+			</EventTrigger>
+		</Style.Triggers>
+	</Style>
+</ResourceDictionary>

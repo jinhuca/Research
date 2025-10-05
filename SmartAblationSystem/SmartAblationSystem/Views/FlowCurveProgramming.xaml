@@ -1,0 +1,624 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.FlowCurveProgramming"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Unloaded="UserControl_Unloaded"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:local="clr-namespace:SmartAblationSystem.Helpers"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <converters:StringTodoubleConverter x:Key="stringTodoubleConverter" />
+        <converters:StateToColorConverter x:Key="stateToColorConverter" />
+        <converters:StateToEnableConverter x:Key="stateToEnable" />
+        <converters:StateToVisibilityConverter x:Key="stateToVisibility" />
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:BooleanToNotVisibilityConverter x:Key="booleanToNotVisibilityConverter" />
+        <converters:StatusToPicture x:Key="statusToPicture" />
+        <converters:BooleanToPIDModeConverter x:Key="booleanToPIDModeConverter" />
+        <converters:BooleanToFlowOrPressureConverter x:Key="booleanToFlowOrPressureConverter" />
+        <converters:BooleanToColorConverter x:Key="booleanToColorConverter" />
+        <converters:BooleanToUSBConnectionConverter x:Key="booleanToUSBConnectionConverter" />
+        <converters:StringToIntConverter x:Key="stringToIntConverter" />
+        <converters:StateToSnowFlakAndBallonConverter x:Key="stateToSnowFlake" />
+        <converters:FieldToTextConverter x:Key="fieldToTextConverter" />
+        <converters:GasSateToColor x:Key="gasSateToColor" />
+        <converters:WeightToLevelConverter x:Key="weightToLevelConverter" />
+        <converters:PoundsToTimeConverter x:Key="poundsToTimeConverter" />
+        <converters:ShortToRefrigerantUnitConverter x:Key="shortToRefrigerantUnitConverter" />
+    </UserControl.Resources>
+
+    <Grid Height="1080" Width="1920" Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
+
+        <!-- Status top bar -->
+        <Grid Grid.Row="0" Width="1920" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderThickness="2" Margin="0,2,0,2" Height="45" CornerRadius="6">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White"  Opacity="0.5" />
+                </Border.BorderBrush>
+                <UniformGrid Rows="1" Columns="7" VerticalAlignment="Center">
+                    <Label Content="STATUS:" Foreground="White"  FontWeight="Bold" FontSize="22" Margin="80,0,0,0" />
+                    <Label Content="IDLE" Foreground="{Binding SystemState, ConverterParameter=IDLE, Converter={StaticResource stateToColorConverter}}"  FontWeight="Bold" FontSize="22" />
+                    <Label Content="READY" Foreground="{Binding SystemState, ConverterParameter=READY, Converter={StaticResource stateToColorConverter}}"  FontWeight="Bold" FontSize="22" />
+                    <Label Content="INFLATION" Foreground="{Binding SystemState, ConverterParameter=INFLATION, Converter={StaticResource stateToColorConverter}}" FontWeight="Bold" FontSize="22" />
+                    <Label Content="TRANSITION" Foreground="{Binding SystemState, ConverterParameter=TRANSITIONPID, Converter={StaticResource stateToColorConverter}}" FontWeight="Bold" FontSize="22" />
+                    <Label Content="ABLATION" Foreground="{Binding SystemState, ConverterParameter=ABLATIONPID, Converter={StaticResource stateToColorConverter}}" FontWeight="Bold" FontSize="22" />
+                    <Label Content="THAWING" Foreground="{Binding SystemState, ConverterParameter=THAWING, Converter={StaticResource stateToColorConverter}}" FontWeight="Bold" FontSize="22" />
+                </UniformGrid>
+            </Border>
+        </Grid>
+
+        <!-- GPIO - FM1, PT3 & IBP, PT2, PWM Inj and PWM Balance -->
+        <Grid Grid.Row="1" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Flow Curve chart -->
+            <Border BorderThickness="2" Margin="0,5,0,5" CornerRadius="6" Grid.Column="0" Grid.Row="0">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0.5" />
+                </Border.BorderBrush>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Name="GridTemperatureAblationTime" Grid.Column="0" Margin="0,60,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Temperature -->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TEMPERATURELabel" Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" FontSize="20" Foreground="White" HorizontalAlignment="Center"  Margin="0,0,50,0"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="{Binding TC1Reading, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Foreground="{StaticResource CryterionBrushColorBlue}" FontSize="115" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-30,70,0" />
+                            <Label Grid.Row="1" Grid.Column="1" Content=" °C" Foreground="{StaticResource CryterionBrushColorBlue}" FontSize="25" FontWeight="Bold" Margin="-70,-30,0,0" VerticalAlignment="Center" FontFamily="Impact" />
+                        </Grid>
+
+                        <!-- Ablation Time -->
+                        <Grid Grid.Row="1" Visibility="Hidden">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="AblationTimeLabel" Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" FontSize="20" Foreground="White" HorizontalAlignment="Center" />
+                            <Label Grid.Row="1" Grid.Column="0" Content="{Binding CryoTherapyTime, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Foreground="{StaticResource CryterionBrushColorBlue}" FontSize="115" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-30,0,0" 
+                                       Visibility="{Binding IsStatusAbllationBallonVisible, ConverterParameter=HIDDEN, Converter={StaticResource booleanToNotVisibilityConverter}}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Content=" sec" Foreground="{StaticResource CryterionBrushColorBlue}" FontSize="25" FontWeight="Bold" Margin="-5,-30,0,0" VerticalAlignment="Center" FontFamily="Impact" />
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                        Grid.RowSpan="2" Margin="0,-15,0,0">
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="1" Width="250" Height="200" Margin="0,0,0,0"
+                                               Source="{Binding SystemState, Converter={StaticResource stateToSnowFlake}}" 
+                                               Visibility="{Binding IsStatusAbllationBallonVisible, ConverterParameter=CatheterAndBallonState, Converter={StaticResource booleanToVisibilityConverter}}" />
+
+                                    <!--<StackPanel Visibility="{Binding IsTreatmentNumberAndPlayBackVisible, Converter={StaticResource booleanToNotVisibilityConverter}, ConverterParameter=HIDDEN}">-->
+                                    <StackPanel Visibility="Visible" >
+                                        <Image Grid.Column="1" Width="250" Height="200" Margin="0,0,0,0"
+                                               Source="{Binding SystemState, Converter={StaticResource stateToSnowFlake}}" 
+                                               Visibility="{Binding SystemState, ConverterParameter=CatheterAndBallonState, Converter={StaticResource stateToVisibility}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" Grid.Column="1" HorizontalAlignment="Stretch" Margin="-10,-5,0,5">
+            <Label Content="FM1 vs TIME" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="24"  Margin="-300,10,0,5"/>
+
+                        <Grid Background="Black">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="210" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel x:Name="ChartFM1" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <!-- Chart is loaded in the code-behind -->
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-20,15,0">
+                                <Label Content="FM1" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="24" />
+                                
+                                <Label Content="High Limit" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="20" />
+                                <Label Content="{Binding ThresholdFM1High, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimal, Mode=TwoWay}"
+                                       Foreground="Red" HorizontalAlignment="Right" FontSize="40" FontWeight="Bold" Margin="0,-20,0,0" />
+                                <Label Content="Low Limit" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="20" Margin="0,10,0,0" />
+                                <Label Content="{Binding ExpectedFlow, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimal, Mode=OneWay}"
+                                       Foreground="Yellow" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Margin="0,0,0,0" />
+                                <Label Content="Real Flow" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="20" Margin="0,10,0,0" />
+                                <Label Content="{Binding FM1Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimal, Mode=TwoWay}"
+                                       Foreground="#00a300" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Margin="0,0,0,0" />
+
+                                <Label Content="Absolute difference" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="20" Margin="0,20,0,0" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                    <Label Content="{Binding RelativeError, Mode=OneWay}" Foreground="White" FontSize="40"
+                                           FontWeight="Bold" Margin="0,0,0,0" />
+                                    <Label Content=" " Foreground="White" FontSize="40" Margin="5,0,0,0" />
+                                </StackPanel>
+                                
+                                
+                                <Button x:Name="QuestionButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                        Width="50" Height="50" Style="{StaticResource QuestionButton}" Margin="0,0,0,0"
+                                        Command="{Binding FlowCurveQuadraticFormulaDocumentCommand}" >
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Tank Gage and Mapping Catheter Connection -->
+                <Border BorderThickness="2" CornerRadius="6" Grid.Column="0" Margin="0,5,5,5" >
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{StaticResource CryterionSectionBorderColor}" />
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0" CornerRadius="4,4,0,0" Background="{StaticResource CryterionSectionHeaderBrush}">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="White" Opacity="0.5" />
+                            </Border.BorderBrush>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <Label x:Name="FM1ThresholdLabel" Content="FM1 THRESHOLD" Foreground="White" FontWeight="Bold" FontSize="32" Margin="0,-10,0,0" HorizontalAlignment="Center"  />
+                            </StackPanel>
+                        </Border>
+
+                        <Grid Grid.Column="0" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border BorderThickness="2" Margin="5,5,5,5" CornerRadius="6" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <Border.BorderBrush>
+                                    <SolidColorBrush Color="White" Opacity="0.5" />
+                                </Border.BorderBrush>
+
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Name="FormulaLabel" Content="y = a + formula" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" 
+                                           Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28" Visibility="Hidden"/>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                        <Label Name="ALabel" Content="a" FontSize="50" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" />
+                                        <TextBox BorderBrush="Black" BorderThickness="2" Width="200" Height="50" Margin="10,0,0,0"
+                                                 Text="{Binding FM1LowRange, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" 
+                                                 FontWeight="Bold" FontSize="28" VerticalAlignment="Center" TextAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                        <Label Name="BLabel" Content="b" FontSize="50" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBox BorderBrush="Black" BorderThickness="2" Width="200" Height="50" Margin="10,0,0,0"
+                                                 Text="{Binding FM1HighRange, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" 
+                                                 FontWeight="Bold" FontSize="28" VerticalAlignment="Center" TextAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
+                                        <Label Name="CLabel" Content="c" FontSize="50" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                                        <TextBox BorderBrush="Black" BorderThickness="2" Width="200" Height="50" Margin="10,0,0,0"
+                                                 Text="{Binding ThresholdFM1Low, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" 
+                                                 FontWeight="Bold" FontSize="28" VerticalAlignment="Center" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label Name="FM1HighLabel" Content="FM1-High" FontSize="28" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                                    <TextBox BorderBrush="Black" BorderThickness="2" Width="200" Height="50" Margin="10,0,0,0"
+                                             Text="{Binding ThresholdFM1High, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}"
+                                             FontWeight="Bold" FontSize="28" VerticalAlignment="Center" TextAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="100,0,0,0">
+                                    <Label Name="StateLabel" Content="State:" FontSize="28" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                  <ComboBox Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20" Width="150" Height="50" VerticalAlignment="Center"
+                                              Margin="10,0,0,0" ItemsSource="{Binding StatesList}" SelectedValue="{Binding SelectedState}" />
+                                </StackPanel>
+                            </StackPanel>
+                            
+                        </Grid>
+                        
+                        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+                            <Button Width="150" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" 
+                                    FontSize="18" Content="Read" Command="{Binding ReadCommand}" Style="{StaticResource ButtonCryterion}"
+                                    Margin="0,0,0,0"/>
+
+                            <Button Width="150" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" 
+                                    FontSize="18" Content="Write" Command="{Binding WriteCommand}" Style="{StaticResource ButtonCryterion}"
+                                    Margin="0,10,0,0"/>
+
+                            <Button Width="150" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" 
+                                    FontSize="18" Content="Save" Command="{Binding SaveCommand}" Style="{StaticResource ButtonCryterion}" 
+                                    Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+                <Border BorderThickness="2" CornerRadius="6" Grid.Column="1" Margin="5,5,5,5" Width="350">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{StaticResource CryterionSectionBorderColor}" />
+                    </Border.BorderBrush>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" BorderThickness="0" CornerRadius="4,4,0,0" Background="{StaticResource CryterionSectionHeaderBrush}">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="White" Opacity="0.5" />
+                            </Border.BorderBrush>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <Label x:Name="SensorValuesLabel" Content="SENSOR VALUES" Foreground="White" FontWeight="Bold" FontSize="32" Margin="0,-10,0,0" HorizontalAlignment="Center"  />
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="40,-5,0,0">
+                            <Label x:Name="FlowLabel" Content="Flow:" 
+                                   FontSize="22" FontWeight="Bold" Foreground="White" />
+                            <Label Content="{Binding FM1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}"
+                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="24" Margin="5,0,0,0" />
+              <Label x:Name="FlowUnitLabel" Content="sccm" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="40,-5,0,0">
+                            <Label Grid.Column="0" x:Name="PRESSURELabel" Content="Pressure:" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" />
+                            <Label Grid.Column="1" Content="{Binding PT2Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig, Mode=TwoWay}" HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="22" 
+                                   Margin="5,0,0,0"/>
+              <Label Content="psig" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="40,-5,0,0">
+                            <Label Grid.Column="0" x:Name="PT3Label" Content="PT3:" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" />
+                            <Label Grid.Column="1" Content="{Binding PT3Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig, Mode=TwoWay}"
+                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="22" 
+                                   Margin="5,0,0,0"/>
+              <Label Content="psia" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="40,-5,0,0">
+                            <Label Grid.Column="0" x:Name="PT4Label" Content="PT4:" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" />
+                            <Label Grid.Column="1" Content="{Binding PT4Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig, Mode=TwoWay}"
+                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="22" 
+                                   Margin="5,0,0,0"/>
+              <Label Content="psia" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="40,-5,0,0">
+                            <Label Grid.Column="0" x:Name="PT5Label" Content="PT5:" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" />
+                            <Label Grid.Column="1" Content="{Binding PT5Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=WithoutDecimalsPsig, Mode=TwoWay}"
+                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="22" 
+                                   Margin="5,0,0,0"/>
+              <Label Content="psia" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="40,-5,0,0">
+                            <Label Grid.Column="0" x:Name="IBPLabel" Content="IBP:" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" />
+                            <Label Content="{Binding CP1Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=OneDecimalValue, Mode=TwoWay}" 
+                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="22" 
+                                   Margin="5,0,0,0"/>
+              <Label Content="psig" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="40,-5,0,0">
+                            <Label Grid.Column="0" x:Name="OBPLabel" Content="OBP:" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" />
+                            <Label Content="{Binding CP2Reading, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=OneDecimalValue, Mode=TwoWay}" 
+                                   HorizontalAlignment="Right" FontWeight="Bold" Foreground="White" FontSize="22" 
+                                   Margin="5,0,0,0"/>
+              <Label Content="psig" FontSize="24" Height="45" Foreground="White" Margin="5,0,0,0" />
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+                
+                <!-- Tank Gage and Mapping Catheter Connection -->
+                <Border BorderThickness="2" CornerRadius="6" Grid.Column="2" Margin="5,5,0,5" Width="370">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{StaticResource CryterionSectionBorderColor}" />
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0" CornerRadius="4,4,0,0" Background="{StaticResource CryterionSectionHeaderBrush}">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="White" Opacity="0.5" />
+                            </Border.BorderBrush>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                <Label x:Name="ConsoleParametersLabel" Content="CONSOLE PARAMETERS" Foreground="White" FontWeight="Bold" FontSize="32" Margin="0,-10,0,0" HorizontalAlignment="Center"  />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Gas State Image -->
+                        <Grid Grid.Row="1" Grid.Column="0" Margin="0,-15,10,0" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="45" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" Height="102" Grid.RowSpan="2" VerticalAlignment="Top">
+                                <Label Content="F" FontSize="24" Foreground="White" Margin="0,0,5,0" VerticalAlignment="Top" />
+                                <Label Content="E" FontSize="24" Foreground="White" Margin="0,25,5,0" VerticalAlignment="Bottom" />
+                            </StackPanel>
+
+                            <Grid Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!-- gas gauge-->
+                                    <Rectangle Fill="{Binding GasState, Converter={StaticResource gasSateToColor},  Mode=TwoWay}" 
+                                           Height="{Binding LC1Reading, Converter={StaticResource weightToLevelConverter},  Mode=TwoWay}"  
+                                           Width="19" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
+                                    <!-- bottom of the rectangle-->
+                                    <Ellipse 
+                                           Margin="0,90,0,0"
+                                           Width="20"
+                                           Height="20"
+                                           Canvas.Left="20"
+                                           Canvas.Top="0"
+                                           Stretch="Fill"
+                                           Fill="{Binding GasState, Converter={StaticResource gasSateToColor}, Mode=TwoWay}">
+                                        <Ellipse.Clip>
+                                          <RectangleGeometry Rect="1,9.8,18,9"/>
+                                        </Ellipse.Clip>
+                                    </Ellipse>
+                                  <!-- white border-->
+                                    <Rectangle Height="100" Width="25" RadiusX="14" RadiusY="14" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Stroke="White" StrokeThickness="3"/>
+
+                                </Grid>
+                            </Grid>
+                            <Label Grid.Column="0" Grid.Row="1" FontSize="24" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,0,0" >
+                              <Label.Content>
+                                <MultiBinding Converter="{StaticResource poundsToTimeConverter}">
+                                  <Binding Path="LC1Reading"/>
+                                  <Binding Path="RefrigerantLevelUnit"/>
+                                  <Binding Path="DASBalloonEnabled" />
+                                  <Binding Path="IsLowFlowActivated" />
+                                  <Binding Path="RequiredAblationTime" />
+                                </MultiBinding>
+                              </Label.Content>
+                            </Label>
+                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding RefrigerantLevelUnit, Converter={StaticResource shortToRefrigerantUnitConverter}}" 
+                               FontSize="24" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,-5,0" />
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Catheter Electronically Connected -->
+                            <Border Grid.Row="0" BorderBrush="Silver" BorderThickness="1" CornerRadius="6" Margin="0,10,0,10" Width="180" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <Button Style="{StaticResource ButtonImageNotifier }" x:Name="butElectrical" HorizontalAlignment="Center" Width="115" Height="55">
+                                        <Image Source="/Images/electrical plug.png" Margin="10,0,0,0" />
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonImageNotifier}" x:Name="butElectricalState" HorizontalAlignment="Center" Width="40" Height="50" Margin="10,0,0,0">
+                                        <Image Source="{Binding IsCatheterCableConnected, Converter={StaticResource statusToPicture}}" Height="50" Width="40" />
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Catheter Mechanically Connected -->
+                            <Border Grid.Row="1" BorderBrush="Silver" BorderThickness="1" CornerRadius="6" Width="180" HorizontalAlignment="Left" Margin="0,10,0,10">
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <Button  Style="{StaticResource ButtonImageNotifier}" x:Name="butMechanical" HorizontalAlignment="Left" Width="115" Height="55">
+                                        <Image Source="/Images/mechanical plug.png" Margin="10,2,2,0" />
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonImageNotifier}" x:Name="butMechanicalState" HorizontalAlignment="Center" Width="40" Height="50">
+                                        <Image Source="{Binding IsCatheterTubeConnected, Converter={StaticResource statusToPicture}}" Height="50" Width="40" />
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            
+            <!-- Target flow, injection pressure and fault reset
+                 Start/Stop/Vacuum
+                 Target balloon pressure send + catheter connection -->
+            <Border BorderThickness="2" Margin="0,5,0,5" CornerRadius="6" Grid.Column="0" Grid.Row="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0.5" />
+                </Border.BorderBrush>
+                <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Target flow, injection pressure and fault reset -->
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Visibility="Hidden">
+                        <Label x:Name="TimerLabel" Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" 
+                                   FontSize="32" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,5,0" />
+                        <Button Width="70" Height="70" Padding="0,0,0,0"  BorderThickness="0" Style="{StaticResource CircularButtonStyle}"  
+                                Command="{Binding DecreaseTimeCommand}"
+                                Visibility="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToVisibility}}"
+                                IsEnabled="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToEnable}}">
+                            <Image  Source="/Images/Arrow.png" Stretch="UniformToFill" Height="70" Width="70" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform Angle="-90" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                        </Button>
+
+                        <Label x:Name="RequiredAblationTime" Content="{Binding RequiredAblationTime}" Foreground="White" FontSize="40" FontWeight="Bold" Margin="10,0,0,0" Width="75" />
+                        <Label x:Name="SecLabel" Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" Foreground="White" FontSize="40"  Margin="0,0,10,0" />
+
+                        <Button Width="70" Height="70" Padding="0,0,0,0" BorderThickness="0" Style="{StaticResource CircularButtonStyle}" 
+                                RenderTransformOrigin="0.5,0.5" Command="{Binding IncreaseTimeCommand}"
+                                Visibility="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToVisibility}}"
+                                IsEnabled="{Binding SystemState, ConverterParameter=ABLATION_TIMER, Converter={StaticResource stateToEnable}}">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform Angle="180" />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <Image Source="/Images/Arrow.png" Stretch="UniformToFill" Height="70" Width="70" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform Angle="-90" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Start / Stop / Vacuum -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+
+                                <Button x:Name="Stop" Style="{StaticResource StopButton}"
+                                    Visibility="{Binding SystemState, ConverterParameter=STOP, Converter={StaticResource stateToVisibility}}"
+                                    Command="{Binding StopCommand}"
+                                    IsEnabled="{Binding SystemState, ConverterParameter=STOP, Converter={StaticResource stateToEnable}}" Margin="10,0,20,0">
+                                </Button>
+
+                                <Button x:Name="Start" Style="{StaticResource StartButton}"
+                                    Visibility="{Binding SystemState, ConverterParameter=START, Converter={StaticResource stateToVisibility}}"
+                                    Command="{Binding StartCommand}"
+                                    IsEnabled="{Binding SystemState, ConverterParameter=START, Converter={StaticResource stateToEnable}}" Margin="10,0,20,0" />
+
+                                <Grid Width="200">
+                                    <Button x:Name="ConnectButton" Style="{StaticResource ConnectButton}"
+                                        Visibility="{Binding IsCatheterElectricallyConnectedAndInIdleState, Converter={StaticResource booleanToVisibilityConverter}}"
+                                        Command="{Binding ConnectCommand}" />
+                                    <StackPanel Orientation="Horizontal" Margin="-50,0,0,0" Visibility="{Binding CatheterIsConnecting, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}">
+                                        <Controls:ProgressRing Height="50" Width="50" Foreground="{StaticResource CryterionPopupSystemMessageBrushBackground}"></Controls:ProgressRing>
+                                        <Label Content="Wait system is initializing..." Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"></Label>
+                                    </StackPanel>
+
+                                    <Button x:Name="DisconnectButton" Style="{StaticResource DisconnectButton}"
+                                        Visibility="{Binding IsCatheterConnectedAndInIReadyState, Converter={StaticResource booleanToVisibilityConverter}}"
+                                        Command="{Binding ConnectCommand}" />
+                                </Grid>
+                            </DockPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button Name="BtnStateSimulator" Grid.Column="2" FontSize="18" Height="60" Width="150" Style="{StaticResource ButtonCryterion}"
+                            Content="Ch. State" Command="{Binding IncrementSystemStateCommand}" Margin="10,0,10,0"
+                            Visibility="Hidden" HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+                </Grid>
+            </Border>
+        </Grid>
+        
+    </Grid>
+</UserControl>

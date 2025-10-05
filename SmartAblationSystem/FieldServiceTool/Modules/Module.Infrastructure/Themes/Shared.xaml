@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<SolidColorBrush x:Key="AccentColorBlueSolidBrush" Color="#FF00AFAF"/>
+	<SolidColorBrush x:Key="AccentColorBlackSolidBrush" Color="#FF000000"/>
+	<SolidColorBrush x:Key="AccentColorWhiteSolidBrush" Color="White"/>
+	<SolidColorBrush x:Key="AccentColorGreenSolidBrush" Color="LightGreen"/>
+	<SolidColorBrush x:Key="StepBorderBrush" Color="#00afef" Opacity="0.6"/>
+	<SolidColorBrush x:Key="SubBorderColorBlue" Color="#FF303030"/>
+	<SolidColorBrush x:Key="SensorsBorderBrush" Color="Orange" Opacity="0.8"/>
+	<SolidColorBrush x:Key="AccessoriesBorderBrush" Color="Yellow" Opacity="1"/>
+	<SolidColorBrush x:Key="GraphBorderBrush" Color="LightGreen" Opacity="1"/>
+	<SolidColorBrush x:Key="VersionsBorderBrush" Color="HotPink" Opacity="0.8"/>
+	<SolidColorBrush x:Key="SensorsTextBlockBrush" Color="Orange" Opacity="1"/>
+	<SolidColorBrush x:Key="VersionsTextBlockBrush" Color="HotPink" Opacity="0.8"/>
+	<SolidColorBrush x:Key="SystemMessageBrushBackground" Color="#FF009ED6" />
+	<SolidColorBrush x:Key="SystemMessageBrushControlContainer" Color="#FF96989A"/>
+	<SolidColorBrush x:Key="SystemMessageBrushContentContainer" Color="White"/>
+	<SolidColorBrush x:Key="WarningMessageBrushBackground" Color="Yellow" />
+	<SolidColorBrush x:Key="ErrorMessageBrushBackground" Color="Red"/>
+	<SolidColorBrush x:Key="StateErrorForegroundBrush" Color="Yellow"/>
+	<SolidColorBrush x:Key="ConfirmationForegroundBrush" Color="Orange"/>
+	<SolidColorBrush x:Key="StartTestMessageForegroundBrush" Color="LightGreen"/>
+
+	<SolidColorBrush x:Key="DmsBorderBrush" Color="#FF00AA00" Opacity="1"/>
+	<SolidColorBrush x:Key="EtsBorderBrush" Color="#FF90EEFF" Opacity="1"/>
+	<SolidColorBrush x:Key="FlowMeterBorderBrush" Color="#FF00AFAF" Opacity=".8"/>
+	<SolidColorBrush x:Key="TemperatureBorderBrush" Color="#FF00AFAF" Opacity=".8"/>
+</ResourceDictionary>

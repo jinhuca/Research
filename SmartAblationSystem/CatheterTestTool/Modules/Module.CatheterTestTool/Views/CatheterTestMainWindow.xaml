@@ -1,0 +1,148 @@
+﻿<Window x:Class="Module.CatheterTestTool.Views.CatheterTestMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mvvm="http://prismlibrary.com/"
+        xmlns:viewModels="clr-namespace:Module.CatheterTestTool.ViewModels"
+        xmlns:localViews="clr-namespace:Module.CatheterTestTool.Views"
+        xmlns:converters="clr-namespace:Module.CatheterTestTool.Converters"
+        mvvm:ViewModelLocator.AutoWireViewModel="True" 
+        WindowState="Maximized" WindowStyle="None" Background="Black"
+        Width="1920" Height="1080"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:CatheterTestMainWindowViewModel}"
+        d:DesignHeight="1080" d:DesignWidth="1920">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CatheterTestThemes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Module.Infrastructure;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:TestStatusDetailsConverter  x:Key="testStatusDetailsConverter"/>
+            <converters:SystemStateToVisibilityConverter x:Key="stateToVisibilityConverter" />
+            <converters:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="35"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" ZIndex="1000" Name="ThawingOverlayGrid"
+              Visibility="{Binding SystemStateString, 
+            Converter={StaticResource stateToVisibilityConverter}, 
+            ConverterParameter='Thawing', Mode=OneWay}">
+            <Border Height="150" Style="{StaticResource FlashBorderStyle}" Background="Black">
+                <TextBlock Text="Do not disconnect Catheter. Console is in thawing state, please wait..." 
+                           FontSize="28" Foreground="Goldenrod" VerticalAlignment="Center" Padding="20"/>
+            </Border>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" ZIndex="1000" Name="WaitingForWaterTempOverlayGrid"
+              Visibility="{Binding TestStatusProgress.WaitingWaterTemperature, 
+            Converter={StaticResource booleanToVisibilityConverter}, 
+            ConverterParameter='Thawing', Mode=OneWay}">
+            <Border Height="150" Style="{StaticResource FlashBorderStyle}" Background="Black">
+                <TextBlock Text="Ablation Run Test will automatically start once the water temperature reaches above 30ºC ..." 
+                           FontSize="28" Foreground="Goldenrod" VerticalAlignment="Center" Padding="20"/>
+            </Border>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="1860" Height="1060" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DockPanel >
+                <!-- <StackPanel DockPanel.Dock="Left"> -->
+                <!--     <Image Source="/Images/SmartFreeze.jpg" Height="30" Width="300"/> -->
+                <!-- </StackPanel> -->
+                <!-- <StackPanel DockPanel.Dock="Right"> -->
+                <!--     <Image Source="/Images/BSC_Logo.png" Height="50" Width="Auto"/> -->
+                <!-- </StackPanel> -->
+                <TextBlock Text="{Binding Title}"/>
+            </DockPanel>
+            <!-- <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"> -->
+            <Border Grid.Row="1" Style="{StaticResource RegionBorderStyle}" Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <localViews:CatheterTestStep1View Grid.Column="0" />
+                        <localViews:CatheterTestStep2View Grid.Column="1" />
+                        <localViews:CatheterTestStep3View Grid.Column="2" />
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="PROGRESS: " Style="{StaticResource TestStatusTitleStyle}" FontWeight="Bold"/>
+                        <ProgressBar Grid.Column="2" Value="{Binding TestStatusProgress.TestProgressInPercentage}" Width="300" Style="{StaticResource HorizontalProgressBar}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="4" Text="TEST DETAILS: " Style="{StaticResource TestDetailsTitleStyle}"/>
+                        <TextBlock Grid.Column="5" Style="{StaticResource TestDetailsTitleStyle}" 
+                               Text="{Binding TestStatusProgress, Converter={StaticResource testStatusDetailsConverter}}" />
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Grid.Row="2" Style="{StaticResource RegionBorderStyle}" Margin="5">
+                <DockPanel>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Visibility="Collapsed">
+                        <TextBlock Text="{Binding CmcuStatusCode, StringFormat={}CMCU 0X{0:X8}}" Style="{StaticResource TestDetailsTitleStyle}"/>
+                        <TextBlock Text="{Binding PmcuStatusCode, StringFormat={}PMCU 0X{0:X8}}" Style="{StaticResource TestDetailsTitleStyle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock Text ="SUMMARY NOTES" HorizontalAlignment="Left" Style="{StaticResource TestStatusTitleStyle}" FontWeight="Bold" Margin="10,5"/>
+                        <TextBlock Text="{Binding TestSummaryNotes}" Style="{StaticResource TestDetailsTitleStyle}" Margin="5" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <Grid Grid.Row="3" Margin="10"  
+                  IsEnabled="{Binding ElementName=ThawingOverlayGrid, Path=IsVisible, Converter={StaticResource inverseBooleanConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="20,10">
+                    <Button Name="StartTest" Content="Start Test" Command="{Binding StartTestCommand}" 
+                        Style="{StaticResource StartButton}" Margin="10"/>
+                    <Button Name="StopTest" Content="Stop Test" Command="{Binding StopTestCommand}" 
+                        Style="{StaticResource StopButton}" Margin="10"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Name="ExportToUSB" Content="Export to USB" Command="{Binding ExportToUSBCommand}" 
+                        Style="{StaticResource ExportButton}" Margin="10,0" VerticalAlignment="Center"/>
+                    <Button Command="{Binding HomeCommand}" VerticalAlignment="Center"
+                        Style="{StaticResource ImageButtonStyle}" Margin="15,0">
+                        <Image Source="/Images/HomeButton.png"/>
+                    </Button>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <TextBlock Text="{Binding SoftwareVersion}" Foreground="#00afef" VerticalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+                        <TextBlock Text="©Boston Scientific" Foreground="#00afef" VerticalAlignment="Center" FontSize="16"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

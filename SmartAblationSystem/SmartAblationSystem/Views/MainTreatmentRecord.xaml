@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.MainTreatmentRecord"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:convertersNew="clr-namespace:SmartAblationSystem.ConvertersNew"
+             xmlns:prism="http://prismlibrary.com/" 
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             xmlns:viewmodels="clr-namespace:SmartAblationSystem.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:MainTreatmentRecordViewModel}"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+  <UserControl.Resources>
+    <convertersNew:BoolToVisibilityConverter x:Key="BoolToVisibilityConverterNew_"/>
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter_"/>
+    <converters:BooleanToNotVisibilityConverter x:Key="BooleanToNotVisibilityConverter_"/>
+    <converters:BooleanToUSBConnectionConverter x:Key="BooleanToUsbConnectionConverter_"/>
+    <converters:MultipleBoolValueConverter x:Key="MultiBoolConverter_"/>
+  </UserControl.Resources>
+  <Grid Height="1080" Width="1920" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="80"/>
+    </Grid.RowDefinitions>
+    <ContentControl Grid.Row="0" 
+                    VerticalAlignment="Top"
+                    Content="{Binding CurrentMainTreatmentRecordView}" Background="Transparent"/>
+    <Grid Grid.Row="1" VerticalAlignment="Center">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="660"/>
+        <ColumnDefinition Width="1.2*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="200"/>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="1" 
+              HorizontalAlignment="Center" VerticalAlignment="Center" 
+              Command="{Binding NavigateToViewCommand}" CommandParameter="TreatmentRecord"
+              Visibility="{Binding IsBackToTreatmentRecordVisible, Converter={StaticResource BooleanToVisibilityConverter_}}" 
+              Style="{StaticResource BackToTreatmentRecordButtonStyle_}"/>
+      <Grid Grid.Column="2"
+            Visibility="{Binding IsBackToTreatmentRecordVisible, Converter={StaticResource BoolToVisibilityConverterNew_}, ConverterParameter=REVERSE}">
+        <Grid DataContext="{Binding TreatmentRecordViewModel}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Grid Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Visibility="{Binding SaveInProgress, Converter={StaticResource BooleanToNotVisibilityConverter_}, Mode=OneWay}">
+            <Grid.IsEnabled>
+              <MultiBinding Converter="{StaticResource MultiBoolConverter_}">
+                <Binding Path="USBDriveConnected" Mode="OneWay"/>
+                <Binding Path="AnyProcedureSelected" Mode="OneWay"/>
+              </MultiBinding>
+            </Grid.IsEnabled>
+            <i:Interaction.Triggers>
+              <i:EventTrigger EventName="MouseUp">
+                <i:InvokeCommandAction Command="{Binding SaveToUSBCommand}"/>
+              </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" 
+                   Height="36" 
+                   Stretch="Uniform"
+                   HorizontalAlignment="Right" Margin="0,0,0,8"
+                   IsHitTestVisible="False"
+                   Source="{Binding USBDriveConnected, Converter={StaticResource BooleanToUsbConnectionConverter_}, Mode=OneWay}"/>
+            <Button Grid.Column="1" 
+                    IsHitTestVisible="False"
+                    Style="{StaticResource SaveToUsbButtonStyle_}"/>
+          </Grid>
+          <Button Grid.Column="1" HorizontalAlignment="Left"
+                  Style="{StaticResource PrintButtonStyle_}"
+                  Command="{Binding PrintPDFCommand}"
+                  Visibility="{Binding SaveInProgress, Converter={StaticResource BooleanToNotVisibilityConverter_}, Mode=OneWay}">
+            <Button.IsEnabled>
+              <MultiBinding Converter="{StaticResource MultiBoolConverter_}">
+                <Binding Path="IsPrinterAvailable" Mode="OneWay"/>
+                <Binding Path="AnyProcedureSelected" Mode="OneWay"/>
+              </MultiBinding>
+            </Button.IsEnabled>
+          </Button>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.CatheterDatabase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             mc:Ignorable="d"
+                xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="1030" d:DesignWidth="1920" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:ActionIdToActionDescriptionConverter x:Key="actionIdToActionDescriptionConverter" />
+        <converters:UserToStringConverter x:Key="userToStringConverter" />
+    </UserControl.Resources>
+
+    <Grid Height="1030" Width="1920" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/Images/BSC_Logo.png" Margin="0,5,5,0" Height="70" HorizontalAlignment="Right" VerticalAlignment="Top" />
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <Label Content="Catheters In The Database" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="50" Margin="0,10,0,0" />
+
+            <Border Margin="10,0,10,0" BorderThickness="2" CornerRadius="6">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="1" />
+                </Border.BorderBrush>
+
+                <DataGrid Name="UsersDataGrid" AutoGenerateColumns="False" RowHeaderWidth="0" ItemsSource="{Binding CatheterInformation}"
+                              HeadersVisibility="Column"
+                              Background="White" BorderThickness="0" Margin="0"
+                              VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                              AlternatingRowBackground="LightBlue" AlternationCount="2"
+                              CanUserAddRows="False"
+                              Height="800"
+                              SelectionMode="Single">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGrid">
+                            <Setter Property="GridLinesVisibility" Value="None" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="{StaticResource CryterionBrushColorBlue}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="25" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontSize" Value="25" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="false" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                 Color="{StaticResource CryterionColorBlue}" />
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Record Number" Binding="{Binding ID}" Width="*" MinWidth="100" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Catheter Lot" Binding="{Binding Lot}" Width="*" MinWidth="100" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Catheter Serial Number" Binding="{Binding SerialNumber}" Width="*" MinWidth="100" CanUserResize="False" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

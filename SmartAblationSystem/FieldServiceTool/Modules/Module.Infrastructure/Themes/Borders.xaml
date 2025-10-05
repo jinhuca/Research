@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Shared.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+	<Style x:Key="RegionBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource AccentColorBlueSolidBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="10"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="20,10,0,0"/>
+	</Style>
+	<Style x:Key="SummaryBorderStyle" TargetType="Border" BasedOn="{StaticResource RegionBorderStyle}">
+	</Style>
+	<Style x:Key="SystemParameterRegionBorderStyle" TargetType="Border" BasedOn="{StaticResource RegionBorderStyle}">
+	</Style>
+	<Style x:Key="GraphRegionBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource AccentColorBlueSolidBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="10"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="15,10,0,0"/>
+	</Style>
+	<Storyboard x:Key="FlashStoryboard">
+		<DoubleAnimation
+			Storyboard.TargetProperty="BorderBrush.Opacity"
+			From="0.5" To="1" Duration="0:0:0.5"
+			RepeatBehavior="Forever" AutoReverse="True"/>
+	</Storyboard>
+	<Style x:Key="TestProcessStepBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource StepBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="10"/>
+	</Style>
+	<Style x:Key="SensorsBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource SensorsBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="10,0,0,10"/>
+		<Setter Property="Background" Value="#FF000000"/>
+	</Style>
+	<Style x:Key="VersionsBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource VersionsBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="10,0,10,10"/>
+		<Setter Property="Background" Value="#FF000000"/>
+	</Style>
+	<Style x:Key="DmsBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource DmsBorderBrush}"/>
+		<Setter Property="Background" Value="#5544558B"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="10,10,5,5"/>
+	</Style>
+	<Style x:Key="EtsBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource EtsBorderBrush}"/>
+		<Setter Property="Background" Value="#5544558B"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="5,10,10,5"/>
+	</Style>
+	<Style x:Key="FlowMeterGraphBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource FlowMeterBorderBrush}"/>
+		<Setter Property="Background" Value="#FF000000"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="6,6,6,3"/>
+	</Style>
+	<Style x:Key="TemperatureGraphBorderStyle" TargetType="Border">
+		<Setter Property="BorderBrush" Value="{StaticResource TemperatureBorderBrush}"/>
+		<Setter Property="Background" Value="#FF000000"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="6,3,6,6"/>
+	</Style>
+	<Style x:Key="SeparateBorder" TargetType="Border">
+		<Setter Property="Width" Value="10"/>
+		<Setter Property="Height" Value="45"/>
+	</Style>
+</ResourceDictionary>

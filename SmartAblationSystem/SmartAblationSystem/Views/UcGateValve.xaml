@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.UcGateValve"
+             x:Name="UcGateValveControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             mc:Ignorable="d" 
+             Height="55" Width="86"
+             d:DesignHeight="47" d:DesignWidth="85" Background="Transparent">
+    
+    <UserControl.Resources>
+        <converters:ElementToTrianglePointsConverter x:Key="elementToTrianglePointsConverter" />
+    </UserControl.Resources>
+    
+    <Grid x:Name="Control">
+        <Polygon Points="{Binding ElementName=UcGateValveControl, Converter={StaticResource elementToTrianglePointsConverter}, ConverterParameter=LEFTPOLYGON}" Stroke="DarkSlateGray" StrokeThickness="1">
+            <Polygon.Fill>
+                <SolidColorBrush Color="Red" Opacity="1"/>
+            </Polygon.Fill>
+        </Polygon>
+        <Polygon Points="{Binding ElementName=UcGateValveControl, Converter={StaticResource elementToTrianglePointsConverter}, ConverterParameter=RIGHTPOLYGON}" Stroke="DarkSlateGray" StrokeThickness="1">
+            <Polygon.Fill>
+                <SolidColorBrush Color="Red" Opacity="1"/>
+            </Polygon.Fill>
+        </Polygon>
+    </Grid>
+</UserControl>

@@ -1,0 +1,1186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8C604952-8B37-49F3-8225-B98B74BABA7E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartAblationSystem</RootNamespace>
+    <AssemblyName>SmartAblationSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithSimulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugWithSimulator\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Simulator</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>splash_screen.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Charts.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Data.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Mvvm.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Printing.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Carousel.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Carousel.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Charts.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Core.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Gauges.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Gauges.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.LayoutControl.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Printing.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Ribbon.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Scheduler.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Scheduler.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016White.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.Xpf.Themes.Office2016White.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.v16.2\DevExpress.XtraScheduler.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.8.1.97\lib\net47\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="Spire.License, Version=1.3.7.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.PDF.5.10.2\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=5.10.2.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.PDF.5.10.2\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.5.0.0\lib\net472\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.5.0.0\lib\net472\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.5.0.0\lib\net472\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.7\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.11\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.simulator.xaml.cs" />
+    <Compile Include="Constants\ActionConstants.cs" />
+    <Compile Include="Constants\DefinedStateColors.cs" />
+    <Compile Include="Constants\UIConstants.cs" />
+    <Compile Include="Controls\PasswordBoxAssistant.cs" />
+    <Compile Include="Controls\TrafficLightsBackgroundControl.cs" />
+    <Compile Include="ConvertersNew\AblationStateToEnabledConverter.cs" />
+    <Compile Include="ConvertersNew\AblationTimePlaybackConverter.cs" />
+    <Compile Include="ConvertersNew\AblationTimeTitleConverter.cs" />
+    <Compile Include="ConvertersNew\AblationTimeTitlePlaybackConverter.cs" />
+    <Compile Include="ConvertersNew\BoolReverseConverter.cs" />
+    <Compile Include="ConvertersNew\BoolToOpacityConverter.cs" />
+    <Compile Include="ConvertersNew\BoolToStringConverter.cs" />
+    <Compile Include="ConvertersNew\BoolToVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\CatheterConnectionConverter.cs" />
+    <Compile Include="ConvertersNew\EmptyAblationTimeConverter.cs" />
+    <Compile Include="ConvertersNew\FlashStateConverter.cs" />
+    <Compile Include="ConvertersNew\GasLevelConverter.cs" />
+    <Compile Include="ConvertersNew\LowFlowEnableConverter.cs" />
+    <Compile Include="ConvertersNew\MultipleBoolToBoolConverter.cs" />
+    <Compile Include="ConvertersNew\MultipleBoolToVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\NullableToStringConverter.cs" />
+    <Compile Include="ConvertersNew\PlaybackAblationTimeVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\PlaybackBorderOpacityConverter.cs" />
+    <Compile Include="ConvertersNew\PlaybackTimeConverter.cs" />
+    <Compile Include="ConvertersNew\PlaybackTimeTitleVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\PlaybackTotalThawingTimeVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\ScreenVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateAndAlertStateToColorConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateAndAlertsToFlashStateConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToActionConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToBoolConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToBrushConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToColorConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToEnabledConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToStringConverter.cs" />
+    <Compile Include="ConvertersNew\SystemStateToVisibilityConverter.cs" />
+    <Compile Include="ConvertersNew\TTIValueConverter.cs" />
+    <Compile Include="ConvertersNew\UserNameVisibilityConverter.cs" />
+    <Compile Include="Converters\BalloonSizeTextConverter.cs" />
+    <Compile Include="Converters\BooleanAndPSPToVisibilityConverter.cs" />
+    <Compile Include="Converters\CoolingTimeTextConverter.cs" />
+    <Compile Include="Converters\BooleanAndStateToTextValueConverter.cs" />
+    <Compile Include="Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Converters\CatheterIDToNameMultiBinding.cs" />
+    <Compile Include="Converters\ConsoleStateToBrushConverter.cs" />
+    <Compile Include="Converters\CountToVisibilityConverter.cs" />
+    <Compile Include="Converters\CatheterIDToNameMult.cs" />
+    <Compile Include="Converters\CircaColorContentConverter.cs" />
+    <Compile Include="Converters\CrtAndDoctorMessageConverter.cs" />
+    <Compile Include="Converters\CryoTherapyViewConverter.cs" />
+    <Compile Include="Converters\DataLoadingToVisibilityConverter.cs" />
+    <Compile Include="Converters\DateTimeAndBooleanToStringConverter.cs" />
+    <Compile Include="Converters\ElementToTrianglePointsConverter.cs" />
+    <Compile Include="Converters\BalloonPressureToBalloonPictuers.cs" />
+    <Compile Include="Converters\BooleanAndStateToNotVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanAndStateToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanToOpacityConverter.cs" />
+    <Compile Include="Converters\ContentToCurrentLanguageConverter.cs" />
+    <Compile Include="Converters\CryoTherapyTimeConverter.cs" />
+    <Compile Include="Converters\DiaphragmMovementToStringConverter.cs" />
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\EnumBooleanConverter.cs" />
+    <Compile Include="ConvertersNew\ETSTemperatureToStringConverter.cs" />
+    <Compile Include="Converters\ExportStateConverter.cs" />
+    <Compile Include="Converters\ExportStateMessageConverter.cs" />
+    <Compile Include="Converters\FieldToTextConverter.cs" />
+    <Compile Include="Converters\IntAndDataLoadingToVisibilityConverter.cs" />
+    <Compile Include="Converters\IntToDurationConverter.cs" />
+    <Compile Include="Converters\IntToPercentageConverter.cs" />
+    <Compile Include="Converters\IntToTemperatureConverter.cs" />
+    <Compile Include="Converters\IntToVeinIsolationConverter.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Converters\MultipleBoolToVisibleConverter.cs" />
+    <Compile Include="Converters\MultipleBoolValueConverter.cs" />
+    <Compile Include="Converters\NormalViewVisibilityConverter.cs" />
+    <Compile Include="Converters\NotBooleanConverter.cs" />
+    <Compile Include="Converters\NumberOfTreatmentsAndStateToEnableConverter.cs" />
+    <Compile Include="Converters\CryoTherapyViewPopIsOpenConverter.cs" />
+    <Compile Include="Converters\PatientStyleVisibilityConverter.cs" />
+    <Compile Include="Converters\PhysicianFullNameConverter.cs" />
+    <Compile Include="Converters\PoundsToTimeConverter.cs" />
+    <Compile Include="Converters\ProcedureRecordAndSaveProgressToEnableConverter.cs" />
+    <Compile Include="Converters\ProgressBarMultiConverter.cs" />
+    <Compile Include="Converters\PWMToOpacityConverter.cs" />
+    <Compile Include="Converters\PatientNameVisibilityConverter.cs" />
+    <Compile Include="Converters\PWVisibilityConverter.cs" />
+    <Compile Include="Converters\RequiredAblationTimeConverter.cs" />
+    <Compile Include="Converters\ScaleUnitToTextConverter.cs" />
+    <Compile Include="Converters\ShortToRefrigerantUnitConverter.cs" />
+    <Compile Include="Converters\SimpleViewVisibilityConverter.cs" />
+    <Compile Include="Converters\StateAndBooleanToEnableConverter.cs" />
+    <Compile Include="Converters\StateAndBooleanToOpacityConverter.cs" />
+    <Compile Include="Converters\StateAndTimeToVisibilityConverter.cs" />
+    <Compile Include="Converters\StatesAndBalloonToPictuersConverter.cs" />
+    <Compile Include="Converters\StateToColorMultiConverter.cs" />
+    <Compile Include="Converters\StateToSnowFlakAndBallonConverter.cs" />
+    <Compile Include="Converters\StringToDateTimeConverter.cs" />
+    <Compile Include="Converters\StringToMaskConverter.cs" />
+    <Compile Include="Converters\StringToVisibilityConverter.cs" />
+    <Compile Include="Converters\SystemStateToBalloonVisibilityConverter.cs" />
+    <Compile Include="Converters\SystemStateToButtonContentConverter.cs" />
+    <Compile Include="Converters\SystemStateToOpacityConverter.cs" />
+    <Compile Include="Converters\TankToStringConverter.cs" />
+    <Compile Include="Converters\ActionIdToActionDescriptionConverter.cs" />
+    <Compile Include="Converters\BooleanToColorConverter.cs" />
+    <Compile Include="Converters\BooleanToUSBConnectionConverter.cs" />
+    <Compile Include="Converters\BooleanToFlowOrPressureConverter.cs" />
+    <Compile Include="Converters\BooleanToMaintenanceModeConverter.cs" />
+    <Compile Include="Converters\BooleanToNotVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanToPIDModeConverter.cs" />
+    <Compile Include="Converters\BooleanToStringConverter.cs" />
+    <Compile Include="Converters\BooleanToIntConverter.cs" />
+    <Compile Include="Converters\BoolToSymbolPresentationConverter.cs" />
+    <Compile Include="Converters\CatheterIDToName.cs" />
+    <Compile Include="Converters\DoubleToStringConverter.cs" />
+    <Compile Include="Converters\DoubleToOnOffConverter.cs" />
+    <Compile Include="Converters\AblationSummaryToString.cs" />
+    <Compile Include="Converters\IntToVersionConverter.cs" />
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\MinutesToUsageTimeConverter.cs" />
+    <Compile Include="Converters\SegmentsStatesProvider.cs" />
+    <Compile Include="Converters\StateToOpacityConverter.cs" />
+    <Compile Include="Converters\FileToStringConverter.cs" />
+    <Compile Include="Converters\ThawingSetPointAndStateToVisibilty.cs" />
+    <Compile Include="Converters\ThawTimeToString.cs" />
+    <Compile Include="Converters\TimeSpanToStringConverter.cs" />
+    <Compile Include="Converters\TimeTTIConverter.cs" />
+    <Compile Include="Converters\ToiseUnitToTextConverter.cs" />
+    <Compile Include="Converters\ToOneThousandConverter.cs" />
+    <Compile Include="Converters\TTIStatusConverter.cs" />
+    <Compile Include="Converters\USBConnectionAndFirmwareSelectionToVisibilityConverter.cs" />
+    <Compile Include="Converters\UserToStringConverter.cs" />
+    <Compile Include="Converters\USBDriveToStringConverter.cs" />
+    <Compile Include="Converters\StateIdToTextConverter.cs" />
+    <Compile Include="Converters\AblationSiteToStringConverter.cs" />
+    <Compile Include="Converters\EntryTypeToStringConverter.cs" />
+    <Compile Include="Converters\ProcedureToStringConverter.cs" />
+    <Compile Include="Converters\VisibileCollapsedInverterConverter.cs" />
+    <Compile Include="Converters\TimerToStringConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\DoubleToIntConverter.cs" />
+    <Compile Include="Converters\DoubleToTemperatureConverter.cs" />
+    <Compile Include="Converters\DoubleToVisibleItemCountConverter.cs" />
+    <Compile Include="Converters\GasSateToColor.cs" />
+    <Compile Include="Converters\PlusOne.cs" />
+    <Compile Include="Converters\StateToEnableConverter.cs" />
+    <Compile Include="Converters\StateToVisibilityConverter.cs" />
+    <Compile Include="Converters\StateToColorConverter.cs" />
+    <Compile Include="Converters\StatusToPicture.cs" />
+    <Compile Include="Converters\StringTodoubleConverter.cs" />
+    <Compile Include="Converters\StringToIntConverter.cs" />
+    <Compile Include="Converters\VisibleItemCountToActiveElementIndexConverter.cs" />
+    <Compile Include="Converters\StateToSnowFlakeConverter.cs" />
+    <Compile Include="Converters\VolumeToPicture.cs" />
+    <Compile Include="Converters\WeightToLevelConverter.cs" />
+    <Compile Include="Helpers\AblationDataExtractor.cs" />
+    <Compile Include="Helpers\AblationReportChanges.cs" />
+    <Compile Include="Helpers\AcknowledgeVerificationUsingAbsorbentElement.cs" />
+    <Compile Include="Helpers\BalloonRampDown.cs" />
+    <Compile Include="Helpers\BoundPasswordBox.cs" />
+    <Compile Include="Helpers\CanBusMessageConverter.cs" />
+    <Compile Include="Helpers\ChartGen.cs" />
+    <Compile Include="Helpers\ConsolePowerAndState.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\CPUTimeWatchdog.cs" />
+    <Compile Include="Helpers\DatePickerExtensions.cs" />
+    <Compile Include="Helpers\DiaphragmConditioning.cs" />
+    <Compile Include="Helpers\DrivesInformation.cs" />
+    <Compile Include="Helpers\ETSdataSorting.cs" />
+    <Compile Include="Helpers\FileAction.cs" />
+    <Compile Include="Helpers\FileType.cs" />
+    <Compile Include="Helpers\FileTypeEnum.cs" />
+    <Compile Include="Helpers\FirmwareConverter.cs" />
+    <Compile Include="Helpers\FirmwareDescription.cs" />
+    <Compile Include="Helpers\IAblationDataExtractor.cs" />
+    <Compile Include="Helpers\IAcknowledgeVerificationUsingAbsorbentElement.cs" />
+    <Compile Include="Helpers\LINQExtensions.cs" />
+    <Compile Include="Helpers\N2OFlowCalculator.cs" />
+    <Compile Include="Helpers\OuterBalloonPressureThreshold.cs" />
+    <Compile Include="Helpers\PDFCaseReport.cs" />
+    <Compile Include="Helpers\PDFDataManager.cs" />
+    <Compile Include="Helpers\PrinterManager.cs" />
+    <Compile Include="Helpers\ReadWriteMonitoring.cs" />
+    <Compile Include="Helpers\RefrigerantUnit.cs" />
+    <Compile Include="Helpers\RelvantTherapyData.cs" />
+    <Compile Include="Helpers\Scale.cs" />
+    <Compile Include="Helpers\TimeZoneManager.cs" />
+    <Compile Include="Controls\ButtonClickRepeater.cs" />
+    <Compile Include="Helpers\Toise.cs" />
+    <Compile Include="Helpers\TTIFSM.cs" />
+    <Compile Include="Helpers\TTIMemoryState.cs" />
+    <Compile Include="Helpers\UIElementHelpers.cs" />
+    <Compile Include="Helpers\VitalParametersAlerts.cs" />
+    <Compile Include="Helpers\YearValidation.cs" />
+    <Compile Include="Helpers\ZiPStates.cs" />
+    <Compile Include="Models\AblationSiteCarousselModel.cs" />
+    <Compile Include="Models\CaseCalendar.cs" />
+    <Compile Include="Models\CaseChartValue.cs" />
+    <Compile Include="Models\CaseReport.cs" />
+    <Compile Include="Models\CaseYearMonthSummary.cs" />
+    <Compile Include="Models\ChangeBalloonTypeFSM.cs" />
+    <Compile Include="Models\ConsoleStateComparator.cs" />
+    <Compile Include="Models\DataExportService.cs" />
+    <Compile Include="Models\DMSLogic.cs" />
+    <Compile Include="Models\HardwareInformations.cs" />
+    <Compile Include="Models\IDataExportService.cs" />
+    <Compile Include="Models\InflateDeflateBalloonModel.cs" />
+    <Compile Include="Models\Languages.cs" />
+    <Compile Include="Models\MaliciousDataChangeModel.cs" />
+    <Compile Include="Models\ProcedureLogModel.cs" />
+    <Compile Include="Models\ProcedureSpaceModel.cs" />
+    <Compile Include="Models\RemoteControlFSM.cs" />
+    <Compile Include="Models\SimulatedDMSData.cs" />
+    <Compile Include="Models\TankBuilder.cs" />
+    <Compile Include="Models\TipBalloonPressureSelection.cs" />
+    <Compile Include="Models\EngineeringReportingModel.cs" />
+    <Compile Include="Helpers\Enumeration.cs" />
+    <Compile Include="Helpers\ErrorWarningAndMessage.cs" />
+    <Compile Include="Helpers\IdToMachineState.cs" />
+    <Compile Include="Helpers\RegistersComparator.cs" />
+    <Compile Include="Helpers\SensorReadingMananger.cs" />
+    <Compile Include="Models\AblationSummary.cs" />
+    <Compile Include="Models\ActionLogRecord.cs" />
+    <Compile Include="Models\ChangeTankFSM.cs" />
+    <Compile Include="Models\EngineeringDataFile.cs" />
+    <Compile Include="Models\NotificationModel.cs" />
+    <Compile Include="Models\ProcedureRecords.cs" />
+    <Compile Include="Models\AblationReport.cs" />
+    <Compile Include="Models\CatheterValidator.cs" />
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Selectors\SimpleSystemInfoDataTemplateSelector.cs" />
+    <Compile Include="Selectors\SystemInfoDataTemplateSelector.cs" />
+    <Compile Include="Validation\BindingProxy.cs" />
+    <Compile Include="Validation\HospitalInformationTextFieldValidator.cs" />
+    <Compile Include="Validation\HospitalInformationValidator.cs" />
+    <Compile Include="Validation\IntValidator.cs" />
+    <Compile Include="Validation\NullStringValidator.cs" />
+    <Compile Include="Validation\RegisterValidator.cs" />
+    <Compile Include="Validation\StringInputValidator.cs" />
+    <Compile Include="Validation\ValidationWrapper.cs" />
+    <Compile Include="Validation\YearValidator.cs" />
+    <Compile Include="ViewModels\AblationSiteEditWindowViewModel.cs" />
+    <Compile Include="ViewModels\AblationSiteWindowViewModel.cs" />
+    <Compile Include="ViewModels\CatheterDatabaseViewModel.cs" />
+    <Compile Include="ViewModels\ChangeTankViewModel.cs" />
+    <Compile Include="ViewModels\CommonViewModel.cs" />
+    <Compile Include="ViewModels\ActionLogViewModel.cs" />
+    <Compile Include="ViewModels\ConsoleErrorLogViewModel.cs" />
+    <Compile Include="ViewModels\FileDeletionViewModel.cs" />
+    <Compile Include="ViewModels\FileExportCancellationPopupViewModel.cs" />
+    <Compile Include="ViewModels\IAblationSiteAware.cs" />
+    <Compile Include="ViewModels\ICryoTherapyViewModel.cs" />
+    <Compile Include="ViewModels\IDataExportable.cs" />
+    <Compile Include="ViewModels\MainTreatmentRecordViewModel.cs" />
+    <Compile Include="ViewModels\ManageUsersViewModel.cs" />
+    <Compile Include="ViewModels\MessagePopupViewModel.cs" />
+    <Compile Include="ViewModels\NotificationsViewModel.cs" />
+    <Compile Include="ViewModels\SortVisualStateManager.cs" />
+    <Compile Include="ViewModels\UpdateVeinIsolationDurationViewModel.cs" />
+    <Compile Include="ViewModels\PIDQuicksortAlgorithmViewModel.cs" />
+    <Compile Include="ViewModels\FlowCurveProgrammingViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SiteSetupViewModel.cs" />
+    <Compile Include="ViewModels\SystemFilesViewModel.cs" />
+    <Compile Include="ViewModels\TextEntryPopupViewModel.cs" />
+    <Compile Include="ViewModels\TimeAndDateViewModel.cs" />
+    <Compile Include="ViewModels\UserManualViewModel.cs" />
+    <Compile Include="ViewModels\WarningMessagesViewModel.cs" />
+    <Compile Include="ViewModels\TreatmentRecordsViewModel.cs" />
+    <Compile Include="ViewModels\CryoTherapyViewModel.cs" />
+    <Compile Include="ViewModels\ElectricalSignalMonitoringViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\IMainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainCryoTherapyViewModel.cs" />
+    <Compile Include="ViewModels\MechanicalMonitoringViewModel.cs" />
+    <Compile Include="ViewModels\PatientViewModel.cs" />
+    <Compile Include="ViewModels\PIDSViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModel.cs" />
+    <Compile Include="ViewModels\ServiceViewModel.cs" />
+    <Compile Include="ViewModels\TCsAndLCCalibrationViewModel.cs" />
+    <Compile Include="ViewsEventArgs.cs" />
+    <Compile Include="Views\AblationSiteEditWindow.xaml.cs">
+      <DependentUpon>AblationSiteEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AblationSiteWindow.xaml.cs">
+      <DependentUpon>AblationSiteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddDoctorWindow.xaml.cs">
+      <DependentUpon>AddDoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddUserWindow.xaml.cs">
+      <DependentUpon>AddUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CaseSummaryReport.xaml.cs">
+      <DependentUpon>CaseSummaryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CryoTherapyChartViewBase.cs" />
+    <Compile Include="Views\CryoTherapyNormalView.xaml.cs">
+      <DependentUpon>CryoTherapyNormalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CryoTherapySimpleView.xaml.cs">
+      <DependentUpon>CryoTherapySimpleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataLogPopup.xaml.cs">
+      <DependentUpon>DataLogPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsoleErrorLog.xaml.cs">
+      <DependentUpon>ConsoleErrorLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteUserWindow.xaml.cs">
+      <DependentUpon>DeleteUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DMSQuickSettingsView.xaml.cs">
+      <DependentUpon>DMSQuickSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditDoctorWindow.xaml.cs">
+      <DependentUpon>EditDoctorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditUserWindow.xaml.cs">
+      <DependentUpon>EditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileDeletionPopup.xaml.cs">
+      <DependentUpon>FileDeletionPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileExportCancellationPopup.xaml.cs">
+      <DependentUpon>FileExportCancellationPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirmwareSelector.xaml.cs">
+      <DependentUpon>FirmwareSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Logon.xaml.cs">
+      <DependentUpon>Logon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogoutWindow.xaml.cs">
+      <DependentUpon>LogoutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Notifications.xaml.cs">
+      <DependentUpon>Notifications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OcclusionPressureSettingsView.xaml.cs">
+      <DependentUpon>OcclusionPressureSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient.xaml.cs">
+      <DependentUpon>Patient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaveEngineeringDataToUSB.xaml.cs">
+      <DependentUpon>SaveEngineeringDataToUSB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaveToUSBNotification.xaml.cs">
+      <DependentUpon>SaveToUSBNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShutdownWindow.xaml.cs">
+      <DependentUpon>ShutdownWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextEntryPopupNew.xaml.cs">
+      <DependentUpon>TextEntryPopupNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeAndDate.xaml.cs">
+      <DependentUpon>TimeAndDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TreatmentRecords.xaml.cs">
+      <DependentUpon>TreatmentRecords.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateVeinIsolationDuration.xaml.cs">
+      <DependentUpon>UpdateVeinIsolationDuration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatheterDatabase.xaml.cs">
+      <DependentUpon>CatheterDatabase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangeTank.xaml.cs">
+      <DependentUpon>ChangeTank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActionLog.xaml.cs">
+      <DependentUpon>ActionLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectCatheterPopup.xaml.cs">
+      <DependentUpon>ConnectCatheterPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainTreatmentRecord.xaml.cs">
+      <DependentUpon>MainTreatmentRecord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageUsers.xaml.cs">
+      <DependentUpon>ManageUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Uc3WayValve.xaml.cs">
+      <DependentUpon>Uc3WayValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UcGateValve.xaml.cs">
+      <DependentUpon>UcGateValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PIDQuicksortAlgorithm.xaml.cs">
+      <DependentUpon>PIDQuicksortAlgorithm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlowCurveProgramming.xaml.cs">
+      <DependentUpon>FlowCurveProgramming.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaveProcedureToUSB.xaml.cs">
+      <DependentUpon>SaveProcedureToUSB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SiteSetup.xaml.cs">
+      <DependentUpon>SiteSetup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SystemFiles.xaml.cs">
+      <DependentUpon>SystemFiles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EngineeringDataSelector.xaml.cs">
+      <DependentUpon>EngineeringDataSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DocumentViewerWindow.xaml.cs">
+      <DependentUpon>DocumentViewerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarningMessages.xaml.cs">
+      <DependentUpon>WarningMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CryoTherapy.xaml.cs">
+      <DependentUpon>CryoTherapy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomProgressBar.xaml.cs">
+      <DependentUpon>CustomProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ElectricalSignalMonitoring.xaml.cs">
+      <DependentUpon>ElectricalSignalMonitoring.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainCryoTherapy.xaml.cs">
+      <DependentUpon>MainCryoTherapy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MechanicalMonitoring.xaml.cs">
+      <DependentUpon>MechanicalMonitoring.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PIDS.xaml.cs">
+      <DependentUpon>PIDS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Service.xaml.cs">
+      <DependentUpon>Service.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessagePopup.xaml.cs">
+      <DependentUpon>MessagePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TCsAndLCCalibration.xaml.cs">
+      <DependentUpon>TCsAndLCCalibration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UcProgressBar.xaml.cs">
+      <DependentUpon>UcProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserManual.xaml.cs">
+      <DependentUpon>UserManual.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AblationSiteEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AblationSiteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CaseSummaryReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CryoTherapyNormalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CryoTherapySimpleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataLogPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConsoleErrorLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DMSQuickSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditDoctorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileDeletionPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileExportCancellationPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirmwareSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Logon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogoutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Notifications.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OcclusionPressureSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SaveEngineeringDataToUSB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SaveToUSBNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShutdownWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TextEntryPopupNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimeAndDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TreatmentRecords.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateVeinIsolationDuration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CatheterDatabase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangeTank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ActionLog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ConnectCatheterPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainTreatmentRecord.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ManageUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Uc3WayValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UcGateValve.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PIDQuicksortAlgorithm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlowCurveProgramming.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SaveProcedureToUSB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SiteSetup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystemFiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EngineeringDataSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DocumentViewerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WarningMessages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CryoTherapy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ElectricalSignalMonitoring.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainCryoTherapy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Page Include="Views\MechanicalMonitoring.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PIDS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Service.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessagePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TCsAndLCCalibration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UcProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserManual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="results.json" />
+    <None Include="UserManual.xps" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Communication\Communication.csproj">
+      <Project>{27a7f5ee-44d4-4eb2-801a-c5e5237db9ea}</Project>
+      <Name>Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleCommSimulator\ConsoleCommSimulator.csproj">
+      <Project>{8dd65e75-7119-4c04-9f94-593a06a3a9c4}</Project>
+      <Name>ConsoleCommSimulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Console\Console.csproj">
+      <Project>{19626db0-54d5-4d8c-b9bd-3c3b71d970e0}</Project>
+      <Name>Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{d7dcbe9f-0217-41a6-a5b4-11bf8f832e96}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSerializer\FileManager.csproj">
+      <Project>{2205b180-9847-454f-a03f-dd7e20c251f2}</Project>
+      <Name>FileManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirmwareBootLoader\FirmwareBootLoader.csproj">
+      <Project>{d7cebe55-ee44-4f1a-8629-5a61cbcdac15}</Project>
+      <Name>FirmwareBootLoader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogSystem\LogSystem.csproj">
+      <Project>{94f04482-14b6-4c05-a960-e3d1a158c8e6}</Project>
+      <Name>LogSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MicroLibrary\MicroLibrary.csproj">
+      <Project>{2d514149-1251-4e03-8947-12d3b66aa512}</Project>
+      <Name>MicroLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFReportsGenerator\PDFReportsGenerator.csproj">
+      <Project>{c3af3105-fa41-44cd-8dd5-2e4ebfa6510e}</Project>
+      <Name>PDFReportsGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RijndaelCryptography\RijndaelCryptography.csproj">
+      <Project>{8d4a7c17-cf57-4973-b399-fa8dc5512a64}</Project>
+      <Name>RijndaelCryptography</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RS232Communication\LSPROCommunication.csproj">
+      <Project>{2d9521f2-7741-4373-9e35-be92ebdac2b7}</Project>
+      <Name>LSPROCommunication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{b708d9d4-a101-45a6-9f40-fdae4a7a8e06}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SusiCommon\SusiCommon.csproj">
+      <Project>{e1e7f209-c163-470e-be45-64ff2cfb58d6}</Project>
+      <Name>SusiCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Themes\CustomControls.csproj">
+      <Project>{09e6727d-59ab-4f9f-8da2-401b45ec79ab}</Project>
+      <Name>CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniversalLoginManager\UniversalLoginManager.csproj">
+      <Project>{c829bf19-6fa9-4786-a5e0-80a5382bd193}</Project>
+      <Name>UniversalLoginManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\USBDriveConnectionManager\USBDriveConnectionManager.csproj">
+      <Project>{35378a6d-546e-4387-8ac3-2e39e8192ff5}</Project>
+      <Name>USBDriveConnectionManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WarningMessagesManager\WarningMessagesManager.csproj">
+      <Project>{9a5ef6d3-cc54-4dbb-b4cc-33aff10352f6}</Project>
+      <Name>WarningMessagesManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\backward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Animation Project\WpfApplication2.exe" />
+    <Resource Include="Images\BlackCatheter.jpg" />
+    <Resource Include="Images\connector off.png" />
+    <Resource Include="Images\Connector on.png" />
+    <Resource Include="Images\UpdateIcon.png" />
+    <Resource Include="Images\VeinIsolated.png" />
+    <Resource Include="Images\balloon.png" />
+    <Resource Include="Images\balloon deflated.png" />
+    <Resource Include="Images\Arc.png" />
+    <Resource Include="Images\N2OTank.png" />
+    <Resource Include="Images\DeflateAfterThaw.png" />
+    <Resource Include="Images\Esophagus.png" />
+    <Resource Include="Images\CryoOn.png" />
+    <Resource Include="Images\Status Ablation.png" />
+    <Resource Include="Images\Status Idle.png" />
+    <Resource Include="Images\Status Inflated-Thaw.png" />
+    <Resource Include="Images\Status Ready.png" />
+    <Resource Include="Images\Settings.png" />
+    <Resource Include="Images\PauseIcon.png" />
+    <Resource Include="Images\PlayArrow.png" />
+    <Resource Include="Images\StopIcon.png" />
+    <Resource Include="Images\QuestionButton.png" />
+    <Resource Include="Images\VeinIsolatedBlue.png" />
+    <Resource Include="Images\unlock.png" />
+    <Resource Include="Images\locked.png" />
+    <Resource Include="Images\BSC_Logo.png" />
+    <Resource Include="Images\Mechanical Panel v6-2.jpg" />
+    <Resource Include="Images\Mechanical Panel v6-3.jpg" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\arrow Up.png" />
+    <Resource Include="Images\dialasizebutton.png" />
+    <Resource Include="Images\footswitchbutton.png" />
+    <Resource Include="Images\BSC_black_RGB_s.JPG" />
+    <Resource Include="Images\electrical connector.png" />
+    <Resource Include="Images\LED_OFF.png" />
+    <Resource Include="Images\Balloon Plus Size.png" />
+    <Resource Include="Images\Balloon minus button.png" />
+    <Resource Include="Images\TTI timer.png" />
+    <EmbeddedResource Include="license.elic.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Resource Include="Images\board.jpg" />
+    <Resource Include="Images\Folder.png" />
+    <Resource Include="Images\MenuICon.png" />
+    <Resource Include="Images\Error Log.png" />
+    <Resource Include="Images\Field Service.png" />
+    <Resource Include="Images\gear.png" />
+    <Resource Include="Images\CatheterTest.png" />
+    <Resource Include="Images\eyeClosed.png" />
+    <Resource Include="Images\eyeOpen.png" />
+    <Resource Include="Images\WarningOrange.png" />
+    <Resource Include="Images\balloon only.png" />
+    <Resource Include="Images\HideInfo.png" />
+    <Resource Include="Images\ShowInfo.png" />
+    <Resource Include="Images\Inflation28mm.png" />
+    <Resource Include="Images\Inflation31mm.png" />
+    <Resource Include="Images\USB-Off.png" />
+    <Resource Include="Images\USB-On.png" />
+    <Resource Include="Images\HomeBackground.png" />
+    <Resource Include="Images\HomeBackground2.png" />
+    <SplashScreen Include="Images\SFSplashScreen.png" />
+    <Resource Include="Images\bmi.png" />
+    <Resource Include="Images\WorldTimeZoneMap.png" />
+    <Resource Include="Images\Heart.png" />
+    <Content Include="PDFFiles\PDFImages\BSC_black_RGB_s.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PDFFiles\PDFImages\Smartfreeze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Videos\Wildlife.wmv" />
+    <Resource Include="Images\VolumeMute.png" />
+    <Resource Include="Images\Hospital.jpg" />
+    <Resource Include="Images\BoxImageChecked.png" />
+    <Resource Include="Images\BoxImageUnchecked.png" />
+    <Resource Include="splash_screen.ico" />
+    <Resource Include="Images\USBDriveConnected.png" />
+    <Resource Include="Images\USBDriveNotConnected.png" />
+    <Resource Include="Images\ArrowTransparentBackground.png" />
+    <Resource Include="Images\WarningYellow.png" />
+    <Resource Include="Images\timer.png" />
+    <Resource Include="Images\TreatmentNotesSymbol.png" />
+    <Resource Include="Images\Warningbutton.png" />
+    <Resource Include="Images\Gray_Light_Icon.png" />
+    <Resource Include="Images\Green_Light_Icon.png" />
+    <Resource Include="Images\Red_Light_Icon.png" />
+    <Resource Include="Images\notconnectedsign.png" />
+    <Resource Include="Images\oksign.png" />
+    <Resource Include="Images\infobutton.png" />
+    <Resource Include="Images\electrical plug.png" />
+    <Resource Include="Images\mechanical plug.png" />
+    <Resource Include="Images\Login_active.png" />
+    <Resource Include="Images\login_inactive.png" />
+    <Resource Include="Images\VolumeLow.png" />
+    <Resource Include="Images\HomeButton.png" />
+    <Resource Include="Images\Arrow.png" />
+    <Resource Include="Images\Gray Button.png" />
+    <Resource Include="Images\Up.png" />
+    <Resource Include="Images\Freez.png" />
+    <Resource Include="Images\Background-withoutlogo.jpg" />
+    <Resource Include="Images\CryoterionMedical_Circle.png" />
+    <Resource Include="Images\CryoterionMedical_Screen_mainscreen_Background_Withlogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AblationData\" />
+    <Folder Include="BMCU\" />
+    <Folder Include="Catheter\" />
+    <Folder Include="CMCU\" />
+    <Folder Include="CPLD\" />
+    <Folder Include="FileStore\" />
+    <Folder Include="PMCU\" />
+    <Folder Include="RCMCU\" />
+    <Folder Include="RMCU\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

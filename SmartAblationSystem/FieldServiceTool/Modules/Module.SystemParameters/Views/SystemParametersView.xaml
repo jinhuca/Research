@@ -1,0 +1,368 @@
+﻿<UserControl x:Class="Module.SystemParameters.Views.SystemParametersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Module.SystemParameters.ViewModels" 
+             xmlns:local="clr-namespace:Module.SystemParameters"
+             xmlns:infrastructure="clr-namespace:Module.Infrastructure;assembly=Module.Infrastructure"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DataContext="{d:DesignInstance vm:SystemParametersViewModel}"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="1000">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure;component/Themes/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<infrastructure:DoubleToPercentConverter x:Key="PercentageConverter"/>
+			<local:CelsiusDoubleToStringConverter x:Key="CelsiusValueToStringConverter"/>
+			<local:DoubleToSccmConverter x:Key="SccmConverter"/>
+			<local:DoubleToPsigConverter x:Key="DoubleToPsigConverter"/>
+			<local:DoubleToLbConverter x:Key="DoubleToLbConverter"/>
+			<local:DoubleToPsiaConverter x:Key="DoubleToPsiaConverter"/>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Border Style="{StaticResource SystemParameterRegionBorderStyle}" Height="370">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource RegionTitleTextBlockStyle}"/>
+			<DockPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+				<Border DockPanel.Dock="Left" Style="{StaticResource SensorsBorderStyle}">
+					<Grid x:Name="SensorsGrid" Width="520" Height="280" VerticalAlignment="Top">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="50"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="1.2*"/>
+							<!-- <ColumnDefinition Width="1.2*"/> -->
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Row="0" Grid.ColumnSpan="3" Margin="0,10,0,10"
+                       Text="{Binding SensorsTitle, Mode=OneTime}" 
+                       Style="{StaticResource SystemParameterTitleTextBlockStyle}"/>
+						<Grid Grid.Row="1" Grid.Column="0">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="1.4*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0"
+                         Text="{Binding TemperatureText, Mode=OneTime}" 
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="0" Grid.Column="1" Uid="TC1Value"
+                         Text="{Binding Temperature, Mode=OneWay, Converter={StaticResource CelsiusValueToStringConverter}}" 
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="1" Grid.Column="0"
+                         Text="{Binding FM1Text, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="1" Grid.Column="1" Uid="FM1Balue"
+                         Text="{Binding FM1, Mode=OneWay, Converter={StaticResource SccmConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="2" Grid.Column="0"
+                         Text="{Binding IBPText, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="2" Grid.Column="1" Uid="IBPValue"
+                         Text="{Binding IBP, Mode=OneWay, Converter={StaticResource DoubleToPsigConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="3" Grid.Column="0"
+                         Text="{Binding OBPText, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="3" Grid.Column="1" Uid="OBPValue"
+                         Text="{Binding OBP, Mode=OneWay, Converter={StaticResource DoubleToPsigConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="4" Grid.Column="0"
+                         Text="{Binding LCText, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="4" Grid.Column="1" Uid="LC1Value"
+                         Text="{Binding LC, Mode=OneWay, Converter={StaticResource DoubleToLbConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="5" Grid.Column="0"
+							           Text="{Binding PWM1Text, Mode=OneTime}"
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="5" Grid.Column="1" Uid="PWM1Value"
+							           Text="{Binding PWM1,Mode=OneWay,Converter={StaticResource PercentageConverter}}"
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="6" Grid.Column="0"
+							           Text="{Binding PWM2Text, Mode=OneTime}"
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="6" Grid.Column="1" Uid="PWM2Value"
+							           Text="{Binding PWM2,Mode=OneWay,Converter={StaticResource PercentageConverter}}"
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+						</Grid>
+						<Grid Grid.Row="1" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="1.4*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0"
+                         Text="{Binding PT1Text, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="0" Grid.Column="1" Uid="P11Value"
+                         Text="{Binding PT1,Mode=OneWay,Converter={StaticResource DoubleToPsigConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="1" Grid.Column="0"
+                         Text="{Binding PT2Text, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="1" Grid.Column="1" Uid="PT2Value"
+                         Text="{Binding PT2,Mode=OneWay,Converter={StaticResource DoubleToPsigConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="2" Grid.Column="0"
+                         Text="{Binding PT3Text, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="2" Grid.Column="1" Uid="PT3Value"
+                         Text="{Binding PT3,Mode=OneWay,Converter={StaticResource DoubleToPsiaConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="3" Grid.Column="0"
+                         Text="{Binding PT4Text, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="3" Grid.Column="1" Uid="PT4Value"
+                         Text="{Binding PT4,Mode=OneWay,Converter={StaticResource DoubleToPsiaConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="4" Grid.Column="0"
+                         Text="{Binding PT5Text, Mode=OneTime}"
+                         Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="4" Grid.Column="1" Uid="PT5Value"
+                         Text="{Binding PT5,Mode=OneWay,Converter={StaticResource DoubleToPsiaConverter}}"
+                         Style="{StaticResource SensorsParamValueStyle}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" 
+                                       Text="{Binding TS1Text, Mode=OneTime}"
+                                       Style="{StaticResource SensorParamTextBlockStyle}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="1"
+                                       Text="{Binding TS1,Mode=OneWay,Converter={StaticResource CelsiusValueToStringConverter}}"
+                                       Style="{StaticResource SensorsParamValueStyle}"/>
+						</Grid>
+						<Grid Grid.Row="1" Grid.Column="2" Visibility="Collapsed">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="0.8*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" 
+							           Text="{Binding I_P_GainText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="0" Grid.Column="1" 
+							           Text="{Binding PGain}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="1" Grid.Column="0" 
+							           Text="{Binding I_I_GainText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="1" Grid.Column="1" 
+							           Text="{Binding IGain}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="2" Grid.Column="0" 
+							           Text="{Binding I_D_GainText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="2" Grid.Column="1" 
+							           Text="{Binding DGain}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="3" Grid.Column="0" 
+							           Text="{Binding I_OffsetText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="3" Grid.Column="1"
+							           Text="{Binding PIDOffset}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="4" Grid.Column="0" 
+							           Text="{Binding B_P_GainText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="4" Grid.Column="1" 
+							           Text="{Binding PatientPGain}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="5" Grid.Column="0" 
+							           Text="{Binding B_I_GainText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="5" Grid.Column="1" 
+							           Text="{Binding PatientIGain}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="6" Grid.Column="0" 
+							           Text="{Binding B_D_GainText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="6" Grid.Column="1" 
+							           Text="{Binding PatientDGain}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+							<TextBlock Grid.Row="7" Grid.Column="0" 
+							           Text="{Binding B_OffsetText, Mode=OneTime}" 
+							           Style="{StaticResource SensorParamTextBlockStyle}"/>
+							<TextBlock Grid.Row="7" Grid.Column="1" 
+							           Text="{Binding PatientPIDOffset}" 
+							           Style="{StaticResource SensorsParamValueStyle}"/>
+						</Grid >
+					</Grid>
+				</Border>
+				<Border DockPanel.Dock="Left" Style="{StaticResource VersionsBorderStyle}">
+					<Grid x:Name="VersionGrid">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="50"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,10" 
+						           Text="{Binding VersionsTitle, Mode=OneTime}" 
+						           Style="{StaticResource VersionsTitleTextBlockStyle}"/>
+						<Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,0,0,0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="27"/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+                <RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" 
+							           Text="{Binding BootloaderText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" FontSize="17"/>
+							<TextBlock Grid.Row="0" Grid.Column="1" 
+							           Text="{Binding FirmwareText}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Left" FontSize="17"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" 
+							           Text="{Binding CMCUBootText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="1" Grid.Column="1"  Uid="CMCUBootValue"
+							           Text="{Binding CMCUBoot}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="2" Grid.Column="0" />
+							<TextBlock Grid.Row="2" Grid.Column="1" />
+							<TextBlock Grid.Row="3" Grid.Column="0" 
+							           Text="{Binding PMCUBootText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="3" Grid.Column="1" Uid="PMCUBootValue"
+							           Text="{Binding PMCUBoot}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="4" Grid.Column="0" 
+							           Text="{Binding RMCUBootText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="4" Grid.Column="1" Uid="RMCUBootValue"
+							           Text="{Binding RMCUBoot}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="5" Grid.Column="0" 
+							           Text="{Binding ICBBootText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="5" Grid.Column="1" Uid="ICBBootValue"
+							           Text="{Binding ICBBootVersion}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="6" Grid.Column="0" 
+							           Text="{Binding RCMCUBootText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="6" Grid.Column="1" Uid="CMCUBootValue"
+							           Text="{Binding RCMCUBoot}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+						</Grid>
+						<Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="27"/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+								<RowDefinition/>
+                <RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="0.9*"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" 
+							           Text="{Binding ApplicationText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" FontSize="17"/>
+							<TextBlock Grid.Row="0" Grid.Column="1" 
+							           Text="{Binding FirmwareText}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Left" FontSize="17"/>
+							<TextBlock Grid.Row="1" Grid.Column="0" 
+							           Text="{Binding CMCUVersionText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="1" Grid.Column="1" Uid="CMCUValue"
+							           Text="{Binding CMCU}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="2" Grid.Column="0" 
+							           Text="{Binding CPLDText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="2" Grid.Column="1" Uid="CPLDValue"
+							           Text="{Binding CPLD}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="3" Grid.Column="0" 
+							           Text="{Binding PMCUText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="3" Grid.Column="1" Uid="PMCUValue"
+							           Text="{Binding PMCU}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="4" Grid.Column="0" 
+							           Text="{Binding RMCUText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="4" Grid.Column="1"  Uid="RMCUValue"
+							           Text="{Binding RMCU}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="5" Grid.Column="0" 
+							           Text="{Binding ICBBootText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="5" Grid.Column="1" Uid="ICBBootValue"
+							           Text="{Binding ICBVersion}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="6" Grid.Column="0" 
+							           Text="{Binding RCMCUVersionText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="6" Grid.Column="1"  Uid="CMCUVersionValue"
+							           Text="{Binding RCMCUVersion}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="7" Grid.Column="0"  Uid="GUIVersionValue"
+							           Text="{Binding GUIVersionText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="7" Grid.Column="1" 
+							           Text="{Binding GUIVersion}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="8" Grid.Column="0" 
+							           Text="{Binding DBVersionText, Mode=OneTime}" 
+							           Style="{StaticResource VersionsTextBlockStyle}" HorizontalAlignment="Center"/>
+              <TextBlock Grid.Row="8" Grid.Column="1"  Uid="DBVersionValue"
+							           Text="{Binding DBVersion}" 
+							           Style="{StaticResource VersionValueStyle}" HorizontalAlignment="Center"/>
+            </Grid>
+					</Grid>
+				</Border>
+			</DockPanel>
+		</Grid>
+	</Border>
+</UserControl>

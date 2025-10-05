@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="CustomControls.UserControls.ProgressSettingBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" >
+  <UserControl.Resources>
+    <Style TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#ffcdc2c5" />
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontWeight" Value="Medium"/>
+      <Setter Property="FontSize" Value="10" />
+      <Setter Property="Margin" Value="0,3"/>
+    </Style>
+  </UserControl.Resources>
+  <Viewbox Stretch="Uniform">
+    <Grid Width="150" Height="45" Name="_mainGrid">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Border Grid.Row="0" Name="_border1" Background="#ff3b3b47" CornerRadius="5" />
+      <Border Grid.Row="0" HorizontalAlignment="Left" Name="_valueProgressBar" 
+              Background="#ff667392" Width="0" CornerRadius="5,0,0, 5"/>
+      <DockPanel Grid.Row="1">
+        <TextBlock DockPanel.Dock="Left" Name="_minValueText" Text="{Binding Path=MinValue, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                   HorizontalAlignment="Left"/>
+        <TextBlock DockPanel.Dock="Right" Name="_maxValueText" Text="{Binding Path=MaxValue, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                   HorizontalAlignment="Right"/>
+        <Grid />
+      </DockPanel>
+    </Grid>
+  </Viewbox>
+</UserControl>

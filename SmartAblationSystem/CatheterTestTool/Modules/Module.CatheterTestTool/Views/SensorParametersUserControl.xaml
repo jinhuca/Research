@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="Module.CatheterTestTool.Views.SensorParametersUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:infrastructure="clr-namespace:Module.Infrastructure;assembly=Module.Infrastructure"
+             xmlns:systemParameters="clr-namespace:Module.SystemParameters;assembly=Module.SystemParameters"
+             xmlns:viewModels="clr-namespace:Module.CatheterTestTool.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:CatheterTestMainWindowViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CatheterTestThemes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <infrastructure:DoubleToPercentConverter x:Key="PercentageConverter"/>
+            <systemParameters:CelsiusDoubleToStringConverter x:Key="CelsiusValueToStringConverter"/>
+            <systemParameters:DoubleToSccmConverter x:Key="SccmConverter"/>
+            <systemParameters:DoubleToPsigConverter x:Key="DoubleToPsigConverter"/>
+            <systemParameters:DoubleToLbConverter x:Key="DoubleToLbConverter"/>
+            <systemParameters:DoubleToPsiaConverter x:Key="DoubleToPsiaConverter"/>
+            <Style x:Key="SensorsParamValueStyleLeftAligned"  TargetType="TextBlock" BasedOn="{StaticResource SensorsParamValueStyle}">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border DockPanel.Dock="Left" Style="{StaticResource SensorsBorderStyle}" HorizontalAlignment="Center">
+        <Grid x:Name="SensorsGrid" Width="600" Height="280" VerticalAlignment="Top" DataContext="{Binding SensorParameters}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="0,10,0,10"
+                       Text="Sensors" 
+                       Style="{StaticResource SystemParameterTitleTextBlockStyle}"/>
+
+            <Grid Grid.Row="1" Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid  Grid.Column="0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="TEMP:" Style="{StaticResource SensorParamTextBlockStyle}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Temperature, Converter={StaticResource CelsiusValueToStringConverter}}" 
+                                    Style="{StaticResource SensorsParamValueStyleLeftAligned}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="FM1:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FM1, Converter={StaticResource SccmConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="IBP:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding IBP, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="OBP:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding OBP, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="PWM1:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding PWM1, Converter={StaticResource PercentageConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="PWM2:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding PWM2, Converter={StaticResource PercentageConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                </Grid>
+                <Grid  Grid.Column="2" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="PT1:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding PT1, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="PT2:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PT2, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="PT3:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PT3, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="PT4:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PT4, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="PT5:" Style="{StaticResource SensorParamTextBlockStyle}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding PT5, Converter={StaticResource DoubleToPsigConverter}}" 
+                           Style="{StaticResource SensorsParamValueStyleLeftAligned}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

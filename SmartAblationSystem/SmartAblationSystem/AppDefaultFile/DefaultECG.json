@@ -1,0 +1,28 @@
+[
+  {
+    "EcgChannel1And2Reading": 100.0,
+    "EcgChannel3And4Reading": -0.30000000000000004,
+    "EcgChannel5And6Reading": -3.0,
+    "EcgChannel7And8Reading": 87.0,
+    "CP1Reading": 0.0,
+    "EsophagusTemperatureThresholdReached": true,
+    "EsophagusTemperature": 20,
+    "IsDiaphragmMovementDetected": false,
+    "DiaphragmAmplitude": 80,
+    "DiaphragmAmplitudeThresholdReached": false,
+    "IgnoreMinimumDiaphragmMovement": false,
+    "DiaphragmSensorGain": 100,
+    "IsSystemMonitoringDiaphragmAlert": true,
+    "BloodDetecorImValue": -3,
+    "TimeStamp": "2020/09/23 15:22:04.224",
+    "ID": 1,
+    "AblationID": 1,
+    "SystemState": 1024,
+    "Hospital": null,
+    "Error": null,
+    "MinimumDiaphragmMovementValue": 100,
+    "MinimumEsophagusTemperatureValue": 100,
+    "DatabaseVersion": 0,
+    "GUIVersion": null
+  }
+]

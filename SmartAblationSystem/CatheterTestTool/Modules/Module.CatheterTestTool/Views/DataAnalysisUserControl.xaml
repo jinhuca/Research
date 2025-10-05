@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="Module.CatheterTestTool.Views.DataAnalysisUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Module.CatheterTestTool.Views"
+             mc:Ignorable="d" d:DataContext="TestDataValidationResults">
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="HeaderStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="Orchid" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0, 10" />
+            </Style>
+
+            <Style x:Key="ValueStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ResultStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="Green" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Style.Triggers>
+                    <Trigger Property="Text" Value="FAIL">
+                        <Setter Property="Foreground" Value="Red" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </Grid.Resources>
+        <views:GridSheetControl BorderBrush="Black" BorderThickness="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!-- Row 0 : Header -->
+            <TextBlock Grid.Column="0" Text="SENSOR" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Column="1" Text="AVERAGE"  Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Column="2" Text="EXPECTED"  Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Column="3" Text="RESULT"  Style="{StaticResource HeaderStyle}"/> 
+            <!-- Row 1 : TEMP -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding TC1.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="1"  Grid.Column="1" Text="{Binding TC1.Value}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding TC1.ExpectedInString}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding TC1.Result}" Style="{StaticResource ResultStyle}"/>
+            <!-- Row 2 : IBP -->
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding IBP.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="2"  Grid.Column="1" Text="{Binding IBP.Value}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding IBP.ExpectedInString}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding IBP.Result}" Style="{StaticResource ResultStyle}"/>
+
+            <!-- Row 3 : OBP -->
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding OBP.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="3"  Grid.Column="1" Text="{Binding OBP.Value}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding OBP.ExpectedInString}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding OBP.Result}" Style="{StaticResource ResultStyle}"/>
+            <!-- Row 4 : PT2 -->
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding PT2.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="4"  Grid.Column="1" Text="{Binding PT2.Value}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding PT2.ExpectedInString}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding PT2.Result}" Style="{StaticResource ResultStyle}"/>
+            <!-- Row 5 : FM1 -->
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="{Binding FM1.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="5"  Grid.Column="1" Text="{Binding FM1.Value}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding FM1.ExpectedInString}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding FM1.Result}" Style="{StaticResource ResultStyle}"/>
+            <!-- Row 6 : PT3 -->
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="{Binding PT3.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="6"  Grid.Column="1" Text="{Binding PT3.Value}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding PT3.ExpectedInString}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding PT3.Result}" Style="{StaticResource ResultStyle}"/>
+            <!-- Row 7 : PT4 -->
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="{Binding PT4.Sensor}" Style="{StaticResource HeaderStyle}"/>
+            <TextBlock Grid.Row="7"  Grid.Column="1" Text="{Binding PT4.Value}" Style="{StaticResource ValueStyle}" />
+            <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding PT4.ExpectedInString}" Style="{StaticResource ValueStyle}"/>
+            <TextBlock Grid.Row="7" Grid.Column="3" Text="{Binding PT4.Result}" Style="{StaticResource ResultStyle}"/>
+</views:GridSheetControl>  
+    </Grid>
+</UserControl>

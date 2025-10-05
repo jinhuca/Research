@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Module.CatheterTestTool.Views.TestResultFileSelector"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mvvm="http://prismlibrary.com/"
+      mvvm:ViewModelLocator.AutoWireViewModel="True"
+      Width="900" Height="600"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="900" 
+      Background="Transparent">
+    <mvvm:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="mvvm:Dialog.WindowStartupLocation" Value="CenterScreen"/>
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Topmost" Value="True"/>
+        </Style>
+    </mvvm:Dialog.WindowStyle>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Module.Infrastructure;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Name="BorderColor" BorderThickness="0" CornerRadius="10,10,10,10" 
+            Background="{StaticResource AccentColorBlueSolidBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Select Catheter Test File(s) To Export" FontSize="32" FontWeight="Bold" Foreground="White" Background="Transparent" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <Border Grid.Row="1" BorderThickness="1" CornerRadius="10" Margin="5,5,5,5"
+                    Background="{StaticResource SystemMessageBrushControlContainer}" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" CornerRadius="10" 
+                            Background="{StaticResource AccentColorWhiteSolidBrush }" Margin="5,5,5,5">
+
+                        <DataGrid Name="EngineeringDataFilesDataGrid" AutoGenerateColumns="False" RowHeaderWidth="0" 
+                              ItemsSource="{Binding TestResultFileList}"
+                              HeadersVisibility="Column"
+                              Background="White" BorderThickness="0" Margin="10,0,10,5" 
+                              VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                              CanUserAddRows="False" 
+                              SelectionMode="Extended">
+
+                            <DataGrid.Resources>
+                                <Style TargetType="DataGrid">
+                                    <Setter Property="GridLinesVisibility" Value="None" />
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="{StaticResource AccentColorBlueSolidBrush}" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontSize" Value="25" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="Background" Value="White" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource AccentColorBlueSolidBrush}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="FontSize" Value="25" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource AccentColorBlueSolidBrush}" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentColorBlueSolidBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="true" />
+                                                <Condition Property="Selector.IsSelectionActive" Value="false" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="{StaticResource AccentColorBlueSolidBrush}" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Result Files" 
+                                                    Binding="{Binding FileName}" Width="*" MinWidth="100" CanUserResize="False" IsReadOnly="True" />
+
+                                <!-- Make the "Selected" checkbox checked when clicked (avoid having to perform 2 clicks) -->
+                                <DataGridTemplateColumn Header="Selected" Width="125" CanUserResize="False" IsReadOnly="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      VerticalAlignment="Center" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+
+                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource RoundCorner}" Content="OK" Margin="10"   
+                                Command="{Binding OkCommand}" />
+                        <Button Style="{StaticResource RoundCorner}" Content="Cancel" Margin="10"
+                                Command="{Binding CancelCommand}" IsCancel="True"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,1123 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.Report"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:prism="http://prismlibrary.com/"
+             ManipulationBoundaryFeedback="Report_OnManipulationBoundaryFeedback"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Unloaded="UserControl_Unloaded"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+  <UserControl.Resources>
+    <converters:AblationSiteToStringConverter x:Key="ablationSiteToStringConverter" />
+    <converters:ProcedureToStringConverter x:Key="procedureToStringConverter" />
+    <converters:AblationSummaryToString x:Key="ablationSummaryToString" />
+    <converters:BooleanToNotVisibilityConverter x:Key="booleanToNotVisibilityConverter" />
+    <converters:FieldToTextConverter x:Key="fieldToTextConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    <converters:StringToDateTimeConverter x:Key="stringToDateTimeConverter" />
+    <converters:ScaleUnitToTextConverter x:Key="scaleUnitToTextConverter" />
+    <converters:ToiseUnitToTextConverter x:Key="toiseUnitToTextConverter" />
+    <converters:StringTodoubleConverter x:Key="stringTodoubleConverter" />
+    <converters:CatheterIDToNameMult x:Key="catheterIDToNameMult" />
+    <converters:StringToMaskConverter x:Key="stringMaskConverter"/>
+    <converters:PWReverseVisibilityConverter x:Key="pwvReverseConverter"/>
+    <converters:CatheterIDToName x:Key="catheterIDToName" />
+    <converters:BoolVisibilityConverter x:Key="boolVisibilityConverter"/>
+
+    <Style TargetType="ScrollBar">
+      <Setter Property="Width" Value="30"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="patientInfoTitleStyle">
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="Opacity" Value="0.5"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Margin" Value="10,0,10,0"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="patientInfoValueStyle">
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="maskTextBlockStyle">
+      <Setter Property="FontFamily" Value="Symbol"/>
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+  </UserControl.Resources>
+
+  <Grid x:Name="MainGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Grid Width="1920" Height="1080" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+          Background="{StaticResource MainBackgroundBrush_}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="78"/>
+        <RowDefinition Height="172"/>
+        <RowDefinition Height="386"/>
+        <RowDefinition Height="370"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0">
+        <TextBlock Text="SUMMARY REPORT"
+                   Style="{StaticResource MainTitleStyle_}"/>
+      </Grid>
+      <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- Patient info -->
+        <Border Grid.Column="0"
+                Margin="40,8,12,12"
+                CornerRadius="10"
+                Background="{StaticResource PanelBrush_}">
+          <Grid Margin="30,0,0,0">
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0"
+                         Text="PATIENT INFORMATION"
+                         Margin="0,0,0,5"
+                         Style="{StaticResource InfoTextStyle1_}"/>
+              <CheckBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,18,0"
+                        IsChecked="{Binding IsPatientInfoVisible}" 
+                        Visibility="{Binding IsPatientInfoVisibilityMutable, Converter={StaticResource boolVisibilityConverter}}">
+                <CheckBox.Style>
+                  <Style TargetType="CheckBox">
+                    <Setter Property="Template">
+                      <Setter.Value>
+                        <ControlTemplate TargetType="CheckBox">
+                          <StackPanel Orientation="Horizontal" Background="Transparent">
+                            <Image x:Name="checkBoxImage" Source="../Images/ShowInfo.png" Height="22" Stretch="Uniform"/>
+                            <ContentPresenter/>
+                          </StackPanel>
+                          <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                              <Setter TargetName="checkBoxImage" Property="Source" Value="../Images/HideInfo.png"/>
+                              <Setter TargetName="checkBoxImage" Property="Height" Value="26"/>
+                            </Trigger>
+                          </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                      </Setter.Value>
+                    </Setter>
+                  </Style>
+                </CheckBox.Style>
+              </CheckBox>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,8,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.8*"/>
+              </Grid.ColumnDefinitions>
+              <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Patient: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=FULLNAME, Mode=OneWay}" 
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"
+                             HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" Width="230"
+                             Style="{StaticResource DetailInfoValueStyle_}"/>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=FULLNAME}"
+                             Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"
+                             HorizontalAlignment="Left"
+                             Style="{StaticResource MaskTextBlockStyle_}"/>
+                </Grid>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="Gender: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=GENDER, Mode=OneWay}" 
+                             Style="{StaticResource DetailInfoValueStyle_}"
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"/>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=GENDER}"
+                             Style="{StaticResource MaskTextBlockStyle_}"
+                             Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"/>
+                </Grid>
+              </StackPanel>
+              <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBlock Text="Weight: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=WEIGHT, Mode=OneWay}"
+                             Style="{StaticResource DetailInfoValueStyle_}"
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"/>
+                  <TextBlock Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"
+                             Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=WEIGHT}"
+                             Style="{StaticResource MaskTextBlockStyle_}"/>
+                </Grid>
+                <TextBlock Text="{Binding WeightUnit, Converter={StaticResource scaleUnitToTextConverter}}"
+                           Style="{StaticResource DetailInfoValueStyle_}"/>
+              </StackPanel>
+              <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="38,0,0,0">
+                <Button x:Name="btnBMIInfo" 
+                        Style="{StaticResource BmiButtonStyle_}"
+                        TouchDown="ShowToolTip_Click">
+                  <Button.ToolTip>
+                    <ToolTip Placement="Absolute" PlacementRectangle="600,230,0,0">
+                      <ToolTip.Template>
+                        <ControlTemplate TargetType="ToolTip">
+                          <Border Margin="5,5,5,5">
+                            <Border.Effect>
+                              <DropShadowEffect Color="White"
+                                                ShadowDepth="0"
+                                                BlurRadius="10"
+                                                RenderingBias="Quality"
+                                                Opacity="1"
+                                                Direction="0"/>
+                            </Border.Effect>
+                            <Image Source="/Images/bmi.png" Width="714"/>
+                          </Border>
+                        </ControlTemplate>
+                      </ToolTip.Template>
+                    </ToolTip>
+                  </Button.ToolTip>
+                </Button>
+                <TextBlock Text="BMI: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=BMI, Mode=OneWay}" 
+                             Style="{StaticResource DetailInfoValueStyle_}" 
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"/>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=BMI}"
+                             Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"
+                             Style="{StaticResource MaskTextBlockStyle_}"/>
+                </Grid>
+              </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0,0,0,21">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.8*"/>
+              </Grid.ColumnDefinitions>
+              <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Date of Birth: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=BIRTHDATE, Mode=OneWay}"
+                             Style="{StaticResource DetailInfoValueStyle_}"
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"/>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=BIRTHDATE}"
+                             Style="{StaticResource MaskTextBlockStyle_}"
+                             Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"/>
+                </Grid>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="ID Number: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=HOSPITAL_ID, Mode=OneWay}"
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"
+                             HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" Width="150"
+                             Style="{StaticResource DetailInfoValueStyle_}"/>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=HOSPITAL_ID}"
+                             Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"
+                             HorizontalAlignment="Left"
+                             Style="{StaticResource MaskTextBlockStyle_}"/>
+                </Grid>
+              </StackPanel>
+              <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBlock Text="Height: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentPatient, Converter={StaticResource procedureToStringConverter}, ConverterParameter=HEIGHT, Mode=OneWay}"
+                             Visibility="{Binding IsPatientInfoVisible, Converter={StaticResource boolVisibilityConverter}}"
+                             Style="{StaticResource DetailInfoValueStyle_}"/>
+                  <TextBlock Visibility="{Binding Path=IsPatientInfoVisible, Converter={StaticResource pwvReverseConverter}}"
+                             Text="{Binding CurrentPatient, Converter={StaticResource stringMaskConverter}, ConverterParameter=HEIGHT}"
+                             Style="{StaticResource MaskTextBlockStyle_}"/>
+                </Grid>
+                <TextBlock Text="{Binding WeightUnit, Converter={StaticResource toiseUnitToTextConverter}}"  
+                           Style="{StaticResource DetailInfoValueStyle_}"/>
+              </StackPanel>
+            </Grid>
+          </Grid>
+        </Border>
+        <!-- Procedure Info -->
+        <Border Grid.Column="1" 
+                Margin="12,8,40,12"
+                CornerRadius="10"
+                Background="{StaticResource PanelBrush_}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="PROCEDURE INFORMATION"
+                       Margin="31,0,0,5"
+                       Style="{StaticResource InfoTextStyle1_}"/>
+            <Grid Grid.Row="1" Margin="30,8,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Hospital: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <TextBlock Text="{Binding HospitalName, Mode=OneWay}"
+                           Style="{StaticResource DetailInfoValueStyle_}"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="Procedure Date: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CurrentProcedure, Converter={StaticResource procedureToStringConverter}, ConverterParameter=PROCEDURE_DATE, Mode=OneWay}"
+                             Style="{StaticResource DetailInfoValueStyle_}"/>
+                </Grid>
+              </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2" Margin="30,0,0,21">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Physician: "
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <TextBlock Text="{Binding CurrentPhysician, Mode=OneWay}" 
+                           Style="{StaticResource DetailInfoValueStyle_}"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="2">
+                <TextBlock Text="Catheters Used: "
+                           Margin="0,0,0,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DetailInfoTitleStyle_}"/>
+                <Grid>
+                  <TextBlock Text="{Binding CatheterTypeList, Converter={StaticResource catheterIDToNameMult}, ConverterParameter=CatheterDescriptionSplit}"
+                             Style="{StaticResource DetailInfoValueStyle_}"/>
+                </Grid>
+              </StackPanel>
+            </Grid>
+          </Grid>
+        </Border>
+      </Grid>
+      <Border Grid.Row="2" 
+              Margin="40,15,38,12"
+              CornerRadius="12"
+              Background="{StaticResource PanelBrush_}" Opacity="1">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="300"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="TREATMENT INFORMATION"
+                       Margin="27,0,0,12"
+                       Style="{StaticResource InfoTextStyle1_}"/>
+            <Button Grid.Column="1"
+                    Style="{StaticResource ChangedProcedureButtonStyle_}"
+                    Visibility="{Binding CurrentProcedure, Converter={StaticResource procedureToStringConverter}, ConverterParameter=IsDataEdited, Mode=OneWay}"
+                    Command="{Binding ProcedureLogCommand}"/>
+          </Grid>
+          <DataGrid Grid.Row="1" 
+                    Margin="20,12,20,34" 
+                    Background="Transparent"
+                    HeadersVisibility="Column"
+                    HorizontalScrollBarVisibility="Disabled"
+                    BorderThickness="0"
+                    CanUserAddRows="False"
+                    AutoGenerateColumns="False"
+                    EnableColumnVirtualization="True"  
+                    EnableRowVirtualization="True" 
+                    VerticalScrollBarVisibility="Auto"
+                    KeyboardNavigation.TabNavigation="Once"
+                    IsReadOnly="False" 
+                    ScrollViewer.PanningMode="VerticalOnly"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow"  
+                    VirtualizingPanel.VirtualizationMode="Recycling"
+                    ItemsSource="{Binding AblationList}">
+            <DataGrid.Resources>
+              <Color x:Key="Color_Background_MouseOver_TrackBar">#FF9e9e9e</Color>
+              <Color x:Key="Color_Background_Pressed_TrackBar">#FFefebef</Color>
+              <Color x:Key="Color_Background_Disable">#FF4e4e50</Color>
+
+              <Style x:Key="RepeatButtonPageStyle" TargetType="RepeatButton">
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                      <Rectangle Fill="{TemplateBinding Background}" 
+                                 Stroke="{TemplateBinding BorderBrush}" 
+                                 StrokeThickness="{TemplateBinding BorderThickness}"/>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="Focusable" Value="false" />
+              </Style>
+
+              <Style TargetType="Thumb">
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="Focusable" Value="false" />
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="MinHeight" Value="80"/>
+                <Setter Property="Width" Value="auto"/>
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                      <ControlTemplate.Resources>
+                        <Storyboard x:Key="Hovering">
+                          <ColorAnimation Storyboard.TargetName="BrushThumbBackground" 
+                                          Storyboard.TargetProperty="Color" 
+                                          To="{StaticResource Color_Background_MouseOver_TrackBar}" 
+                                          Duration="0"/>
+                        </Storyboard>
+                        <Storyboard x:Key="Pressing">
+                          <ColorAnimation Storyboard.TargetName="BrushThumbBackground" 
+                                          Storyboard.TargetProperty="Color" 
+                                          To="{StaticResource Color_Background_Pressed_TrackBar}" 
+                                          Duration="0"/>
+                        </Storyboard>
+                        <Storyboard x:Key="Disabling">
+                          <ColorAnimation Storyboard.TargetName="BrushThumbBackground" Storyboard.TargetProperty="Color" To="{StaticResource Color_Background_Disable}" Duration="0"/>
+                        </Storyboard>
+                      </ControlTemplate.Resources>
+                      <Grid Margin="0,0,0,0" x:Name="Grid">
+                        <VisualStateManager.VisualStateGroups>
+                          <VisualStateGroup Name="CommonStates">
+                            <VisualState x:Name="Normal"/>
+                            <VisualState x:Name="MouseOver" Storyboard="{StaticResource Hovering}"/>
+                            <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressing}"/>
+                            <VisualState x:Name="Disabled" Storyboard="{StaticResource Disabling}"/>
+                          </VisualStateGroup>
+                          <VisualStateGroup Name="FocusStates">
+                            <VisualState x:Name="Focused"/>
+                            <VisualState x:Name="Unfocused"/>
+                          </VisualStateGroup>
+                          <VisualStateGroup Name="ValidationStates">
+                            <VisualState x:Name="Valid"/>
+                            <VisualState x:Name="InvalidFocused"/>
+                            <VisualState x:Name="InvalidUnfocused"/>
+                          </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle 
+            RadiusX="4" RadiusY="4" 
+            HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+            VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+            Width="{TemplateBinding Width}" 
+            Height="{TemplateBinding Height}" 
+            Opacity="{TemplateBinding Opacity}" 
+            MinHeight="{TemplateBinding MinHeight}">
+                          <Rectangle.Fill>
+                            <SolidColorBrush x:Name="BrushThumbBackground" Color="#62606E"/>
+                          </Rectangle.Fill>
+                        </Rectangle>
+                      </Grid>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+              </Style>
+
+              <Style TargetType="ScrollBar">
+                <Setter Property="Width" Value="15"/>
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="Background" Value="#383843"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                      <Grid x:Name="GridRoot" Width="{TemplateBinding Width}" Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="4"/>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="4"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="5"/>
+                          <RowDefinition Height="*"/>
+                          <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="3" Grid.ColumnSpan="3" CornerRadius="7" Grid.ZIndex="-1" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"/>
+                        <Track Name="PART_Track" 
+                               ViewportSize="NaN"
+                               IsDirectionReversed="true"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Grid.ZIndex="-1">
+                          <Track.Thumb>
+                            <Thumb Style="{StaticResource sf.Scrollbar.Thumb}"/>
+                          </Track.Thumb>
+                          <Track.IncreaseRepeatButton>
+                            <RepeatButton x:Name="PageUp" 
+                                          Style="{StaticResource RepeatButtonPageStyle}" 
+                                          Command="ScrollBar.PageDownCommand"/>
+                          </Track.IncreaseRepeatButton>
+                          <Track.DecreaseRepeatButton>
+                            <RepeatButton x:Name="PageDown" 
+                                          Style="{StaticResource RepeatButtonPageStyle}" 
+                                          Command="ScrollBar.PageUpCommand"/>
+                          </Track.DecreaseRepeatButton>
+                        </Track>
+                      </Grid>
+                      <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Horizontal">
+                          <Setter Property="LayoutTransform" TargetName="GridRoot">
+                            <Setter.Value>
+                              <RotateTransform Angle="-90"/>
+                            </Setter.Value>
+                          </Setter>
+                          <Setter TargetName="PART_Track" Property="Orientation" Value="Vertical" />
+                          <Setter Property="Command" Value="ScrollBar.PageLeftCommand" TargetName="PageDown" />
+                          <Setter Property="Command" Value="ScrollBar.PageRightCommand" TargetName="PageUp" />
+                        </Trigger>
+                      </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+              </Style>
+
+              <Style TargetType="DataGrid">
+                <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+                <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource SeparatorBrush_}"/>
+              </Style>
+
+              <Style TargetType="DataGridColumnHeader">
+                <Setter Property="Background" Value="#FF34343E"/>
+                <Setter Property="Foreground" Value="#FFCEC3C6"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Padding" Value="0,15,0,15"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+              </Style>
+
+              <Style TargetType="DataGridRow">
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                  <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#ff3d4968"/>
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+
+              <Style TargetType="DataGridCell">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Height" Value="50"/>
+                <Style.Triggers>
+                  <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+
+              <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+              <DataGridTemplateColumn Width="134" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Treatment" Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="140">
+                      <TextBlock Text="{Binding Treatment}" 
+                                 Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="150" CanUserResize="False" IsReadOnly="False">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Ablation Site"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="160">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="95"/>
+                        <ColumnDefinition Width="55"/>
+                      </Grid.ColumnDefinitions>
+                      <TextBlock Grid.Column="0" 
+                                 Text="{Binding AblationSite, Converter={StaticResource ablationSiteToStringConverter}}"
+                                 Style="{StaticResource DetailInfoValueStyle_}"
+                                 Margin="20,0,0,0"/>
+                      <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Background="Transparent"
+                            MouseUp="UIElement_OnMouseUp">
+                        <Button Width="20" Height="20" 
+                                x:Name="AblationSite" 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" 
+                                IsHitTestVisible="False"
+                                Margin="0,5,0,0" 
+                                Style="{StaticResource EditIconButtonStyle1_}"/>
+                      </Grid>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="134" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Balloon Size" Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="140">
+                      <TextBlock Text="{Binding BalloonSize}" Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="134" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Duration" Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding Duration}" Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="136" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Min Eso Temp °C" Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding MinimumEsophagusTemperatureValue, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=DiaphragmMovement}"
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="136" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Min Temp °C" 
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding MaxTemperatureRate}" 
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="136" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Time to Target" 
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding TimeToTarget, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=TimeToTarget}"
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="136" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Time to Isolation" 
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding TimeToVeinIsolation, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=TimeToVeinIsolation}"
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="136" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Time to Thaw"
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding TimeToThaw, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=TimeToThaw}"
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="144" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Total Thawing Time"
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding TotalThawingTime}"
+                                 Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="134" CanUserResize="False">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Notes" 
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <Button Name="Notes"
+                            Style="{StaticResource EditIconButtonStyle2_}" 
+                            Click="TreatmentNotes_MouseDown"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="136" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Min DMS"
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding MinimumDiaphragmMovementValue, Converter={StaticResource stringTodoubleConverter}, ConverterParameter=DiaphragmMovement}"
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+              <DataGridTemplateColumn Width="144" CanUserResize="False" IsReadOnly="True">
+                <DataGridTemplateColumn.Header>
+                  <TextBlock Text="Start Time"
+                             Style="{StaticResource DetailInfoTitleStyle_}"/>
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150">
+                      <TextBlock Text="{Binding LocalTime, Converter={StaticResource stringToDateTimeConverter}}"
+                               Style="{StaticResource DetailInfoValueStyle_}"/>
+                    </Grid>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+          </DataGrid>
+        </Grid>
+      </Border>
+
+      <Grid Grid.Row="3">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="438"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- Ablation Summary -->
+        <Border Grid.Column="0"
+                CornerRadius="12" 
+                Background="{StaticResource PanelBrush_}" 
+                Margin="40,12,12,0">
+          <Grid Margin="20,0,20,0"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="50"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="2"/>
+              <RowDefinition Height="86"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Margin="0,0,0,5"
+                       Text="ABLATION SUMMARY" 
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource InfoTextStyle1_}"/>
+            <Grid Grid.Row="1"
+                  Margin="20,10,12,0">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Row="0" Grid.Column="0" 
+                         Text="SITE" 
+                         HorizontalAlignment="Left"
+                         Style="{StaticResource AblationSiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Row="0" Grid.Column="1" 
+                         Text="AMOUNT"
+                         HorizontalAlignment="Center" 
+                         Style="{StaticResource AblationSiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Row="0" Grid.Column="2" 
+                         Text="DURATION"
+                         HorizontalAlignment="Right" 
+                         Style="{StaticResource AblationSiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" 
+                         Text="LSPV" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="2" Grid.Column="1" 
+                         HorizontalAlignment="Center"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLSPV, Mode=OneWay}" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLSPVDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1" 
+                           Margin="5,0,0,0"
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="3" Grid.Column="0" 
+                         Text="LIPV" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="3" Grid.Column="1" 
+                         HorizontalAlignment="Center"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLIPV, Mode=OneWay}" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="3" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLIPVDuration, Mode=OneWay}"
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1" 
+                           Margin="5,0,0,0"
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="5" Grid.Column="0" 
+                         Text="RSPV" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="5" Grid.Column="1" 
+                         HorizontalAlignment="Center"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRSPV, Mode=OneWay}" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="5" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRSPVDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1"
+                           Margin="5,0,0,0" 
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="4" Grid.Column="0" 
+                         Text="RIPV" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="4" Grid.Column="1" 
+                         HorizontalAlignment="Center"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRIPV, Mode=OneWay}" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="4" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right" 
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRIPVDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1"
+                           Margin="5,0,0,0" 
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="6" Grid.Column="0" 
+                         Text="LCPV" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="6" Grid.Column="1" 
+                         HorizontalAlignment="Center"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLCPV, Mode=OneWay}" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="6" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right" 
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalLCPVDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1" 
+                           Margin="5,0,0,0"
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="7" Grid.Column="0" 
+                         Text="RMPV" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="7" Grid.Column="1" 
+                         HorizontalAlignment="Center" 
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRMPV, Mode=OneWay}" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="7" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right" 
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalRMPVDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1" 
+                           Margin="5,0,0,0" 
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+
+              <TextBlock Grid.Row="8" Grid.Column="0" 
+                         Text="OTHER" 
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <TextBlock Grid.Row="8" Grid.Column="1" 
+                         HorizontalAlignment="Center"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalOther, Mode=OneWay}"  
+                         Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              <Grid Grid.Row="8" Grid.Column="2"
+                    HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalOtherDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1" 
+                           Margin="5,0,0,0"
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+            </Grid>
+            <Border Grid.Row="2" 
+                    Background="{StaticResource SeparatorBrush_}" 
+                    HorizontalAlignment="Stretch" 
+                    Margin="16,0,10,0" 
+                    Height="1"/>
+            <Grid Grid.Row="3" Margin="20,5,0,16">
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Row="0" Grid.Column="0" 
+                         Text="TOTAL" 
+                         Style="{StaticResource AblationSiteTitleTextBlockStyle_}"/>
+              <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,10,0"
+                         Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalAblation, Mode=OneWay}" 
+                         Style="{StaticResource TotalValueStyle_}"/>
+              <Grid Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch"
+                    Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                           HorizontalAlignment="Right"
+                           Text="{Binding AblationSummary, Converter={StaticResource ablationSummaryToString}, ConverterParameter=TotalAblationDuration, Mode=OneWay}" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+                <TextBlock Grid.Column="1"
+                           Margin="5,0,0,0"
+                           Text="sec" 
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+              <TextBlock Grid.Row="1" Grid.Column="0"
+                         Text="IN BODY TIME"
+                         Style="{StaticResource AblationSiteTitleTextBlockStyle_}"/>
+              <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,10,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition/>
+                  <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"
+                           Text="{Binding InBodyTime}"/>
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Margin="3,0,0,0"
+                           Text="min"
+                           Style="{StaticResource AblationSiteTextBlockStyle_}"/>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Border>
+        <Border Grid.Column="1" 
+                CornerRadius="12" 
+                Background="{StaticResource PanelBrush_}" 
+                Margin="10,12,40,2">
+          <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <StackPanel Grid.Row="0" VerticalAlignment="Stretch"
+                          Orientation="Horizontal">
+                <TextBlock Text="DIAGNOSIS"
+                           Margin="32,10,20,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource InfoTextStyle1_}"/>
+                <Button Style="{StaticResource CommentIconButtonStyle_}"
+                        Margin="-10,0,0,10"
+                        Click="OnClickDiagnosisButton"/>
+              </StackPanel>
+              <TextBox Grid.Row="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="30,16,0,20"
+                       IsReadOnly="True"
+                       Text="{Binding CurrentProcedure, Converter={StaticResource procedureToStringConverter}, ConverterParameter=DIAGNOSIS, Mode=OneWay}"
+                       Background="{StaticResource TextBoxBackgroundBrush_}"
+                       BorderBrush="{StaticResource TextBoxBorderBrush_}"
+                       Style="{StaticResource ReportTextBoxStyle_}"
+                       Width="675"
+                       Height="245"
+                       PreviewMouseUp="OnPreviewMouseUpDiagnosis"/>
+            </Grid>
+            <Grid Grid.Column="1">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+              </Grid.RowDefinitions>
+              <StackPanel Grid.Row="0" VerticalAlignment="Stretch"
+                          Orientation="Horizontal">
+                <TextBlock Text="OUTCOME"
+                           Margin="12,10,20,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource InfoTextStyle1_}"/>
+                <Button Style="{StaticResource CommentIconButtonStyle_}" 
+                          Margin="-10,0,0,10" 
+                          Click="ClickOnOutcomeButton"/>
+              </StackPanel>
+              <TextBox Grid.Row="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="12,16,0,20"
+                       IsReadOnly="True"
+                       Text="{Binding CurrentProcedure, Converter={StaticResource procedureToStringConverter}, ConverterParameter=OUTCOME, Mode=OneWay}"
+                       Background="{StaticResource TextBoxBackgroundBrush_}"
+                       BorderBrush="{StaticResource TextBoxBorderBrush_}"
+                       Style="{StaticResource ReportTextBoxStyle_}"
+                       Width="675"
+                       Height="245"
+                       PreviewMouseUp="OnPreviewMouseUpOutcome"/>
+            </Grid>
+          </Grid>
+        </Border>
+      </Grid>
+    </Grid>
+    <Canvas>
+      <StackPanel Style="{StaticResource HospitalLogoStackPanelOnHomeStyle_}">
+        <TextBlock Text="Hospital:" 
+                   Style="{StaticResource HospitalTitleTextBlockStyle_}"/>
+        <TextBlock Grid.ColumnSpan="2" 
+                   Text="{Binding HospitalName}" 
+                   Style="{StaticResource HospitalNameTextBlockStyle_}" />
+      </StackPanel>
+      <Image Style="{StaticResource LogoImageOnOthersStyle_}"/>
+    </Canvas>
+  </Grid>
+</UserControl>

@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.OcclusionPressureSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:userControls="clr-namespace:CustomControls.UserControls;assembly=CustomControls"
+             mc:Ignorable="d" >
+  <UserControl.Resources>
+    <Style TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}" />
+      <Setter Property="FontSize" Value="18" />
+      <Setter Property="Foreground" Value="#ffcec3c6"/>
+      <Setter Property="TextAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+  </UserControl.Resources>
+  <Border Background="#ff2b2b33" CornerRadius="8" BorderThickness="0">
+    <Grid Width="300" Height="818" >
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0" >
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Path Grid.Column="0" Grid.ColumnSpan="3" Width="300" Height="73" Stretch="uniform" 
+              Data="M 10,0 L 290,0 C 295.52,0 300,5.57 300,12.44 C 300,45.43 300,73 300,73 L 0,73 C 0,73 0,45.43 0,12.44 C 0,5.57 4.47,0 10,0 Z" 
+              Fill="#ff353540" Stroke="#ff707070" StrokeThickness="0"/>
+        <TextBlock Grid.Column="1" Text="OCCLUSION PRESSURE SETTINGS" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Lato}" FontSize="16" Foreground="#ffcec3c6" Width="200"/>
+        <Button Grid.Column="2" Style="{StaticResource CloseButtonStyle}" Height="12" Margin="0,-18, 0, 0" 
+              Command="{Binding CloseOcclusionPressureSettingsCommand}" Background="Transparent"/>
+      </Grid>
+      <Grid Grid.Row="1" Margin="15,0" >
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Height="80">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Button Grid.Column="0" Content="Reset baseline" Command="{Binding ResetTareOcclusionPressureGraphCommand}" Style="{StaticResource QuickSettingsBtn}" Height="36" Width="150"/>
+          <Button Grid.Column="1" Content="Tare"  Command="{Binding TareOcclusionPressureGraphCommand}" Style="{StaticResource QuickSettingsBtn}" Height="36" Width="75"/>
+        </Grid>
+        <Grid Grid.Row="1" Height="60" >
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Text="Max:" />
+          <userControls:ValueEditorWithUpDownButtonsControl Grid.Column="1" x:Name="TxtBPAxisYMax" MinValue="0" MaxValue="99" Unit="mmHg" Incremental="1"
+                                                            Value="{Binding OcclusionPressureGraphAxisYMaximum, Mode=TwoWay}"/>
+        </Grid>
+        <Grid  Grid.Row="2" Height="60" >
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Text="Min:" />
+          <userControls:ValueEditorWithUpDownButtonsControl Grid.Column="1" x:Name="TxtBPAxisYMin" MinValue="0"  MaxValue="99" Unit="mmHg" Incremental="1"
+                                                            Value="{Binding OcclusionPressureGraphAxisYMinimum, Mode=TwoWay}"/>
+        </Grid>
+
+        <Grid  Grid.Row="3">
+          <userControls:SettingBarWithButtonsControl Height="130" Description="Sweep Speed:" Unit="x" MinValue="1" MaxValue="10" Incremental="1" 
+            Value="{Binding OcclusionPressureGraphSweepSpeed, Mode=TwoWay}"/>
+        </Grid >
+
+        <Grid Grid.Row="5" Height="90">
+          <Button Content="SAVE TO PREFERENCES" Style="{StaticResource SettingsPreferencesButton}" Width="220" Height="48" HorizontalAlignment="Right" 
+                Command="{Binding SaveOcclusionPressureGraphSettingsCommand}"/>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Border>
+</UserControl>

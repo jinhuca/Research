@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+  <system:Boolean x:Key="BooleanFalse">False</system:Boolean>
+  <system:Boolean x:Key="BooleanTrue">True</system:Boolean>
+
+  <Style x:Key="ShowPatientInfoImgStyle" TargetType="Image">
+    <Setter Property="Source" Value="../Images/ShowInfo.png"/>
+		<Setter Property="Width" Value="32"/>
+	</Style>
+
+	<Style x:Key="HidePatientInfoImgStyle" TargetType="Image">
+		<Setter Property="Source" Value="../Images/HideInfo.png"/>
+		<Setter Property="Width" Value="32"/>
+	</Style>
+
+  <Color x:Key="VolumeButtonForegroundColor">#FFDBDBDB</Color>
+  <SolidColorBrush x:Key="VolumeButtonForegroundBrush" Color="{StaticResource VolumeButtonForegroundColor}"/>
+  <Color x:Key="VolumeButtonHighlightForegroundColor">#ffffffff</Color>
+  <SolidColorBrush x:Key="VolumeButtonHighlightForegroundBrush" Color="{StaticResource VolumeButtonHighlightForegroundColor}"/>
+
+  <ControlTemplate x:Key="MuteVolumeTemplate" TargetType="ToggleButton">
+    <Viewbox Stretch="Uniform">
+      <Border BorderThickness="0" Height="38" Width="40" Name="_mainBorder" CornerRadius="5" 
+              Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="36" Width="38">
+          <Path StrokeThickness="1.5" Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" StrokeLineJoin="Round" 
+              Data="F1 M 1,10.3 L 9.7,10.3 C 9.7,10.3 18.6,-0.6 19.5,1.2 C 19.95,2.1 21.2,8.7 21.2,15.7 C 21.2,20.8 20.6,25.8 19.5,30.8 C 18.8,32.8 9.8,21.7 9.8,21.7 L 1,21.7 L 1,10.3 Z"/>
+          <Path StrokeThickness="1.5" Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" 
+              Data="F1 M 27.2,10 C 30.6,13.3 30.6,18.7 27.2,22"/>
+          <Line  X1="1" Y1="29" X2="29" Y2="1" StrokeThickness="1.5"
+                 Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+        </Grid>
+      </Border>
+    </Viewbox>
+  </ControlTemplate>
+
+  <ControlTemplate x:Key="MaxVolumeTemplate" TargetType="ToggleButton">
+    <Viewbox Stretch="Uniform">
+      <Border BorderThickness="0" Height="38" Width="40" Name="_mainBorder"  CornerRadius="5"
+              Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="36" Width="38">
+          <Path StrokeThickness="1.5" Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" StrokeLineJoin="Round" 
+                Data="F1 M 1,10.3 L 9.7,10.3 C 9.7,10.3 18.6,-0.6 19.5,1.2 C 19.95,2.1 21.2,8.7 21.2,15.7 C 21.2,20.8 20.6,25.8 19.5,30.8 C 18.8,32.8 9.8,21.7 9.8,21.7 L 1,21.7 L 1,10.3 Z"/>
+          <Path StrokeThickness="1.5" Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" 
+                Data="F1 M 27.2,10 C 30.6,13.3 30.6,18.7 27.2,22"/>
+        </Grid>
+      </Border>
+    </Viewbox>
+  </ControlTemplate>
+
+  <Style x:Key="VolumeMuteToggleBtnStyle" TargetType="ToggleButton">
+    <Setter Property="Foreground" Value="{StaticResource VolumeButtonForegroundBrush}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Template" Value="{StaticResource MaxVolumeTemplate}" />
+    <Style.Triggers>
+      <Trigger Property="IsChecked" Value="True">
+        <Setter Property="Template" Value="{StaticResource MuteVolumeTemplate}" />
+      </Trigger>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter Property="Foreground" Value="{StaticResource VolumeButtonHighlightForegroundBrush}" />
+        <Setter Property="Background" Value="#ff3d3d45"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+</ResourceDictionary>

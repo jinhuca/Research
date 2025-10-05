@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+	<SolidColorBrush x:Key="IndicatorForeground" options:Freeze="True" Color="#FF4EA2FF"/>
+	<SolidColorBrush x:Key="IndicatorBackground" options:Freeze="True" Color="#DDDDDD"/>
+	
+	<SolidColorBrush x:Key="IndicatorSolidBrushGreen1" options:Freeze="True" Color="#FF00FF00"/>
+	<SolidColorBrush x:Key="IndicatorSolidBrushGreen2" options:Freeze="True" Color="#FF2CFC00"/>
+	<SolidColorBrush x:Key="IndicatorSolidBrushGreen3" options:Freeze="True" Color="#FF2CFC00"/>
+
+	<SolidColorBrush x:Key="IndicatorSolidBrushRed1" options:Freeze="True" Color="#FFFF0000"/>
+	<SolidColorBrush x:Key="IndicatorSolidBrushRed2" options:Freeze="True" Color="#FFFF3C00"/>
+	<SolidColorBrush x:Key="IndicatorSolidBrushRed3" options:Freeze="True" Color="#FFFF3C2C"/>
+</ResourceDictionary>

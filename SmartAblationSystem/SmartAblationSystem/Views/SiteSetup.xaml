@@ -1,0 +1,548 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.SiteSetup"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:controls="clr-namespace:SmartAblationSystem.Controls"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:Validation="clr-namespace:SmartAblationSystem.Validation"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+
+    <UserControl.Resources>
+        <converters:StringTodoubleConverter x:Key="stringTodoubleConverter" />
+        <converters:StringToIntConverter x:Key="stringToIntConverter" />
+        <converters:BoolToSymbolPresentationConverter x:Key="presentationConverter" />
+        <converters:StateToOpacityConverter x:Key="stateToOpacityConverter" />
+        <converters:SegmentsStatesProvider x:Key="statesProvider" />
+        <converters:GasSateToColor x:Key="gasSateToColor" />
+        <converters:WeightToLevelConverter x:Key="weightToLevelConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:BooleanToNotVisibilityConverter x:Key="booleanToNotVisibilityConverter" />
+        <converters:BooleanToStringConverter x:Key="booleanToStringConverter" />
+        <converters:ProgressBarMultiConverter  x:Key="progressBarMultiConverter"/>
+        <controls:TrafficLightsBackgroundControl x:Key="trafficLightsBackgroundControl" />
+        <SolidColorBrush x:Key="HorizontalSliderTrackNormalBackground" Color="White" />
+        <LinearGradientBrush x:Key="HorizontalSliderTrackNormalBorder" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="White" />
+            <GradientStop Color="White" />
+        </LinearGradientBrush>
+        <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ControlTemplate x:Key="validationErrorTemplateMinValue">
+            
+            <DockPanel>
+                <TextBlock Foreground="Red" HorizontalAlignment="Right" Padding="0,0,5,0" FontSize="12" DockPanel.Dock="Top" 
+                           Text="{Binding Data.HospitalNameMinLengthError, Source={StaticResource proxy}}" >
+                                        
+                    <TextBlock.Resources>
+                        <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                    </TextBlock.Resources>
+                </TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+            </DockPanel>
+        <-->
+    </UserControl.Resources>
+
+    <Grid x:Name="trafficLightsGrid" Height="1080" Width="1920" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border BorderThickness="6" Margin="50,50,50,50" CornerRadius="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#00afef" />
+            </Border.BorderBrush>
+
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,20">
+                <!--<StackPanel Width="50" Margin="0,20,0,20" >--><!--Background="#00afef"--><!--
+                </StackPanel>-->
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750" Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,0,0,20">
+                        <Button  Style="{StaticResource CircularButtonStyle }"  x:Name="buttonPatientImage"
+                         HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,0,0"
+                         Width="300"  Height="100" />
+                        <Label Content="Site Information" FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5,0,10,0" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <Label Content="Console SN" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox Style="{StaticResource CryterionTextBox}" Foreground="Red"  Width="380" Height="50"  HorizontalAlignment="Right"
+                         Text="{Binding SerialNumber, Mode=TwoWay}" />
+                    </StackPanel>
+
+
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                        <Label Content="Name" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300" FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtName" Style="{StaticResource CryterionTextBox}"   MaxLength="50"  Width="380" Height="50" HorizontalAlignment="Right" >
+
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="HospitalName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <!--<Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalNameMinLength="{Binding Data.HospitalNameMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>-->
+                                </Binding>
+                            </TextBox.Text>
+
+                        </TextBox>
+
+                        <Label Content="{Binding HospitalNameMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtName, Converter={StaticResource booleanToVisibilityConverter}}" />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="Address" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtAddress" Style="{StaticResource CryterionTextBox}"  Width="380" Height="50"  HorizontalAlignment="Right" >
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="Address" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <!--<Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalAddressMinLength="{Binding Data.HospitalAddressMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>-->
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="{Binding HospitalNameMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtAddress, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="City" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtCity" Style="{StaticResource CryterionTextBox}" Width="380" Height="50" HorizontalAlignment="Right" >
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="City" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <!--<Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalCityMinLength="{Binding Data.HospitalCityMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>-->
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <Label Content="{Binding HospitalCityMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtCity, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="State" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtState" Style="{StaticResource CryterionTextBox}"  Width="380" Height="50"  HorizontalAlignment="Right" >
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="State" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <!--<Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalCityMinLength="{Binding Data.HospitalCityMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>-->
+                                </Binding>
+                            </TextBox.Text>
+
+                        </TextBox>
+
+                        <Label Content="{Binding HospitalStateMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtState, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="ZIP Code" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtZipCode" Style="{StaticResource CryterionTextBox}" Width="380" Height="50"  HorizontalAlignment="Right" >
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="ZIPCode" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <!--<Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalZIPCodeMinLength="{Binding Data.HospitalZIPCodeMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>-->
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="{Binding HospitalZIPCodeMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtZipCode, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="Country" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtCountry" Style="{StaticResource CryterionTextBox}"  Width="380" Height="50"  HorizontalAlignment="Right" >
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="Country" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <!--<Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalCountryMinLength="{Binding Data.HospitalCountryMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>-->
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="{Binding HospitalCountryMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtCountry, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="Phone Number" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <TextBox x:Name="TxtPhoneNumber" Style="{StaticResource CryterionTextBox}"  Width="380" Height="50" HorizontalAlignment="Right" >
+                            <TextBox.Resources>
+                                <Validation:BindingProxy x:Key="proxy" Data="{Binding}"/>
+                            </TextBox.Resources>
+
+                            <TextBox.Text>
+                                <Binding Path="PhoneNumber" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <Validation:HospitalInformationTextFieldValidator>
+                                            <Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                                <Validation:ValidationWrapper HospitalPhoneNumberMinLength="{Binding Data.HospitalPhoneNumberMinLength, Source={StaticResource proxy}}" />
+                                            </Validation:HospitalInformationTextFieldValidator.Wrapper>
+                                        </Validation:HospitalInformationTextFieldValidator>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <!--<Label Content="{Binding HospitalPhoneNumberMinLengthError, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="Red" Margin="10,0,0,0" 
+                               VerticalAlignment="Bottom" 
+                               Visibility="{Binding Path=(Validation.HasError), ElementName=TxtPhoneNumber, Converter={StaticResource booleanToVisibilityConverter}}" />-->
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="Language" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <ComboBox Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20"  Width="380" Height="50"  HorizontalAlignment="Right"
+                                  ItemsSource="{Binding Path=LanguageList}" DisplayMemberPath="Description" SelectedItem="{Binding SelectedLanguage}"
+                                  IsSynchronizedWithCurrentItem="True"/>
+
+                    </StackPanel>
+
+                    <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+
+                        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Width="300" Margin="0,0,10,0" >
+                            <Label Content="Language" FontSize="24" FontWeight="Bold" Foreground="{StaticResource CryterionBrushColorBlue}" Opacity="0.9"   VerticalAlignment="Center"   />
+                            <Image  Source="/Images/UserManual.png" VerticalAlignment="Center" Width="50" Height="50" Margin="10,0,5,0"/>
+                            
+                        </StackPanel>
+
+                        
+                        <ComboBox Style="{StaticResource ComboBoxCryterionStyle}" FontSize="20"  Width="380" Height="50"  HorizontalAlignment="Right"
+                                  ItemsSource="{Binding Path=LanguageList}" DisplayMemberPath="Description" SelectedItem="{Binding SelectedLanguage}"
+                                  IsSynchronizedWithCurrentItem="True" Foreground="{StaticResource CryterionBrushColorBlue}" Background="Black"/>
+
+                    </StackPanel>-->
+
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Label Content="System Units" FontSize="24" FontWeight="Bold" Foreground="White" Opacity="0.9" Margin="0,0,10,0"  VerticalAlignment="Center" Width="300"  FlowDirection="RightToLeft" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Kilogram (Kg)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="18" Margin="0,0,5,0" VerticalAlignment="Center" />
+                                <Label Content="Centimeters (cm)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="18" Margin="0,0,5,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30"  Command="{Binding WeightUnitCommand}" CommandParameter="7" IsChecked="{Binding IsPoundUnitActivated}" HorizontalAlignment="Center" Margin="10" />
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Pound (lbs)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="18" Margin="25,0,0,0" VerticalAlignment="Center" />
+                                <Label Content="Inches (in)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="18" Margin="25,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                        <Button  x:Name="buttonSave"
+                         
+                            Content="Save"
+                            Height="50"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Width="200" FontSize="26" FontWeight="Bold"
+                            Foreground="White"
+                            Command="{Binding SaveCommand}"
+                            
+                            Visibility="Visible"
+                            CommandParameter="PatientInfo"
+                            Grid.Column="0" >
+
+                            <Button.Style >
+                                <Style TargetType="Button" BasedOn="{StaticResource ButtonCryterion}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtName}" Value="False"/>
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtAddress}" Value="False"/>
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtCity}" Value="False"/>
+
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtState}" Value="False"/>
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtZipCode}" Value="False"/>
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtCountry}" Value="False"/>
+                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtPhoneNumber}" Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Top" Margin="0,10,50,0" HorizontalAlignment="Left">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="5" CornerRadius="100" Grid.Column="2" Grid.Row="0" Margin="5,5,5,5" Width="400" Height="220" Background="White">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="#00afef" />
+                            </Border.BorderBrush>
+                            <Image  Source="/Images/Hospital.jpg" VerticalAlignment="Center" Width="350" />
+                        </Border>
+
+
+
+
+                        <Label Grid.Column="0" Grid.Row="1" x:Name="BallonRampDown" Height="70" Width="450" Background="Transparent" VerticalAlignment="Center"
+                           Margin="0,10,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Balloon Ramp Down OFF/ON" VerticalAlignment="Center" Margin="0,0,10,0" />
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="50" Command="{Binding BalloonRampDownCommand}"
+                                          IsChecked="{Binding ActivateBalloonRampDown, Mode=TwoWay}" Margin="0,0,15,0" />
+                            </StackPanel>
+                        </Label>
+
+                        <Label Grid.Column="0" Grid.Row="2" x:Name="ConsolePurge" Height="70" Width="450" Background="Transparent" VerticalAlignment="Center"
+                           Margin="0,10,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Console Purge OFF/ON" VerticalAlignment="Center" Margin="0,0,10,0" />
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="50" Command="{Binding PurgeCommand}"
+                                          IsChecked="{Binding PurgeTheConsole, Mode=OneWay}" Margin="0,0,15,0" />
+                            </StackPanel>
+                        </Label>
+
+                        <Label Grid.Column="0" Grid.Row="3" x:Name="DefalteAfterThaw" Height="70" Width="450" Background="Transparent" VerticalAlignment="Center"
+                           Margin="0,10,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Always Deflate After Thaw" VerticalAlignment="Center" Margin="0,0,10,0" />
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="50" Command="{Binding EnableDefalteAfterThawCommand}"
+                                          IsChecked="{Binding EnableDefalteAfterThaw, Mode=OneWay}" Margin="0,0,15,0" />
+                            </StackPanel>
+                        </Label>
+
+                        <Label Grid.Column="0" Grid.Row="4" x:Name="DeactivateFeatuers" Height="70" Width="450" Background="Transparent" VerticalAlignment="Center"
+                           Margin="0,10,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Catheter Deflate Switch Disable" VerticalAlignment="Center" Margin="0,0,10,0" />
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="50" Command="{Binding DeactivateFeatuersCommand}"
+                                          IsChecked="{Binding DeactivateFeatuers, Mode=OneWay}" Margin="0,0,15,0" />
+                            </StackPanel>
+                        </Label>
+
+                        <Label Grid.Column="0" Grid.Row="5" x:Name="Featuers" Height="70" Width="450" Background="Transparent" VerticalAlignment="Center"
+                           Margin="0,10,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Use Occlusion Pressure Sensor " VerticalAlignment="Center" Margin="0,0,10,0" />
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="50" Command="{Binding OcclusionPressureSensorCommand}"
+                                          IsChecked="{Binding IsUsingBloodPressureSensor, Mode=OneWay}" Margin="0,0,15,0" />
+                            </StackPanel>
+                        </Label>
+
+                        <Label Grid.Column="0" Grid.Row="6" x:Name="LowFlowEnableDisable" Height="70" Width="450" Background="Transparent" VerticalAlignment="Center"
+                           Margin="0,10,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="LOW FLOW  Disable/Enable " VerticalAlignment="Center" Margin="0,0,10,0" />
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="50" Command="{Binding LowFlowCommand}"
+                                          IsChecked="{Binding IsUsingLowFlow, Mode=OneWay}" Margin="0,0,15,0" />
+                            </StackPanel>
+                        </Label>
+
+
+                        <Grid Column="0" Row="8" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!--<Button  Grid.Column="0" Grid.Row="0" Margin="0,10,0,5" Height="80" Width="500" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="FACTORY RESET - DELETE ALL" Command="{Binding DeleteSiteInformarionsCommand}"  Visibility="Hidden" />
+                            <Image Grid.Column="0" Grid.Row="0" Source="/Images/delete.png" Height="50" Width="50" HorizontalAlignment="Center" Margin="-300,0,0,0" Visibility="Hidden"/>-->
+                            <Button  Grid.Column="0" Grid.Row="0" Margin="0,10,0,5" Height="70" Width="450" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="FACTORY RESET - DELETE ALL" Command="{Binding DeleteSiteInformarionsCommand}"  Visibility="Visible"  Style="{StaticResource ButtonCryterion}" />
+                            <Image Grid.Column="0" Grid.Row="0" Source="/Images/delete.png" Height="50" Width="50" HorizontalAlignment="Center" Margin="-300,0,0,0"/>
+                        </Grid>
+
+                        <StackPanel Grid.Column="0" Grid.Row="6"  Orientation="Vertical" Visibility="{Binding IsDeletingCompleted, Converter={StaticResource booleanToNotVisibilityConverter}}">
+                         <Controls:MetroProgressBar  IsIndeterminate="False"     Height="50" Width="500" Maximum="500"  Foreground="{StaticResource CryterionPopupSystemMessageBrushBackground}" Opacity="0.5"  Visibility="Visible" >
+
+                                <Controls:MetroProgressBar.Value>
+                                    <MultiBinding Converter="{StaticResource progressBarMultiConverter}">
+                                        <Binding Path="NumberOfFiles" />
+                                        <Binding Path="NumberOfDeletedFile" />
+                                    </MultiBinding>
+
+                                </Controls:MetroProgressBar.Value>
+
+                            </Controls:MetroProgressBar>
+
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,-40,0,0">
+                                <Label Content="{Binding Action}"  Foreground="White" FontSize="16" Margin="0,0,5,0"/>
+                                <Label Content="{Binding ProgressPercentage}"  Foreground="White" FontSize="16" />
+                                <Label Content="%"  Foreground="White" FontSize="16" Margin="0,0,50,0"/>
+
+                                <Label Content="{Binding NumberOfDeletedFile}"  Foreground="White" FontSize="16" />
+                                <Label Content="/"  Foreground="White" FontSize="16" />
+                                <Label Content="{Binding NumberOfFiles}"  Foreground="White" FontSize="16" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+                </StackPanel>
+
+                <!-- Metal Managmnet-->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="450" Margin="0,150,0,0">
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="10 Pounds Metal Weight" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="200" Height="40" Text="{Binding TenPoundsMetalWeightValue, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                        <Button Width="200" Height="45" Margin="0,5,0,0" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Save" Command="{Binding TenPoundsMetalWeightValueCommand}" Style="{StaticResource ButtonCryterion}" />
+                    </StackPanel>
+
+
+
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="BSC Tank Metal Weight" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="200" Height="40" Text="{Binding FifteenPoundsMetalWeightValue, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                        <Button Width="200" Height="45" Margin="0,5,0,0" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Save" Command="{Binding FifteenPoundsMetalWeightValueCommand}" Style="{StaticResource ButtonCryterion}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                        <Button  Width="200" Height="45" Margin="0,5,0,0" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Read Values From DB" Command="{Binding ReadValuesFromDBCommand}" Style="{StaticResource ButtonCryterion}" />
+                    </StackPanel>
+
+                    <!-- Warnning-->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Name="WarnningLabel1" Content="IMPORTANT: " FontWeight="Bold"
+                           Foreground="Red" FontSize="20" Margin="0,20,0,0" VerticalAlignment="Center"  HorizontalAlignment="Left"/>
+
+                            <Label Name="WarnningLabel2" Content="A Software restart and Tank change "
+                           HorizontalAlignment="Left" Foreground="Red" FontSize="20" Margin="0,20,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+
+
+                        <Label Name="WarnningLabel3" Content="process must be executed when the Metal "
+                           HorizontalAlignment="Left" Foreground="Red" FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center" />
+
+                        <Label Name="WarnningLabel4" Content="weight is changed !"
+                           HorizontalAlignment="Left" Foreground="Red" FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center" />
+
+                        <Border BorderThickness="5" CornerRadius="10" Grid.Column="2" Grid.Row="0" Margin="5,5,5,20" Width="300"  Height="275" >
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="#00afef" />
+                            </Border.BorderBrush>
+                            <StackPanel x:Name="ComPortStackPanel" Orientation="Vertical" Margin="0,0,0,0" >
+                                <Label Content="LSPRO" FontSize="30" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom"  />
+
+                <ComboBox Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20" Width="200" Height="50" VerticalAlignment="Center" 
+                      ItemsSource="{Binding PortNameList}" SelectedValue="{Binding PortName}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SaveComPortCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                                
+                                <Button Width="200" Height="45" Margin="0,5,0,0" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Open" Command="{Binding  OpenComPortCommand}" Style="{StaticResource ButtonCryterion}" IsEnabled="{Binding IsComPortsAvailable}" />
+                                <Button Width="200" Height="45" Margin="0,5,0,0" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Close" Command="{Binding CloseComPortCommand}" Style="{StaticResource ButtonCryterion}" IsEnabled="{Binding IsComPortsAvailable}"/>
+                                <!--
+                                <Button Width="200" Height="45" Margin="0,5,0,5" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Save" Command="{Binding SaveComPortCommand}" Style="{StaticResource ButtonCryterion}" IsEnabled="{Binding IsComPortsAvailable}"/>
+                                -->
+                                <Label Name="WarnningLabel5" Content="Invalid COM Port!" HorizontalAlignment="Center" Foreground="Red" FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center"
+                                       Visibility="{Binding IsComPortsValide,  Converter={StaticResource  booleanToNotVisibilityConverter}}" />
+
+
+                            </StackPanel>
+
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+                <!-- End Metal-->
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

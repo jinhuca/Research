@@ -1,0 +1,115 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="SmartAblationSystem.Views.Service"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920" Unloaded="UserControl_Unloaded">
+
+  <UserControl.Resources>
+    <converters:NotBooleanConverter x:Key="notBooleanConverter" />
+    <converters:BooleanToOpacityConverter x:Key="booleanToOpacityConverter" />
+  </UserControl.Resources>
+
+  <Grid Height="1080" Width="1920" VerticalAlignment="Top">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="990" />
+      <RowDefinition Height="40" />
+      <RowDefinition Height="50" />
+    </Grid.RowDefinitions>
+    <ContentControl Content="{Binding CurrentServiceView}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+    <Grid Grid.Row="1" Width="1300">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <ToggleButton Name="SiteSetup" Content="Site setup" HorizontalContentAlignment="Center"
+                          
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsSiteSetupSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="SiteSetup" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}"
+                          Grid.Column="1" FontWeight="Bold" Background="Red" FontSize="18" Margin="0,0,0,0" Style="{StaticResource ServiceToggleButtonStyle}"  />
+      <ToggleButton Name="PIDs" Margin="0,0,0,0"
+                          Content="PID Control"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsPIDSRegulationSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="PIDSRegulation" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}"
+                          Grid.Column="2" FontWeight="Bold" Background="Red" FontSize="18" Style="{StaticResource ServiceToggleButtonStyle}" />
+
+      <ToggleButton Name="ElectricalSignalMonitoring"
+                          Content="Electrical Monitoring" Margin="0,0,0,0"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsElectricalSignalMonitoringSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="ElectricalSignalMonitoring" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}"
+                          Grid.Column="3" FontWeight="Bold" Background="Red" FontSize="18" Style="{StaticResource ServiceToggleButtonStyle}" />
+      <ToggleButton Name="TCsAndLCCalibration" Content="Load Cell Calibration"
+                          Command="{Binding NavigateToViewCommand}" Margin="0,0,0,0"
+                          IsChecked="{Binding IsTCsAndLCCalibrationSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="TCsAndLCCalibration" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}"
+                          Grid.Column="4" FontWeight="Bold" Background="Red" FontSize="18" Style="{StaticResource ServiceToggleButtonStyle}" />
+
+      <ToggleButton Name="SystemTests" Content="System Tests" Grid.Column="4" FontWeight="Bold"  Background="Red" FontSize="18" Margin="0,0,0,0" Style="{StaticResource ServiceToggleButtonStyle}" Visibility="Collapsed"  IsEnabled="False" 
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"/>
+      <!--<ToggleButton Name="PowerUpReader" Content="Power Up Reader" Grid.Column="5" FontWeight="Bold" Background="Red" FontSize="18" />-->
+    </Grid>
+
+    <Grid Grid.Row="2" Width="1300">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="260*" />
+        <ColumnDefinition Width="175*" />
+        <ColumnDefinition Width="85*" />
+        <ColumnDefinition Width="128*" />
+        <ColumnDefinition Width="133*" />
+        <ColumnDefinition Width="109*" />
+        <ColumnDefinition Width="151*"/>
+        <ColumnDefinition Width="259*" />
+      </Grid.ColumnDefinitions>
+      <ToggleButton Name="SystemFiles" Content="System Files"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsSystemFilesSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          
+                          CommandParameter="SystemFiles" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}"
+                          Grid.Column="1" FontWeight="Bold" Background="Red" FontSize="18" Margin="0,0,128,10" Style="{StaticResource ServiceToggleButtonStyle}" Grid.ColumnSpan="3"/>
+      <ToggleButton Name="catheterDB" Content="Catheter Database" Grid.Column="2" FontWeight="Bold"  Background="Red" FontSize="18" Margin="0,0,25,10"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsCatheterDatabaseSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="CatheterDatabase" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}" Grid.ColumnSpan="4" Style="{StaticResource ServiceToggleButtonStyle}"/>
+      <ToggleButton Name="MechanicalMonitoring"
+                          Content="Mechanical Monitoring"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsMechanicalMonitoringSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="MechanicalMonitoring" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}"
+                          Grid.Column="3" FontWeight="Bold" Background="Red" FontSize="18" Grid.ColumnSpan="5" Margin="64,0,65,10" Style="{StaticResource ServiceToggleButtonStyle}"/>
+      <ToggleButton Name="FlowCurveProgramming" Content="Flow Curve Programming" Grid.Column="6" 
+                          FontWeight="Bold" Background="Red" FontSize="18" Margin="150,0,0,10"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsFlowCurveProgrammingSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="FlowCurveProgramming" IsEnabled="{Binding IsBootLoaderUpdatingFirmware, Converter={StaticResource notBooleanConverter}}" Style="{StaticResource ServiceToggleButtonStyle}" Grid.ColumnSpan="2"/>
+      <ToggleButton Name="PIDQuicksortAlgorithm" Content="PID Quicksort Algorithm"
+                          Command="{Binding NavigateToViewCommand}"
+                          IsChecked="{Binding IsPIDQuicksortAlgorithmSelected }"
+                          Opacity="{Binding IsBootLoaderUpdatingFirmware, ConverterParameter=BootLoader, Converter={StaticResource booleanToOpacityConverter}}"
+                          CommandParameter="PIDQuicksortAlgorithm" IsEnabled="False" Visibility="Collapsed"
+                          Grid.Column="7" FontWeight="Bold" Background="Red" FontSize="18" Margin="0,0,0,10" Style="{StaticResource ServiceToggleButtonStyle}"/>
+      <!--<ToggleButton Name="MaintenanceLog" Content="Maintenance Log" Grid.Column="5" FontWeight="Bold" Background="Red" FontSize="18"  />-->
+    </Grid>
+  </Grid>
+</UserControl>

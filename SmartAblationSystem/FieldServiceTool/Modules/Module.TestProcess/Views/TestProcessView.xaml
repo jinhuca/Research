@@ -1,0 +1,425 @@
+﻿<UserControl x:Class="Module.TestProcess.Views.TestProcessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:infrastructure="clr-namespace:Module.Infrastructure;assembly=Module.Infrastructure"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:Module.TestProcess.ViewModels"
+             xmlns:controls="clr-namespace:Module.Infrastructure.Controls;assembly=Module.Infrastructure.Controls"
+             xmlns:testProcess="clr-namespace:Module.TestProcess"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance vm:TestProcessViewModel}"
+             d:DesignHeight="450" d:DesignWidth="1800" Background="Black">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure;component/Themes/Generic.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure.Controls;component/Theme/Default.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+			<infrastructure:TestStatusToThreeStateConverter x:Key="TestStatusToThreeStateConverter"/>
+			<infrastructure:DoubleToPercentConverter x:Key="DoubleToPercentConverter"/>
+			<infrastructure:TestStatusToEnabledBoolConverter x:Key="TestStatusToEnabledBoolConverter"/>
+			<infrastructure:StepStatusToSolidColorBrushConverter x:Key="StepColorConverter"/>
+			<infrastructure:StepFlashConverter x:Key="StepBorderStyleConverter"/>
+			<infrastructure:StepStatusToThreeStateConverter x:Key="StepStatusConverter"/>
+			<infrastructure:TestStatusToVisibilityConverter x:Key="TestStatusToVisibilityConverter"/>
+			<infrastructure:TestDetailVisibilityConverter x:Key="TestDetailVisibilityConverter"/>
+			<testProcess:SessionVisibilityConverter x:Key="sessionVisibilityConverter"/>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Border Style="{StaticResource RegionBorderStyle}">
+		<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+			<Border Grid.Row="0" Grid.Column="0" 
+			        BorderBrush="{Binding Step1ViewModel.Status, Converter={StaticResource StepColorConverter}}">
+				<Border.Style>
+					<Style TargetType="Border" BasedOn="{StaticResource TestProcessStepBorderStyle}">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Step1ViewModel.Status, Converter={StaticResource StepBorderStyleConverter}}" Value="True">
+								<DataTrigger.EnterActions>
+									<BeginStoryboard>
+										<Storyboard>
+											<ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" From="#FFFF8C00" To="#66FF8C00" 
+											                Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
+										</Storyboard>
+									</BeginStoryboard>
+								</DataTrigger.EnterActions>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<Grid Uid="gridStep1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="3*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="7*"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="3*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Uid="chxStep1Result"
+						          Style="{StaticResource StepCheckBoxStyle}"
+						          IsChecked="{Binding Step1ViewModel.Status, Converter={StaticResource StepStatusConverter}}"/>
+						<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+						           Text="{Binding Step1ViewModel.Entity.Title}"
+						           Style="{StaticResource StepTitleTextBlockStyle}"
+						           Foreground="{Binding Step1ViewModel.Status, Converter={StaticResource StepColorConverter}}"/>
+						<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+						           Text="{Binding Step1ViewModel.Entity.Description}"
+						           Style="{StaticResource StepDescriptionTextBlockStyle}"
+						           Foreground="{Binding Step1ViewModel.Status, Converter={StaticResource StepColorConverter}}"/>
+						<Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<ProgressBar Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" Uid="step1ProgressBar"
+                           Style="{StaticResource VerticalProgressBar}"
+                           Width="15" Height="60" Margin="0,0,10,0" 
+                           HorizontalAlignment="Right" 
+                           Value="{Binding Step1ViewModel.ProcessedPercentage, Mode=OneWay}"/>
+							<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+								<TextBlock Uid="Step1Passvalue" Text="{Binding Path=Step1ViewModel.PassedPercentage, Converter={StaticResource DoubleToPercentConverter}}" 
+                           Style="{StaticResource StepPercentTextBlockStyle}"/>
+								<TextBlock Text="PASS" Style="{StaticResource StepPassTextBlockStyle}"/>
+							</StackPanel>
+						</Grid>
+					</Grid>
+					<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding TestTitle, Mode=OneTime}" Style="{StaticResource TestTextStyle}"/>
+					<Grid Grid.Row="2" Margin="80,10,10,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" Uid="chxVersionVerification"
+						          Style="{StaticResource TestCheckBoxStyle}"
+                      Content="{Binding VersionVerificationViewModel.Entity.Title, Mode=OneTime}"
+											IsEnabled="{Binding VersionVerificationViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding VersionVerificationViewModel.Status, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="0" Grid.Column="1"
+						                   Visibility="{Binding VersionVerificationViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<CheckBox Grid.Row="1" Grid.Column="0" Uid="chxInputTest"
+						          Style="{StaticResource TestCheckBoxStyle}"
+                      Content="{Binding InputTestViewModel.Entity.Title, Mode=OneTime}" 
+                      IsEnabled="{Binding InputTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding InputTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="1" Grid.Column="1"
+						                   Visibility="{Binding InputTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<CheckBox Grid.Row="2" Grid.Column="0" Uid="chxVisualTest"
+						          Style="{StaticResource TestCheckBoxStyle}"
+                      Content="{Binding VisualTestViewModel.Entity.Title, Mode=OneTime}"
+                      IsEnabled="{Binding VisualTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding VisualTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="2" Grid.Column="1"
+						                   Visibility="{Binding VisualTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<CheckBox Grid.Row="3" Grid.Column="0" Uid="chxAudibleTest"
+						          Style="{StaticResource TestCheckBoxStyle}"
+                      Content="{Binding AudibleTestViewModel.Entity.Title, Mode=OneTime}" 
+                      IsEnabled="{Binding AudibleTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding AudibleTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="3" Grid.Column="1"
+						                   Visibility="{Binding AudibleTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+					</Grid>
+				</Grid>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="1" 
+			        BorderBrush="{Binding Step2ViewModel.Status, Converter={StaticResource StepColorConverter}}">
+				<Border.Style>
+					<Style TargetType="Border" BasedOn="{StaticResource TestProcessStepBorderStyle}">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Step2ViewModel.Status, Converter={StaticResource StepBorderStyleConverter}}" Value="True">
+								<DataTrigger.EnterActions>
+									<BeginStoryboard>
+										<Storyboard>
+											<ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" From="#FFFF8C00" To="#66FF8C00" 
+											                Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
+										</Storyboard>
+									</BeginStoryboard>
+								</DataTrigger.EnterActions>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<Grid Uid="gridStep2">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="3*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="7*"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="3*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Uid="chxStep2Result"
+						          Style="{StaticResource StepCheckBoxStyle}"
+						          IsChecked="{Binding Step2ViewModel.Status, Converter={StaticResource StepStatusConverter}}"/>
+						<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+						           Text="{Binding Step2ViewModel.Entity.Title, Mode=OneTime}" 
+						           Style="{StaticResource StepTitleTextBlockStyle}"
+						           Foreground="{Binding Step2ViewModel.Status, Converter={StaticResource StepColorConverter}}"/>
+						<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+						           Text="{Binding Step2ViewModel.Entity.Description, Mode=OneTime}" 
+						           Style="{StaticResource StepDescriptionTextBlockStyle}"
+						           Foreground="{Binding Step2ViewModel.Status, Converter={StaticResource StepColorConverter}}"/>
+						<Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<ProgressBar Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" Uid="Step2Processbar"
+                           Style="{StaticResource VerticalProgressBar}"
+                           Width="15" Height="60" HorizontalAlignment="Right" Margin="0,0,10,0"
+                           Value="{Binding Step2ViewModel.ProcessedPercentage, Mode=OneWay}"/>
+							<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+								<TextBlock Uid="Step2Passvalue" Text="{Binding Step2ViewModel.PassedPercentage, Converter={StaticResource DoubleToPercentConverter}}" 
+                           Style="{StaticResource StepPercentTextBlockStyle}" Foreground="White"/>
+								<TextBlock Text="PASS" Style="{StaticResource StepPassTextBlockStyle}"/>
+							</StackPanel>
+						</Grid>
+					</Grid>
+					<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding TestTitle, Mode=OneTime}" Style="{StaticResource TestTextStyle}"/>
+					<Grid Grid.Row="2" Margin="50,10,10,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}" Margin="30,0,0,0" Uid="chxIdleState"
+                      Content="{Binding IdleStateTestViewModel.Entity.Title, Mode=OneTime}" 
+                      IsEnabled="{Binding IdleStateTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding IdleStateTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="0" Grid.Column="1" Margin="10,0,0,0"
+						                   Visibility="{Binding IdleStateTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<CheckBox Grid.Row="1" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}" Uid="chxReadyState"
+                      Content="{Binding ReadyStateTestViewModel.Entity.Title, Mode=OneTime}" Margin="30,0,0,0"
+                      IsEnabled="{Binding ReadyStateTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding ReadyStateTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="1" Grid.Column="1"  Margin="10,0,0,0"
+						                   Visibility="{Binding ReadyStateTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+
+						</Grid>
+					</Grid>
+				</Grid>
+			</Border>
+			<Border Grid.Row="0" Grid.Column="2" 
+			        BorderBrush="{Binding Step3ViewModel.Status, Converter={StaticResource StepColorConverter}}">
+				<Border.Style>
+					<Style TargetType="Border" BasedOn="{StaticResource TestProcessStepBorderStyle}">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Step3ViewModel.Status, Converter={StaticResource StepBorderStyleConverter}}" Value="True">
+								<DataTrigger.EnterActions>
+									<BeginStoryboard>
+										<Storyboard>
+											<ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" From="#FFFF8C00" To="#66FF8C00" 
+											                Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
+										</Storyboard>
+									</BeginStoryboard>
+								</DataTrigger.EnterActions>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<Grid Uid="gridStep3">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="3*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="7*"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="3*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Uid="chxStep3Result"
+						          Style="{StaticResource StepCheckBoxStyle}"
+						          IsChecked="{Binding Step3ViewModel.Status, Converter={StaticResource StepStatusConverter}}"/>
+						<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+						           Text="{Binding Step3ViewModel.Entity.Title, Mode=OneTime}" 
+						           Style="{StaticResource StepTitleTextBlockStyle}"
+						           Foreground="{Binding Step3ViewModel.Status, Converter={StaticResource StepColorConverter}}"/>
+						<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+						           Text="{Binding Step3ViewModel.Entity.Description, Mode=OneTime}" 
+						           Style="{StaticResource StepDescriptionTextBlockStyle}"
+						           Foreground="{Binding Step3ViewModel.Status, Converter={StaticResource StepColorConverter}}"/>
+						<Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<ProgressBar Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" Uid="Step3Progressbar"
+                           Style="{StaticResource VerticalProgressBar}"
+                           Width="15" Height="60" HorizontalAlignment="Right" Margin="0,0,10,0" RenderTransformOrigin="0.522,0.5"
+                           Value="{Binding Step3ViewModel.ProcessedPercentage, Mode=OneWay}"/>
+							<StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center">
+								<TextBlock Uid="Step3Passvalue" Text="{Binding Step3ViewModel.PassedPercentage, Converter={StaticResource DoubleToPercentConverter}}" 
+                           Style="{StaticResource StepPercentTextBlockStyle}"/>
+								<TextBlock Text="PASS" Style="{StaticResource StepPassTextBlockStyle}"/>
+							</StackPanel>
+						</Grid>
+					</Grid>
+					<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding TestTitle, Mode=OneTime}" Style="{StaticResource TestTextStyle}"/>
+					<Grid Grid.Row="2" Margin="80,10,10,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<CheckBox Grid.Row="0" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}" Uid="chxAblationTest"
+                      Content="{Binding AblationTestViewModel.Entity.Title, Mode=OneTime}" 
+											IsEnabled="{Binding AblationTestViewModel.Status, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding AblationTestViewModel.Status, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave"  Grid.Row="0" Grid.Column="1" 
+						                   Visibility="{Binding AblationTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<!-- Temporary Begin -->
+						<CheckBox Grid.Row="1" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}"
+						          Content="DMS Tests" Opacity="0.5"
+						          IsEnabled="False"
+						          IsChecked="False"/>
+						<CheckBox Grid.Row="2" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}"
+						          Content="ETS Tests" Opacity="0.5"
+						          IsEnabled="False"
+						          IsChecked="False"/>
+						<CheckBox Grid.Row="3" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}"
+						          Content="OPS Tests" Opacity="0.5"
+						          IsEnabled="False"
+						          IsChecked="False"/>
+						<!-- Temporary End -->
+
+						<!--<CheckBox Grid.Row="1" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}"
+                      Content="{Binding DMSTestViewModel.Entity.Title, Mode=OneTime}" 
+											IsEnabled="{Binding DMSTestViewModel.Status, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding DMSTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="1" Grid.Column="1"
+						                   Visibility="{Binding DMSTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<CheckBox Grid.Row="2" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}"
+						          Content="{Binding ETSTestViewModel.Entity.Title, Mode=OneTime}" 
+						          IsEnabled="{Binding ETSTestViewModel.Status, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding ETSTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="2" Grid.Column="1"
+						                   Visibility="{Binding ETSTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>
+						<CheckBox Grid.Row="3" Grid.Column="0" Style="{StaticResource TestCheckBoxStyle}"
+						          Content="{Binding OPSTestViewModel.Entity.Title, Mode=OneTime}" 
+						          IsEnabled="{Binding OPSTestViewModel.Status, Converter={StaticResource TestStatusToEnabledBoolConverter}}"
+                      IsChecked="{Binding OPSTestViewModel.Status, Mode=TwoWay, Converter={StaticResource TestStatusToThreeStateConverter}}"/>
+						<controls:BusyMask IndicatorType="Wave" Grid.Row="3" Grid.Column="1"
+						                   Visibility="{Binding OPSTestViewModel.Status, Converter={StaticResource TestStatusToVisibilityConverter}}"/>-->
+					</Grid>
+				</Grid>
+			</Border>
+			<StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="5,0,0,0">
+				<TextBlock Text="{Binding ProgressText, Mode=OneTime}" 
+				           Style="{StaticResource ProgressTitleTextStyle}"/>
+				<ProgressBar Value="{Binding TotalProcessedPercentage}" Uid="TotalProgressBar"
+				             Style="{StaticResource HorizontalProgressBar}"/>
+				<TextBlock Text="{Binding TestDetailsTitle, Mode=OneTime}">
+					<TextBlock.Style>
+						<Style TargetType="TextBlock">
+							<Setter Property="Foreground" Value="LightYellow"/>
+							<Setter Property="FontWeight" Value="Bold"/>
+							<Setter Property="FontStyle" Value="Italic"/>
+							<Setter Property="FontSize" Value="21"/>
+							<Setter Property="VerticalAlignment" Value="Center"/>
+							<Setter Property="HorizontalAlignment" Value="Left"/>
+							<Setter Property="Margin" Value="28,0,10,0"/>
+							<Setter Property="Effect">
+								<Setter.Value>
+									<DropShadowEffect Color="LightGoldenrodYellow" Direction="0" BlurRadius="25" RenderingBias="Quality" Opacity="1"/>
+								</Setter.Value>
+							</Setter>
+						</Style>
+					</TextBlock.Style>
+				</TextBlock>
+				<Border Width="1300" Height="36" CornerRadius="8" Background="#FF202020" BorderBrush="White" BorderThickness=".5" Margin="6,0">
+					<Grid>
+						<!--<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="120"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0"
+						           Text="{Binding CurrentSessionStatus}" 
+						           Visibility="{Binding CurrentSessionStatus, Converter={StaticResource sessionVisibilityConverter}}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock">
+									<Setter Property="Foreground" Value="SandyBrown"/>
+									<Setter Property="FontSize" Value="22"/>
+									<Setter Property="FontWeight" Value="Bold"/>
+									<Setter Property="VerticalAlignment" Value="Center"/>
+									<Setter Property="HorizontalAlignment" Value="Stretch"/>
+									<Setter Property="Margin" Value="12,0,0,0"/>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>-->
+						<TextBlock Grid.Column="1" Uid="TxtTestDetails"
+						           Text="{Binding CurrentTestViewModel.Entity.Description}" 
+						           Visibility="{Binding CurrentTestViewModel.Status, Converter={StaticResource TestDetailVisibilityConverter}}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock">
+									<Setter Property="Foreground" Value="LawnGreen"/>
+									<Setter Property="FontSize" Value="22"/>
+									<Setter Property="FontWeight" Value="Bold"/>
+									<Setter Property="VerticalAlignment" Value="Center"/>
+									<Setter Property="HorizontalAlignment" Value="Stretch"/>
+									<Setter Property="Margin" Value="12,0,0,0"/>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>
+						
+					</Grid>
+				</Border>
+			</StackPanel>
+		</Grid>
+	</Border>
+</UserControl>

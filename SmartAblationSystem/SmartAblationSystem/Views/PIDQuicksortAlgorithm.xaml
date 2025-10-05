@@ -1,0 +1,219 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.PIDQuicksortAlgorithm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             mc:Ignorable="d"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:ActionIdToActionDescriptionConverter x:Key="actionIdToActionDescriptionConverter" />
+        <converters:UserToStringConverter x:Key="userToStringConverter" />
+    </UserControl.Resources>
+
+    <Grid Height="1030" Width="1920" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/Images/BSC_Logo.png" Margin="0,5,5,0" Height="70" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" />
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="250" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Target Flow Error Sort" Command="{Binding TargetFlowErrorSortCommand}" CommandParameter="TargetFlowError" Style="{StaticResource ButtonCryterion}" Margin="20,10,20,10" />
+                <Button Width="250" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Target Injection Error  Sort" Command="{Binding TargetFlowErrorSortCommand}" CommandParameter="TargeInjectionPressureError" Style="{StaticResource ButtonCryterion}" Margin="20,10,20,10" />
+            </StackPanel>
+
+            <Border Margin="10,0,10,0" BorderThickness="2" CornerRadius="6">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="1" />
+                </Border.BorderBrush>
+
+                <DataGrid Name="UsersDataGrid" AutoGenerateColumns="False" RowHeaderWidth="0" ItemsSource="{Binding CMCUPIDLogs}"
+                              HeadersVisibility="Column"
+                              Background="White" BorderThickness="0" Margin="0"
+                              VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                              AlternatingRowBackground="LightBlue" AlternationCount="2"
+                              CanUserAddRows="False"
+                              Height="820"
+                              SelectionMode="Single">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGrid">
+                            <Setter Property="GridLinesVisibility" Value="None" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="{StaticResource CryterionBrushColorBlue}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontSize" Value="25" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="false" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                 Color="{StaticResource CryterionColorBlue}" />
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="P" Binding="{Binding P}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="I" Binding="{Binding I}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="D" Binding="{Binding D}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="O" Binding="{Binding O}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="FM1" Binding="{Binding FM1}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="PT2" Binding="{Binding PT2}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="TF" Binding="{Binding TargetFlow}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+
+                        <DataGridTextColumn Header="TIP" Binding="{Binding TargetInjectionPressure}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="TF Error" Binding="{Binding TargetFlowError}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="TIP Error" Binding="{Binding TargetInjectionPressureError}" Width="*" MinWidth="200" CanUserResize="False" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </StackPanel>
+
+        <!-- Start PMCU PID -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="350" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Target Balloon Pressure Error Sort" Command="{Binding ErrorSortCommand}" CommandParameter="TargetBalloonPressure" Style="{StaticResource ButtonCryterion}" Margin="20,10,20,10" />
+            </StackPanel>
+
+            <Border Margin="10,0,10,0" BorderThickness="2" CornerRadius="6">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="1" />
+                </Border.BorderBrush>
+
+                <DataGrid Name="PMCUPIDDataGrid" AutoGenerateColumns="False" RowHeaderWidth="0" ItemsSource="{Binding PMCUPIDLogs}"
+                              HeadersVisibility="Column"
+                              Background="White" BorderThickness="0" Margin="0"
+                              VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                              AlternatingRowBackground="LightBlue" AlternationCount="2"
+                              CanUserAddRows="False"
+                              Height="820"
+                              SelectionMode="Single">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGrid">
+                            <Setter Property="GridLinesVisibility" Value="None" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="{StaticResource CryterionBrushColorBlue}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontSize" Value="25" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="false" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                 Color="{StaticResource CryterionColorBlue}" />
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="P" Binding="{Binding P}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="I" Binding="{Binding I}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="D" Binding="{Binding D}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="O" Binding="{Binding O}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="PT3" Binding="{Binding PT3}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="IBP" Binding="{Binding IBP}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="OBP" Binding="{Binding OBP}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+
+                        <DataGridTextColumn Header="PWMBAL" Binding="{Binding PWMBAL}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                        <DataGridTextColumn Header="TBP Error" Binding="{Binding TargetBallonPressureError}" Width="*" MinWidth="50" CanUserResize="False" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </StackPanel>
+
+        <!-- End -->
+    </Grid>
+</UserControl>

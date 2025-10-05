@@ -1,0 +1,386 @@
+﻿<UserControl x:Class="SmartAblationSystem.Views.ConsoleErrorLog"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             Unloaded="UserControl_UnLoaded"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <converters:StateIdToTextConverter x:Key="stateIdToTextConverter" />
+        <converters:DateTimeToStringConverter x:Key="dateTimeToStringConverter" />
+    </UserControl.Resources>
+
+
+    <Grid Height="1080" Width="1920" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="5.5*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Error Log" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="50"  VerticalContentAlignment="Center"></Label>
+        <Button Grid.Column="1" Grid.Row="0" x:Name="btnReloadErrorLog"  Content="Reload Error Log" Style="{StaticResource ButtonCryterion}" HorizontalAlignment="Right" Width="207"  FontSize="20" Foreground="White" Click="BtnReloadErrorLog_Click" Margin="0,10,19,0"  />
+        <!--//excel.png-->
+        <!--<Button  Grid.Column="1" Grid.Row="0"   x:Name="BtnExcelGen" HorizontalAlignment="Right"  Style="{StaticResource ExcelGenButton}" Height="Auto" Margin="20,0,0,0"   />-->
+        <StackPanel Grid.Column="0" Grid.Row="1"  >
+            <GroupBox  ContextMenu="{x:Null}"  Height="900" VerticalAlignment="Top"  Name="groupBox2" Margin="10,0,34,0" >
+                <GroupBox.Header>
+                    <Label Foreground="#FF00AFEF" FontSize="25" FontWeight="Bold">Error Log</Label>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition MinHeight="800" />
+                    </Grid.RowDefinitions>
+                    <GroupBox ContextMenu="{x:Null}"  Height="110" VerticalAlignment="Top"  Name="groupBox3" Margin="10,0,10,0" >
+                        <GroupBox.Header>
+                            <Label Foreground="White" FontSize="15" FontWeight="Bold">Filter</Label>
+                        </GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Column="0" Grid.Row="1"  Orientation="Horizontal" Margin="0,5,0,0">
+                                <Label   Content="Date From : " Margin="0,0,0,0" Foreground="WhiteSmoke"  VerticalContentAlignment="Bottom"/>
+                                <DatePicker  CalendarStyle="{StaticResource styleCalendar}" Loaded="DatePicker_Loaded"    BorderThickness="0" x:Name="DateFrom"  SelectedDate="{Binding FilterFrom,Converter={StaticResource dateTimeToStringConverter},ConverterParameter=ErrorLogSearchDATE, Mode=TwoWay}"   Margin="2,0,15,0" Background="LightGray"  Height="28" Width="135"  FontSize="16" >
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="Control.Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <TextBox x:Name="PART_TextBox" VerticalContentAlignment="Top"
+     Text="{Binding Path=SelectedDate, StringFormat = {}{0:MMM dd yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                                <!--<DatePicker BorderThickness="0" x:Name="CaseFrom" FontSize="14" Loaded="DatePicker_Loaded" Width="114" Margin="0,0,0,0"/>-->
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0,5,0,0">
+                                <Label   Content="Date To : " Margin="0,0,0,0"  Foreground="WhiteSmoke" VerticalContentAlignment="Bottom"/>
+                                <DatePicker  CalendarStyle="{StaticResource styleCalendar}" Loaded="DatePicker_Loaded"  BorderThickness="0" x:Name="DateTo"  SelectedDate="{Binding FilterTo,Converter={StaticResource dateTimeToStringConverter},ConverterParameter=ErrorLogSearchDATE, Mode=TwoWay}"     Margin="2,0,15,0" Background="LightGray"  Height="28" Width="135"  FontSize="16" >
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="Control.Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <TextBox x:Name="PART_TextBox"
+     Text="{Binding Path=SelectedDate, StringFormat = {}{0:MMM dd yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                                <!--<DatePicker  BorderThickness="0" x:Name="CaseTo" FontSize="14"  Width="114" Margin="0,0,0,0" />-->
+                                <!--Loaded="DatePicker_Loaded"-->
+                            </StackPanel>
+                            <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan ="2" Orientation="Horizontal" Margin="0,-5,0,0">
+                                <Label  Content="Error# : "    Margin="0,0,0,0" Foreground="WhiteSmoke" />
+                                <TextBox  x:Name="txtErrorCode"  TextWrapping="Wrap"  Width="166" Margin="0,0,0,0" Height="28" FontSize="15" VerticalAlignment="Top"  Text="{Binding FilterErrorNum}" />
+                                <Label Content=" Type : " Foreground="WhiteSmoke" Margin="20,5,0,0"></Label>
+                                <ComboBox x:Name="cbxErrorType"  Grid.Row="2" Grid.Column="2" Width="74" HorizontalAlignment="Left" Height="28" FontSize="15" Margin="0,0,0,0" 
+                                           ItemsSource="{Binding Path=ErrorTypeList}" DisplayMemberPath="Description" SelectedItem="{Binding SelectErrortype}"/>
+                            </StackPanel>
+                            <Button Grid.Column="2" Grid.Row="0" x:Name="ProcSearch" Grid.RowSpan="2" Content="Search" Style="{StaticResource ButtonCryterion}" HorizontalAlignment="Center" Width="111" Margin="10,10,0,8" FontSize="20" Foreground="White" Command="{Binding FilterCommand}"  Click="Search_Click"/>
+                            <!--Click="ProcSearch_Click"-->
+                            <Button  Grid.Column="3" Grid.Row="0" x:Name="ProcClear" Content="Clear" Grid.RowSpan="2" Style="{StaticResource ButtonCryterion}" HorizontalAlignment="Center" Width="111" Margin="10,10,0,8" FontSize="20" Foreground="White" Command="{Binding ClearCommand}" Click="Clear_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <StackPanel Grid.Row="1" Margin="15,5,0,0" Orientation="Horizontal">
+                       <Label Content="Total: " Foreground="White" FontSize="20"></Label>
+                       <Label Content="{Binding ErrorLogNum}"  Foreground="Yellow" FontSize="20"></Label>
+                       <Button x:Name="btnSummary" Style="{StaticResource ButtonCryterion}"  Foreground="White"  Content="Summary"  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="200,-5,0,0"  Width="178"
+                                    Visibility="Visible"   Click="ErrorLogSummaryClick" />
+                        <!--<Image Grid.Column="0" Grid.RowSpan="4" Grid.Row="0"  Height="30" Width="50" />-->
+                       <Button  x:Name="btnSaveData" Style="{StaticResource ButtonCryterion}"  Foreground="White"  Content="Save Data to USB"  FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="30,-5,0,0"  Width="178"
+                                    Visibility="Visible"  Command="{Binding SaveDataToUSBCommand}" IsEnabled="{Binding USBDriveConnected}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="0,0,0,28">
+                        <DataGrid x:Name="dgErrorLogList" Grid.Row="1" CanUserAddRows="False" ItemsSource="{Binding FiltedErrorLogList}" AutoGenerateColumns="False" Background="White" HeadersVisibility="Column" RowHeaderWidth="0" ScrollViewer.CanContentScroll="True"  
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Opacity="0.8" BorderThickness="0" Margin="10,4,10,10" IsReadOnly="True" Padding="5,3,0,0"  Height="680" CurrentCellChanged="dgErrorList_CurrentCellChanged">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGrid}">
+                                    <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+                                </Style>
+                                <Style x:Key="Simple" TargetType="{x:Type RepeatButton}">
+                                    <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource CryterionBrushColorBlue}"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="White" />
+                                    <Setter Property="Foreground" Value="{StaticResource CryterionBrushColorBlue}" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="FontSize" Value="20" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="Background" Value="White" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="FontSize" Value="15" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property ="Margin"  Value="0,21,0,0" />
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="true" />
+                                                <Condition Property="Selector.IsSelectionActive" Value="false" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="{StaticResource CryterionBrushColorBlue}" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                 Color="{StaticResource CryterionColorBlue}" />
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Entry" Binding="{Binding Id}" CanUserResize="False" IsReadOnly="True" Width="100" />
+                                <DataGridTextColumn Header="Error Number" Binding="{Binding ErrorInformation}" CanUserResize="False" IsReadOnly="True" Width="230"  />
+                                <DataGridTextColumn Header="System State" Binding="{Binding SystemStatesID,Converter={StaticResource stateIdToTextConverter}, Mode=TwoWay  }" CanUserResize="False" IsReadOnly="True" Width="140"  />
+                                <DataGridTextColumn Header="Date"  Binding="{Binding ErrorDate, StringFormat=\{0:MMM dd yyy HH:mm:ss\}, Mode=OneWay}" CanUserResize="False" IsReadOnly="True" Width="210"  />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                    <Popup Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Name="ErrorLogSummaryPopup" HorizontalAlignment="Left"  Margin="40" StaysOpen="False"  
+                              Placement="Right"  HorizontalOffset="30" VerticalOffset="100"  VerticalAlignment="Top" Width="700"   Height="760" >
+                        <!--IsOpen="{Binding IsErrorLogSummaryPopup}"-->
+                        <Border BorderBrush="White"    BorderThickness="2" CornerRadius="20,20,20,20" Background="Black">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="10" />
+                                    <!--<RowDefinition Height="*" />-->
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button   Style="{StaticResource XButton}" Grid.Column="1" Grid.Row="0" Click="CancelButton_Click"   Foreground="White"  HorizontalAlignment="Right"  HorizontalContentAlignment="Right" Background="Black"   VerticalAlignment="Top" VerticalContentAlignment="Top"/>
+                                <StackPanel Grid.Column="0" Grid.Row="0" Background="#444444" Width="300" Margin="24,46,24,-28">
+                                    <Label Content="Group by Error Number" Foreground="White" FontSize="20" HorizontalContentAlignment="Center"></Label>
+                                </StackPanel>
+                                <ScrollViewer  Width="300" Height="630" VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" Background="Gray" Margin="0,0,0,0">
+                                    <StackPanel x:Name="SPGroupByErrorCode" Orientation="Vertical" ></StackPanel>
+                                </ScrollViewer>
+                                <StackPanel Grid.Column="1" Grid.Row="1" Background="#444444" Margin="20,-12,27,658">
+                                    <Label Content="Group by Date" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" Margin="0,0,10,0"></Label>
+                                </StackPanel>
+                                <ScrollViewer  Width="300" Height="630" VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="Gray" Margin="20,0,0,0">
+                                    <StackPanel x:Name="SPGroupByDate" Orientation="Vertical" ></StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Popup>
+
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1"  >
+            <GroupBox Height="900" Margin="0,0,10,0">
+                <GroupBox.Header>
+                    <Label Foreground="#FF00AFEF" FontSize="25" FontWeight="Bold">Log Details</Label>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*" />
+                        <RowDefinition Height="1.4*" />
+                        <RowDefinition Height="1.2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
+                        <Label Content="User: " Foreground="White" FontSize="15" Margin="0,-10,0,0"/>
+                        <Label x:Name="lblUserInfo"  Foreground="White" FontSize="15" Margin="0,-10,20,0" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <GroupBox Height="120" Margin="5,5,5,0">
+                            <GroupBox.Header>
+                                <Label Foreground="White"  FontSize="15" FontWeight="Bold">Version Info</Label>
+                            </GroupBox.Header>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="2*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <!--<ColumnDefinition Width="*" />-->
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblGui"  Content="GUI" Foreground="White" FontSize="15" HorizontalContentAlignment="Left" Margin="10,0,0,0"/>
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblGuiV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left" Margin="10,0,0,0"/>
+
+                                <Label Grid.Column="1" Grid.Row="0" x:Name="lblDB" Content="DB" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                <Label Grid.Column="1" Grid.Row="1" x:Name="lblDBV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+
+                                <Label Grid.Column="2" Grid.Row="0" x:Name="lblControl"  Content="Control MCU" Foreground="White" FontSize="15" HorizontalContentAlignment="Left" Grid.ColumnSpan="2"/>
+                                <StackPanel  Grid.Column="2" Grid.Row="1" Orientation="Vertical" Grid.ColumnSpan="2" >
+                                    <Label x:Name="lblControlFV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                    <Label x:Name="lblControlBLV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+
+
+                                <Label Grid.Column="3" Grid.Row="0" x:Name="lblCPLD"  Content="CPLD" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                <Label Grid.Column="3" Grid.Row="1" x:Name="lblCPLDV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+
+
+
+                                <Label Grid.Column="4" Grid.Row="0" x:Name="lblPatient" Content="Patient MCU" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+
+                                <StackPanel  Grid.Column="4" Grid.Row="1" Orientation="Vertical" >
+                                    <Label x:Name="lblPatientFV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                    <Label x:Name="lblPatientBLV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+
+
+                                <Label Grid.Column="5" Grid.Row="0" x:Name="lblRepeator" Content="Repeater MCU" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+
+                                <StackPanel  Grid.Column="5" Grid.Row="1" Orientation="Vertical" >
+                                    <Label x:Name="lblRepeatorFV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                    <Label x:Name="lblRepeatorBLV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+
+                                <Label Grid.Column="6" Grid.Row="0" x:Name="lblRemote"  Content="Remote MCU" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                <StackPanel  Grid.Column="6" Grid.Row="1" Orientation="Vertical" >
+                                    <Label x:Name="lblRemoteFV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                    <Label x:Name="lblRemoteBLV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+
+                                <Label Grid.Column="7" Grid.Row="0" x:Name="lblICB" Content="ICB MCU" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                <StackPanel  Grid.Column="7" Grid.Row="1" Orientation="Vertical" >
+                                    <Label x:Name="lblICBFV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                    <Label x:Name="lblICBLV" Foreground="White" FontSize="15" HorizontalContentAlignment="Left"/>
+                                </StackPanel>
+
+
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2">
+                        <GroupBox Height="90" Margin="2">
+                            <GroupBox.Header>
+                                <Label Foreground="White"  FontSize="15" FontWeight="Bold">Catheter Info</Label>
+                            </GroupBox.Header>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.7*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label  x:Name="lblCatheterID" Content="ID" Grid.Column="0" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblCatheterIDV"  Grid.Column="0" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                                <Label  x:Name="lblCatheterLot" Content="Lot" Grid.Column="1" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblCatheterLotV"  Grid.Column="1" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                                <Label  x:Name="lblCatheterContainer" Content="Container" Grid.Column="2" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblCatheterContainerV"  Grid.Column="2" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                                <Label  x:Name="lblCatheterSerial" Content="Serial#" Grid.Column="3" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblCatheterSerialV"  Grid.Column="3" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                                <Label  x:Name="lblCatheterFirstUsedDate" Content="First Used Date" Grid.Column="4" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblCatheterFirstUsedDateV"  Grid.Column="4" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                                <Label  x:Name="lblIsUsedForTest" Content="Type" Grid.Column="5" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblIsUsedForTestV"  Grid.Column="5" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                                <Label  x:Name="lblFirmware" Content="Firmware Version" Grid.Column="6" Grid.Row="0" Foreground="White" FontSize="15" HorizontalContentAlignment="Center" Margin="0,-10,0,0"/>
+                                <Label  x:Name="lblFirmwareV" Grid.Column="6" Grid.Row="1" Foreground="White" FontSize="15" HorizontalContentAlignment="Center"/>
+
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                    <Label Grid.Row="3" Content="Message" Foreground="White" FontSize="15"></Label>
+                    <ScrollViewer  Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="140" >
+                        <TextBlock x:Name="txtMessage" Text="" FontSize="20" Background="White" Foreground="Black"   TextWrapping="Wrap" Width="1070" Padding="3" HorizontalAlignment="Left"/>
+                    </ScrollViewer>
+                    <Label Grid.Row="4" Content="Solution Message" Foreground="White" FontSize="15"></Label>
+
+                    <ScrollViewer  Grid.Row="4"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="140" >
+                        <TextBlock x:Name="txtSolutionMessage" Text="" FontSize="20" Background="White" Foreground="Black"   TextWrapping="Wrap" Width="1070" Padding="3" HorizontalAlignment="Left"/>
+                    </ScrollViewer>
+                    <Label Grid.Row="5" Content="Engineering Message" Foreground="White" FontSize="15"></Label>
+                    <ScrollViewer  Grid.Row="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="140" >
+                        <TextBlock x:Name="txtCryterionMessage" Text="" FontSize="20" Background="White" Foreground="Black"  Width="1070" TextWrapping="Wrap" Padding="3" HorizontalAlignment="Left"/>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="ReturnToSettingsButton" Content="Return to Settings" Style="{StaticResource ButtonCryterion}" HorizontalAlignment="Center"   FontSize="20" Foreground="White" Height="50" Width="271"  Margin="0,-30,0,0" Command="{Binding ReturnToSettingsCommand}" />
+            <!--<Button  x:Name="ExcelGen"  Content="Generate Excel File" Style="{StaticResource ButtonCryterion}" HorizontalAlignment="Center"   FontSize="20" Foreground="White" Height="50" Width="250"  Margin="100,0,30,0" VerticalAlignment="Top"/>
+            <Button  x:Name="PDFGen"  Content="Generate PDF File" Style="{StaticResource ButtonCryterion}" HorizontalAlignment="Center"   FontSize="20" Foreground="White" Height="50" Width="250" VerticalAlignment="Top" />-->
+        </StackPanel>
+    </Grid>
+</UserControl>

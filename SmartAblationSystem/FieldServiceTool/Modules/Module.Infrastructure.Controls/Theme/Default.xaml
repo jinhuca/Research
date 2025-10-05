@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure.Controls;component/Theme/Colors.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure.Controls;component/BusyIndicators/BusyMask/BusyMask.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure.Controls;component/BusyIndicators/Indicator/Indicator.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

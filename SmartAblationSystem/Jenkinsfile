@@ -1,0 +1,68 @@
+node('EP_Windows1') {
+    try {
+		stage('Checkout') {
+			checkout scm
+            currentBuild.displayName = currentBuild.displayName + " - V" + params.ReleaseVersion
+		}
+
+		stage('Update Versions') {
+			echo "Update Release Version '${params.ReleaseVersion}' in AssemblyInfo files:"
+			powershell ".\\UpdateAssemblyVersion.ps1 ${params.ReleaseVersion}"
+		}
+
+		stage('Update Nuget Packages') {
+			echo 'Update Nuget packages:'
+			bat '''
+				nuget.exe restore SmartAblationSystem.sln
+				dotnet restore SmartAblationSystem.sln
+				'''
+		}
+
+		stage('Build Release') {
+			echo 'Build SmartAblation Solution: '
+			bat '''
+			for /d /r . %%d in (bin,obj) do @if exist "%%d" rd /s/q "%%d"
+			MSBuild SmartAblationSystem.sln /p:Configuration=Release /t:Rebuild /p:Platform="Any CPU" 
+			'''
+		}
+
+		stage('Unit Tests') {
+			echo 'Run Unit Tests: '
+			bat 'call runUnitTests.bat'
+		}
+
+		stage('Build Setup Project') {
+			echo 'Build Setup: '
+            /// We need to call DisableOutOfProcBuild.exe if getting Error when building Setup.vdproj
+            ///  ERROR: An error occurred while validating.  HRESULT = '8000000A' 
+            /// It updates a registry setting in the jenkins agent registry. 
+            /// Environment variable DISABLE_OUTOFPROC_BUILD_EXE_PATH is defined on Jenkins agent 
+            /// and points to folder \Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild  
+            // ---------------------------------------------------- 
+            echo pwd()
+            dir(env.DISABLE_OUTOFPROC_BUILD_EXE_PATH) {
+                bat 'DisableOutOfProcBuild.exe'
+            }
+            echo pwd()
+            // ----------------------------------------------------
+			bat 'devenv SmartAblationSystem.sln /project setup\\Setup.vdproj /rebuild Release'
+		}
+
+		stage('Deploy') {
+            def deployFolder = env.SMARTFREEZE_RELEASE_FOLDER + "\\V" + params.ReleaseVersion
+            def installationFilePath = pwd() + "\\Setup\\Release\\*.*"
+
+            dir(deployFolder) {
+                bat "xcopy ${installationFilePath} /Y /S /C /R "
+            }
+
+            dir(env.SMARTFREEZE_RELEASE_FOLDER) {
+                def deployFolderTmp =  "V" + params.ReleaseVersion + "@tmp" 
+                bat "rmdir ${deployFolderTmp} /S /Q"       
+            }      
+		}
+    } catch(e) {
+        currentBuild.result = 'FAILED'
+        throw e
+    }
+}

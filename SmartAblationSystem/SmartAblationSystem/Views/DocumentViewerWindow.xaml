@@ -1,0 +1,74 @@
+﻿ <Window x:Class="SmartAblationSystem.Views.DocumentViewerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+      xmlns:local="clr-namespace:SmartAblationSystem.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="967" d:DesignWidth="1242"
+      Title="MessagePopup"  Height="999" Width="1282" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"><Window.Resources>
+  <converters:FieldToTextConverter x:Key="fieldToTextConverter" />
+  <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+    <Setter Property="Width" Value="95.08"/>
+    <Setter Property="Height" Value="48.99"/>
+    <Setter Property="BorderThickness" Value="2"/>
+    <Setter Property="BorderBrush" Value="#A7A1A3"/>
+    <Setter Property="Foreground" Value="White"/>
+  </Style>
+  <Style x:Key="DocViewer" TargetType="{x:Type DocumentViewer}">
+    <Setter Property="ScrollViewer.Background" Value="WHite"/>
+  </Style>
+
+</Window.Resources>
+
+  <Border Name="BorderColor" BorderThickness="0" 
+          CornerRadius="10,10,10,10" Background="#2B2B33" 
+          Height="967" Width="1242">
+      <Border.Effect>
+        <DropShadowEffect Color="Black"
+      ShadowDepth="11"
+      BlurRadius="20"
+      RenderingBias="Performance"
+      Opacity="0.5"
+      Direction="-50"/>
+      </Border.Effect>
+      <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="75" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Border Grid.Row="0" Background="#475E8B" CornerRadius="15,15,0,0">
+        <Label Name="TitleLabel" Uid="documentTransUID" Content="{Binding RelativeSource={RelativeSource Self}, Path=Uid , Converter={StaticResource fieldToTextConverter}}" FontSize="20" FontWeight="Bold" FontFamily="{StaticResource Lato}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#DBDBDB" Background="Transparent" />
+    </Border >
+    <Border Grid.Row="1" BorderThickness="1" CornerRadius="10" Background="Transparent" Margin="5,5,5,5">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="65" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0" Background="White" BorderBrush="White" Margin="5,5,5,5" Width="1200" Height="787" CornerRadius="10">
+
+          <DocumentViewer Style="{StaticResource MyDocumentViewer}" HorizontalAlignment="Center" Margin="0,5,0,0"  Name="documentViewer" VerticalAlignment="Top" Width="1183" Height="766"/>
+          <!--<DocumentViewer  HorizontalAlignment="Center" Margin="0,5,0,5"  Name="documentViewer" VerticalAlignment="Top" Height="730" Width="1150" />-->
+
+        </Border>
+
+
+          <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Style="{StaticResource BackToTreatmentRecordButtonStyle_}" Uid="CLOSE"  Height="48.99" Width="95.08" 
+                      Content="{Binding RelativeSource={RelativeSource Self}, Path=Uid,Converter={StaticResource fieldToTextConverter}}" 
+                      x:Name="YesButton" Margin="10,10,40,10"  VerticalAlignment="Center" Click="Yes_Click" HorizontalAlignment="Center"
+                      FontFamily="{StaticResource Lato}" FontSize="16" FontWeight="Bold" Foreground="White" BorderThickness="0" BorderBrush="#A7A1A3"/>
+         
+          </Grid>
+     </Border>
+  </Grid>
+</Border>
+</Window>

@@ -1,0 +1,3612 @@
+[
+ {
+  "Slow": 100,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 100,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 100,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 99.9,
+  "Medium": 99.9,
+  "Fast": 100
+ },
+ {
+  "Slow": 100,
+  "Medium": 99.9,
+  "Fast": 100
+ },
+ {
+  "Slow": 100,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 100,
+  "Medium": 99.6,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 99.5,
+  "Medium": 98.9,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 99.1,
+  "Medium": 98.7,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 98.6,
+  "Medium": 98.1,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 98.1,
+  "Medium": 98.1,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 97.5,
+  "Medium": 96.7,
+  "Fast": 97.3
+ },
+ {
+  "Slow": 96.9,
+  "Medium": 96.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 96.2,
+  "Medium": 95.4,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 95.6,
+  "Medium": 94.7,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 95.1,
+  "Medium": 94.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 94.4,
+  "Medium": 93.7,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 93.7,
+  "Medium": 93.1,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 93.1,
+  "Medium": 92.6,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 92.6,
+  "Medium": 91.9,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 92.1,
+  "Medium": 91.5,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 91.4,
+  "Medium": 91,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 90.8,
+  "Medium": 100,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 90,
+  "Medium": 99.8,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 88.1,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 87.4,
+  "Medium": 99.8,
+  "Fast": 100
+ },
+ {
+  "Slow": 86.7,
+  "Medium": 99.6,
+  "Fast": 100
+ },
+ {
+  "Slow": 86.1,
+  "Medium": 98.9,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 85.4,
+  "Medium": 98.3,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 84.8,
+  "Medium": 97.6,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 84.2,
+  "Medium": 96.8,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 84.2,
+  "Medium": 96.1,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 84.2,
+  "Medium": 95.4,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 82.2,
+  "Medium": 95.4,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 81.6,
+  "Medium": 93.9,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 81.6,
+  "Medium": 93.9,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 80.4,
+  "Medium": 92.5,
+  "Fast": 100
+ },
+ {
+  "Slow": 80.4,
+  "Medium": 91.7,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 91,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 90.2,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 100,
+  "Medium": 89.5,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 100,
+  "Medium": 88.8,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 99.9,
+  "Medium": 88,
+  "Fast": 96.9
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 100,
+  "Fast": 96
+ },
+ {
+  "Slow": 99.4,
+  "Medium": 99.8,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 98.6,
+  "Medium": 100,
+  "Fast": 95.1
+ },
+ {
+  "Slow": 97.9,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 97.6,
+  "Medium": 99.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 97.6,
+  "Medium": 99.6,
+  "Fast": 100
+ },
+ {
+  "Slow": 96.5,
+  "Medium": 99.3,
+  "Fast": 100
+ },
+ {
+  "Slow": 97.2,
+  "Medium": 98.5,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 97.2,
+  "Medium": 97.8,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 96.4,
+  "Medium": 97.2,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 95.7,
+  "Medium": 96.4,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 94.8,
+  "Medium": 95.7,
+  "Fast": 96.9
+ },
+ {
+  "Slow": 94.2,
+  "Medium": 95,
+  "Fast": 96
+ },
+ {
+  "Slow": 93.5,
+  "Medium": 94.1,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 92.7,
+  "Medium": 94.1,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 92.1,
+  "Medium": 93.4,
+  "Fast": 100
+ },
+ {
+  "Slow": 92.1,
+  "Medium": 91.9,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 90.9,
+  "Medium": 91.1,
+  "Fast": 100
+ },
+ {
+  "Slow": 90.2,
+  "Medium": 90.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 89.6,
+  "Medium": 89.5,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 89.6,
+  "Medium": 88.7,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 88.1,
+  "Medium": 87.9,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 87.5,
+  "Medium": 100,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 86.8,
+  "Medium": 100,
+  "Fast": 96.9
+ },
+ {
+  "Slow": 86.1,
+  "Medium": 99.7,
+  "Fast": 96
+ },
+ {
+  "Slow": 85.3,
+  "Medium": 99.7,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 84.6,
+  "Medium": 99.9,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 83.8,
+  "Medium": 99.7,
+  "Fast": 100
+ },
+ {
+  "Slow": 83.8,
+  "Medium": 99.1,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 82.5,
+  "Medium": 98.3,
+  "Fast": 100
+ },
+ {
+  "Slow": 82.5,
+  "Medium": 97.4,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 100,
+  "Medium": 96.5,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 99.4,
+  "Medium": 95.6,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 99.4,
+  "Medium": 94.8,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 100,
+  "Medium": 94,
+  "Fast": 96.8
+ },
+ {
+  "Slow": 100,
+  "Medium": 93.1,
+  "Fast": 95.9
+ },
+ {
+  "Slow": 100,
+  "Medium": 92.3,
+  "Fast": 95
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 91.5,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 99.2,
+  "Medium": 90.7,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 98.5,
+  "Medium": 89.9,
+  "Fast": 100
+ },
+ {
+  "Slow": 97.7,
+  "Medium": 89.1,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 97.7,
+  "Medium": 88.3,
+  "Fast": 100
+ },
+ {
+  "Slow": 96.1,
+  "Medium": 87.6,
+  "Fast": 100
+ },
+ {
+  "Slow": 95.3,
+  "Medium": 86.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 94.5,
+  "Medium": 86,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 93.7,
+  "Medium": 85.2,
+  "Fast": 98.2
+ },
+ {
+  "Slow": 93.7,
+  "Medium": 100,
+  "Fast": 97.3
+ },
+ {
+  "Slow": 92.8,
+  "Medium": 100,
+  "Fast": 96.4
+ },
+ {
+  "Slow": 91.1,
+  "Medium": 99.3,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 90.4,
+  "Medium": 100,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 89.7,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 88.9,
+  "Medium": 99.8,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 88.2,
+  "Medium": 99.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 88.2,
+  "Medium": 98.4,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 86.5,
+  "Medium": 97.6,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 86.5,
+  "Medium": 96.7,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 85,
+  "Medium": 95.9,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 95.9,
+  "Fast": 97
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 94.3,
+  "Fast": 96.1
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 93.5,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 82.2,
+  "Medium": 92.6,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 91.9,
+  "Fast": 97.2
+ },
+ {
+  "Slow": 80.8,
+  "Medium": 91,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 80.1,
+  "Medium": 90.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 79.4,
+  "Medium": 89.4,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 79.4,
+  "Medium": 89.4,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 78.7,
+  "Medium": 87.9,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 85.4,
+  "Medium": 87.9,
+  "Fast": 98
+ },
+ {
+  "Slow": 99.9,
+  "Medium": 86.3,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 99.6,
+  "Medium": 85.6,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 99.6,
+  "Medium": 85.6,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 99.5,
+  "Medium": 85.6,
+  "Fast": 94.5
+ },
+ {
+  "Slow": 100,
+  "Medium": 85.6,
+  "Fast": 100
+ },
+ {
+  "Slow": 100,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 99.4,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 99.5,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 99.1,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 99.1,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 97.4,
+  "Fast": 98.1
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 96.8,
+  "Fast": 97.2
+ },
+ {
+  "Slow": 96.5,
+  "Medium": 95.9,
+  "Fast": 96.3
+ },
+ {
+  "Slow": 94.1,
+  "Medium": 95.1,
+  "Fast": 95.4
+ },
+ {
+  "Slow": 93.2,
+  "Medium": 95.1,
+  "Fast": 94.5
+ },
+ {
+  "Slow": 92.5,
+  "Medium": 94.3,
+  "Fast": 93.7
+ },
+ {
+  "Slow": 91.8,
+  "Medium": 93.4,
+  "Fast": 98.2
+ },
+ {
+  "Slow": 91.8,
+  "Medium": 91.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 91.5,
+  "Medium": 91.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 91.1,
+  "Medium": 91,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 89.7,
+  "Medium": 89.4,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 88.9,
+  "Medium": 88.6,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 88.2,
+  "Medium": 88.6,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 88.2,
+  "Medium": 87,
+  "Fast": 97.4
+ },
+ {
+  "Slow": 86.6,
+  "Medium": 87,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 86.6,
+  "Medium": 100,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 85.2,
+  "Medium": 99.8,
+  "Fast": 94.7
+ },
+ {
+  "Slow": 84.5,
+  "Medium": 100,
+  "Fast": 97.3
+ },
+ {
+  "Slow": 84.5,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 83,
+  "Medium": 100,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 82.4,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 82.4,
+  "Medium": 98.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 81,
+  "Medium": 98.8,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 80.3,
+  "Medium": 97.1,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 79.5,
+  "Medium": 97.1,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 79.5,
+  "Medium": 95.5,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 78.1,
+  "Medium": 94.6,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 78.1,
+  "Medium": 94.6,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 97.5,
+  "Medium": 93,
+  "Fast": 93.9
+ },
+ {
+  "Slow": 97.1,
+  "Medium": 92.2,
+  "Fast": 96.3
+ },
+ {
+  "Slow": 97.1,
+  "Medium": 92.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 100,
+  "Medium": 92.2,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 100,
+  "Medium": 92.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 99.8,
+  "Medium": 89.7,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 99.5,
+  "Medium": 88.1,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 98.9,
+  "Medium": 88.1,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 98.2,
+  "Medium": 86.5,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 97.4,
+  "Medium": 86.5,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 96.6,
+  "Medium": 86.5,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 96.6,
+  "Medium": 99.5,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 95.8,
+  "Medium": 100,
+  "Fast": 93.9
+ },
+ {
+  "Slow": 95,
+  "Medium": 100,
+  "Fast": 93
+ },
+ {
+  "Slow": 93.5,
+  "Medium": 99.8,
+  "Fast": 98.1
+ },
+ {
+  "Slow": 92.8,
+  "Medium": 99.8,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 91.9,
+  "Medium": 99.3,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 91.9,
+  "Medium": 97.9,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 90.3,
+  "Medium": 97.9,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 89.5,
+  "Medium": 97.1,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 88.8,
+  "Medium": 95.4,
+  "Fast": 98
+ },
+ {
+  "Slow": 88.1,
+  "Medium": 94.6,
+  "Fast": 97
+ },
+ {
+  "Slow": 87.2,
+  "Medium": 94.6,
+  "Fast": 96.1
+ },
+ {
+  "Slow": 86.5,
+  "Medium": 94.6,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 85.8,
+  "Medium": 92.1,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 85,
+  "Medium": 91.3,
+  "Fast": 93.4
+ },
+ {
+  "Slow": 84.2,
+  "Medium": 90.5,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 83.5,
+  "Medium": 89.7,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 82.7,
+  "Medium": 88.9,
+  "Fast": 100
+ },
+ {
+  "Slow": 82,
+  "Medium": 88.1,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 81.3,
+  "Medium": 87.3,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 80.5,
+  "Medium": 86.5,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 79.9,
+  "Medium": 85.7,
+  "Fast": 98
+ },
+ {
+  "Slow": 79.1,
+  "Medium": 85,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 78.4,
+  "Medium": 85,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 77.6,
+  "Medium": 97.4,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 77,
+  "Medium": 97.7,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 97,
+  "Medium": 100,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 97.9,
+  "Medium": 100,
+  "Fast": 100
+ },
+ {
+  "Slow": 98.5,
+  "Medium": 99.8,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 100,
+  "Medium": 99.1,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 99.9,
+  "Medium": 98.6,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 97.7,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 99.3,
+  "Medium": 96.9,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 96.1,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 97.9,
+  "Medium": 95.3,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 97.1,
+  "Medium": 94.4,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 95.8,
+  "Medium": 93.7,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 95.8,
+  "Medium": 92.8,
+  "Fast": 93.9
+ },
+ {
+  "Slow": 95.8,
+  "Medium": 92,
+  "Fast": 93
+ },
+ {
+  "Slow": 94,
+  "Medium": 91.2,
+  "Fast": 100
+ },
+ {
+  "Slow": 93.3,
+  "Medium": 90.3,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 92.6,
+  "Medium": 89.5,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 91.8,
+  "Medium": 88.7,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 91,
+  "Medium": 87.9,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 90.1,
+  "Medium": 87.1,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 89.3,
+  "Medium": 86.2,
+  "Fast": 97.4
+ },
+ {
+  "Slow": 88.6,
+  "Medium": 85.4,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 87.8,
+  "Medium": 84.6,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 87,
+  "Medium": 83.8,
+  "Fast": 94.7
+ },
+ {
+  "Slow": 86.3,
+  "Medium": 97.2,
+  "Fast": 93.8
+ },
+ {
+  "Slow": 85.5,
+  "Medium": 97.5,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 84.7,
+  "Medium": 97.8,
+  "Fast": 100
+ },
+ {
+  "Slow": 84,
+  "Medium": 100,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 83.2,
+  "Medium": 99.9,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 82.6,
+  "Medium": 99.3,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 81.9,
+  "Medium": 99.3,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 81.2,
+  "Medium": 97.9,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 80.4,
+  "Medium": 97.9,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 79.7,
+  "Medium": 96.2,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 79,
+  "Medium": 95.3,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 78.3,
+  "Medium": 94.4,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 76.8,
+  "Medium": 93.6,
+  "Fast": 93.9
+ },
+ {
+  "Slow": 76.8,
+  "Medium": 92.7,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 76.8,
+  "Medium": 91.9,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 93.4,
+  "Medium": 91,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 93.8,
+  "Medium": 90.2,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 95.3,
+  "Medium": 89.4,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 100,
+  "Medium": 88.6,
+  "Fast": 99
+ },
+ {
+  "Slow": 100,
+  "Medium": 87.8,
+  "Fast": 99
+ },
+ {
+  "Slow": 99.6,
+  "Medium": 87,
+  "Fast": 97.2
+ },
+ {
+  "Slow": 99.3,
+  "Medium": 86.2,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 98.7,
+  "Medium": 85.4,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 97.8,
+  "Medium": 84.6,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 97.1,
+  "Medium": 84.6,
+  "Fast": 93.5
+ },
+ {
+  "Slow": 96.4,
+  "Medium": 97.9,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 95.7,
+  "Medium": 97.9,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 94.8,
+  "Medium": 98.2,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 94,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 93.2,
+  "Medium": 99.8,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 92.5,
+  "Medium": 99.4,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 91.7,
+  "Medium": 99.4,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 90.9,
+  "Medium": 97.9,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 90.1,
+  "Medium": 97,
+  "Fast": 96
+ },
+ {
+  "Slow": 89.2,
+  "Medium": 96.2,
+  "Fast": 96
+ },
+ {
+  "Slow": 88.4,
+  "Medium": 95.3,
+  "Fast": 96
+ },
+ {
+  "Slow": 87.7,
+  "Medium": 94.4,
+  "Fast": 96
+ },
+ {
+  "Slow": 86.2,
+  "Medium": 93.7,
+  "Fast": 92.4
+ },
+ {
+  "Slow": 86.2,
+  "Medium": 92.8,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 86.2,
+  "Medium": 91.9,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 84.7,
+  "Medium": 91.9,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 83.9,
+  "Medium": 90.4,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 83.2,
+  "Medium": 89.5,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 82.4,
+  "Medium": 88.7,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 81.7,
+  "Medium": 88,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 80.9,
+  "Medium": 87.2,
+  "Fast": 96.4
+ },
+ {
+  "Slow": 80.2,
+  "Medium": 86.4,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 79.5,
+  "Medium": 85.7,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 78.8,
+  "Medium": 84.9,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 78.1,
+  "Medium": 84.9,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 77.4,
+  "Medium": 96.9,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 76.6,
+  "Medium": 96.9,
+  "Fast": 100
+ },
+ {
+  "Slow": 75.9,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 75.2,
+  "Medium": 100,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 74.5,
+  "Medium": 99.6,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 93.3,
+  "Medium": 99,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 93.3,
+  "Medium": 99,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 93,
+  "Medium": 97.4,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 97.2,
+  "Medium": 96.5,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 100,
+  "Medium": 95.7,
+  "Fast": 94
+ },
+ {
+  "Slow": 100,
+  "Medium": 94.8,
+  "Fast": 94
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 94.1,
+  "Fast": 94
+ },
+ {
+  "Slow": 99.1,
+  "Medium": 93.2,
+  "Fast": 94
+ },
+ {
+  "Slow": 98.5,
+  "Medium": 92.3,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 98.5,
+  "Medium": 91.7,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 97,
+  "Medium": 90.8,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 96.2,
+  "Medium": 89.9,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 95.4,
+  "Medium": 89.2,
+  "Fast": 97.4
+ },
+ {
+  "Slow": 94.6,
+  "Medium": 88.3,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 93.8,
+  "Medium": 87.5,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 93.1,
+  "Medium": 86.7,
+  "Fast": 94.7
+ },
+ {
+  "Slow": 92.2,
+  "Medium": 85.9,
+  "Fast": 94.7
+ },
+ {
+  "Slow": 91.3,
+  "Medium": 85.1,
+  "Fast": 93.8
+ },
+ {
+  "Slow": 90.5,
+  "Medium": 97.1,
+  "Fast": 100
+ },
+ {
+  "Slow": 89.7,
+  "Medium": 98.3,
+  "Fast": 100
+ },
+ {
+  "Slow": 88.9,
+  "Medium": 98.3,
+  "Fast": 100
+ },
+ {
+  "Slow": 88.1,
+  "Medium": 99.9,
+  "Fast": 100
+ },
+ {
+  "Slow": 87.3,
+  "Medium": 99.8,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 86.6,
+  "Medium": 99.2,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 85.8,
+  "Medium": 98.6,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 85.1,
+  "Medium": 97.8,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 96.9,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 83.7,
+  "Medium": 96.1,
+  "Fast": 96.8
+ },
+ {
+  "Slow": 83.7,
+  "Medium": 95.2,
+  "Fast": 96.8
+ },
+ {
+  "Slow": 82.9,
+  "Medium": 94.3,
+  "Fast": 93.2
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 93.5,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 80.7,
+  "Medium": 93.5,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 80,
+  "Medium": 91.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 79.3,
+  "Medium": 91,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 79.3,
+  "Medium": 90.2,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 77.8,
+  "Medium": 90.2,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 82.4,
+  "Medium": 89.3,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 93.8,
+  "Medium": 87.7,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 95.7,
+  "Medium": 87.7,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 100,
+  "Medium": 86.9,
+  "Fast": 93.8
+ },
+ {
+  "Slow": 100,
+  "Medium": 86.1,
+  "Fast": 92.9
+ },
+ {
+  "Slow": 99.8,
+  "Medium": 85.4,
+  "Fast": 92
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 97,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 99.1,
+  "Medium": 96.7,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 98.5,
+  "Medium": 96.7,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 97.6,
+  "Medium": 99.4,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 96.9,
+  "Medium": 100,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 96.2,
+  "Medium": 99.2,
+  "Fast": 97.6
+ },
+ {
+  "Slow": 95.4,
+  "Medium": 98.5,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 94.6,
+  "Medium": 97.5,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 93.7,
+  "Medium": 97.5,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 93.1,
+  "Medium": 95.9,
+  "Fast": 94
+ },
+ {
+  "Slow": 92.2,
+  "Medium": 95.9,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 91.4,
+  "Medium": 95.1,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 90.6,
+  "Medium": 93.4,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 89.8,
+  "Medium": 93.4,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 89,
+  "Medium": 92.5,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 88.2,
+  "Medium": 90.9,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 87.5,
+  "Medium": 90.9,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 86.7,
+  "Medium": 90.1,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 86,
+  "Medium": 89.3,
+  "Fast": 96.8
+ },
+ {
+  "Slow": 85.2,
+  "Medium": 88.5,
+  "Fast": 95.9
+ },
+ {
+  "Slow": 85.2,
+  "Medium": 86.8,
+  "Fast": 95
+ },
+ {
+  "Slow": 83.6,
+  "Medium": 86.8,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 82.9,
+  "Medium": 86.1,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 82.1,
+  "Medium": 85.3,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 81.4,
+  "Medium": 89.4,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 80.7,
+  "Medium": 96.3,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 79.9,
+  "Medium": 95.9,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 79.3,
+  "Medium": 95.9,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 78.6,
+  "Medium": 99.7,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 78,
+  "Medium": 100,
+  "Fast": 98
+ },
+ {
+  "Slow": 78,
+  "Medium": 99.1,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 92.3,
+  "Medium": 99.1,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 93,
+  "Medium": 98.3,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 94.1,
+  "Medium": 97.4,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 100,
+  "Medium": 96.6,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 99.9,
+  "Medium": 94.8,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 99.7,
+  "Medium": 94.8,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 99.4,
+  "Medium": 94.1,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 98.8,
+  "Medium": 92.3,
+  "Fast": 100
+ },
+ {
+  "Slow": 97.9,
+  "Medium": 92.3,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 97.3,
+  "Medium": 90.8,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 96.9,
+  "Medium": 90.8,
+  "Fast": 98.1
+ },
+ {
+  "Slow": 96.9,
+  "Medium": 89.9,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 95.4,
+  "Medium": 89.1,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 94.6,
+  "Medium": 88.3,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 93.9,
+  "Medium": 87.5,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 93.1,
+  "Medium": 86.7,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 92.3,
+  "Medium": 89.3,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 91.5,
+  "Medium": 97.5,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 90.7,
+  "Medium": 97.4,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 90,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 89.2,
+  "Medium": 99.9,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 88.4,
+  "Medium": 99.9,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 87.7,
+  "Medium": 99.5,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 86.9,
+  "Medium": 97.9,
+  "Fast": 97
+ },
+ {
+  "Slow": 86.1,
+  "Medium": 97,
+  "Fast": 96
+ },
+ {
+  "Slow": 85.3,
+  "Medium": 97,
+  "Fast": 95.1
+ },
+ {
+  "Slow": 85.3,
+  "Medium": 96.2,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 83.8,
+  "Medium": 95.3,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 83.8,
+  "Medium": 94.4,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 83.1,
+  "Medium": 92.8,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 81.6,
+  "Medium": 92.8,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 81.6,
+  "Medium": 92.8,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 80.8,
+  "Medium": 91.9,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 79.4,
+  "Medium": 91.9,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 79.4,
+  "Medium": 91.9,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 94.8,
+  "Medium": 87.9,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 94.8,
+  "Medium": 87.9,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 95.6,
+  "Medium": 87.9,
+  "Fast": 95.7
+ },
+ {
+  "Slow": 100,
+  "Medium": 87.1,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 100,
+  "Medium": 89.1,
+  "Fast": 93.9
+ },
+ {
+  "Slow": 99.8,
+  "Medium": 97.9,
+  "Fast": 93
+ },
+ {
+  "Slow": 99.5,
+  "Medium": 97.9,
+  "Fast": 97.2
+ },
+ {
+  "Slow": 99.5,
+  "Medium": 97.9,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 97.9,
+  "Medium": 100,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 97.9,
+  "Medium": 99.2,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 97,
+  "Medium": 98.4,
+  "Fast": 99
+ },
+ {
+  "Slow": 96.3,
+  "Medium": 98.4,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 96.3,
+  "Medium": 98.4,
+  "Fast": 97.4
+ },
+ {
+  "Slow": 94.1,
+  "Medium": 96.7,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 94.1,
+  "Medium": 95.9,
+  "Fast": 95.6
+ },
+ {
+  "Slow": 92.5,
+  "Medium": 95,
+  "Fast": 94.7
+ },
+ {
+  "Slow": 92.5,
+  "Medium": 94.1,
+  "Fast": 93.7
+ },
+ {
+  "Slow": 92.5,
+  "Medium": 93.3,
+  "Fast": 98.1
+ },
+ {
+  "Slow": 90.1,
+  "Medium": 92.5,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 92.5,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 90.9,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 87.9,
+  "Medium": 90,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 87.1,
+  "Medium": 90,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 86.3,
+  "Medium": 88.4,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 85.5,
+  "Medium": 88.4,
+  "Fast": 96.9
+ },
+ {
+  "Slow": 84.7,
+  "Medium": 86.8,
+  "Fast": 95.9
+ },
+ {
+  "Slow": 84.7,
+  "Medium": 86,
+  "Fast": 95
+ },
+ {
+  "Slow": 83.7,
+  "Medium": 85.2,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 83.1,
+  "Medium": 96.8,
+  "Fast": 93.2
+ },
+ {
+  "Slow": 83.1,
+  "Medium": 96.6,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 81.6,
+  "Medium": 97.7,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 80.9,
+  "Medium": 99.9,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 80.2,
+  "Medium": 99.9,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 96,
+  "Medium": 99.9,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 96.6,
+  "Medium": 97.7,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 99.1,
+  "Medium": 97.7,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 99.9,
+  "Medium": 97.7,
+  "Fast": 97
+ },
+ {
+  "Slow": 100,
+  "Medium": 97.7,
+  "Fast": 96.1
+ },
+ {
+  "Slow": 99.5,
+  "Medium": 95.2,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 99.1,
+  "Medium": 93.6,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 98.6,
+  "Medium": 93.6,
+  "Fast": 93.4
+ },
+ {
+  "Slow": 97.8,
+  "Medium": 92.7,
+  "Fast": 93.4
+ },
+ {
+  "Slow": 97.2,
+  "Medium": 91.8,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 96.4,
+  "Medium": 90.1,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 95.6,
+  "Medium": 90.1,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 94.8,
+  "Medium": 90.1,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 94.1,
+  "Medium": 89.3,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 93.3,
+  "Medium": 88.5,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 92.5,
+  "Medium": 88.5,
+  "Fast": 96.9
+ },
+ {
+  "Slow": 91.7,
+  "Medium": 86,
+  "Fast": 96
+ },
+ {
+  "Slow": 90.9,
+  "Medium": 85.2,
+  "Fast": 95.1
+ },
+ {
+  "Slow": 90.9,
+  "Medium": 84.4,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 84.4,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 88.5,
+  "Medium": 94.9,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 87.7,
+  "Medium": 94.5,
+  "Fast": 99
+ },
+ {
+  "Slow": 87,
+  "Medium": 98.1,
+  "Fast": 100
+ },
+ {
+  "Slow": 86.2,
+  "Medium": 98.4,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 85.5,
+  "Medium": 98.1,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 84.7,
+  "Medium": 97.5,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 84,
+  "Medium": 95.6,
+  "Fast": 97.6
+ },
+ {
+  "Slow": 83.2,
+  "Medium": 94.8,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 82.5,
+  "Medium": 94.8,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 81.7,
+  "Medium": 93.9,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 81,
+  "Medium": 93.1,
+  "Fast": 94
+ },
+ {
+  "Slow": 80.3,
+  "Medium": 92.2,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 79.6,
+  "Medium": 91.3,
+  "Fast": 97.4
+ },
+ {
+  "Slow": 78.9,
+  "Medium": 90.5,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 78.2,
+  "Medium": 89.6,
+  "Fast": 98.6
+ },
+ {
+  "Slow": 77.5,
+  "Medium": 88.8,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 82.9,
+  "Medium": 88,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 91.3,
+  "Medium": 87.2,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 92.3,
+  "Medium": 86.4,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 96.2,
+  "Medium": 85.6,
+  "Fast": 97.6
+ },
+ {
+  "Slow": 99.1,
+  "Medium": 84,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 99.2,
+  "Medium": 89,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 98.8,
+  "Medium": 89,
+  "Fast": 94
+ },
+ {
+  "Slow": 98.8,
+  "Medium": 96,
+  "Fast": 99.2
+ },
+ {
+  "Slow": 97.6,
+  "Medium": 95.9,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 97.1,
+  "Medium": 99.4,
+  "Fast": 100
+ },
+ {
+  "Slow": 96.9,
+  "Medium": 99.8,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 96.2,
+  "Medium": 99.5,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 95.4,
+  "Medium": 99,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 94.6,
+  "Medium": 98.1,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 93.9,
+  "Medium": 97.3,
+  "Fast": 97
+ },
+ {
+  "Slow": 93.2,
+  "Medium": 95.7,
+  "Fast": 96.1
+ },
+ {
+  "Slow": 92.3,
+  "Medium": 94.8,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 91.6,
+  "Medium": 94.8,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 90.8,
+  "Medium": 94,
+  "Fast": 93.4
+ },
+ {
+  "Slow": 90,
+  "Medium": 93.1,
+  "Fast": 98.1
+ },
+ {
+  "Slow": 89.3,
+  "Medium": 91.4,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 88.5,
+  "Medium": 91.4,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 87.7,
+  "Medium": 90.6,
+  "Fast": 100
+ },
+ {
+  "Slow": 86.9,
+  "Medium": 89.7,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 86.1,
+  "Medium": 88.9,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 85.3,
+  "Medium": 88.1,
+  "Fast": 98.1
+ },
+ {
+  "Slow": 84.6,
+  "Medium": 87.3,
+  "Fast": 97.2
+ },
+ {
+  "Slow": 83.8,
+  "Medium": 86.5,
+  "Fast": 96.3
+ },
+ {
+  "Slow": 83.1,
+  "Medium": 85.7,
+  "Fast": 95.4
+ },
+ {
+  "Slow": 82.3,
+  "Medium": 96.1,
+  "Fast": 95.4
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 96.8,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 80.8,
+  "Medium": 97.6,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 80.8,
+  "Medium": 99.9,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 79.3,
+  "Medium": 100,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 78.6,
+  "Medium": 99.4,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 77.9,
+  "Medium": 98.8,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 77.2,
+  "Medium": 97.9,
+  "Fast": 98
+ },
+ {
+  "Slow": 85,
+  "Medium": 97.1,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 90,
+  "Medium": 96.2,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 90.9,
+  "Medium": 95.4,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 91.5,
+  "Medium": 93.6,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 94.7,
+  "Medium": 92.8,
+  "Fast": 93.5
+ },
+ {
+  "Slow": 95.1,
+  "Medium": 92.8,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 94.5,
+  "Medium": 92.8,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 93.9,
+  "Medium": 90.2,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 93.1,
+  "Medium": 90.2,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 92.4,
+  "Medium": 89.4,
+  "Fast": 99.8
+ },
+ {
+  "Slow": 91.5,
+  "Medium": 88.6,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 90.7,
+  "Medium": 87.7,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 89.9,
+  "Medium": 87,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 89.1,
+  "Medium": 86.1,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 88.3,
+  "Medium": 85.4,
+  "Fast": 95
+ },
+ {
+  "Slow": 87.6,
+  "Medium": 84.6,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 86.8,
+  "Medium": 96,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 86,
+  "Medium": 97.2,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 85.2,
+  "Medium": 99.9,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 99.8,
+  "Fast": 99.9
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 99.8,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 83,
+  "Medium": 99.1,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 82.2,
+  "Medium": 98.6,
+  "Fast": 98
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 97.6,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 80.8,
+  "Medium": 96.8,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 80,
+  "Medium": 96,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 79.3,
+  "Medium": 95.1,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 78.6,
+  "Medium": 95.1,
+  "Fast": 93.5
+ },
+ {
+  "Slow": 77.9,
+  "Medium": 93.4,
+  "Fast": 96.5
+ },
+ {
+  "Slow": 77.1,
+  "Medium": 92.5,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 76.4,
+  "Medium": 92.5,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 75.7,
+  "Medium": 92.5,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 75,
+  "Medium": 90,
+  "Fast": 99.3
+ },
+ {
+  "Slow": 74.3,
+  "Medium": 89.2,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 85.1,
+  "Medium": 88.3,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 87.5,
+  "Medium": 87.5,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 87.5,
+  "Medium": 86.6,
+  "Fast": 95.9
+ },
+ {
+  "Slow": 88.7,
+  "Medium": 85.9,
+  "Fast": 95.9
+ },
+ {
+  "Slow": 93.3,
+  "Medium": 85,
+  "Fast": 95
+ },
+ {
+  "Slow": 94.2,
+  "Medium": 84.2,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 93.9,
+  "Medium": 95.2,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 93.6,
+  "Medium": 95.2,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 92.9,
+  "Medium": 99.6,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 92.9,
+  "Medium": 99.6,
+  "Fast": 99.4
+ },
+ {
+  "Slow": 91.4,
+  "Medium": 99.9,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 91.4,
+  "Medium": 99.3,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 90,
+  "Medium": 98.7,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 89.2,
+  "Medium": 97.8,
+  "Fast": 97
+ },
+ {
+  "Slow": 89.2,
+  "Medium": 96.9,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 87.6,
+  "Medium": 96.1,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 87.6,
+  "Medium": 95.2,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 86.8,
+  "Medium": 94.3,
+  "Fast": 93.4
+ },
+ {
+  "Slow": 85.3,
+  "Medium": 93.4,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 84.6,
+  "Medium": 91.8,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 83.9,
+  "Medium": 91,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 83.1,
+  "Medium": 91,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 82.4,
+  "Medium": 91,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 81.6,
+  "Medium": 89.3,
+  "Fast": 97.6
+ },
+ {
+  "Slow": 80.9,
+  "Medium": 88.5,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 80.2,
+  "Medium": 87.7,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 79.5,
+  "Medium": 86.8,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 78.7,
+  "Medium": 86,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 78,
+  "Medium": 85.2,
+  "Fast": 93.2
+ },
+ {
+  "Slow": 77.3,
+  "Medium": 84.5,
+  "Fast": 98.9
+ },
+ {
+  "Slow": 76.6,
+  "Medium": 96.7,
+  "Fast": 98.5
+ },
+ {
+  "Slow": 75.9,
+  "Medium": 96.8,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 75.2,
+  "Medium": 97.1,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 75.2,
+  "Medium": 100,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 73.9,
+  "Medium": 99.4,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 80.5,
+  "Medium": 99.4,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 80.5,
+  "Medium": 98.8,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 87.7,
+  "Medium": 97.9,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 88.7,
+  "Medium": 97,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 93.3,
+  "Medium": 96.3,
+  "Fast": 93.5
+ },
+ {
+  "Slow": 94.1,
+  "Medium": 95.4,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 93.8,
+  "Medium": 94.6,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 93.5,
+  "Medium": 93.8,
+  "Fast": 98.2
+ },
+ {
+  "Slow": 92.8,
+  "Medium": 92.9,
+  "Fast": 99.7
+ },
+ {
+  "Slow": 92,
+  "Medium": 91.3,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 91.2,
+  "Medium": 90.4,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 90.5,
+  "Medium": 90.4,
+  "Fast": 98
+ },
+ {
+  "Slow": 89.8,
+  "Medium": 90.4,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 89,
+  "Medium": 88.8,
+  "Fast": 96.2
+ },
+ {
+  "Slow": 88.2,
+  "Medium": 88,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 87.4,
+  "Medium": 87.2,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 86.7,
+  "Medium": 86.3,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 85.9,
+  "Medium": 85.6,
+  "Fast": 99.6
+ },
+ {
+  "Slow": 85.2,
+  "Medium": 85.2,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 98.3,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 83.6,
+  "Medium": 98,
+  "Fast": 99.5
+ },
+ {
+  "Slow": 82.9,
+  "Medium": 100,
+  "Fast": 98.8
+ },
+ {
+  "Slow": 82.1,
+  "Medium": 100,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 81.3,
+  "Medium": 99.6,
+  "Fast": 97
+ },
+ {
+  "Slow": 80.6,
+  "Medium": 99,
+  "Fast": 96.1
+ },
+ {
+  "Slow": 79.9,
+  "Medium": 98.4,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 79.9,
+  "Medium": 97.5,
+  "Fast": 94.3
+ },
+ {
+  "Slow": 78.5,
+  "Medium": 96.7,
+  "Fast": 95.9
+ },
+ {
+  "Slow": 77.8,
+  "Medium": 95.9,
+  "Fast": 99
+ },
+ {
+  "Slow": 77,
+  "Medium": 95,
+  "Fast": 98.2
+ },
+ {
+  "Slow": 76.4,
+  "Medium": 94.2,
+  "Fast": 99.1
+ },
+ {
+  "Slow": 75.7,
+  "Medium": 93.5,
+  "Fast": 99
+ },
+ {
+  "Slow": 75,
+  "Medium": 92.6,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 74.3,
+  "Medium": 91.8,
+  "Fast": 97.6
+ },
+ {
+  "Slow": 73.7,
+  "Medium": 90.9,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 78.8,
+  "Medium": 89.2,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 86.2,
+  "Medium": 89.2,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 86.4,
+  "Medium": 89.2,
+  "Fast": 94
+ },
+ {
+  "Slow": 86.4,
+  "Medium": 87.6,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 90.4,
+  "Medium": 86.8,
+  "Fast": 94
+ },
+ {
+  "Slow": 90.9,
+  "Medium": 85.9,
+  "Fast": 98.2
+ },
+ {
+  "Slow": 90.5,
+  "Medium": 85.1,
+  "Fast": 97.6
+ },
+ {
+  "Slow": 90.1,
+  "Medium": 84.4,
+  "Fast": 98.3
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 94.3,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 88.7,
+  "Medium": 95.6,
+  "Fast": 97.3
+ },
+ {
+  "Slow": 88,
+  "Medium": 95.6,
+  "Fast": 96.4
+ },
+ {
+  "Slow": 87.4,
+  "Medium": 99,
+  "Fast": 95.5
+ },
+ {
+  "Slow": 86.6,
+  "Medium": 99.3,
+  "Fast": 94.6
+ },
+ {
+  "Slow": 85.9,
+  "Medium": 98.8,
+  "Fast": 93.7
+ },
+ {
+  "Slow": 85.1,
+  "Medium": 98.2,
+  "Fast": 92.8
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 97.4,
+  "Fast": 91.9
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 96.5,
+  "Fast": 97.9
+ },
+ {
+  "Slow": 82.9,
+  "Medium": 95.8,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 82.2,
+  "Medium": 94.9,
+  "Fast": 98.7
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 94.1,
+  "Fast": 98.4
+ },
+ {
+  "Slow": 80.8,
+  "Medium": 93.2,
+  "Fast": 97.7
+ },
+ {
+  "Slow": 80,
+  "Medium": 92.4,
+  "Fast": 96.9
+ },
+ {
+  "Slow": 79.3,
+  "Medium": 91.6,
+  "Fast": 96
+ },
+ {
+  "Slow": 78.6,
+  "Medium": 90.8,
+  "Fast": 95.1
+ },
+ {
+  "Slow": 77.9,
+  "Medium": 89.2,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 77.2,
+  "Medium": 88.3,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 76.5,
+  "Medium": 88.3,
+  "Fast": 92.4
+ },
+ {
+  "Slow": 75.8,
+  "Medium": 88.3,
+  "Fast": 91.7
+ },
+ {
+  "Slow": 75.2,
+  "Medium": 86.7,
+  "Fast": 97.4
+ },
+ {
+  "Slow": 74.5,
+  "Medium": 85.1,
+  "Fast": 97
+ },
+ {
+  "Slow": 73.9,
+  "Medium": 85.1,
+  "Fast": 98
+ },
+ {
+  "Slow": 73.9,
+  "Medium": 84.4,
+  "Fast": 98
+ },
+ {
+  "Slow": 72.5,
+  "Medium": 86.1,
+  "Fast": 98
+ },
+ {
+  "Slow": 72.5,
+  "Medium": 95.2,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 72.5,
+  "Medium": 95,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 70.5,
+  "Medium": 98.7,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 75.2,
+  "Medium": 99.5,
+  "Fast": 93.9
+ },
+ {
+  "Slow": 75.2,
+  "Medium": 99.2,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 83.7,
+  "Medium": 98.7,
+  "Fast": 92.2
+ },
+ {
+  "Slow": 83.6,
+  "Medium": 97,
+  "Fast": 91.3
+ },
+ {
+  "Slow": 83.6,
+  "Medium": 97,
+  "Fast": 95
+ },
+ {
+  "Slow": 83.6,
+  "Medium": 96.3,
+  "Fast": 96.3
+ },
+ {
+  "Slow": 88.7,
+  "Medium": 95.4,
+  "Fast": 96
+ },
+ {
+  "Slow": 88.5,
+  "Medium": 94.5,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 88.5,
+  "Medium": 94.5,
+  "Fast": 96.8
+ },
+ {
+  "Slow": 87,
+  "Medium": 94.5,
+  "Fast": 96.1
+ },
+ {
+  "Slow": 87,
+  "Medium": 92.1,
+  "Fast": 95.3
+ },
+ {
+  "Slow": 86.3,
+  "Medium": 90.5,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 86.3,
+  "Medium": 90.5,
+  "Fast": 93.5
+ },
+ {
+  "Slow": 85.3,
+  "Medium": 88.9,
+  "Fast": 92.6
+ },
+ {
+  "Slow": 84.6,
+  "Medium": 88.1,
+  "Fast": 91.7
+ },
+ {
+  "Slow": 84.6,
+  "Medium": 88.1,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 83.2,
+  "Medium": 88.1,
+  "Fast": 97.1
+ },
+ {
+  "Slow": 82.4,
+  "Medium": 88.1,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 81.7,
+  "Medium": 85.7,
+  "Fast": 97.8
+ },
+ {
+  "Slow": 81,
+  "Medium": 84.9,
+  "Fast": 97.5
+ },
+ {
+  "Slow": 81,
+  "Medium": 95.2,
+  "Fast": 96.8
+ },
+ {
+  "Slow": 80.4,
+  "Medium": 100,
+  "Fast": 96
+ },
+ {
+  "Slow": 78.9,
+  "Medium": 99.5,
+  "Fast": 95.1
+ },
+ {
+  "Slow": 78.9,
+  "Medium": 99.9,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 77.6,
+  "Medium": 99.9,
+  "Fast": 93.3
+ },
+ {
+  "Slow": 76.9,
+  "Medium": 99.9,
+  "Fast": 92.4
+ },
+ {
+  "Slow": 76.2,
+  "Medium": 98.7,
+  "Fast": 91.5
+ },
+ {
+  "Slow": 76.2,
+  "Medium": 98.7,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 74.9,
+  "Medium": 98.7,
+  "Fast": 96.7
+ },
+ {
+  "Slow": 74.2,
+  "Medium": 96.1,
+  "Fast": 96.4
+ },
+ {
+  "Slow": 74.2,
+  "Medium": 95.2,
+  "Fast": 97
+ },
+ {
+  "Slow": 74.2,
+  "Medium": 95.2,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 72.3,
+  "Medium": 93.5,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 71.6,
+  "Medium": 91.9,
+  "Fast": 94.9
+ },
+ {
+  "Slow": 71,
+  "Medium": 91.9,
+  "Fast": 94
+ },
+ {
+  "Slow": 71,
+  "Medium": 91,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 83.4,
+  "Medium": 90.2,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 83.9,
+  "Medium": 90.2,
+  "Fast": 91.3
+ },
+ {
+  "Slow": 83.9,
+  "Medium": 87.8,
+  "Fast": 90.5
+ },
+ {
+  "Slow": 89.8,
+  "Medium": 87.8,
+  "Fast": 95.4
+ },
+ {
+  "Slow": 90.4,
+  "Medium": 87.8,
+  "Fast": 95.8
+ },
+ {
+  "Slow": 90.1,
+  "Medium": 87.1,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 89.7,
+  "Medium": 100,
+  "Fast": 96.6
+ },
+ {
+  "Slow": 89,
+  "Medium": 100,
+  "Fast": 96
+ },
+ {
+  "Slow": 89,
+  "Medium": 99.7,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 87.6,
+  "Medium": 99.7,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 86.9,
+  "Medium": 99.4,
+  "Fast": 93.5
+ },
+ {
+  "Slow": 86.3,
+  "Medium": 99.5,
+  "Fast": 92.5
+ },
+ {
+  "Slow": 85.5,
+  "Medium": 99.5,
+  "Fast": 91.7
+ },
+ {
+  "Slow": 84.8,
+  "Medium": 99.8,
+  "Fast": 90.8
+ },
+ {
+  "Slow": 84.1,
+  "Medium": 99.7,
+  "Fast": 89.9
+ },
+ {
+  "Slow": 83.5,
+  "Medium": 99.7,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 82.8,
+  "Medium": 98.5,
+  "Fast": 94.8
+ },
+ {
+  "Slow": 82.1,
+  "Medium": 98.2,
+  "Fast": 94.5
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 97.5,
+  "Fast": 95.5
+ },
+ {
+  "Slow": 81.5,
+  "Medium": 97.5,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 80,
+  "Medium": 97.5,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 79.2,
+  "Medium": 95.9,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 78.6,
+  "Medium": 95,
+  "Fast": 92.8
+ },
+ {
+  "Slow": 77.9,
+  "Medium": 94.2,
+  "Fast": 91.9
+ },
+ {
+  "Slow": 77.2,
+  "Medium": 93.4,
+  "Fast": 91
+ },
+ {
+  "Slow": 76.5,
+  "Medium": 91.8,
+  "Fast": 90.2
+ },
+ {
+  "Slow": 75.9,
+  "Medium": 91.4,
+  "Fast": 89.3
+ },
+ {
+  "Slow": 75.3,
+  "Medium": 91.4,
+  "Fast": 93.7
+ },
+ {
+  "Slow": 74.7,
+  "Medium": 90.2,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 74,
+  "Medium": 90.2,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 73.4,
+  "Medium": 88.8,
+  "Fast": 95.2
+ },
+ {
+  "Slow": 72.7,
+  "Medium": 88.8,
+  "Fast": 95
+ },
+ {
+  "Slow": 72,
+  "Medium": 88.1,
+  "Fast": 94.2
+ },
+ {
+  "Slow": 71.4,
+  "Medium": 87.3,
+  "Fast": 93.4
+ },
+ {
+  "Slow": 70.7,
+  "Medium": 85.8,
+  "Fast": 92.6
+ },
+ {
+  "Slow": 70,
+  "Medium": 85.8,
+  "Fast": 91.7
+ },
+ {
+  "Slow": 78.3,
+  "Medium": 85.2,
+  "Fast": 90.8
+ },
+ {
+  "Slow": 83.9,
+  "Medium": 83.8,
+  "Fast": 89.9
+ },
+ {
+  "Slow": 83.5,
+  "Medium": 83,
+  "Fast": 89.1
+ },
+ {
+  "Slow": 84.3,
+  "Medium": 83,
+  "Fast": 88.2
+ },
+ {
+  "Slow": 89.4,
+  "Medium": 82.3,
+  "Fast": 88.2
+ },
+ {
+  "Slow": 90.3,
+  "Medium": 81,
+  "Fast": 93.2
+ },
+ {
+  "Slow": 90.4,
+  "Medium": 81,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 90,
+  "Medium": 81,
+  "Fast": 94.1
+ },
+ {
+  "Slow": 90,
+  "Medium": 79.8,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 88.6,
+  "Medium": 78.3,
+  "Fast": 92.8
+ },
+ {
+  "Slow": 87.9,
+  "Medium": 77.6,
+  "Fast": 91.9
+ },
+ {
+  "Slow": 87.3,
+  "Medium": 77.6,
+  "Fast": 91.1
+ },
+ {
+  "Slow": 86.5,
+  "Medium": 77.1,
+  "Fast": 90.2
+ },
+ {
+  "Slow": 85.8,
+  "Medium": 76.4,
+  "Fast": 89.3
+ },
+ {
+  "Slow": 85.1,
+  "Medium": 75.8,
+  "Fast": 88.5
+ },
+ {
+  "Slow": 84.4,
+  "Medium": 74.7,
+  "Fast": 93.2
+ },
+ {
+  "Slow": 83.6,
+  "Medium": 74.7,
+  "Fast": 93.8
+ },
+ {
+  "Slow": 83.1,
+  "Medium": 73.6,
+  "Fast": 93.6
+ },
+ {
+  "Slow": 82.5,
+  "Medium": 73.6,
+  "Fast": 94.4
+ },
+ {
+  "Slow": 81.8,
+  "Medium": 73.6,
+  "Fast": 94
+ },
+ {
+  "Slow": 81,
+  "Medium": 72.7,
+  "Fast": 93.2
+ },
+ {
+  "Slow": 80.3,
+  "Medium": 72.3,
+  "Fast": 92.5
+ },
+ {
+  "Slow": 79.6,
+  "Medium": 71.8,
+  "Fast": 91.6
+ },
+ {
+  "Slow": 78.8,
+  "Medium": 71.3,
+  "Fast": 90.7
+ },
+ {
+  "Slow": 78.1,
+  "Medium": 70.8,
+  "Fast": 89.9
+ },
+ {
+  "Slow": 77.4,
+  "Medium": 70.5,
+  "Fast": 89
+ },
+ {
+  "Slow": 76.8,
+  "Medium": 70.6,
+  "Fast": 88.2
+ },
+ {
+  "Slow": 76.1,
+  "Medium": 70.4,
+  "Fast": 91.8
+ },
+ {
+  "Slow": 75.4,
+  "Medium": 69.9,
+  "Fast": 93.1
+ },
+ {
+  "Slow": 74.7,
+  "Medium": 69.5,
+  "Fast": 93.1
+ }
+]

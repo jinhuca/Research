@@ -1,0 +1,143 @@
+﻿<Window x:Class="SmartAblationSystem.Views.logon"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartAblationSystem.Views"
+        mc:Ignorable="d"
+        Title="Logon"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent">
+  <Window.Resources>
+    <Color x:Key="TextBoxBackgroundColor_">#ff26262e</Color>
+    <SolidColorBrush x:Key="TextBoxBackgroundBrush_" Color="{StaticResource TextBoxBackgroundColor_}"/>
+
+    <Style x:Key="TitleTextStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="Foreground" Value="#ffdbdbdb"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="MessageTitleTextStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="Foreground" Value="#FFCEC3C6"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="PassCodeTextStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="Foreground" Value="#FFFFFFFF"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="WrongNamePasswordTextStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="Foreground" Value="#FFFF1111"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+  </Window.Resources>
+  <Grid Width="417" Height="376">
+    <Border CornerRadius="10,10,10,10"  Background="{StaticResource PanelBackgroundBrush_}"
+        Width="417" Height="376">
+      <Border.Effect>
+        <DropShadowEffect Color="Black"
+                ShadowDepth="11"
+                BlurRadius="20"
+                RenderingBias="Performance"
+                Opacity="0.5"
+                Direction="-50"/>
+      </Border.Effect>
+
+    </Border>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="78"/>
+          <RowDefinition Height="84"/>
+          <RowDefinition Height="84"/>
+          <RowDefinition Height="40"/>
+          <RowDefinition Height="20"/>
+          <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+              Height="78"
+              CornerRadius="10,10,0,0"
+              Background="#ff475E8B"
+              VerticalAlignment="Top">
+          <TextBlock Text="LOGIN" Style="{StaticResource TitleTextStyle_}"/>
+
+        </Border>
+        <Grid Grid.Row="1" Width="260">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0"
+                 Text="User Name:"
+                 Style="{StaticResource MessageTitleTextStyle_}"/>
+          <TextBox Grid.Row="1"
+               x:Name="TxtUser"
+               Text=""
+               TextChanged="User_TextChanged"
+               Background="{StaticResource TextBoxBackgroundBrush_}"
+               Style="{StaticResource TextBoxNewStyle}"/>
+        </Grid>
+        <Grid Grid.Row="2" Width="260">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0"
+                 Text="Password:"
+                 Style="{StaticResource MessageTitleTextStyle_}"/>
+          <PasswordBox Grid.Row="1"
+               x:Name="TxtPassword"
+               Background="{StaticResource TextBoxBackgroundBrush_}" 
+               Style="{StaticResource PasswordBoxStyle_}"/>
+        </Grid>
+        <Grid Grid.Row="3" Width="260" x:Name="StackPasswordCode" Visibility="Hidden">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0"
+                 Text="Code: "
+                 Style="{StaticResource MessageTitleTextStyle_}"/>
+          <TextBlock Grid.Column="1"
+                 Text="{Binding PasswordCode}"
+                 Style="{StaticResource PassCodeTextStyle_}"/>
+        </Grid>
+        <TextBlock Grid.Row="4"
+               x:Name="WrongUsernameOrPasswordLabel"
+               Text="Wrong Username or Password, please try again!"
+               Style="{StaticResource WrongNamePasswordTextStyle_}"/>
+        <Grid Grid.Row="5" HorizontalAlignment="Right" Margin="0,0,20,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Button Grid.Column="0"
+              Style="{StaticResource TextWithUnderlineButton_}"
+              Content="Cancel"
+              Click="CancelClick"
+              IsCancel="True"/>
+          <Button Grid.Column="1"
+              Style="{StaticResource ConfirmButtonStyle_}"
+              Content="LOGIN"
+              Click="LoginClick"/>
+        </Grid>
+      </Grid>
+  </Grid>
+  
+
+</Window>

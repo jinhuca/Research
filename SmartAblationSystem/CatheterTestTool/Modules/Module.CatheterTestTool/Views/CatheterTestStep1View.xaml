@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Module.CatheterTestTool.Views.CatheterTestStep1View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:Module.CatheterTestTool.ViewModels"
+             xmlns:infrastructure="clr-namespace:Module.Infrastructure;assembly=Module.Infrastructure"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:CatheterTestMainWindowViewModel}" >
+    <UserControl.Resources> 
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CatheterTestThemes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource TestCheckBoxStyle}">
+                <Setter Property="Margin" Value="0, 10"></Setter>
+            </Style>
+            <infrastructure:InvertBooleanToVisibilityConverter x:Key="invertBooleanToVisibilityConverter"/>
+            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Style="{StaticResource TestStepBorderStyle}" Margin="0,0,2,2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>  
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions> 
+            <!-- Step Info -->
+            <Grid Grid.Row="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,10">
+                    <TextBlock Text="Step 1" Foreground="{StaticResource StepTextBrush}" FontWeight="Bold" FontSize="32"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Center" Margin="0,10">
+                    <TextBlock Text="Catheter Visual Check" Style="{StaticResource StepDescriptionTextBlockStyle}" />
+                </StackPanel>
+
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ProgressBar Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical"
+                                 Style="{StaticResource VerticalProgressBar}"
+                                 Width="15" Height="80" Margin="0,0,10,0" 
+                                 HorizontalAlignment="Right" 
+                                 Value="{Binding TestStatusProgress.Step1Progress}"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Text="{Binding TestStatusProgress.Step1Progress, StringFormat={}{0}%}" Style="{StaticResource StepPercentTextBlockStyle}"/>
+                        <TextBlock Text="PASS" Style="{StaticResource StepPassTextBlockStyle}" Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!-- Test CheckBoxes -->
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions> 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Tests" Grid.Column="1" HorizontalAlignment="Left" Foreground="{StaticResource StepTextBrush}" FontSize="24" Margin="0,5"/>
+                <CheckBox Grid.Row="1" Grid.Column="1" Content="Catheter Connection" IsChecked="{Binding IsCatheterCableConnected, Mode=OneWay}"/>
+                <CheckBox Grid.Row="2" Grid.Column="1" Content="Vacuum On" IsChecked="{Binding IsVacuumOn,Mode=OneWay}"/>
+                <CheckBox Grid.Row="3" Grid.Column="1" Content="Catheter Serial Number" IsChecked="{Binding IsCatheterSNAvailable, Mode=OneWay}"/>
+                <!-- <CheckBox Grid.Row="4" Grid.Column="1" Content="Water Temperature" IsChecked="{Binding IsWaterTemperatureInRange, Mode=OneWay}"/> -->
+            </Grid>
+
+            <!-- Connect Catheter Notice-->
+            <Grid Row="2" Margin="20" 
+                  Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource invertBooleanToVisibilityConverter}}">
+                <Border Style="{StaticResource FlashBorderStyle}">
+                    <TextBlock Text="Please Connect Catheter" TextWrapping="Wrap" FontSize="28" Foreground="Goldenrod"/> 
+                </Border>
+            </Grid>
+            <Grid Row="2" Margin="20" Visibility="{Binding CanStartTest, Converter={StaticResource booleanToVisibilityConverter}}">
+                <Border Style="{StaticResource FlashBorderStyle}">
+                    <TextBlock Text="Press 'Start Test' to start Catheter Visual Check" TextWrapping="Wrap" FontSize="24" 
+                               Foreground="#FF90EEFF"/>
+                </Border>
+            </Grid>
+            <!-- Catheter and Tester Info -->
+            <Grid Grid.Row="3" Margin="15">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource TestDetailsTitleStyle}" />
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Text="Catheter Serial Number:" Margin="5" />
+                    <TextBlock Margin="5"  >
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}">
+                                <Binding Path="CatheterInfo.Lot" />
+                                <Binding Path="CatheterInfo.SerialNumber" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Text="Tester:" Margin="5" />
+                    <TextBlock Text="{Binding TesterName}" Margin="5" />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Border>
+</UserControl>

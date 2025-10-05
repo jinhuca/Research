@@ -1,0 +1,93 @@
+﻿<Window x:Class="SmartAblationSystem.Views.AblationSiteEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartAblationSystem.Views"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Title="AblationSiteWindow"
+        WindowStyle="None"
+        WindowStartupLocation="Manual"
+        AllowsTransparency="True"
+        Width="447" Height="326"
+        Background="Transparent">
+  <Window.Resources>
+    <Color x:Key="TitleBackgroundColor_">#ff475E8B</Color>
+    <SolidColorBrush x:Key="TitleBackgroundBrush_" Color="{StaticResource TitleBackgroundColor_}"/>
+    <Color x:Key="TitleForegroundColor_">#DBDBDB</Color>
+    <SolidColorBrush x:Key="TitleForegroundBrush_" Color="{StaticResource TitleForegroundColor_}"/>
+    <Color x:Key="BackgroundColor_">#ff2b2b33</Color>
+    <SolidColorBrush x:Key="BackgroundBrush_" Color="{StaticResource BackgroundColor_}"/>
+    <Color x:Key="MessageForegroundColor_">#FFCEC3C6</Color>
+    <SolidColorBrush x:Key="MessageForegroundBrush_" Color="{StaticResource MessageForegroundColor_}"/>
+
+    <Style x:Key="TitleTextBlockStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="{StaticResource TitleForegroundBrush_}"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="MessageTextStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="Foreground" Value="{StaticResource MessageForegroundBrush_}"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Bottom"/>
+      <Setter Property="Margin" Value="60,0,0,0"></Setter>
+    </Style>
+  </Window.Resources>
+  <Grid Height="296" Width="417">
+  <Border Background="{StaticResource BackgroundBrush_}" 
+          Opacity="1">
+            <Border.Effect>
+              <DropShadowEffect Color="Black"
+              ShadowDepth="11"
+              BlurRadius="20"
+              RenderingBias="Performance"
+              Opacity="0.5"
+              Direction="-50"/>
+            </Border.Effect>
+    
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="78"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="100"/>
+      </Grid.RowDefinitions>
+      <Border Grid.Row="0" 
+              CornerRadius="8,8,0,0" 
+              Background="{StaticResource TitleBackgroundBrush_}">
+        <TextBlock Text="EDIT ABLATION SITE" 
+                   Style="{StaticResource TitleTextBlockStyle_}"/>
+      </Border>
+      <TextBlock Grid.Row="1"
+                 Text="Select ablation site:"
+                 Style="{StaticResource MessageTextStyle_}"/>
+      <ComboBox Grid.Row="2" Width="300" 
+                x:Name="AblationSiteComboBox"
+                Background="Transparent"
+                Style="{StaticResource ComboBoxStyle}"
+                ItemsSource="{Binding AblationSiteList}" 
+                SelectedValue="{Binding SelectedAblationSite}">
+      </ComboBox>
+      <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+        <Button Style="{StaticResource TextWithUnderlineButton_}"
+                Content="Cancel"
+                IsCancel="True"
+                Click="No_Click"/>
+        <Button x:Name="Yes"
+                Margin="20,0,20,0"
+                Style="{StaticResource SaveButtonStyle_}"
+                Click="Ok_Click"/>
+      </StackPanel>
+    </Grid>
+    </Border>
+  </Grid>
+</Window>

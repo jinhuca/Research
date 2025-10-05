@@ -1,0 +1,284 @@
+﻿<Window x:Class="SmartAblationSystem.Views.SaveProcedureToUSB"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:helpers="clr-namespace:SmartAblationSystem.Helpers"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+        WindowStartupLocation="Manual"
+        Top="20" Left="564"
+        WindowStyle="None"
+        Width="792" Height="709"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Loaded="SaveProcedureToUSB_OnLoaded"
+        Unloaded="SaveProcedureToUSB_OnUnloaded">
+  <Window.Resources>
+    <converters:USBDriveToStringConverter x:Key="uSBDriveToStringConverter"/>
+    <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    <converters:BoolVisibilityConverter x:Key="visibilityConverter"/>
+
+    <Color x:Key="TitleBackgroundColor_">#ff4c608d</Color>
+    <SolidColorBrush x:Key="TitleBackgroundBrush_" Color="{StaticResource TitleBackgroundColor_}"/>
+
+    <Color x:Key="TextBlockNormalColor_">#FFCEC3C6</Color>
+    <SolidColorBrush x:Key="TextBlockNormalBrush_" Color="{StaticResource TextBlockNormalColor_}"/>
+
+    <Color x:Key="TextBlockHighlightColor_"></Color>
+    <SolidColorBrush x:Key="TextBlockHighlightBrush_" Color="{StaticResource TextBlockHighlightColor_}"/>
+
+    <Color x:Key="PanelBackgroundColor_">#ff2b2b32</Color>
+    <SolidColorBrush x:Key="PanelBackgroundBrush_" Color="{StaticResource PanelBackgroundColor_}"/>
+
+    <SolidColorBrush x:Key="SeparatorBrush_" Color="#ff484852"/>
+
+    <Style x:Key="SaveToUsbTitleTextBlockStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="{StaticResource TextBlockNormalBrush_}"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="SaveToUsbInfoTextBlockStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="FontWeight" Value="Medium"/>
+      <Setter Property="Foreground" Value="{StaticResource TextBlockNormalBrush_}"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="SaveToUsbValueTextBlockStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="FileInfoTextBlockStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="Foreground" Value="{StaticResource TextBlockNormalBrush_}"/>
+    </Style>
+  </Window.Resources>
+  <Grid Width="752" Height="669">
+    <Border CornerRadius="12" Opacity="1"
+          Background="{StaticResource PanelBackgroundBrush_}">
+      <Border.Effect>
+        <DropShadowEffect Color="Black"
+                          ShadowDepth="11"
+                          BlurRadius="20"
+                          RenderingBias="Performance"
+                          Opacity="0.5"
+                          Direction="-50"/>
+      </Border.Effect>
+      <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="752" Height="669">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="78"/>
+          <RowDefinition Height="168"/>
+          <RowDefinition Height="2"/>
+          <RowDefinition Height="220"/>
+          <RowDefinition Height="120"/>
+          <RowDefinition Height="66"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" 
+              CornerRadius="12,12,0,0" 
+              Background="{StaticResource TitleBackgroundBrush_}">
+          <TextBlock Text="SAVE TO USB DRIVE" 
+                   Style="{StaticResource SaveToUsbTitleTextBlockStyle_}"/>
+        </Border>
+        <Grid Grid.Row="1" Margin="30">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="38,17,0,0">
+            <TextBlock Text="Volume Label: " 
+                     Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <TextBlock Text="{Binding USBDriveList, Converter={StaticResource uSBDriveToStringConverter}, ConverterParameter=VOLUMELABEL, Mode=OneWay}" 
+                     Visibility="{Binding USBDriveConnected, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}" 
+                     Style="{StaticResource SaveToUsbValueTextBlockStyle_}"/>
+          </StackPanel>
+          <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="16,17,0,0">
+            <TextBlock Text="Free Space (Bytes): " 
+                     Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <TextBlock Text="{Binding USBDriveList, Converter={StaticResource uSBDriveToStringConverter}, ConverterParameter=FREESPACE, Mode=OneWay}" 
+                     Visibility="{Binding USBDriveConnected, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}" 
+                     Style="{StaticResource SaveToUsbValueTextBlockStyle_}"/>
+          </StackPanel>
+          <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="38,14,0,0">
+            <TextBlock Text="Name: " 
+                     Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <TextBlock Text="{Binding USBDriveList, Converter={StaticResource uSBDriveToStringConverter}, ConverterParameter=NAME, Mode=OneWay}" 
+                     Visibility="{Binding USBDriveConnected, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}" 
+                     Style="{StaticResource SaveToUsbValueTextBlockStyle_}"/>
+          </StackPanel>
+          <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="16,14,0,0">
+            <TextBlock Text="Total Space (Bytes): " 
+                     Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <TextBlock Text="{Binding USBDriveList, Converter={StaticResource uSBDriveToStringConverter}, ConverterParameter=TOTALSIZE, Mode=OneWay}" 
+                     Visibility="{Binding USBDriveConnected, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}" 
+                     Style="{StaticResource SaveToUsbValueTextBlockStyle_}"/>
+          </StackPanel>
+          <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="38,13,0,0">
+            <TextBlock Text="Drive Format: " 
+                     Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <TextBlock Text="{Binding USBDriveList, Converter={StaticResource uSBDriveToStringConverter}, ConverterParameter=DRIVEFORMAT, Mode=OneWay}"  
+                     Visibility="{Binding USBDriveConnected, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}" 
+                     Style="{StaticResource SaveToUsbValueTextBlockStyle_}"/>
+          </StackPanel>
+        </Grid>
+        <Border Grid.Row="2" 
+              Width="613" 
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch" 
+              BorderBrush="{StaticResource SeparatorBrush_}"
+              BorderThickness="1"/>
+        <Grid Grid.Row="3">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Margin="68,37,0,0" 
+                   Text="File Type:" 
+                   Style="{StaticResource FileInfoTextBlockStyle_}"/>
+          <ToggleButton Grid.Row="1" Grid.Column="0" Margin="68,20,0,0" 
+                      Content="Excel" 
+                      Style="{StaticResource SaveToUsbToggleStyle_}" 
+                      IsChecked="{Binding SaveToCSVSelected, Mode=TwoWay}"/>
+          <ToggleButton Grid.Row="2" Grid.Column="0" 
+                      Margin="68,0,0,0" 
+                      Content="PDF" 
+                      Style="{StaticResource SaveToUsbToggleStyle_}" 
+                      IsChecked="{Binding SaveToPDFSelected, Mode=TwoWay}"/>
+          <ToggleButton Grid.Row="3" Grid.Column="0" Margin="68,0,0,20" 
+                      Content="JSON" 
+                      Style="{StaticResource SaveToUsbToggleStyle_}" 
+                      IsChecked="{Binding SaveToJSONSelected, Mode=TwoWay}"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Margin="8,37,0,0" 
+                   Text="Options:" 
+                   Style="{StaticResource FileInfoTextBlockStyle_}"/>
+          <ToggleButton Grid.Row="1" Grid.Column="1" Margin="7,20,0,0" 
+                      Content="Anonymize"  
+                      Visibility="{Binding PatientInfoAnonymousVisible, Converter={StaticResource visibilityConverter}}" 
+                      Style="{StaticResource SaveToUsbToggleStyle_}" 
+                      IsChecked="{Binding IsPatientInfoAnonymized, Mode=TwoWay}"/>
+          <ToggleButton Grid.Row="2" Grid.Column="1" Margin="7,0,0,0" 
+                      Content="Delete" 
+                      Visibility="{Binding SaveToJSONSelected, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter=DeleteJson, Mode=TwoWay}" 
+                      Style="{StaticResource SaveToUsbToggleStyle_}" 
+                      IsChecked="{Binding DeletionSelected, Mode=TwoWay}"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" 
+                   Margin="18,37,0,0" 
+                   Text="Include:" 
+                   Style="{StaticResource FileInfoTextBlockStyle_}"/>
+          <ToggleButton Grid.Row="1" Grid.Column="2" Margin="18,20,0,0"
+                      Content="BSC troubleshooting data" 
+                      Style="{StaticResource SaveToUsbToggleStyle_}"
+                      IsChecked="{Binding SaveLogSelected, Mode=OneWayToSource}"/>
+          <ToggleButton x:Name="CaseSummaryReportOption" 
+                        Grid.Row="2" Grid.Column="2" 
+                        Margin="18,0,0,0"
+                        Content="Case Summary Report" 
+                        Style="{StaticResource SaveToUsbToggleStyle_}"
+                        IsChecked="{Binding SaveToReportSelected, Mode=TwoWay}"/>
+          <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="16,0,0,20"
+                      x:Name="CaseSummaryRange" Orientation="Horizontal">
+            <TextBlock Text="From: " VerticalAlignment="Center" Margin="0,0,5,0"
+                       Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <ComboBox Name="ComboxBoxStartYear" 
+                      Style="{StaticResource ComboBoxStyle}" 
+                      Width="100" Height="30"/>
+            <TextBlock Text="To: " Margin="20,0,5,0" VerticalAlignment="Center"
+                       Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+            <ComboBox Name="ComboxBoxEndYear" 
+                      Style="{StaticResource ComboBoxStyle}"
+                      Width="100" Height="30"/>
+          </StackPanel>
+          <Grid Grid.Row="3" Column="1" Grid.ColumnSpan="2"
+                HorizontalAlignment="Left" Margin="12,0,0,20"
+                Visibility="{Binding SaveToJSONSelected, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter=DeleteJson, Mode=TwoWay}">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Margin="0,0,0,0"
+                    Width="476" Height="40" CornerRadius="18" Background="#ff34343e">
+              <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
+                <Image Source="{StaticResource WarningDrawingImage_}" 
+                       Stretch="Uniform" Width="24" Margin="5,0,16,0"/>
+                <TextBlock Text="The &quot;Delete&quot; option will permanently erase these records." 
+                           Margin="0,0,0,0" VerticalAlignment="Center"
+                           Style="{StaticResource SaveToUsbValueTextBlockStyle_}"/>
+              </StackPanel>
+            </Border>
+          </Grid>
+        </Grid>
+        <Grid Grid.Row="4"
+              Visibility="{Binding IsPasswordVisible, Converter={StaticResource visibilityConverter}}">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Row="0" Grid.Column="0" 
+                     Text="Password:" 
+                     Margin="68,30,0,0" 
+                     Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+          <PasswordBox x:Name="EnteredFilePasswordBox" 
+                       Grid.Row="1" Grid.Column="0" 
+                       Width="297" 
+                       Margin="68,0,0,0" 
+                       HorizontalAlignment="Left"
+                       MaxLength="16"
+                       Style="{StaticResource PasswordBoxStyle_}" 
+                       helpers:BoundPasswordBox.BoundPassword="{Binding Path=FilePassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                       PasswordChanged="EnteredFilePasswordBox_OnPasswordChanged"/>
+          <TextBlock Grid.Row="0" Grid.Column="1"
+                   Text="Confirm Password:"
+                   Margin="11,30,0,0"
+                   Style="{StaticResource SaveToUsbInfoTextBlockStyle_}"/>
+          <PasswordBox x:Name="ConfirmPasswordBox" 
+                     Grid.Row="1" Grid.Column="1" 
+                     Width="297" 
+                     Margin="12,0,0,0"
+                     MaxLength="16"
+                     Style="{StaticResource PasswordBoxStyle_}"
+                     HorizontalAlignment="Left" 
+                     helpers:BoundPasswordBox.BoundPassword="{Binding Path=ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PasswordChanged="ConfirmFilePasswordBox_OnConfirmChanged"/>
+        </Grid>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,20,0">
+          <Button Style="{StaticResource TextWithUnderlineButton_}" 
+                Margin="0,0,25,0" 
+                HorizontalAlignment="Right" 
+                Content="Cancel" 
+                IsCancel="True" 
+                Click="No_Click"/>
+          <Button Style="{StaticResource SaveButtonStyle_}" 
+                IsEnabled="{Binding IsOkEnabled}" 
+                Visibility="{Binding USBDriveConnected, Converter={StaticResource booleanToVisibilityConverter}}"  
+                Click="Ok_Click"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+  </Grid>
+</Window>

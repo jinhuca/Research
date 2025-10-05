@@ -1,0 +1,253 @@
+﻿<Window x:Class="ServiceToolApp.Views.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:infrastructure="clr-namespace:Module.Infrastructure;assembly=Module.Infrastructure"
+        xmlns:converters="clr-namespace:Module.Console.Converters;assembly=Module.Console"
+        xmlns:localVm="clr-namespace:ServiceToolApp.ViewModels"
+        xmlns:clock="clr-namespace:ServiceToolApp.Controls.Clock"
+        prism:ViewModelLocator.AutoWireViewModel="True" 
+        WindowState="Maximized" WindowStyle="None" Background="Black"
+        Width="1920" Height="1080"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance localVm:ShellViewModel}"
+        d:DesignHeight="750" d:DesignWidth="1200">
+	<Window.Resources>
+		<infrastructure:BooleanToSwitchStringConverter x:Key="BooleanToSwitchStringConverter"/>
+		<infrastructure:SessionStatusToPauseTextConverter x:Key="PauseCommandNameConverter"/>
+		<infrastructure:SessionStatusToStopTextConverter x:Key="StopCommandNameConverter"/>
+		<converters:SystemStateToStringConverter x:Key="StateConverter"/>
+		<infrastructure:SessionStatusToSolidColorBrushConverter x:Key="TestSessionColorConverter"/>
+		<infrastructure:USBStatusToBrushConverter x:Key="usbBrushConverter"/>
+		<converters:SystemStateToBrushConverter x:Key="StateBrushConverter"/>
+		<converters:CatheterConnectionBrushConverter x:Key="CatheterConverter"/>
+		<converters:VacuumBrushConverter x:Key="VacuumConverter"/>
+		<infrastructure:BooleanToUSBConnectionConverter x:Key="BooleanToUSBConnectionConverter"/>
+		<infrastructure:SessionFlashConverter x:Key="TestSessionFlashConverter"/>
+		<infrastructure:SystemStateFlashConverter x:Key="SystemSessionFlashConverter"/>
+		<infrastructure:CatheterStatusFlashConverter x:Key="CatheterFlashConverter"/>
+		<infrastructure:VacuumFlashConverter x:Key="VacuumFlashConverter"/>
+		<infrastructure:USBConnectionFlashConverter x:Key="USBFlashConverter"/>
+		<Style x:Key="AppTitleTextStyle" TargetType="TextBlock">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="35"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+		<Style x:Key="StatusTextBlockStyle" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="28"/>
+			<Setter Property="FontWeight" Value="DemiBold"/>
+			<Setter Property="FontFamily" Value="Franklin Gothic"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="Margin" Value="0,6,0,0"/>
+		</Style>
+		<Style x:Key="AppTitleTextBlockStyle" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="Black"/>
+			<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="0,6,0,0"/>
+		</Style>
+		<Style x:Key="VersionTextBlockStyle" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="Black"/>
+			<Setter Property="FontFamily" Value="Cascadia Code"/>
+			<Setter Property="Foreground" Value="LawnGreen"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="1920" Height="1080">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40"/>
+				<RowDefinition Height="400"/>
+				<RowDefinition Height="160"/>
+				<RowDefinition Height="380"/>
+				<RowDefinition Height="80"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1.1*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="1.1*"/>
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+					<Image HorizontalAlignment="Left" Margin="10,0,0,0" Source="../Images/SmartFreeze.jpg" Height="30" Width="260"/>
+					<StackPanel Orientation="Vertical" Margin="10,0">
+						<TextBlock Text="{Binding ConsoleSNTitle, Mode=OneTime}" Style="{StaticResource ConsoleSNTitleStyle}"/>
+						<TextBlock Uid="ConsoleSN" Text="{Binding ConsoleSN}" Style="{StaticResource ConsoleSnTextStyle}"/>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+					<TextBlock Text="{Binding Title, Mode=OneTime}" Style="{StaticResource AppTitleTextStyle}"/>
+					<TextBlock Uid="SoftwareVersion" Text="{Binding Version, Mode=OneTime}" Style="{StaticResource VersionTextBlockStyle}" Margin="20,0,0,0"/>
+				</StackPanel>
+				<Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<StackPanel Grid.Column="0" Margin="0,0,0,0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
+						<TextBlock Text="{Binding TesterText, Mode=OneWay}" Style="{StaticResource TesterTextTitleStyle}"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+							<TextBlock Uid="FirstName" Text="{Binding TesterFirstName}" Style="{StaticResource TesterTextStyle}" Margin="0,0,0,0"/>
+							<TextBlock Uid="LastName" Text="{Binding TesterLastName}" Style="{StaticResource TesterTextStyle}" Margin="5,0,0,0"/>
+						</StackPanel>
+					</StackPanel>
+					<Image Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Source="../Images/BSC_Logo.png" Width="80" Margin="10,0,0,0"/>
+				</Grid>
+			</Grid>
+			<ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" prism:RegionManager.RegionName="{x:Static infrastructure:KnownRegionNames.TestProcessRegionName}"/>
+			<ContentControl Grid.Row="2" Grid.Column="0" prism:RegionManager.RegionName="{x:Static infrastructure:KnownRegionNames.SummaryRegionName}"/>
+			<ContentControl Grid.Row="3" Grid.Column="0" prism:RegionManager.RegionName="{x:Static infrastructure:KnownRegionNames.SystemParametersRegionName}"/>
+			<ContentControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" prism:RegionManager.RegionName="{x:Static infrastructure:KnownRegionNames.AccessoriesRegionName}"/>
+			<Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="540"/>
+					<ColumnDefinition Width="460"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="300"/>
+				</Grid.ColumnDefinitions>
+				<Grid Grid.Column="0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Button Grid.Column="0" Uid="btnStart"
+				        Content="{Binding StartButtonContent}"
+				        Command="{Binding StartCommand}" 
+				        Style="{StaticResource StartButton}"/>
+					<ToggleButton Grid.Column="1" Uid="btnPause"
+				              Content="{Binding SessionStatus, Converter={StaticResource PauseCommandNameConverter}, ConverterParameter={x:Static infrastructure:AppCommandParameterName.PauseCommandName}}" 
+				              Command="{Binding PauseResumeCommand}" 
+				              Style="{StaticResource PauseButton}"/>
+					<Button Grid.Column="2" Uid="btnStop"
+				        Content="{Binding StopButtonContent}" 
+				        Command="{Binding StopCommand}" 
+				        Style="{StaticResource StopButton}"/>
+				</Grid>
+				<StackPanel Grid.Column="1" Orientation="Horizontal" Margin="50,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+					<Button Uid="btnInvokeV" Command="{Binding InvokeVolumeControlCommand}" Visibility="{Binding VolumeControlVisibility}" Style="{StaticResource ImageButtonStyle}">
+						<Image Source="/Images/VolumeLow.png"/>
+					</Button>
+					<Button Uid="btnDecreaseV" Command="{Binding DecreaseVolumeCommand}" Visibility="{Binding VolumeChangeVisibility}" Style="{StaticResource ImageButtonStyle}">
+						<Image Source="/Images/VolumeLow.png"/>
+					</Button>
+					<Border Visibility="{Binding VolumeChangeVisibility}" Width="100" Height="30" BorderBrush="{StaticResource AccentColorBlueSolidBrush}" BorderThickness="1">
+						<Grid Width="100">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="{Binding Volume}"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<Label Background="{StaticResource AccentColorBlueSolidBrush}" Grid.Row="0" Grid.Column="0"/>
+							<Label Background="White" Grid.Row="0" Grid.Column="1"/>
+						</Grid>
+					</Border>
+					<Button Uid="btnIncreaseV" Command="{Binding IncreaseVolumeCommand}" Visibility="{Binding VolumeChangeVisibility}" Style="{StaticResource ImageButtonStyle}">
+						<Image Source="/Images/VolumeHigh.png"/>
+					</Button>
+				</StackPanel>
+				<Grid Grid.Column="2" HorizontalAlignment="Left">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="230"/>
+						<ColumnDefinition Width="230"/>
+						<ColumnDefinition Width="230"/>
+					</Grid.ColumnDefinitions>
+					<Image Uid="USBAvailable" Grid.Column="0" Source="{Binding IsUSBAvailableViewModel, Converter={StaticResource BooleanToUSBConnectionConverter}, Mode=OneWay}"
+				       Height="50" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0, 15,0,0" />
+					<StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical">
+						<TextBlock Text="Test Status" Style="{StaticResource SystemStateTitleTextStyle}"/>
+						<TextBlock Text="{Binding SessionStatus}" Uid="TestStatusValue"
+					           Foreground="{Binding SessionStatus, Converter={StaticResource TestSessionColorConverter}}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock" BasedOn="{StaticResource StatusTextBlockStyle}">
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding SessionStatus, Converter={StaticResource TestSessionFlashConverter}}" Value="True">
+											<DataTrigger.EnterActions>
+												<BeginStoryboard>
+													<Storyboard>
+														<DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.7" To="1" Duration="0:0:3" AutoReverse="True" RepeatBehavior="Forever"/>
+													</Storyboard>
+												</BeginStoryboard>
+											</DataTrigger.EnterActions>
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>
+					</StackPanel>
+					<StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Vertical">
+						<TextBlock Text="System State" Style="{StaticResource SystemStateTitleTextStyle}"/>
+						<TextBlock Uid="SystemStateValue" Text="{Binding SystemStateViewModel, Converter={StaticResource StateConverter}}"
+					           Foreground="{Binding SystemStateViewModel, Converter={StaticResource StateBrushConverter}}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock" BasedOn="{StaticResource StatusTextBlockStyle}">
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding SystemStateViewModel, Converter={StaticResource SystemSessionFlashConverter}}" Value="True">
+											<DataTrigger.EnterActions>
+												<BeginStoryboard>
+													<Storyboard>
+														<DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.7" To="1" Duration="0:0:3" AutoReverse="True" RepeatBehavior="Forever"/>
+													</Storyboard>
+												</BeginStoryboard>
+											</DataTrigger.EnterActions>
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>
+					</StackPanel>
+				</Grid>
+				<Grid Grid.Column="3" HorizontalAlignment="Right">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="80"/>
+						<ColumnDefinition Width="80"/>
+					</Grid.ColumnDefinitions>
+					<Button Uid="btnSimulateE" Grid.Column="0" Command="{Binding SimulateExceptionCommand}" Style="{StaticResource ImageButtonStyle}" x:Name="_debugErrorBtn">
+						<Image Source="../Images/ErrorIcon.png"/>
+					</Button>
+					<Button Uid="btnHome" Grid.Column="1" Command="{Binding HomeCommand}" Style="{StaticResource ImageButtonStyle}">
+						<Image Source="/Images/HomeButton.png"/>
+					</Button>
+					<Button Uid="btnTurnOff" Grid.Column="2" Command="{Binding TurnOffCommand}" Style="{StaticResource ImageButtonStyle}">
+						<Image Source="/Images/ShutDown.png"/>
+					</Button>
+				</Grid>
+			</Grid>
+		</Grid>
+		<Popup x:Name="generateReportPopup" IsOpen="{Binding IsGeneratingReport}" Width="1000" Placement="Center" Margin="0,0,0,0">
+			<Border x:Name="popupBorder" BorderThickness="8" BorderBrush="GreenYellow" CornerRadius="30">
+				<Border.Triggers>
+					<EventTrigger RoutedEvent="Border.Loaded">
+						<BeginStoryboard>
+							<Storyboard>
+								<DoubleAnimation
+									Storyboard.TargetName="popupBorder"
+									Storyboard.TargetProperty="BorderBrush.Opacity"
+									From="1" To="0.2" Duration="0:0:2" AutoReverse="True" RepeatBehavior="Forever"/>
+							</Storyboard>
+						</BeginStoryboard>
+					</EventTrigger>
+				</Border.Triggers>
+				<TextBlock Text="{Binding WaitReportGeneration}" TextWrapping="Wrap" FontSize="28" FontWeight="Bold"
+				           Background="Black" Foreground="#FF00EFEF" Height="300" Padding="30" Margin="10" VerticalAlignment="Center"/>
+			</Border>
+		</Popup>
+	</Grid>
+</Window>

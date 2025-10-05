@@ -1,0 +1,30 @@
+﻿namespace Module.Infrastructure.Constants
+{
+	public enum TestParameter
+  {
+    Inflation_Speed,
+    Inflation_IBP,
+    Inflation_OBP,
+    Inflation_PT2,
+    Inflation_FM1,
+    Transition_Time,
+    Ablation_FM1,
+    Ablation_PT2,
+    Ablation_IBP,
+    Ablation_OBP,
+    Ablation_TC1,
+    FiftyDegree_Time,
+    Ablation_PWM1,
+    Ablation_PWM2,
+    Ablation_PT3,
+    Ablation_PT4,
+    Ablation_PT5,
+    Ablation_TS1,
+    Thawing_PT3,
+    Thawing_PT4,
+    Thawing_PT5,
+    Thawing_PWM1,
+    Thawing_PWM2,
+    Ablation_FlowMeterCheck
+  }
+}

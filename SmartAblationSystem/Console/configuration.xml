@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GPIO>
+  <GPIO8 ID="8" Number="7" />
+  <GPIO7 ID="7" Number="6" />
+  <GPIO6 ID="6" Number="5" />
+  <GPIO5 ID="5" Number="4" />
+  <GPIO4 ID="4" Number="3" />
+  <GPIO3 ID="3" Number="2" />
+  <GPIO2 ID="2" Number="1" />
+  <GPIO1 ID="1" Number="0" />
+</GPIO>

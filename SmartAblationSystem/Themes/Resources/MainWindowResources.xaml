@@ -1,0 +1,600 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <RadialGradientBrush x:Key="HomeBackground"
+	                     MappingMode="Absolute" GradientOrigin="809.873,390.139" Center="809.873,390.139" RadiusX="0.722" RadiusY="0.722">
+    <RadialGradientBrush.GradientStops>
+      <GradientStop Offset="0.00" Color="#ff111328"/>
+      <GradientStop Offset="1.00" Color="#ff15162c"/>
+    </RadialGradientBrush.GradientStops>
+    <RadialGradientBrush.Transform>
+      <MatrixTransform Matrix="1920.000,0.000,0.000,1080.000,-1554389.000,-420810.000" />
+    </RadialGradientBrush.Transform>
+  </RadialGradientBrush>
+
+  <RadialGradientBrush x:Key="HomeBackgroundLight"
+	                     MappingMode="Absolute" GradientOrigin="810.078,389.953" Center="810.078,389.953" RadiusX="0.748" RadiusY="0.748">
+    <RadialGradientBrush.GradientStops>
+      <GradientStop Offset="0.00" Color="#ff2a2a37"/>
+      <GradientStop Offset="1.00" Color="#ff131318"/>
+    </RadialGradientBrush.GradientStops>
+    <RadialGradientBrush.Transform>
+      <MatrixTransform Matrix="1920.000,0.000,0.000,1080.000,-1554390.000,-420810.000" />
+    </RadialGradientBrush.Transform>
+  </RadialGradientBrush>
+
+  <SolidColorBrush x:Key="HomeBarBrush" Color="#FFFFFFFF" Opacity="0.1"/>
+
+  <Color x:Key="NormalDrawingColor_">#ffdadada</Color>
+  <SolidColorBrush x:Key="NormalDrawingBrush_" Color="{StaticResource NormalDrawingColor_}"/>
+
+  <Color x:Key="PressedDrawingColor_">#88dadada</Color>
+  <SolidColorBrush x:Key="PressedDrawingBrush_" Color="{StaticResource PressedDrawingColor_}"/>
+
+  <Style x:Key="ViewSwitchTextBlockStyle_" TargetType="TextBlock">
+    <Setter Property="TextDecorations" Value="Underline"/>
+    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="15,0,0,0"/>
+  </Style>
+
+  <ControlTemplate x:Key="BarHomeButtonTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Pressed_">
+        <ColorAnimation Storyboard.TargetName="drawingPath_"
+                        Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)"
+                        To="{StaticResource PressedDrawingColor_}"
+                        Duration="0:0:0.1"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid Background="{x:Null}" Margin="0,0,5,3">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressed_}"/>
+          <VisualState x:Name="Disabled"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Viewbox Width="60" Height="60">
+        <Grid>
+          <Ellipse Width="60" Height="60" Stroke="Transparent" StrokeThickness="1" Fill="Transparent"/>
+          <Path x:Name="drawingPath_" 
+                StrokeThickness="2.0" 
+                Stroke="#ffdadada" 
+                StrokeLineJoin="Round" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Stretch="Uniform" 
+                Data="M2.087,30.7 C1.506,30.717 1.021,30.263 1,29.682 L1,12.336 C1.002,12.072 1.11,11.819 1.3,11.636 
+                      L1.3,11.636 14.128,1 26.828,11.632 26.808,11.632 C26.998,11.815 27.106,12.068 27.108,12.332 
+                      L27.108,29.682 C27.088,30.262 26.603,30.717 26.023,30.7 L2.087,30.7 z M10.892,20.453 L17.476,20.453 
+                      C18.028,20.453 18.476,20.901 18.476,21.453 L18.476,30 18.476,30 9.892,30 9.892,30 9.892,21.453 
+                      C9.892,20.901 10.34,20.453 10.892,20.453 z"/>
+        </Grid>
+      </Viewbox>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="BarHomeButtonStyle_" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource BarHomeButtonTemplate_}"/>
+  </Style>
+
+  <ControlTemplate x:Key="BarInstructionButtonTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Pressed_">
+        <DoubleAnimation Storyboard.TargetName="viewBox_"
+                         Storyboard.TargetProperty="Opacity"
+                         To="0.3"
+                         Duration="0:0:0.1"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid Background="{x:Null}">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressed_}"/>
+          <VisualState x:Name="Disabled"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Viewbox x:Name="viewBox_" 
+               Stretch="Uniform"
+               Height="60" Width="60">
+        <Grid>
+          <Ellipse Width="60" Height="60" Stroke="Transparent" StrokeThickness="1" Fill="Transparent"/>
+          <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Path StrokeThickness="2.0" 
+                Stroke="#ffdadada" 
+                StrokeLineJoin="Round" 
+                Data="F1 M 29.867,1.312 C 31.916,2.144 35.238,3.869 37.853,4.124 C 42.931,4.624 46.100,1.895 46.100,2.989 L 46.100,28.741 C 46.100,28.741 
+                      41.953,31.541 37.853,30.909 C 33.753,30.277 32.680,28.924 30.172,27.876 C 27.664,26.828 23.852,28.812 23.852,28.812 L 23.852,2.993 
+                      C 23.854,1.899 27.427,0.326 29.867,1.312 Z"/>
+            <Path StrokeThickness="2.0" 
+                Stroke="#ffdadada" 
+                StrokeLineJoin="Round" 
+                Data="F1 M 17.234,1.312 C 15.185,2.144 11.863,3.869 9.247,4.124 C 4.169,4.623 1.000,1.899 1.000,2.993 L 1.000,28.741 C 1.000,28.741 5.147,31.541 
+                      9.247,30.909 C 13.347,30.277 14.420,28.924 16.928,27.876 C 19.436,26.828 23.311,28.789 23.311,28.789 L 23.311,2.993 C 23.312,1.899 
+                      19.674,0.326 17.234,1.312 Z"/>
+            <Path StrokeThickness="3.0" 
+                Stroke="#ffdadada" 
+                StrokeStartLineCap="Round" 
+                StrokeEndLineCap="Round" 
+                StrokeLineJoin="Round" 
+                Data="F1 M 33.603,15.280 L 35.457,15.280 L 35.457,20.680"/>
+            <Path Fill="#ffdadada" 
+                Data="F1 M 35.087,7.965 C 36.078,7.965 36.882,8.768 36.882,9.760 C 36.882,10.751 36.078,11.555 35.087,11.555 C 34.096,11.555 33.292,10.751 
+                      33.292,9.760 C 33.292,8.768 34.096,7.965 35.087,7.965 Z"/>
+            <Path StrokeThickness="2.5" 
+                Stroke="#ffdadada" 
+                StrokeStartLineCap="Round" 
+                StrokeEndLineCap="Round" 
+                StrokeMiterLimit="1.0" 
+                Data="F1 M 33.282,21.834 L 37.612,21.834"/>
+          </Grid>
+        </Grid>
+      </Viewbox>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="BarInstructionButtonStyle_" TargetType="Button">
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Template" Value="{StaticResource BarInstructionButtonTemplate_}"/>
+  </Style>
+
+  <ControlTemplate x:Key="ViewSwitchButtonTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Pressed_">
+        <ColorAnimation Storyboard.TargetName="path1_"
+                        Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)"
+                        To="{StaticResource PressedDrawingColor_}"
+                        Duration="0:0:0.1"/>
+        <ColorAnimation Storyboard.TargetName="path2_"
+                        Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)"
+                        To="{StaticResource PressedDrawingColor_}"
+                        Duration="0:0:0.1"/>
+        <ColorAnimation Storyboard.TargetName="path3_"
+                        Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)"
+                        To="{StaticResource PressedDrawingColor_}"
+                        Duration="0:0:0.1"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid Background="Transparent">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressed_}"/>
+          <VisualState x:Name="Disabled"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Viewbox x:Name="viewBox_"
+               Stretch="Uniform"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Width="42" Height="42">
+        <Grid>
+          <Path Data="F1 M 7.745,5.692 L 35.687,5.692 C 36.792,5.692 37.687,6.587 37.687,7.692 L 37.687,30.000 
+                      C 37.687,31.105 36.792,32.000 35.687,32.000 L 7.745,32.000 C 6.641,32.000 5.745,31.105 5.745,30.000 
+                      L 5.745,7.692 C 5.745,6.587 6.641,5.692 7.745,5.692 Z"/>
+          <Path x:Name="path1_" 
+                StrokeThickness="2.0" 
+                Stroke="#ffdadada" 
+                StrokeMiterLimit="1.0" 
+                Data="F1 M 7.745,6.692 L 35.687,6.692 C 36.240,6.692 36.687,7.140 36.687,7.692 L 36.687,30.000 
+                      C 36.687,30.552 36.240,31.000 35.687,31.000 L 7.745,31.000 C 7.193,31.000 6.745,30.552 6.745,30.000 
+                      L 6.745,7.692 C 6.745,7.140 7.193,6.692 7.745,6.692 Z"/>
+          <Path x:Name="path2_" 
+                StrokeThickness="2.0" 
+                Stroke="#ffdadada" 
+                StrokeMiterLimit="1.0" 
+                Data="F1 M 6.286,12.046 L 36.838,12.046"/>
+          <Path x:Name="path3_" 
+                StrokeThickness="2.0" 
+                Stroke="#ffdadada" 
+                StrokeStartLineCap="Square" 
+                StrokeEndLineCap="Square" 
+                StrokeMiterLimit="1.0" 
+                Data="F1 M 2.336,27.878 C 1.523,27.789 0.931,27.064 1.006,26.249 L 1.006,2.629 C 0.931,1.814 1.523,1.089 2.336,1.000 L 30.938,1.000 C 31.752,1.089 32.344,1.814 32.268,2.629"/>
+        </Grid>
+      </Viewbox>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="ViewSwitchButtonStyle_" TargetType="Button">
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Template" Value="{StaticResource ViewSwitchButtonTemplate_}"/>
+  </Style>
+
+  <Geometry x:Key="icon_btn_volumeGeometry1">F1 M43.969,32.051z M0,0z M0,-0.92L8.751,-0.92C8.751,-0.92 17.607,-11.851 18.507,-10.02 18.948,-9.125 20.192,-2.536 20.18,4.487A70.509,70.509,0,0,1,18.507,19.53C17.769,21.53,8.794,10.43,8.794,10.43L0,10.43z</Geometry>
+  <Geometry x:Key="icon_btn_volumeGeometry2">F1 M43.969,32.051z M0,0z M15.086,0A15.086,15.086,0,0,1,0,15.086</Geometry>
+  <Geometry x:Key="icon_btn_volumeGeometry3">F1 M43.969,32.051z M0,0z M8.527,0A8.527,8.527,0,0,1,0,8.527</Geometry>
+
+  <ControlTemplate x:Key="VolumeDownTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Pressed_">
+        <ColorAnimation Storyboard.TargetName="pen1_" 
+                        Storyboard.TargetProperty="(Pen.Brush).(SolidColorBrush.Color)" 
+                        To="{StaticResource PressedDrawingColor_}" 
+                        Duration="0:0:0.1"/>
+        <ColorAnimation Storyboard.TargetName="pen2_" 
+                        Storyboard.TargetProperty="(Pen.Brush).(SolidColorBrush.Color)" 
+                        To="{StaticResource PressedDrawingColor_}" 
+                        Duration="0:0:0.1"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid Background="{x:Null}">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressed_}"/>
+          <VisualState x:Name="Disabled"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Viewbox x:Name="viewBox_" Stretch="Uniform" Height="60" Width="60">
+        <Grid>
+          <Ellipse Width="60" Height="60" Stroke="Transparent" StrokeThickness="1" Fill="Transparent"/>
+          <Image Stretch="Uniform" Width="35">
+            <Image.Source>
+              <DrawingImage>
+                <DrawingImage.Drawing>
+                  <DrawingGroup x:Name="RightDrawingGroup">
+                    <DrawingGroup x:Name="icon_btn_volumeDrawingGroup" ClipGeometry="M0,0 V32.051 H43.969 V0 H0 Z">
+                      <DrawingGroup Opacity="1" Transform="1,0,0,1,-151,-958.747">
+                        <DrawingGroup Transform="1,0,0,1,152,970">
+                          <GeometryDrawing Geometry="{StaticResource icon_btn_volumeGeometry1}">
+                            <GeometryDrawing.Pen>
+                              <Pen x:Name="pen1_" Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                            </GeometryDrawing.Pen>
+                          </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Transform="0.707106781186548,-0.707106781186547,0.707106781186547,0.707106781186548,172.192,974.752">
+                          <GeometryDrawing Geometry="{StaticResource icon_btn_volumeGeometry3}">
+                            <GeometryDrawing.Pen>
+                              <Pen x:Name="pen2_" Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+                            </GeometryDrawing.Pen>
+                          </GeometryDrawing>
+                        </DrawingGroup>
+                      </DrawingGroup>
+                    </DrawingGroup>
+                  </DrawingGroup>
+                </DrawingImage.Drawing>
+              </DrawingImage>
+            </Image.Source>
+          </Image>
+        </Grid>
+      </Viewbox>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="VolumeDownButtonStyle_" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource VolumeDownTemplate_}"/>
+  </Style>
+
+  <ControlTemplate x:Key="VolumeUpTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Pressed_">
+        <ColorAnimation Storyboard.TargetName="pen1_" 
+                        Storyboard.TargetProperty="(Pen.Brush).(SolidColorBrush.Color)" 
+                        To="{StaticResource PressedDrawingColor_}" 
+                        Duration="0:0:0.1"/>
+        <ColorAnimation Storyboard.TargetName="pen2_" 
+                        Storyboard.TargetProperty="(Pen.Brush).(SolidColorBrush.Color)" 
+                        To="{StaticResource PressedDrawingColor_}" 
+                        Duration="0:0:0.1"/>
+        <ColorAnimation Storyboard.TargetName="pen3_" 
+                        Storyboard.TargetProperty="(Pen.Brush).(SolidColorBrush.Color)" 
+                        To="{StaticResource PressedDrawingColor_}" 
+                        Duration="0:0:0.1"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid Background="{x:Null}">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed" Storyboard="{StaticResource Pressed_}"/>
+          <VisualState x:Name="Disabled"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Viewbox x:Name="viewBox_" Stretch="Uniform" Height="60" Width="60">
+        <Grid>
+          <Ellipse Width="60" Height="60" Stroke="Transparent" StrokeThickness="1" Fill="Transparent"/>
+          <Image Stretch="Uniform" Width="39">
+            <Image.Source>
+              <DrawingImage>
+                <DrawingImage.Drawing>
+                  <DrawingGroup x:Name="RightDrawingGroup">
+                    <DrawingGroup x:Name="icon_btn_volumeDrawingGroup" ClipGeometry="M0,0 V32.051 H43.969 V0 H0 Z">
+                      <DrawingGroup Opacity="1" Transform="1,0,0,1,-151,-958.747">
+                        <DrawingGroup Transform="1,0,0,1,152,970">
+                          <GeometryDrawing Geometry="{StaticResource icon_btn_volumeGeometry1}">
+                            <GeometryDrawing.Pen>
+                              <Pen x:Name="pen1_" Brush="#FFDBDBDB" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                            </GeometryDrawing.Pen>
+                          </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Transform="0.707106781186548,-0.707106781186547,0.707106781186547,0.707106781186548,172.22,974.456">
+                          <GeometryDrawing Geometry="{StaticResource icon_btn_volumeGeometry2}">
+                            <GeometryDrawing.Pen>
+                              <Pen x:Name="pen2_" Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+                            </GeometryDrawing.Pen>
+                          </GeometryDrawing>
+                        </DrawingGroup>
+                        <DrawingGroup Transform="0.707106781186548,-0.707106781186547,0.707106781186547,0.707106781186548,172.192,974.752">
+                          <GeometryDrawing Geometry="{StaticResource icon_btn_volumeGeometry3}">
+                            <GeometryDrawing.Pen>
+                              <Pen x:Name="pen3_" Brush="#FFDBDBDB" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+                            </GeometryDrawing.Pen>
+                          </GeometryDrawing>
+                        </DrawingGroup>
+                      </DrawingGroup>
+                    </DrawingGroup>
+                  </DrawingGroup>
+                </DrawingImage.Drawing>
+              </DrawingImage>
+            </Image.Source>
+          </Image>
+        </Grid>
+      </Viewbox>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="VolumeUpButtonStyle_" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource VolumeUpTemplate_}"/>
+  </Style>
+
+  <ControlTemplate x:Key="WarningButtonTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Geometry x:Key="Group595Geometry_">F1 M34.294,30.049z M0,0z M15.884,2.939A2,2,0,0,1,19.334,2.939L33.449,26.988A2,2,0,0,1,31.724,30L3.493,30A2,2,0,0,1,1.768,26.988z</Geometry>
+      <DrawingGroup x:Key="Group595DrawingGroup_" ClipGeometry="M0,0 V30.049 H34.294 V0 H0 Z">
+        <DrawingGroup Opacity="1" Transform="1,0,0,1,-0.461,-0.951">
+          <GeometryDrawing Geometry="{StaticResource Group595Geometry_}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#FFFA5D5D" Thickness="2" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+            </GeometryDrawing.Pen>
+          </GeometryDrawing>
+          <DrawingGroup Opacity="1" Transform="1,0,0,1,16.449,23.064">
+            <GeometryDrawing>
+              <GeometryDrawing.Pen>
+                <Pen Brush="#FFFFFFFF" Thickness="1" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Miter" />
+              </GeometryDrawing.Pen>
+              <GeometryDrawing.Geometry>
+                <EllipseGeometry RadiusX="0.662" RadiusY="0.662" Center="1.162,1.162" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+          </DrawingGroup>
+          <DrawingGroup Transform="1,0,0,1,17.611,11.516">
+            <GeometryDrawing>
+              <GeometryDrawing.Pen>
+                <Pen Brush="#FFFFFFFF" Thickness="2" StartLineCap="Round" EndLineCap="Round" LineJoin="Miter" MiterLimit="1" />
+              </GeometryDrawing.Pen>
+              <GeometryDrawing.Geometry>
+                <LineGeometry StartPoint="0,0" EndPoint="0,6.971" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+          </DrawingGroup>
+        </DrawingGroup>
+      </DrawingGroup>
+    </ControlTemplate.Resources>
+    <Grid Background="Transparent">
+      <Viewbox x:Name="viewBox_" Stretch="Uniform" Height="33">
+        <Image Stretch="Uniform">
+          <Image.Source>
+            <DrawingImage Drawing="{StaticResource Group595DrawingGroup_}"/>
+          </Image.Source>
+        </Image>
+      </Viewbox>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="WarningButtonStyle_" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource WarningButtonTemplate_}"/>
+  </Style>
+
+  <Style x:Key="HospitalTitleTextBlockStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="Foreground" Value="#ffcec3c6"/>
+    <Setter Property="Margin" Value="0,0,10,0"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
+  <Style x:Key="HospitalNameTextBlockStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="Foreground" Value="#ffdbdbdb"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+
+  <Style x:Key="HospitalLogoStackPanelOnHomeStyle_" TargetType="StackPanel">
+    <Setter Property="Orientation" Value="Horizontal"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Canvas.Left" Value="40"/>
+    <Setter Property="Canvas.Top" Value="29"/>
+  </Style>
+
+  <!-- BSC Logo Big -->
+  <Geometry x:Key="logo_header_bigGeometry1">F1 M154.999,52.67z M0,0z M285.332,106.2L281.9,106.2 281.9,107.27 292.159,107.27 292.159,106.2 289.391,106.2 289.391,88.3C288.542,89.186,287.177,89.259,285.812,89.259L282.417,89.259 282.417,90.292 285.332,90.292 285.332,106.192</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry2">F1 M154.999,52.67z M0,0z M109.432,106.2L106,106.2 106,107.27 116.259,107.27 116.259,106.2 113.491,106.2 113.491,88.3C112.642,89.186,111.277,89.259,109.912,89.259L106.517,89.259 106.517,90.292 109.395,90.292 109.395,106.192</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry3">F1 M154.999,52.67z M0,0z M316.927,83.482L313.643,83.482 313.643,84.552 324.049,84.552 324.049,83.482 321.06,83.482 321.06,67.614 328.4,67.614 328.4,83.482 325.632,83.482 325.632,84.552 335.78,84.552 335.78,83.482 332.533,83.482 332.533,65.582C331.684,66.468,330.171,66.541,328.806,66.541L321.06,66.541 321.06,60.566C321.06,56.581 322.536,53.366 327.112,53.366 328.92,53.366 330.249,54.104 330.249,54.879 330.249,55.396 329.806,55.543 329.437,55.765A1.9,1.9,0,0,0,328.367,57.465A2.016,2.016,0,0,0,330.397,59.347A2.465,2.465,0,0,0,332.797,56.616C332.797,54.697 330.841,52.298 326.708,52.298 319.508,52.298 316.929,58.129 316.929,63.664L316.929,66.542 313.2,66.542 313.2,67.575 316.927,67.575 316.927,83.475</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry4">F1 M154.999,52.67z M0,0z M10.517,72.551C14.982,73.474 16.975,76.167 16.975,79.083 16.975,82.441 14.281,85.172 10.185,85.172 5.978,85.172 1.919,81.74 1.292,74.839L0.148,74.839 0.148,85.946 1.292,85.946C1.366,85.208 1.698,84.654 2.584,84.654 4.245,84.654 6.016,86.388 10.296,86.388 16.496,86.388 19.89,82.624 19.89,76.904 19.89,72.404 17.639,69.081 11.698,67.604L9.41,67.089C4.17,65.872,2.62,63.473,2.62,61A5.579,5.579,0,0,1,8.377,55.354C13.322,55.354,16.237,59.339,16.828,64.321L18.046,64.321 18.046,55.1 16.938,55.1A1.212,1.212,0,0,1,15.646,56.244C14.133,56.244,12.878,54.104,8.266,54.104A8.077,8.077,0,0,0,0,62.477C0,67.864,2.694,70.669,8.3,72L10.514,72.554</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry5">F1 M154.999,52.67z M0,0z M247.406,96.175C247.406,99.164 249.473,100.275 252.206,100.275 255.49,100.275 256.56,98.467 257.077,97.36L256.228,96.77A3.337,3.337,0,0,1,253.428,98.8C252.321,98.8,251.435,98.246,251.435,96.549L251.435,82.595 256.195,82.595 256.195,81.561 251.435,81.561 251.435,76.1 250.623,76.1C249.923,80.381,247.929,81.561,243.907,81.561L243.907,82.594 247.339,82.594 247.339,96.174</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry6">F1 M154.999,52.67z M0,0z M196.81,106.324L199.873,106.324 199.873,93C199.873,90.86 198.729,90.011 197.216,90.011 194.522,90.011 192.529,92.557 191.607,93.849L191.607,106.359 194.744,106.359 194.744,107.429 184.3,107.429 184.3,106.359 187.51,106.359 187.51,90.493 184.3,90.493 184.3,89.459 187.695,89.459C189.762,89.459,190.721,89.459,191.495,88.5L191.495,92.079 191.569,92.079A8.543,8.543,0,0,1,198.174,88.5C202.049,88.5,203.931,91.009,203.931,94.035L203.931,106.4 207.141,106.4 207.141,107.47 196.773,107.47 196.773,106.326</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry7">F1 M154.999,52.67z M0,0z M74.713,101.7C74.27,104.025 72.388,106.9 69.213,106.9 66.113,106.9 64.6,105.055 64.6,101L64.6,96.871C64.6,92.886 66.076,90.007 69.434,90.007 71.427,90.007 72.571,91.007 72.571,91.741 72.571,92.147 72.271,92.405 72.054,92.7A1.912,1.912,0,0,0,71.5,93.992A1.837,1.837,0,0,0,73.5,95.8A2.251,2.251,0,0,0,75.677,93.364C75.677,91.187 73.094,88.899 69.108,88.899 64.052,88.899 60.108,92.774 60.108,98.641 60.108,103.992 62.876,108.383 68.78,108.383 72.765,108.383 75.349,105.136 75.865,101.667L74.713,101.667</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry8">F1 M154.999,52.67z M0,0z M389.013,101.6C388.57,103.925 386.688,106.8 383.513,106.8 380.413,106.8 378.9,104.955 378.9,100.9L378.9,96.73C378.9,92.745 380.376,89.866 383.734,89.866 385.727,89.866 386.871,90.866 386.871,91.6 386.871,92.006 386.571,92.264 386.354,92.559A1.919,1.919,0,0,0,385.837,93.887A1.837,1.837,0,0,0,387.83,95.695A2.251,2.251,0,0,0,390.007,93.259C390.007,91.082 387.424,88.794 383.402,88.794 378.346,88.794 374.402,92.669 374.402,98.536 374.402,103.887 377.17,108.278 383.037,108.278 387.022,108.278 389.606,105.031 390.122,101.562L389.015,101.562</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry9">F1 M154.999,52.67z M0,0z M152.313,101.631C151.833,104.251 149.913,106.908 146.888,106.908 143.863,106.908 142.275,105.063 142.275,101.299L142.275,97.055 153.42,97.055C153.678,97.055,153.789,96.907,153.789,96.649L153.789,95.985A7.552,7.552,0,0,0,145.889,88.9C141.166,88.9 137.697,93.55 137.697,98.642 137.697,104.731 141.24,108.384 146.074,108.384 149.874,108.384 152.716,105.69 153.417,101.631z M149.73,95.616C149.73,95.801,149.656,95.916,149.43,95.916L142.419,95.916 142.419,94.583C142.419,91.742 143.895,89.97 146.109,89.97 148.397,89.97 149.688,91.594 149.688,94.583L149.688,95.616</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry10">F1 M154.999,52.67z M0,0z M61.511,1L62.581,1C66.714,1 68.928,3.325 68.928,6.24 68.928,10.373 66.128,11.812 62.728,11.812L61.511,11.812z M57.3,25.315L54.5,25.315 54.5,26.315 65.9,26.315C69.775,26.315 74.351,24.101 74.351,18.935 74.351,14.835 70.661,12.625 67.081,12.403L67.081,12.218C70.144,11.96 73.207,10.004 73.207,5.945 73.209,2.436 70.22,0 64.759,0L54.5,0 54.5,0.959 57.341,0.959 57.341,25.315z M61.507,12.768L63.5,12.768C67.67,12.768 69.958,15.499 69.958,18.931 69.958,22.658 67.707,25.315 63.869,25.315L61.511,25.315 61.511,12.768</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry11">F1 M154.999,52.67z M0,0z M113,35.424C113,40.074 116.284,43.948 120.934,43.948 125.584,43.948 128.868,40.036 128.868,35.424 128.868,30.812 125.584,26.9 120.934,26.9 116.284,26.9 113,30.738 113,35.424z M124.882,36.383C124.882,39.63 124.513,42.841 120.933,42.841 117.353,42.841 116.984,39.631 116.984,36.383L116.984,34.428C116.984,31.181 117.284,27.97 120.933,27.97 124.66,27.97 124.882,31.18 124.882,34.428L124.882,36.384</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry12">F1 M154.999,52.67z M0,0z M223.5,35.424C223.5,40.074 226.784,43.948 231.434,43.948 236.084,43.948 239.368,40.036 239.368,35.424 239.368,30.812 236.084,26.9 231.434,26.9 226.784,26.9 223.5,30.738 223.5,35.424z M235.382,36.383C235.382,39.63 234.976,42.841 231.434,42.841 227.892,42.841 227.486,39.631 227.486,36.383L227.486,34.465C227.486,31.218 227.786,28.007 231.434,28.007 235.161,28.007 235.382,31.217 235.382,34.465L235.382,36.384</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry13">F1 M154.999,52.67z M0,0z M277.929,41.946L280.18,41.946 280.18,30.765A2.4,2.4,0,0,0,277.671,28.108C275.971,28.108,274.239,29.732,273.427,31.466L273.427,41.946 276.195,41.946 276.195,42.946 266.6,42.946 266.6,41.946 269.626,41.946 269.626,28.146 266.711,28.146 266.711,27.146 269.552,27.146C271.286,27.146,272.689,27.146,273.352,26.297L273.352,29.36 273.426,29.36A7.619,7.619,0,0,1,279.257,26.297A4.508,4.508,0,0,1,284.128,31.02L284.128,41.873 286.268,41.873 286.268,42.873 277.928,42.873 277.928,41.95</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry14">F1 M154.999,52.67z M0,0z M166.5,36.8C168.677,37.1,169.6,38.387,169.6,39.789A3.076,3.076,0,0,1,166.242,42.815C162.847,42.815,161.666,39.826,161.442,37.833L160.6,37.833 160.711,43.627 161.56,43.627C161.634,43.037 161.818,42.778 162.187,42.778 162.962,42.778 163.921,43.848 166.287,43.848 169.83,43.848 171.97,41.634 171.97,38.313A4.783,4.783,0,0,0,167.579,33.331L165.771,33.031C163.409,32.625 162.561,31.813 162.561,30.411 162.561,29.009 163.742,27.865 165.735,27.865 168.06,27.865 169.425,29.341 169.794,31.592L170.606,31.592 170.532,27.016 169.794,27.016C169.757,27.348 169.61,27.716 169.24,27.716 168.576,27.716 167.653,26.793 165.661,26.793A4.727,4.727,0,0,0,160.679,31.516C160.679,35.022,162.967,36.316,165.366,36.645L166.51,36.793</Geometry>
+  <Geometry x:Key="logo_header_bigGeometry15">F1 M154.999,52.67z M0,0z M203.875,32.709A2.937,2.937,0,0,1,201.513,34.296C200.513,34.296,199.631,33.853,199.631,32.266L199.631,20.384 203.875,20.384 203.875,19.384 199.631,19.384 199.631,14 198.893,14C198.266,17.764,196.162,19.388,193.099,19.388L193.099,20.388 195.793,20.388 195.793,32.23C195.793,34.813,197.638,35.809,200.221,35.809A4.735,4.735,0,0,0,204.465,33.595L203.875,32.709</Geometry>
+  <DrawingGroup x:Key="logo_header_bigDrawingGroup" ClipGeometry="M0,0 V52.67 H154.999 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="0.0055190436542034149" Y="0" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Transform="1,0,0,1,-177.063,-55.335">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry1}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-66.58,-55.335">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry2}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-196.504,-32.62">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry3}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,0,-33.756">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry4}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-153.18,-47.638">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry5}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-115.709,-55.462">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry6}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-37.922,-55.714">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry7}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-235.121,-55.65">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry8}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-86.473,-55.714">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry9}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-34.389,0">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry10}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-70.963,-16.866">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry11}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-140.355,-16.866">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry12}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-167.398,-16.491">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry13}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-100.871,-16.804">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry14}" />
+    </DrawingGroup>
+    <DrawingGroup Transform="1,0,0,1,-121.283,-8.834">
+      <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_bigGeometry15}" />
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="LogoHeaderBigDrawingImage_" Drawing="{StaticResource logo_header_bigDrawingGroup}" />
+
+  <Style x:Key="LogoImageOnHomeStyle_" TargetType="Image">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Source" Value="{StaticResource LogoHeaderBigDrawingImage_}"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="Width" Value="155"/>
+    <Setter Property="Height" Value="52.67"/>
+    <Setter Property="Canvas.Left" Value="1715"/>
+    <Setter Property="Canvas.Top" Value="40"/>
+  </Style>
+  
+  <!-- BSC Logo Small -->
+  <Geometry x:Key="logo_header_smGeometry1">F1 M111.822,37.998z M0,0z M284.394,101.306L281.9,101.306 281.9,102.084 289.355,102.084 289.355,101.306 287.344,101.306 287.344,88.3A3.488,3.488,0,0,1,284.744,89L282.277,89 282.277,89.751 284.396,89.751 284.396,101.309</Geometry>
+  <Geometry x:Key="logo_header_smGeometry2">F1 M111.822,37.998z M0,0z M108.494,101.306L106,101.306 106,102.084 113.455,102.084 113.455,101.306 111.444,101.306 111.444,88.3A3.488,3.488,0,0,1,108.844,89L106.377,89 106.377,89.751 108.469,89.751 108.469,101.309</Geometry>
+  <Geometry x:Key="logo_header_smGeometry3">F1 M111.822,37.998z M0,0z M315.908,74.959L313.521,74.959 313.521,75.737 321.083,75.737 321.083,74.959 318.911,74.959 318.911,63.429 324.247,63.429 324.247,74.959 322.236,74.959 322.236,75.737 329.61,75.737 329.61,74.959 327.25,74.959 327.25,61.954A3.762,3.762,0,0,1,324.542,62.654L318.911,62.654 318.911,58.307C318.911,55.407 319.984,53.078 323.311,53.078 324.625,53.078 325.59,53.614 325.59,54.178 325.59,54.553 325.268,54.661 325,54.822A1.378,1.378,0,0,0,324.222,56.056A1.465,1.465,0,0,0,325.697,57.424A1.792,1.792,0,0,0,327.44,55.44C327.44,54.046 326.019,52.303 323.015,52.303 317.786,52.303 315.909,56.54 315.909,60.562L315.909,62.654 313.2,62.654 313.2,63.4 315.908,63.4 315.908,74.959</Geometry>
+  <Geometry x:Key="logo_header_smGeometry4">F1 M111.822,37.998z M0,0z M7.643,67.508C10.888,68.178 12.336,70.136 12.336,72.254 12.336,74.694 10.378,76.679 7.402,76.679 4.345,76.679 1.395,74.185 0.938999999999998,69.171L0.107,69.171 0.107,77.243 0.939,77.243C0.993,76.707 1.234,76.304 1.878,76.304 3.085,76.304 4.372,77.564 7.478,77.564 11.983,77.564 14.45,74.829 14.45,70.672 14.45,67.4 12.814,64.987 8.497,63.914L6.834,63.539C3.03,62.654,1.9,60.911,1.9,59.115A4.054,4.054,0,0,1,6.083,55.015C9.676,55.015,11.795,57.915,12.224,61.531L13.109,61.531 13.109,54.831 12.309,54.831A0.881,0.881,0,0,1,11.37,55.662C10.27,55.662,9.359,54.107,6.007,54.107A5.869,5.869,0,0,0,0,60.187C0,64.1,1.958,66.14,6.034,67.106L7.643,67.506</Geometry>
+  <Geometry x:Key="logo_header_smGeometry5">F1 M111.822,37.998z M0,0z M246.448,90.688C246.448,92.86,247.948,93.665,249.934,93.665A3.463,3.463,0,0,0,253.474,91.547L252.857,91.118A2.425,2.425,0,0,1,250.819,92.593C250.019,92.593,249.371,92.193,249.371,90.957L249.371,80.82 252.83,80.82 252.83,80.069 249.37,80.069 249.37,76.1 248.78,76.1C248.271,79.211,246.822,80.069,243.9,80.069L243.9,80.82 246.394,80.82 246.394,90.688</Geometry>
+  <Geometry x:Key="logo_header_smGeometry6">F1 M111.822,37.998z M0,0z M193.391,101.452L195.617,101.452 195.617,91.772C195.617,90.217 194.786,89.6 193.686,89.6 191.728,89.6 190.28,91.45 189.61,92.389L189.61,101.48 191.889,101.48 191.889,102.258 184.3,102.258 184.3,101.48 186.633,101.48 186.633,89.948 184.3,89.948 184.3,89.2 186.767,89.2C188.267,89.2,188.967,89.2,189.529,88.5L189.529,91.1 189.583,91.1A6.208,6.208,0,0,1,194.383,88.5A3.829,3.829,0,0,1,198.566,92.522L198.566,101.505 200.9,101.505 200.9,102.283 193.365,102.283 193.365,101.452</Geometry>
+  <Geometry x:Key="logo_header_smGeometry7">F1 M111.822,37.998z M0,0z M70.719,98.205C70.397,99.894 69.03,101.986 66.719,101.986 64.466,101.986 63.367,100.645 63.367,97.695L63.367,94.695C63.367,91.795 64.44,89.707 66.88,89.707 68.328,89.707 69.159,90.431 69.159,90.967 69.159,91.262 68.944,91.45 68.784,91.667A1.389,1.389,0,0,0,68.384,92.606A1.335,1.335,0,0,0,69.832,93.92A1.636,1.636,0,0,0,71.414,92.15C71.414,90.568 69.537,88.905 66.641,88.905 62.967,88.905 60.098,91.721 60.098,95.984 60.098,99.872 62.109,103.063 66.398,103.063A5.375,5.375,0,0,0,71.547,98.183L70.716,98.183</Geometry>
+  <Geometry x:Key="logo_header_smGeometry8">F1 M111.822,37.998z M0,0z M385.019,98.105C384.697,99.794 383.33,101.886 381.019,101.886 378.766,101.886 377.667,100.545 377.667,97.595L377.667,94.565C377.667,91.665 378.74,89.577 381.18,89.577 382.628,89.577 383.459,90.301 383.459,90.837 383.459,91.132 383.244,91.32 383.084,91.537A1.394,1.394,0,0,0,382.709,92.502A1.335,1.335,0,0,0,384.157,93.816A1.636,1.636,0,0,0,385.739,92.046C385.739,90.464 383.862,88.801 380.939,88.801 377.265,88.801 374.396,91.617 374.396,95.88 374.396,99.768 376.407,102.959 380.671,102.959A5.375,5.375,0,0,0,385.82,98.079L385.02,98.079</Geometry>
+  <Geometry x:Key="logo_header_smGeometry9">F1 M111.822,37.998z M0,0z M148.319,98.151C147.97,100.051 146.576,101.986 144.377,101.986 142.178,101.986 141.025,100.645 141.025,97.91L141.025,94.826 149.125,94.826C149.313,94.826,149.393,94.719,149.393,94.531L149.393,94.048A5.488,5.488,0,0,0,143.654,88.899C140.222,88.899 137.701,92.278 137.701,95.978 137.701,100.403 140.275,103.057 143.788,103.057 146.55,103.057 148.615,101.099 149.124,98.15z M146.442,93.78C146.442,93.914,146.388,93.995,146.227,93.995L141.127,93.995 141.127,93.03C141.127,90.965 142.2,89.678 143.809,89.678 145.472,89.678 146.409,90.858 146.409,93.03L146.409,93.781</Geometry>
+  <Geometry x:Key="logo_header_smGeometry10">F1 M111.822,37.998z M0,0z M59.6,0.724L60.378,0.724C63.378,0.724 64.99,2.413 64.99,4.532 64.99,7.532 62.952,8.581 60.485,8.581L59.6,8.581z M56.538,18.4L54.5,18.4 54.5,19.124 62.786,19.124C65.602,19.124 68.927,17.515 68.927,13.761 68.927,10.784 66.245,9.175 63.644,9.015L63.644,8.876A4.5,4.5,0,0,0,68.1,4.317C68.1,1.77,65.924,0,61.955,0L54.5,0 54.5,0.7 56.565,0.7 56.565,18.4z M59.6,9.278L61.048,9.278A4.323,4.323,0,0,1,65.741,13.756C65.741,16.464,64.105,18.395,61.316,18.395L59.6,18.395 59.6,9.278</Geometry>
+  <Geometry x:Key="logo_header_smGeometry11">F1 M111.822,37.998z M0,0z M113,33.094A5.78,5.78,0,1,0,124.531,33.094A5.909,5.909,0,0,0,118.766,26.9C115.387,26.9,113,29.689,113,33.094z M121.635,33.794C121.635,36.154 121.367,38.487 118.766,38.487 116.165,38.487 115.897,36.154 115.897,33.794L115.897,32.37C115.897,30.01 116.112,27.677 118.766,27.677 121.474,27.677 121.635,30.01 121.635,32.37L121.635,33.791</Geometry>
+  <Geometry x:Key="logo_header_smGeometry12">F1 M111.822,37.998z M0,0z M223.5,33.094A5.78,5.78,0,1,0,235.031,33.094A5.909,5.909,0,0,0,229.266,26.9C225.887,26.9,223.5,29.689,223.5,33.094z M232.135,33.794C232.135,36.154 231.84,38.487 229.266,38.487 226.692,38.487 226.397,36.154 226.397,33.794L226.397,32.4C226.397,30.04 226.612,27.707 229.266,27.707 231.974,27.707 232.135,30.04 232.135,32.4L232.135,33.794</Geometry>
+  <Geometry x:Key="logo_header_smGeometry13">F1 M111.822,37.998z M0,0z M274.832,37.67L276.468,37.67 276.468,29.545A1.745,1.745,0,0,0,274.645,27.614A3.966,3.966,0,0,0,271.561,30.054L271.561,37.67 273.572,37.67 273.572,38.394 266.6,38.394 266.6,37.67 268.8,37.67 268.8,27.641 266.68,27.641 266.68,26.917 268.745,26.917C270.005,26.917,271.024,26.917,271.507,26.3L271.507,28.526 271.561,28.526A5.537,5.537,0,0,1,275.8,26.3A3.276,3.276,0,0,1,279.34,29.732L279.34,37.616 280.895,37.616 280.895,38.34 274.835,38.34 274.835,37.67</Geometry>
+  <Geometry x:Key="logo_header_smGeometry14">F1 M111.822,37.998z M0,0z M164.891,34.067C166.473,34.282,167.144,35.22,167.144,36.239A2.235,2.235,0,0,1,164.704,38.439C162.237,38.439,161.379,36.267,161.218,34.819L160.6,34.819 160.68,39.029 161.297,39.029C161.351,38.6 161.485,38.412 161.753,38.412 162.316,38.412 163.013,39.19 164.73,39.19A3.8,3.8,0,0,0,168.86,35.168A3.476,3.476,0,0,0,165.669,31.548L164.355,31.333C162.639,31.038 162.022,30.448 162.022,29.433 162.022,28.418 162.88,27.583 164.328,27.583A2.874,2.874,0,0,1,167.278,30.291L167.868,30.291 167.814,26.966 167.278,26.966C167.251,27.207 167.144,27.476 166.878,27.476 166.395,27.476 165.725,26.806 164.278,26.806A3.435,3.435,0,0,0,160.658,30.238C160.658,32.786,162.321,33.724,164.064,33.965L164.895,34.072</Geometry>
+  <Geometry x:Key="logo_header_smGeometry15">F1 M111.822,37.998z M0,0z M200.93,27.6A2.134,2.134,0,0,1,199.214,28.753C198.49,28.753,197.846,28.431,197.846,27.278L197.846,18.639 200.93,18.639 200.93,17.915 197.846,17.915 197.846,14 197.31,14C196.854,16.735,195.326,17.915,193.1,17.915L193.1,18.639 195.058,18.639 195.058,27.247C195.058,29.124,196.399,29.847,198.276,29.847A3.441,3.441,0,0,0,201.36,28.238L200.931,27.594</Geometry>
+  <DrawingGroup x:Key="logo_header_smDrawingGroup" ClipGeometry="M0,0 V37.998 H111.822 V0 H0 Z">
+    <DrawingGroup.Transform>
+      <TranslateTransform X="0.0038610673509538174" Y="0" />
+    </DrawingGroup.Transform>
+    <DrawingGroup Opacity="1">
+      <DrawingGroup Transform="1,0,0,1,-206.306,-64.622">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry1}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-77.575,-64.622">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry2}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-229.213,-38.275">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry3}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,0,-39.593">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry4}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-178.496,-55.693">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry5}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-134.878,-64.768">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry6}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-43.984,-65.061">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry7}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-274.001,-64.988">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry8}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-100.775,-65.061">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry9}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-39.885,0">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry10}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-82.698,-19.687">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry11}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-163.567,-19.687">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry12}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-195.109,-19.247">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry13}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-117.534,-19.613">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry14}" />
+      </DrawingGroup>
+      <DrawingGroup Transform="1,0,0,1,-141.319,-10.246">
+        <GeometryDrawing Brush="#FFFFFFFF" Geometry="{StaticResource logo_header_smGeometry15}" />
+      </DrawingGroup>
+    </DrawingGroup>
+  </DrawingGroup>
+  <DrawingImage x:Key="LogoHeaderSmDrawingImage_" Drawing="{StaticResource logo_header_smDrawingGroup}" />
+
+  <Style x:Key="LogoImageOnOthersStyle_" TargetType="Image">
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
+    <Setter Property="Source" Value="{StaticResource LogoHeaderSmDrawingImage_}"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="Width" Value="111.82"/>
+    <Setter Property="Height" Value="38"/>
+    <Setter Property="Canvas.Left" Value="1768"/>
+    <Setter Property="Canvas.Top" Value="21"/>
+  </Style>
+
+  <Style x:Key="VersionTextBlockStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="16"/>
+    <Setter Property="Foreground" Value="#ffbebcbc"/>
+  </Style>
+
+  <Style x:Key="ScreenNameTextBlockStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="Foreground" Value="#ffbebcbc"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+</ResourceDictionary>

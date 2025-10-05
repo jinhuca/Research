@@ -1,0 +1,317 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Shared.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+	<Style x:Key="MessageTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource AccentColorBlueSolidBrush}"/>
+	</Style>
+
+	<Style x:Key="StartTestTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource SystemMessageBrushBackground}"/>
+	</Style>
+
+	<Style x:Key="ConsoleExceptionTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="32"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="White"/>
+	</Style>
+
+	<Style x:Key="ConfirmationDialogTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource ConfirmationForegroundBrush}"/>
+	</Style>
+
+	<Style x:Key="RationaleDialogTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource AccentColorGreenSolidBrush}"/>
+	</Style>
+
+	<Style x:Key="StateMessageTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource StateErrorForegroundBrush}"/>
+	</Style>
+
+	<Style x:Key="PerformanceTestTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource StateErrorForegroundBrush}"/>
+	</Style>
+
+	<Style x:Key="ChangeTankTitleTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="FontSize" Value="28"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="Foreground" Value="{StaticResource StateErrorForegroundBrush}"/>
+	</Style>
+
+	<Style x:Key="MessageTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="FontWeight" Value="DemiBold"/>
+		<Setter Property="Padding" Value="16"/>
+		<Setter Property="Margin" Value="40,20,40,10"/>
+	</Style>
+
+	<Style x:Key="StartTestMessageTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="WhiteSmoke"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="FontWeight" Value="DemiBold"/>
+		<Setter Property="Padding" Value="16"/>
+		<Setter Property="Margin" Value="40,20,40,10"/>
+	</Style>
+
+	<Style x:Key="ConsoleExceptionMessageTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="WhiteSmoke"/>
+		<Setter Property="FontSize" Value="26"/>
+		<Setter Property="FontWeight" Value="DemiBold"/>
+		<Setter Property="Padding" Value="16"/>
+		<Setter Property="Margin" Value="40,20,40,10"/>
+	</Style>
+
+	<Style x:Key="StateMessageTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="FontWeight" Value="Normal"/>
+		<Setter Property="Padding" Value="12"/>
+		<Setter Property="Margin" Value="20"/>
+	</Style>
+
+	<Style x:Key="StateMessageTextBoxStyle" TargetType="TextBox">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Left"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="FontWeight" Value="Normal"/>
+		<Setter Property="Padding" Value="12"/>
+		<Setter Property="Margin" Value="20"/>
+		<Setter Property="IsReadOnly" Value="True" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+	</Style>
+
+	<Style x:Key="ChangeTankMessageTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Left"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="FontSize" Value="23"/>
+		<Setter Property="FontWeight" Value="Black"/>
+		<Setter Property="Padding" Value="12"/>
+		<Setter Property="Margin" Value="20"/>
+	</Style>
+
+	<Style x:Key="MessageTextBoxStyle" TargetType="TextBox">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="TextAlignment" Value="Justify"/>
+		<Setter Property="Foreground" Value="Black"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="Height" Value="160"/>
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="Padding" Value="6"/>
+	</Style>
+
+	<Style x:Key="RationaleMessageTextBoxStyle" TargetType="TextBox">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="TextAlignment" Value="Justify"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="#FF111222"/>
+		<Setter Property="FontSize" Value="24"/>
+		<Setter Property="FontWeight" Value="Normal"/>
+		<Setter Property="Cursor" Value="IBeam"/>
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="Padding" Value="6"/>
+	</Style>
+
+	<!-- Begin: Main Border Styles for Dialogs -->
+	<Style x:Key="MainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="LightBlue"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="SteelBlue" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="PassFailBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Gray"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="DarkGray" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="StartTestMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="White"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="#FF1F2F4F"/>
+	</Style>
+
+	<Style x:Key="ConsoleExceptionDialogBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="White"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="#EEEE4F1F"/>
+	</Style>
+
+	<Style x:Key="ConfirmationDialogMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Orange"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="Orange" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="RationaleMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="White"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="Wheat" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="StateCheckFailureMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Red"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="Red" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="StateWarnMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Yellow"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="Yellow" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="ChangeTankDialogBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Yellow"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="Yellow" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="PerformanceTestFailureMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Red"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="Red" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="SmoothnessVerificationMainBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="Orange"/>
+		<Setter Property="CornerRadius" Value="24"/>
+		<Setter Property="Background" Value="Black"/>
+		<Setter Property="Effect">
+			<Setter.Value>
+				<DropShadowEffect Color="White" Direction="0" BlurRadius="30" RenderingBias="Quality" Opacity="1"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- End: Main Border Styles for Dialogs -->
+
+	<Style x:Key="MessageBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="CornerRadius" Value="10"/>
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+
+	<Style x:Key="StartTestMessageBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="10"/>
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+
+	<Style x:Key="ContentBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="CornerRadius" Value="20"/>
+		<Setter Property="Background" Value="Beige"/>
+		<Setter Property="Margin" Value="20,10"/>
+	</Style>
+	<Style x:Key="RationaleContentBorderStyle" TargetType="Border">
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="CornerRadius" Value="10"/>
+		<Setter Property="Background" Value="#99000000"/>
+		<Setter Property="Margin" Value="20,10"/>
+	</Style>
+</ResourceDictionary>

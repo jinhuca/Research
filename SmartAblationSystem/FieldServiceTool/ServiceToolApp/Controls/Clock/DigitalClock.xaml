@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="ServiceToolApp.Controls.Clock.DigitalClock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:segmentStacks="clr-namespace:ServiceToolApp.Controls.Clock.SegmentStacks"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
+             Width="380" Height="60">
+	<UserControl.Resources>
+		<Style TargetType="TextBlock" x:Key="TimeZoneTextBlockStyle">
+			<Setter Property="FontSize" Value="11"/>
+			<Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+		</Style>
+	</UserControl.Resources>
+	<Grid HorizontalAlignment="Left" Margin="0,0,0,0" Height="54" Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="13"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<TextBlock Text="{Binding TimeZone}" Style="{StaticResource TimeZoneTextBlockStyle}"/>
+			<TextBlock Text="{Binding TimeZoneDaylight}" Style="{StaticResource TimeZoneTextBlockStyle}" Margin="10,0,0,0"/>
+		</StackPanel>
+		<segmentStacks:SevenSegmentsStack Grid.Row="1"
+		                                  Value="{Binding DisplayDateTime}"
+		                                  ElementsCount="19" ShowColon="True" ShowDot="True"
+		                                  SelectedFillBrush="White"
+		                                  Background="Transparent"
+		                                  PenColor="#22D3D3D3"
+		                                  PenThickness="0.5"
+		                                  SelectedPenColor="Transparent"
+		                                  HorizontalAlignment="Left"
+		                                  VerticalAlignment="Center" 
+		                                  TiltAngle="5" 
+		                                  Height="36" 
+		                                  Width="360"/>
+	</Grid>
+</UserControl>

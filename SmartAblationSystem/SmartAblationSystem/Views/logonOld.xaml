@@ -1,0 +1,117 @@
+﻿<Window x:Class="SmartAblationSystem.Views.logonOld"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartAblationSystem.Views"
+        xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+     
+        mc:Ignorable="d"
+        Title="logon" Height="550" Width="900"  WindowStartupLocation="CenterScreen"  WindowStyle="None"
+        AllowsTransparency="True" BorderBrush="#FF45C0FF"  BorderThickness="2">
+
+	<Window.Background>
+		<ImageBrush ImageSource="/Images/Background-withoutlogo.jpg" />
+	</Window.Background>
+
+	<Window.Resources>
+
+		<converters:FieldToTextConverter x:Key="fieldToTextConverter" />
+
+		<ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+			<Border Background="Gray"
+                x:Name="Bd" BorderBrush="{StaticResource CryterionBrushColorBlue}"
+                BorderThickness="4" CornerRadius="10">
+				<ScrollViewer x:Name="PART_ContentHost" />
+			</Border>
+			<ControlTemplate.Triggers>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd" />
+					<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+				</Trigger>
+				<Trigger Property="Width" Value="Auto">
+					<Setter Property="MinWidth" Value="100" />
+				</Trigger>
+				<Trigger Property="Height" Value="Auto">
+					<Setter Property="MinHeight" Value="50" />
+				</Trigger>
+			</ControlTemplate.Triggers>
+		</ControlTemplate>
+
+	</Window.Resources>
+	<Grid>
+		<StackPanel Orientation="Vertical">
+			<StackPanel Width="900  " Height="550" VerticalAlignment="Top" Background="#FF040404" >
+				<Image  Source="/Images/BSC_Logo.png" Width="237" Height="106" HorizontalAlignment="Right" Margin="0,20,20,0" />
+				<StackPanel VerticalAlignment="Top" Margin="0,20,0,10">
+					<Label x:Name="LoginLabel"   Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" FontSize="40" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" />
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" >
+                    <Label x:Name="LogOnUserNameLabel" Width="180" Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" Foreground="White" FontSize="22"  HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Opacity="0.5"/>
+                    <!--<TextBox x:Name="TxtUser"  TouchDown ="ShowKeyboard_touch"  PreviewGotKeyboardFocus ="ShowKeyboard" Template="{StaticResource TextBoxBaseControlTemplate}" Margin="5" Width="600" Text="" TextAlignment="Center" FontSize="26" 
+                             FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" TextChanged="User_TextChanged"></TextBox>-->
+                    <TextBox x:Name="TxtUser"    Template="{StaticResource TextBoxBaseControlTemplate}" Margin="5" Width="600" Text="" TextAlignment="Center" FontSize="26" 
+                             FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" TextChanged="User_TextChanged"></TextBox>
+				</StackPanel>
+				<StackPanel >
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Width="180" x:Name="PasswordLabel" Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" Foreground="White" FontSize="22"  HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Opacity="0.5"/>
+                        <TextBox x:Name="TxtPassword" Template="{StaticResource TextBoxBaseControlTemplate}" Margin="5" Width="600" Text="" TextAlignment="Center" FontSize="26" FontWeight="Bold" Foreground="Transparent" HorizontalAlignment="Center" FontFamily="courier new" MaxLength="16">
+                            <TextBox.TextDecorations>
+
+                                <TextDecorationCollection>
+
+                                    <TextDecoration Location="Strikethrough" PenThicknessUnit="FontRenderingEmSize">
+
+                                        <TextDecoration.Pen>
+                                            <Pen Brush="Black" Thickness="0.5" DashCap="Round" StartLineCap="Round" EndLineCap="Round">
+                                                <Pen.DashStyle>
+                                                    <DashStyle Dashes="0.0, 1.2" Offset="0.6" />
+                                                </Pen.DashStyle>
+                                            </Pen>
+                                        </TextDecoration.Pen>
+                                    </TextDecoration>
+                                </TextDecorationCollection>
+                            </TextBox.TextDecorations>
+                        </TextBox>
+                    </StackPanel>
+                    <Label Name="WrongUsernameOrPasswordLabel" 
+                           Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}" Foreground="Red" HorizontalAlignment="Center"
+                           FontSize="20" Margin="0" />
+					<StackPanel Name="StackPasswordCode" Orientation="Horizontal" Visibility="Hidden" HorizontalAlignment="Center">
+                        <Label Name="LblCode" Uid="CodeUID" Content="{Binding RelativeSource={RelativeSource Self}, Path=Uid , Converter={StaticResource fieldToTextConverter}}" ContentStringFormat=" {0}: " Foreground="White" HorizontalAlignment="Center"
+                               FontSize="20" Margin="0" />
+						<Label Name="LblCodeString" Content="{Binding PasswordCode, Mode=OneWay}"  Foreground="White" HorizontalAlignment="Center"
+                               FontSize="20" Margin="0" />
+					</StackPanel>
+				</StackPanel>
+				<StackPanel>
+
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,0">
+						<Button Style="{StaticResource ButtonCryterion}"
+                                x:Name="OkButton" 
+                                Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}"
+                                Height="41"
+                                HorizontalAlignment="Center"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Width="150"
+                                FontSize="26"
+                                FontWeight="Bold"
+                                Foreground="White" Click="butOK_Click" />
+						<Button Name="CancelButton" Style="{StaticResource ButtonCryterion}"
+                                Content="{Binding RelativeSource={RelativeSource Self}, Path=Name , Converter={StaticResource fieldToTextConverter}}"
+                                Height="41"
+                                HorizontalAlignment="Center"
+                                Margin="5"
+                                VerticalAlignment="Top"
+                                Width="150"
+                                FontSize="26"
+                                FontWeight="Bold"
+                                Foreground="White" Click="butCancel_Click" IsCancel="True" />
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Window> 

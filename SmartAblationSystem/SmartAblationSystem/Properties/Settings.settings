@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SmartAblationSystem.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UseReelTimeInflation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SkinToSkinTemperature" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="SkinToSkinLowTemperature" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="ICBTimeOutAtInitialization" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">7000</Value>
+    </Setting>
+    <Setting Name="canTwoMaximumTimeOutReference" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="ICBTimeOut" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,250 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <SolidColorBrush x:Key="BackgroundBrush" Color="#ff3c3c44"/>
+  <SolidColorBrush x:Key="OuterBrush" Color="#ffa6a0a2"/>
+  <SolidColorBrush x:Key="EndProcedureBorder_" Color="#ff4B6090"/>
+  <SolidColorBrush x:Key="EndProcedureBackground_" Color="#ff303b55"/>
+
+  <Style x:Key="TextInsideButtonStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="16"/>
+    <Setter Property="Foreground" Value="{StaticResource EnabledForeground}"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="5,2,5,2"/>
+  </Style>
+
+  <Style x:Key="TextBlockStyle_" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+    <Setter Property="FontWeight" Value="Regular"/>
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="TextDecorations" Value="Underline"/>
+    <Setter Property="Foreground" Value="{StaticResource EnabledForeground}"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="20,0,0,0"/>
+  </Style>
+
+  <ControlTemplate x:Key="ActionButtonControlTemplate_" 
+                   TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Disabling_">
+        <ColorAnimation Storyboard.TargetName="outerBorder" 
+                        Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                        To="{StaticResource DisabledBorderColor}" 
+                        Duration="0"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Border x:Name="outerBorder" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            Background="{TemplateBinding Background}"
+            BorderThickness="2"
+            CornerRadius="20">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed"/>
+          <VisualState x:Name="Disabled" Storyboard="{StaticResource Disabling_}"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Grid HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                          Margin="{TemplateBinding Padding}" 
+                          Focusable="True" 
+                          RecognizesAccessKey="True"/>
+      </Grid>
+    </Border>
+  </ControlTemplate>
+
+  <Style x:Key="ActionButtonStyle_" TargetType="Button">
+    <Setter Property="Template" Value="{StaticResource ActionButtonControlTemplate_}"/>
+    <Setter Property="Padding" Value="12,8,12,8"/>
+    <Setter Property="Margin" Value="10,0,10,0"/>
+    <Setter Property="Height" Value="48.99"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OuterBrush}"/>
+    <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+    <Style.Triggers>
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Foreground" Value="{StaticResource DisabledForeground}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="{StaticResource DisabledFillBrush_}"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="ExitPlaybackButtonStyle_" TargetType="Button"
+	       BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="EXIT PLAYBACK" 
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="CompleteProcedureButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="COMPLETE PROCEDURE"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="BackToTreatmentRecordButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="BACK TO TREATMENT RECORD"
+               Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="PlaybackButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="PLAYBACK"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="EndProcedureButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="BorderBrush" Value="{StaticResource EndProcedureBorder_}"/>
+    <Setter Property="Background" Value="{StaticResource EndProcedureBackground_}"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="END PROCEDURE"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="AddUserButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="BorderBrush" Value="{StaticResource EndProcedureBorder_}"/>
+    <Setter Property="Background" Value="{StaticResource EndProcedureBackground_}"/>
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="ADD USER"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ReturnToProcedureButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="RETURN TO PROCEDURE"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="ReturnToSettingsButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="RETURN TO SETTINGS"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="PrintProcedureButtonStyle_" TargetType="Button"
+         BasedOn="{StaticResource ActionButtonStyle_}">
+    <Setter Property="Content">
+      <Setter.Value>
+        <TextBlock Text="PRINT REPORT"
+                   Style="{StaticResource TextInsideButtonStyle_}"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <ControlTemplate x:Key="UsbConnectionButtonTemplate_" TargetType="Button">
+    <Grid>
+
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="PrinterButtonTemplate_" TargetType="Button">
+    <Grid>
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed"/>
+          <VisualState x:Name="Disabled">
+            <Storyboard>
+              <DoubleAnimation Storyboard.TargetName="printImg_"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0.5"
+                                         Duration="0:0:0"/>
+              <DoubleAnimation Storyboard.TargetName="printTextBlock_"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0.5"
+                                         Duration="0:0:0"/>
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Border Background="Transparent" Width="185" Height="50" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+          <Image x:Name="printImg_"
+                       Height="36"
+                       Stretch="Uniform"
+                       Source="../Images/Printer.png"/>
+          <TextBlock x:Name="printTextBlock_"
+                           Text="Print Report"
+                           Style="{StaticResource TextBlockStyle_}"/>
+        </StackPanel>
+      </Border>
+    </Grid>
+  </ControlTemplate>
+
+
+
+  <Style x:Key="PrintButtonStyle_" TargetType="Button" x:Shared="False">
+    <Setter Property="Template" Value="{StaticResource PrinterButtonTemplate_}"/>
+  </Style>
+
+  <ControlTemplate x:Key="SaveToUsbButtonTemplate_" TargetType="Button">
+    <ControlTemplate.Resources>
+      <Storyboard x:Key="Disabling_">
+        <DoubleAnimation Storyboard.TargetName="saveToUSBTextBlock_"
+                         Storyboard.TargetProperty="Opacity"
+                         From="1"
+                         To="0.5"
+                         Duration="0"/>
+      </Storyboard>
+    </ControlTemplate.Resources>
+    <Grid>
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal"/>
+          <VisualState x:Name="MouseOver"/>
+          <VisualState x:Name="Pressed"/>
+          <VisualState x:Name="Disabled" Storyboard="{StaticResource Disabling_}"/>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <TextBlock x:Name="saveToUSBTextBlock_"
+                 Text="Save To USB"
+                 Style="{StaticResource TextBlockStyle_}"/>
+    </Grid>
+  </ControlTemplate>
+
+  <Style x:Key="SaveToUsbButtonStyle_" TargetType="Button" x:Shared="False">
+    <Setter Property="Template" Value="{StaticResource SaveToUsbButtonTemplate_}"/>
+  </Style>
+</ResourceDictionary>

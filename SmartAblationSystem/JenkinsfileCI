@@ -1,0 +1,31 @@
+node('EP_Windows1') {
+    try {
+		stage('Checkout') {
+			checkout scm
+		}
+
+		stage('Update Nuget Packages') {
+			echo 'Update Nuget packages:'
+			bat '''
+				nuget.exe restore SmartAblationSystem.sln
+				dotnet restore SmartAblationSystem.sln
+				'''
+		}
+
+		stage('Build Release') {
+			echo 'Build SmartAblation Solution: '
+			bat '''
+			for /d /r . %%d in (bin,obj) do @if exist "%%d" rd /s/q "%%d"
+			MSBuild SmartAblationSystem.sln /p:Configuration=Release /t:Rebuild /p:Platform="Any CPU" 
+			'''
+		}
+
+		stage('Unit Tests') {
+			echo 'Run Unit Tests: '
+			bat 'call runUnitTests.bat'
+		}
+    } catch(e) {
+        currentBuild.result = 'FAILED'
+        throw e
+    }
+}

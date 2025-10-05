@@ -1,0 +1,1689 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SmartAblationSystem.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+             xmlns:Validation="clr-namespace:SmartAblationSystem.Validation"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="SmartAblationSystem.Views.ElectricalSignalMonitoring"
+             xmlns:ViewModels="clr-namespace:SmartAblationSystem.ViewModels"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d"
+             Unloaded="UserControl_Unloaded"
+	         Loaded="UserControl_Loaded"
+             d:DesignHeight="1030" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converters:StringTodoubleConverter x:Key="stringTodoubleConverter" />
+        <converters:StringToIntConverter x:Key="stringToIntConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <converters:BooleanToMaintenanceModeConverter x:Key="booleanToMaintenanceModeConverter" />
+        <converters:BooleanToNotVisibilityConverter x:Key="booleanToNotVisibilityConverter" />
+        <converters:StateIdToTextConverter x:Key="stateIdToTextConverter" />
+        <converters:DoubleToOnOffConverter x:Key="doubleToOnOffConverter" />
+        <converters:StateToVisibilityConverter x:Key="stateToVisibility" />
+        <converters:StateToEnableConverter x:Key="stateToEnable" />
+        <converters:StatusToPicture x:Key="statusToPicture" />
+        <converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
+
+        <ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" HorizontalAlignment="Right" Padding="0,0,5,0" FontSize="12"
+
+                DockPanel.Dock="Top">Max 6553!</TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="validationErrorTemplateFM1">
+            <DockPanel>
+                <TextBlock Foreground="Red" HorizontalAlignment="Right" Padding="0,0,5,0" FontSize="12"
+
+                DockPanel.Dock="Top">Max 12000!</TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="validationErrorTemplateControlBox">
+            <DockPanel>
+                <TextBlock Foreground="Red" HorizontalAlignment="Right" Padding="0,0,5,0" FontSize="12" DockPanel.Dock="Top">0.01 to 0.1!</TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <Grid Height="1030" Width="1920">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="130" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="85" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox  Style="{StaticResource GroupBoxStyle}" Content="Control Micro Controller" FontSize="18" FontWeight="Bold" Grid.Column="0" Margin="0,0,5,0" />
+            <GroupBox  Style="{StaticResource GroupBoxStyle}" Content="Patient Micro Controller" FontSize="18" FontWeight="Bold" Grid.Column="1" Margin="5,0,0,0" />
+        </Grid>
+
+        <Grid Grid.Row="1" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+
+            <!--central Micro controller Analog -->
+			<GroupBox Grid.Row="1" Grid.Column="0" Header="Analog" Foreground="White" FontWeight="Bold" FontSize="14" Margin="5,0,5,0" IsEnabled="{Binding IsCommandEnabled}">
+                <UniformGrid Rows="2" Columns="6">
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PT1 (psig)"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PT1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PT2 (psig)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PT2Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PT3 (psia)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PT3Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PT4 (psia)"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PT4Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PT5 (psia)"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <!--before it wase PT5Reading-->
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding  PT5Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PS1 (ON/OFF)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PS1Reading, Converter={StaticResource doubleToOnOffConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+                    <!-- befor we wase using ps2 according to validation we have to swith pt5 to ps2
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="PS2 (psig)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PS2Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    -->
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="FM1 (sccm)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding FM1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="TN2O (°C) " Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding TS1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="TS1 (°C)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding TN2OReading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="CJ (°C)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CMCUCJReading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="LC1 (lbs)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding LC1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" />
+                    </StackPanel>
+                </UniformGrid>
+            </GroupBox>
+            <!-- Patient Micro Controller Analog-->
+			<GroupBox Grid.Row="1" Grid.Column="1" Header="Analog" Foreground="White" FontWeight="Bold" FontSize="14" Margin="0,0,5,0" IsEnabled="{Binding IsCommandEnabled}">
+                <UniformGrid Rows="2" Columns="6">
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="TC1 (°C)"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding TC1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="TC2 (°C)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding TC2Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="IBP (psig)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CP1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="OBP (psig)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CP2Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="TIP (psig)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding TIPReading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="CIMP1"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />  <!--Text="{Binding CIMP1Reading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}"-->
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="CIMP2" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="CJ (°C)" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PMCUCJReading, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="BDI" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding BloodDetecorImValue}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                    </StackPanel>
+                </UniformGrid>
+            </GroupBox>
+        </Grid>
+
+        <!--  Read value-->
+        <Grid Grid.Row="3" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+            <!-- Central Micro Controller Register values-->
+            <GroupBox Grid.Row="3" Grid.Column="0" Header="Register " Foreground="White" FontWeight="Bold" FontSize="14" Margin="5,0,5,0">
+                <UniformGrid Rows="9" Columns="5">
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Firmware Version"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CentralMicroControllerFirmwareVersion, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="CPLD Error Register" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CPLDErrorRegister, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="CPLD Valve Register" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CPLDValveRegister, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="CPLD System Register" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CPLDSystemRegister, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="System State"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding SystemState, Converter={StaticResource stateIdToTextConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Ablation Time" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding AblationTime, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Continuous Thawing" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ContinuousThawing, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Target IF" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#d11141"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="TargetInjectionFlow" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="32767" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Target IP" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" x:Name="TargetInjectionPressure" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Background="#d11141"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="TargetInjectionPressure" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="P-Gain" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PGain" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="I-Gain" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="IGain" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="D-Gain" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="DGain" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PID-Offset" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PIDOffset, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" Background="#00b159" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT1 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" x:Name="ThresholdPT1High" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aedb"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdForPT1High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT1 Fail" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aedb"   Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdForPT1Fail" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT1 Low" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aedb"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdForPT1Low" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT1 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Background="#f37735"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT1LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT1 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#f37735"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT1HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT2 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ffc425"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdPT2High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT2 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#99b433"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT2LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT2 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#99b433"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT2HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT3 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00a300"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdPT3High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT3 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#1e7145"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT3LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT3 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#1e7145"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT3HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT4 high" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ff0097"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdPT4high" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT4 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#9f00a7"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT4LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT4 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#9f00a7"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PT4HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th TS1 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#603cba"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdTS1High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="TS1 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aba9"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="TS1LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-100" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="TS1 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aba9"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="TS1HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Fm1 Low Offset" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#eff4ff"  Validation.ErrorTemplate="{StaticResource validationErrorTemplateFM1}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdFM1Low" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-10000" Max="12000" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th FM1 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#eff4ff"  Validation.ErrorTemplate="{StaticResource validationErrorTemplateFM1}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdFM1High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="12000" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Fm1 Low Fit" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#2d89ef"  Validation.ErrorTemplate="{StaticResource validationErrorTemplateFM1}">
+                            <TextBox.Text>
+                                <Binding Path="FM1LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-10000" Max="12000" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Fm1 Low Ceiling" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#2d89ef"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="FM1HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-10000" Max="12000" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PS1 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#2b5797"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdPS1High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PS1 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ffc40d"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PS1LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PS1 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ffc40d"   Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PS1HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th PT5 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#da532c"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdPS2High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT5 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ee1111"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PS2LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="PT5 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ee1111"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="PS2HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th LC1 Warning" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#b91d47"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdLC1Warning" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="Th LC1 Fail" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="#b91d47"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="ThresholdLC1Fail" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="LC1 Low Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="Green"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="LC1LowRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="LC1 High Range" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2"  Background="Green"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                            <TextBox.Text>
+                                <Binding Path="LC1HighRange" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                    <Binding.ValidationRules>
+                                        <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <DockPanel>
+                            <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                            <Label Content="System Status Error" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CMCUSystemStatusError, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" IsEnabled="False" />
+                    </StackPanel>
+
+                    <!--
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For LC Fail" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForLCFail,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For PT3 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForPT3High,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For PT4 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForPT4High,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For FM1 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForFM1High,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For FM1 Low" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForFM1Low,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For FM1 Leak" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForFM1Leak,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For PS2 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForPS2High,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Threshold For PS1 High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding ThresholdForPS1High,  Mode=TwoWay}" />
+                    </StackPanel>
+
+                    -->
+                </UniformGrid>
+            </GroupBox>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3" >
+                <!--Patient Micro Controller: Register Values -->
+                <GroupBox Header="Register" Foreground="White" FontWeight="Bold" FontSize="14" Margin="0,0,5,-20">
+                    <UniformGrid Rows="9" Columns="5">
+
+                        <StackPanel Orientation="Vertical">
+                            <Label x:Name="FirmwareVersion" Content="FV"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PatientMicroControllerFirmwareVersion, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="Error Code" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding PMCUSystemStatusErrorCode, Converter={StaticResource stringToIntConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label x:Name="CatheterFirmwareVersion" Content="Catheter FV" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterFirmwareVersion, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Catheter ID" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterID, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label x:Name="CatheterSerialNumber" Content="Catheter SN"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterSerialNumber, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label x:Name="CatheterExpirationDate" Content="Catheter Exp Dt" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterExpirationDate, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label x:Name="CatheterLastUseDate" Content="Catheter FUD" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterLastUseDate, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label x:Name="NumberOfInjections" Content="N Of Inj" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#d11141" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <TextBox.Text>
+                                    <Binding Path="NumberOfInjections" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label x:Name="TargetBalloonPressure" Content="Target BP" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#ffc425"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="TargetBalloonPressure" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label x:Name="ThresholdForCP1High" Content="Th IBP High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aedb"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="ThresholdForCP1High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label x:Name="ThresholdForInnerBallonPressureLow" Content="Th IBP Low" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aedb"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="ThresholdForInnerBallonPressureLow" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label x:Name="ThresholdForOuterBallonPressure" Content="Th OBP" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00aedb"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="ThresholdForOuterBallonPressure" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+
+                                <!--before it wase Th C TC1H-->
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label x:Name="ThresholdForCTC1High" Content="Th TC1 Low"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#f37735"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="ThresholdForCTC1High" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label x:Name="ThresholdForCTC2High" Content="Th Thaw" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#f37735"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="ThawingTemperatureSetPoint" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <!--Blood Low-->
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="Th BDI Low" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#f37735"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="LowerBloodThreshold" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="0" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+                        <!-- Blood High -->
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="Th BDI High" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#f37735"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="UpperBloodThreshold" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="0" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="P-gain" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="PatientPGain" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="I-gain" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="PatientIGain" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="D-gain" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="PatientDGain" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <DockPanel>
+                                <Ellipse Width="20" Height="20" Fill="Red" Stroke="Yellow" StrokeThickness="2" HorizontalAlignment="Left" Margin="0,0,5,0" />
+                                <Label Content="PID-Offset" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox BorderBrush="Black" BorderThickness="2"  Background="#00b159"  Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+                                <TextBox.Text>
+                                    <Binding Path="PatientPIDOffset" Mode="TwoWay"  Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="-3276" Max="6553" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                          <Label x:Name="CatheterLot" Content="Catheter Lot Number" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                          <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterLotNumber, Converter={StaticResource stringToIntConverter}, Mode=OneWay}" 
+                                   IsReadOnly="True" Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+                    
+                        <StackPanel Orientation="Vertical">
+                          <Label x:Name="CatheterContainer" Content="Container" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                          <TextBox BorderBrush="Black" BorderThickness="2" Text="{Binding CatheterContainer, Mode=OneWay}" IsReadOnly="True"  
+                                   Visibility="{Binding IsCatheterCableConnected, Converter={StaticResource booleanToVisibilityConverter}}" />
+                        </StackPanel>
+
+                    </UniformGrid>
+                </GroupBox>
+
+                <!--Connection Box Parameters -->
+				        <GroupBox Header="Connection Box Parameters" Foreground="White" FontWeight="Bold" FontSize="14" Margin="15,-97,20,0" IsEnabled="{Binding IsCommandEnabled}">
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <DockPanel>
+                                <Label Content="Min" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox x:Name="TxtConnectionBoxDiaphragmMin" BorderBrush="Black" BorderThickness="2" Width="120" Height="40"  
+                                     FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource validationErrorTemplateControlBox}">
+                                <TextBox.Text>
+                                    <Binding Path="ConnectionBoxDiaphragmMinimumValue" Mode="TwoWay" Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="0.01" Max="0.1" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <DockPanel>
+                                <Label Content="Max" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox x:Name="TxtConnectionBoxDiaphragmMax" BorderBrush="Black" BorderThickness="2" Width="120" Height="40" 
+                                     FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource validationErrorTemplateControlBox}" >
+                                <TextBox.Text>
+                                    <Binding Path="ConnectionBoxDiaphragmMaximumValue" Mode="TwoWay" Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="0.01" Max="0.1" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <!-- Diaphragm value -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <DockPanel>
+                                <Label Content="DMS TH" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                            </DockPanel>
+                            <TextBox x:Name="TxtConnectionBoxDMSDetectionThreshold" BorderBrush="Black" BorderThickness="2" Width="120" Height="40" 
+                                     FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource validationErrorTemplateControlBox}" >
+                                <TextBox.Text>
+                                    <Binding Path="DMSDetectionThreshold" Mode="TwoWay" Converter="{StaticResource stringTodoubleConverter}">
+                                        <Binding.ValidationRules>
+                                            <Validation:RegisterValidator Min="0.01" Max="0.1" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <!-- End DMS-->
+
+                        <StackPanel Orientation="Vertical"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,0,0,0">
+                            <Button Width="140" Height="45" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Write"
+                                    Command="{Binding WriteConnectionBoxDiaphragmMinMaxCommand}" >
+                                <Button.Style >
+                                    <Style TargetType="Button" BasedOn="{StaticResource ButtonCryterion}">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtConnectionBoxDiaphragmMax}" Value="False"/>
+                                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=TxtConnectionBoxDiaphragmMin}" Value="False"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="IsEnabled" Value="True"/>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+
+        <!-- Write value-->
+        <Grid Grid.Row="2" Width="1920">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="Write" Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="0,5,5,0" HorizontalAlignment="Right">
+
+                <StackPanel Background="{StaticResource CryterionBrushColorBlue}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0">
+                    <!--<fa:ImageAwesome Icon="Refresh" Spin="{Binding IsReadingFromCMCU, Mode=TwoWay}"  Height="20" Width="20"   />-->
+                </StackPanel>
+
+                <Button Width="120" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Read" Command="{Binding ReadFromMicroControllerCommand}" CommandParameter="CentralMicroController" Margin="0,0,60,0"  Style="{StaticResource ButtonCryterion}" />
+
+        <ComboBox Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20" Width="200" Height="50" VerticalAlignment="Center" Margin="-15,1,50,0"
+                      ItemsSource="{Binding StatesList}" SelectedValue="{Binding SelectedState}" />
+        <ComboBox x:Name="cboCentralThreshold" Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20" Width="250" Height="50" VerticalAlignment="Center" Margin="-15,1,50,0" SelectedValue="{Binding SelectedRegister}">
+          <ComboBox.Resources>
+            <Style TargetType="ComboBoxItem">
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+          </ComboBox.Resources>
+          <ComboBoxItem Tag="0" IsSelected="True" Content="All" />
+                    <ComboBoxItem Tag="8" Content="Firmware Version" />
+                    <ComboBoxItem Tag="9" Content="CPLD Error Register" />
+                    <ComboBoxItem Tag="10" Content="CPLD Valve Register" />
+                    <ComboBoxItem Tag="11" Content="CPLD System Register" />
+                    <ComboBoxItem Tag="13" Content="Ablation Time" />
+                    <ComboBoxItem Tag="14" Content="Continuous Thawing" />
+                    <ComboBoxItem Tag="15" Content="Target Injection Flow" />
+                    <ComboBoxItem Tag="15" Content="Target Injection Pressure" />
+                    <ComboBoxItem Tag="16" Content="P Gain" />
+                    <ComboBoxItem Tag="16" Content="I Gain" />
+                    <ComboBoxItem Tag="16" Content="D Gain" />
+                    <ComboBoxItem Tag="16" Content="PID Offset" />
+                    <ComboBoxItem Tag="17" Content="Threshold PT1 High" />
+                    <ComboBoxItem Tag="17" Content="Threshold PT1 Fail" />
+                    <ComboBoxItem Tag="17" Content="Threshold PT1 Low" />
+                    <ComboBoxItem Tag="18" Content="PT1 Low Range" />
+                    <ComboBoxItem Tag="18" Content="PT1 High Range" />
+                    <ComboBoxItem Tag="19" Content="Threshold PT2 High" />
+                    <ComboBoxItem Tag="20" Content="PT2 Low Range" />
+                    <ComboBoxItem Tag="20" Content="PT2 High Range" />
+                    <ComboBoxItem Tag="21" Content="Threshold PT3 High" />
+                    <ComboBoxItem Tag="22" Content="PT3 Low Range" />
+                    <ComboBoxItem Tag="22" Content="PT3 High Range" />
+                    <ComboBoxItem Tag="23" Content="Threshold PT4 high" />
+                    <ComboBoxItem Tag="24" Content="PT4 Low Range" />
+                    <ComboBoxItem Tag="24" Content="PT4 High Range" />
+                    <ComboBoxItem Tag="25" Content="Threshold TS1 High" />
+                    <ComboBoxItem Tag="26" Content="TS1 Low Range" />
+                    <ComboBoxItem Tag="26" Content="TS1 High Range" />
+                    <!-- Tag="27" Before it was: Threshold FM1 Low -->
+                    <ComboBoxItem Tag="27" Content="Fm1 Low Offset" />
+                    <ComboBoxItem Tag="27" Content="Threshold FM1 High" />
+                    <!-- Tag="28" Content="FM1 Low Range" -->
+                    <ComboBoxItem Tag="28" Content="Fm1 Low Fit" />
+                    <!-- Tag="28" Content="FM1 High Range" -->
+                    <ComboBoxItem Tag="28" Content="Fm1 Low Ceiling" />
+                    <ComboBoxItem Tag="29" Content="Threshold PS1 High" />
+                    <ComboBoxItem Tag="30" Content="PS1 Low Range" />
+                    <ComboBoxItem Tag="30" Content="PS1 High Range" />
+                    <ComboBoxItem Tag="31" Content="Threshold PT5 High" />
+                    <ComboBoxItem Tag="32" Content="PT5 Low Range" />
+                    <ComboBoxItem Tag="32" Content="PT5 High Range" />
+                    <ComboBoxItem Tag="33" Content="Threshold LC1 Warning" />
+                    <ComboBoxItem Tag="33" Content="Threshold LC1 Fail" />
+                    <ComboBoxItem Tag="34" Content="LC1 Low Range" />
+                    <ComboBoxItem Tag="34" Content="LC1 High Range" />
+                    <ComboBoxItem Tag="35" Content="System Status/Error" />
+                </ComboBox>
+                <Button Width="150" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Write" Command="{Binding WriteToMicroControllerCommand}" CommandParameter="CentralMicroController" Style="{StaticResource ButtonCryterion}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="0,5,5,0" HorizontalAlignment="Right">
+                <Button Width="120" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Read" Command="{Binding ReadFromMicroControllerCommand}" CommandParameter="PatientMicroController" Margin="0,0,40,0" Style="{StaticResource ButtonCryterion}" />
+
+        <ComboBox Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20" Width="200" Height="50" VerticalAlignment="Center" Margin="0,1,40,0"
+                      ItemsSource="{Binding StatesList}" SelectedValue="{Binding SelectedState}" />
+        <ComboBox x:Name="cboPatientThreshold" Style="{StaticResource MaintenanceComboBoxCryterionStyle}" FontSize="20" Width="270" Height="50" VerticalAlignment="Center" Margin="-15,1,10,0" SelectedValue="{Binding PateintSelectedRegister}">
+          <ComboBox.Resources>
+            <Style TargetType="ComboBoxItem">
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+          </ComboBox.Resources>
+          <ComboBoxItem Tag="0" IsSelected="True" Content="All" />
+                    <ComboBoxItem Tag="48" Content="Firmware Version" />
+                    <ComboBoxItem Tag="49" Content="Sytem Status Error" />
+                    <ComboBoxItem Tag="50" Content="catheter FUD" />
+                    <ComboBoxItem Tag="51" Content="Number Of Injections" Background="#d11141" />
+                    <ComboBoxItem Tag="52" Content="Target Balloon Pressure" Background="#ffc425"/>
+                    <ComboBoxItem Tag="53" Content="Threshol IBP High" Background="#00aedb"/>
+                    <ComboBoxItem Tag="53" Content="Threshol IBP Low" Background="#00aedb" />
+                    <ComboBoxItem Tag="53" Content="Threshold OBP" Background="#00aedb" />
+                    <!-- before it wase Threshold CTC1 High-->
+                    <ComboBoxItem Tag="54" Content="Threshold CTC1 Low" Background="#f37735" />
+                    <ComboBoxItem Tag="54" Content="Threshold CTC2 High" Background="#f37735"/>
+                    <ComboBoxItem Tag="54" Content="Th BDI Low" Background="#f37735"/>
+                    <ComboBoxItem Tag="54" Content="Th BDI High" Background="#f37735"/>
+                    <ComboBoxItem Tag="55" Content="Patient P Gain"  Background="#00b159" />
+                    <ComboBoxItem Tag="55" Content="Patient I Gain"  Background="#00b159"/>
+                    <ComboBoxItem Tag="55" Content="Patient D Gain"  Background="#00b159" />
+                    <ComboBoxItem Tag="55" Content="Patient PID Offset"  Background="#00b159" />
+                    <ComboBoxItem Tag="56" Content="Catheter Firmware Version" />
+                </ComboBox>
+
+                <Button Width="150" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Write" Command="{Binding WriteToMicroControllerCommand}" CommandParameter="PatientMicroController" Margin="0,0,20,0" Style="{StaticResource ButtonCryterion}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- GPIO -->
+        <Grid Grid.Row="4" Width="1920">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+
+			<GroupBox Grid.Row="1" Grid.Column="0" Header="GPIO AND CPLD" Foreground="White" FontWeight="Bold" FontSize="14" Margin="5,0,5,0" IsEnabled="{Binding IsCommandEnabled}">
+	            <UniformGrid Rows="2" Columns="12">
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="STOP"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="0" IsChecked="{Binding IsGPIO0Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="WDT DIS"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="1" IsChecked="{Binding IsGPIO1Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="RESET"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="2" IsChecked="{Binding IsGPIO2Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="FAULT RST"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="3" IsChecked="{Binding IsGPIO3Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="INJ ENA"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="4" IsChecked="{Binding IsGPIO4Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="START"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="5" IsChecked="{Binding IsGPIO5Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="VAC ENA"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="6" IsChecked="{Binding IsGPIO6Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="TANK CH"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetGPIOLevelCommand}" CommandParameter="7" IsChecked="{Binding IsGPIO7Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" x:Name="OnlyUsedToAlignTheSVs0">
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" x:Name="OnlyUsedToAlignTheSVs1">
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" x:Name="OnlyUsedToAlignTheSVs2">
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" x:Name="OnlyUsedToAlignTheSVs3">
+                    </StackPanel>
+
+                    <!-- CPLD -->
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV1"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="0" IsChecked="{Binding IsSV0Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV2"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="1" IsChecked="{Binding IsSV1Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV3"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="2" IsChecked="{Binding IsSV2Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV4"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="3" IsChecked="{Binding IsSV3Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV5"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="4" IsChecked="{Binding IsSV4Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV6"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="5" IsChecked="{Binding IsSV5Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV7"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="6" IsChecked="{Binding IsSV6Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV8"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="7" IsChecked="{Binding IsSV7Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV9"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="8" IsChecked="{Binding IsSV8Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="FAN"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="9" IsChecked="{Binding IsFANActivated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV10"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="10" IsChecked="{Binding IsSV10Activated}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="SV11"  Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" />
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding SetSVLevelCommand}" CommandParameter="11" IsChecked="{Binding IsSV11Activated}" />
+                    </StackPanel>
+
+                    <!--end cpld -->
+                </UniformGrid>
+            </GroupBox>
+
+			<GroupBox Grid.Row="1"  Grid.Column="1" Header="Admin Actions" Foreground="White" FontWeight="Bold" FontSize="14" Margin="0,0,5,0">
+                <StackPanel Orientation="Horizontal">
+					<StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <Label Grid.Column="0" Grid.Row="1" x:Name="DeflateAfterThaw" Height="50" Width="240" VerticalAlignment="Center"
+                           Margin="0,0,0,5" Style="{StaticResource LabelCryterion}" FontSize="18" FontWeight="Bold" Foreground="Black" IsEnabled="{Binding IsCommandEnabled}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Deflate After Thaw" VerticalAlignment="Center" Margin="0,0,10,0" IsEnabled="{Binding IsCommandEnabled}"/>
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="30" Command="{Binding DeflateAfterThawCommand}"
+                                          IsChecked="{Binding DeflateAfterThaw, Mode=OneWay}" Margin="0,0,15,0" IsEnabled="{Binding IsCommandEnabled}"/>
+                            </StackPanel>
+                        </Label>
+                        <Button x:Name="MaintenanceButton" Width="240" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}"
+                            FontSize="18" Content="{Binding EnableOrDisableMaintenanceMode, Converter={StaticResource booleanToMaintenanceModeConverter}}"
+                            Command="{Binding MaintenanceCommand}" Margin="00,0,0,0" Style="{StaticResource ButtonCryterion}" />
+                    </StackPanel>
+                    <Grid ShowGridLines="False" Margin="40,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="55" />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="CloseButton" Grid.Row="0" Grid.Column="0" Width="150" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}"
+                            FontSize="18" Content="Close" Command="{Binding CloseCommand}"  Style="{StaticResource ButtonCryterion}" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" />
+
+                        <Border BorderThickness="1" CornerRadius="8" Margin="10,0,0,0" BorderBrush="Silver" Grid.Row="0" Grid.Column="1">
+                          <StackPanel>
+                            <TextBlock Text="Inflation Speed" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                              <Viewbox Height="35" Margin="0,-7,0,0">
+                                <RadioButton Name="SlowButton" GroupName="speed" Margin="20,0,0,0" Width="50" Command="{Binding SlowButtonCommand}"
+                                   IsChecked="{Binding InflationSpeedMode, Mode=OneWay, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Slow}">
+                                    <RadioButton.Content>
+                                    <TextBlock Text="Slow" 
+                                              Margin="0,4,0,0" FontSize="8" FontWeight="Bold"  Foreground="White"/>
+                                  </RadioButton.Content>
+                                </RadioButton>
+                              </Viewbox>
+                              <Viewbox Height="35" Margin="0,-7,0,0">
+                                <RadioButton Name="FastButton" GroupName="speed" Margin="5,0,0,0" Command="{Binding FastButtonCommand}" Width="41"
+                                             IsChecked="{Binding InflationSpeedMode, Mode=OneWay, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Fast}">
+                                  <RadioButton.Content>
+                                    <TextBlock Text="Fast" 
+                                              Margin="0,4,0,0" FontSize="8" FontWeight="Bold" Foreground="White"/>
+                                  </RadioButton.Content>
+                                </RadioButton>
+                              </Viewbox>
+                            </StackPanel>
+                          </StackPanel>
+                        </Border>
+
+                        <Button x:Name="LogoutButton" Grid.Row="1" Grid.Column="0" Width="149" Height="50" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" HorizontalAlignment="Center"
+                            FontSize="18" Content="Sign out" Command="{Binding LogoutCommand}"  Style="{StaticResource ButtonCryterion}" Margin="0,5,0,0"  />
+
+                        <Border Grid.Row="2" Grid.Column="1" CornerRadius="6" Width="180" HorizontalAlignment="Left" Margin="40,2,0,2">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="AUTO"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Row="0" Grid.Column="0"  Style="{StaticResource ButtonImageNotifier}"  HorizontalAlignment="Left" Width="150" Height="55"  Margin="10,0,0,0"
+											Command="{Binding LockTheFootSwitchCommand}" CommandParameter="UnLockTheFootSwitch" Visibility="{Binding LockTheFootSwitch, Converter={StaticResource booleanToVisibilityConverter}}">
+                                    <Image Source="/Images/locked.png"  />
+                                </Button>
+
+                                <Button Grid.Row="0" Grid.Column="0"  Style="{StaticResource ButtonImageNotifier}"   HorizontalAlignment="Left" Width="150" Height="55" Margin="10,0,0,0"
+											Command="{Binding LockTheFootSwitchCommand}" CommandParameter="LockTheFootSwitch" Visibility="{Binding LockTheFootSwitch, Converter={StaticResource booleanToNotVisibilityConverter}}" >
+                                    <Image Source="/Images/unlock.png"  />
+                                </Button>
+
+                            </Grid>
+
+
+                        </Border>
+
+
+                    </Grid>
+                   
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+        <Grid Grid.Row="5" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Row="1" Grid.Column="1"  Foreground="White" FontWeight="Bold" FontSize="14" Margin="0,5,5,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="1">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="Lot" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="90" Height="40" Text="{Binding LotNumber, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="SN" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="90" Height="40" Text="{Binding SerilaNumber, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="Hour" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="90" Height="40" Text="{Binding LastUseHour, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="Day" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="90" Height="40" Text="{Binding LastUseDay, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="Month" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="90" Height="40" Text="{Binding LastUseMonth, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <DockPanel>
+                            <Label Content="Year" Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+                        <TextBox BorderBrush="Black" BorderThickness="2" Width="90" Height="40" Text="{Binding LastUseYear, Converter={StaticResource stringTodoubleConverter}, Mode=TwoWay}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,0,0,0">
+                        <Button Width="140" Height="45" FontWeight="Bold" Background="{StaticResource CryterionBrushColorBlue}" FontSize="18" Content="Program" Command="{Binding ProgramCatheterCommand}" Style="{StaticResource ButtonCryterion}" IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+			<GroupBox Grid.Row="1" Grid.Column="0"  Foreground="White"  FontWeight="Bold" FontSize="14" Margin="5,5,5,0" IsEnabled="{Binding IsCommandEnabled}">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8" Margin="10,0,0,0" Width="170" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Height="auto">
+                            <Button Style="{StaticResource ButtonImageNotifier }" x:Name="butElectrical"  HorizontalAlignment="Center" Width="115"  Height="55">
+                                <Image Source="/Images/electrical plug.png"  Margin="10,0,0,0"></Image>
+                            </Button>
+                            <Button Style="{StaticResource ButtonImageNotifier}"
+                                        x:Name="butElectricalState"
+                                        HorizontalAlignment="Center" Width="40" Height="50" Margin="0,0,0,0">
+                                <Image Source="{Binding IsCatheterCableConnected , Converter={StaticResource statusToPicture}}" Height="50" Width="40" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                    <Border BorderBrush="Silver" BorderThickness="1" CornerRadius="8" Width="170" Margin="5,0,10,0" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Height="60" Visibility="{Binding SystemState, Converter={StaticResource stateToVisibility}, ConverterParameter=CatheterTube}">
+                            <Button Style="{StaticResource ButtonImageNotifier }" x:Name="butMechanical" HorizontalAlignment="Left" Width="115"  Height="55">
+                                <Image Source="/Images/mechanical plug.png" Margin="10,0,0,0"></Image>
+                            </Button>
+                            <Button Style="{StaticResource ButtonImageNotifier}" x:Name="butMechanicalState" HorizontalAlignment="Center" Width="40"  Height="50">
+                                <Image Source="{Binding SystemState,ConverterParameter=UseSystemState, Converter={StaticResource statusToPicture}}" Height="50" Width="40" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+					<DockPanel IsEnabled="{Binding IsCommandEnabled}">
+
+
+
+                        <Button x:Name="Stop" Style="{StaticResource StopButton}"
+                                        Visibility="{Binding SystemState, ConverterParameter=STOP, Converter={StaticResource stateToVisibility}}"
+                                        Command="{Binding StopCommand}"
+                                        IsEnabled="{Binding SystemState, ConverterParameter=STOP, Converter={StaticResource stateToEnable}}" Margin="0,5,20,10" Height="Auto">
+                        </Button>
+
+                        <Button x:Name="Start" Style="{StaticResource StartButton}"
+                                        Visibility="{Binding SystemState, ConverterParameter=START, Converter={StaticResource stateToVisibility}}"
+                                        Command="{Binding StartCommand}"
+                                        IsEnabled="{Binding SystemState, ConverterParameter=START, Converter={StaticResource stateToEnable}}" Margin="50,5,20,10" Height="Auto" Width="184" />
+
+                        <Grid Width="200">
+                            <Button x:Name="ConnectButton" Style="{StaticResource ConnectButton}" Margin="8,5,10,10"
+                                            Visibility="{Binding IsCatheterElectricallyConnectedAndInIdleState, Converter={StaticResource booleanToVisibilityConverter}}"
+                                            Command="{Binding ConnectCommand}" Height="Auto" Width="Auto" />
+
+                            <Button x:Name="DisconnectButton" Style="{StaticResource DisconnectButton}"
+                                            Visibility="{Binding IsCatheterConnectedAndInIReadyState, Converter={StaticResource booleanToVisibilityConverter}}"
+                                            Command="{Binding ConnectCommand}" Height="Auto" Margin="8,5,10,10" Width="Auto" />
+
+                            <StackPanel Orientation="Horizontal" Margin="-50,0,0,0" Visibility="{Binding CatheterIsConnecting, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}">
+                                <Controls:ProgressRing Height="50" Width="50" Foreground="{StaticResource CryterionPopupSystemMessageBrushBackground}"></Controls:ProgressRing>
+                                <Label Content="Wait system is initializing..." Foreground="{StaticResource CryterionBrushColorBlue}" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"></Label>
+                            </StackPanel>
+
+                        </Grid>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,2243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataAccess.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AblationDatas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TC1Reading" Type="float" Nullable="false" />
+          <Property Name="TimeInSecondIndex" Type="int" Nullable="false" />
+          <Property Name="AblationID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ablations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AblationNumber" Type="int" Nullable="false" />
+          <Property Name="AblationDuration" Type="int" />
+          <Property Name="DataFile" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TreatmentNote" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProcedureId" Type="int" Nullable="false" />
+          <Property Name="ErrorInformation" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Actions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BalloonParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LowPressureSetpoint" Type="float" />
+          <Property Name="HighPressureSetPoint" Type="float" />
+          <Property Name="LowFlowSetPoint" Type="float" />
+          <Property Name="HighFlowSetPoint" Type="float" />
+          <Property Name="RampUpTimeByStep" Type="float" />
+          <Property Name="PressureRampUpValue" Type="float" />
+          <Property Name="RampDownTimeByStep" Type="float" />
+          <Property Name="PressureRampDownValue" Type="float" />
+          <Property Name="TotalRampUpTime" Type="float" />
+          <Property Name="TotalRampDowntime" Type="float" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="LowTargetInjectionPressure" Type="float" Nullable="false" />
+          <Property Name="HighTargetInjectionPressure" Type="float" Nullable="false" />
+          <Property Name="DASLowFlow" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatheterInformations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="int" Nullable="false" />
+          <Property Name="FirmwareVersion" Type="int" Nullable="false" />
+          <Property Name="CatheterExpirationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUseDate" Type="datetime" Nullable="false" />
+          <Property Name="NumberOfInjection" Type="int" Nullable="false" />
+          <Property Name="Lot" Type="int" Nullable="false" />
+          <Property Name="IsUsedForEngineering" Type="bit" Nullable="false" />
+          <Property Name="OverloadedCatheterID" Type="int" Nullable="false" />
+          <Property Name="CatheterTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatheterTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatheterID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EngineeringDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMCRegisterValues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="PT1TankPressureLow" Type="float" Nullable="false" />
+          <Property Name="PT1PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="PT1TankPressureTooHigh" Type="float" Nullable="false" />
+          <Property Name="PT1PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT1PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT2PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="PT2PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT2PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT3PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="PT3PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT3PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT4PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="PT4PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PT4PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="TS1TemperatureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="TS1TemperatureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="TS1TemperatureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="FM1FlowMeterThresholLowlimit" Type="float" Nullable="false" />
+          <Property Name="FM1FlowMeterThresholHighlimit" Type="float" Nullable="false" />
+          <Property Name="FM1FlowMeterLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="FM1FlowMeterHighRangelimit" Type="float" Nullable="false" />
+          <Property Name="PS1PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="PS1PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PS1PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PS2PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="PS2PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PS2PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="LC1LoadCellThresholdWarning" Type="float" Nullable="false" />
+          <Property Name="LC1LoadCellThresholdFail" Type="float" Nullable="false" />
+          <Property Name="LC1LoadCellLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="LC1LoadCellHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="PGain" Type="float" Nullable="false" />
+          <Property Name="IGain" Type="float" Nullable="false" />
+          <Property Name="DGain" Type="float" Nullable="false" />
+          <Property Name="Offset" Type="float" Nullable="false" />
+          <Property Name="CatheterTypeID" Type="int" Nullable="false" />
+          <Property Name="TargetInjectionFlow" Type="float" Nullable="false" />
+          <Property Name="TargetInjectionPressure" Type="float" Nullable="false" />
+          <Property Name="LowFlow" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMCUPIDLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FM1" Type="float" Nullable="false" />
+          <Property Name="PT2" Type="float" Nullable="false" />
+          <Property Name="TargetFlow" Type="float" Nullable="false" />
+          <Property Name="TargetInjectionPressure" Type="float" Nullable="false" />
+          <Property Name="TargetFlowError" Type="float" Nullable="false" />
+          <Property Name="TargetInjectionPressureError" Type="float" Nullable="false" />
+          <Property Name="P" Type="float" Nullable="false" />
+          <Property Name="I" Type="float" Nullable="false" />
+          <Property Name="D" Type="float" Nullable="false" />
+          <Property Name="O" Type="float" Nullable="false" />
+          <Property Name="DateOfChange" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
+          <Property Name="IsReleased" Type="bit" Nullable="false" />
+          <Property Name="Efficiency" Type="int" Nullable="false" />
+          <Property Name="UtilisationDuration" Type="bigint" Nullable="false" />
+          <Property Name="CurrentTank" Type="int" />
+          <Property Name="IsUsingPurge" Type="bit" Nullable="false" />
+          <Property Name="IsUsingCatheterDeflateSwitch" Type="bit" Nullable="false" />
+          <Property Name="IsBalloonRampDownActivated" Type="bit" Nullable="false" />
+          <Property Name="IsUsingDeflateAfterThaw" Type="bit" Nullable="false" />
+          <Property Name="HardDrive_Id" Type="int" Nullable="false" />
+          <Property Name="IsUsingBloodPressureSensor" Type="bit" Nullable="false" />
+          <Property Name="ComPortName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsUsingLowFlow" Type="bit" Nullable="false" />
+          <Property Name="IsUsingDaylightSavingTime" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConsoleVersion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Software" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControlFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControlFirmwareBootLoader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CPLDFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RemoteFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RemoteFirmwareBootLoader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientFirmwareBootLoader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RepeaterFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RepeaterFirmwareBootLoader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ICBFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ICBFirmwareBootLoader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CatheterFirmware" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataBaseVersion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataBaseVersions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Version" Type="smallint" Nullable="false" />
+          <Property Name="ChangeDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorInformation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ErrorDate" Type="datetime" Nullable="false" />
+          <Property Name="ErrorCode" Type="bigint" Nullable="false" />
+          <Property Name="ErrorType" Type="int" Nullable="false" />
+          <Property Name="VersionId" Type="int" Nullable="false" />
+          <Property Name="CatheterID" Type="int" />
+          <Property Name="SystemStatesID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="IsUsingICB" Type="bit" Nullable="false" />
+          <Property Name="IsUsingRemote" Type="bit" Nullable="false" />
+          <Property Name="CatheterContainer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ErrorMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SolutionMessage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="ErrorCode" Type="bigint" Nullable="false" />
+          <Property Name="CryterionMessage" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Errors">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ErrorTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FailuresLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FailureDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GUIFields">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HardDrives">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarningLimit" Type="bigint" Nullable="false" />
+          <Property Name="FailLimit" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HospitalInformations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rooms" Type="int" Nullable="false" />
+          <Property Name="beds" Type="int" Nullable="false" />
+          <Property Name="Scheduling" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserManualDocument" Type="nvarchar(max)" />
+          <Property Name="DisplayInGui" Type="bit" Nullable="false" />
+          <Property Name="DisplayInUserManual" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="smallint" Nullable="false" />
+          <Property Name="TreatmentDateTime" Type="datetime" Nullable="false" />
+          <Property Name="HospitalPatientId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="PhysicianID" Type="int" Nullable="false" />
+          <Property Name="FirstNameEncrypted" Type="varbinary" MaxLength="2000" />
+          <Property Name="LastNameEncrypted" Type="varbinary" MaxLength="2000" />
+          <Property Name="DateOfBirthEncrypted" Type="varbinary" MaxLength="2000" />
+          <Property Name="WeightEncrypted" Type="varbinary" MaxLength="2000" />
+          <Property Name="HeightEncrypted" Type="varbinary" MaxLength="2000" />
+          <Property Name="GenderEncrypted" Type="varbinary" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Physicians">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="HospitalPhyscianID" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="preference_Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstNameEncrypted" Type="varbinary" MaxLength="2000" />
+          <Property Name="LastNameEncrypted" Type="varbinary" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="PMCRegisterValues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="CP1PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="CP1PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="CP1PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="CP2PressureThresholdHighLimit" Type="float" Nullable="false" />
+          <Property Name="CP2PressureLowRangeLimit" Type="float" Nullable="false" />
+          <Property Name="CP2PressureHighRangeLimit" Type="float" Nullable="false" />
+          <Property Name="TC1ThawingTemperature" Type="float" Nullable="false" />
+          <Property Name="Pgain" Type="float" Nullable="false" />
+          <Property Name="Igain" Type="float" Nullable="false" />
+          <Property Name="Dgain" Type="float" Nullable="false" />
+          <Property Name="Offset" Type="float" Nullable="false" />
+          <Property Name="TargetBalloonPressure" Type="float" Nullable="false" />
+          <Property Name="LowerBloodThreshold" Type="smallint" Nullable="false" />
+          <Property Name="UpperBloodThreshold" Type="smallint" Nullable="false" />
+          <Property Name="CatheterTypeID" Type="int" Nullable="false" />
+          <Property Name="ThawingTemperatureSetPoint" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PMCUPIDLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PT3" Type="float" Nullable="false" />
+          <Property Name="IBP" Type="float" Nullable="false" />
+          <Property Name="OBP" Type="float" Nullable="false" />
+          <Property Name="PWMINJ" Type="float" Nullable="false" />
+          <Property Name="PWMBAL" Type="float" Nullable="false" />
+          <Property Name="TargetBalloonPressure" Type="float" Nullable="false" />
+          <Property Name="TargetBallonPressureError" Type="float" Nullable="false" />
+          <Property Name="P" Type="float" Nullable="false" />
+          <Property Name="I" Type="float" Nullable="false" />
+          <Property Name="D" Type="float" Nullable="false" />
+          <Property Name="O" Type="float" Nullable="false" />
+          <Property Name="DateOfChange" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="preferences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoolingRequiredTargetTemperature" Type="float" Nullable="false" />
+          <Property Name="ThawTimerToTemperature" Type="float" Nullable="false" />
+          <Property Name="LowAblationTemperatureAlarm" Type="float" Nullable="false" />
+          <Property Name="HighAblationTemperatureAlarm" Type="float" Nullable="false" />
+          <Property Name="EsophagusTemperature" Type="float" Nullable="false" />
+          <Property Name="DiaphragmAmplitude" Type="float" Nullable="false" />
+          <Property Name="DiaphragmAmplitudeType" Type="int" Nullable="false" />
+          <Property Name="BalloonPressureSelected" Type="bit" Nullable="false" />
+          <Property Name="TipPressureSelected" Type="bit" Nullable="false" />
+          <Property Name="AblationTimer" Type="int" Nullable="false" />
+          <Property Name="IsUsingAutoDeflation" Type="bit" Nullable="false" />
+          <Property Name="VolumeLevel" Type="smallint" Nullable="false" />
+          <Property Name="CurveStyle" Type="smallint" Nullable="false" />
+          <Property Name="CurveColor" Type="smallint" Nullable="false" />
+          <Property Name="Background" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsUsingInflationFastSpeed" Type="bit" Nullable="false" />
+          <Property Name="RefrigerantLevelUnit" Type="smallint" Nullable="false" />
+          <Property Name="DiaphragmSensorGain" Type="smallint" Nullable="false" />
+          <Property Name="IgnoreDiaphragmMovement" Type="bit" Nullable="false" />
+          <Property Name="DMSDetectionThreshold" Type="float" Nullable="false" />
+          <Property Name="IgnoreEsophagusTemperatureMonitoring" Type="bit" Nullable="false" />
+          <Property Name="VeinIsolationDuration" Type="int" Nullable="false" />
+          <Property Name="RequestedAblationTime" Type="int" Nullable="false" />
+          <Property Name="NewVeinIsolationDuration" Type="int" Nullable="false" />
+          <Property Name="NewRequestedAblationTime" Type="int" Nullable="false" />
+          <Property Name="ExpectedVeinIsolationTime" Type="int" Nullable="false" />
+          <Property Name="AblationTimerTTIFixed" Type="int" Nullable="false" />
+          <Property Name="NewAblationTimerTTIFixed" Type="int" Nullable="false" />
+          <Property Name="DurationExpectedVeinIsolationTime" Type="int" Nullable="false" />
+          <Property Name="AblationTimerTTI" Type="int" Nullable="false" />
+          <Property Name="NewAblationTimerTTI" Type="int" Nullable="false" />
+          <Property Name="IsUsingAudioAlert" Type="bit" Nullable="false" />
+          <Property Name="AblationDurationType" Type="smallint" Nullable="false" />
+          <Property Name="EnabaleEnhancedAudio" Type="bit" Nullable="false" />
+          <Property Name="IsUsingAutoPlayback" Type="bit" Nullable="false" />
+          <Property Name="OcclusionPressureGraphSweepSpeed" Type="int" Nullable="false" />
+          <Property Name="OcclusionPressureGraphAxisYMaximum" Type="int" Nullable="false" />
+          <Property Name="OcclusionPressureGraphAxisYMinimum" Type="int" Nullable="false" />
+          <Property Name="IsShowPatientInfo" Type="bit" Nullable="false" />
+          <Property Name="IsShowAdvancedView" Type="bit" Nullable="false" />
+          <Property Name="IsUsingShadowing" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcedureLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LogDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousInformation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommittedInformation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProcedureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Procedures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProcedureStartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="PhysicianID" Type="int" Nullable="false" />
+          <Property Name="Diagnosis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OutCome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SkinToSkinDuration" Type="smallint" Nullable="false" />
+          <Property Name="IsDataEdited" Type="bit" Nullable="false" />
+          <Property Name="Archived" Type="bit" Nullable="false" />
+          <Property Name="ProcedureLogId" Type="int" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentLanguage" Type="int" Nullable="false" />
+          <Property Name="AllowBluetooth" Type="bit" Nullable="false" />
+          <Property Name="AllowLocalisation" Type="bit" Nullable="false" />
+          <Property Name="AllowWifi" Type="bit" Nullable="false" />
+          <Property Name="WeightUnit" Type="smallint" Nullable="false" />
+          <Property Name="ToiseUnit" Type="smallint" Nullable="false" />
+          <Property Name="SelectedUserManualLanguage" Type="int" Nullable="false" />
+          <Property Name="LoadCellCalibrationFactor" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemStates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tanks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="WeightAtReplacementDate" Type="float" Nullable="false" />
+          <Property Name="WeightAtEndOfUseDate" Type="float" Nullable="false" />
+          <Property Name="ReplacementDate" Type="datetime" Nullable="false" />
+          <Property Name="EndOfUseDate" Type="datetime" Nullable="false" />
+          <Property Name="TankTypesID" Type="smallint" Nullable="false" />
+          <Property Name="ConsoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TankTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CylinderSize" Type="float" Nullable="false" />
+          <Property Name="NetContent" Type="float" Nullable="false" />
+          <Property Name="Pressure" Type="float" Nullable="false" />
+          <Property Name="CGAConnection" Type="smallint" Nullable="false" />
+          <Property Name="Height" Type="float" Nullable="false" />
+          <Property Name="OutsideDiameter" Type="float" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MetalWeight" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Translations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FieldTranslation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="GUIFieldId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserActions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="ActionId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmailAdredress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Users_Id" />
+            <PropertyRef Name="Types_Id" />
+          </Key>
+          <Property Name="Users_Id" Type="int" Nullable="false" />
+          <Property Name="Types_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CatheterTypeCatheterInformation">
+          <End Role="CatheterTypes" Type="Self.CatheterTypes" Multiplicity="1" />
+          <End Role="CatheterInformations" Type="Self.CatheterInformations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatheterTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CatheterInformations">
+              <PropertyRef Name="CatheterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatheterTypeCMCRegisterValue">
+          <End Role="CatheterTypes" Type="Self.CatheterTypes" Multiplicity="1" />
+          <End Role="CMCRegisterValues" Type="Self.CMCRegisterValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatheterTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMCRegisterValues">
+              <PropertyRef Name="CatheterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatheterTypePMCRegisterValue">
+          <End Role="CatheterTypes" Type="Self.CatheterTypes" Multiplicity="1" />
+          <End Role="PMCRegisterValues" Type="Self.PMCRegisterValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatheterTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PMCRegisterValues">
+              <PropertyRef Name="CatheterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsoleHardDrive">
+          <End Role="HardDrives" Type="Self.HardDrives" Multiplicity="1" />
+          <End Role="Consoles" Type="Self.Consoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HardDrives">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consoles">
+              <PropertyRef Name="HardDrive_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsoleTank">
+          <End Role="Consoles" Type="Self.Consoles" Multiplicity="1" />
+          <End Role="Tanks" Type="Self.Tanks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tanks">
+              <PropertyRef Name="ConsoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ErrorErrorMessage">
+          <End Role="Errors" Type="Self.Errors" Multiplicity="1" />
+          <End Role="ErrorMessages" Type="Self.ErrorMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Errors">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ErrorMessages">
+              <PropertyRef Name="ErrorCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ErrorLogVersions">
+          <End Role="ConsoleVersion" Type="Self.ConsoleVersion" Multiplicity="1" />
+          <End Role="ErrorLog" Type="Self.ErrorLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsoleVersion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorLog">
+              <PropertyRef Name="VersionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GUIFieldTranslation">
+          <End Role="GUIFields" Type="Self.GUIFields" Multiplicity="1" />
+          <End Role="Translations" Type="Self.Translations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUIFields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translations">
+              <PropertyRef Name="GUIFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientProcedure">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="Procedures" Type="Self.Procedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Procedures">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhysicianPatient">
+          <End Role="Physicians" Type="Self.Physicians" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Physicians">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="PhysicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Physicianpreference">
+          <End Role="preferences" Type="Self.preferences" Multiplicity="1" />
+          <End Role="Physicians" Type="Self.Physicians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preferences">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Physicians">
+              <PropertyRef Name="preference_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcedureAblation">
+          <End Role="Procedures" Type="Self.Procedures" Multiplicity="1" />
+          <End Role="Ablations" Type="Self.Ablations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procedures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ablations">
+              <PropertyRef Name="ProcedureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcedureProcedureLog">
+          <End Role="Procedures" Type="Self.Procedures" Multiplicity="1" />
+          <End Role="ProcedureLogs" Type="Self.ProcedureLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procedures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProcedureLogs">
+              <PropertyRef Name="ProcedureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserType_Type">
+          <End Role="Types" Type="Self.Types" Multiplicity="1" />
+          <End Role="UserType" Type="Self.UserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserType">
+              <PropertyRef Name="Types_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserType_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserType" Type="Self.UserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserType">
+              <PropertyRef Name="Users_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserUserAction">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserActions" Type="Self.UserActions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserActions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DecryptedValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="EValue" Type="varbinary" Mode="In" />
+          <Parameter Name="PassphraseEnteredByUser" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="EncryptedValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varbinary">
+          <Parameter Name="DValue" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassphraseEnteredByUser" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DataAccessStoreContainer">
+          <EntitySet Name="AblationDatas" EntityType="Self.AblationDatas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ablations" EntityType="Self.Ablations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BalloonParameters" EntityType="Self.BalloonParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatheterInformations" EntityType="Self.CatheterInformations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatheterTypes" EntityType="Self.CatheterTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMCRegisterValues" EntityType="Self.CMCRegisterValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMCUPIDLogs" EntityType="Self.CMCUPIDLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consoles" EntityType="Self.Consoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsoleVersion" EntityType="Self.ConsoleVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataBaseVersions" EntityType="Self.DataBaseVersions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorMessages" EntityType="Self.ErrorMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Errors" EntityType="Self.Errors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorTypes" EntityType="Self.ErrorTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FailuresLogs" EntityType="Self.FailuresLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GUIFields" EntityType="Self.GUIFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HardDrives" EntityType="Self.HardDrives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HospitalInformations" EntityType="Self.HospitalInformations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Physicians" EntityType="Self.Physicians" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PMCRegisterValues" EntityType="Self.PMCRegisterValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PMCUPIDLogs" EntityType="Self.PMCUPIDLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="preferences" EntityType="Self.preferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcedureLogs" EntityType="Self.ProcedureLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Procedures" EntityType="Self.Procedures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemStates" EntityType="Self.SystemStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tanks" EntityType="Self.Tanks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TankTypes" EntityType="Self.TankTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Translations" EntityType="Self.Translations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserActions" EntityType="Self.UserActions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CatheterTypeCatheterInformation" Association="Self.FK_CatheterTypeCatheterInformation">
+            <End Role="CatheterTypes" EntitySet="CatheterTypes" />
+            <End Role="CatheterInformations" EntitySet="CatheterInformations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatheterTypeCMCRegisterValue" Association="Self.FK_CatheterTypeCMCRegisterValue">
+            <End Role="CatheterTypes" EntitySet="CatheterTypes" />
+            <End Role="CMCRegisterValues" EntitySet="CMCRegisterValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatheterTypePMCRegisterValue" Association="Self.FK_CatheterTypePMCRegisterValue">
+            <End Role="CatheterTypes" EntitySet="CatheterTypes" />
+            <End Role="PMCRegisterValues" EntitySet="PMCRegisterValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsoleHardDrive" Association="Self.FK_ConsoleHardDrive">
+            <End Role="HardDrives" EntitySet="HardDrives" />
+            <End Role="Consoles" EntitySet="Consoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsoleTank" Association="Self.FK_ConsoleTank">
+            <End Role="Consoles" EntitySet="Consoles" />
+            <End Role="Tanks" EntitySet="Tanks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ErrorErrorMessage" Association="Self.FK_ErrorErrorMessage">
+            <End Role="Errors" EntitySet="Errors" />
+            <End Role="ErrorMessages" EntitySet="ErrorMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ErrorLogVersions" Association="Self.FK_ErrorLogVersions">
+            <End Role="ConsoleVersion" EntitySet="ConsoleVersion" />
+            <End Role="ErrorLog" EntitySet="ErrorLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GUIFieldTranslation" Association="Self.FK_GUIFieldTranslation">
+            <End Role="GUIFields" EntitySet="GUIFields" />
+            <End Role="Translations" EntitySet="Translations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientProcedure" Association="Self.FK_PatientProcedure">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Procedures" EntitySet="Procedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhysicianPatient" Association="Self.FK_PhysicianPatient">
+            <End Role="Physicians" EntitySet="Physicians" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Physicianpreference" Association="Self.FK_Physicianpreference">
+            <End Role="preferences" EntitySet="preferences" />
+            <End Role="Physicians" EntitySet="Physicians" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcedureAblation" Association="Self.FK_ProcedureAblation">
+            <End Role="Procedures" EntitySet="Procedures" />
+            <End Role="Ablations" EntitySet="Ablations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcedureProcedureLog" Association="Self.FK_ProcedureProcedureLog">
+            <End Role="Procedures" EntitySet="Procedures" />
+            <End Role="ProcedureLogs" EntitySet="ProcedureLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserType_Type" Association="Self.FK_UserType_Type">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="UserType" EntitySet="UserType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserType_User" Association="Self.FK_UserType_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserType" EntitySet="UserType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserUserAction" Association="Self.FK_UserUserAction">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActions" EntitySet="UserActions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataAccess" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DataAccessContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Patients" EntityType="DataAccess.Patient" />
+          <EntitySet Name="Physicians" EntityType="DataAccess.Physician" />
+          <EntitySet Name="Ablations" EntityType="DataAccess.Ablation" />
+          <EntitySet Name="AblationDatas" EntityType="DataAccess.AblationData" />
+          <EntitySet Name="Consoles" EntityType="DataAccess.Console" />
+          <EntitySet Name="CatheterTypes" EntityType="DataAccess.CatheterType" />
+          <EntitySet Name="SystemStates" EntityType="DataAccess.SystemState" />
+          <EntitySet Name="CMCRegisterValues" EntityType="DataAccess.CMCRegisterValue" />
+          <EntitySet Name="PMCRegisterValues" EntityType="DataAccess.PMCRegisterValue" />
+          <EntitySet Name="CatheterInformations" EntityType="DataAccess.CatheterInformation" />
+          <EntitySet Name="Procedures" EntityType="DataAccess.Procedure" />
+          <EntitySet Name="Users" EntityType="DataAccess.User" />
+          <EntitySet Name="Types" EntityType="DataAccess.Type" />
+          <EntitySet Name="UserActions" EntityType="DataAccess.UserAction" />
+          <EntitySet Name="Actions" EntityType="DataAccess.Action" />
+          <AssociationSet Name="UserType" Association="DataAccess.UserType">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Type" EntitySet="Types" />
+          </AssociationSet>
+          <AssociationSet Name="UserUserAction" Association="DataAccess.UserUserAction">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserAction" EntitySet="UserActions" />
+          </AssociationSet>
+          <EntitySet Name="CMCUPIDLogs" EntityType="DataAccess.CMCUPIDLogs" />
+          <EntitySet Name="PMCUPIDLogs" EntityType="DataAccess.PMCUPIDLogs" />
+          <EntitySet Name="Tanks" EntityType="DataAccess.Tank" />
+          <EntitySet Name="preferences" EntityType="DataAccess.preference" />
+          <EntitySet Name="DataBaseVersions" EntityType="DataAccess.DataBaseVersion" />
+          <EntitySet Name="FailuresLogs" EntityType="DataAccess.FailuresLogs" />
+          <EntitySet Name="Settings" EntityType="DataAccess.Settings" />
+          <EntitySet Name="Languages" EntityType="DataAccess.Language" />
+          <EntitySet Name="GUIFields" EntityType="DataAccess.GUIField" />
+          <EntitySet Name="Translations" EntityType="DataAccess.Translation" />
+          <AssociationSet Name="GUIFieldTranslation" Association="DataAccess.GUIFieldTranslation">
+            <End Role="GUIField" EntitySet="GUIFields" />
+            <End Role="Translation" EntitySet="Translations" />
+          </AssociationSet>
+          <EntitySet Name="Errors" EntityType="DataAccess.Error" />
+          <EntitySet Name="ErrorTypes" EntityType="DataAccess.ErrorType" />
+          <EntitySet Name="ErrorMessages" EntityType="DataAccess.ErrorMessage" />
+          <AssociationSet Name="ErrorErrorMessage" Association="DataAccess.ErrorErrorMessage">
+            <End EntitySet="Errors" Role="Error" />
+            <End EntitySet="ErrorMessages" Role="ErrorMessage" />
+          </AssociationSet>
+          <AssociationSet Name="PhysicianPatient" Association="DataAccess.PhysicianPatient">
+            <End Role="Physician" EntitySet="Physicians" />
+            <End Role="Patient" EntitySet="Patients" />
+          </AssociationSet>
+          <EntitySet Name="BalloonParameters" EntityType="DataAccess.BalloonParameters" />
+          <EntitySet Name="TankTypes" EntityType="DataAccess.TankTypes" />
+          <AssociationSet Name="CatheterTypeCatheterInformation" Association="DataAccess.CatheterTypeCatheterInformation">
+            <End Role="CatheterType" EntitySet="CatheterTypes" />
+            <End Role="CatheterInformation" EntitySet="CatheterInformations" />
+          </AssociationSet>
+          <AssociationSet Name="CatheterTypeCMCRegisterValue" Association="DataAccess.CatheterTypeCMCRegisterValue">
+            <End Role="CatheterType" EntitySet="CatheterTypes" />
+            <End Role="CMCRegisterValue" EntitySet="CMCRegisterValues" />
+          </AssociationSet>
+          <EntitySet Name="ProcedureLogs" EntityType="DataAccess.ProcedureLog" />
+          <EntitySet Name="HardDrives" EntityType="DataAccess.HardDrive" />
+          <AssociationSet Name="PatientProcedure" Association="DataAccess.PatientProcedure">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Procedure" EntitySet="Procedures" />
+          </AssociationSet>
+          <AssociationSet Name="ProcedureAblation" Association="DataAccess.ProcedureAblation">
+            <End Role="Procedure" EntitySet="Procedures" />
+            <End Role="Ablation" EntitySet="Ablations" />
+          </AssociationSet>
+          <AssociationSet Name="ProcedureProcedureLog" Association="DataAccess.ProcedureProcedureLog">
+            <End Role="Procedure" EntitySet="Procedures" />
+            <End Role="ProcedureLog" EntitySet="ProcedureLogs" />
+          </AssociationSet>
+          <AssociationSet Name="Physicianpreference" Association="DataAccess.Physicianpreference">
+            <End Role="Physician" EntitySet="Physicians" />
+            <End Role="preference" EntitySet="preferences" />
+          </AssociationSet>
+          <AssociationSet Name="CatheterTypePMCRegisterValue" Association="DataAccess.CatheterTypePMCRegisterValue">
+            <End Role="CatheterType" EntitySet="CatheterTypes" />
+            <End Role="PMCRegisterValue" EntitySet="PMCRegisterValues" />
+          </AssociationSet>
+          <AssociationSet Name="ConsoleTank" Association="DataAccess.ConsoleTank">
+            <End Role="Console" EntitySet="Consoles" />
+            <End Role="Tank" EntitySet="Tanks" />
+          </AssociationSet>
+          <AssociationSet Name="ConsoleHardDrive" Association="DataAccess.ConsoleHardDrive">
+            <End Role="Console" EntitySet="Consoles" />
+            <End Role="HardDrive" EntitySet="HardDrives" />
+          </AssociationSet>
+          <EntitySet Name="ConsoleVersions" EntityType="DataAccess.ConsoleVersion" />
+          <EntitySet Name="ErrorLogs" EntityType="DataAccess.ErrorLog" />
+          <AssociationSet Name="FK_ErrorLogVersions" Association="DataAccess.FK_ErrorLogVersions">
+            <End Role="ConsoleVersion" EntitySet="ConsoleVersions" />
+            <End Role="ErrorLog" EntitySet="ErrorLogs" />
+          </AssociationSet>
+          <EntitySet Name="HospitalInformations" EntityType="DataAccess.HospitalInformation" />
+        </EntityContainer>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gender" Type="Int16" Nullable="false" />
+          <Property Name="TreatmentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HospitalPatientId" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Weight" Type="Double" Nullable="true" />
+          <Property Name="Height" Type="Double" Nullable="true" />
+          <NavigationProperty Name="Physician" Relationship="DataAccess.PhysicianPatient" FromRole="Patient" ToRole="Physician" />
+          <Property Name="PhysicianID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Procedures" Relationship="DataAccess.PatientProcedure" FromRole="Patient" ToRole="Procedure" />
+          <Property Name="DateOfBirthEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+          <Property Name="WeightEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+          <Property Name="FirstNameEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+          <Property Name="LastNameEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+          <Property Name="GenderEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+          <Property Name="HeightEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Physician">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="HospitalPhyscianID" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Patients" Relationship="DataAccess.PhysicianPatient" FromRole="Physician" ToRole="Patient" />
+          <NavigationProperty Name="preference" Relationship="DataAccess.Physicianpreference" FromRole="Physician" ToRole="preference" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstNameEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+          <Property Name="LastNameEncrypted" Type="Binary" MaxLength="2000" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ablation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AblationNumber" Type="Int32" Nullable="false" />
+          <Property Name="AblationDuration" Type="Int32" Nullable="true" />
+          <Property Name="DataFile" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TreatmentNote" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Procedure" Relationship="DataAccess.ProcedureAblation" FromRole="Ablation" ToRole="Procedure" />
+          <Property Name="ProcedureId" Type="Int32" Nullable="false" />
+          <Property Name="ErrorInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AblationData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TC1Reading" Type="Double" Nullable="false" />
+          <Property Name="TimeInSecondIndex" Type="Int32" Nullable="false" />
+          <Property Name="AblationID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Console">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsReleased" Type="Boolean" Nullable="false" />
+          <Property Name="Efficiency" Type="Int32" Nullable="false" />
+          <Property Name="UtilisationDuration" Type="Int64" Nullable="false" />
+          <Property Name="CurrentTank" Type="Int32" Nullable="true" />
+          <Property Name="IsUsingPurge" Type="Boolean" Nullable="false" />
+          <Property Name="IsUsingCatheterDeflateSwitch" Type="Boolean" Nullable="false" />
+          <Property Name="IsBalloonRampDownActivated" Type="Boolean" Nullable="false" />
+          <Property Name="IsUsingDeflateAfterThaw" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tanks" Relationship="DataAccess.ConsoleTank" FromRole="Console" ToRole="Tank" />
+          <NavigationProperty Name="HardDrive" Relationship="DataAccess.ConsoleHardDrive" FromRole="Console" ToRole="HardDrive" />
+          <Property Name="IsUsingBloodPressureSensor" Type="Boolean" Nullable="false" />
+          <Property Name="ComPortName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsUsingLowFlow" Type="Boolean" Nullable="false" />
+          <Property Name="IsUsingDaylightSavingTime" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatheterType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatheterID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EngineeringDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CatheterInformations" Relationship="DataAccess.CatheterTypeCatheterInformation" FromRole="CatheterType" ToRole="CatheterInformation" />
+          <NavigationProperty Name="CMCRegisterValues" Relationship="DataAccess.CatheterTypeCMCRegisterValue" FromRole="CatheterType" ToRole="CMCRegisterValue" />
+          <NavigationProperty Name="PMCRegisterValues" Relationship="DataAccess.CatheterTypePMCRegisterValue" FromRole="CatheterType" ToRole="PMCRegisterValue" />
+        </EntityType>
+        <EntityType Name="SystemState">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CMCRegisterValue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="PT1TankPressureLow" Type="Double" Nullable="false" />
+          <Property Name="PT1PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="PT1TankPressureTooHigh" Type="Double" Nullable="false" />
+          <Property Name="PT1PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT1PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT2PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="PT2PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT2PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT3PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="PT3PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT3PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT4PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="PT4PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PT4PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="TS1TemperatureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="TS1TemperatureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="TS1TemperatureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="FM1FlowMeterThresholLowlimit" Type="Double" Nullable="false" />
+          <Property Name="FM1FlowMeterThresholHighlimit" Type="Double" Nullable="false" />
+          <Property Name="FM1FlowMeterLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="FM1FlowMeterHighRangelimit" Type="Double" Nullable="false" />
+          <Property Name="PS1PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="PS1PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PS1PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PS2PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="PS2PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PS2PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="LC1LoadCellThresholdWarning" Type="Double" Nullable="false" />
+          <Property Name="LC1LoadCellThresholdFail" Type="Double" Nullable="false" />
+          <Property Name="LC1LoadCellLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="LC1LoadCellHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="PGain" Type="Double" Nullable="false" />
+          <Property Name="IGain" Type="Double" Nullable="false" />
+          <Property Name="DGain" Type="Double" Nullable="false" />
+          <Property Name="Offset" Type="Double" Nullable="false" />
+          <NavigationProperty Name="CatheterType" Relationship="DataAccess.CatheterTypeCMCRegisterValue" FromRole="CMCRegisterValue" ToRole="CatheterType" />
+          <Property Name="CatheterTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TargetInjectionFlow" Type="Double" Nullable="false" />
+          <Property Name="TargetInjectionPressure" Type="Double" Nullable="false" />
+          <Property Name="LowFlow" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PMCRegisterValue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="CP1PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="CP1PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="CP1PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="CP2PressureThresholdHighLimit" Type="Double" Nullable="false" />
+          <Property Name="CP2PressureLowRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="CP2PressureHighRangeLimit" Type="Double" Nullable="false" />
+          <Property Name="TC1ThawingTemperature" Type="Double" Nullable="false" />
+          <Property Name="Pgain" Type="Double" Nullable="false" />
+          <Property Name="Igain" Type="Double" Nullable="false" />
+          <Property Name="Dgain" Type="Double" Nullable="false" />
+          <Property Name="Offset" Type="Double" Nullable="false" />
+          <Property Name="TargetBalloonPressure" Type="Double" Nullable="false" />
+          <Property Name="LowerBloodThreshold" Type="Int16" Nullable="false" />
+          <Property Name="UpperBloodThreshold" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="CatheterType" Relationship="DataAccess.CatheterTypePMCRegisterValue" FromRole="PMCRegisterValue" ToRole="CatheterType" />
+          <Property Name="CatheterTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ThawingTemperatureSetPoint" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatheterInformation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="Int32" Nullable="false" />
+          <Property Name="FirmwareVersion" Type="Int32" Nullable="false" />
+          <Property Name="CatheterExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumberOfInjection" Type="Int32" Nullable="false" />
+          <Property Name="Lot" Type="Int32" Nullable="false" />
+          <Property Name="IsUsedForEngineering" Type="Boolean" Nullable="false" />
+          <Property Name="OverloadedCatheterID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CatheterType" Relationship="DataAccess.CatheterTypeCatheterInformation" FromRole="CatheterInformation" ToRole="CatheterType" />
+          <Property Name="CatheterTypeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Procedure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ProcedureStartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PhysicianID" Type="Int32" Nullable="false" />
+          <Property Name="Diagnosis" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OutCome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SkinToSkinDuration" Type="Int16" Nullable="false" />
+          <Property Name="IsDataEdited" Type="Boolean" Nullable="false" />
+          <Property Name="Archived" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <Property Name="ProcedureLogId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="DataAccess.PatientProcedure" FromRole="Procedure" ToRole="Patient" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ablations" Relationship="DataAccess.ProcedureAblation" FromRole="Procedure" ToRole="Ablation" />
+          <NavigationProperty Name="ProcedureLogs" Relationship="DataAccess.ProcedureProcedureLog" FromRole="Procedure" ToRole="ProcedureLog" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EmailAdredress" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Types" Relationship="DataAccess.UserType" FromRole="User" ToRole="Type" />
+          <NavigationProperty Name="UserActions" Relationship="DataAccess.UserUserAction" FromRole="User" ToRole="UserAction" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="DataAccess.UserType" FromRole="Type" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DataAccess.UserUserAction" FromRole="UserAction" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="UserType">
+          <End Type="DataAccess.User" Role="User" Multiplicity="*" />
+          <End Type="DataAccess.Type" Role="Type" Multiplicity="*" />
+        </Association>
+        <Association Name="UserUserAction">
+          <End Type="DataAccess.User" Role="User" Multiplicity="1" />
+          <End Type="DataAccess.UserAction" Role="UserAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAction">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CMCUPIDLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FM1" Type="Double" Nullable="false" />
+          <Property Name="PT2" Type="Double" Nullable="false" />
+          <Property Name="TargetFlow" Type="Double" Nullable="false" />
+          <Property Name="TargetInjectionPressure" Type="Double" Nullable="false" />
+          <Property Name="TargetFlowError" Type="Double" Nullable="false" />
+          <Property Name="TargetInjectionPressureError" Type="Double" Nullable="false" />
+          <Property Name="P" Type="Double" Nullable="false" />
+          <Property Name="I" Type="Double" Nullable="false" />
+          <Property Name="D" Type="Double" Nullable="false" />
+          <Property Name="O" Type="Double" Nullable="false" />
+          <Property Name="DateOfChange" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PMCUPIDLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PT3" Type="Double" Nullable="false" />
+          <Property Name="IBP" Type="Double" Nullable="false" />
+          <Property Name="OBP" Type="Double" Nullable="false" />
+          <Property Name="PWMINJ" Type="Double" Nullable="false" />
+          <Property Name="PWMBAL" Type="Double" Nullable="false" />
+          <Property Name="TargetBalloonPressure" Type="Double" Nullable="false" />
+          <Property Name="TargetBallonPressureError" Type="Double" Nullable="false" />
+          <Property Name="P" Type="Double" Nullable="false" />
+          <Property Name="I" Type="Double" Nullable="false" />
+          <Property Name="D" Type="Double" Nullable="false" />
+          <Property Name="O" Type="Double" Nullable="false" />
+          <Property Name="DateOfChange" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="WeightAtReplacementDate" Type="Double" Nullable="false" />
+          <Property Name="WeightAtEndOfUseDate" Type="Double" Nullable="false" />
+          <Property Name="ReplacementDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndOfUseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TankTypesID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Console" Relationship="DataAccess.ConsoleTank" FromRole="Tank" ToRole="Console" />
+          <Property Name="ConsoleID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="preference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoolingRequiredTargetTemperature" Type="Double" Nullable="false" />
+          <Property Name="ThawTimerToTemperature" Type="Double" Nullable="false" />
+          <Property Name="LowAblationTemperatureAlarm" Type="Double" Nullable="false" />
+          <Property Name="HighAblationTemperatureAlarm" Type="Double" Nullable="false" />
+          <Property Name="EsophagusTemperature" Type="Double" Nullable="false" />
+          <Property Name="DiaphragmAmplitude" Type="Double" Nullable="false" />
+          <Property Name="DiaphragmAmplitudeType" Type="Int32" Nullable="false" />
+          <Property Name="BalloonPressureSelected" Type="Boolean" Nullable="false" />
+          <Property Name="TipPressureSelected" Type="Boolean" Nullable="false" />
+          <Property Name="AblationTimer" Type="Int32" Nullable="false" />
+          <Property Name="IsUsingAutoDeflation" Type="Boolean" Nullable="false" />
+          <Property Name="VolumeLevel" Type="Int16" Nullable="false" />
+          <Property Name="CurveStyle" Type="Int16" Nullable="false" />
+          <Property Name="CurveColor" Type="Int16" Nullable="false" />
+          <Property Name="Background" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IsUsingInflationFastSpeed" Type="Boolean" Nullable="false" />
+          <Property Name="RefrigerantLevelUnit" Type="Int16" Nullable="false" />
+          <Property Name="DiaphragmSensorGain" Type="Int16" Nullable="false" />
+          <Property Name="IgnoreDiaphragmMovement" Type="Boolean" Nullable="false" />
+          <Property Name="DMSDetectionThreshold" Type="Double" Nullable="false" />
+          <Property Name="IgnoreEsophagusTemperatureMonitoring" Type="Boolean" Nullable="false" />
+          <Property Name="VeinIsolationDuration" Type="Int32" Nullable="false" />
+          <Property Name="RequestedAblationTime" Type="Int32" Nullable="false" />
+          <Property Name="NewVeinIsolationDuration" Type="Int32" Nullable="false" />
+          <Property Name="NewRequestedAblationTime" Type="Int32" Nullable="false" />
+          <Property Name="ExpectedVeinIsolationTime" Type="Int32" Nullable="false" />
+          <Property Name="AblationTimerTTIFixed" Type="Int32" Nullable="false" />
+          <Property Name="NewAblationTimerTTIFixed" Type="Int32" Nullable="false" />
+          <Property Name="DurationExpectedVeinIsolationTime" Type="Int32" Nullable="false" />
+          <Property Name="AblationTimerTTI" Type="Int32" Nullable="false" />
+          <Property Name="NewAblationTimerTTI" Type="Int32" Nullable="false" />
+          <Property Name="IsUsingAudioAlert" Type="Boolean" Nullable="false" />
+          <Property Name="AblationDurationType" Type="Int16" Nullable="false" DefaultValue="1" />
+          <NavigationProperty Name="Physician" Relationship="DataAccess.Physicianpreference" FromRole="preference" ToRole="Physician" />
+          <Property Name="EnabaleEnhancedAudio" Type="Boolean" Nullable="false" />
+          <Property Name="IsUsingAutoPlayback" Type="Boolean" Nullable="false" />
+          <Property Name="OcclusionPressureGraphSweepSpeed" Type="Int32" Nullable="false" />
+          <Property Name="OcclusionPressureGraphAxisYMaximum" Type="Int32" Nullable="false" />
+          <Property Name="OcclusionPressureGraphAxisYMinimum" Type="Int32" Nullable="false" />
+          <Property Name="IsShowPatientInfo" Type="Boolean" Nullable="false" />
+          <Property Name="IsShowAdvancedView" Type="Boolean" Nullable="false" />
+          <Property Name="IsUsingShadowing" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataBaseVersion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Version" Type="Int16" Nullable="false" />
+          <Property Name="ChangeDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FailuresLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FailureDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentLanguage" Type="Int32" Nullable="false" />
+          <Property Name="AllowBluetooth" Type="Boolean" Nullable="false" />
+          <Property Name="AllowLocalisation" Type="Boolean" Nullable="false" />
+          <Property Name="AllowWifi" Type="Boolean" Nullable="false" />
+          <Property Name="WeightUnit" Type="Int16" Nullable="false" />
+          <Property Name="ToiseUnit" Type="Int16" Nullable="false" />
+          <Property Name="SelectedUserManualLanguage" Type="Int32" Nullable="false" />
+          <Property Name="LoadCellCalibrationFactor" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserManualDocument" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DisplayInGui" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayInUserManual" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GUIField">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Translations" Relationship="DataAccess.GUIFieldTranslation" FromRole="GUIField" ToRole="Translation" />
+        </EntityType>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldTranslation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GUIField" Relationship="DataAccess.GUIFieldTranslation" FromRole="Translation" ToRole="GUIField" />
+          <Property Name="GUIFieldId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="GUIFieldTranslation">
+          <End Type="DataAccess.GUIField" Role="GUIField" Multiplicity="1" />
+          <End Type="DataAccess.Translation" Role="Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GUIField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="GUIFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ErrorMessages" Relationship="DataAccess.ErrorErrorMessage" FromRole="Error" ToRole="ErrorMessage" />
+        </EntityType>
+        <EntityType Name="ErrorType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ErrorMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SolutionMessage" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Nullable="false" Type="Int16" />
+          <NavigationProperty Name="Error" Relationship="DataAccess.ErrorErrorMessage" FromRole="ErrorMessage" ToRole="Error" />
+          <Property Name="ErrorCode" Nullable="false" Type="Int64" />
+          <Property Name="CryterionMessage" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="ErrorErrorMessage">
+          <End Type="DataAccess.Error" Multiplicity="1" Role="Error" />
+          <End Type="DataAccess.ErrorMessage" Multiplicity="*" Role="ErrorMessage" />
+          <ReferentialConstraint>
+            <Principal Role="Error">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ErrorMessage">
+              <PropertyRef Name="ErrorCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PhysicianPatient">
+          <End Type="DataAccess.Physician" Role="Physician" Multiplicity="1" />
+          <End Type="DataAccess.Patient" Role="Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Physician">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Patient">
+              <PropertyRef Name="PhysicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BalloonParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LowPressureSetpoint" Type="Double" Nullable="true" />
+          <Property Name="HighPressureSetPoint" Type="Double" Nullable="true" />
+          <Property Name="LowFlowSetPoint" Type="Double" Nullable="true" />
+          <Property Name="HighFlowSetPoint" Type="Double" Nullable="true" />
+          <Property Name="RampUpTimeByStep" Type="Double" Nullable="true" />
+          <Property Name="PressureRampUpValue" Type="Double" Nullable="true" />
+          <Property Name="RampDownTimeByStep" Type="Double" Nullable="true" />
+          <Property Name="PressureRampDownValue" Type="Double" Nullable="true" />
+          <Property Name="TotalRampUpTime" Type="Double" Nullable="true" />
+          <Property Name="TotalRampDowntime" Type="Double" Nullable="true" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="LowTargetInjectionPressure" Type="Double" Nullable="false" />
+          <Property Name="HighTargetInjectionPressure" Type="Double" Nullable="false" />
+          <Property Name="DASLowFlow" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TankTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CylinderSize" Type="Double" Nullable="false" />
+          <Property Name="NetContent" Type="Double" Nullable="false" />
+          <Property Name="Pressure" Type="Double" Nullable="false" />
+          <Property Name="CGAConnection" Type="Int16" Nullable="false" />
+          <Property Name="Height" Type="Double" Nullable="false" />
+          <Property Name="OutsideDiameter" Type="Double" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetalWeight" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="CatheterTypeCatheterInformation">
+          <End Type="DataAccess.CatheterType" Role="CatheterType" Multiplicity="1" />
+          <End Type="DataAccess.CatheterInformation" Role="CatheterInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatheterType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CatheterInformation">
+              <PropertyRef Name="CatheterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CatheterTypeCMCRegisterValue">
+          <End Type="DataAccess.CatheterType" Role="CatheterType" Multiplicity="1" />
+          <End Type="DataAccess.CMCRegisterValue" Role="CMCRegisterValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatheterType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMCRegisterValue">
+              <PropertyRef Name="CatheterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProcedureLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousInformation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CommittedInformation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Procedure" Relationship="DataAccess.ProcedureProcedureLog" FromRole="ProcedureLog" ToRole="Procedure" />
+          <Property Name="ProcedureId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HardDrive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarningLimit" Type="Int64" Nullable="false" DefaultValue="500" />
+          <Property Name="FailLimit" Type="Int64" Nullable="false" DefaultValue="100" />
+          <NavigationProperty Name="Console" Relationship="DataAccess.ConsoleHardDrive" FromRole="HardDrive" ToRole="Console" />
+        </EntityType>
+        <Association Name="PatientProcedure">
+          <End Type="DataAccess.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="DataAccess.Procedure" Role="Procedure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Procedure">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProcedureAblation">
+          <End Type="DataAccess.Procedure" Role="Procedure" Multiplicity="1" />
+          <End Type="DataAccess.Ablation" Role="Ablation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procedure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ablation">
+              <PropertyRef Name="ProcedureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProcedureProcedureLog">
+          <End Type="DataAccess.Procedure" Role="Procedure" Multiplicity="1" />
+          <End Type="DataAccess.ProcedureLog" Role="ProcedureLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procedure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProcedureLog">
+              <PropertyRef Name="ProcedureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Physicianpreference">
+          <End Type="DataAccess.Physician" Role="Physician" Multiplicity="1" />
+          <End Type="DataAccess.preference" Role="preference" Multiplicity="1" />
+        </Association>
+        <Association Name="CatheterTypePMCRegisterValue">
+          <End Type="DataAccess.CatheterType" Role="CatheterType" Multiplicity="1" />
+          <End Type="DataAccess.PMCRegisterValue" Role="PMCRegisterValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatheterType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PMCRegisterValue">
+              <PropertyRef Name="CatheterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ConsoleTank">
+          <End Type="DataAccess.Console" Role="Console" Multiplicity="1" />
+          <End Type="DataAccess.Tank" Role="Tank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Console">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tank">
+              <PropertyRef Name="ConsoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ConsoleHardDrive">
+          <End Type="DataAccess.Console" Role="Console" Multiplicity="1" />
+          <End Type="DataAccess.HardDrive" Role="HardDrive" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ConsoleVersion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Software" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ControlFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ControlFirmwareBootLoader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CPLDFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteFirmwareBootLoader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientFirmwareBootLoader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RepeaterFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RepeaterFirmwareBootLoader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ICBFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ICBFirmwareBootLoader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CatheterFirmware" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataBaseVersion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ErrorLogs" Relationship="DataAccess.FK_ErrorLogVersions" FromRole="ConsoleVersion" ToRole="ErrorLog" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorInformation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ErrorCode" Type="Int64" Nullable="false" />
+          <Property Name="ErrorType" Type="Int32" Nullable="false" />
+          <Property Name="VersionId" Type="Int32" Nullable="false" />
+          <Property Name="CatheterID" Type="Int32" />
+          <Property Name="SystemStatesID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="IsUsingICB" Type="Boolean" Nullable="false" />
+          <Property Name="IsUsingRemote" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ConsoleVersion" Relationship="DataAccess.FK_ErrorLogVersions" FromRole="ErrorLog" ToRole="ConsoleVersion" />
+          <Property Name="CatheterContainer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ErrorLogVersions">
+          <End Type="DataAccess.ConsoleVersion" Role="ConsoleVersion" Multiplicity="1" />
+          <End Type="DataAccess.ErrorLog" Role="ErrorLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsoleVersion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorLog">
+              <PropertyRef Name="VersionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HospitalInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rooms" Type="Int32" Nullable="false" />
+          <Property Name="beds" Type="Int32" Nullable="false" />
+          <Property Name="Scheduling" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataAccessStoreContainer" CdmEntityContainer="DataAccessContainer">
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Patient)">
+        <MappingFragment StoreEntitySet="Patients">
+          <ScalarProperty Name="HeightEncrypted" ColumnName="HeightEncrypted" />
+                <ScalarProperty Name="GenderEncrypted" ColumnName="GenderEncrypted" />
+                <ScalarProperty Name="LastNameEncrypted" ColumnName="LastNameEncrypted" />
+                <ScalarProperty Name="FirstNameEncrypted" ColumnName="FirstNameEncrypted" />
+                <ScalarProperty Name="WeightEncrypted" ColumnName="WeightEncrypted" />
+                <ScalarProperty Name="DateOfBirthEncrypted" ColumnName="DateOfBirthEncrypted" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="TreatmentDateTime" ColumnName="TreatmentDateTime" />
+          <ScalarProperty Name="HospitalPatientId" ColumnName="HospitalPatientId" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="PhysicianID" ColumnName="PhysicianID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Physicians">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Physician)">
+        <MappingFragment StoreEntitySet="Physicians">
+          <ScalarProperty Name="LastNameEncrypted" ColumnName="LastNameEncrypted" />
+                <ScalarProperty Name="FirstNameEncrypted" ColumnName="FirstNameEncrypted" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="HospitalPhyscianID" ColumnName="HospitalPhyscianID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ablations">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Ablation)">
+        <MappingFragment StoreEntitySet="Ablations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AblationNumber" ColumnName="AblationNumber" />
+          <ScalarProperty Name="AblationDuration" ColumnName="AblationDuration" />
+          <ScalarProperty Name="DataFile" ColumnName="DataFile" />
+          <ScalarProperty Name="TreatmentNote" ColumnName="TreatmentNote" />
+          <ScalarProperty Name="ProcedureId" ColumnName="ProcedureId" />
+          <ScalarProperty Name="ErrorInformation" ColumnName="ErrorInformation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AblationDatas">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.AblationData)">
+        <MappingFragment StoreEntitySet="AblationDatas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TC1Reading" ColumnName="TC1Reading" />
+          <ScalarProperty Name="TimeInSecondIndex" ColumnName="TimeInSecondIndex" />
+          <ScalarProperty Name="AblationID" ColumnName="AblationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consoles">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Console)">
+        <MappingFragment StoreEntitySet="Consoles">
+          <ScalarProperty Name="IsUsingDaylightSavingTime" ColumnName="IsUsingDaylightSavingTime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+          <ScalarProperty Name="IsReleased" ColumnName="IsReleased" />
+          <ScalarProperty Name="Efficiency" ColumnName="Efficiency" />
+          <ScalarProperty Name="UtilisationDuration" ColumnName="UtilisationDuration" />
+          <ScalarProperty Name="CurrentTank" ColumnName="CurrentTank" />
+          <ScalarProperty Name="IsUsingPurge" ColumnName="IsUsingPurge" />
+          <ScalarProperty Name="IsUsingCatheterDeflateSwitch" ColumnName="IsUsingCatheterDeflateSwitch" />
+          <ScalarProperty Name="IsBalloonRampDownActivated" ColumnName="IsBalloonRampDownActivated" />
+          <ScalarProperty Name="IsUsingDeflateAfterThaw" ColumnName="IsUsingDeflateAfterThaw" />
+          <ScalarProperty Name="IsUsingBloodPressureSensor" ColumnName="IsUsingBloodPressureSensor" />
+          <ScalarProperty Name="ComPortName" ColumnName="ComPortName" />
+          <ScalarProperty Name="IsUsingLowFlow" ColumnName="IsUsingLowFlow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatheterTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.CatheterType)">
+        <MappingFragment StoreEntitySet="CatheterTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CatheterID" ColumnName="CatheterID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="EngineeringDescription" ColumnName="EngineeringDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemStates">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.SystemState)">
+        <MappingFragment StoreEntitySet="SystemStates">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMCRegisterValues">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.CMCRegisterValue)">
+        <MappingFragment StoreEntitySet="CMCRegisterValues">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="PT1TankPressureLow" ColumnName="PT1TankPressureLow" />
+          <ScalarProperty Name="PT1PressureThresholdHighLimit" ColumnName="PT1PressureThresholdHighLimit" />
+          <ScalarProperty Name="PT1TankPressureTooHigh" ColumnName="PT1TankPressureTooHigh" />
+          <ScalarProperty Name="PT1PressureLowRangeLimit" ColumnName="PT1PressureLowRangeLimit" />
+          <ScalarProperty Name="PT1PressureHighRangeLimit" ColumnName="PT1PressureHighRangeLimit" />
+          <ScalarProperty Name="PT2PressureThresholdHighLimit" ColumnName="PT2PressureThresholdHighLimit" />
+          <ScalarProperty Name="PT2PressureLowRangeLimit" ColumnName="PT2PressureLowRangeLimit" />
+          <ScalarProperty Name="PT2PressureHighRangeLimit" ColumnName="PT2PressureHighRangeLimit" />
+          <ScalarProperty Name="PT3PressureThresholdHighLimit" ColumnName="PT3PressureThresholdHighLimit" />
+          <ScalarProperty Name="PT3PressureLowRangeLimit" ColumnName="PT3PressureLowRangeLimit" />
+          <ScalarProperty Name="PT3PressureHighRangeLimit" ColumnName="PT3PressureHighRangeLimit" />
+          <ScalarProperty Name="PT4PressureThresholdHighLimit" ColumnName="PT4PressureThresholdHighLimit" />
+          <ScalarProperty Name="PT4PressureLowRangeLimit" ColumnName="PT4PressureLowRangeLimit" />
+          <ScalarProperty Name="PT4PressureHighRangeLimit" ColumnName="PT4PressureHighRangeLimit" />
+          <ScalarProperty Name="TS1TemperatureThresholdHighLimit" ColumnName="TS1TemperatureThresholdHighLimit" />
+          <ScalarProperty Name="TS1TemperatureLowRangeLimit" ColumnName="TS1TemperatureLowRangeLimit" />
+          <ScalarProperty Name="TS1TemperatureHighRangeLimit" ColumnName="TS1TemperatureHighRangeLimit" />
+          <ScalarProperty Name="FM1FlowMeterThresholLowlimit" ColumnName="FM1FlowMeterThresholLowlimit" />
+          <ScalarProperty Name="FM1FlowMeterThresholHighlimit" ColumnName="FM1FlowMeterThresholHighlimit" />
+          <ScalarProperty Name="FM1FlowMeterLowRangeLimit" ColumnName="FM1FlowMeterLowRangeLimit" />
+          <ScalarProperty Name="FM1FlowMeterHighRangelimit" ColumnName="FM1FlowMeterHighRangelimit" />
+          <ScalarProperty Name="PS1PressureThresholdHighLimit" ColumnName="PS1PressureThresholdHighLimit" />
+          <ScalarProperty Name="PS1PressureLowRangeLimit" ColumnName="PS1PressureLowRangeLimit" />
+          <ScalarProperty Name="PS1PressureHighRangeLimit" ColumnName="PS1PressureHighRangeLimit" />
+          <ScalarProperty Name="PS2PressureThresholdHighLimit" ColumnName="PS2PressureThresholdHighLimit" />
+          <ScalarProperty Name="PS2PressureLowRangeLimit" ColumnName="PS2PressureLowRangeLimit" />
+          <ScalarProperty Name="PS2PressureHighRangeLimit" ColumnName="PS2PressureHighRangeLimit" />
+          <ScalarProperty Name="LC1LoadCellThresholdWarning" ColumnName="LC1LoadCellThresholdWarning" />
+          <ScalarProperty Name="LC1LoadCellThresholdFail" ColumnName="LC1LoadCellThresholdFail" />
+          <ScalarProperty Name="LC1LoadCellLowRangeLimit" ColumnName="LC1LoadCellLowRangeLimit" />
+          <ScalarProperty Name="LC1LoadCellHighRangeLimit" ColumnName="LC1LoadCellHighRangeLimit" />
+          <ScalarProperty Name="PGain" ColumnName="PGain" />
+          <ScalarProperty Name="IGain" ColumnName="IGain" />
+          <ScalarProperty Name="DGain" ColumnName="DGain" />
+          <ScalarProperty Name="Offset" ColumnName="Offset" />
+          <ScalarProperty Name="CatheterTypeID" ColumnName="CatheterTypeID" />
+          <ScalarProperty Name="TargetInjectionFlow" ColumnName="TargetInjectionFlow" />
+          <ScalarProperty Name="TargetInjectionPressure" ColumnName="TargetInjectionPressure" />
+          <ScalarProperty Name="LowFlow" ColumnName="LowFlow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PMCRegisterValues">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.PMCRegisterValue)">
+        <MappingFragment StoreEntitySet="PMCRegisterValues">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="CP1PressureThresholdHighLimit" ColumnName="CP1PressureThresholdHighLimit" />
+          <ScalarProperty Name="CP1PressureLowRangeLimit" ColumnName="CP1PressureLowRangeLimit" />
+          <ScalarProperty Name="CP1PressureHighRangeLimit" ColumnName="CP1PressureHighRangeLimit" />
+          <ScalarProperty Name="CP2PressureThresholdHighLimit" ColumnName="CP2PressureThresholdHighLimit" />
+          <ScalarProperty Name="CP2PressureLowRangeLimit" ColumnName="CP2PressureLowRangeLimit" />
+          <ScalarProperty Name="CP2PressureHighRangeLimit" ColumnName="CP2PressureHighRangeLimit" />
+          <ScalarProperty Name="TC1ThawingTemperature" ColumnName="TC1ThawingTemperature" />
+          <ScalarProperty Name="Pgain" ColumnName="Pgain" />
+          <ScalarProperty Name="Igain" ColumnName="Igain" />
+          <ScalarProperty Name="Dgain" ColumnName="Dgain" />
+          <ScalarProperty Name="Offset" ColumnName="Offset" />
+          <ScalarProperty Name="TargetBalloonPressure" ColumnName="TargetBalloonPressure" />
+          <ScalarProperty Name="LowerBloodThreshold" ColumnName="LowerBloodThreshold" />
+          <ScalarProperty Name="UpperBloodThreshold" ColumnName="UpperBloodThreshold" />
+          <ScalarProperty Name="CatheterTypeID" ColumnName="CatheterTypeID" />
+          <ScalarProperty Name="ThawingTemperatureSetPoint" ColumnName="ThawingTemperatureSetPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatheterInformations">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.CatheterInformation)">
+        <MappingFragment StoreEntitySet="CatheterInformations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="FirmwareVersion" ColumnName="FirmwareVersion" />
+          <ScalarProperty Name="CatheterExpirationDate" ColumnName="CatheterExpirationDate" />
+          <ScalarProperty Name="LastUseDate" ColumnName="LastUseDate" />
+          <ScalarProperty Name="NumberOfInjection" ColumnName="NumberOfInjection" />
+          <ScalarProperty Name="Lot" ColumnName="Lot" />
+          <ScalarProperty Name="IsUsedForEngineering" ColumnName="IsUsedForEngineering" />
+          <ScalarProperty Name="OverloadedCatheterID" ColumnName="OverloadedCatheterID" />
+          <ScalarProperty Name="CatheterTypeID" ColumnName="CatheterTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Procedures">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Procedure)">
+        <MappingFragment StoreEntitySet="Procedures">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProcedureStartDateTime" ColumnName="ProcedureStartDateTime" />
+          <ScalarProperty Name="PhysicianID" ColumnName="PhysicianID" />
+          <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
+          <ScalarProperty Name="OutCome" ColumnName="OutCome" />
+          <ScalarProperty Name="SkinToSkinDuration" ColumnName="SkinToSkinDuration" />
+          <ScalarProperty Name="IsDataEdited" ColumnName="IsDataEdited" />
+          <ScalarProperty Name="Archived" ColumnName="Archived" />
+          <ScalarProperty Name="ProcedureLogId" ColumnName="ProcedureLogId" />
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="EmailAdredress" ColumnName="EmailAdredress" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Type)">
+        <MappingFragment StoreEntitySet="Types">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserActions">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.UserAction)">
+        <MappingFragment StoreEntitySet="UserActions">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="ActionId" ColumnName="ActionId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Actions">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Action)">
+        <MappingFragment StoreEntitySet="Actions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMCUPIDLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.CMCUPIDLogs)">
+        <MappingFragment StoreEntitySet="CMCUPIDLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FM1" ColumnName="FM1" />
+          <ScalarProperty Name="PT2" ColumnName="PT2" />
+          <ScalarProperty Name="TargetFlow" ColumnName="TargetFlow" />
+          <ScalarProperty Name="TargetInjectionPressure" ColumnName="TargetInjectionPressure" />
+          <ScalarProperty Name="TargetFlowError" ColumnName="TargetFlowError" />
+          <ScalarProperty Name="TargetInjectionPressureError" ColumnName="TargetInjectionPressureError" />
+          <ScalarProperty Name="P" ColumnName="P" />
+          <ScalarProperty Name="I" ColumnName="I" />
+          <ScalarProperty Name="D" ColumnName="D" />
+          <ScalarProperty Name="O" ColumnName="O" />
+          <ScalarProperty Name="DateOfChange" ColumnName="DateOfChange" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PMCUPIDLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.PMCUPIDLogs)">
+        <MappingFragment StoreEntitySet="PMCUPIDLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PT3" ColumnName="PT3" />
+          <ScalarProperty Name="IBP" ColumnName="IBP" />
+          <ScalarProperty Name="OBP" ColumnName="OBP" />
+          <ScalarProperty Name="PWMINJ" ColumnName="PWMINJ" />
+          <ScalarProperty Name="PWMBAL" ColumnName="PWMBAL" />
+          <ScalarProperty Name="TargetBalloonPressure" ColumnName="TargetBalloonPressure" />
+          <ScalarProperty Name="TargetBallonPressureError" ColumnName="TargetBallonPressureError" />
+          <ScalarProperty Name="P" ColumnName="P" />
+          <ScalarProperty Name="I" ColumnName="I" />
+          <ScalarProperty Name="D" ColumnName="D" />
+          <ScalarProperty Name="O" ColumnName="O" />
+          <ScalarProperty Name="DateOfChange" ColumnName="DateOfChange" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tanks">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Tank)">
+        <MappingFragment StoreEntitySet="Tanks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="WeightAtReplacementDate" ColumnName="WeightAtReplacementDate" />
+          <ScalarProperty Name="WeightAtEndOfUseDate" ColumnName="WeightAtEndOfUseDate" />
+          <ScalarProperty Name="ReplacementDate" ColumnName="ReplacementDate" />
+          <ScalarProperty Name="EndOfUseDate" ColumnName="EndOfUseDate" />
+          <ScalarProperty Name="TankTypesID" ColumnName="TankTypesID" />
+          <ScalarProperty Name="ConsoleID" ColumnName="ConsoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="preferences">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.preference)">
+        <MappingFragment StoreEntitySet="preferences">
+          <ScalarProperty Name="IsUsingShadowing" ColumnName="IsUsingShadowing" />
+                <ScalarProperty Name="IsShowAdvancedView" ColumnName="IsShowAdvancedView" />
+                <ScalarProperty Name="IsShowPatientInfo" ColumnName="IsShowPatientInfo" />
+                <ScalarProperty Name="OcclusionPressureGraphAxisYMinimum" ColumnName="OcclusionPressureGraphAxisYMinimum" />
+                <ScalarProperty Name="OcclusionPressureGraphAxisYMaximum" ColumnName="OcclusionPressureGraphAxisYMaximum" />
+                <ScalarProperty Name="OcclusionPressureGraphSweepSpeed" ColumnName="OcclusionPressureGraphSweepSpeed" />
+                <ScalarProperty Name="IsUsingAutoPlayback" ColumnName="IsUsingAutoPlayback" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CoolingRequiredTargetTemperature" ColumnName="CoolingRequiredTargetTemperature" />
+          <ScalarProperty Name="ThawTimerToTemperature" ColumnName="ThawTimerToTemperature" />
+          <ScalarProperty Name="LowAblationTemperatureAlarm" ColumnName="LowAblationTemperatureAlarm" />
+          <ScalarProperty Name="HighAblationTemperatureAlarm" ColumnName="HighAblationTemperatureAlarm" />
+          <ScalarProperty Name="EsophagusTemperature" ColumnName="EsophagusTemperature" />
+          <ScalarProperty Name="DiaphragmAmplitude" ColumnName="DiaphragmAmplitude" />
+          <ScalarProperty Name="DiaphragmAmplitudeType" ColumnName="DiaphragmAmplitudeType" />
+          <ScalarProperty Name="BalloonPressureSelected" ColumnName="BalloonPressureSelected" />
+          <ScalarProperty Name="TipPressureSelected" ColumnName="TipPressureSelected" />
+          <ScalarProperty Name="AblationTimer" ColumnName="AblationTimer" />
+          <ScalarProperty Name="IsUsingAutoDeflation" ColumnName="IsUsingAutoDeflation" />
+          <ScalarProperty Name="VolumeLevel" ColumnName="VolumeLevel" />
+          <ScalarProperty Name="CurveStyle" ColumnName="CurveStyle" />
+          <ScalarProperty Name="CurveColor" ColumnName="CurveColor" />
+          <ScalarProperty Name="Background" ColumnName="Background" />
+          <ScalarProperty Name="IsUsingInflationFastSpeed" ColumnName="IsUsingInflationFastSpeed" />
+          <ScalarProperty Name="RefrigerantLevelUnit" ColumnName="RefrigerantLevelUnit" />
+          <ScalarProperty Name="DiaphragmSensorGain" ColumnName="DiaphragmSensorGain" />
+          <ScalarProperty Name="IgnoreDiaphragmMovement" ColumnName="IgnoreDiaphragmMovement" />
+          <ScalarProperty Name="DMSDetectionThreshold" ColumnName="DMSDetectionThreshold" />
+          <ScalarProperty Name="IgnoreEsophagusTemperatureMonitoring" ColumnName="IgnoreEsophagusTemperatureMonitoring" />
+          <ScalarProperty Name="VeinIsolationDuration" ColumnName="VeinIsolationDuration" />
+          <ScalarProperty Name="RequestedAblationTime" ColumnName="RequestedAblationTime" />
+          <ScalarProperty Name="NewVeinIsolationDuration" ColumnName="NewVeinIsolationDuration" />
+          <ScalarProperty Name="NewRequestedAblationTime" ColumnName="NewRequestedAblationTime" />
+          <ScalarProperty Name="ExpectedVeinIsolationTime" ColumnName="ExpectedVeinIsolationTime" />
+          <ScalarProperty Name="AblationTimerTTIFixed" ColumnName="AblationTimerTTIFixed" />
+          <ScalarProperty Name="NewAblationTimerTTIFixed" ColumnName="NewAblationTimerTTIFixed" />
+          <ScalarProperty Name="DurationExpectedVeinIsolationTime" ColumnName="DurationExpectedVeinIsolationTime" />
+          <ScalarProperty Name="AblationTimerTTI" ColumnName="AblationTimerTTI" />
+          <ScalarProperty Name="NewAblationTimerTTI" ColumnName="NewAblationTimerTTI" />
+          <ScalarProperty Name="IsUsingAudioAlert" ColumnName="IsUsingAudioAlert" />
+          <ScalarProperty Name="AblationDurationType" ColumnName="AblationDurationType" />
+          <ScalarProperty Name="EnabaleEnhancedAudio" ColumnName="EnabaleEnhancedAudio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataBaseVersions">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.DataBaseVersion)">
+        <MappingFragment StoreEntitySet="DataBaseVersions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="ChangeDescription" ColumnName="ChangeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FailuresLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.FailuresLogs)">
+        <MappingFragment StoreEntitySet="FailuresLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FailureDateTime" ColumnName="FailureDateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Settings)">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CurrentLanguage" ColumnName="CurrentLanguage" />
+          <ScalarProperty Name="AllowBluetooth" ColumnName="AllowBluetooth" />
+          <ScalarProperty Name="AllowLocalisation" ColumnName="AllowLocalisation" />
+          <ScalarProperty Name="AllowWifi" ColumnName="AllowWifi" />
+          <ScalarProperty Name="WeightUnit" ColumnName="WeightUnit" />
+          <ScalarProperty Name="ToiseUnit" ColumnName="ToiseUnit" />
+          <ScalarProperty Name="SelectedUserManualLanguage" ColumnName="SelectedUserManualLanguage" />
+          <ScalarProperty Name="LoadCellCalibrationFactor" ColumnName="LoadCellCalibrationFactor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Language)">
+        <MappingFragment StoreEntitySet="Languages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserManualDocument" ColumnName="UserManualDocument" />
+          <ScalarProperty Name="DisplayInGui" ColumnName="DisplayInGui" />
+          <ScalarProperty Name="DisplayInUserManual" ColumnName="DisplayInUserManual" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GUIFields">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.GUIField)">
+        <MappingFragment StoreEntitySet="GUIFields">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Translations">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Translation)">
+        <MappingFragment StoreEntitySet="Translations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FieldTranslation" ColumnName="FieldTranslation" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="GUIFieldId" ColumnName="GUIFieldId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Errors">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.Error)">
+        <MappingFragment StoreEntitySet="Errors">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.ErrorType)">
+        <MappingFragment StoreEntitySet="ErrorTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorMessages">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.ErrorMessage)">
+        <MappingFragment StoreEntitySet="ErrorMessages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="SolutionMessage" ColumnName="SolutionMessage" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+          <ScalarProperty Name="CryterionMessage" ColumnName="CryterionMessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BalloonParameters">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.BalloonParameters)">
+        <MappingFragment StoreEntitySet="BalloonParameters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LowPressureSetpoint" ColumnName="LowPressureSetpoint" />
+          <ScalarProperty Name="HighPressureSetPoint" ColumnName="HighPressureSetPoint" />
+          <ScalarProperty Name="LowFlowSetPoint" ColumnName="LowFlowSetPoint" />
+          <ScalarProperty Name="HighFlowSetPoint" ColumnName="HighFlowSetPoint" />
+          <ScalarProperty Name="RampUpTimeByStep" ColumnName="RampUpTimeByStep" />
+          <ScalarProperty Name="PressureRampUpValue" ColumnName="PressureRampUpValue" />
+          <ScalarProperty Name="RampDownTimeByStep" ColumnName="RampDownTimeByStep" />
+          <ScalarProperty Name="PressureRampDownValue" ColumnName="PressureRampDownValue" />
+          <ScalarProperty Name="TotalRampUpTime" ColumnName="TotalRampUpTime" />
+          <ScalarProperty Name="TotalRampDowntime" ColumnName="TotalRampDowntime" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="LowTargetInjectionPressure" ColumnName="LowTargetInjectionPressure" />
+          <ScalarProperty Name="HighTargetInjectionPressure" ColumnName="HighTargetInjectionPressure" />
+          <ScalarProperty Name="DASLowFlow" ColumnName="DASLowFlow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TankTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.TankTypes)">
+        <MappingFragment StoreEntitySet="TankTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CylinderSize" ColumnName="CylinderSize" />
+          <ScalarProperty Name="NetContent" ColumnName="NetContent" />
+          <ScalarProperty Name="Pressure" ColumnName="Pressure" />
+          <ScalarProperty Name="CGAConnection" ColumnName="CGAConnection" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="OutsideDiameter" ColumnName="OutsideDiameter" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MetalWeight" ColumnName="MetalWeight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcedureLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.ProcedureLog)">
+        <MappingFragment StoreEntitySet="ProcedureLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="PreviousInformation" ColumnName="PreviousInformation" />
+          <ScalarProperty Name="CommittedInformation" ColumnName="CommittedInformation" />
+          <ScalarProperty Name="ProcedureId" ColumnName="ProcedureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HardDrives">
+      <EntityTypeMapping TypeName="IsTypeOf(DataAccess.HardDrive)">
+        <MappingFragment StoreEntitySet="HardDrives">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WarningLimit" ColumnName="WarningLimit" />
+          <ScalarProperty Name="FailLimit" ColumnName="FailLimit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserType" TypeName="DataAccess.UserType" StoreEntitySet="UserType">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="Type">
+        <ScalarProperty Name="Id" ColumnName="Types_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Physicianpreference" TypeName="DataAccess.Physicianpreference" StoreEntitySet="Physicians">
+      <EndProperty Name="preference">
+        <ScalarProperty Name="Id" ColumnName="preference_Id" />
+      </EndProperty>
+      <EndProperty Name="Physician">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConsoleHardDrive" TypeName="DataAccess.ConsoleHardDrive" StoreEntitySet="Consoles">
+      <EndProperty Name="HardDrive">
+        <ScalarProperty Name="Id" ColumnName="HardDrive_Id" />
+      </EndProperty>
+      <EndProperty Name="Console">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+          <EntitySetMapping Name="ConsoleVersions">
+            <EntityTypeMapping TypeName="DataAccess.ConsoleVersion">
+              <MappingFragment StoreEntitySet="ConsoleVersion">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="DataBaseVersion" ColumnName="DataBaseVersion" />
+                <ScalarProperty Name="CatheterFirmware" ColumnName="CatheterFirmware" />
+                <ScalarProperty Name="ICBFirmwareBootLoader" ColumnName="ICBFirmwareBootLoader" />
+                <ScalarProperty Name="ICBFirmware" ColumnName="ICBFirmware" />
+                <ScalarProperty Name="RepeaterFirmwareBootLoader" ColumnName="RepeaterFirmwareBootLoader" />
+                <ScalarProperty Name="RepeaterFirmware" ColumnName="RepeaterFirmware" />
+                <ScalarProperty Name="PatientFirmwareBootLoader" ColumnName="PatientFirmwareBootLoader" />
+                <ScalarProperty Name="PatientFirmware" ColumnName="PatientFirmware" />
+                <ScalarProperty Name="RemoteFirmwareBootLoader" ColumnName="RemoteFirmwareBootLoader" />
+                <ScalarProperty Name="RemoteFirmware" ColumnName="RemoteFirmware" />
+                <ScalarProperty Name="CPLDFirmware" ColumnName="CPLDFirmware" />
+                <ScalarProperty Name="ControlFirmwareBootLoader" ColumnName="ControlFirmwareBootLoader" />
+                <ScalarProperty Name="ControlFirmware" ColumnName="ControlFirmware" />
+                <ScalarProperty Name="Software" ColumnName="Software" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogs">
+            <EntityTypeMapping TypeName="DataAccess.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="CatheterContainer" ColumnName="CatheterContainer" />
+                <ScalarProperty Name="IsUsingRemote" ColumnName="IsUsingRemote" />
+                <ScalarProperty Name="IsUsingICB" ColumnName="IsUsingICB" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SystemStatesID" ColumnName="SystemStatesID" />
+                <ScalarProperty Name="CatheterID" ColumnName="CatheterID" />
+                <ScalarProperty Name="VersionId" ColumnName="VersionId" />
+                <ScalarProperty Name="ErrorType" ColumnName="ErrorType" />
+                <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+                <ScalarProperty Name="ErrorInformation" ColumnName="ErrorInformation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HospitalInformations">
+            <EntityTypeMapping TypeName="DataAccess.HospitalInformation">
+              <MappingFragment StoreEntitySet="HospitalInformations">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Scheduling" ColumnName="Scheduling" />
+                <ScalarProperty Name="beds" ColumnName="beds" />
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

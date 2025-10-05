@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+
+
+	<!-- Ten Ablations -->
+	<Ablation Id="1">
+		<IsFastInflation>true</IsFastInflation>
+		<InflationTimeInSecond>190</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>40</ThawingTimeInSecond>
+    <EnableDASBalloon>false</EnableDASBalloon>
+  </Ablation>
+	<Ablation Id="2">
+		<IsFastInflation>false</IsFastInflation>
+		<InflationTimeInSecond>25</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>20</ThawingTimeInSecond>
+    <EnableDASBalloon>false</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="3">
+		<IsFastInflation>true</IsFastInflation>
+		<InflationTimeInSecond>35</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>true</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="4">
+		<IsFastInflation>false</IsFastInflation>
+		<InflationTimeInSecond>25</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>43</ThawingTimeInSecond>
+    <EnableDASBalloon>false</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="5">
+		<IsFastInflation>true</IsFastInflation>
+		<InflationTimeInSecond>35</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>true</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="6">
+		<IsFastInflation>false</IsFastInflation>
+		<InflationTimeInSecond>25</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>false</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="7">
+		<IsFastInflation>true</IsFastInflation>
+		<InflationTimeInSecond>35</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>true</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="8">
+		<IsFastInflation>false</IsFastInflation>
+		<InflationTimeInSecond>25</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>false</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="9">
+		<IsFastInflation>true</IsFastInflation>
+		<InflationTimeInSecond>35</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>true</EnableDASBalloon>
+	</Ablation>
+	<Ablation Id="10">
+		<IsFastInflation>false</IsFastInflation>
+		<InflationTimeInSecond>25</InflationTimeInSecond>
+		<InflationRecordingIntervalMillisecond>50</InflationRecordingIntervalMillisecond>
+		<AblationTimeInSecond>180</AblationTimeInSecond>
+		<AblationMinTemperature>30</AblationMinTemperature>
+		<ThawingTimeInSecond>42</ThawingTimeInSecond>
+    <EnableDASBalloon>false</EnableDASBalloon>
+	</Ablation>
+	<!-- End of Ten Ablations -->
+</Configuration>

@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="Module.Infrastructure.Controls.CatheterMechanicalPopupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Module.Infrastructure.Controls"
+             xmlns:dialogs="http://prismlibrary.com/"
+             xmlns:infrastructure="clr-namespace:Module.Infrastructure"
+             Height="400" Width="800"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800">
+    <dialogs:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="dialogs:Dialog.WindowStartupLocation" Value="CenterScreen"/>
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Topmost" Value="True"/>
+        </Style>
+    </dialogs:Dialog.WindowStyle>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/PrismDialog.xaml"/>
+                <ResourceDictionary Source="../Themes/Button.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+            <infrastructure:InvertBooleanToVisibilityConverter x:Key="invertBooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Name="BorderColor" BorderThickness="0" CornerRadius="10,10,10,10" Background="{StaticResource SystemMessageBrushBackground}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Name="TitleLabel" Grid.Row="0"  Text= "{Binding Title}" 
+                       FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Background="Transparent" />
+
+            <Border Grid.Row="1" BorderThickness="1" CornerRadius="10" Background="{StaticResource SystemMessageBrushControlContainer}" 
+                    Margin="5,5,5,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="65" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" CornerRadius="10" Background="{StaticResource SystemMessageBrushContentContainer }" Margin="5,5,5,5">
+                        <StackPanel VerticalAlignment="Top" Height="250" Margin="0,10,0,0" HorizontalAlignment="Center" >
+
+                            <TextBlock x:Name="txtMessage" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" FontSize="20" FontWeight="Bold" Height="50"
+                                          Text= "{Binding Message}"/>
+
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <Image x:Name="connectorOff" Source="../Images/connector off.png" Width="250" Height="200" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                                           Visibility="{Binding ShowConnectorOn, Converter={StaticResource invertBooleanToVisibilityConverter} }"/>
+                                <Image x:Name="connectorOn" Source="../Images/connector on.png" Width="250" Height="200" VerticalAlignment="Top" HorizontalAlignment="Center"
+                                           Visibility="{Binding ShowConnectorOn, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Name="VolumeControlStackPanel" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,0,0"
+                                    Height="60" Background="Transparent">
+                            <Grid>
+
+                                <Button Name="MuteVolumeButton"  Width="60" Height="60" Padding="0,0,0,0" BorderThickness="0"
+                                    Style="{StaticResource CircularButtonStyle}" RenderTransformOrigin="0.5,0.5"
+                                    Command="{Binding MuteVolumeCommand}" CommandParameter="EnableVolume"
+                                    Margin="5,0,0,0" HorizontalAlignment="Center"
+                                    Visibility="{Binding IsVolumeOn, Converter={StaticResource invertBooleanToVisibilityConverter} }">
+                                    <Image Source="../Images/Mutebutton.png" Stretch="UniformToFill" Height="60" Width="60" RenderTransformOrigin="0.5,0.5" />
+                                </Button>
+
+                                <Button Name="MaxVolumeButton"  Width="60" Height="60" Padding="0,0,0,0" BorderThickness="0"
+                                    Style="{StaticResource CircularButtonStyle}" RenderTransformOrigin="0.5,0.5"
+                                    Command="{Binding MuteVolumeCommand}" CommandParameter="MuteVolume" 
+                                    Margin="5,0,0,0" HorizontalAlignment="Center" 
+                                    Visibility="{Binding IsVolumeOn, Converter={StaticResource booleanToVisibilityConverter} }">
+                                    <Image Source="../Images/VolumeLow.png" Stretch="UniformToFill" Height="60" Width="60" RenderTransformOrigin="0.5,0.5" />
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Style="{StaticResource RoundCorner}"  Margin="10,0" Width="150"
+                                    Content="Continue" 
+                                    Command="{Binding CloseDialogCommand}" CommandParameter="OK"/>
+                            <Button Style="{StaticResource RoundCorner}" Margin="10,0" Width="150"
+                                    Content="Stop" 
+                                    Command="{Binding CloseDialogCommand}" CommandParameter="Cancel" />
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+</UserControl>

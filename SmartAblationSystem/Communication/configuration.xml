@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<IOs>
+  <IO ID="1" Number="8" />
+  <TO ID="2" Number="300000000" />
+  <NMC ID="3" Number="255" />
+</IOs>

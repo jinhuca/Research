@@ -1,0 +1,1176 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="CryterionPopupSystemMessageBrushBackground" Color="#FF009ED6" />
+    <SolidColorBrush x:Key="CryterionPopupSystemMessageBrushControlContainer" Color="#FF96989A" />
+    <SolidColorBrush x:Key="CryterionPopupSystemMessageBrushContentContainer" Color="White" />
+    <SolidColorBrush x:Key="CryterionPopupWarningMessageBrushBackground" Color="Yellow" />
+    <SolidColorBrush x:Key="CryterionPopupErrorMessageBrushBackground" Color="Red" />
+
+    <!-- Button in Blue, no border Boarder, Rounded corner  -->
+    <Style x:Key="ButtonCryterionNotes" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Margin="0,15,0,0">
+                            <Image Name="Normal" Source="/Images/TreatmentNotesSymbol.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50" />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Audit Trail-->
+    <!-- Button in Blue, no border Boarder, Rounded corner  -->
+    <Style x:Key="ButtonCryterionAuditTrail" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                      <Image Name="AuditTrailImg" Source="/Images/audit trail.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill" Margin="5"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End Audit trial -->
+
+        <!-- Ablation Site Button -->
+    <Style x:Key="ButtonCryterionAblationSite" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="20" BorderBrush="Transparent" BorderThickness="3">
+                            <!-- Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                </RadialGradientBrush>
+                            </Border.Background -->
+                            <ContentPresenter HorizontalAlignment="Center"
+											  VerticalAlignment="Center"
+											  TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Date Button -->
+    <Style x:Key="ButtonCryterionDate" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="20" BorderBrush="Transparent" BorderThickness="3">
+                            <!-- Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                </RadialGradientBrush>
+                            </Border.Background -->
+                            <ContentPresenter HorizontalAlignment="Center"
+											  VerticalAlignment="Center"
+											  TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <!--Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        <-->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+
+    <Style x:Key="ButtonCryterionTooltip" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+        <Setter Property="HasDropShadow"
+          Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border Name="Border"
+                BorderThickness="1"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStopCollection>
+                                        <GradientStop Color="{DynamicResource ControlLightColor}"
+                                Offset="0.0" />
+                                        <GradientStop Color="{DynamicResource ControlMediumColor}"
+                                Offset="1.0" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
+                        </Border.BorderBrush>
+                        <ContentPresenter Margin="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasDropShadow"
+                   Value="true">
+                            <Setter TargetName="Border"
+                    Property="CornerRadius"
+                    Value="4" />
+                            <Setter TargetName="Border"
+                    Property="SnapsToDevicePixels"
+                    Value="true" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="GlobalStackPanelStyle">
+       <Setter Property="Background" Value="Green"></Setter>
+   
+        <!--<Style.Resources>
+            
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="Green" />
+            </Style>
+        </Style.Resources>-->
+    </Style>
+
+    <!-- Vein Isolation Button -->
+    <Style x:Key="ButtonCryterionVeinIsolation" TargetType="Button">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+				<Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+    </Style>
+
+	<Style x:Key="VeinIsolationButtonOnNormalViewStyle" BasedOn="{StaticResource ButtonCryterionVeinIsolation}" TargetType="Button">
+    <Setter Property="Height" Value="85"/>
+    <Setter Property="Width" Value="85"/>
+    <Setter Property="Template">
+      <Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+						</Border>
+						<Image Name="Normal" Source="/Images/VeinIsolated.png" 
+						       HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="55" Margin="0,0,0,9"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DodgerBlue" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+    </Setter>
+	</Style>
+
+	<Style x:Key="VeinIsolationButtonOnSimpleViewStyle" BasedOn="{StaticResource ButtonCryterionVeinIsolation}" TargetType="Button">
+		<Setter Property="Height" Value="88"/>
+		<Setter Property="Width" Value="88"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+						</Border>
+						<StackPanel Orientation="Vertical" Margin="0,10,0,0">
+							<Image Name="Normal" Source="/Images/VeinIsolated.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="60" Width="60"/>
+						</StackPanel>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DodgerBlue" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <!-- end -->
+
+    <!-- Notifications Button -->
+    <Style x:Key="ButtonCryterionNotifications" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+
+                        <StackPanel Orientation="Vertical" Margin="0,15,0,0">
+                            <Image Name="Normal" Source="/Images/Settings.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Deflate After Thaw Button -->
+    <Style x:Key="ButtonCryterionDeflateAfterThaw" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                          Margin="0,0,0,3"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+
+                        <StackPanel Orientation="Vertical" Margin="6,5,0,0">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Name="Normal" Source="/Images/DeflateAfterThaw.png" Height="65" Width="65" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Play Button -->
+    <Style x:Key="ButtonCryterionPlay" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Margin="0,8,0,0">
+                            <Image Name="Normal" Source="/Images/PlayArrow.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="30" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Pause Button -->
+    <Style x:Key="ButtonCryterionPause" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                            <Image Name="Normal" Source="/Images/PauseIcon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="30" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Stop Button -->
+    <Style x:Key="ButtonCryterionStop" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                            <Image Name="Normal" Source="/Images/StopIcon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="30" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Rewind Button -->
+    <Style x:Key="ButtonCryterionRewind" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                            <Image Name="Normal" Source="/Images/Rewind5.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="30" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Forward Button -->
+    <Style x:Key="ButtonCryterionForward" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                            <Image Name="Normal" Source="/Images/Forward5.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="30" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+    <!-- Cryterion Radio buttons that look like check boxes -->
+    <Style x:Key="CryterionCheckBoxRadio"  TargetType="{x:Type RadioButton}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="BorderCheck"
+                              Width="13"
+                              Height="13"
+                              CornerRadius="2"
+                              Background="{StaticResource CryterionBrushInActiveBackground}"
+                              BorderBrush="{StaticResource CryterionBrushColorBlue}"
+                              BorderThickness="2">
+                                <Path
+                                                    Width="7" Height="7"
+                                                    x:Name="CheckMark"
+                                                    SnapsToDevicePixels="False"
+                                                    Stroke="{StaticResource CryterionBrushColorBlue}"
+                                                    StrokeThickness="2"
+                                                    Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True">
+                        </ContentPresenter>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="BorderCheck" Property="Background" Value="#454545" />
+                            <Setter TargetName="BorderCheck" Property="BorderBrush" Value="{DynamicResource ApplicationAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#c1c1c1" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="BorderCheck" Property="BorderBrush" Value="{StaticResource CryterionBrushColorBlue}" />
+                            <Setter TargetName="BorderCheck" Property="Background" Value="{StaticResource CryterionBrushOnFocusBackColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+        <!-- LockTheFootSwitch Button -->
+        <Style x:Key="ButtonLockTheFootSwitch" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                                <Border.Background>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#00afef" />
+                                        <GradientStop Offset="0.3" Color="#00afef" />
+                                        <!--This will remove the inserted colour by using the same color-->
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                            </Border>
+
+                            <StackPanel Orientation="Vertical" Margin="0,5,0,0">
+                            <Image Name="Normal" Source="/Images/footswitchbutton.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="80" />
+                            </StackPanel>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                    <TranslateTransform X="0.02" Y="0.3" />
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="DodgerBlue" Offset="1" />
+                                            <GradientStop Color="#FF303030" Offset="0.3" />
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- end -->
+
+
+
+    <!-- Low Flow Button -->
+    <Style x:Key="ButtonLowFlow" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+
+                        <StackPanel Orientation="Vertical" Margin="0,18,0,0">
+                            <Image Name="Normal" Source="/Images/lowflow.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="70" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+
+
+
+
+
+    <!-- Dial a size Button -->
+    <Style x:Key="ButtonDialASize" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+                            <Border.Background>
+                                <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                    <RadialGradientBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+                                            <TranslateTransform X="0.02" Y="0.3" />
+                                        </TransformGroup>
+                                    </RadialGradientBrush.RelativeTransform>
+                                    <GradientStop Offset="1" Color="#00afef" />
+                                    <GradientStop Offset="0.3" Color="#00afef" />
+                                    <!--This will remove the inserted colour by using the same color-->
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+                        </Border>
+
+                        <StackPanel Orientation="Vertical" Margin="0,15,0,0">
+                            <Image Name="Normal" Source="/Images/dialasizebutton.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50" />
+                        </StackPanel>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+                                                <TranslateTransform X="0.02" Y="0.3" />
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="DodgerBlue" Offset="1" />
+                                        <GradientStop Color="#FF303030" Offset="0.3" />
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="grid" Value="0.25" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- end -->
+    <Style x:Key="btnBMIInfo" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Image Name="Normal" Source="/Images/infobutton.png"  />
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Dial a size Button Minus -->
+	<Style x:Key="ButtonDialASizeMinus" TargetType="{x:Type Button}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid x:Name="grid">
+						<Border x:Name="border" CornerRadius="8" BorderBrush="Transparent" BorderThickness="2">
+							<Border.Background>
+								<RadialGradientBrush GradientOrigin="0.496,1.052">
+									<RadialGradientBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterX="0.5" CenterY="0.5"
+                                   ScaleX="1.5" ScaleY="1.5" />
+											<TranslateTransform X="0.02" Y="0.3" />
+										</TransformGroup>
+									</RadialGradientBrush.RelativeTransform>
+									<GradientStop Offset="1" Color="#00afef" />
+									<GradientStop Offset="0.3" Color="#00afef" />
+									<!--This will remove the inserted colour by using the same color-->
+								</RadialGradientBrush>
+							</Border.Background>
+							<ContentPresenter HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextElement.FontWeight="Bold"></ContentPresenter>
+						</Border>
+
+						<StackPanel Orientation="Vertical" Margin="0,15,0,0">
+							<Image Name="Normal" Source="/Images/Balloon minus button.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50" />
+						</StackPanel>
+
+					</Grid>
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border">
+								<Setter.Value>
+									<RadialGradientBrush GradientOrigin="0.496,1.052">
+										<RadialGradientBrush.RelativeTransform>
+											<TransformGroup>
+												<ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5" />
+												<TranslateTransform X="0.02" Y="0.3" />
+											</TransformGroup>
+										</RadialGradientBrush.RelativeTransform>
+										<GradientStop Color="DodgerBlue" Offset="1" />
+										<GradientStop Color="#FF303030" Offset="0.3" />
+									</RadialGradientBrush>
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="grid" Value="0.25" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!-- end -->
+
+
+    
+
+</ResourceDictionary>

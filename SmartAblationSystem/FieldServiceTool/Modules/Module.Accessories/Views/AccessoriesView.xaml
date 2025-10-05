@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Module.Accessories.Views.AccessoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:prism="http://prismlibrary.com/"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:charting="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization" 
+             xmlns:viewmodels="clr-namespace:Module.Accessories.ViewModels" 
+             xmlns:controls="clr-namespace:Module.Infrastructure.Controls;assembly=Module.Infrastructure"
+             d:DataContext="{d:DesignInstance Type=viewmodels:AccessoriesViewModel}"
+						 prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="800">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/Module.Infrastructure;component/Themes/Generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<Border Style="{StaticResource GraphRegionBorderStyle}" Height="530">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Border Grid.Row="0" Style="{StaticResource FlowMeterGraphBorderStyle}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="24"/>
+					</Grid.ColumnDefinitions>
+					<controls:ChartControl x:Name="FlowChart" Uid="FlowChart" Grid.Column="0" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+																 XAxisMaximum="20" XAxisMinimum="0" XAxisInterval="1" XMinorGridEnabled="True"
+					                       YAxisMaximum="10000" YAxisInterval="2000" YAxisMinimum="0" SeriesName="flowSeries" DataPointsColor="LightBlue">
+					</controls:ChartControl>
+					<TextBlock Grid.Column="1" Text="{Binding FlowTitle, Mode=OneTime}" Style="{StaticResource GraphsTitleTextBlockStyle}">
+						<TextBlock.LayoutTransform>
+							<RotateTransform Angle="-90"/>
+						</TextBlock.LayoutTransform>
+					</TextBlock>
+				</Grid>
+			</Border>
+			<Border Grid.Row="1" Style="{StaticResource TemperatureGraphBorderStyle}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="24"/>
+					</Grid.ColumnDefinitions>
+					<controls:ChartControl x:Name="TemperatureChart" Uid="TemperatureChart" Grid.Column="0" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+					                       XMinorGridEnabled="False"
+					                       YAxisMaximum="50" YAxisInterval="20" YAxisMinimum="-70" SeriesName="temperatureSeries" DataPointsColor="LightGreen"/>
+					<TextBlock Grid.Column="1" Text="{Binding TemperatureTitle, Mode=OneTime}" Style="{StaticResource GraphsTitleTextBlockStyle}">
+						<TextBlock.LayoutTransform>
+							<RotateTransform Angle="-90"/>
+						</TextBlock.LayoutTransform>
+					</TextBlock>
+
+				</Grid>
+			</Border>
+		</Grid>
+	</Border>
+</UserControl>

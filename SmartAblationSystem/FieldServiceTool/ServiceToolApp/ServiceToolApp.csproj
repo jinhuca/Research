@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33324F11-694D-4A9B-BE08-EE5DC0095DBC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ServiceToolApp</RootNamespace>
+    <AssemblyName>ServiceToolApp</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Simulator</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MahApps.Metro.2.4.9\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Unity.8.1.97\lib\net47\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.Core.5.0.0\lib\net472\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.6000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reactive.Linq.5.0.0\lib\net472\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Abstractions.5.11.7\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Container.5.11.11\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\Clock\ArrangedPanel.cs" />
+    <Compile Include="Controls\Clock\CharItem.cs" />
+    <Compile Include="Controls\Clock\DigitalClock.xaml.cs">
+      <DependentUpon>DigitalClock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clock\SegmentStacks\SegmentsStackBase.cs" />
+    <Compile Include="Controls\Clock\SegmentStacks\SevenSegmentsStack.xaml.cs">
+      <DependentUpon>SevenSegmentsStack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clock\SegmentStacks\SixteenSegmentsStack.xaml.cs">
+      <DependentUpon>SixteenSegmentsStack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clock\Segments\GeometryWithSegment.cs" />
+    <Compile Include="Controls\Clock\Segments\ISegment.cs" />
+    <Compile Include="Controls\Clock\Segments\SegmentBase.cs" />
+    <Compile Include="Controls\Clock\Segments\Segments.cs" />
+    <Compile Include="Controls\Clock\Segments\SevenSegments.cs" />
+    <Compile Include="Controls\Clock\Segments\SixteenSegments.cs" />
+    <Compile Include="Controls\Clock\Time.cs" />
+    <Compile Include="Definitions\Constants.cs" />
+    <Compile Include="Models\ShellModel.cs" />
+    <Compile Include="Logon\LogonViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Communication\Communication.csproj">
+      <Project>{27a7f5ee-44d4-4eb2-801a-c5e5237db9ea}</Project>
+      <Name>Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Console\Console.csproj">
+      <Project>{19626db0-54d5-4d8c-b9bd-3c3b71d970e0}</Project>
+      <Name>Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{d7dcbe9f-0217-41a6-a5b4-11bf8f832e96}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Shared.csproj">
+      <Project>{b708d9d4-a101-45a6-9f40-fdae4a7a8e06}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.Accessories\Module.Accessories.csproj">
+      <Project>{b8d29d35-8df9-408a-8267-aec9b93d0d60}</Project>
+      <Name>Module.Accessories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.Console\Module.Console.csproj">
+      <Project>{c3f4c6be-217c-4cb3-b2f0-183089965e57}</Project>
+      <Name>Module.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.FlowMeterComm\Module.FlowMeterComm\Module.FlowMeterComm.csproj">
+      <Project>{5030e53f-5304-4347-a006-3f26474b09f4}</Project>
+      <Name>Module.FlowMeterComm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.Infrastructure.Controls\Module.Infrastructure.Controls.csproj">
+      <Project>{c8cc2357-c109-4492-907e-e3809b83c677}</Project>
+      <Name>Module.Infrastructure.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.Infrastructure\Module.Infrastructure.csproj">
+      <Project>{b550b00f-67b1-492b-a621-e9075bcd46f1}</Project>
+      <Name>Module.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.Report\Module.Report.csproj">
+      <Project>{f1b129a1-83a3-40e4-9040-5cff93507778}</Project>
+      <Name>Module.Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.Summary\Module.Summary.csproj">
+      <Project>{245984a5-a264-4aba-b0f4-9bb13f3e42b1}</Project>
+      <Name>Module.Summary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.SystemParameters\Module.SystemParameters.csproj">
+      <Project>{6bf1df98-54ce-4222-b7cd-0125d9c59d8f}</Project>
+      <Name>Module.SystemParameters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Module.TestProcess\Module.TestProcess.csproj">
+      <Project>{8cd93f6b-d81f-48c9-8eb4-2666ff5eeb9d}</Project>
+      <Name>Module.TestProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonitorApp\MonitorApp.csproj">
+      <Project>{b9a36b45-7a72-442b-8046-6e9028d4858a}</Project>
+      <Name>MonitorApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Clock\DigitalClock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clock\SegmentStacks\SevenSegmentsStack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clock\SegmentStacks\SixteenSegmentsStack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ShutDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BSC_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SmartFreeze.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="FTSSplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\VolumeHigh.png" />
+    <Resource Include="Images\VolumeLow.png" />
+    <Resource Include="Images\VolumeMute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="license.elic.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Smartfreeze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\BSC_black_RGB_s.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\USBDriveConnected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\USBDriveNotConnected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ErrorIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Failed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Passed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

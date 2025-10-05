@@ -1,0 +1,91 @@
+﻿<Window x:Class="SmartAblationSystem.Views.FileDeletionPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:SmartAblationSystem.Converters"
+        mc:Ignorable="d"
+        Title="FileDeletionPopup" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+  <Window.Resources>
+    <converters:MultipleBoolToVisibleConverter x:Key="MultipleBoolVisibleConverter_"/>
+    <Style x:Key="MessageTextStyle_" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource Lato}"/>
+      <Setter Property="FontWeight" Value="Regular"/>
+      <Setter Property="FontSize" Value="18"/>
+      <Setter Property="Foreground" Value="#FFCEC3C6"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="OutBorderStyle_" TargetType="Border">
+      <Setter Property="Background" Value="#ff2B2B33"/>
+      <Setter Property="CornerRadius" Value="10,10,10,10"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="VerticalAlignment" Value="Stretch"/>
+      <Setter Property="Width" Value="507"/>
+      <Setter Property="Height" Value="204"/>
+    </Style>
+    <Style x:Key="TitleBorderStyle_" TargetType="Border">
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="VerticalAlignment" Value="Top"/>
+      <Setter Property="Height" Value="70"/>
+      <Setter Property="CornerRadius" Value="10,10,0,0"/>
+      <Setter Property="Background" Value="#ff475E8B"/>
+    </Style>
+  </Window.Resources>
+  <Border Style="{StaticResource OutBorderStyle_}">
+    <Border.Effect>
+      <DropShadowEffect BlurRadius="15" Opacity="0.8"/>
+    </Border.Effect>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="104"/>
+        <RowDefinition Height="70"/>
+      </Grid.RowDefinitions>
+      <Border Grid.Row="0" Style="{StaticResource TitleBorderStyle_}"/>
+      <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+          <StackPanel.Visibility>
+            <MultiBinding Converter="{StaticResource MultipleBoolVisibleConverter_}" ConverterParameter="FinishedCurrentProcedureExport">
+              <Binding Path="IsExporting"/>
+              <Binding Path="IsCanceled"/>
+              <Binding Path="IsDeletingCurrentProcedure"/>
+            </MultiBinding>
+          </StackPanel.Visibility>
+          <TextBlock Text="Are you sure you want to erase current record?&#x0a;This action is irreversible." 
+						           Style="{StaticResource MessageTextStyle_}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+          <StackPanel.Visibility>
+            <MultiBinding Converter="{StaticResource MultipleBoolVisibleConverter_}" ConverterParameter="FinishedSelectedProceduresExport">
+              <Binding Path="IsExporting"/>
+              <Binding Path="IsCanceled"/>
+              <Binding Path="IsDeletingCurrentProcedure"/>
+            </MultiBinding>
+          </StackPanel.Visibility>
+          <TextBlock Text="Are you sure you want to erase these records?&#x0a;This action is irreversible." 
+						           Style="{StaticResource MessageTextStyle_}"/>
+        </StackPanel>
+      </Grid>
+      <Grid Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,20,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" 
+                  Content="Cancel"
+                  Style="{StaticResource TextWithUnderlineButton_}"
+                  IsCancel="True"
+                  Click="No_Click"/>
+        <Button Grid.Column="1"
+                  Content="OK"
+                  Style="{StaticResource ConfirmButtonStyle_}"
+                  Click="Ok_Click"/>
+      </Grid>
+    </Grid>
+  </Border>
+</Window>
