@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="QueryConstants/QueryConstants.csproj" />
+  <Project Path="S00_Environement/S00_Environement.csproj" />
+  <Project Path="SystemInfoCollection/SystemInfoCollection.csproj" />
+</Solution>
