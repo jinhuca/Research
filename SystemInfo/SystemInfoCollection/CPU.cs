@@ -1,38 +1,70 @@
-﻿
-using QueryConstants.Management;
-using System;
+﻿using Microsoft.Win32;
+using System.Collections;
 using System.Management;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
-using SystemInfoCollection;
-//using static QueryConstants.Management.CPU;
+using System.Runtime.Intrinsics.Arm;
+using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography;
+using System.Security.Principal;
+using static QueryConstants.Management.Win32Processor;
+using static System.Net.WebRequestMethods;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SystemInfoCollection;
 
 public static class CPU {
-  public static List<(string key, string infoItem)> Details = new();
+  public static List<(string key, string infoItem, string description)> Details = new();
 
   [System.Diagnostics.CodeAnalysis.SuppressMessage(
     "Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
   public static void Init() {
     try {
-      ManagementObjectSearcher searcher = new(QueryConstants.Management.CPU.Query_String);
+      ManagementObjectSearcher searcher = new(Query_String);
       foreach (var mgtObj in searcher.Get()) {
-        Details.Add((QueryConstants.Management.CPU.Name, Convert.ToString(mgtObj[QueryConstants.Management.CPU.Name])));
-        Details.Add((QueryConstants.Management.CPU.Family, GetFamilyName(Convert.ToUInt16(mgtObj[QueryConstants.Management.CPU.Family]))));
-        Details.Add((QueryConstants.Management.CPU.Id, Convert.ToString(mgtObj[QueryConstants.Management.CPU.Id])));
-        Details.Add((QueryConstants.Management.CPU.Description, Convert.ToString(mgtObj[QueryConstants.Management.CPU.Description])));
-        Details.Add((QueryConstants.Management.CPU.Architecture, GetArchitecture(Convert.ToUInt16(mgtObj[QueryConstants.Management.CPU.Architecture]))));
-        Details.Add((QueryConstants.Management.CPU.Socket, Convert.ToString(mgtObj[QueryConstants.Management.CPU.Socket])));
-        Details.Add((QueryConstants.Management.CPU.MaxClockSpeed, Convert.ToString(mgtObj[QueryConstants.Management.CPU.MaxClockSpeed]) + QueryConstants.Management.CPU.SpeedUnit));
-        Details.Add((QueryConstants.Management.CPU.CurrentClockSpeed, Convert.ToString((mgtObj[QueryConstants.Management.CPU.CurrentClockSpeed]) + QueryConstants.Management.CPU.SpeedUnit)));
-        Details.Add((QueryConstants.Management.CPU.PhysicalCoreNumber, Convert.ToString(mgtObj[QueryConstants.Management.CPU.PhysicalCoreNumber])));
-        Details.Add((QueryConstants.Management.CPU.LogicalProcessorNumber, Convert.ToString(mgtObj[QueryConstants.Management.CPU.LogicalProcessorNumber])));
-        Details.Add((QueryConstants.Management.CPU.UniqueId, Convert.ToString(mgtObj[QueryConstants.Management.CPU.UniqueId])));
-        Details.Add((QueryConstants.Management.CPU.Stepping, Convert.ToString(mgtObj[QueryConstants.Management.CPU.Stepping])));
-        Details.Add((QueryConstants.Management.CPU.SystemName, Convert.ToString(mgtObj[QueryConstants.Management.CPU.SystemName])));
-        Details.Add((QueryConstants.Management.CPU.DeviceID, Convert.ToString(mgtObj[QueryConstants.Management.CPU.DeviceID])));
-        Details.Add((QueryConstants.Management.CPU.Caption, Convert.ToString(mgtObj[QueryConstants.Management.CPU.Caption])));
+        Details.Add((AddressWidthKey, Convert.ToString(mgtObj[AddressWidthKey]), AddressWidthDesc));
+        Details.Add((ArchitectureKey, GetArchitecture(Convert.ToUInt16(mgtObj[ArchitectureKey])), ArchitectureDesc));
+        Details.Add((AssetTagKey, Convert.ToString(mgtObj[AvailabilityKey]), AssetTagDesc));
+        Details.Add((AvailabilityKey, GetAvailability(Convert.ToUInt16(mgtObj[AvailabilityKey])), AvailabilityDesc));
+        Details.Add((CaptionKey, Convert.ToString(mgtObj[CaptionKey]), CaptionDesc));
+        Details.Add((CharacteristicsKey, Convert.ToString(mgtObj[CharacteristicsKey]), CharacteristicsDesc));
+        Details.Add((ConfigManagerErrorCodeKey, GetConfigManagerErrorCode(Convert.ToUInt32(mgtObj[ConfigManagerErrorCodeKey])), ConfigManagerErrorCodeDesc));
+        Details.Add((ConfigManagerUserConfigKey, Convert.ToString(Convert.ToBoolean(mgtObj[ConfigManagerUserConfigKey])), ConfigManagerUserConfigDesc));
+        Details.Add((CpuStatusKey, GetCpuStatus(Convert.ToUInt16(mgtObj[CpuStatusKey])), CpuStatusDesc));
+        Details.Add((CreationClassNameKey, Convert.ToString(mgtObj[CreationClassNameKey]), CreationClassNameDesc));
+        Details.Add((CurrentClockSpeedKey, Convert.ToString((mgtObj[CurrentClockSpeedKey]) + SpeedUnit), CurrentClockSpeedDesc));
+        Details.Add((CurrentVoltageKey, GetCurrentVoltage(Convert.ToUInt16(mgtObj[CurrentVoltageKey])), CurrentVoltageDesc));
+        Details.Add((DataWidthKey, GetDataWidth(Convert.ToUInt16(mgtObj[DataWidthKey])), DataWidthDesc));
+        Details.Add((DescriptionKey, Convert.ToString(mgtObj[DescriptionKey]), DescriptionDesc));
+        Details.Add((DeviceIDKey, Convert.ToString(mgtObj[DeviceIDKey]), DeviceIDDesc));
+        Details.Add((ErrorClearedKey, Convert.ToString(Convert.ToBoolean(mgtObj[ErrorClearedKey])), ErrorClearedDesc));
+        Details.Add((ErrorDescriptionKey, Convert.ToString(mgtObj[ErrorDescriptionKey]), ErrorDescriptionDesc));
+        Details.Add((ExtClockKey, Convert.ToString(mgtObj[ExtClockKey]) + SpeedUnit, ExtClockDesc));
+        Details.Add((FamilyKey, GetFamilyName(Convert.ToUInt16(mgtObj[FamilyKey])), FamilyDesc));
+        Details.Add((InstallDateKey, Convert.ToString(Convert.ToDateTime(mgtObj[InstallDateKey])), InstallDateDesc));
+        Details.Add((L2CacheSizeKey, Convert.ToString(Convert.ToUInt32(mgtObj[L2CacheSizeKey])), L2CacheSizeDesc));
+        Details.Add((L2CacheSpeedKey, Convert.ToString(Convert.ToUInt32(mgtObj[L2CacheSpeedKey])), L2CacheSpeedDesc));
+        Details.Add((L3CacheSizeKey, Convert.ToString(Convert.ToUInt32(mgtObj[L3CacheSizeKey])), L3CacheSizeDesc));
+        Details.Add((L3CacheSpeedKey, Convert.ToString(Convert.ToUInt32(mgtObj[L3CacheSpeedKey])), L3CacheSpeedDesc));
+        Details.Add((LastErrorCodeKey, Convert.ToString(mgtObj[LastErrorCodeKey]), LastErrorCodeDesc));
+
+        Details.Add((NameKey, Convert.ToString(mgtObj[NameKey]), NameDesc));
+        
+        Details.Add((IdKey, Convert.ToString(mgtObj[IdKey]), ""));
+
+
+        Details.Add((SocketKey, Convert.ToString(mgtObj[SocketKey]), ""));
+        Details.Add((MaxClockSpeedKey, Convert.ToString(mgtObj[MaxClockSpeedKey]) + SpeedUnit, ""));
+
+        Details.Add((PhysicalCoreNumberKey, Convert.ToString(mgtObj[PhysicalCoreNumberKey]), ""));
+        Details.Add((LogicalProcessorNumberKey, Convert.ToString(mgtObj[LogicalProcessorNumberKey]), ""));
+        Details.Add((UniqueIdKey, Convert.ToString(mgtObj[UniqueIdKey]), ""));
+        Details.Add((SteppingKey, Convert.ToString(mgtObj[SteppingKey]), ""));
+        Details.Add((SystemNameKey, Convert.ToString(mgtObj[SystemNameKey]), ""));
+
+
+
       }
     }
     catch (ManagementException e) {
@@ -56,6 +88,114 @@ public static class CPU {
       6 => "Itanium-based systems",
       9 => "x64",
       12 => "ARM64",
+      _ => "Unknown"
+    };
+  }
+
+  private static string GetAvailability(ushort avail) {
+    return avail switch
+    {
+      1 => "Other",
+      2 => "Unknown",
+      3 => "Running or Full Power",
+      4 => "Warning",
+      5 => "In Test",
+      6 => "Not Applicable",
+      7 => "Power Off",
+      8 => "Off Line",
+      9 => "Off Duty",
+      10 => "Degraded",
+      11 => "Not Installed",
+      12 => "Install Error",
+      13 => "Power Save -Unknown",
+      14 => "Power Save -Low Power Mode",
+      15 => "Power Save -Standby",
+      16 => "Power Cycle",
+      17 => "Power Save -Warning",
+      18 => "Paused",
+      19 => "Not Ready",
+      20 => "Not Configured",
+      21 => "Quiesced",
+      _ => "Unknown"
+    };
+  }
+
+  private static string GetCharacteristics(uint characteristic) {
+    return characteristic switch
+    {
+      _ => ""
+    };
+  }
+
+  private static string GetConfigManagerErrorCode(uint errorCode) {
+    return errorCode switch
+    {
+      0 => "This device is working properly. (0)",
+      1 => "This device is not configured correctly. (1)",
+      2 => "Windows cannot load the driver for this device. (2)",
+      3 => "The driver for this device might be corrupted, or your system may be running low on memory or other resources. (3)",
+      4 => "This device is not working properly. One of its drivers or your registry might be corrupted. (4)",
+      5 => "The driver for this device needs a resource that Windows cannot manage. (5)",
+      6 => "The boot configuration for this device conflicts with other devices. (6)",
+      7 => "Cannot filter. (7)",
+      8 => "The driver loader for the device is missing. (8)",
+      9 => "This device is not working properly because the controlling firmware is reporting the resources for the device incorrectly. (9)",
+      10 => "This device cannot start. (10)",
+      11 => "This device failed. (11)",
+      12 => "This device cannot find enough free resources that it can use. (12)",
+      13 => "Windows cannot verify this device's resources. (13)",
+      14 => "This device cannot work properly until you restart your computer. (14)",
+      15 => "This device is not working properly because there is probably a re - enumeration problem. (15)",
+      16 => "Windows cannot identify all the resources this device uses. (16)",
+      17 => "This device is asking for an unknown resource type. (17)",
+      18 => "Reinstall the drivers for this device. (18)",
+      19 => "Failure using the VxD loader. (19)",
+      20 => "Your registry might be corrupted. (20)",
+      21 => "System failure: Try changing the driver for this device.If that does not work, see your hardware documentation.Windows is removing this device. (21)",
+      22 => "This device is disabled. (22)",
+      23 => "System failure: Try changing the driver for this device.If that doesn't work, see your hardware documentation. (23)",
+      24 => "This device is not present, is not working properly, or does not have all its drivers installed. (24)",
+      25 => "Windows is still setting up this device. (25)",
+      26 => "Windows is still setting up this device. (26)",
+      27 => "This device does not have valid log configuration. (27)",
+      28 => "The drivers for this device are not installed. (28)",
+      29 => "This device is disabled because the firmware of the device did not give it the required resources. (29)",
+      30 => "This device is using an Interrupt Request(IRQ) resource that another device is using. (30)",
+      31 => "This device is not working properly because Windows cannot load the drivers required for this device. (31)",
+      _ => ""
+    };
+  }
+
+  private static string GetCpuStatus(ushort status) {
+    return status switch
+    {
+      0 => "Unknown(0)",
+      1 => "CPU Enabled(1)",
+      2 => "CPU Disabled by User via BIOS Setup(2)",
+      3 => "CPU Disabled By BIOS (POST Error)(3)",
+      4 => "CPU is Idle(4)",
+      5 => "Reserved (5)",
+      6 => "Reserved(6)",
+      7 => "Other (7)",
+      _ => "Unknown"
+    };
+  }
+
+  private static string GetCurrentVoltage(ushort voltageRaw) {
+    if ((voltageRaw & 0x80) != 0) {
+      double voltage = (voltageRaw & 0x7F) / 10.0;
+      return Convert.ToString(voltage) + "V";
+    }
+    else {
+      return Convert.ToString(voltageRaw) + "V";
+    }
+  }
+
+  private static string GetDataWidth(ushort dataWidth) {
+    return dataWidth switch
+    {
+      32 => "32-bit",
+      64 => "64-bit",
       _ => "Unknown"
     };
   }

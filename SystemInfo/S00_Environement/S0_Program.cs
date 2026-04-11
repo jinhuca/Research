@@ -14,7 +14,7 @@ internal class S0_Program {
 
   public static void Query_CPU() {
     try {
-      ManagementObjectSearcher searcher = new(queryString: QueryConstants.Management.CPU.Query_String);
+      ManagementObjectSearcher searcher = new(queryString: QueryConstants.Management.Win32Processor.Query_String);
       foreach (var obj in searcher.Get()) {
         Console.WriteLine("Processor Name:     " + obj["Name"]);
         Console.WriteLine("Description:        " + obj["Description"]);
