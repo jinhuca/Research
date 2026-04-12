@@ -3,7 +3,7 @@ using static QueryConstants.Management.Win32Processor;
 
 namespace SystemInfoCollection;
 
-public static class CPU {
+public static class Win32Processor {
   public static List<(string key, string infoItem, string description)> Details = new();
 
   [System.Diagnostics.CodeAnalysis.SuppressMessage(
