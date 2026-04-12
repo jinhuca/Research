@@ -43,10 +43,10 @@ internal class S0_Program {
   }
 
   private static void f() {
-    SystemInfoCollection.Win32Processor.Init();
+    //SystemInfoCollection.Win32Processor.Init();
     //SystemInfoCollection.WIn32VideoController.Init();
     SystemInfoCollection.Win32OperatingSystem.Init();
-
+    //SystemInfoCollection.Bios.Query();
     //SystemInfoCollection.WIn32VideoController.tryit();
   }
 
