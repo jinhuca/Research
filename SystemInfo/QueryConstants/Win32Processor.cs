@@ -78,80 +78,98 @@ public static class Win32Processor {
   public const string LastErrorCodeKey = "LastErrorCode";
   public const string LastErrorCodeDesc = "Last error code reported by processor.";
 
+  public const string LevelKey = "Level";
+  public const string LevelDesc = "Processor Type Level";
+
+  public const string LoadPercentageKey = "LoadPercentage";
+  public const string LoadPercentageDesc = "Load capacity of each processor, averaged to the last second";
 
   public const string NameKey = "Name";
   public const string NameDesc = "Processor Name";
-  
 
-
-  public const string IdKey = "ProcessorId";
-  public const string IdDesc = "Processor ID";
-
-
+  public const string ManufacturerKey = "Manufacturer";
+  public const string ManufacturerDesc = "Name of the processor manufacturer";
 
   public const string MaxClockSpeedKey = "MaxClockSpeed";
   public const string MaxClockSpeedDesc = "Max Clock Speed";
-  public const string SocketKey = "SocketDesignation";
+
+  public const string NumberOfCoresKey = "NumberOfCores";
+  public const string NumberOfCoresDesc = "Number of cores for the current instance of the processor";
+
+  public const string NumberOfEnabledCoreKey = "NumberOfEnabledCore";
+  public const string NumberOfEnabledCoreDesc = "The number of enabled cores per processor socket";
+
+  public const string NumberOfLogicalProcessorsKey = "NumberOfLogicalProcessors";
+  public const string NumberOfLogicalProcessorsDesc = "Number of logical processors for the current instance of the processor";
+
+  public const string OtherFamilyDescriptionKey = "OtherFamilyDescription";
+  public const string OtherFamilyDescriptionDesc = "Processor family type";
+
+  public const string PartNumberKey = "PartNumber";
+  public const string PartNumberDesc = "The part number of this processor as set by the manufacturer";
+
+  public const string PNPDeviceIDKey = "PNPDeviceID";
+  public const string PNPDeviceIDDesc = "Windows Plug and Play device identifier of the logical device";
+
+  // Not use.
+  public const string PowerManagementCapabilitiesKey = "PowerManagementCapabilities";
+  public const string PowerManagementCapabilitiesDesc = "Array of the specific power-related capabilities of a logical device";
+
+  public const string ProcessorIdKey = "ProcessorId";
+  public const string ProcessorIdDesc = "Processor ID";
+
+  public const string ProcessorTypeKey = "ProcessorType";
+  public const string ProcessorTypeDesc = "Primary function of the processor";
+
+  public const string RevisionKey = "Revision";
+  public const string RevisionDesc = "System revision level that depends on the architecture";
+
+  public const string RoleKey = "Role";
+  public const string RoleDesc = "Role of the processor";
+
+  public const string SerialNumberKey = "SerialNumber";
+  public const string SerialNumberDesc = "The serial number of this processor";
+
+  public const string SocketDesignationKey = "SocketDesignation";
+  public const string SocketDesignationDesc = "Type of chip socket used on the circuit";
+
+  public const string StatusKey = "Status";
+  public const string StatusDesc = "Current status of the processor";
+
+  public const string StatusInfoKey = "StatusInfo";
+  public const string StatusInfoDesc = "State of the logical device";
+
+  public const string SteppingKey = "Stepping";
+  public const string SteppingDesc = "Revision level of the processor in the processor family";
+
+  public const string SystemCreationClassNameKey = "SystemCreationClassName";
+  public const string SystemCreationClassNameDesc = "Value of the CreationClassName property for the scoping computer";
+
+  public const string SystemNameKey = "SystemName";
+  public const string SystemNameDesc = "Name of the scoping system";
+
+  public const string ThreadCountKey = "ThreadCount";
+  public const string ThreadCountDesc = "The number of threads per processor socket";
+
+  public const string UniqueIdKey = "UniqueId";
+  public const string UniqueIdDesc = "Globally unique identifier for the processor";
+
+  public const string UpgradeMethodKey = "UpgradeMethod";
+  public const string UpgradeMethodDesc = "CPU socket information";
+
+  public const string VersionKey = "Version";
+  public const string VersionDesc = "Processor revision number that depends on the architecture";
+
+  public const string VirtualizationFirmwareEnabledKey = "VirtualizationFirmwareEnabled";
+  public const string VirtualizationFirmwareEnabledDesc = "If True, the Firmware has enabled virtualization extensions";
+
+  public const string VMMonitorModeExtensionsKey = "VMMonitorModeExtensions";
+  public const string VMMonitorModeExtensionsDesc = "If True, the processor supports Intel or AMD Virtual Machine Monitor extensions";
+
+  public const string VoltageCapsKey = "VoltageCaps";
+  public const string VoltageCapsDesc = "Voltage capabilities of the processor";
   
   public const string SpeedUnit = "MHz";
   public const string CacheSizeUnit = "KB";
-
-  public const string PhysicalCoreNumberKey = "NumberOfCores";
-  public const string LogicalProcessorNumberKey = "NumberOfLogicalProcessors";
-  public const string UniqueIdKey = "UniqueId";
-  public const string SteppingKey = "Stepping";
-  public const string SystemNameKey = "SystemName";
-  
-
-  
-
-  /*
-   [Dynamic, Provider("CIMWin32"), UUID("{8502C4BB-5FBB-11D2-AAC1-006008C78BC7}"), AMENDMENT]
-class Win32_Processor : CIM_Processor
-{
-  boolean  ErrorCleared;
-  string   ErrorDescription;
-  uint32   ExtClock;
-  uint16   Family;
-  datetime InstallDate;
-  uint32   L2CacheSize;
-  uint32   L2CacheSpeed;
-  uint32   L3CacheSize;
-  uint32   L3CacheSpeed;
-  uint32   LastErrorCode;
-  uint16   Level;
-  uint16   LoadPercentage;
-  string   Manufacturer;
-  uint32   MaxClockSpeed;
-  string   Name;
-  uint32   NumberOfCores;
-  uint32   NumberOfEnabledCore;
-  uint32   NumberOfLogicalProcessors;
-  string   OtherFamilyDescription;
-  string   PartNumber;
-  string   PNPDeviceID;
-  uint16   PowerManagementCapabilities[];
-  boolean  PowerManagementSupported;
-  string   ProcessorId;
-  uint16   ProcessorType;
-  uint16   Revision;
-  string   Role;
-  boolean  SecondLevelAddressTranslationExtensions;
-  string   SerialNumber;
-  string   SocketDesignation;
-  string   Status;
-  uint16   StatusInfo;
-  string   Stepping;
-  string   SystemCreationClassName;
-  string   SystemName;
-  uint32   ThreadCount;
-  string   UniqueId;
-  uint16   UpgradeMethod;
-  string   Version;
-  boolean  VirtualizationFirmwareEnabled;
-  boolean  VMMonitorModeExtensions;
-  uint32   VoltageCaps;
-};
-   */
 }
 

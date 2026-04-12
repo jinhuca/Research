@@ -1,16 +1,5 @@
-﻿using Microsoft.Win32;
-using System.Collections;
-using System.Management;
-using System.Reflection;
-using System.Resources;
-using System.Runtime.InteropServices;
-using System.Runtime.Intrinsics.Arm;
-using System.Runtime.Intrinsics.X86;
-using System.Security.Cryptography;
-using System.Security.Principal;
+﻿using System.Management;
 using static QueryConstants.Management.Win32Processor;
-using static System.Net.WebRequestMethods;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SystemInfoCollection;
 
@@ -42,29 +31,41 @@ public static class CPU {
         Details.Add((ErrorDescriptionKey, Convert.ToString(mgtObj[ErrorDescriptionKey]), ErrorDescriptionDesc));
         Details.Add((ExtClockKey, Convert.ToString(mgtObj[ExtClockKey]) + SpeedUnit, ExtClockDesc));
         Details.Add((FamilyKey, GetFamilyName(Convert.ToUInt16(mgtObj[FamilyKey])), FamilyDesc));
+        Details.Add((ProcessorIdKey, Convert.ToString(mgtObj[ProcessorIdKey]), ProcessorIdDesc));
         Details.Add((InstallDateKey, Convert.ToString(Convert.ToDateTime(mgtObj[InstallDateKey])), InstallDateDesc));
         Details.Add((L2CacheSizeKey, Convert.ToString(Convert.ToUInt32(mgtObj[L2CacheSizeKey])), L2CacheSizeDesc));
         Details.Add((L2CacheSpeedKey, Convert.ToString(Convert.ToUInt32(mgtObj[L2CacheSpeedKey])), L2CacheSpeedDesc));
         Details.Add((L3CacheSizeKey, Convert.ToString(Convert.ToUInt32(mgtObj[L3CacheSizeKey])), L3CacheSizeDesc));
         Details.Add((L3CacheSpeedKey, Convert.ToString(Convert.ToUInt32(mgtObj[L3CacheSpeedKey])), L3CacheSpeedDesc));
         Details.Add((LastErrorCodeKey, Convert.ToString(mgtObj[LastErrorCodeKey]), LastErrorCodeDesc));
-
+        Details.Add((LevelKey, Convert.ToString(mgtObj[LevelKey]), LevelDesc));
+        Details.Add((LoadPercentageKey, Convert.ToString(Convert.ToUInt16(mgtObj[LoadPercentageKey])), LoadPercentageDesc));
         Details.Add((NameKey, Convert.ToString(mgtObj[NameKey]), NameDesc));
-        
-        Details.Add((IdKey, Convert.ToString(mgtObj[IdKey]), ""));
-
-
-        Details.Add((SocketKey, Convert.ToString(mgtObj[SocketKey]), ""));
-        Details.Add((MaxClockSpeedKey, Convert.ToString(mgtObj[MaxClockSpeedKey]) + SpeedUnit, ""));
-
-        Details.Add((PhysicalCoreNumberKey, Convert.ToString(mgtObj[PhysicalCoreNumberKey]), ""));
-        Details.Add((LogicalProcessorNumberKey, Convert.ToString(mgtObj[LogicalProcessorNumberKey]), ""));
-        Details.Add((UniqueIdKey, Convert.ToString(mgtObj[UniqueIdKey]), ""));
-        Details.Add((SteppingKey, Convert.ToString(mgtObj[SteppingKey]), ""));
-        Details.Add((SystemNameKey, Convert.ToString(mgtObj[SystemNameKey]), ""));
-
-
-
+        Details.Add((ManufacturerKey, Convert.ToString(mgtObj[ManufacturerKey]), ManufacturerDesc));
+        Details.Add((MaxClockSpeedKey, Convert.ToString(mgtObj[MaxClockSpeedKey]) + SpeedUnit, MaxClockSpeedDesc));
+        Details.Add((NumberOfCoresKey, Convert.ToString(mgtObj[NumberOfCoresKey]), NumberOfCoresDesc));
+        Details.Add((NumberOfEnabledCoreKey, Convert.ToString(mgtObj[NumberOfEnabledCoreKey]), NumberOfEnabledCoreDesc));
+        Details.Add((NumberOfLogicalProcessorsKey, Convert.ToString(mgtObj[NumberOfLogicalProcessorsKey]), NumberOfLogicalProcessorsDesc));
+        Details.Add((OtherFamilyDescriptionKey, Convert.ToString(mgtObj[OtherFamilyDescriptionKey]), OtherFamilyDescriptionDesc));
+        Details.Add((PartNumberKey, Convert.ToString(mgtObj[PartNumberKey]), PartNumberDesc));
+        Details.Add((PNPDeviceIDKey, Convert.ToString(mgtObj[PNPDeviceIDKey]), PNPDeviceIDKey));
+        Details.Add((ProcessorTypeKey, Convert.ToString(mgtObj[ProcessorTypeKey]), ProcessorTypeDesc));
+        Details.Add((RevisionKey, Convert.ToString(mgtObj[RevisionKey]), RevisionDesc));
+        Details.Add((RoleKey, Convert.ToString(mgtObj[RoleKey]), RoleDesc));
+        Details.Add((SerialNumberKey, Convert.ToString(mgtObj[SerialNumberKey]), SerialNumberDesc));
+        Details.Add((SocketDesignationKey, Convert.ToString(mgtObj[SocketDesignationKey]), SocketDesignationDesc));
+        Details.Add((StatusKey, Convert.ToString(mgtObj[StatusKey]), StatusDesc));
+        Details.Add((StatusInfoKey, Convert.ToString(GetStatusInfo(Convert.ToUInt16(mgtObj[StatusInfoKey]))), StatusInfoDesc));
+        Details.Add((SteppingKey, Convert.ToString(mgtObj[SteppingKey]), SteppingDesc));
+        Details.Add((SystemCreationClassNameKey, Convert.ToString(mgtObj[SystemCreationClassNameKey]), SystemCreationClassNameDesc));
+        Details.Add((SystemNameKey, Convert.ToString(mgtObj[SystemNameKey]), SystemNameDesc));
+        Details.Add((ThreadCountKey, Convert.ToString(mgtObj[ThreadCountKey]), ThreadCountDesc));
+        Details.Add((UniqueIdKey, Convert.ToString(mgtObj[UniqueIdKey]), UniqueIdDesc));
+        Details.Add((UpgradeMethodKey, Convert.ToString(GetUpgradeMethod(Convert.ToUInt16(mgtObj[UpgradeMethodKey]))), UpgradeMethodDesc));
+        Details.Add((VersionKey, Convert.ToString(mgtObj[VersionKey]), VersionDesc));
+        Details.Add((VirtualizationFirmwareEnabledKey, Convert.ToString(Convert.ToBoolean(mgtObj[VirtualizationFirmwareEnabledKey])), VirtualizationFirmwareEnabledDesc));
+        Details.Add((VMMonitorModeExtensionsKey, Convert.ToString(Convert.ToBoolean(mgtObj[VMMonitorModeExtensionsKey])), VMMonitorModeExtensionsDesc));
+        Details.Add((VoltageCapsKey, GetVoltageCaps(Convert.ToUInt32(mgtObj[VoltageCapsKey])), VoltageCapsDesc));
       }
     }
     catch (ManagementException e) {
@@ -72,8 +73,8 @@ public static class CPU {
     }
   }
 
-  public static string GetInfo(string key) {
-    var result = Details.Find(t => t.key == key).infoItem;
+  public static (string key, string val, string desc) GetInfo(string key) {
+    var result = Details.Find(t => t.key == key);
     return result;
   }
 
@@ -197,6 +198,53 @@ public static class CPU {
       32 => "32-bit",
       64 => "64-bit",
       _ => "Unknown"
+    };
+  }
+
+  private static string GetStatusInfo(ushort info) {
+    return info switch
+    {
+      1 => "Other(1)",
+      2 => "Unknown (2)",
+      3 => "Enabled(3)",
+      4 => "Disabled (4)",
+      5 => "Not Applicable (5)",
+      _ => "Unknown"
+    };
+  }
+
+  private static string GetUpgradeMethod(ushort upgradeMethod) {
+    return upgradeMethod switch
+    {
+      1 => "Other(1)",
+      2 => "Unknown (2)",
+      3 => "Daughter Board (3)",
+      4 => "ZIF Socket (4)",
+      5 => "Replacement / Piggy Back(5)",
+      6 => "None(6)",
+      7 => "LIF Socket (7)",
+      8 => "Slot 1(8)",
+      9 => "Slot 2(9)",
+      10 => "370 Pin Socket(10)",
+      11 => "Slot A(11)",
+      12 => "Slot M (12)",
+      13 => "Socket 423(13)",
+      14 => "Socket A (Socket 462)(14)",
+      15 => "Socket 478(15)",
+      16 => "Socket 754(16)",
+      17 => "Socket 940(17)",
+      18 => "Socket 939(18)",
+      _ => "Unknown"
+    };
+  }
+
+  private static string GetVoltageCaps(UInt32 caps) {
+    return caps switch
+    {
+      1 => "5V",
+      2 => "3.3V",
+      4 => "2.9V",
+      _ => ""
     };
   }
 
