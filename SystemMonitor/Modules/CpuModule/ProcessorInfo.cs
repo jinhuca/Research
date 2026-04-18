@@ -15,8 +15,7 @@ internal class ProcessorInfo {
   }
 
   public Dictionary<string, (string, string)> GetData() {
-
-    _smProvider.Invoke_Query_Processors(SystemManagementProvider.Constants.Win32_Processor.Query_String);
+    _smProvider.Invoke_Query_Processors(Win32_Processor.Query_String);
     return Data;
   }
 }
