@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SystemManagementProvider.Constants; 
 
-internal static class Win32_Processor {
+public static class Win32_Processor {
   public const string Query_String = "SELECT * FROM Win32_Processor";
 
   public const string AddressWidthKey = "AddressWidth";

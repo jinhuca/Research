@@ -13,6 +13,8 @@
   <Folder Name="/Shared/">
     <Project Path="Shared/SharedDefinitions/SharedDefinitions.csproj" />
   </Folder>
-  <Folder Name="/Tests/" />
+  <Folder Name="/Unit Tests/">
+    <Project Path="Unit Tests/SystemManagementProviderTests/SystemManagementProviderTests.csproj" Id="9c5eb659-a90a-4271-8233-e5c24b985c25" />
+  </Folder>
   <Project Path="MainApp/MainApp.csproj" />
 </Solution>

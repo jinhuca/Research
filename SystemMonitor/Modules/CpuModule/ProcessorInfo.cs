@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
 using SystemManagementProvider;
+using SystemManagementProvider.Constants;
 
 namespace CpuModule; 
 internal class ProcessorInfo {
   public Dictionary<string, (string, string)> Data = new();
-  public ProcessorInfo() { }
+  private readonly SMProvider _smProvider;
+
+  public ProcessorInfo(SMProvider smProvider_) { 
+    _smProvider = smProvider_;
+  }
+
   public Dictionary<string, (string, string)> GetData() {
-    SMProvider.Invoke_Query_Processors();
+
+    _smProvider.Invoke_Query_Processors(SystemManagementProvider.Constants.Win32_Processor.Query_String);
     return Data;
   }
 }

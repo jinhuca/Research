@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace SystemManagementProvider.Constants; 
-internal static class Win32_OperatingSystem {
+public static class Win32_OperatingSystem {
 }

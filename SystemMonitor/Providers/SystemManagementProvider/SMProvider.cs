@@ -4,20 +4,21 @@ using static SystemManagementProvider.Constants.Win32_Processor;
 
 namespace SystemManagementProvider; 
 
-public static class SMProvider {
-  public static void Query_SM() {
-    try {
-      ManagementObjectSearcher searcher = new(Query_String);
-    }
-    catch(ManagementException ex) {
-      Console.WriteLine(ex.Message);
-    }
+public class SMProvider {
+  //private readonly QueryProcessors _queryProcessorObj;
+  private readonly ManagementObjectSearcher _searchObjectSearcher;
+  public Dictionary<string, string> ProcessorInfo { get; private set; }
+
+  public SMProvider(ManagementObjectSearcher searcher_) {
+    _searchObjectSearcher = searcher_;
   }
 
-  public static void Invoke_Query_Processors() {
-    QueryProcessors.Invoke();
+  public void Invoke_Query_Processors(string queryText) {
+    QueryProcessors query = new(_searchObjectSearcher);
+    query.Query(queryText);
   }
 
-  public static void Invoke_Query_OperatingSystem(ManagementObjectSearcher searcher) { 
+
+  public void Invoke_Query_OperatingSystem(ManagementObjectSearcher searcher) { 
   }
 }
