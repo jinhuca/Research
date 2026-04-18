@@ -7,6 +7,7 @@ namespace MainApp;
 
 public partial class App : PrismApplication {
   protected override Window CreateShell() {
+    base.InitializeModules();
     return Container.Resolve<Shell>();
   }
 

@@ -4,10 +4,15 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:local="clr-namespace:MainApp">
   <prism:PrismApplication.Resources>
+    
+    <!-- the following MergedDictionary is for design on shell 
+    actual MergedDictionaries are done in the each module
+    -->
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/ResourceModule;component/Themes/Generic.xaml"/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
+  
   </prism:PrismApplication.Resources>
 </prism:PrismApplication>

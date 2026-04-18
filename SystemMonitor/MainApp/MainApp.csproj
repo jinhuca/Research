@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
+    <ProjectReference Include="..\Modules\ResourceModule\ResourceModule.csproj" />
   </ItemGroup>
 
 </Project>

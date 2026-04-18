@@ -1,17 +1,18 @@
 <Solution>
   <Folder Name="/Modules/">
-    <Project Path="BiosModule/BiosModule.csproj" />
-    <Project Path="CpuModule/CpuModule.csproj" />
-    <Project Path="HomeModule/HomeModule.csproj" />
-    <Project Path="OsModule/OsModule.csproj" />
-    <Project Path="ResourceModule/ResourceModule.csproj" />
+    <Project Path="Modules/BiosModule/BiosModule.csproj" />
+    <Project Path="Modules/CpuModule/CpuModule.csproj" />
+    <Project Path="Modules/HomeModule/HomeModule.csproj" />
+    <Project Path="Modules/OsModule/OsModule.csproj" />
+    <Project Path="Modules/ResourceModule/ResourceModule.csproj" />
   </Folder>
   <Folder Name="/Providers/">
+    <Project Path="Providers/SystemEnvironmentProvider/SystemEnvironmentProvider.csproj" />
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
-    <Project Path="SystemEnvironmentProvider/SystemEnvironmentProvider.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/SharedDefinitions/SharedDefinitions.csproj" />
   </Folder>
+  <Folder Name="/Tests/" />
   <Project Path="MainApp/MainApp.csproj" />
 </Solution>

@@ -1,0 +1,15 @@
+
+using System.Windows;
+
+namespace ResourceModule;
+
+public class ResourceModule : IModule {
+  public void OnInitialized(IContainerProvider containerProvider) {
+    var resourceUri = new Uri("pack://application:,,,/ResourceModule;component/Themes/Generic.xaml", UriKind.Absolute);
+    var dictionary = new ResourceDictionary { Source = resourceUri };
+    Application.Current.Resources.MergedDictionaries.Add(dictionary);
+  }
+
+  public void RegisterTypes(IContainerRegistry containerRegistry) {
+  }
+}
