@@ -4,6 +4,8 @@
 // a specific target and scoped to a namespace, type, member, etc.
 
 using System.Diagnostics.CodeAnalysis;
-
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:SystemManagementProviderTests.QueryProcessorTest.TestAddressWidth")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:SystemManagementProviderTests.QueryProcessorTest.TestQueryProcessorInfo")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:SystemManagementProviderTests.QueryProcessorTest.Initialize")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:SystemManagementProviderTests.QueryOSTest.TestInitialize")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:SystemManagementProviderTests.QueryProcessorTest.TestInitialize")]

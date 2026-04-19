@@ -10,7 +10,6 @@ public class QueryProcessors {
   public QueryProcessors(ManagementObjectSearcher searcher) {
     if(searcher is null)
       throw new ArgumentNullException(nameof(searcher));
-
     _searcher = searcher;
   }
 
@@ -63,7 +62,8 @@ public class QueryProcessors {
   public Dictionary<string, (string, string)> GetInfo() {
     info.Clear();
     try {
-      foreach (var obj in _searcher.Get()) {
+      using ManagementObjectCollection objCollection_ = _searcher.Get();
+      foreach (var obj in objCollection_.Cast<ManagementObject>()) {
         info.Add(AddressWidthKey, (Convert.ToString(obj[AddressWidthKey]), AddressWidthDesc));
         info.Add(ArchitectureKey, (GetArchitecture(Convert.ToUInt16(obj[ArchitectureKey])), ArchitectureDesc));
         info.Add(AssetTagKey, (Convert.ToString(obj[AvailabilityKey]), AssetTagDesc));
