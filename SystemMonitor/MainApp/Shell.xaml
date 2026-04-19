@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:MainApp"
+        xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
         mc:Ignorable="d"
-        Title="Shell" Height="450" Width="800">
+        Title="Shell">
   <Grid>
-    <Rectangle Width="200" Height="200" Fill="{StaticResource brush1}"/>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <ContentControl x:Name="CpuRegion" Grid.Row="0" Grid.Column="0" 
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
   </Grid>
 </Window>

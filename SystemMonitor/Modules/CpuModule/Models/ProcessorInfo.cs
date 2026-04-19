@@ -1,7 +1,7 @@
 ﻿using SystemManagementProvider;
 using SystemManagementProvider.Constants;
 
-namespace CpuModule; 
+namespace CpuModule.Models; 
 public class ProcessorInfo {
   public Dictionary<string, (string, string)> Data = new();
   private readonly SMProvider _smProvider;

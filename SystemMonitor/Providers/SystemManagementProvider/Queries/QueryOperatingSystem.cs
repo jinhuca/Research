@@ -353,7 +353,7 @@ public class QueryOperatingSystem {
       57 => "Rhapsody",
       58 => "Windows 2000",
       59 => "Dedicated",
-      60 => "OS/390",
+      60 => "OS/390", 
       61 => "VSE",
       62 => "TPF",
       _ => "Unknown"

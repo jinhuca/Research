@@ -1,12 +1,22 @@
+using CpuModule.Views;
+using static SharedDefinitions.RegionNames;
 
 namespace CpuModule;
 
 public class CpuModule : IModule {
-  public void OnInitialized(IContainerProvider containerProvider) {
-    throw new NotImplementedException();
+  private readonly IRegionManager _regionManager;
+
+  public CpuModule(IRegionManager regionManager) {
+    _regionManager = regionManager;
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    throw new NotImplementedException();
+    _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuMainView));
+  }
+
+  public void OnInitialized(IContainerProvider containerProvider) {
+    //IRegion region = _regionManager.Regions[CpuRegionName];
+    //var view1 = containerProvider.Resolve<CpuMainView>();
+    //region.Add(view1);
   }
 }
