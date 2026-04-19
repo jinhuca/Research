@@ -3,6 +3,7 @@ using SystemManagementProvider.Constants;
 using SystemManagementProvider.Queries;
 
 namespace SystemManagementProviderTests; 
+
 [TestClass]
 public sealed class QueryProcessorTest {
   ManagementObjectSearcher? _searcher;

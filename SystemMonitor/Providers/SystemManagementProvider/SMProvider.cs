@@ -2,7 +2,7 @@ using System.Management;
 using SystemManagementProvider.Queries;
 using static SystemManagementProvider.Constants.Win32_Processor;
 
-namespace SystemManagementProvider; 
+namespace SystemManagementProvider;
 
 public class SMProvider(ManagementObjectSearcher searcher_) {
   //private readonly QueryProcessors _queryProcessorObj;
@@ -15,6 +15,8 @@ public class SMProvider(ManagementObjectSearcher searcher_) {
   }
 
 
-  public void Invoke_Query_OperatingSystem(ManagementObjectSearcher searcher) { 
+  public void Invoke_Query_OperatingSystem(string queryText) {
+    QueryOperatingSystem query = new(_searchObjectSearcher);
+    query.GetInfo();
   }
 }

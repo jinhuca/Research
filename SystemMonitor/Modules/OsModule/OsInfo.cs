@@ -1,17 +1,17 @@
 ﻿using SystemManagementProvider;
 using SystemManagementProvider.Constants;
 
-namespace CpuModule; 
-public class ProcessorInfo {
+namespace OsModule; 
+public class OsInfo {
   public Dictionary<string, (string, string)> Data = new();
   private readonly SMProvider _smProvider;
 
-  public ProcessorInfo(SMProvider smProvider_) { 
-    _smProvider = smProvider_;
+  public OsInfo(SMProvider smProvider) {
+    _smProvider = smProvider;
   }
 
   public Dictionary<string, (string, string)> GetData() {
-    _smProvider.Invoke_Query_Processors(Win32_Processor.QueryString);
+    _smProvider.Invoke_Query_OperatingSystem(Win32_OperatingSystem.QueryString);
     return Data;
   }
 }
