@@ -17,7 +17,7 @@
       <ColumnDefinition/>
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
-    <ContentControl x:Name="CpuRegion" Grid.Row="0" Grid.Column="0" 
+    <ContentControl x:Name="CpuRegion" Grid.Row="0" Grid.Column="0" Background="LightGreen"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
   </Grid>
 </Window>

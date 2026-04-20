@@ -1,19 +1,19 @@
 ﻿using System.Management;
 using SystemManagementProvider.Constants;
-
+using SystemManagementProvider.Interfaces;
 using static SystemManagementProvider.Constants.Win32_OperatingSystem;
 
 namespace SystemManagementProvider.Queries; 
-public class QueryOperatingSystem {
+public class QueryOperatingSystem : ISMQuery {
   private ManagementObjectSearcher _searcher;
   private static Dictionary<string, (string, string)> info = [];
   public static string[]? MUILanguages;
   public static int? NumberOfProcesses;
 
-  public QueryOperatingSystem(ManagementObjectSearcher searcher) {
-    if(searcher is null) 
-      throw new ArgumentNullException(nameof(searcher));
-    _searcher = searcher;
+  public QueryOperatingSystem() {
+    _searcher = new ManagementObjectSearcher(QueryString);
+    if(_searcher is null) 
+      throw new ArgumentNullException(nameof(_searcher));
   }
 
   public Dictionary<string,(string,string)> GetInfo() {
@@ -374,5 +374,9 @@ public class QueryOperatingSystem {
     //foreach (var obj in info) {
     //  Console.WriteLine(obj.key + ":\t" + obj.infoItem);
     //}
+  }
+
+  public string Query(string query) {
+    throw new NotImplementedException();
   }
 }

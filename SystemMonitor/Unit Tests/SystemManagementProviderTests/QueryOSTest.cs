@@ -27,7 +27,7 @@ public sealed class QueryOSTest {
 
   [TestMethod]
   public void TestQueryOSTest() {
-    QueryOperatingSystem queryOS = new(_searcher);
+    QueryOperatingSystem queryOS = new();
     var result_ = queryOS.GetInfo();
     Assert.IsNotEmpty(result_);
   }

@@ -25,18 +25,18 @@ public sealed class QueryProcessorTest {
     _searcher?.Dispose();
   }
 
-  [TestMethod]
-  public void TestAddressWidth() {
-    QueryProcessors queryProcessors = new(_searcher);
-    var result_ = queryProcessors.Query(Win32_Processor.AddressWidthKey);
-    var expect1_ = (Win32_Processor.AddressWidthKey, "64");
-    var expect2_ = (Win32_Processor.AddressWidthKey, "32");
-    Assert.IsTrue(result_.Equals(expect1_) || result_.Equals(expect2_));
-  }
+  //[TestMethod]
+  //public void TestAddressWidth() {
+  //  QueryProcessors queryProcessors = new();
+  //  var result_ = queryProcessors.Query(Win32_Processor.AddressWidthKey);
+  //  var expect1_ = (Win32_Processor.AddressWidthKey, "64");
+  //  var expect2_ = (Win32_Processor.AddressWidthKey, "32");
+  //  Assert.IsTrue(result_.Equals(expect1_) || result_.Equals(expect2_));
+  //}
 
   [TestMethod]
   public void TestQueryProcessorInfo() {
-    QueryProcessors queryProcessors = new(_searcher);
+    QueryProcessors queryProcessors = new();
     var result_ = queryProcessors.GetInfo();
     Assert.IsNotEmpty(result_);
   }

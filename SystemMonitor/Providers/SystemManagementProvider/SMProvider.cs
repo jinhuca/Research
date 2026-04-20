@@ -1,22 +1,70 @@
 using System.Management;
+using SystemManagementProvider.Constants;
+using SystemManagementProvider.Interfaces;
 using SystemManagementProvider.Queries;
-using static SystemManagementProvider.Constants.Win32_Processor;
 
 namespace SystemManagementProvider;
 
-public class SMProvider(ManagementObjectSearcher searcher_) {
-  //private readonly QueryProcessors _queryProcessorObj;
-  private readonly ManagementObjectSearcher _searchObjectSearcher = searcher_;
+public class SMProvider : ISMProvider {
+
+  private readonly ManagementObjectSearcher _objectSearcher;
+
+  public SMProvider() {
+
+  }
+
+  public SMProvider(ManagementObjectSearcher searcher_) {
+    _objectSearcher = searcher_;
+    initializeData();
+  }
+
+  private void initializeData() {
+    if (_objectSearcher == null) {
+      return;
+    }
+
+  }
+
   public Dictionary<string, string>? ProcessorInfo { get; private set; }
 
   public void Invoke_Query_Processors(string queryText) {
-    QueryProcessors query = new(_searchObjectSearcher);
+    QueryProcessors query = new();
     query.Query(queryText);
   }
 
-
   public void Invoke_Query_OperatingSystem(string queryText) {
-    QueryOperatingSystem query = new(_searchObjectSearcher);
+    QueryOperatingSystem query = new();
     query.GetInfo();
+  }
+
+  public string Query(SMCategories category, string query) {
+    var result_ = string.Empty;
+
+    switch (category) {
+      case SMCategories.Processor:
+        break;
+      case SMCategories.Bios:
+        break;
+      case SMCategories.OperatingSystem:
+        break;
+      case SMCategories.Gpu:
+        break;
+    }
+
+    return result_;
+  }
+
+  public ISMQuery GetQueryProvider(SMCategories category) {
+    switch (category) {
+      case SMCategories.Processor:
+        return new QueryProcessors();
+      case SMCategories.Bios:
+        break;
+      case SMCategories.OperatingSystem:
+        return new QueryOperatingSystem();
+      case SMCategories.Gpu:
+        break;
+    }
+    throw new NotImplementedException();
   }
 }

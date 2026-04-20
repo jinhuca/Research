@@ -1,16 +1,19 @@
 ﻿using System.Management;
+using SystemManagementProvider.Constants;
+using SystemManagementProvider.Interfaces;
 using static SystemManagementProvider.Constants.Win32_Processor;
 
 namespace SystemManagementProvider.Queries;
 
-public class QueryProcessors {
+public class QueryProcessors : ISMQuery {
   private ManagementObjectSearcher _searcher;
   private static Dictionary<string, (string, string)> info = [];
 
-  public QueryProcessors(ManagementObjectSearcher searcher) {
-    if(searcher is null)
-      throw new ArgumentNullException(nameof(searcher));
-    _searcher = searcher;
+  public QueryProcessors() {
+    _searcher = new ManagementObjectSearcher(Win32_Processor.QueryString);
+    if(_searcher is null)
+      throw new ArgumentNullException(nameof(_searcher));
+    info = GetInfo();
   }
 
   public (string, string) Query(string queryString) {
@@ -479,5 +482,9 @@ public class QueryProcessors {
       500 => "Video Processor",
       _ => "Unknown"
     };
+  }
+
+  string ISMQuery.Query(string query) {
+    throw new NotImplementedException();
   }
 }

@@ -11,13 +11,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CpuModule.Views {
-  /// <summary>
-  /// Interaction logic for CpuMainView.xaml
-  /// </summary>
-  public partial class CpuMainView : UserControl {
-    public CpuMainView() {
-      InitializeComponent();
-    }
+namespace CpuModule.Views; 
+/// <summary>
+/// Interaction logic for CpuMainView.xaml
+/// </summary>
+public partial class CpuMainView : UserControl {
+  public CpuMainView() {
+    InitializeComponent();
   }
 }
