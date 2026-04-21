@@ -2,6 +2,8 @@
 using CpuModule.ViewModels;
 using CpuModule.Views;
 using System.Windows;
+using SystemManagementProvider;
+using SystemManagementProvider.Interfaces;
 
 namespace MainApp;
 
@@ -12,7 +14,8 @@ public partial class App : PrismApplication {
   }
 
   protected override void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.Register<ICpuModel, CpuModel>();
+    //containerRegistry.Register<ICpuModel, CpuModel>();
+    //containerRegistry.Register<ISMProvider, SMProvider>();
   }
 
   protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) {
@@ -26,3 +29,4 @@ public partial class App : PrismApplication {
     ViewModelLocationProvider.Register<CpuMainView, CpuViewModel>();
   }
 }
+

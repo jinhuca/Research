@@ -17,7 +17,7 @@ public class CpuViewModel : BindableBase {
   }
 
   private void initProperties() {
-    //Name = _model.GetData(Win32_Processor.NameKey);
+    Name = _model.GetData(Win32_Processor.NameKey);
     Name = "Test Name";
   }
 

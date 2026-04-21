@@ -8,13 +8,14 @@ namespace CpuModule.Models;
 
 public class CpuModel : BindableBase, ICpuModel {
   public Dictionary<string, (string, string)> Data = new();
-  private readonly ISMProvider _smProvider;
+  private readonly ISMProvider? _smProvider;
 
   public event NotifyCollectionChangedEventHandler? CollectionChanged;
   public CpuModel() {
     
   }
-  public CpuModel(ISMProvider smProvider_) {
+
+  public CpuModel(ISMProvider? smProvider_) {
     _smProvider = smProvider_;
     ISMQuery provider_ = _smProvider.GetQueryProvider(SMCategories.Processor);
   }
