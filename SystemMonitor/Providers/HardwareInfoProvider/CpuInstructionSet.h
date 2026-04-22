@@ -11,7 +11,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <oleauto.h>
 #include <windows.h>
 
 class InstructionSet {
@@ -185,11 +184,6 @@ private:
 
 // Initialize static member data
 const InstructionSet::InstructionSet_Internal InstructionSet::CPU_Rep;
-
-//extern "C" __declspec(dllexport) BSTR __stdcall GetVendor() {
-//  std::string vendor = InstructionSet::Vendor();
-//  return SysAllocString(std::wstring(vendor.begin(), vendor.end()).c_str());
-//}
 
 // Print out supported instruction set extensions
 int main() {
