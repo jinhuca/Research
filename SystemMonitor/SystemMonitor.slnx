@@ -1,4 +1,9 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
   <Folder Name="/Modules/">
     <Project Path="Modules/BiosModule/BiosModule.csproj" />
     <Project Path="Modules/CpuModule/CpuModule.csproj" />
@@ -7,6 +12,8 @@
     <Project Path="Modules/ResourceModule/ResourceModule.csproj" />
   </Folder>
   <Folder Name="/Providers/">
+    <Project Path="Providers/ConsoleApp1/ConsoleApp1.csproj" Id="3352c802-f7fd-4995-b4f0-e852ab1c9a17" />
+    <Project Path="Providers/HardwareInfoProvider/HardwareInfoProvider.vcxproj" Id="292a69f1-f6b9-4a3a-ac61-aa3aaf35c9b3" />
     <Project Path="Providers/SystemEnvironmentProvider/SystemEnvironmentProvider.csproj" />
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
   </Folder>
