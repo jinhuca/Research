@@ -1,5 +1,6 @@
 using CpuModule.Models;
 using CpuModule.Views;
+using System.ComponentModel.DataAnnotations;
 using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
@@ -7,7 +8,9 @@ using static SharedDefinitions.RegionNames;
 namespace CpuModule;
 
 public class CpuModule : IModule {
+  [Required]
   private readonly IRegionManager _regionManager;
+  
   public CpuModule() {
     
   }
@@ -16,7 +19,7 @@ public class CpuModule : IModule {
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.Register<ICpuModel, CpuModel>();
+    containerRegistry.Register<CpuModel>();
     //containerRegistry.Register<ISMProvider, SMProvider>();
     _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuMainView));
   }

@@ -29,13 +29,13 @@ extern "C" {
     //const char* brand;
     bool is_3DNOW;
     bool is_3DNOWEXT;
-    //bool is_XSAVE;
+    bool is_XSAVE;
   };
 
   __declspec(dllexport) void GetData(CpuInstructionSet* data) {
     //data->brand = InstructionSet::Brand().c_str();
     data->is_3DNOW = InstructionSet::_3DNOW();
     data->is_3DNOWEXT = InstructionSet::_3DNOWEXT();
-    //data->is_XSAVE = InstructionSet::XSAVE();
+    data->is_XSAVE = InstructionSet::XSAVE();
   }
 }

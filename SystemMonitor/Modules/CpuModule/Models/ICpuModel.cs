@@ -9,4 +9,6 @@ namespace CpuModule.Models;
 public interface ICpuModel : INotifyPropertyChanged, INotifyCollectionChanged {
   public string? Name { get; set; }
   public string? Description { get; set; }
+
+  public ProcessorInfo? ProcessorInfo { get; set; }
 }
