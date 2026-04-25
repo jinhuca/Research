@@ -10,10 +10,10 @@ public class QueryProcessors : ISMQuery {
   private static Dictionary<string, (string, string)> info = [];
 
   public QueryProcessors() {
-    _searcher = new ManagementObjectSearcher(QueryString);
+    using var _ = _searcher = new ManagementObjectSearcher(QueryString);
     if(_searcher is null)
       throw new ArgumentNullException(nameof(_searcher));
-    info = GetInfo();
+    //info = GetInfo();
   }
 
   public (string, string) Query(string queryString) {
@@ -484,7 +484,8 @@ public class QueryProcessors : ISMQuery {
     };
   }
 
-  string ISMQuery.Query(string query) {
-    return "sample";
+  Dictionary<string, (string, string)> ISMQuery.Query(string query) {
+    info = GetInfo();
+    return info;
   }
 }

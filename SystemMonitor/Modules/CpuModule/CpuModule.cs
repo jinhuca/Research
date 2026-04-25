@@ -11,9 +11,10 @@ public class CpuModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;
   
-  public CpuModule() {
+  //public CpuModule() {
     
-  }
+  //}
+
   public CpuModule(IRegionManager regionManager) {
     _regionManager = regionManager;
   }

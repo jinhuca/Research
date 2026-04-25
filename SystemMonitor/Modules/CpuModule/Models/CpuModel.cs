@@ -12,6 +12,7 @@ public class CpuModel : BindableBase, ICpuModel {
   private readonly ISMProvider? _smProvider;
 
   public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
   /*
   public CpuModel() {
     try {

@@ -379,4 +379,8 @@ public class QueryOperatingSystem : ISMQuery {
   public string Query(string query) {
     throw new NotImplementedException();
   }
+
+  Dictionary<string, (string, string)> ISMQuery.Query(string query) {
+    throw new NotImplementedException();
+  }
 }

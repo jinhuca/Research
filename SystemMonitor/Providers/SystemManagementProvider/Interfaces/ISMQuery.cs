@@ -2,5 +2,5 @@
 
 namespace SystemManagementProvider.Interfaces; 
 public interface ISMQuery {
-  public string Query(string query);
+  public Dictionary<string, (string, string)> Query(string query);
 }
