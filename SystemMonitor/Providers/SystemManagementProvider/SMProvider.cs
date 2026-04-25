@@ -7,16 +7,16 @@ namespace SystemManagementProvider;
 
 public class SMProvider : ISMProvider {
 
-  private readonly ManagementObjectSearcher _objectSearcher;
+  private readonly ManagementObjectSearcher? _objectSearcher;
 
   public SMProvider() {
 
   }
 
-  public SMProvider(ManagementObjectSearcher searcher_) {
-    _objectSearcher = searcher_;
-    initializeData();
-  }
+  //public SMProvider(ManagementObjectSearcher searcher_) {
+  //  _objectSearcher = searcher_;
+  //  initializeData();
+  //}
 
   private void initializeData() {
     if (_objectSearcher == null) {

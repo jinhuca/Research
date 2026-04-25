@@ -10,7 +10,7 @@ public class QueryProcessors : ISMQuery {
   private static Dictionary<string, (string, string)> info = [];
 
   public QueryProcessors() {
-    _searcher = new ManagementObjectSearcher(Win32_Processor.QueryString);
+    _searcher = new ManagementObjectSearcher(QueryString);
     if(_searcher is null)
       throw new ArgumentNullException(nameof(_searcher));
     info = GetInfo();
@@ -485,6 +485,6 @@ public class QueryProcessors : ISMQuery {
   }
 
   string ISMQuery.Query(string query) {
-    throw new NotImplementedException();
+    return "sample";
   }
 }

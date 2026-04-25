@@ -19,14 +19,12 @@ public class CpuModule : IModule {
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.Register<CpuModel>();
-    //containerRegistry.Register<ISMProvider, SMProvider>();
+    containerRegistry.Register<ICpuModel, CpuModel>();
+    containerRegistry.Register<ISMProvider, SMProvider>();
     _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuMainView));
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {
-    //containerProvider.Resolve<ISMProvider>();
+    containerProvider.Resolve<ISMProvider>();
   }
-
-  
 }

@@ -12,6 +12,7 @@ public class CpuModel : BindableBase, ICpuModel {
   private readonly ISMProvider? _smProvider;
 
   public event NotifyCollectionChangedEventHandler? CollectionChanged;
+  /*
   public CpuModel() {
     try {
       ProcessorInfo = new ProcessorInfo
@@ -38,10 +39,36 @@ public class CpuModel : BindableBase, ICpuModel {
     //var container = ContainerLocator.Container;
     //var provider = container.Resolve<ISMProvider>();
   }
-
+  */
   public CpuModel(ISMProvider? smProvider_) {
     _smProvider = smProvider_;
-    ISMQuery provider_ = _smProvider.GetQueryProvider(SMCategories.Processor);
+    if (_smProvider != null) {
+      // Call provider only when the provider is available.
+      // Discard return value to avoid an unused-assignment warning.
+      var q1 = _smProvider.GetQueryProvider(SMCategories.Processor);
+      var ds = q1.Query("SELECT * FROM Win32_Processor");
+    }
+    init();
+  }
+
+  private void init() {
+    try {
+      ProcessorInfo = new ProcessorInfo
+      {
+        Vendor = NativeMethodGroup.Vendor(),
+        Brand = NativeMethodGroup.Brand(),
+        BaseSpeed = NativeMethodGroup.GetBaseSpeed(),
+        SocketNum = NativeMethodGroup.GetSocketNum(),
+        NumOfPhysicalCores = NativeMethodGroup.GetPhysicalCoreCount(),
+        NumOfLogicalCores = NativeMethodGroup.GetLogicalCoreCount(),
+        VirtualizationEnabled = NativeMethodGroup.VirtualizationEnabled(),
+        Features = NativeMethodGroup.GetInstructionSetStruct()
+      };
+    }
+    catch (Exception ex) {
+      ProcessorInfo = null;
+      Console.WriteLine(ex.Message);
+    }
 
   }
 

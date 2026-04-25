@@ -71,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Modules\CpuModule\bin\Debug\net10.0-windows</OutDir>
+    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Build\Debug\net10.0-windows</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Modules\CpuModule\bin\Debug\net10.0-windows</OutDir>
+    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Build\Debug\net10.0-windows</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Modules\CpuModule\bin\Debug\net10.0-windows</OutDir>
+    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Build\Debug\net10.0-windows</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Modules\CpuModule\bin\Debug\net10.0-windows</OutDir>
+    <OutDir>C:\Users\jinhu\Documents\Repository\Research\SystemMonitor\Build\Debug\net10.0-windows</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -4,6 +4,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/Build/" />
   <Folder Name="/Modules/">
     <Project Path="Modules/BiosModule/BiosModule.csproj" />
     <Project Path="Modules/CpuModule/CpuModule.csproj" />
