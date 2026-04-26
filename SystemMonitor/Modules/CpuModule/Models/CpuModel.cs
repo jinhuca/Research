@@ -87,7 +87,7 @@ public class CpuModel : BindableBase, ICpuModel {
   }
 
   private string? _description;
-  public string? Description {
+  public string? Vendor {
     get => _description;
     set => SetProperty(ref _description, value);
   }
@@ -97,4 +97,6 @@ public class CpuModel : BindableBase, ICpuModel {
     get => _processorInfo;
     set => SetProperty(ref _processorInfo, value);
   }
+  public InstructionFeature? InstructionFeature { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+  public SystemExtendedInfo? SystemExtendedInfo { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
 }

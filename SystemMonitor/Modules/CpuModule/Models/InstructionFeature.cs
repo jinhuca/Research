@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Runtime.InteropServices;
 
 namespace CpuModule.Models;
 
@@ -109,10 +106,5 @@ public struct InstructionFeature {
   bool XOP;
   [MarshalAs(UnmanagedType.U1)]
   bool XSAVE;
-
-  //public IntPtr VendorPtr;
-
-  //public string Vendor => Marshal.PtrToStringAnsi(VendorPtr);
-  //string Vendor;
 }
 

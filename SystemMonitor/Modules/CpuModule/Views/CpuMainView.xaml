@@ -23,9 +23,9 @@
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Column="0" 
-                 Text="CPU" FontSize="40"/>
+                 Text="CPU" FontSize="16"/>
       <TextBlock Grid.Column="1"
-                 Text="{Binding Name}" FontSize="30"/>
+                 Text="{Binding Name}" FontSize="20"/>
     </Grid>
   </Grid>
 </UserControl>

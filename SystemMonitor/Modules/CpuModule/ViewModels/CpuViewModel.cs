@@ -1,24 +1,17 @@
 ﻿using CpuModule.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using SystemManagementProvider.Constants;
 
 namespace CpuModule.ViewModels;
 
 public class CpuViewModel : BindableBase {
   private readonly CpuModel _model;
-  public CpuViewModel() {
-    
-  }
   public CpuViewModel(CpuModel model) {
     _model = model;
     initProperties();
   }
 
   private void initProperties() {
-    Name = _model.GetData(Win32_Processor.NameKey);
-    Name = "Test Name";
+    //Name = _model.GetData(Win32_Processor.NameKey);
+    Name = _model.ProcessorInfo?.Brand ?? string.Empty;
   }
 
   private string _name;

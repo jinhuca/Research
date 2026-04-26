@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CpuModule.Models;
+﻿namespace CpuModule.Models;
 
 public struct ProcessorInfo {
   public string Vendor { get; init; }
