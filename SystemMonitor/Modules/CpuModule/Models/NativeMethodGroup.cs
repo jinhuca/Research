@@ -16,8 +16,8 @@ public class NativeMethodGroup {
   [DllImport("HardwareInfoProvider.dll", EntryPoint = "GetInstructionSetStruct", CallingConvention = CallingConvention.Cdecl)]
   public static extern InstructionInfo GetInstructionSetStruct();
 
-  [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.Cdecl)]
-  public static extern void GetCacheInfo();
+  [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
+  public static extern CacheSize GetCacheSize();
 
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern void GetLogicalProcessorInfo();

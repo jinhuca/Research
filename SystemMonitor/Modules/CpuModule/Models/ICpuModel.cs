@@ -12,4 +12,5 @@ public interface ICpuModel : INotifyPropertyChanged, INotifyCollectionChanged {
   public BasicInfo? BasicInfo { get; set; }
   public InstructionInfo? InstructionInfo { get; set; }
   public ExtendedInfo? ExtendedInfo { get; set; }
+  public CacheSize? CacheSize { get; set; }
 }

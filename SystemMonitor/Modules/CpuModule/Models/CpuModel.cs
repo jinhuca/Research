@@ -8,7 +8,7 @@ using Unity.Registration;
 namespace CpuModule.Models;
 
 public class CpuModel : BindableBase, ICpuModel {
-  public Dictionary<string, (string, string)> Data = new();
+  //public Dictionary<string, (string, string)> Data = new();
   private readonly ISMProvider? _smProvider;
 
   public event NotifyCollectionChangedEventHandler? CollectionChanged;
@@ -24,8 +24,8 @@ public class CpuModel : BindableBase, ICpuModel {
       BrandName = NativeMethodGroup.Brand();
 
       BasicInfo = new BasicInfo {
-        Vendor = NativeMethodGroup.Vendor(),
-        Brand = NativeMethodGroup.Brand(),
+        //Vendor = NativeMethodGroup.Vendor(),
+        //Brand = NativeMethodGroup.Brand(),
         BaseSpeed = NativeMethodGroup.GetBaseSpeed(),
         SocketNum = NativeMethodGroup.GetSocketNum(),
         NumOfPhysicalCores = NativeMethodGroup.GetPhysicalCoreCount(),
@@ -33,6 +33,7 @@ public class CpuModel : BindableBase, ICpuModel {
         VirtualizationEnabled = NativeMethodGroup.VirtualizationEnabled(),
       };
       InstructionInfo = NativeMethodGroup.GetInstructionSetStruct();
+      CacheSize = NativeMethodGroup.GetCacheSize();
     }
     catch (Exception ex) {
       BasicInfo = null;
@@ -79,5 +80,11 @@ public class CpuModel : BindableBase, ICpuModel {
   public ExtendedInfo? ExtendedInfo {
     get => _extendedInfo;
     set => SetProperty(ref _extendedInfo, value);
+  }
+
+  private CacheSize? _cacheSize;
+  public CacheSize? CacheSize { 
+    get => _cacheSize; 
+    set => SetProperty(ref _cacheSize, value);
   }
 }

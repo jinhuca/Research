@@ -5,9 +5,6 @@
 #include <array>
 #include <string>
 #include <intrin.h>
-#include <Windows.h>
-#include <wtypes.h>
-#include <oleauto.h>
 
 class InstructionSet {
   // forward declarations

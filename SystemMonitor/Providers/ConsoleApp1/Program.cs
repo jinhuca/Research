@@ -14,6 +14,16 @@ public struct ProcessorInfo {
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+public struct CacheSize {
+  int L1_cache_size;
+  int L1_cache_line_size;
+  int L2_cache_size;
+  int L2_cache_line_size;
+  int L3_cache_size;
+  int L3_cache_line_size;
+}
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 public struct InstructionFeature {
   [MarshalAs(UnmanagedType.U1)]
   public bool _3DNOW;
@@ -121,6 +131,9 @@ public struct InstructionFeature {
 
 public class NativeMethodGroup {
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
+  public static extern CacheSize GetCacheSize();
+
+  [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
   [return: MarshalAs(UnmanagedType.BStr)]
   public static extern string Brand();
 
@@ -167,6 +180,7 @@ internal class Program {
         VirtualizationEnabled = NativeMethodGroup.VirtualizationEnabled(),
         Features = NativeMethodGroup.GetInstructionSetStruct()
       };
+      var cacheSize = NativeMethodGroup.GetCacheSize();
     }
     catch(Exception ex) { Console.WriteLine(ex.Message); }
   }
