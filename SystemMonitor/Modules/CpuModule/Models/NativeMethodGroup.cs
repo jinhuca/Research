@@ -14,7 +14,7 @@ public class NativeMethodGroup {
   public static extern string Vendor();
 
   [DllImport("HardwareInfoProvider.dll", EntryPoint = "GetInstructionSetStruct", CallingConvention = CallingConvention.Cdecl)]
-  public static extern InstructionFeature GetInstructionSetStruct();
+  public static extern InstructionInfo GetInstructionSetStruct();
 
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern void GetCacheInfo();

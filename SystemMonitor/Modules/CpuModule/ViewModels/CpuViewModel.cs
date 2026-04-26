@@ -11,7 +11,7 @@ public class CpuViewModel : BindableBase {
 
   private void initProperties() {
     //Name = _model.GetData(Win32_Processor.NameKey);
-    Name = _model.ProcessorInfo?.Brand ?? string.Empty;
+    Name = _model.BasicInfo?.Brand ?? string.Empty;
   }
 
   private string _name;

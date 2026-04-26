@@ -13,49 +13,17 @@ public class CpuModel : BindableBase, ICpuModel {
 
   public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
-  /*
-  public CpuModel() {
-    try {
-      ProcessorInfo = new ProcessorInfo
-      {
-        Vendor = NativeMethodGroup.Vendor(),
-        Brand = NativeMethodGroup.Brand(),
-        BaseSpeed = NativeMethodGroup.GetBaseSpeed(),
-        SocketNum = NativeMethodGroup.GetSocketNum(),
-        NumOfPhysicalCores = NativeMethodGroup.GetPhysicalCoreCount(),
-        NumOfLogicalCores = NativeMethodGroup.GetLogicalCoreCount(),
-        VirtualizationEnabled = NativeMethodGroup.VirtualizationEnabled(),
-        Features = NativeMethodGroup.GetInstructionSetStruct()
-      };
-    }
-    catch (Exception ex) {
-      ProcessorInfo = null;
-      Console.WriteLine(ex.Message);
-    }
-
-    //IContainerExtension container = new UnityContainerExtension();
-    //container.RegisterInstance<ISMProvider>(new SMProvider());
-    //_smProvider = container.Resolve<ISMProvider>();
-    //ISMQuery provider_ = _smProvider.GetQueryProvider(SMCategories.Processor);
-    //var container = ContainerLocator.Container;
-    //var provider = container.Resolve<ISMProvider>();
-  }
-  */
   public CpuModel(ISMProvider? smProvider_) {
     _smProvider = smProvider_;
-    if (_smProvider != null) {
-      // Call provider only when the provider is available.
-      // Discard return value to avoid an unused-assignment warning.
-      var q1 = _smProvider.GetQueryProvider(SMCategories.Processor);
-      var ds = q1.Query("SELECT * FROM Win32_Processor");
-    }
     init();
   }
 
   private void init() {
     try {
-      ProcessorInfo = new ProcessorInfo
-      {
+      VendorName = NativeMethodGroup.Vendor();
+      BrandName = NativeMethodGroup.Brand();
+
+      BasicInfo = new BasicInfo {
         Vendor = NativeMethodGroup.Vendor(),
         Brand = NativeMethodGroup.Brand(),
         BaseSpeed = NativeMethodGroup.GetBaseSpeed(),
@@ -63,40 +31,53 @@ public class CpuModel : BindableBase, ICpuModel {
         NumOfPhysicalCores = NativeMethodGroup.GetPhysicalCoreCount(),
         NumOfLogicalCores = NativeMethodGroup.GetLogicalCoreCount(),
         VirtualizationEnabled = NativeMethodGroup.VirtualizationEnabled(),
-        Features = NativeMethodGroup.GetInstructionSetStruct()
       };
+      InstructionInfo = NativeMethodGroup.GetInstructionSetStruct();
     }
     catch (Exception ex) {
-      ProcessorInfo = null;
+      BasicInfo = null;
       Console.WriteLine(ex.Message);
     }
 
+    try {
+      if (_smProvider != null) {
+        ISMQuery cpuQuery_ = _smProvider.GetQueryProvider(SMCategories.Processor);
+        ExtendedInfo = new ExtendedInfo { InfoDictionary = cpuQuery_.Query(Win32_Processor.QueryString) };
+      }
+    }
+    catch (System.Management.ManagementException smx) {
+      ExtendedInfo = null;
+      Console.WriteLine(smx.Message);
+    }
   }
 
-  public string GetData(string key) {
-
-    if (Data.ContainsKey(key))
-      return Data[key].Item1;
-    return string.Empty;
+  private string? _vendor;
+  public string? VendorName {
+    get => _vendor;
+    set => SetProperty(ref _vendor, value);
   }
 
-  private string? _name = "Test Name";
-  public string? Name {
+  private string? _name = string.Empty;
+  public string? BrandName {
     get => _name;
     set => SetProperty(ref _name, value);
   }
 
-  private string? _description;
-  public string? Vendor {
-    get => _description;
-    set => SetProperty(ref _description, value);
-  }
-
-  private ProcessorInfo? _processorInfo;
-  public ProcessorInfo? ProcessorInfo {
+  private BasicInfo? _processorInfo;
+  public BasicInfo? BasicInfo {
     get => _processorInfo;
     set => SetProperty(ref _processorInfo, value);
   }
-  public InstructionFeature? InstructionFeature { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-  public SystemExtendedInfo? SystemExtendedInfo { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+
+  private InstructionInfo? _instructionInfo;
+  public InstructionInfo? InstructionInfo {
+    get => _instructionInfo;
+    set => SetProperty(ref _instructionInfo, value);
+  }
+
+  private ExtendedInfo? _extendedInfo;
+  public ExtendedInfo? ExtendedInfo {
+    get => _extendedInfo;
+    set => SetProperty(ref _extendedInfo, value);
+  }
 }

@@ -3,7 +3,7 @@
 namespace CpuModule.Models;
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-public struct InstructionFeature {
+public struct InstructionInfo {
   [MarshalAs(UnmanagedType.U1)]
   public bool _3DNOW;
   [MarshalAs(UnmanagedType.U1)]

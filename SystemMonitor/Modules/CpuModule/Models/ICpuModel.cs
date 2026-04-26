@@ -7,9 +7,9 @@ using System.Text;
 namespace CpuModule.Models;
 
 public interface ICpuModel : INotifyPropertyChanged, INotifyCollectionChanged {
-  public string? Name { get; set; }
-  public string? Vendor { get; set; }
-  public ProcessorInfo? ProcessorInfo { get; set; }
-  public InstructionFeature? InstructionFeature { get; set; }
-  public SystemExtendedInfo? SystemExtendedInfo { get; init; }
+  public string? BrandName { get; set; }
+  public string? VendorName { get; set; }
+  public BasicInfo? BasicInfo { get; set; }
+  public InstructionInfo? InstructionInfo { get; set; }
+  public ExtendedInfo? ExtendedInfo { get; set; }
 }
