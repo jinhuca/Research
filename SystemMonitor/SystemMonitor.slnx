@@ -19,12 +19,14 @@
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
   </Folder>
   <Folder Name="/Shared/">
+    <Project Path="Shared/Converters/Converters.csproj" Id="7c6283d6-c0e3-4887-b21f-6117f32593b2" />
     <Project Path="Shared/SharedDefinitions/SharedDefinitions.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
   </Folder>
   <Folder Name="/Unit Tests/">
+    <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
     <Project Path="Unit Tests/SystemManagementProviderTests/SystemManagementProviderTests.csproj" Id="9c5eb659-a90a-4271-8233-e5c24b985c25" />
   </Folder>
   <Project Path="MainApp/MainApp.csproj" />

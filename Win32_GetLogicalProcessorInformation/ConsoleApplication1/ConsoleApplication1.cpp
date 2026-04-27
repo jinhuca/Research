@@ -1,6 +1,9 @@
 #include <windows.h>
 #include <stdio.h>
 #include <vector>
+#include <windows.h>
+#include <pdh.h>
+#pragma comment(lib, "pdh.lib")
 
 void GetCpuCacheInfo() {
   DWORD returnLength = 0;
@@ -36,7 +39,31 @@ void GetCpuCacheInfo() {
   }
 }
 
+double GetTotalCPULoad() {
+  PDH_HQUERY cpuQuery;
+  PDH_HCOUNTER cpuTotal;
+  PdhOpenQuery(NULL, NULL, &cpuQuery);
+  // Use English counter to avoid localization issues
+  PdhAddEnglishCounter(cpuQuery, L"\\Processor(_Total)\\% Processor Time", NULL, &cpuTotal);
+  PdhCollectQueryData(cpuQuery);
+
+  // CPU load is a measurement over an interval
+  Sleep(1000);
+
+  PDH_FMT_COUNTERVALUE counterVal;
+  PdhCollectQueryData(cpuQuery);
+  PdhGetFormattedCounterValue(cpuTotal, PDH_FMT_DOUBLE, NULL, &counterVal);
+  PdhCloseQuery(cpuQuery);
+
+  return counterVal.doubleValue;
+}
+
 int main() {
   GetCpuCacheInfo();
+  
+  while(true) {
+    double cpuLoad = GetTotalCPULoad();
+    printf("Total CPU Load: %.2f%%\n", cpuLoad);
+  }
   return 0;
 }

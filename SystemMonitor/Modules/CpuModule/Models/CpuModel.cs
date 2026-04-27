@@ -24,8 +24,6 @@ public class CpuModel : BindableBase, ICpuModel {
       BrandName = NativeMethodGroup.Brand();
 
       BasicInfo = new BasicInfo {
-        //Vendor = NativeMethodGroup.Vendor(),
-        //Brand = NativeMethodGroup.Brand(),
         BaseSpeed = NativeMethodGroup.GetBaseSpeed(),
         SocketNum = NativeMethodGroup.GetSocketNum(),
         NumOfPhysicalCores = NativeMethodGroup.GetPhysicalCoreCount(),
@@ -34,6 +32,8 @@ public class CpuModel : BindableBase, ICpuModel {
       };
       InstructionInfo = NativeMethodGroup.GetInstructionSetStruct();
       CacheSize = NativeMethodGroup.GetCacheSize();
+      ReadableCacheSize = CacheSize.HasValue ? CacheSize.Value.ToReadableCacheSize() : null;
+      var temp = Converters.HzUnitConverter.ConvertMHzToReadableUnit(BasicInfo.Value.BaseSpeed);
     }
     catch (Exception ex) {
       BasicInfo = null;
@@ -86,5 +86,11 @@ public class CpuModel : BindableBase, ICpuModel {
   public CacheSize? CacheSize { 
     get => _cacheSize; 
     set => SetProperty(ref _cacheSize, value);
+  }
+ 
+  private ReadableCacheSize? _readableCacheSize;
+  public ReadableCacheSize? ReadableCacheSize {
+    get => _readableCacheSize;
+    set => SetProperty(ref _readableCacheSize, value);
   }
 }

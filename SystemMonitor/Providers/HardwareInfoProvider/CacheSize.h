@@ -26,15 +26,15 @@ extern "C" __declspec(dllexport) CacheSize __stdcall GetCacheSize() {
         const CACHE_DESCRIPTOR& cache = info.Cache;
         switch(cache.Level) {
           case 1:
-            cache_info.L1_cache_size = cache.Size;
+            cache_info.L1_cache_size += cache.Size;
             cache_info.L1_cache_line_size = cache.LineSize;
             break;
           case 2:
-            cache_info.L2_cache_size = cache.Size;
+            cache_info.L2_cache_size += cache.Size;
             cache_info.L2_cache_line_size = cache.LineSize;
             break;
           case 3:
-            cache_info.L3_cache_size = cache.Size;
+            cache_info.L3_cache_size += cache.Size;
             cache_info.L3_cache_line_size = cache.LineSize;
             break;
         }
