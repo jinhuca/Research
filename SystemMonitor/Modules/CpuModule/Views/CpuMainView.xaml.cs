@@ -2,8 +2,8 @@
 
 namespace CpuModule.Views; 
 
-public partial class CpuMainView : UserControl {
-  public CpuMainView() {
+public partial class CpuSummaryView : UserControl {
+  public CpuSummaryView() {
     InitializeComponent();
   }
 }

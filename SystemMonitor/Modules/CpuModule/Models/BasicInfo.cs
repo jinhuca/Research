@@ -1,9 +1,9 @@
 ﻿namespace CpuModule.Models;
 
-public struct BasicInfo {
-  public int BaseSpeed { get; init; }
-  public int SocketNum { get; init; }
-  public int NumOfPhysicalCores { get; init; }
-  public int NumOfLogicalCores { get; init; }
+public class BasicInfo {
+  public int BaseSpeed { get; set; }
+  public int SocketNum { get; set; }
+  public int NumOfPhysicalCores { get; set; }
+  public int NumOfLogicalCores { get; set; }
   public bool VirtualizationEnabled { get; set; }
 }

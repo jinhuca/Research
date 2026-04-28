@@ -1,7 +1,9 @@
-﻿namespace CpuModule.ViewModels; 
+﻿using CpuModule.Models;
+
+namespace CpuModule.ViewModels; 
 
 internal static class ViewModelConversions {
-  internal static string BrandNameConvert(string name) {
+  internal static string VendorNameConvert(string name) {
     if (name is null) throw new ArgumentNullException(nameof(name));
     if(name.Contains(Definitions.Intel, StringComparison.OrdinalIgnoreCase)) {
       return Definitions.IntelBrandName;
@@ -19,4 +21,26 @@ internal class Definitions {
   internal const string Amd = "AMD";
   internal const string AmdBrandName = "Advanced Micro Devices, Inc.";
   internal const string UnknownBrandName = "Unknown";
+}
+
+public struct ReadableCacheSize {
+  public string L1_cache_size;
+  public string L1_cache_line_size;
+  public string L2_cache_size;
+  public string L2_cache_line_size;
+  public string L3_cache_size;
+  public string L3_cache_line_size;
+}
+
+public static class CacheSizeExtension {
+  public static ReadableCacheSize ToReadableCacheSize(this CacheSize cacheSize) {
+    return new ReadableCacheSize {
+      L1_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L1_cache_size),
+      L1_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L1_cache_line_size),
+      L2_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L2_cache_size),
+      L2_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L2_cache_line_size),
+      L3_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L3_cache_size),
+      L3_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L3_cache_line_size)
+    };
+  }
 }

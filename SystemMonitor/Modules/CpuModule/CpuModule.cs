@@ -16,10 +16,11 @@ public class CpuModule : IModule {
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.Register<ICpuModel, CpuModel>();
+    containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
+    //containerRegistry.Register<ICpuModel, CpuModel>();
     containerRegistry.Register<ISMProvider, SMProvider>();
 
-    _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuMainView));
+    _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuSummaryView));
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {

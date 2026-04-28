@@ -33,6 +33,9 @@
     <ClInclude Include="CacheSize.h">
       <Filter>Processors</Filter>
     </ClInclude>
+    <ClInclude Include="RealTimeFetchers.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

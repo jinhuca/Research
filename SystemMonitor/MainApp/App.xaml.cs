@@ -26,7 +26,7 @@ public partial class App : PrismApplication {
 
   protected override void ConfigureViewModelLocator() {
     base.ConfigureViewModelLocator();
-    ViewModelLocationProvider.Register<CpuMainView, CpuViewModel>();
+    ViewModelLocationProvider.Register<CpuSummaryView, CpuViewModel>();
   }
 }
 

@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "CpuInfoExport.h"
 #include "CacheSize.h"
+#include "RealTimeFetchers.h"
 
 BOOL APIENTRY DllMain(
   HMODULE hModule,

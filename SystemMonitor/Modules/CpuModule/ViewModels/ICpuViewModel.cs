@@ -13,12 +13,13 @@ public interface ICpuViewModel {
   int LogicalCoresNum { get; set; }
   string Virtualization { get; set; }
   string L1CacheSize { get; set; }
+  string L1CacheLineSize { get; set; }
   string L2CacheSize { get; set; }
   string L3CacheSize { get; set; }
   double Utilization { get; set; }
-  double Speed { get; set; }
+  double CurrentSpeed { get; set; }
   int Processes { get; set; }
   int Threads { get; set; }
   int Handles { get; set; }
-  DateTime UpTime { get; set; }
+  TimeSpan UpTime { get; set; }
 }

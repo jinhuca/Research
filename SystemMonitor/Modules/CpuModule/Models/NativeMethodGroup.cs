@@ -37,4 +37,10 @@ public class NativeMethodGroup {
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.Cdecl)]
   [return: MarshalAs(UnmanagedType.U1)]
   public static extern bool VirtualizationEnabled();
+
+  [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
+  public static extern double GetTotalCpuUtilization();
+
+  [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
+  public static extern double GetCurrentCpuSpeed();
 }
