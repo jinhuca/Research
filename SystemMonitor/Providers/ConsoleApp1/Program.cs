@@ -1,4 +1,6 @@
 ﻿using System.Runtime.InteropServices;
+using System.Management;
+using System.Diagnostics;
 
 namespace ConsoleApp1;
 
@@ -182,10 +184,44 @@ internal class Program {
       };
       var cacheSize = NativeMethodGroup.GetCacheSize();
     }
-    catch(Exception ex) { Console.WriteLine(ex.Message); }
+    catch (Exception ex) { Console.WriteLine(ex.Message); }
   }
 
+  static void GetCurrentSpeed() {
+    // 1. Get the Maximum clock speed of the CPU via WMI (returned in MHz)
+    uint maxClockSpeed = 0;
+    using (var searcher = new ManagementObjectSearcher("SELECT MaxClockSpeed FROM Win32_Processor")) {
+      foreach (var obj in searcher.Get()) {
+        maxClockSpeed = (uint)obj["MaxClockSpeed"];
+        break; // Assuming there's only one processor
+      }
+    }
+    // 2. Setup the Performance Counter for current performance percentage
+    // This represents the current speed as a % of the max speed
+    using (var cpuPerfCounter = new PerformanceCounter("Processor Information", "% Processor Performance", "_Total")) {
+      // Initial call often returns 0; needs a small delay for an accurate reading
+      cpuPerfCounter.NextValue();
+      Thread.Sleep(1000);
+
+      while (true) {
+        float perfPercentage = cpuPerfCounter.NextValue();
+
+        // 3. Calculate current speed in MHz
+        double currentSpeedMhz = (maxClockSpeed * perfPercentage) / 100.0;
+        double currentSpeedGhz = currentSpeedMhz / 1000.0;
+
+        Console.WriteLine($"Max Speed:     {maxClockSpeed} MHz");
+        Console.WriteLine($"Current Perf:  {perfPercentage:F2}%");
+        Console.WriteLine($"Current Speed: {currentSpeedGhz:F2} GHz");
+
+        Thread.Sleep(1000); // Update every second
+      }
+    }
+  }
+
+
   public static void Main(string[] args) {
-    Test();
+    //Test();
+    GetCurrentSpeed();
   }
 }

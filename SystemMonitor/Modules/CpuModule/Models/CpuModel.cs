@@ -1,12 +1,13 @@
 ﻿using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Management;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 
 namespace CpuModule.Models;
 
 struct CpuModelDefinitions {
-  public const int TimerStartDelay = 2000;
+  public const int TimerStartDelay = 200;
   public const int TimerInterval = 1000;
 }
 
@@ -31,20 +32,54 @@ public class CpuModel : BindableBase, ICpuModel {
       period: CpuModelDefinitions.TimerInterval);
   }
 
+  private double GetCurrentCpuSpeed() {
+    // 1. Get the Maximum clock speed of the CPU via WMI (returned in MHz)
+    uint maxClockSpeed = 0;
+    using (var searcher = new ManagementObjectSearcher("SELECT MaxClockSpeed FROM Win32_Processor")) {
+      foreach (var obj in searcher.Get()) {
+        maxClockSpeed = (uint)obj["MaxClockSpeed"];
+        break; // Assuming there's only one processor
+      }
+    }
+    // 2. Setup the Performance Counter for current performance percentage
+    // This represents the current speed as a % of the max speed
+    using (var cpuPerfCounter = new PerformanceCounter("Processor Information", "% Processor Performance", "_Total")) {
+      // Initial call often returns 0; needs a small delay for an accurate reading
+      cpuPerfCounter.NextValue();
+      Thread.Sleep(1000);
+
+      //while (true) {
+      float perfPercentage = cpuPerfCounter.NextValue();
+
+      // 3. Calculate current speed in MHz
+      double currentSpeedMhz = (maxClockSpeed * perfPercentage) / 100.0;
+      double currentSpeedGhz = currentSpeedMhz / 1000.0;
+
+      //Console.WriteLine($"Max Speed:     {maxClockSpeed} MHz");
+      //Console.WriteLine($"Current Perf:  {perfPercentage:F2}%");
+      //Console.WriteLine($"Current Speed: {currentSpeedGhz:F2} GHz");
+
+      //Thread.Sleep(1000); // Update every second
+      //RealTimeInfo.Speed = currentSpeedGhz;
+      return currentSpeedGhz;
+    }
+  }
+
   private void fetchSystemInfo(object data) {
     RealTimeInfo = new RealTimeInfo {
       Utilization = NativeMethodGroup.GetTotalCpuUtilization(),
-      Speed = NativeMethodGroup.GetCurrentCpuSpeed(),
+      Speed = GetCurrentCpuSpeed(),
       Processes = Process.GetProcesses().Length,
       Threads = Process.GetProcesses().Sum(proc => proc.Threads.Count),
       Handles = Process.GetProcesses().Sum(proc => proc.HandleCount),
       UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64)
     };
 
-    Utilization = NativeMethodGroup.GetTotalCpuUtilization();
-    Debug.WriteLine("++++");
-    Debug.WriteLine(Utilization);
+    //Utilization = NativeMethodGroup.GetTotalCpuUtilization();
+    //Debug.WriteLine("++++");
+    //Debug.WriteLine(Utilization);
     //RealTimeInfo = realTime_;
+    //GetCurrentCpuSpeed();
 
     Debug.WriteLine("======================");
     Debug.WriteLine("Utilization =   " + RealTimeInfo.Utilization);
@@ -73,18 +108,18 @@ public class CpuModel : BindableBase, ICpuModel {
       //ReadableCacheSize = CacheSize.Value.ToReadableCacheSize();
       var temp = Converters.HzUnitConverter.ConvertMHzToReadableUnit(BasicInfo.BaseSpeed);
     }
-    catch(Exception ex) {
+    catch (Exception ex) {
       //BasicInfo = null;
       Console.WriteLine(ex.Message);
     }
 
     try {
-      if(_smProvider != null) {
+      if (_smProvider != null) {
         ISMQuery cpuQuery_ = _smProvider.GetQueryProvider(SMCategories.Processor);
         ExtendedInfo = new ExtendedInfo { InfoDictionary = cpuQuery_.Query(Win32_Processor.QueryString) };
       }
     }
-    catch(System.Management.ManagementException smx) {
+    catch (System.Management.ManagementException smx) {
       ExtendedInfo = null;
       Console.WriteLine(smx.Message);
     }

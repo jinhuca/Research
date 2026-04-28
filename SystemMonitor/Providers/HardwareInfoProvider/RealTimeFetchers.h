@@ -41,7 +41,7 @@ extern "C" __declspec(dllexport) double __stdcall GetCurrentCpuSpeed() {
 
   // 4. Retrieve and display the value
   if(PdhGetFormattedCounterValue(cpuFrequency, PDH_FMT_DOUBLE, NULL, &counterVal) == ERROR_SUCCESS) {
-    //std::cout << "Current CPU Speed: " << counterVal.doubleValue << " MHz" << std::endl;
+    std::cout << "Current CPU Speed: " << counterVal.doubleValue << " MHz" << std::endl;
   }
 
   // 5. Clean up

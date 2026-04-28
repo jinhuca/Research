@@ -1,6 +1,7 @@
 ﻿using Converters;
 using CpuModule.Models;
 using CpuModule.Views;
+using System.Diagnostics;
 
 namespace CpuModule.ViewModels;
 
@@ -9,8 +10,14 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
   public CpuViewModel(CpuModel model) {
     _model = model;
     _model.PropertyChanged += (s, e) => {
-      if(e.PropertyName == nameof(_model.Utilization))
+      if (e.PropertyName == nameof(_model.RealTimeInfo)) {
         RaisePropertyChanged(nameof(Utilization));
+        RaisePropertyChanged(nameof(CurrentSpeed));
+        RaisePropertyChanged(nameof(UpTime));
+        RaisePropertyChanged(nameof(Processes));
+        RaisePropertyChanged(nameof(Threads));
+        RaisePropertyChanged(nameof(Handles));
+      }
     };
     initProperties();
   }
@@ -28,7 +35,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
     L3CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L3_cache_size);
 
     Utilization = _model.RealTimeInfo?.Utilization ?? 0;
-    
+    CurrentSpeed = _model.RealTimeInfo?.Speed ?? 0;
   }
 
   public string BrandName {
@@ -171,40 +178,56 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
   }
 
   public double Utilization {
-    get => _model.Utilization;
+    get => _model.RealTimeInfo.Utilization;
     set {
-      _model.Utilization = value;
+      _model.RealTimeInfo.Utilization = value;
       RaisePropertyChanged();
     }
   }
 
-  private double _currentSpeed;
   public double CurrentSpeed {
-    get => _currentSpeed;
-    set => SetProperty(ref _currentSpeed, value);
+    get => _model.RealTimeInfo.Speed;
+    set {
+      _model.RealTimeInfo.Speed = value;
+      RaisePropertyChanged();
+    }
   }
 
-  private int _processes;
-  public int Processes {
-    get => _processes;
-    set => SetProperty(ref _processes, value);
-  }
-
-  public int _threads;
-  public int Threads {
-    get => _threads;
-    set => SetProperty(ref _threads, value);
-  }
-
-  private int _handles;
-  public int Handles {
-    get => _handles;
-    set => SetProperty(ref _handles, value);
-  }
-
-  private TimeSpan _uptime;
   public TimeSpan UpTime {
-    get => _uptime;
-    set => SetProperty(ref _uptime, value);
+    get => _model.RealTimeInfo.UpTime;
+    set {
+      _model.RealTimeInfo.UpTime = value;
+      RaisePropertyChanged();
+    }
+  }
+
+  public int Processes {
+    get => _model.RealTimeInfo.Processes;
+    set {
+      if (_model.RealTimeInfo.Processes != value) {
+        _model.RealTimeInfo.Processes = value;
+        RaisePropertyChanged(nameof(Processes));
+      }
+    }
+  }
+
+  public int Threads {
+    get => _model.RealTimeInfo.Threads;
+    set {
+      if (_model.RealTimeInfo.Threads != value) {
+        _model.RealTimeInfo.Threads = value;
+        RaisePropertyChanged(nameof(Threads));
+      }
+    }
+  }
+
+  public int Handles {
+    get => _model.RealTimeInfo.Handles;
+    set {
+      if (_model.RealTimeInfo.Handles != value) {
+        _model.RealTimeInfo.Handles = value;
+        RaisePropertyChanged(nameof(Handles));
+      }
+    }
   }
 }
