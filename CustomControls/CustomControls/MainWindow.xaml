@@ -1,0 +1,12 @@
+﻿<Window x:Class="CustomControls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+        xmlns:local="clr-namespace:CustomControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+  <local:MeterControl Value="55.721" Label="Load" Unit="%" 
+                      NeedleColor="Turquoise" GaugeColor="#FF484D5F"/>
+</Window>
