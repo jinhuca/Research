@@ -1,18 +1,13 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
+using static CustomControls.Definitions;
 
 namespace CustomControls;
 
 [ValueConversion(typeof(double), typeof(double))]
 public class ValueToAngleConverter : IValueConverter {
-  private const double MinAngle = -120.0;
-  private const double MaxAngle = 120.0;
-  private const double MinValue = 0.0;
-  private const double MaxValue = 100.0;
-
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
     double v = 0.0;
-
     switch (value) {
       case double d:
         v = d;
@@ -36,10 +31,19 @@ public class ValueToAngleConverter : IValueConverter {
     t = Math.Max(0.0, Math.Min(1.0, t));
 
     // Map to angle range
-    return MinAngle + t * (MaxAngle - MinAngle);
+    var temp = MinAngle + t * (MaxAngle - MinAngle);
+    return temp; // MinAngle + t * (MaxAngle - MinAngle);
   }
 
   public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
     throw new NotSupportedException();
   }
 }
+
+internal static class Definitions {
+  public const double MinAngle = -120.0;
+  public const double MaxAngle = 120.0;
+  public const double MinValue = 0.0;
+  public const double MaxValue = 100.0;
+}
+

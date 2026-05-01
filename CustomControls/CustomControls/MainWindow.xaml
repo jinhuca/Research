@@ -7,6 +7,12 @@
         xmlns:local="clr-namespace:CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-  <local:MeterControl Value="55.721" Label="Load" Unit="%" 
-                      NeedleColor="Turquoise" GaugeColor="#FF484D5F"/>
+  <Window.Resources>
+    <local:MultipleValuesConverter x:Key="MultiConverter"/>
+    <local:ValueToAngleConverter x:Key="singleConverter"/>
+  </Window.Resources>
+  <local:MeterControl Label="Load" Unit="%" NeedleColor="Turquoise" GaugeColor="#FF484D5F"
+                      Value="{Binding MyValue}" 
+                      MinValue="{Binding MyMin}" 
+                      MaxValue="{Binding MyMax}"/>
 </Window>

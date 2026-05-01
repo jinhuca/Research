@@ -10,20 +10,26 @@
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
     <local:ValueToAngleConverter x:Key="ValueToAngleConverter"/>
+    <local:MultiValuesToAngleConverter x:Key="multiValuesToAngleConverter"/>
   </UserControl.Resources>
   <Grid Background="#FF2E2F45">
     <Grid Margin="0,0,0,0">
-      <ed:Arc StartAngle="-120" EndAngle="120" 
-              Stretch="None" 
-              Height="300" Width="300" StrokeThickness="20"      
-              StrokeDashArray=".15" Stroke="{Binding GaugeColor, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-      <ed:Arc StartAngle="-120" 
-              EndAngle="{Binding Value, 
-                         RelativeSource={RelativeSource AncestorType=UserControl}, 
-                         Converter={StaticResource ValueToAngleConverter}}" 
-              Stretch="None" 
-              Height="300" Width="300" StrokeThickness="20"
-              StrokeDashArray=".15" Stroke="{Binding NeedleColor, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+      <ed:Arc StartAngle="-120" EndAngle="120"
+              Stretch="None" Height="300" Width="300" 
+              StrokeThickness="20" StrokeDashArray=".15" 
+              Stroke="{Binding GaugeColor, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+      <ed:Arc StartAngle="-120"
+              Stretch="None" Height="300" Width="300" 
+              StrokeThickness="20" StrokeDashArray=".15" 
+              Stroke="{Binding NeedleColor, RelativeSource={RelativeSource AncestorType=UserControl}}">
+        <ed:Arc.EndAngle>
+          <MultiBinding Converter="{StaticResource multiValuesToAngleConverter}">
+            <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+            <Binding Path="MinValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+            <Binding Path="MaxValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+          </MultiBinding>
+        </ed:Arc.EndAngle>
+      </ed:Arc>
     </Grid>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
       <TextBlock Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}}" 

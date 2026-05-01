@@ -11,14 +11,15 @@ public partial class MeterControl : UserControl {
 
   #region Value DependencyProperty
 
-  private const double MinValue = 0, MaxValue = 100;
+  private const double DefaultMinValue = 0, DefaultMaxValue = 100;
+  private const double DefaultMinAngle = -120, DefaultMaxAngle = 120;
 
   public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
     nameof(Value),
     typeof(double),
     typeof(MeterControl),
     new FrameworkPropertyMetadata(
-      MinValue, 
+      DefaultMinValue,
       new PropertyChangedCallback(OnValueChanged),
       new CoerceValueCallback(CoerceValue)));
 
@@ -30,8 +31,8 @@ public partial class MeterControl : UserControl {
   private static object CoerceValue(DependencyObject d, object baseValue) {
     var control = (MeterControl)d;
     double value = (double)baseValue;
-    if (value < MinValue) return MinValue;
-    if (value > MaxValue) return MaxValue;
+    //if(value < DefaultMinValue) return DefaultMinValue;
+    //if(value > DefaultMaxValue) return DefaultMaxValue;
     return value;
   }
 
@@ -43,9 +44,9 @@ public partial class MeterControl : UserControl {
   }
 
   public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(
-    nameof(ValueChanged), 
-    RoutingStrategy.Bubble, 
-    typeof(RoutedPropertyChangedEventHandler<double>), 
+    nameof(ValueChanged),
+    RoutingStrategy.Bubble,
+    typeof(RoutedPropertyChangedEventHandler<double>),
     typeof(MeterControl));
 
   public event RoutedPropertyChangedEventHandler<double> ValueChanged {
@@ -58,6 +59,13 @@ public partial class MeterControl : UserControl {
   }
 
   #endregion Value DependencyProperty
+
+
+  #region EndAngle DependencyProperty
+
+
+  #endregion EndAngle DependencyProperty
+
 
   #region Label DependencyProperty
 
@@ -89,6 +97,8 @@ public partial class MeterControl : UserControl {
 
   #endregion Unit DependencyProperty
 
+  #region NeedleColor DependencyProperty
+
   public static readonly DependencyProperty NeedleColorProperty = DependencyProperty.Register(
     nameof(NeedleColor),
     typeof(Brush),
@@ -100,6 +110,10 @@ public partial class MeterControl : UserControl {
     set => SetValue(NeedleColorProperty, value);
   }
 
+  #endregion NeedleColor DependencyProperty
+
+  #region GaugeColor DependencyProperty
+
   public static readonly DependencyProperty GaugeColorProperty = DependencyProperty.Register(
     nameof(GaugeColor),
     typeof(Brush),
@@ -110,4 +124,50 @@ public partial class MeterControl : UserControl {
     get => (Brush)GetValue(GaugeColorProperty);
     set => SetValue(GaugeColorProperty, value);
   }
+
+  #endregion GaugeColor DependencyProperty
+
+  public double MinValue {
+    get => (double)GetValue(MinValueProperty);
+    set => SetValue(MinValueProperty, value);
+  }
+
+  public static readonly DependencyProperty MinValueProperty = DependencyProperty.Register(
+    nameof(MinValue),
+    typeof(double),
+    typeof(MeterControl),
+    new FrameworkPropertyMetadata(DefaultMinValue));
+
+  public double MaxValue {
+    get => (double)GetValue(MaxValueProperty);
+    set => SetValue(MaxValueProperty, value);
+  }
+
+  public static readonly DependencyProperty MaxValueProperty = DependencyProperty.Register(
+    nameof(MaxValue),
+    typeof(double),
+    typeof(MeterControl),
+    new FrameworkPropertyMetadata(DefaultMaxValue));
+
+  //public double MinAngle {
+  //  get => (double)GetValue(MinAngleProperty);
+  //  set => SetValue(MinAngleProperty, value);
+  //}
+
+  //public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
+  //  nameof(MinAngle),
+  //  typeof(double),
+  //  typeof(MeterControl),
+  //  new FrameworkPropertyMetadata(DefaultMinAngle));
+
+  //public double MaxAngle {
+  //  get => (double)GetValue(MaxAngleProperty);
+  //  set => SetValue(MaxAngleProperty, value);
+  //}
+
+  //public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
+  //  nameof(MaxAngle),
+  //  typeof(double),
+  //  typeof(MeterControl),
+  //  new FrameworkPropertyMetadata(DefaultMaxAngle));
 }
