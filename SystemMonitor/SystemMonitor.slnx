@@ -6,6 +6,7 @@
   </Configurations>
   <Folder Name="/Build/" />
   <Folder Name="/Modules/">
+    <Project Path="GpuModule/GpuModule.csproj" Id="9a6be6d7-4c0b-44ef-8cdd-279b370e0a61" />
     <Project Path="Modules/BiosModule/BiosModule.csproj" />
     <Project Path="Modules/CpuModule/CpuModule.csproj" />
     <Project Path="Modules/HomeModule/HomeModule.csproj" />

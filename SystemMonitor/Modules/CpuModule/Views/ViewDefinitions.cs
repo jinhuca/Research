@@ -22,6 +22,7 @@ internal static class ViewDefinitions {
   public const string L3CacheLineSizeTitle = "L3 Cache Line Size:";
   public const string UtilizationTitle = "Utilization";
   public const string SpeedTitle = "Speed";
+  public const string TemperatureTitle = "Temperature";
   public const string ProcessesTitle = "Processes";
   public const string ThreadsTitle = "Threads";
   public const string HandlesTitle = "Handles";

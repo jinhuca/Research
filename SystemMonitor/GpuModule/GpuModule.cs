@@ -1,30 +1,28 @@
-using CpuModule.Models;
-using CpuModule.Views;
+using GpuModule.Models;
+using GpuModule.Views;
 using ResourceModule.Controls.Meter;
 using System.ComponentModel.DataAnnotations;
 using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
 
-namespace CpuModule;
+namespace GpuModule;
 
-public class CpuModule : IModule {
+public class GpuModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;
-  
-  public CpuModule(IRegionManager regionManager) {
+
+  public GpuModule(IRegionManager regionManager) {
     _regionManager = regionManager;
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
+    containerRegistry.RegisterSingleton<IGpuModel, GpuModel>();
     containerRegistry.Register<ISMProvider, SMProvider>();
-
-    _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuSummaryView));
+    _regionManager.RegisterViewWithRegion(GpuRegionName, typeof(GpuSummaryView));
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {
-    //containerProvider.Resolve<ISMProvider>();
-    var cpuLoadMeter = containerProvider.Resolve<MeterControl>();
+    var gpuLoadMeter = containerProvider.Resolve<MeterControl>();
   }
 }

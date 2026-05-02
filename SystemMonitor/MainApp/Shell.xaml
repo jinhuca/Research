@@ -10,7 +10,7 @@
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
         Background="Gray"
-        Title="Shell">
+        Title="{x:Static shared:TextDefinitions.AppTitle}">
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition/>
@@ -20,7 +20,9 @@
       <ColumnDefinition/>
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
-    <ContentControl x:Name="CpuRegion" Grid.Row="0" Grid.Column="0" Background="LightGreen"
+    <ContentControl x:Name="CpuRegion" Grid.Row="0" Grid.Column="0" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
+    <ContentControl x:Name="GpuRegion" Grid.Row="0" Grid.Column="1" 
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuRegionName}"/>
   </Grid>
 </Window>
