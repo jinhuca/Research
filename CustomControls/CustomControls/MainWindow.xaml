@@ -15,5 +15,5 @@
                       Value="{Binding MyValue}" 
                       MinValue="{Binding MyMin}" 
                       MaxValue="{Binding MyMax}"
-                      Unit="{Binding MyUnit, Converter={StaticResource unitConverter}}"/>
+                      Unit="{Binding MyUnit, Converter={StaticResource unitConverter}, ConverterParameter='mph'}"/>
 </Window>
