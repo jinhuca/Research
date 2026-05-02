@@ -37,11 +37,11 @@
       </ed:Arc>
     </Grid>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-      <TextBlock Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+      <TextBlock Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat=N2}" 
                  Foreground="#FF878A9F" HorizontalAlignment="Center" FontSize="14"/>
       <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
         <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-12,0,0"
-                   FontSize="70" FontWeight="Light">
+                   FontSize="60" FontWeight="Light">
           <TextBlock.Text>
             <MultiBinding Converter="{StaticResource valuesToDisplayConverter}">
               <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
