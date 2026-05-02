@@ -8,11 +8,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
   <Window.Resources>
-    <local:MultipleValuesConverter x:Key="MultiConverter"/>
-    <local:ValueToAngleConverter x:Key="singleConverter"/>
+    <local:MultiValuesToAngleConverter x:Key="MultiConverter"/>
+    <local:UnitToStringConverter x:Key="unitConverter"/>
   </Window.Resources>
-  <local:MeterControl Label="Load" Unit="%" NeedleColor="Turquoise" GaugeColor="#FF484D5F"
+  <local:MeterControl Label="Load" NeedleColor="Turquoise" GaugeColor="#FF484D5F"
                       Value="{Binding MyValue}" 
                       MinValue="{Binding MyMin}" 
-                      MaxValue="{Binding MyMax}"/>
+                      MaxValue="{Binding MyMax}"
+                      Unit="{Binding MyUnit, Converter={StaticResource unitConverter}}"/>
 </Window>

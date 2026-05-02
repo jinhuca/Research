@@ -1,40 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Diagnostics;
 using System.Globalization;
-using System.Text;
+using System.Windows;
 using System.Windows.Data;
 
 namespace CustomControls;
 
 public class MultiValuesToAngleConverter : IMultiValueConverter {
   public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
-    // check the values validation
-    var givenValue = (double)values[0];
-    var givenMinValue = (double)values[1];
-    var givenMaxValue = (double)values[2];
-    // ...
-    // Normalize and clamp to [0,1]
-    var mappedValue = MapRange(givenValue, givenMinValue, givenMaxValue, 0, 1);
+    // (1) cast the passed values to double
+    double valuePassed_, minValuePassed_, maxValuePassed_;
+    try {
+      valuePassed_ = System.Convert.ToDouble(values[0]);
+      minValuePassed_ = System.Convert.ToDouble(values[1]);
+      maxValuePassed_ = System.Convert.ToDouble(values[2]);
+    }
+    catch(Exception ex) {
+      Debug.WriteLine(ex);
+      return DependencyProperty.UnsetValue;
+    }
 
-    var calculatedAngle = mappedValue * (ConverterDefinitions.MaxAngle - ConverterDefinitions.MinAngle);
+    // (2) check the values validation
+    if(!IsValidInput(valuePassed_, minValuePassed_, maxValuePassed_)) {
+      return DependencyProperty.UnsetValue;
+    }
 
-    var valueAngle = (givenValue - givenMinValue) * (ConverterDefinitions.MaxAngle - ConverterDefinitions.MinAngle) / (givenMaxValue - givenMinValue)
-      + ConverterDefinitions.MinAngle;
-    return valueAngle;
+    // (3) Normalize and clamp to [PredefinedMinAngle, PredefinedMaxAngle]
+    var mappedValue = MapRange(valuePassed_, minValuePassed_, maxValuePassed_, PredefinedMinAngle, PredefinedMaxAngle);
+
+    // (4) calculate the mapped value to angle
+    //var cacluatedValueAngle_1 = mappedValue * (PredefinedMaxAngle - PredefinedMinAngle) + PredefinedMinAngle;
+
+    //var cacluatedValueAngle_ = (valuePassed_ - minValuePassed_) * (PredefinedMaxAngle - PredefinedMinAngle) 
+    //  / (maxValuePassed_ - minValuePassed_) + PredefinedMinAngle;
+    
+    Debug.WriteLine(mappedValue.ToString());
+    return mappedValue;
   }
 
   public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {
     throw new NotImplementedException();
   }
 
+  private bool IsValidInput(double value, double minValue, double maxValue) {
+    return !(double.IsNaN(value) || double.IsNaN(minValue) || double.IsNaN(maxValue) 
+      || maxValue < minValue || value < minValue || value > maxValue);
+  }
+
   private static double MapRange(double value, double fromMin, double fromMax, double toMin, double toMax) {
     return toMin + (value - fromMin) * (toMax - toMin) / (fromMax - fromMin);
   }
+
+  public const double PredefinedMinAngle = -120.0;
+  public const double PredefinedMaxAngle = 120.0;
 }
 
-internal static class ConverterDefinitions {
-  public const double MinAngle = -120.0;
-  public const double MaxAngle = 120.0;
-  //public const double MinValue = 0.0;
-  //public const double MaxValue = 100.0;
-}

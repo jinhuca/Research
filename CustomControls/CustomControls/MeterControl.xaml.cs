@@ -20,21 +20,22 @@ public partial class MeterControl : UserControl {
     typeof(MeterControl),
     new FrameworkPropertyMetadata(
       DefaultMinValue,
-      new PropertyChangedCallback(OnValueChanged),
-      new CoerceValueCallback(CoerceValue)));
+      new PropertyChangedCallback(OnValueChanged)));
 
   public double Value {
     get => (double)GetValue(ValueProperty);
     set => SetValue(ValueProperty, value);
   }
 
-  private static object CoerceValue(DependencyObject d, object baseValue) {
-    var control = (MeterControl)d;
-    double value = (double)baseValue;
-    //if(value < DefaultMinValue) return DefaultMinValue;
-    //if(value > DefaultMaxValue) return DefaultMaxValue;
-    return value;
-  }
+  //private static object CoerceValue(DependencyObject d, object baseValue) {
+  //  var control = (MeterControl)d;
+  //  double value = (double)baseValue;
+  //  //if (value < DefaultMinValue) 
+  //  //  return DefaultMinValue;
+  //  //if (value > DefaultMaxValue) 
+  //  //  return DefaultMaxValue;
+  //  return value;
+  //}
 
   private static void OnValueChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {
     MeterControl control = (MeterControl)obj;
@@ -59,13 +60,6 @@ public partial class MeterControl : UserControl {
   }
 
   #endregion Value DependencyProperty
-
-
-  #region EndAngle DependencyProperty
-
-
-  #endregion EndAngle DependencyProperty
-
 
   #region Label DependencyProperty
 
@@ -149,24 +143,24 @@ public partial class MeterControl : UserControl {
     typeof(MeterControl),
     new FrameworkPropertyMetadata(DefaultMaxValue));
 
-  //public double MinAngle {
+  //public double PredefinedMinAngle {
   //  get => (double)GetValue(MinAngleProperty);
   //  set => SetValue(MinAngleProperty, value);
   //}
 
   //public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
-  //  nameof(MinAngle),
+  //  nameof(PredefinedMinAngle),
   //  typeof(double),
   //  typeof(MeterControl),
   //  new FrameworkPropertyMetadata(DefaultMinAngle));
 
-  //public double MaxAngle {
+  //public double PredefinedMaxAngle {
   //  get => (double)GetValue(MaxAngleProperty);
   //  set => SetValue(MaxAngleProperty, value);
   //}
 
   //public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
-  //  nameof(MaxAngle),
+  //  nameof(PredefinedMaxAngle),
   //  typeof(double),
   //  typeof(MeterControl),
   //  new FrameworkPropertyMetadata(DefaultMaxAngle));

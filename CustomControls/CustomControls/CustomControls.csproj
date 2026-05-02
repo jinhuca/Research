@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MultipleValuesConverter.cs" />
+    <Compile Remove="ValueToAngleConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NetCore5.0.Microsoft.Expression.Drawing" Version="1.0.0" />
   </ItemGroup>
 

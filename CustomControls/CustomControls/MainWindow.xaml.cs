@@ -1,27 +1,27 @@
 ﻿using System.ComponentModel;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CustomControls {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
   public partial class MainWindow : Window, INotifyPropertyChanged {
     public MainWindow() {
       InitializeComponent();
-      this.DataContext = this;
-      MyValue = -1.6;
-      MyMin = -10;
-      MyMax = 0;
+      DataContext = this;
+      MyValue = 2.67;
+      MyMin = -50;
+      MyMax = 50;
+      MyUnit = Unit.Percent;
     }
+
+    private Unit _myUnit = Unit.Percent;
+    public Unit MyUnit {
+      get => _myUnit;
+      set {
+        if (_myUnit != value) {
+          _myUnit = value;
+          PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MyUnit)));
+        }
+      }
+    } 
 
     private double _myValue;
     public double MyValue {

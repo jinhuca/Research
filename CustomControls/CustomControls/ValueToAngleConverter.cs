@@ -32,7 +32,7 @@ public class ValueToAngleConverter : IValueConverter {
 
     // Map to angle range
     var temp = MinAngle + t * (MaxAngle - MinAngle);
-    return temp; // MinAngle + t * (MaxAngle - MinAngle);
+    return temp; // PredefinedMinAngle + t * (PredefinedMaxAngle - PredefinedMinAngle);
   }
 
   public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
