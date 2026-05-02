@@ -1,4 +1,5 @@
 
+using ResourceModule.Controls;
 using System.Windows;
 
 namespace ResourceModule;
@@ -11,5 +12,6 @@ public class ResourceModule : IModule {
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
+    containerRegistry.Register<MeterControl>();
   }
 }
