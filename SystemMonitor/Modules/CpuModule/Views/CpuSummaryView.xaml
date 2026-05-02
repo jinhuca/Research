@@ -7,42 +7,144 @@
              xmlns:prism="http://prismlibrary.com/" 
              xmlns:local="clr-namespace:CpuModule.Views" 
              xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
-             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
-  <Grid Background="LightBlue" ShowGridLines="True">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="65"/>
-      <RowDefinition Height="2*"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"/>
-      <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <Grid Grid.Row="0" Grid.Column="0" Background="Transparent">
-      <TextBlock Grid.Column="0" Grid.Row="0"
-                 Text="CPU" FontSize="42"/>
-    </Grid>
-    <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"
-          Background="Black">
-      <Grid.RowDefinitions>
-        <RowDefinition/>
-        <RowDefinition/>
-      </Grid.RowDefinitions>
-      <TextBlock Grid.Row="0" HorizontalAlignment="Right"
-                 Text="{Binding BrandName}" FontSize="16" Foreground="White"/>
-      <TextBlock Grid.Row="1" HorizontalAlignment="Right"
-                 Text="{Binding VendorName}" FontSize="16" Foreground="White"/>
-    </Grid>
+             xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
 
-    <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="Black">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="3*"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
-      <Grid Grid.Column="0" Background="Black">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-          <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-            <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
+  <Border BorderBrush="Gray" BorderThickness="3" CornerRadius="15" Margin="10" Background="Black">
+    <Grid Margin="10" ShowGridLines="false">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="95" MinHeight="95"/>
+        <RowDefinition Height="*" MinHeight="200"/>
+        <RowDefinition Height="60" MinHeight="60"/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="12"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.8*"/>
+          <ColumnDefinition Width="1.5*"/>
+          <ColumnDefinition Width="1.5*"/>
+          <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}" 
+                 Text="{x:Static local:ViewDefinitions.ModuleName}"/>
+        <Grid Grid.Row="0" Grid.Column="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                     Text="{x:Static local:ViewDefinitions.VendorNameTitle}"/>
+          <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding VendorName}"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="96"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                     Text="{x:Static local:ViewDefinitions.BrandNameTitle}"/>
+          <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding BrandName}"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.BaseSpeedTitle}"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding BaseSpeed}"/>
+
+          <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.SocketNumTitle}"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding SocketNum}"/>
+
+          <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.VirtualizationTitle}"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding Virtualization}"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+          <!--<TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+             Text="{x:Static local:ViewDefinitions.BrandNameTitle}"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+             Text="{Binding BrandName}"/>-->
+
+          <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+             Text="{x:Static local:ViewDefinitions.L1CacheSizeTitle}"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+             Text="{Binding L1CacheSize}"/>
+
+          <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+             Text="{x:Static local:ViewDefinitions.L2CacheSizeTitle}"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+             Text="{Binding L2CacheSize}"/>
+
+          <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+             Text="{x:Static local:ViewDefinitions.L3CacheSizeTitle}"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+             Text="{Binding L3CacheSize}"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="3">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                   Text="{x:Static local:ViewDefinitions.L1CacheLineSizeTitle}"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding L1CacheLineSize}"/>
+
+          <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.L2CacheLineSizeTitle}"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding L2CacheLineSize}"/>
+
+          <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.L3CacheLineSizeTitle}"/>
+          <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding L2CacheLineSize}"/>
+        </Grid>
+
+      </Grid>
+      <Grid Grid.Row="1" Background="Black">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="3*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="Black">
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+              <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
                                Value="{Binding Utilization}" 
                                Style="{StaticResource MeterStyle100}"
                                MinValue="0" 
@@ -53,9 +155,9 @@
                                NeedleColor="#FFEF5350" 
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center"/>
-          </Viewbox>
-          <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-            <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
+            </Viewbox>
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+              <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
                                Value="{Binding CurrentSpeed}" 
                                Style="{StaticResource MeterStyle100}"
                                MinValue="0" 
@@ -68,142 +170,74 @@
                                NeedleColor="#FF42A5F5"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center"/>
-          </Viewbox>
-        </StackPanel>
-      </Grid>
-
-      <Grid Grid.Column="1" Background="LightGray" Margin="10">
-        <Grid>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.2*"/>
-          </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-          </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.BaseSpeedTitle}"/>
-          <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding BaseSpeed}"/>
-
-          <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.SocketNumTitle}"/>
-          <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding SocketNum}"/>
-
-          <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.PhysicalCoreNumTitle}"/>
-          <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding PhysicalCoresNum}"/>
-
-          <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.LogicalCoreNumTitle}"/>
-          <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding LogicalCoresNum}"/>
-
-          <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.VirtualizationTitle}"/>
-          <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding Virtualization}"/>
-
-          <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.L1CacheSizeTitle}"/>
-          <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding L1CacheSize}"/>
-
-          <TextBlock Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.L2CacheSizeTitle}"/>
-          <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding L2CacheSize}"/>
-
-          <TextBlock Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right"
-                   FontSize="18" Margin="0,0,10,0"
-                   Text="{x:Static local:ViewDefinitions.L3CacheSizeTitle}"/>
-          <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left"
-                   FontSize="18"
-                   Text="{Binding L3CacheSize}"/>
+            </Viewbox>
+          </StackPanel>
         </Grid>
       </Grid>
-    </Grid>
-    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Background="LightGray">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition/>
-        <ColumnDefinition/>
-        <ColumnDefinition/>
-      </Grid.ColumnDefinitions>
-      <Grid Grid.Row="0" Grid.Column="0" Background="LightSlateGray">
+      <Grid Grid.Row="2" Margin="10" Background="Black">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--<Grid Grid.Row="0" Grid.Column="0" Background="LightSlateGray">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="12" Text="{x:Static local:ViewDefinitions.UtilizationTitle}"/>
         <TextBlock Grid.Row="1" FontSize="24" Text="{Binding Utilization, StringFormat='{}{0:F2} %'}"/>
-      </Grid>
-      <Grid Grid.Row="0" Grid.Column="1" Background="LightSlateGray">
+      </Grid>-->
+        <!--<Grid Grid.Row="0" Grid.Column="1" Background="LightSlateGray">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="12" Text="{x:Static local:ViewDefinitions.SpeedTitle}"/>
         <TextBlock Grid.Row="1" FontSize="24" Text="{Binding CurrentSpeed, StringFormat='{}{0:F2} GHz'}"/>
-      </Grid>
-      <Grid Grid.Row="0" Grid.Column="2" Background="LightSlateGray">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="12" Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
-        <TextBlock Grid.Row="1" FontSize="24" Text="{Binding UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
-      </Grid>
-      <Grid Grid.Row="1" Grid.Column="0" Background="LightSlateGray">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="12" Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
-        <TextBlock Grid.Row="1" FontSize="24" Text="{Binding Processes}"/>
-      </Grid>
-      <Grid Grid.Row="1" Grid.Column="1" Background="LightSlateGray">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="12" Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
-        <TextBlock Grid.Row="1" FontSize="24" Text="{Binding Threads}"/>
-      </Grid>
-      <Grid Grid.Row="1" Grid.Column="2" Background="LightSlateGray">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="12" Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
-        <TextBlock Grid.Row="1" FontSize="24" Text="{Binding Handles}"/>
+      </Grid>-->
+        <Grid Grid.Column="0" Background="Black">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
+          <TextBlock Grid.Row="1" Style="{StaticResource ModuleContentValueStyle}"
+                   Text="{Binding Processes}"/>
+        </Grid>
+        <Grid Grid.Column="1" Background="Black">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
+          <TextBlock Grid.Row="1" Style="{StaticResource ModuleContentValueStyle}"
+                   Text="{Binding Threads}"/>
+        </Grid>
+        <Grid Grid.Column="2" Background="Black">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
+          <TextBlock Grid.Row="1" Style="{StaticResource ModuleContentValueStyle}"
+                   Text="{Binding Handles}"/>
+        </Grid>
+        <Grid Grid.Column="3" Background="Black">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
+          <TextBlock Grid.Row="1" Style="{StaticResource ModuleContentValueStyle}"
+                   Text="{Binding UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
+        </Grid>
       </Grid>
     </Grid>
-  </Grid>
+  </Border>
 </UserControl>

@@ -143,8 +143,18 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
   }
 
   public string L1CacheLineSize {
-    get => throw new NotImplementedException();
-    set => throw new NotImplementedException();
+    get {
+      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L1_cache_line_size);
+    }
+    set {
+      if(_model.CacheSize.L1_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
+        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
+        CacheSize cs = _model.CacheSize;
+        cs.L1_cache_line_size = (int)temp;
+        _model.CacheSize = cs;
+        RaisePropertyChanged(nameof(L1CacheLineSize));
+      }
+    }
   }
 
   public string L2CacheSize {
@@ -162,6 +172,21 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
     }
   }
 
+  public string L2CacheLineSize {
+    get {
+      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L2_cache_line_size);
+    }
+    set {
+      if(_model.CacheSize.L2_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
+        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
+        CacheSize cs = _model.CacheSize;
+        cs.L2_cache_line_size = (int)temp;
+        _model.CacheSize = cs;
+        RaisePropertyChanged(nameof(L2CacheLineSize));
+      }
+    }
+  }
+
   public string L3CacheSize {
     get {
       return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L3_cache_size);
@@ -173,6 +198,21 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
         cs.L3_cache_size = (int)temp;
         _model.CacheSize = cs;
         RaisePropertyChanged(nameof(L3CacheSize));
+      }
+    }
+  }
+
+  public string L3CacheLineSize {
+    get {
+      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L3_cache_line_size);
+    }
+    set {
+      if(_model.CacheSize.L3_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
+        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
+        CacheSize cs = _model.CacheSize;
+        cs.L3_cache_line_size = (int)temp;
+        _model.CacheSize = cs;
+        RaisePropertyChanged(nameof(L3CacheLineSize));
       }
     }
   }

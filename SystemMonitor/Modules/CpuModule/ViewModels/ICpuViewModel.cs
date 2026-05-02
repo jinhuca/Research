@@ -15,7 +15,9 @@ public interface ICpuViewModel {
   string L1CacheSize { get; set; }
   string L1CacheLineSize { get; set; }
   string L2CacheSize { get; set; }
+  string L2CacheLineSize { get; set; }
   string L3CacheSize { get; set; }
+  string L3CacheLineSize { get; set; }
   double Utilization { get; set; }
   double CurrentSpeed { get; set; }
   int Processes { get; set; }

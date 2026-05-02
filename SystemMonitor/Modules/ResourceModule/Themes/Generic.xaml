@@ -3,5 +3,6 @@
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/ResourceModule;component/Themes/SMBrushes.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Controls/Meter/MeterCtrlStyles.xaml"/>
+    <ResourceDictionary Source="/ResourceModule;component/Styles/TextBlockStyles.xaml"/>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
