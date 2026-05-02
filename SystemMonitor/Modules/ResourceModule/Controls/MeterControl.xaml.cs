@@ -152,25 +152,47 @@ public partial class MeterControl : UserControl {
     typeof(MeterControl),
     new FrameworkPropertyMetadata(DefaultMaxValue));
 
-  //public double PredefinedMinAngle {
-  //  get => (double)GetValue(MinAngleProperty);
-  //  set => SetValue(MinAngleProperty, value);
-  //}
+  public static readonly DependencyProperty CtrlBackgroundProperty = DependencyProperty.Register(
+    nameof(CtrlBackground),
+    typeof(Brush),
+    typeof(MeterControl),
+    new FrameworkPropertyMetadata(Brushes.Transparent));
 
-  //public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
-  //  nameof(PredefinedMinAngle),
-  //  typeof(double),
-  //  typeof(MeterControl),
-  //  new FrameworkPropertyMetadata(DefaultMinAngle));
+  public Brush CtrlBackground {
+    get => (Brush)GetValue(CtrlBackgroundProperty);
+    set => SetValue(CtrlBackgroundProperty, value);
+  }
 
-  //public double PredefinedMaxAngle {
-  //  get => (double)GetValue(MaxAngleProperty);
-  //  set => SetValue(MaxAngleProperty, value);
-  //}
+  public static readonly DependencyProperty CtrlWidthProperty = DependencyProperty.Register(
+    nameof(CtrlWidth),
+    typeof(double),
+    typeof(MeterControl),
+    new FrameworkPropertyMetadata(100.0));
 
-  //public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
-  //  nameof(PredefinedMaxAngle),
-  //  typeof(double),
-  //  typeof(MeterControl),
-  //  new FrameworkPropertyMetadata(DefaultMaxAngle));
+  public double CtrlWidth {
+    get => (double)GetValue(CtrlWidthProperty);
+    set => SetValue(CtrlWidthProperty, value);
+  }
+
+  public static readonly DependencyProperty CtrlHeightProperty = DependencyProperty.Register(
+    nameof(CtrlHeight),
+    typeof(double),
+    typeof(MeterControl),
+    new FrameworkPropertyMetadata(100.0));
+
+  public double CtrlHeight {
+    get => (double)GetValue(CtrlHeightProperty);
+    set => SetValue(CtrlHeightProperty, value);
+  }
+
+  public static readonly DependencyProperty ArcStrokeThicknessProperty = DependencyProperty.Register(
+    nameof(ArcStrokeThickness),
+    typeof(double),
+    typeof(MeterControl),
+    new FrameworkPropertyMetadata(12.0));
+
+  public double ArcStrokeThickness {
+    get => (double)GetValue(ArcStrokeThicknessProperty);
+    set => SetValue(ArcStrokeThicknessProperty, value);
+  }
 }

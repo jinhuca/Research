@@ -9,7 +9,6 @@
              d:DataContext="{d:DesignInstance Type=local:MeterControl, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
   <UserControl.Resources>
-    <!--<local:ValueToAngleConverter x:Key="ValueToAngleConverter"/>-->
     <local:MultiValuesToAngleConverter x:Key="multiValuesToAngleConverter"/>
     <local:ValuesToDisplayConverter x:Key="valuesToDisplayConverter"/>
   </UserControl.Resources>

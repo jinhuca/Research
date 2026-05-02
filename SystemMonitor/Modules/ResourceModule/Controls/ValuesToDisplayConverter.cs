@@ -45,17 +45,14 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
     switch (unit_) {
       case Unit.Percent:
         calculatedValue_ = (valuePassed_ - minValuePassed_) / (maxValuePassed_ - minValuePassed_) * 100;
-        break;
+        return Math.Round(calculatedValue_, 0).ToString(CultureInfo.InvariantCulture);
       case Unit.Absolute:
         calculatedValue_ = valuePassed_ - minValuePassed_;
-        break;
+        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
       default:
         calculatedValue_ = valuePassed_;
-        break;
+        return Math.Round(calculatedValue_, 0).ToString(CultureInfo.InvariantCulture);
     }
-
-    var temp = Math.Round(calculatedValue_, 0).ToString(CultureInfo.InvariantCulture);
-    return Math.Round(calculatedValue_, 0).ToString(CultureInfo.InvariantCulture);
   }
 
   public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {
