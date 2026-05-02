@@ -2,6 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/ResourceModule;component/Themes/SMBrushes.xaml"/>
-    <ResourceDictionary Source="/ResourceModule;component/Controls/MeterCtrlStyles.xaml"/>
+    <ResourceDictionary Source="/ResourceModule;component/Controls/Meter/MeterCtrlStyles.xaml"/>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

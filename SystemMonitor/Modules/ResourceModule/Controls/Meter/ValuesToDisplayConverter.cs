@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ResourceModule.Controls;
+namespace ResourceModule.Controls.Meter;
 
 public class ValuesToDisplayConverter : IMultiValueConverter {
   public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
@@ -45,13 +45,13 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
     switch (unit_) {
       case Unit.Percent:
         calculatedValue_ = (valuePassed_ - minValuePassed_) / (maxValuePassed_ - minValuePassed_) * 100;
-        return Math.Round(calculatedValue_, 0).ToString(CultureInfo.InvariantCulture);
+        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
       case Unit.Absolute:
         calculatedValue_ = valuePassed_ - minValuePassed_;
         return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
       default:
         calculatedValue_ = valuePassed_;
-        return Math.Round(calculatedValue_, 0).ToString(CultureInfo.InvariantCulture);
+        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
     }
   }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ResourceModule.Controls;
+namespace ResourceModule.Controls.Meter;
 
 public enum Unit {
   None,

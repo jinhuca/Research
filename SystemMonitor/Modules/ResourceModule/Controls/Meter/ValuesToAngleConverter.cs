@@ -6,9 +6,9 @@ using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ResourceModule.Controls;
+namespace ResourceModule.Controls.Meter;
 
-public class MultiValuesToAngleConverter : IMultiValueConverter {
+public class ValuesToAngleConverter : IMultiValueConverter {
   public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
     // (1) cast the passed values to double
     double valuePassed_, minValuePassed_, maxValuePassed_;

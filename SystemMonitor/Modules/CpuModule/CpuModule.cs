@@ -1,5 +1,6 @@
 using CpuModule.Models;
 using CpuModule.Views;
+using ResourceModule.Controls.Meter;
 using System.ComponentModel.DataAnnotations;
 using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
@@ -25,6 +26,6 @@ public class CpuModule : IModule {
 
   public void OnInitialized(IContainerProvider containerProvider) {
     //containerProvider.Resolve<ISMProvider>();
-    var cpuLoadMeter = containerProvider.Resolve<ResourceModule.Controls.MeterControl>();
+    var cpuLoadMeter = containerProvider.Resolve<MeterControl>();
   }
 }

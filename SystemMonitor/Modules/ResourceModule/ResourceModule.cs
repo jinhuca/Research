@@ -1,5 +1,6 @@
 
 using ResourceModule.Controls;
+using ResourceModule.Controls.Meter;
 using System.Windows;
 
 namespace ResourceModule;

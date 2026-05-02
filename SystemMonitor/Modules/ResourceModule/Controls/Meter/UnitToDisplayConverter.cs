@@ -4,10 +4,10 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Data;
 
-namespace ResourceModule.Controls;
+namespace ResourceModule.Controls.Meter;
 
 [ValueConversion(typeof(Unit), typeof(string))]
-public class UnitToStringConverter : IValueConverter {
+public class UnitToDisplayConverter : IValueConverter {
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
     var abs = Definitions.AbsoluteString ?? string.Empty;
     var pct = Definitions.PercentageString ?? string.Empty;
