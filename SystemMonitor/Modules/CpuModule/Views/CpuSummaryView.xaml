@@ -5,9 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:prism="http://prismlibrary.com/" 
-             xmlns:local="clr-namespace:CpuModule.Views" 
              xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
+             xmlns:local="clr-namespace:CpuModule.Views" 
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
   <Border Style="{StaticResource ModuleBorderStyle}">
     <Grid Margin="10" Width="Auto" Height="325" ShowGridLines="False">

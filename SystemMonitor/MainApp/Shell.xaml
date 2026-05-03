@@ -11,9 +11,9 @@
         WindowState="Maximized"
         Background="DarkSlateGray"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
-  <Grid ShowGridLines="True">
+  <Grid ShowGridLines="False">
     <Grid.RowDefinitions>
-      <RowDefinition Height="30"/>
+      <RowDefinition Height="60"/>
       <RowDefinition Height="1.4*"/>
       <RowDefinition Height="*"/>
       <RowDefinition Height="*"/>

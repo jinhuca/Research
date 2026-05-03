@@ -7,18 +7,103 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
-             xmlns:local="clr-namespace:OsModule.Views"
+             xmlns:local="clr-namespace:OsModule"
+             xmlns:localView="clr-namespace:OsModule.Views"
+             xmlns:localViewModel="clr-namespace:OsModule.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-  <Grid Height="30">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1*"/>
-      <ColumnDefinition Width="1*"/>
-      <ColumnDefinition Width="1*"/>
-    </Grid.ColumnDefinitions>
-    <TextBlock Grid.Column="0" Margin="10,0,0,0" Style="{StaticResource ModuleContentTitleStyle}"
-               Text="{x:Static local:ViewDefinitions.ModuleName}"/>
-    <TextBlock Grid.Column="1" Margin="10,0,0,0" Style="{StaticResource ModuleContentTextStyle}"
-               Text="{Binding Caption}"/>
-  </Grid>
+  <Border Style="{StaticResource ResourceKey=ModuleBorderStyle}">
+    <Grid Height="60" Width="Auto" Margin="10,0,0,0" ShowGridLines="False">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="25"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="80"/>
+        <ColumnDefinition Width="240"/>
+        <ColumnDefinition Width="90"/>
+        <ColumnDefinition Width="90"/>
+        <ColumnDefinition Width="90"/>
+        <ColumnDefinition Width="150"/>
+        <ColumnDefinition Width="90"/>
+        <ColumnDefinition Width="180"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="240"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                 Style="{StaticResource ModuleTitleTextStyle}" VerticalAlignment="Bottom"
+                 Text="{x:Static localView:ViewDefinitions.ModuleName}"/>
+      
+      <TextBlock Grid.Row="0" Grid.Column="1" 
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.CaptionTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="1"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding Caption}"/>
+
+      <TextBlock Grid.Row="0" Grid.Column="2" 
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.VersionTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="2"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding Version}"/>
+
+      <TextBlock Grid.Row="0" Grid.Column="3"
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.BuildNumberTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="3"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding BuildNumber}"/>
+      
+      <TextBlock Grid.Row="0" Grid.Column="4" 
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.OSArchitectureTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="4"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding OSArchitecture}"/>
+      
+      <TextBlock Grid.Row="0" Grid.Column="5"            
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.LanguageTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="5"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding Language}"/>
+
+      <TextBlock Grid.Row="0" Grid.Column="6"            
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.CodeSetTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="6"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding CodeSet}"/>
+
+      <TextBlock Grid.Row="0" Grid.Column="7"            
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.CSNameTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="7"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding CSName}"/>
+
+      <TextBlock Grid.Row="0" Grid.Column="8"            
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.TimeZoneTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="8"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding TimeZone}"/>
+      <TextBlock Grid.Row="0" Grid.Column="9"
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.LocaleTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="9" 
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding Locale}"/>
+      <TextBlock Grid.Row="0" Grid.Column="10"
+                 Style="{StaticResource ModuleContentTitleStyle}"
+                 Text="{x:Static localView:ViewDefinitions.SerialNumberTitle}"/>
+      <TextBlock Grid.Row="1" Grid.Column="10"
+                 Style="{StaticResource ModuleContentTextStyle}"
+                 Text="{Binding SerialNumber}"/>
+
+
+    </Grid>
+  </Border>
 </UserControl>

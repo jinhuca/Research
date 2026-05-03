@@ -18,7 +18,7 @@ public class OsModule : IModule {
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
     containerRegistry.RegisterSingleton<IOperatingSystemModel, OperatingSystemModel>();
-    containerRegistry.Register<IOperatingSystemViewModel, OperatingSystemViewModel>();
+    containerRegistry.RegisterSingleton<IOperatingSystemViewModel, OperatingSystemViewModel>();
     containerRegistry.Register<ISMProvider, SMProvider>();
     _regionManager.RegisterViewWithRegion(OsRegionName, typeof(OperatingSystemSummaryView));
   }
