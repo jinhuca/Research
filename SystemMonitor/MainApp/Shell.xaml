@@ -16,6 +16,7 @@
       <RowDefinition Height="40"/>
       <RowDefinition/>
       <RowDefinition/>
+      <RowDefinition/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="40"/>
@@ -26,5 +27,9 @@
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
     <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuRegionName}"/>
+    <ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>
+    <ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
   </Grid>
 </Window>

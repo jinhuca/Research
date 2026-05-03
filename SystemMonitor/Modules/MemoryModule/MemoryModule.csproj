@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6" />
+    <PackageReference Include="Prism.Core" Version="9.0.537" />
+    <PackageReference Include="Prism.Unity" Version="9.0.537" />
+    <PackageReference Include="Prism.Wpf" Version="9.0.537" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Providers\SystemManagementProvider\SystemManagementProvider.csproj" />
+    <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
+    <ProjectReference Include="..\..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
+    <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
+  </ItemGroup>
+
+</Project>

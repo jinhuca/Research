@@ -4,6 +4,10 @@ using CpuModule.Views;
 using GpuModule;
 using GpuModule.ViewModels;
 using GpuModule.Views;
+using MemoryModule.ViewModels;
+using MemoryModule.Views;
+using StorageModule.ViewModels;
+using StorageModule.Views;
 using System.Windows;
 using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
@@ -26,12 +30,16 @@ public partial class App : PrismApplication {
     moduleCatalog.AddModule<ResourceModule.ResourceModule>();
     moduleCatalog.AddModule<CpuModule.CpuModule>();
     moduleCatalog.AddModule<GpuModule.GpuModule>();
+    moduleCatalog.AddModule<MemoryModule.MemoryModule>();
+    moduleCatalog.AddModule<StorageModule.StorageModule>();
   }
 
   protected override void ConfigureViewModelLocator() {
     base.ConfigureViewModelLocator();
     ViewModelLocationProvider.Register<CpuSummaryView, CpuViewModel>();
     ViewModelLocationProvider.Register<GpuSummaryView, GpuViewModel>();
+    ViewModelLocationProvider.Register<MemorySummaryView, MemoryViewModel>();
+    ViewModelLocationProvider.Register<StorageSummaryView, StorageViewModel>();
   }
 }
 

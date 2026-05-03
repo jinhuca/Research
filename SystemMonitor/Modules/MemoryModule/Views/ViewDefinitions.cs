@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GpuModule.Views; 
+namespace MemoryModule.Views; 
 internal class ViewDefinitions {
-  public const string ModuleName = "GPU";
+  public const string ModuleName = "Memory";
 }
