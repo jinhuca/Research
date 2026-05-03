@@ -89,12 +89,12 @@ public partial class MeterControl : UserControl {
 
   public static readonly DependencyProperty UnitProperty = DependencyProperty.Register(
     nameof(Unit),
-    typeof(string),
+    typeof(Unit),
     typeof(MeterControl),
-    new FrameworkPropertyMetadata(string.Empty));
+    new FrameworkPropertyMetadata(Unit.None));
 
-  public string Unit {
-    get => (string)GetValue(UnitProperty);
+  public Unit Unit {
+    get => (Unit)GetValue(UnitProperty);
     set => SetValue(UnitProperty, value);
   }
 

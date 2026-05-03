@@ -137,7 +137,7 @@
                                Style="{StaticResource MeterStyle100}"
                                MinValue="0" 
                                MaxValue="100" 
-                               Unit="%"
+                               Unit="{x:Static ctrl:Unit.Percent}"
                                CtrlBackground="Transparent" 
                                GaugeColor="#FF878A9F" 
                                NeedleColor="#FFEF5350" 
@@ -152,7 +152,7 @@
                                
                                MaxValue="8"
                                
-                               Unit="GHz"
+                               Unit="{x:Static ctrl:Unit.GHz}"
                                CtrlBackground="Transparent" 
                                GaugeColor="#FF878A9F" 
                                NeedleColor="#FF42A5F5"
@@ -164,8 +164,8 @@
                                Value="{Binding Temperature}" 
                                Style="{StaticResource MeterStyle100}"
                                MinValue="0" 
-                               MaxValue="100" 
-                               Unit="°C"
+                               MaxValue="120" 
+                               Unit="{x:Static ctrl:Unit.Celsius}"
                                CtrlBackground="Transparent" 
                                GaugeColor="#FF878A9F" 
                                NeedleColor="#FFFFA726"

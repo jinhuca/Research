@@ -10,6 +10,7 @@
   <UserControl.Resources>
     <local:ValuesToAngleConverter x:Key="valuesToAngleConverter"/>
     <local:ValuesToDisplayConverter x:Key="valuesToDisplayConverter"/>
+    <local:UnitToDisplayConverter x:Key="unitToDisplayConverter"/>
   </UserControl.Resources>
   <Grid Background="{Binding CtrlBackground, RelativeSource={RelativeSource AncestorType=UserControl}}">
     <Grid Margin="0,0,0,0">
@@ -37,7 +38,9 @@
       </ed:Arc>
     </Grid>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-      <TextBlock Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat=N2}" 
+      <TextBlock Text="{Binding Label, 
+                       RelativeSource={RelativeSource AncestorType=UserControl}, 
+                       StringFormat=N2}" 
                  Foreground="#FF878A9F" HorizontalAlignment="Center" FontSize="14"/>
       <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
         <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-12,0,0"
@@ -51,7 +54,9 @@
             </MultiBinding>
           </TextBlock.Text>
         </TextBlock>
-        <TextBlock Text="{Binding Unit, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+        <TextBlock Text="{Binding Unit, 
+                         RelativeSource={RelativeSource AncestorType=UserControl}, 
+                         Converter={StaticResource unitToDisplayConverter}}" 
                    Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-12,0,0"
                    FontSize="20" FontWeight="ExtraLight"/>
       </StackPanel>

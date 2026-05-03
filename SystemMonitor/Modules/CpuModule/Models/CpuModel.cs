@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using LibreHardwareMonitor.Hardware;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Management;
 using SystemManagementProvider.Constants;
@@ -10,7 +11,6 @@ struct CpuModelDefinitions {
   public const int TimerStartDelay = 200;
   public const int TimerInterval = 1000;
 }
-
 
 public class CpuModel : BindableBase, ICpuModel {
   private Timer _timer;
@@ -72,7 +72,8 @@ public class CpuModel : BindableBase, ICpuModel {
       Processes = Process.GetProcesses().Length,
       Threads = Process.GetProcesses().Sum(proc => proc.Threads.Count),
       Handles = Process.GetProcesses().Sum(proc => proc.HandleCount),
-      UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64)
+      UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64),
+      Temperature = GetTemperature()
     };
 
     //Utilization = NativeMethodGroup.GetTotalCpuUtilization();
@@ -88,6 +89,7 @@ public class CpuModel : BindableBase, ICpuModel {
     Debug.WriteLine("Threads =       " + RealTimeInfo.Threads);
     Debug.WriteLine("Handles =       " + RealTimeInfo.Handles);
     Debug.WriteLine("Up time =       " + RealTimeInfo.UpTime);
+    Debug.WriteLine("Temperature =   " + RealTimeInfo.Temperature);
     Debug.WriteLine("");
   }
 
@@ -127,6 +129,27 @@ public class CpuModel : BindableBase, ICpuModel {
     RealTimeInfo = new RealTimeInfo {
       //Utilization = NativeMethodGroup.GetTotalCpuUtilization(),
     };
+  }
+
+  private float GetTemperature() {
+    try {
+      Computer computer = new Computer { IsCpuEnabled = true };
+      computer.Open();
+      foreach (var hardware in computer.Hardware) {
+        if (hardware.HardwareType == HardwareType.Cpu) {
+          hardware.Update();
+          foreach (var sensor in hardware.Sensors) {
+            if (sensor.SensorType == SensorType.Temperature) {
+              return sensor.Value ?? 0;
+            }
+          }
+        }
+      }
+    }
+    catch (Exception ex) {
+      Console.WriteLine(ex.Message);
+    }
+    return 0;
   }
 
   private string _vendorName = string.Empty;

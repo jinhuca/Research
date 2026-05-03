@@ -23,5 +23,6 @@ public interface ICpuViewModel {
   int Processes { get; set; }
   int Threads { get; set; }
   int Handles { get; set; }
+  float Temperature { get; set; }
   TimeSpan UpTime { get; set; }
 }

@@ -9,5 +9,6 @@ public class RealTimeInfo : BindableBase {
   public int Processes { get; set; }
   public int Threads { get; set; }
   public int Handles { get; set; }
+  public float Temperature { get; set; }
   public TimeSpan UpTime { get; set; }
 }

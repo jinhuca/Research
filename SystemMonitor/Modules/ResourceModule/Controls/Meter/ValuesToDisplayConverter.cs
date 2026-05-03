@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Data;
+using static ResourceModule.Controls.Meter.Definitions;
 
 namespace ResourceModule.Controls.Meter;
 

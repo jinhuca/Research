@@ -12,12 +12,17 @@ public class UnitToDisplayConverter : IValueConverter {
     var abs = Definitions.AbsoluteString ?? string.Empty;
     var pct = Definitions.PercentageString ?? string.Empty;
     var none = Definitions.NoneString ?? string.Empty;
+    var ghz = Definitions.GHzString ?? string.Empty;
+    var celsius = Definitions.CelsiusString ?? string.Empty;
 
     var input = value?.ToString() ?? string.Empty;
+
     if (Enum.TryParse<Unit>(input, out Unit unit_)) {
       return unit_ switch {
         Unit.Percent => pct,
         Unit.Absolute => parameter?.ToString() ?? abs,
+        Unit.GHz => ghz,
+        Unit.Celsius => celsius,
         Unit.None => none,
         _ => string.Empty,
       };

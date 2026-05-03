@@ -17,6 +17,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
         RaisePropertyChanged(nameof(Processes));
         RaisePropertyChanged(nameof(Threads));
         RaisePropertyChanged(nameof(Handles));
+        RaisePropertyChanged(nameof(Temperature));
       }
     };
     initProperties();
@@ -221,6 +222,14 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
     get => _model.RealTimeInfo.Utilization;
     set {
       _model.RealTimeInfo.Utilization = value;
+      RaisePropertyChanged();
+    }
+  }
+
+  public float Temperature {
+    get => _model.RealTimeInfo.Temperature;
+    set {
+      _model.RealTimeInfo.Temperature = value;
       RaisePropertyChanged();
     }
   }
