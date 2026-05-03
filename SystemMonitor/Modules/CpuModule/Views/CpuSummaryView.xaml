@@ -9,7 +9,7 @@
              xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
-  <Border BorderBrush="Gray" BorderThickness="3" CornerRadius="15" Margin="10" Background="Black">
+  <Border Style="{StaticResource ModuleBorderStyle}">
     <Grid Margin="10" Width="Auto" Height="325" ShowGridLines="False">
       <Grid.RowDefinitions>
         <RowDefinition Height="85"/>

@@ -13,16 +13,18 @@
         Title="{x:Static shared:TextDefinitions.AppTitle}">
   <Grid ShowGridLines="True">
     <Grid.RowDefinitions>
-      <RowDefinition Height="40"/>
-      <RowDefinition/>
-      <RowDefinition/>
-      <RowDefinition/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="1.4*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="40"/>
       <ColumnDefinition/>
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
+    <ContentControl x:Name="OsRegion" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
     <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
     <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2" 

@@ -19,6 +19,7 @@
     <ProjectReference Include="..\GpuModule\GpuModule.csproj" />
     <ProjectReference Include="..\Modules\CpuModule\CpuModule.csproj" />
     <ProjectReference Include="..\Modules\MemoryModule\MemoryModule.csproj" />
+    <ProjectReference Include="..\Modules\OsModule\OsModule.csproj" />
     <ProjectReference Include="..\Modules\ResourceModule\ResourceModule.csproj" />
     <ProjectReference Include="..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
     <ProjectReference Include="..\StorageModule\StorageModule.csproj" />
