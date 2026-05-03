@@ -5,6 +5,6 @@ using System.ComponentModel;
 using System.Text;
 
 namespace OsModule.Models; 
-public interface IOperatingSystemModel : INotifyPropertyChanged, INotifyCollectionChanged {
-  string Name { get; set; }
+public interface IOperatingSystemModel : INotifyPropertyChanged {
+  string Caption { get; set; }
 }

@@ -4,5 +4,5 @@ using System.Text;
 
 namespace OsModule.ViewModels; 
 public interface IOperatingSystemViewModel {
-  string Name { get; set; }
+  string Caption { get; set; }
 }
