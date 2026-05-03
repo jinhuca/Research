@@ -3,7 +3,7 @@
   <Style TargetType="TextBlock" x:Key="ModuleTitleTextStyle">
     <Setter Property="FontSize" Value="42"/>
     <Setter Property="Foreground" Value="White"/>
-    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="10,0,0,0"/>
   </Style>

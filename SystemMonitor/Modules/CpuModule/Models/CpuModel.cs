@@ -8,7 +8,7 @@ using SystemManagementProvider.Interfaces;
 namespace CpuModule.Models;
 
 struct CpuModelDefinitions {
-  public const int TimerStartDelay = 200;
+  public const int TimerStartDelay = 0;
   public const int TimerInterval = 1000;
 }
 

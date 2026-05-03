@@ -9,20 +9,22 @@
         mc:Ignorable="d" 
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
-        Background="Gray"
+        Background="DarkSlateGray"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
-  <Grid>
+  <Grid ShowGridLines="True">
     <Grid.RowDefinitions>
+      <RowDefinition Height="40"/>
       <RowDefinition/>
       <RowDefinition/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="40"/>
       <ColumnDefinition/>
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
-    <ContentControl x:Name="CpuRegion" Grid.Row="0" Grid.Column="0" 
+    <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
-    <ContentControl x:Name="GpuRegion" Grid.Row="0" Grid.Column="1" 
+    <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuRegionName}"/>
   </Grid>
 </Window>
