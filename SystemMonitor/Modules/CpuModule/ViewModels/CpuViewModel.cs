@@ -41,10 +41,10 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string BrandName {
     get {
-      return _model.BrandName;
+      return _model.BrandName.Replace("(R)", "").Replace("  ", "");
     }
     set {
-      if(_model.BrandName != value) {
+      if(_model.BrandName.Replace("(R)", "").Replace("  ", "") != value) {
         _model.BrandName = value;
         RaisePropertyChanged(nameof(BrandName));
       }
