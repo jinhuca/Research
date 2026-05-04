@@ -30,29 +30,24 @@
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <StackPanel Orientation="Horizontal" Margin="5">
-              <TextBlock Text="{Binding Key}" FontWeight="Bold" Margin="0,0,10,0" Style="{StaticResource ModuleContentTextStyle}" VerticalAlignment="Top"/>
+              <TextBlock Text="{Binding Key}" Margin="0,0,10,0" Style="{StaticResource ModuleContentTextStyle}" VerticalAlignment="Top"/>
               <ItemsControl ItemsSource="{Binding Value}">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate>
-                    <StackPanel Orientation="Vertical" Margin="0,0,10,0">
-                      <TextBlock Text="{Binding Key}" Style="{StaticResource ModuleContentTitleStyle}"/>
-                    </StackPanel>
+                    <TextBlock Text="{Binding Key}" Style="{StaticResource ModuleContentTitleStyle}"/>
                   </DataTemplate>
                 </ItemsControl.ItemTemplate>
               </ItemsControl>
               <ItemsControl ItemsSource="{Binding Value}">
                 <ItemsControl.ItemTemplate>
                   <DataTemplate>
-                    <StackPanel Orientation="Vertical" Margin="0,0,10,0">
-                      <TextBlock Text="{Binding Value}" Style="{StaticResource ModuleContentTextStyle}"/>
-                    </StackPanel>
+                    <TextBlock Text="{Binding Value}" Style="{StaticResource ModuleContentTextStyle}"/>
                   </DataTemplate>
                 </ItemsControl.ItemTemplate>
               </ItemsControl>
             </StackPanel>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
-
       </ItemsControl>
     </Grid>
   </Border>
