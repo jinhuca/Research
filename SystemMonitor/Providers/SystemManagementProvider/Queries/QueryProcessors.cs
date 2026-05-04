@@ -488,4 +488,8 @@ public class QueryProcessors : ISMQuery {
     info = GetInfo();
     return info;
   }
+
+  public Dictionary<string, Dictionary<string, (string, string)>> QueryMultiple(string query) {
+    throw new NotImplementedException();
+  }
 }

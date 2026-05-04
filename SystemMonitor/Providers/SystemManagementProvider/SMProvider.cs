@@ -63,7 +63,7 @@ public class SMProvider : ISMProvider {
       case SMCategories.OperatingSystem:
         return new QueryOperatingSystem();
       case SMCategories.Gpu:
-        break;
+        return new QueryGpu();
     }
     throw new NotImplementedException();
   }

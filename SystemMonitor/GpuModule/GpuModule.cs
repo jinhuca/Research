@@ -1,4 +1,5 @@
 using GpuModule.Models;
+using GpuModule.ViewModels;
 using GpuModule.Views;
 using ResourceModule.Controls.Meter;
 using System.ComponentModel.DataAnnotations;
@@ -17,8 +18,10 @@ public class GpuModule : IModule {
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.RegisterSingleton<IGpuModel, GpuModel>();
     containerRegistry.Register<ISMProvider, SMProvider>();
+    containerRegistry.RegisterSingleton<IGpuModel, GpuModel>();
+    containerRegistry.RegisterSingleton<IGpuViewModel, GpuViewModel>();
+    
     _regionManager.RegisterViewWithRegion(GpuRegionName, typeof(GpuSummaryView));
   }
 
