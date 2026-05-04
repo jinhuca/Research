@@ -48,20 +48,10 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
         if (gpuDetails.TryGetValue(ViewModelDefinitions.AdapterDACType, out var dacType_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.AdapterDACType] = dacType_.Item1;
         }
-      }
 
-      // Process the GPU details as needed
-      // For example, you can extract specific information like vendor, memory, etc.
-      if (gpuDetails.TryGetValue(ViewModelDefinitions.CaptionString, out var captionInfo)) {
-        var caption = captionInfo.Item1; // Assuming the first item is the caption
-        // Do something with the caption information
+        // Add the GPU name to the list
+        GpuNameList.Add(gpuName);
       }
-      if (gpuDetails.TryGetValue(ViewModelDefinitions.AdapterRamString, out var memoryInfo)) {
-        var memoryBytes = memoryInfo.Item1; // Assuming the first item is the memory size in bytes
-        // Convert memoryBytes to a more readable format if needed
-      }
-      // Add more processing as required for other GPU details
-
     }
   }
 
@@ -88,5 +78,11 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
   public Dictionary<string, Dictionary<string, string>> GpuSummaryList {
     get => _gpuSummaryList;
     set => SetProperty(ref _gpuSummaryList, value);
+  }
+
+  private List<string> _gpuNameList = new();
+  public List<string> GpuNameList {
+    get => _gpuNameList;
+    set => SetProperty(ref _gpuNameList, value);
   }
 }

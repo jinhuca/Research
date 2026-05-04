@@ -17,7 +17,7 @@
         <RowDefinition Height="60" MinHeight="40"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="80"/>
+        <ColumnDefinition Width="60"/>
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
@@ -27,6 +27,11 @@
                  Text="{x:Static local:ViewDefinitions.ModuleName}"/>
       <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3"
                     ItemsSource="{Binding GpuSummaryList}">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal"/>
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
           <DataTemplate>
             <StackPanel Orientation="Horizontal" Margin="5">

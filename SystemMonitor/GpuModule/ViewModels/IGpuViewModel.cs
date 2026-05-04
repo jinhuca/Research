@@ -7,8 +7,6 @@ namespace GpuModule.ViewModels;
 
 public interface IGpuViewModel {
 
-  //string BrandName { get; set; }
-  //Dictionary<string, BasicInfo> Summary { get; set; }
-
+  List<string> GpuNameList { get; set; }
   Dictionary<string, Dictionary<string, string>> GpuSummaryList { get; set; }
 }
