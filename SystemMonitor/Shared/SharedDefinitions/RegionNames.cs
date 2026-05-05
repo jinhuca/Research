@@ -3,7 +3,7 @@ public static class RegionNames {
   public static string MainRegionName { get; set; } = "MainRegion";
   public static string OsRegionName { get; set; } = "OsRegion";
   public static string CpuRegionName { get; set; } = "CpuRegion";
-  public static string GpuRegionName { get; set; } = "GpuRegion";
+  public static string GpuSummaryRegionName { get; set; } = "GpuSummaryRegion";
   public static string MemoryRegionName { get; set; } = "MemoryRegion";
   public static string StorageRegionName { get; set; } = "StorageRegion";
   public static string BiosRegionName { get; set; } = "BiosRegion";

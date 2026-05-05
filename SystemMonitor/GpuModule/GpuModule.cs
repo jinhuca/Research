@@ -21,8 +21,9 @@ public class GpuModule : IModule {
     containerRegistry.Register<ISMProvider, SMProvider>();
     containerRegistry.RegisterSingleton<IGpuModel, GpuModel>();
     containerRegistry.RegisterSingleton<IGpuViewModel, GpuViewModel>();
-    
-    _regionManager.RegisterViewWithRegion(GpuRegionName, typeof(GpuSummaryView));
+    containerRegistry.RegisterSingleton<IGpuSummaryViewModel, GpuSummaryViewModel>();
+
+    _regionManager.RegisterViewWithRegion(GpuSummaryRegionName, typeof(GpuSummaryView));
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {

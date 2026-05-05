@@ -12,4 +12,8 @@ internal static class ViewModelDefinitions {
   public static string DriverVersion = "DriverVersion";
   public static string AdapterDACType = "AdapterDACType";
 
+  public static string InternalGpuType = "Internal";
+  public static string DedicatedGpuType = "Integrated";
+
+  
 }

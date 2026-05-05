@@ -13,22 +13,22 @@
         Title="{x:Static shared:TextDefinitions.AppTitle}">
   <Grid ShowGridLines="False">
     <Grid.RowDefinitions>
-      <RowDefinition Height="60"/>
-      <RowDefinition Height="1.4*"/>
-      <RowDefinition Height="*"/>
-      <RowDefinition Height="*"/>
+      <RowDefinition Height="1.60cm"/>
+      <RowDefinition Height="1.2*" MinHeight="8.60cm"/>
+      <RowDefinition Height="*" MinHeight="5.10cm"/>
+      <RowDefinition Height="1.3*" MinHeight="6.20cm"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="40"/>
-      <ColumnDefinition/>
-      <ColumnDefinition/>
+      <ColumnDefinition Width="1.60cm"/>
+      <ColumnDefinition Width="*" MinWidth="12.00cm"/>
+      <ColumnDefinition Width="*" MinWidth="8.00cm"/>
     </Grid.ColumnDefinitions>
     <ContentControl x:Name="OsRegion" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
     <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
     <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2" 
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuRegionName}"/>
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuSummaryRegionName}"/>
     <ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>
     <ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 

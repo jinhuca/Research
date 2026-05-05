@@ -12,98 +12,110 @@
              xmlns:localViewModel="clr-namespace:OsModule.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-  <Border Style="{StaticResource ResourceKey=ModuleBorderStyle}">
-    <Grid Height="60" Width="Auto" Margin="10,0,0,0" ShowGridLines="False">
+  <Border Style="{StaticResource ModuleBorderStyle}">
+    <Grid Height="4cm" Width="Auto" Margin="0.5cm,0,0,0" ShowGridLines="False">
       <Grid.RowDefinitions>
-        <RowDefinition Height="25"/>
-        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="0.6cm"/>
+        <RowDefinition Height="0.6cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="80"/>
-        <ColumnDefinition Width="240"/>
-        <ColumnDefinition Width="90"/>
-        <ColumnDefinition Width="90"/>
-        <ColumnDefinition Width="90"/>
-        <ColumnDefinition Width="150"/>
-        <ColumnDefinition Width="90"/>
-        <ColumnDefinition Width="180"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="240"/>
+        <ColumnDefinition Width="1.80cm"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
       <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                 Style="{StaticResource ModuleTitleTextStyle}" VerticalAlignment="Bottom"
+                 Style="{StaticResource ModuleTitleTextStyle}" VerticalAlignment="Center"
                  Text="{x:Static localView:ViewDefinitions.ModuleName}"/>
-      
-      <TextBlock Grid.Row="0" Grid.Column="1" 
+
+      <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,0.5cm,0"
                  Style="{StaticResource ModuleContentTitleStyle}"
                  Text="{x:Static localView:ViewDefinitions.CaptionTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="1"
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0.5cm,0"
                  Style="{StaticResource ModuleContentTextStyle}"
                  Text="{Binding Caption}"/>
+      </StackPanel>
 
-      <TextBlock Grid.Row="0" Grid.Column="2" 
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.VersionTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="2"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding Version}"/>
+      <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}" 
+                   Text="{x:Static localView:ViewDefinitions.VersionTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding Version}"/>
+      </StackPanel>
 
-      <TextBlock Grid.Row="0" Grid.Column="3"
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.BuildNumberTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="3"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding BuildNumber}"/>
-      
-      <TextBlock Grid.Row="0" Grid.Column="4" 
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.OSArchitectureTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="4"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding OSArchitecture}"/>
-      
-      <TextBlock Grid.Row="0" Grid.Column="5"            
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.LanguageTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="5"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding Language}"/>
+      <StackPanel Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}" 
+                   Text="{x:Static localView:ViewDefinitions.BuildNumberTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding BuildNumber}"/>
+      </StackPanel>
 
-      <TextBlock Grid.Row="0" Grid.Column="6"            
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.CodeSetTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="6"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding CodeSet}"/>
+      <StackPanel Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.OSArchitectureTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding OSArchitecture}"/>
+      </StackPanel>
 
-      <TextBlock Grid.Row="0" Grid.Column="7"            
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.CSNameTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="7"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding CSName}"/>
+      <StackPanel Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.LanguageTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding Language}"/>
+      </StackPanel>
 
-      <TextBlock Grid.Row="0" Grid.Column="8"            
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.TimeZoneTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="8"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding TimeZone}"/>
-      <TextBlock Grid.Row="0" Grid.Column="9"
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.LocaleTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="9" 
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding Locale}"/>
-      <TextBlock Grid.Row="0" Grid.Column="10"
-                 Style="{StaticResource ModuleContentTitleStyle}"
-                 Text="{x:Static localView:ViewDefinitions.SerialNumberTitle}"/>
-      <TextBlock Grid.Row="1" Grid.Column="10"
-                 Style="{StaticResource ModuleContentTextStyle}"
-                 Text="{Binding SerialNumber}"/>
+      <StackPanel Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.CodeSetTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding CodeSet}"/>
+      </StackPanel>
 
+      <StackPanel Grid.Row="0" Grid.Column="7" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.TimeZoneTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding TimeZone}"/>
+      </StackPanel>
 
+      <StackPanel Grid.Row="0" Grid.Column="8" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.LocaleTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding Locale}"/>
+      </StackPanel>
+
+      <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.SerialNumberTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding SerialNumber}"/>
+      </StackPanel>
+
+      <StackPanel Grid.Row="0" Grid.Column="10" Grid.RowSpan="2" 
+                  Style="{StaticResource VerticalKeyValueStackPanelStyle}">
+        <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static localView:ViewDefinitions.CSNameTitle}"/>
+        <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                   Text="{Binding CSName}"/>
+      </StackPanel>
     </Grid>
   </Border>
 </UserControl>
