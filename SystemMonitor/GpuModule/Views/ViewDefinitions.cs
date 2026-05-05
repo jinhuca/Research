@@ -13,6 +13,6 @@ internal class ViewDefinitions {
   public const string BrandName = "Brand";
   public const string VendorTitle = "Vendor";
   public const string VersionTitle = "Version";
-  public const string RamTitle = "Adapter Ram Size";
+  public const string RamTitle = "RAM";
   public const string TypeTitle = "Type";
 }

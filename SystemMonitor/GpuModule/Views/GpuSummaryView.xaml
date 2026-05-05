@@ -14,101 +14,76 @@
     <converters:ByteUnitConverters x:Key="ByteConverter"/>
   </UserControl.Resources>
   <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="10" ShowGridLines="False">
+    <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="False">
       <Grid.RowDefinitions>
-        <RowDefinition Height="100" MinHeight="85"/>
-        <RowDefinition Height="180" MinHeight="180"/>
-        <RowDefinition Height="40" MinHeight="40"/>
+        <RowDefinition Height="2.10cm" MinHeight="2.10cm"/>
+        <RowDefinition Height="4.00cm" MinHeight="4.00cm"/>
+        <RowDefinition Height="2.80cm" MinHeight="2.80cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="60"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="2.00cm"/>
+        <ColumnDefinition/>
       </Grid.ColumnDefinitions>
-      <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+      <TextBlock Grid.Row="0" Grid.Column="0"
                  Style="{StaticResource ModuleTitleTextStyle}" 
                  Text="{x:Static local:ViewDefinitions.ModuleName}"/>
-      <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4">
-        <Grid.RowDefinitions>
-          <RowDefinition/>
-          <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="20,0,0,0" Width="800">
-          <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-          </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.2*"/>
-            <ColumnDefinition Width="1.2*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.2*"/>
-            <ColumnDefinition Width="*"/>
-          </Grid.ColumnDefinitions>
-          <TextBlock Grid.Row="0" Grid.Column="0" 
-                     Style="{StaticResource ModuleContentTitleStyle}"
+      <Grid Grid.Row="0" Grid.Column="1" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition MinWidth="5.00cm"/>
+          <ColumnDefinition MinWidth="2.60cm"/>
+          <ColumnDefinition MinWidth="3.00cm"/>
+          <ColumnDefinition MinWidth="3.00cm"/>
+          <ColumnDefinition MinWidth="3.00cm"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.BrandName}"/>
-          <TextBlock Grid.Row="1" Grid.Column="0" 
-                     Style="{StaticResource ModuleContentTextStyle}" 
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}" 
                      Text="{Binding InternalGpuSummaryViewModel.Name}"/>
-          <TextBlock Grid.Row="2" Grid.Column="0" 
-                     Style="{StaticResource ModuleContentTextStyle}"
-                     Text="{Binding DedicatedGpuSummaryViewModel.Name}"/>
-
-          <TextBlock Grid.Row="0" Grid.Column="1" 
-                     Style="{StaticResource ModuleContentTitleStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                     Text="{Binding DedicatedGpuSummaryViewModel.Name}"/>          
+        </StackPanel>
+        <!--<StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.VendorTitle}"/>
-          <TextBlock Grid.Row="1" Grid.Column="1"
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding InternalGpuSummaryViewModel.Vendor}"/>
-          <TextBlock Grid.Row="2" Grid.Column="1" 
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding DedicatedGpuSummaryViewModel.Vendor}"/>
-
-          <TextBlock Grid.Row="0" Grid.Column="2" 
-                     Style="{StaticResource ModuleContentTitleStyle}"
+        </StackPanel>-->
+        <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.TypeTitle}"/>
-          <TextBlock Grid.Row="1" Grid.Column="2" 
-                     Style="{StaticResource ModuleContentTextStyle}" 
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}" 
                      Text="{Binding InternalGpuSummaryViewModel.Type}"/>
-          <TextBlock Grid.Row="2" Grid.Column="2" 
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding DedicatedGpuSummaryViewModel.Type}"/>
-          
-          <TextBlock Grid.Row="0" Grid.Column="3" 
-                     Style="{StaticResource ModuleContentTitleStyle}"
+        </StackPanel>
+        <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.VersionTitle}"/>
-          <TextBlock Grid.Row="1" Grid.Column="3"
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding InternalGpuSummaryViewModel.Version}"/>
-          <TextBlock Grid.Row="2" Grid.Column="3"
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding DedicatedGpuSummaryViewModel.Version}"/>
-          
-          <TextBlock Grid.Row="0" Grid.Column="4" 
-                     Style="{StaticResource ModuleContentTitleStyle}"
+        </StackPanel>
+        <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.RamTitle}"/>
-          <TextBlock Grid.Row="1" Grid.Column="4"
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding InternalGpuSummaryViewModel.Ram}"/>
-          <TextBlock Grid.Row="2" Grid.Column="4"
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding DedicatedGpuSummaryViewModel.Ram}"/>
-
-          <TextBlock Grid.Row="0" Grid.Column="5" 
-                     Style="{StaticResource ModuleContentTitleStyle}"
+        </StackPanel>
+        <StackPanel Grid.Column="4" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.IdTitle}"/>
-          <TextBlock Grid.Row="1" Grid.Column="5" 
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding InternalGpuSummaryViewModel.ID}"/>
-          <TextBlock Grid.Row="2" Grid.Column="5" 
-                     Style="{StaticResource ModuleContentTextStyle}"
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding DedicatedGpuSummaryViewModel.ID}"/>
+        </StackPanel>
         </Grid>
       </Grid>
-    </Grid>
   </Border>
 </UserControl>
