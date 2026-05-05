@@ -34,10 +34,10 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
 
     // (3) cast the passed value to Unit defined
     if (Enum.TryParse<Unit>(values[3].ToString(), out Unit unit_)) {
-      Debug.WriteLine($"Parsed unit: {unit_}");
+      //Debug.WriteLine($"Parsed unit: {unit_}");
     }
     else {
-      Debug.WriteLine($"Failed to parse unit from value: {values[3]}");
+      //Debug.WriteLine($"Failed to parse unit from value: {values[3]}");
       unit_ = Unit.None; // Default to None if parsing fails
     }
 

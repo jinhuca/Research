@@ -10,4 +10,7 @@ public interface IGpuViewModel {
   Dictionary<string, Dictionary<string, string>> GpuSummaryList { get; set; }
   IGpuSummaryViewModel InternalGpuSummaryViewModel { get; set; }
   IGpuSummaryViewModel DedicatedGpuSummaryViewModel { get; set; }
+  float Utilization { get; set; }
+  float Speed { get; set; }
+  float Temperature { get; set; }
 }

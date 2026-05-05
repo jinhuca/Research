@@ -15,4 +15,8 @@ internal class ViewDefinitions {
   public const string VersionTitle = "Version";
   public const string RamTitle = "RAM";
   public const string TypeTitle = "Type";
+
+  public const string UtilizationTitle = "Utilization";
+  public const string SpeedTitle = "Speed";
+  public const string TemperatureTitle = "Temperature";
 }

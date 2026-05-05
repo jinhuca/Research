@@ -15,9 +15,9 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
   public GpuViewModel(GpuModel model) {
     _model = model;
     _model.PropertyChanged += (s, e) => {
-      //if (e.PropertyName == nameof(_model.BrandName) || e.PropertyName == nameof(_model.Summary)) {
-      updateProperties();
-      //}
+      if (e.PropertyName == nameof(_model.Utilization)) {
+        updateProperties();
+      }
     };
 
     initProperties();
@@ -25,7 +25,9 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
   }
 
   private void initProperties() {
-    foreach(var gpuInfo in _model.GpuInfoList) {
+    _integratedGpuSummaryViewModel = new GpuSummaryViewModel(_model);
+    _dedicatedGpuSummaryViewModel = new GpuSummaryViewModel(_model);
+    foreach (var gpuInfo in _model.GpuInfoList) {
       var gpuName = gpuInfo.Key;
       var gpuDetails = gpuInfo.Value;
 
@@ -90,6 +92,7 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
     //if (_model.Summary != Summary) {
     //  Summary = _model.Summary ?? new Dictionary<string, BasicInfo>();
     //}
+    RaisePropertyChanged(nameof(Utilization));
     RaisePropertyChanged(nameof(InternalGpuSummaryViewModel));
     RaisePropertyChanged(nameof(DedicatedGpuSummaryViewModel));
   }
@@ -106,15 +109,45 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
     set => SetProperty(ref _gpuNameList, value);
   }
 
-  private IGpuSummaryViewModel _integratedGpuSummaryViewModel = new GpuSummaryViewModel();
+  private IGpuSummaryViewModel _integratedGpuSummaryViewModel;
   public IGpuSummaryViewModel InternalGpuSummaryViewModel {
     get => _integratedGpuSummaryViewModel;
     set => SetProperty(ref _integratedGpuSummaryViewModel, value);
   }
 
-  private IGpuSummaryViewModel _dedicatedGpuSummaryViewModel = new GpuSummaryViewModel();
+  private IGpuSummaryViewModel _dedicatedGpuSummaryViewModel;
   public IGpuSummaryViewModel DedicatedGpuSummaryViewModel {
     get => _dedicatedGpuSummaryViewModel;
     set => SetProperty(ref _dedicatedGpuSummaryViewModel, value);
+  }
+
+  public float Utilization {
+    get => _model?.Utilization ?? 0.0f;
+    set {
+      if (_model != null) {
+        _model.Utilization = value;
+        RaisePropertyChanged(nameof(Utilization));
+      }
+    }
+  }
+
+  public float Speed { 
+    get => _model?.Speed ?? 0.0f;
+    set {
+      if (_model != null) {
+        _model.Speed = value;
+        RaisePropertyChanged(nameof(Speed));
+      }
+    }
+  }
+
+  public float Temperature { 
+    get => _model?.Temperature ?? 0.0f;
+    set {
+      if (_model != null) {
+        _model.Temperature = value;
+        RaisePropertyChanged(nameof(Temperature));
+      }
+    }
   }
 }

@@ -36,7 +36,7 @@ public class ValuesToAngleConverter : IMultiValueConverter {
     //var cacluatedValueAngle_ = (valuePassed_ - minValuePassed_) * (PredefinedMaxAngle - PredefinedMinAngle) 
     //  / (maxValuePassed_ - minValuePassed_) + PredefinedMinAngle;
 
-    Debug.WriteLine(mappedValue.ToString());
+    //Debug.WriteLine(mappedValue.ToString());
     return mappedValue;
   }
 

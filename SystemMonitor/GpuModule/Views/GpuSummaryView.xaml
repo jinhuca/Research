@@ -17,7 +17,7 @@
     <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="False">
       <Grid.RowDefinitions>
         <RowDefinition Height="2.10cm" MinHeight="2.10cm"/>
-        <RowDefinition Height="4.00cm" MinHeight="4.00cm"/>
+        <RowDefinition Height="4.85cm" MinHeight="4.85cm"/>
         <RowDefinition Height="2.80cm" MinHeight="2.80cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
@@ -41,16 +41,8 @@
           <TextBlock Style="{StaticResource ModuleContentTextStyle}" 
                      Text="{Binding InternalGpuSummaryViewModel.Name}"/>
           <TextBlock Style="{StaticResource ModuleContentTextStyle}"
-                     Text="{Binding DedicatedGpuSummaryViewModel.Name}"/>          
+                     Text="{Binding DedicatedGpuSummaryViewModel.Name}"/>
         </StackPanel>
-        <!--<StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-                     Text="{x:Static local:ViewDefinitions.VendorTitle}"/>
-          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
-                     Text="{Binding InternalGpuSummaryViewModel.Vendor}"/>
-          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
-                     Text="{Binding DedicatedGpuSummaryViewModel.Vendor}"/>
-        </StackPanel>-->
         <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
           <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.TypeTitle}"/>
@@ -83,7 +75,49 @@
           <TextBlock Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding DedicatedGpuSummaryViewModel.ID}"/>
         </StackPanel>
-        </Grid>
       </Grid>
+
+      <UniformGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Rows="1">
+        <Viewbox Style="{StaticResource MeterViewBoxStyle}">
+          <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
+                           Value="{Binding Utilization}" 
+                           Style="{StaticResource MeterStyle100}"
+                           MinValue="0" 
+                           MaxValue="100"
+                           Unit="{x:Static ctrl:Unit.Percent}"
+                           CtrlBackground="Transparent" 
+                           GaugeColor="#FF878A9F" 
+                           NeedleColor="#FFFFA726"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+        </Viewbox>
+        <Viewbox Style="{StaticResource MeterViewBoxStyle}">
+          <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
+                               Value="{Binding Speed}" 
+                               Style="{StaticResource MeterStyle100}"
+                               MinValue="0" 
+                               MaxValue="8"
+                               Unit="{x:Static ctrl:Unit.GHz}"
+                               CtrlBackground="Transparent" 
+                               GaugeColor="#FF878A9F" 
+                               NeedleColor="#FF42A5F5"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+        </Viewbox>
+        <Viewbox Style="{StaticResource MeterViewBoxStyle}">
+          <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
+                               Value="{Binding Temperature}" 
+                               Style="{StaticResource MeterStyle100}"
+                               MinValue="0" 
+                               MaxValue="120" 
+                               Unit="{x:Static ctrl:Unit.Celsius}"
+                               CtrlBackground="Transparent"                             
+                               GaugeColor="#FF878A9F" 
+                               NeedleColor="#FFEF5350"     
+                               HorizontalAlignment="Center"/>
+        </Viewbox>
+
+      </UniformGrid>
+    </Grid>
   </Border>
 </UserControl>

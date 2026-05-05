@@ -1,12 +1,19 @@
-﻿using System;
+﻿using GpuModule.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace GpuModule.ViewModels;
 
 public class GpuSummaryViewModel : BindableBase, IGpuSummaryViewModel {
-  public GpuSummaryViewModel() {
-
+  private GpuModel _gpuModel;
+  public GpuSummaryViewModel(GpuModel gpuModel) {
+    _gpuModel = gpuModel;
+    //_gpuModel.PropertyChanged += (s, e) => {
+    //  if (e.PropertyName == nameof(_gpuModel.Utilization)) {
+    //    RaisePropertyChanged(nameof(Utilization));
+    //  }
+    //};
   }
 
   private string _ID = string.Empty;

@@ -19,8 +19,8 @@ public class QueryGpu : ISMQuery {
     try {
       _searcher = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController");
       foreach (ManagementBaseObject? obj in _searcher.Get()) {
-        Debug.WriteLine($"GPU Count: {_searcher.Get().Count}");
-        Debug.WriteLine($"GPU Name: {obj["Name"]}");
+        //Debug.WriteLine($"GPU Count: {_searcher.Get().Count}");
+        //Debug.WriteLine($"GPU Name: {obj["Name"]}");
         
         GpuInfoList.Add(obj["Name"]?.ToString() ?? $"GPU_{GpuInfoList.Count + 1}", new Dictionary<string, (string, string)>());
 

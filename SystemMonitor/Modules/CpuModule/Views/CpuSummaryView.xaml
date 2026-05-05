@@ -129,7 +129,7 @@
         </Grid>
       </Grid>
 
-      <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1">
+      <UniformGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Rows="1">
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
                              Value="{Binding Utilization}" 

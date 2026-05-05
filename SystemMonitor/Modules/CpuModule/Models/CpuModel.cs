@@ -82,15 +82,15 @@ public class CpuModel : BindableBase, ICpuModel {
     //RealTimeInfo = realTime_;
     //GetCurrentCpuSpeed();
 
-    Debug.WriteLine("======================");
-    Debug.WriteLine("Utilization =   " + RealTimeInfo.Utilization);
-    Debug.WriteLine("Current Speed = " + RealTimeInfo.Speed);
-    Debug.WriteLine("Processes =     " + RealTimeInfo.Processes);
-    Debug.WriteLine("Threads =       " + RealTimeInfo.Threads);
-    Debug.WriteLine("Handles =       " + RealTimeInfo.Handles);
-    Debug.WriteLine("Up time =       " + RealTimeInfo.UpTime);
-    Debug.WriteLine("Temperature =   " + RealTimeInfo.Temperature);
-    Debug.WriteLine("");
+    //Debug.WriteLine("======================");
+    //Debug.WriteLine("Utilization =   " + RealTimeInfo.Utilization);
+    //Debug.WriteLine("Current Speed = " + RealTimeInfo.Speed);
+    //Debug.WriteLine("Processes =     " + RealTimeInfo.Processes);
+    //Debug.WriteLine("Threads =       " + RealTimeInfo.Threads);
+    //Debug.WriteLine("Handles =       " + RealTimeInfo.Handles);
+    //Debug.WriteLine("Up time =       " + RealTimeInfo.UpTime);
+    //Debug.WriteLine("Temperature =   " + RealTimeInfo.Temperature);
+    //Debug.WriteLine("");
   }
 
   private void init() {
