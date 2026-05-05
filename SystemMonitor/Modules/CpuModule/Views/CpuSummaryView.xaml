@@ -16,21 +16,26 @@
         <RowDefinition Height="4.85cm"/>
         <RowDefinition Height="2.80cm"/>
       </Grid.RowDefinitions>
-      <Grid Grid.Row="0" VerticalAlignment="Top"  ShowGridLines="False">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2.00cm"/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+
+      <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}" 
+                 Text="{x:Static local:ViewDefinitions.ModuleName}"/>
+
+      <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top"  ShowGridLines="False">
         <Grid.RowDefinitions>
           <RowDefinition Height="0.4cm"/>
           <RowDefinition Height="1.6cm"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="2.00cm"/>
           <ColumnDefinition Width="5.00cm"/>
           <ColumnDefinition Width="6.00cm"/>
           <ColumnDefinition Width="7.00cm"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
-                   Style="{StaticResource ModuleTitleTextStyle}" 
-                   Text="{x:Static local:ViewDefinitions.ModuleName}"/>
-        <Grid Grid.Row="0" Grid.Column="1">
+
+        <Grid Grid.Row="0" Grid.Column="0">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.00cm"/>
             <ColumnDefinition Width="*"/>
@@ -40,7 +45,7 @@
           <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding VendorName}"/>
         </Grid>
-        <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Margin="1cm,0,0,0" ShowGridLines="False">
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="1cm,0,0,0" ShowGridLines="False">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.80cm"/>
             <ColumnDefinition Width="*"/>
@@ -50,7 +55,7 @@
           <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding BrandName}"/>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="0">
           <Grid.RowDefinitions>
             <RowDefinition Height="0.15cm"/>
             <RowDefinition/>
@@ -74,7 +79,7 @@
           <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding Virtualization}"/>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="2">
+        <Grid Grid.Row="1" Grid.Column="1">
           <Grid.RowDefinitions>
             <RowDefinition Height="0.15cm"/>
             <RowDefinition/>
@@ -98,7 +103,7 @@
           <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
                      Text="{Binding L3CacheSize}"/>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="3">
+        <Grid Grid.Row="1" Grid.Column="2">
           <Grid.RowDefinitions>
             <RowDefinition Height="0.15cm"/>
             <RowDefinition/>
@@ -124,7 +129,7 @@
         </Grid>
       </Grid>
 
-      <UniformGrid Grid.Row="1" Rows="1">
+      <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1">
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
                              Value="{Binding Utilization}" 
@@ -165,36 +170,35 @@
         </Viewbox>
       </UniformGrid>
 
-      <Grid Grid.Row="2" Margin="0,-1.0cm,0,0" Background="Black">
+      <Grid Grid.Row="2" Grid.Column="1" Margin="0,-1.0cm,0,0" Background="Black">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="1.00cm"/>
           <ColumnDefinition Width="4.00cm"/>
           <ColumnDefinition Width="4.00cm"/>
           <ColumnDefinition Width="4.00cm"/>
           <ColumnDefinition Width="6.00cm"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+        <StackPanel Grid.Column="0" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
           <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
           <TextBlock Style="{StaticResource ModuleContentValueStyle}"
                      Text="{Binding Processes}"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+        <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
           <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
           <TextBlock Style="{StaticResource ModuleContentValueStyle}"
                      Text="{Binding Threads}"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+        <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
           <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
           <TextBlock Style="{StaticResource ModuleContentValueStyle}"
                      Text="{Binding Handles}"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="4" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+        <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
           <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
                      Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
           <TextBlock Style="{StaticResource ModuleContentValueStyle}"

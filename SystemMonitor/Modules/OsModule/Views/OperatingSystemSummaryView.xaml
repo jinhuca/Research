@@ -19,7 +19,7 @@
         <RowDefinition Height="0.6cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1.80cm"/>
+        <ColumnDefinition Width="2.00cm"/>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>

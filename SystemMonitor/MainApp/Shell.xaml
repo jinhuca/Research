@@ -9,9 +9,9 @@
         mc:Ignorable="d" 
         WindowStyle="ThreeDBorderWindow"
         WindowState="Maximized"
-        Background="DarkSlateGray"
+        Background="#333333"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
-  <Grid ShowGridLines="False">
+  <Grid ShowGridLines="True">
     <Grid.RowDefinitions>
       <RowDefinition Height="1.60cm"/>
       <RowDefinition Height="1.2*" MinHeight="8.60cm"/>
