@@ -93,8 +93,10 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
     //  Summary = _model.Summary ?? new Dictionary<string, BasicInfo>();
     //}
     RaisePropertyChanged(nameof(Utilization));
-    RaisePropertyChanged(nameof(InternalGpuSummaryViewModel));
-    RaisePropertyChanged(nameof(DedicatedGpuSummaryViewModel));
+    RaisePropertyChanged(nameof(Speed));
+    RaisePropertyChanged(nameof(Temperature));
+    //RaisePropertyChanged(nameof(InternalGpuSummaryViewModel));
+    //RaisePropertyChanged(nameof(DedicatedGpuSummaryViewModel));
   }
 
   private Dictionary<string, Dictionary<string, string>> _gpuSummaryList = new();
