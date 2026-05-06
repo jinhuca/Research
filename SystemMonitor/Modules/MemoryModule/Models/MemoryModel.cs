@@ -10,39 +10,52 @@ using System.Text;
 namespace MemoryModule.Models;
 
 public class MemoryModel : BindableBase, IMemoryModel {
-  public MemoryModel() { 
+  public MemoryModel() {
     init();
   }
 
   private void init() {
-    ManagementObjectSearcher searcher_ = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
-    foreach (ManagementObject wmi_ in searcher_.Get()) {
-      var cp1_ = long.Parse(wmi_["Capacity"].ToString());
-      var cp_ = ByteUnitConverters.ConvertBytesToReadableUnit(cp1_);
-      Debug.WriteLine("Capacity: " + cp_);
-
-      var speedInMHz = double.Parse(wmi_["Speed"].ToString());
-      Debug.WriteLine("Raw Speed: " + wmi_["Speed"] + " MT/s");
-      //var speedInGHz = HzUnitConverter.ConvertMHzToReadableUnit(speedInMHz);
-      //Debug.WriteLine("Speed: " + speedInGHz + " MHz");
-    }
+    
   }
 
-  private string _name;
-  public string Name {
-    get => _name;
-    set => SetProperty(ref _name, value);
+  private float _totalMemory;
+  public float TotalMemory {
+    get => _totalMemory;
+    set => SetProperty(ref _totalMemory, value);
   }
 
-  private double _capacity;
-  public double Capacity {
-    get => _capacity;
-    set => SetProperty(ref _capacity, value);
-  }
-
-  private double _speed;
-  public double Speed {
+  private float _speed;
+  public float Speed {
     get => _speed;
     set => SetProperty(ref _speed, value);
   }
+
+  private int _slotsUsed;
+  public int SlotsUsed {
+    get => _slotsUsed;
+    set => SetProperty(ref _slotsUsed, value);
+  }
+
+  private int _totalSlots;
+  public int TotalSlots {
+    get => _totalSlots;
+    set => SetProperty(ref _totalSlots, value);
+  }
+
+  private string _formFactor;
+  public string FormFactor {
+    get => _formFactor;
+    set => SetProperty(ref _formFactor, value);
+  }
+
+  private IHardwareReservedMemoryInfo _hardwareReservedMemory;
+  public IHardwareReservedMemoryInfo HardwareReservedMemory {
+    get => _hardwareReservedMemory;
+    set => SetProperty(ref _hardwareReservedMemory, value);
+  }
+
+  private IStickInfo _stickInfo;
+  public IStickInfo StickInfo { 
+    get => _stickInfo; 
+    set => SetProperty(ref _stickInfo, value); }
 }
