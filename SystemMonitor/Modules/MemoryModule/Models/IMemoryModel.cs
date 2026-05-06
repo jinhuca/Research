@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Text;
 
 namespace MemoryModule.Models; 
-public interface IMemoryModel : INotifyPropertyChanged, INotifyCollectionChanged {
+public interface IMemoryModel {
   string Name { get; set; }
+  double Capacity {  get; set; }
+  double Speed { get; set; }
 }

@@ -2,4 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <SolidColorBrush x:Key="ModuleContentTitleBrush" Color="#FF878A9F"/>
   <SolidColorBrush x:Key="ModuleContentTextBrush" Color="#FFFFFF"/>
+
+  <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
+  <SolidColorBrush x:Key="MeterNeedlePercentageColor" Color="#FFFFA726"/>
+  <SolidColorBrush x:Key="MeterNeedleSpeedColor" Color="#FF42A5F5"/>
+  <SolidColorBrush x:Key="MeterNeedleTemperatureColor" Color="#FFEF5350"/>
 </ResourceDictionary>

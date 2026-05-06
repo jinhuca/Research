@@ -12,18 +12,15 @@
   <Border Style="{StaticResource ModuleBorderStyle}">
     <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="False">
       <Grid.RowDefinitions>
-        <RowDefinition Height="2.10cm"/>
-        <RowDefinition Height="4.85cm"/>
-        <RowDefinition Height="2.80cm"/>
+        <RowDefinition Height="2.50cm" MinHeight="2.50cm"/>
+        <RowDefinition Height="6.00cm" MinHeight="6.00cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="2.00cm"/>
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
-
       <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}" 
                  Text="{x:Static local:ViewDefinitions.ModuleName}"/>
-
       <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top"  ShowGridLines="False">
         <Grid.RowDefinitions>
           <RowDefinition Height="0.4cm"/>
@@ -133,78 +130,19 @@
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
                              Value="{Binding Utilization}" 
-                             Style="{StaticResource MeterStyle100}"
-                             MinValue="0" 
-                             MaxValue="100"
-                             Unit="{x:Static ctrl:Unit.Percent}"
-                             CtrlBackground="Transparent" 
-                             GaugeColor="#FF878A9F" 
-                             NeedleColor="#FFFFA726"
-                             HorizontalAlignment="Center" 
-                             VerticalAlignment="Center"/>
+                             Style="{StaticResource PercentageMeterStyle}"/>
         </Viewbox>
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
                                Value="{Binding CurrentSpeed}" 
-                               Style="{StaticResource MeterStyle100}"
-                               MinValue="0" 
-                               MaxValue="8"
-                               Unit="{x:Static ctrl:Unit.GHz}"
-                               CtrlBackground="Transparent" 
-                               GaugeColor="#FF878A9F" 
-                               NeedleColor="#FF42A5F5"
-                               HorizontalAlignment="Center" 
-                               VerticalAlignment="Center"/>
+                               Style="{StaticResource SpeedMeterStyle}"/>
         </Viewbox>
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
                                Value="{Binding Temperature}" 
-                               Style="{StaticResource MeterStyle100}"
-                               MinValue="0" 
-                               MaxValue="120" 
-                               Unit="{x:Static ctrl:Unit.Celsius}"
-                               CtrlBackground="Transparent"                             
-                               GaugeColor="#FF878A9F" 
-                               NeedleColor="#FFEF5350"     
-                               HorizontalAlignment="Center"/>
+                               Style="{StaticResource TemperatureMeterStyle}"/>
         </Viewbox>
       </UniformGrid>
-
-      <Grid Grid.Row="2" Grid.Column="1" Margin="0,-1.0cm,0,0" Background="Black">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="4.00cm"/>
-          <ColumnDefinition Width="4.00cm"/>
-          <ColumnDefinition Width="4.00cm"/>
-          <ColumnDefinition Width="6.00cm"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-                     Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
-          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-                     Text="{Binding Processes}"/>
-        </StackPanel>
-
-        <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-                     Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
-          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-                     Text="{Binding Threads}"/>
-        </StackPanel>
-
-        <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-                     Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
-          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-                     Text="{Binding Handles}"/>
-        </StackPanel>
-
-        <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-                     Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
-          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-                     Text="{Binding UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
-        </StackPanel>
-      </Grid>
     </Grid>
   </Border>
 </UserControl>

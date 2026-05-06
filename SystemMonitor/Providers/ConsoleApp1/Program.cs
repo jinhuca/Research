@@ -187,6 +187,7 @@ internal class Program {
     catch (Exception ex) { Console.WriteLine(ex.Message); }
   }
 
+  /*
   static void GetCurrentSpeed() {
     // 1. Get the Maximum clock speed of the CPU via WMI (returned in MHz)
     uint maxClockSpeed = 0;
@@ -218,10 +219,20 @@ internal class Program {
       }
     }
   }
+  */
 
-
+  private static void GetAvailableMemory() {
+    using (var searcher = new ManagementObjectSearcher("SELECT FreePhysicalMemory FROM Win32_OperatingSystem")) {
+      foreach (var obj in searcher.Get()) {
+        ulong freeMemoryKB = (ulong)obj["FreePhysicalMemory"];
+        double freeMemoryGB = freeMemoryKB / 1024.0 / 1024.0;
+        Console.WriteLine($"Available Memory: {freeMemoryGB:F2} GB");
+      }
+    }
+  }
   public static void Main(string[] args) {
     //Test();
-    GetCurrentSpeed();
+    //GetCurrentSpeed();
+    GetAvailableMemory();
   }
 }

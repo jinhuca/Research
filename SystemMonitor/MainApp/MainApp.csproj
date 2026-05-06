@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GpuModule\GpuModule.csproj" />
     <ProjectReference Include="..\Modules\CpuModule\CpuModule.csproj" />
+    <ProjectReference Include="..\Modules\GpuModule\GpuModule.csproj" />
     <ProjectReference Include="..\Modules\MemoryModule\MemoryModule.csproj" />
     <ProjectReference Include="..\Modules\OsModule\OsModule.csproj" />
     <ProjectReference Include="..\Modules\ResourceModule\ResourceModule.csproj" />

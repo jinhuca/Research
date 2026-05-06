@@ -46,6 +46,7 @@ public partial class App : PrismApplication {
     //ViewModelLocationProvider.Register<GpuSummaryView, GpuSummaryViewModel>();
     ViewModelLocationProvider.Register<MemorySummaryView, MemoryViewModel>();
     ViewModelLocationProvider.Register<StorageSummaryView, StorageViewModel>();
+    ViewModelLocationProvider.Register<StatisticsView, CpuViewModel>();
   }
 }
 

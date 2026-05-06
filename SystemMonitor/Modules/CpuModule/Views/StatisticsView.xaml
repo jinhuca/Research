@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="CpuModule.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/" 
+             xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
+             xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
+             xmlns:local="clr-namespace:CpuModule.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Border Style="{StaticResource ModuleBorderStyle}">
+    <Grid Margin="0.5cm" Width="Auto" Height="3.40cm" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="4.00cm"/>
+          <ColumnDefinition Width="4.00cm"/>
+          <ColumnDefinition Width="4.00cm"/>
+          <ColumnDefinition Width="6.00cm"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+               Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
+          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
+               Text="{Binding Processes}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+               Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
+          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
+               Text="{Binding Threads}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+               Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
+          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
+               Text="{Binding Handles}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+               Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
+          <TextBlock Style="{StaticResource ModuleContentValueStyle}"
+               Text="{Binding UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
+        </StackPanel>
+      </Grid>
+  </Border>
+
+</UserControl>

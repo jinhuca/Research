@@ -42,9 +42,9 @@ public class GpuModel : BindableBase, IGpuModel {
     RaisePropertyChanged(nameof(Utilization));
     RaisePropertyChanged(nameof(Speed));
     RaisePropertyChanged(nameof(Temperature));
-    Debug.WriteLine($"Current GPU Usage: {GetCurrentGpuUsage():F2}%");
-    Debug.WriteLine($"Current GPU Clock Speed: {GetGpuClockSpeed():F2} MHz");
-    Debug.WriteLine($"Current GPU Temperature: {GetGpuTemperature():F2} °C");
+    //Debug.WriteLine($"Current GPU Usage: {GetCurrentGpuUsage():F2}%");
+    //Debug.WriteLine($"Current GPU Clock Speed: {GetGpuClockSpeed():F2} MHz");
+    //Debug.WriteLine($"Current GPU Temperature: {GetGpuTemperature():F2} °C");
   }
 
   private float GetCurrentGpuUsage() {

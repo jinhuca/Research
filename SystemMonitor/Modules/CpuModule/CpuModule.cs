@@ -21,6 +21,7 @@ public class CpuModule : IModule {
     containerRegistry.Register<ISMProvider, SMProvider>();
 
     _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuSummaryView));
+    _regionManager.RegisterViewWithRegion(StatisticsRegionName, typeof(StatisticsView));
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {
