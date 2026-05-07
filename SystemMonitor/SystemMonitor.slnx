@@ -13,7 +13,7 @@
     <Project Path="Modules/MemoryModule/MemoryModule.csproj" Id="02954b9b-fe4c-41e9-a828-8311b7e17dbd" />
     <Project Path="Modules/OsModule/OsModule.csproj" />
     <Project Path="Modules/ResourceModule/ResourceModule.csproj" />
-    <Project Path="StorageModule/StorageModule.csproj" Id="8e81a5e0-bfa1-4469-bc5a-a31970497e71" />
+    <Project Path="Modules/StorageModule/StorageModule.csproj" />
   </Folder>
   <Folder Name="/Providers/">
     <Project Path="Providers/ConsoleApp1/ConsoleApp1.csproj" Id="3352c802-f7fd-4995-b4f0-e852ab1c9a17" />
