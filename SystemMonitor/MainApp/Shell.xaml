@@ -15,17 +15,19 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="1.60cm"/>
       <RowDefinition Height="1.2*" MinHeight="8.60cm"/>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="1.3*"/>
+      <RowDefinition Height="*" MinHeight="5.60cm"/>
+      <RowDefinition Height="1.3*" MinHeight="8.00cm"/>
       <RowDefinition Height="2.80cm"/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1.60cm"/>
+      <ColumnDefinition Width="2.30cm"/>
       <ColumnDefinition Width="*" MinWidth="16.00cm"/>
       <ColumnDefinition Width="*" MinWidth="16.00cm"/>
     </Grid.ColumnDefinitions>
     <ContentControl x:Name="OsRegion" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
+    <ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4"
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>
     <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1" MinHeight="8.60cm"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
     <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2" MinHeight="8.60cm"
@@ -34,7 +36,9 @@
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>
     <ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
-    <ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"
+    <ContentControl x:Name="BiosRegion" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>
+    <ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>
   </Grid>
 </Window>

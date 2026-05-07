@@ -35,12 +35,12 @@ public struct ReadableCacheSize {
 public static class CacheSizeExtension {
   public static ReadableCacheSize ToReadableCacheSize(this CacheSize cacheSize) {
     return new ReadableCacheSize {
-      L1_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L1_cache_size),
-      L1_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L1_cache_line_size),
-      L2_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L2_cache_size),
-      L2_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L2_cache_line_size),
-      L3_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L3_cache_size),
-      L3_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit(cacheSize.L3_cache_line_size)
+      L1_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L1_cache_size),
+      L1_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L1_cache_line_size),
+      L2_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L2_cache_size),
+      L2_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L2_cache_line_size),
+      L3_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L3_cache_size),
+      L3_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L3_cache_line_size)
     };
   }
 }

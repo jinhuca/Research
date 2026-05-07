@@ -71,7 +71,7 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
           InternalGpuSummaryViewModel.Vendor = g1_[ViewModelDefinitions.AdapterCompatibility];
           InternalGpuSummaryViewModel.Type = ViewModelDefinitions.InternalGpuType;
           InternalGpuSummaryViewModel.Version = g1_[ViewModelDefinitions.DriverVersion];
-          InternalGpuSummaryViewModel.Ram = ByteUnitConverters.ConvertBytesToReadableUnit(long.Parse(g1_[ViewModelDefinitions.AdapterRamString]));
+          InternalGpuSummaryViewModel.Ram = ByteUnitConverters.ConvertBytesToReadableUnit(ulong.Parse(g1_[ViewModelDefinitions.AdapterRamString]));
         }
         if(type_.Contains(ViewModelDefinitions.DedicatedGpuType)) {
           DedicatedGpuSummaryViewModel.ID = g1_[ViewModelDefinitions.DeviceId];
@@ -79,7 +79,7 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
           DedicatedGpuSummaryViewModel.Vendor = g1_[ViewModelDefinitions.AdapterCompatibility];
           DedicatedGpuSummaryViewModel.Type = ViewModelDefinitions.DedicatedGpuType;
           DedicatedGpuSummaryViewModel.Version = g1_[ViewModelDefinitions.DriverVersion];
-          DedicatedGpuSummaryViewModel.Ram = ByteUnitConverters.ConvertBytesToReadableUnit(long.Parse(g1_[ViewModelDefinitions.AdapterRamString]));
+          DedicatedGpuSummaryViewModel.Ram = ByteUnitConverters.ConvertBytesToReadableUnit(ulong.Parse(g1_[ViewModelDefinitions.AdapterRamString]));
         }
       }
     }

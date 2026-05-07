@@ -64,7 +64,7 @@ internal class QueryMemoryInfo {
 
     Debug.WriteLine($"Total Physical Memory: {totalPhysicalMemory} Bytes");
     Debug.WriteLine($"Total Physical Memory: {totalPhysicalMemory / (1024 * 1024)} MB");
-    Debug.WriteLine(Converters.ByteUnitConverters.ConvertBytesToReadableUnit((long)totalPhysicalMemory));
+    Debug.WriteLine(Converters.ByteUnitConverters.ConvertBytesToReadableUnit(totalPhysicalMemory));
 
     Debug.WriteLine($"Total Visible Memory: {totalVisibleMemory / (1024 * 1024)} MB");
     Debug.WriteLine($"Reserved Memory: {reservedMemory / (1024 * 1024)} MB");
@@ -74,26 +74,27 @@ internal class QueryMemoryInfo {
     foreach (ManagementObject stick in stickSearcher.Get()) {
       ulong capacity = (ulong)stick["Capacity"];
       uint speed = (uint)stick["Speed"];
-      Debug.WriteLine(Converters.ByteUnitConverters.ConvertBytesToReadableUnit((long)capacity));
+      Debug.WriteLine(Converters.ByteUnitConverters.ConvertBytesToReadableUnit(capacity));
       Debug.WriteLine($"Stick: {capacity / (1024 * 1024)} MB | Speed: {speed} MHz");
     }
 
   }
 
-  private void GetAvailableMemory() {
-    PerformanceCounter availableMemoryCounter = new PerformanceCounter("Memory", "Available MBytes");
-    float availableMemoryMB = availableMemoryCounter.NextValue();
-    string availableMemoryReadable = ByteUnitConverters.ConvertBytesToReadableUnit((long)(availableMemoryMB * 1024 * 1024));
-    //float availableMemoryGB = ByteUnitConverters.ConvertMBToReadableUnit((long)availableMemoryMB);
-    Debug.WriteLine("Available Memory: " + availableMemoryReadable);
-  }
 
-  private void GetTotalMemory() {
-    PerformanceCounter totalMemoryCounter = new PerformanceCounter("Memory", "Committed Bytes");
-    float totalMemoryBytes = totalMemoryCounter.NextValue();
-    string totalMemoryReadable = ByteUnitConverters.ConvertBytesToReadableUnit((long)totalMemoryBytes);
-    Debug.WriteLine("Total Memory: " + totalMemoryReadable);
-  }
+  //private void GetAvailableMemory() {
+  //  PerformanceCounter availableMemoryCounter = new PerformanceCounter("Memory", "Available MBytes");
+  //  float availableMemoryMB = availableMemoryCounter.NextValue();
+  //  string availableMemoryReadable = ByteUnitConverters.ConvertBytesToReadableUnit((long)(availableMemoryMB * 1024 * 1024));
+  //  //float availableMemoryGB = ByteUnitConverters.ConvertMBToReadableUnit((long)availableMemoryMB);
+  //  Debug.WriteLine("Available Memory: " + availableMemoryReadable);
+  //}
+
+  //private void GetTotalMemory() {
+  //  PerformanceCounter totalMemoryCounter = new PerformanceCounter("Memory", "Committed Bytes");
+  //  float totalMemoryBytes = totalMemoryCounter.NextValue();
+  //  string totalMemoryReadable = ByteUnitConverters.ConvertBytesToReadableUnit((long)totalMemoryBytes);
+  //  Debug.WriteLine("Total Memory: " + totalMemoryReadable);
+  //}
 
   private void GetSlotsUsed() {
     ManagementObjectSearcher searcher_ = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
@@ -127,20 +128,20 @@ internal class QueryMemoryInfo {
     }
   }
 
-  private void Test() {
-    Debug.WriteLine("Ram Form Factor = " + QueryMemoryInfo.GetRamFormFactor());
-    QueryMemoryInfo.GetHardwareReservedRam();
+  //private void Test() {
+  //  Debug.WriteLine("Ram Form Factor = " + QueryMemoryInfo.GetRamFormFactor());
+  //  QueryMemoryInfo.GetHardwareReservedRam();
 
-    ManagementObjectSearcher searcher_ = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
-    foreach (ManagementObject wmi_ in searcher_.Get()) {
-      var cp1_ = long.Parse(wmi_["Capacity"].ToString());
-      var cp_ = ByteUnitConverters.ConvertBytesToReadableUnit(cp1_);
-      Debug.WriteLine("Capacity: " + cp_);
+  //  ManagementObjectSearcher searcher_ = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
+  //  foreach (ManagementObject wmi_ in searcher_.Get()) {
+  //    var cp1_ = long.Parse(wmi_["Capacity"].ToString());
+  //    var cp_ = ByteUnitConverters.ConvertBytesToReadableUnit(cp1_);
+  //    Debug.WriteLine("Capacity: " + cp_);
 
-      var speedInMHz = double.Parse(wmi_["Speed"].ToString());
-      Debug.WriteLine("Raw Speed: " + wmi_["Speed"] + " MT/s");
-      //var speedInGHz = HzUnitConverter.ConvertMHzToReadableUnit(speedInMHz);
-      //Debug.WriteLine("Speed: " + speedInGHz + " MHz");
-    }
-  }
+  //    var speedInMHz = double.Parse(wmi_["Speed"].ToString());
+  //    Debug.WriteLine("Raw Speed: " + wmi_["Speed"] + " MT/s");
+  //    //var speedInGHz = HzUnitConverter.ConvertMHzToReadableUnit(speedInMHz);
+  //    //Debug.WriteLine("Speed: " + speedInGHz + " MHz");
+  //  }
+  //}
 }

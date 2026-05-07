@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="BiosModule.Views.BiosSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
+             xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"             
+             xmlns:local="clr-namespace:BiosModule.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Border Style="{StaticResource ModuleBorderStyle}">
+    <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="True">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="2.50cm" MinHeight="2.50cm"/>
+        <RowDefinition Height="6.00cm" MinHeight="6.00cm"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2.00cm"/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}"
+                 Text="{x:Static local:ViewDefinitions.ModuleName}"/>
+      <Grid Grid.Row="0" Grid.Column="1" Margin="10,0,0,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="5.00cm"/>
+          <ColumnDefinition Width="4.00cm"/>
+          <ColumnDefinition Width="4.00cm"/>
+          <ColumnDefinition Width="4.00cm"/>
+          <ColumnDefinition Width="3.00cm"/>
+          <ColumnDefinition Width="3.00cm"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                     Text="{x:Static local:ViewDefinitions.BiosName}"/>
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                     Text="{Binding Summary.Name}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                     Text="{x:Static local:ViewDefinitions.BiosManufacturer}"/>
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                     Text="{Binding Summary.Manufacturer}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                     Text="{x:Static local:ViewDefinitions.BiosSerialNum}"/>
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                     Text="{Binding Summary.SerialNum}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="3">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                     Text="{x:Static local:ViewDefinitions.BiosMajorVersion}"/>
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                     Text="{Binding Summary.MajorVersion}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="4">
+          <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
+                     Text="{x:Static local:ViewDefinitions.BiosMinorVersion}"/>
+          <TextBlock Style="{StaticResource ModuleContentTextStyle}"
+                     Text="{Binding Summary.MinorVersion}"/>
+        </StackPanel>
+      </Grid>
+    </Grid>
+  </Border>
+</UserControl>

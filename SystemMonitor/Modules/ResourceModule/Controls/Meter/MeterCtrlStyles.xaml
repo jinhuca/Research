@@ -2,7 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:brushes="clr-namespace:ResourceModule"
                     xmlns:local="clr-namespace:ResourceModule.Controls.Meter">
-
+  <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
+  <SolidColorBrush x:Key="MeterNeedlePercentageColor" Color="#FFFFA726"/>
+  <SolidColorBrush x:Key="MeterNeedleSpeedColor" Color="#FF42A5F5"/>
+  <SolidColorBrush x:Key="MeterNeedleTemperatureColor" Color="#FFEF5350"/>
+  
   <Style TargetType="{x:Type local:MeterControl}" x:Key="MeterStyle100">
     <Setter Property="CtrlHeight" Value="200"/>
     <Setter Property="CtrlWidth" Value="200"/>

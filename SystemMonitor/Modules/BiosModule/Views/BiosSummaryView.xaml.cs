@@ -11,12 +11,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CpuModule.Views; 
+namespace BiosModule.Views; 
 /// <summary>
-/// Interaction logic for StatisticsView.xaml
+/// Interaction logic for BiosSummaryView.xaml
 /// </summary>
-public partial class StatisticsView : UserControl {
-  public StatisticsView() {
+public partial class BiosSummaryView : UserControl {
+  public BiosSummaryView() {
     InitializeComponent();
   }
 }

@@ -1,4 +1,6 @@
-﻿using CpuModule.Models;
+﻿using BiosModule.ViewModels;
+using BiosModule.Views;
+using CpuModule.Models;
 using CpuModule.ViewModels;
 using CpuModule.Views;
 using GpuModule;
@@ -31,11 +33,13 @@ public partial class App : PrismApplication {
   protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) {
     base.ConfigureModuleCatalog(moduleCatalog);
     moduleCatalog.AddModule<ResourceModule.ResourceModule>();
+    moduleCatalog.AddModule<HomeModule.HomeModule>();
     moduleCatalog.AddModule<OsModule.OsModule>();
     moduleCatalog.AddModule<CpuModule.CpuModule>();
     moduleCatalog.AddModule<GpuModule.GpuModule>();
     moduleCatalog.AddModule<MemoryModule.MemoryModule>();
     moduleCatalog.AddModule<StorageModule.StorageModule>();
+    moduleCatalog.AddModule<BiosModule.BiosModule>();
   }
 
   protected override void ConfigureViewModelLocator() {
@@ -43,10 +47,10 @@ public partial class App : PrismApplication {
     ViewModelLocationProvider.Register<OperatingSystemSummaryView, OperatingSystemViewModel>();
     ViewModelLocationProvider.Register<CpuSummaryView, CpuViewModel>();
     ViewModelLocationProvider.Register<GpuSummaryView, GpuViewModel>();
-    //ViewModelLocationProvider.Register<GpuSummaryView, GpuSummaryViewModel>();
     ViewModelLocationProvider.Register<MemorySummaryView, MemoryViewModel>();
     ViewModelLocationProvider.Register<StorageSummaryView, StorageViewModel>();
     ViewModelLocationProvider.Register<StatisticsView, CpuViewModel>();
+    ViewModelLocationProvider.Register<BiosSummaryView, BiosViewModel>();
   }
 }
 

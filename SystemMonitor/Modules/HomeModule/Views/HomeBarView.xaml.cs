@@ -11,12 +11,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CpuModule.Views; 
+namespace HomeModule.Views; 
 /// <summary>
-/// Interaction logic for StatisticsView.xaml
+/// Interaction logic for HomeBarView.xaml
 /// </summary>
-public partial class StatisticsView : UserControl {
-  public StatisticsView() {
+public partial class HomeBarView : UserControl {
+  public HomeBarView() {
     InitializeComponent();
   }
 }

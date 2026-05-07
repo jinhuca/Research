@@ -1,7 +1,7 @@
 ﻿namespace Converters;
 
 public class ByteUnitConverters {
-  public static string ConvertBytesToReadableUnit(long bytes) {
+  public static string ConvertBytesToReadableUnit(ulong bytes) {
     string[] units = { "B", "KB", "MB", "GB", "TB" };
     double size = bytes;
     int unitIndex = 0;

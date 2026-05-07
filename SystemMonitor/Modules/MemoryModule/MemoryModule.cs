@@ -16,7 +16,7 @@ public class MemoryModule : IModule {
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
     containerRegistry.RegisterSingleton<IMemoryModel, MemoryModel>();
-    containerRegistry.Register<IMemoryViewModel, MemoryViewModel>();
+    containerRegistry.RegisterSingleton<IMemoryViewModel, MemoryViewModel>();
     _regionManager.RegisterViewWithRegion(MemoryRegionName, typeof(MemorySummaryView));
   }
 

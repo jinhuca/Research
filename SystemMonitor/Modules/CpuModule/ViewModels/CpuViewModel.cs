@@ -30,10 +30,10 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
     PhysicalCoresNum = _model.BasicInfo.NumOfPhysicalCores;
     LogicalCoresNum = _model.BasicInfo.NumOfLogicalCores;
     Virtualization = _model.BasicInfo.VirtualizationEnabled ? "Enabled" : "Disabled";
-    L1CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L1_cache_size);
+    L1CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L1_cache_size);
     var temp = _model.CacheSize.L2_cache_line_size;
-    L2CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L2_cache_size);
-    L3CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L3_cache_size);
+    L2CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L2_cache_size);
+    L3CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L3_cache_size);
 
     Utilization = _model.RealTimeInfo?.Utilization ?? 0;
     CurrentSpeed = _model.RealTimeInfo?.Speed ?? 0;
@@ -130,7 +130,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string L1CacheSize {
     get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L1_cache_size);
+      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L1_cache_size);
     }
     set {
       if(_model.CacheSize.L1_cache_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
@@ -145,7 +145,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string L1CacheLineSize {
     get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L1_cache_line_size);
+      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L1_cache_line_size);
     }
     set {
       if(_model.CacheSize.L1_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
@@ -160,7 +160,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string L2CacheSize {
     get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L2_cache_size);
+      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L2_cache_size);
     }
     set {
       if(_model.CacheSize.L2_cache_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
@@ -175,7 +175,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string L2CacheLineSize {
     get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L2_cache_line_size);
+      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L2_cache_line_size);
     }
     set {
       if(_model.CacheSize.L2_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
@@ -190,7 +190,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string L3CacheSize {
     get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L3_cache_size);
+      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L3_cache_size);
     }
     set {
       if(_model.CacheSize.L3_cache_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
@@ -205,7 +205,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   public string L3CacheLineSize {
     get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit(_model.CacheSize.L3_cache_line_size);
+      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L3_cache_line_size);
     }
     set {
       if(_model.CacheSize.L3_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
