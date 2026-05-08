@@ -19,14 +19,14 @@
               Height="{Binding CtrlHeight, RelativeSource={RelativeSource AncestorType=UserControl}}" 
               Width="{Binding CtrlWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
               StrokeThickness="{Binding ArcStrokeThickness, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-              StrokeDashArray=".1" 
+              StrokeDashArray="0.2" 
               Stroke="{Binding GaugeColor, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
       <ed:Arc StartAngle="-120"
               Stretch="None" 
               Height="{Binding CtrlHeight, RelativeSource={RelativeSource AncestorType=UserControl}}" 
               Width="{Binding CtrlWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
               StrokeThickness="{Binding ArcStrokeThickness, RelativeSource={RelativeSource AncestorType=UserControl}}"
-              StrokeDashArray=".1" 
+              StrokeDashArray=".2"
               Stroke="{Binding NeedleColor, RelativeSource={RelativeSource AncestorType=UserControl}}">
         <ed:Arc.EndAngle>
           <MultiBinding Converter="{StaticResource valuesToAngleConverter}">
