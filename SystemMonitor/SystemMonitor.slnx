@@ -10,6 +10,7 @@
     <Project Path="Modules/CpuModule/CpuModule.csproj" />
     <Project Path="Modules/GpuModule/GpuModule.csproj" />
     <Project Path="Modules/HomeModule/HomeModule.csproj" />
+    <Project Path="Modules/LogModule/LogModule.csproj" Id="ab5f2270-c9ff-4a95-a2c3-4cb453420424" />
     <Project Path="Modules/MemoryModule/MemoryModule.csproj" Id="02954b9b-fe4c-41e9-a828-8311b7e17dbd" />
     <Project Path="Modules/OsModule/OsModule.csproj" />
     <Project Path="Modules/ResourceModule/ResourceModule.csproj" />

@@ -40,6 +40,7 @@ public partial class App : PrismApplication {
     moduleCatalog.AddModule<MemoryModule.MemoryModule>();
     moduleCatalog.AddModule<StorageModule.StorageModule>();
     moduleCatalog.AddModule<BiosModule.BiosModule>();
+    moduleCatalog.AddModule<LogModule.LogModule>();
   }
 
   protected override void ConfigureViewModelLocator() {
