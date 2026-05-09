@@ -25,7 +25,7 @@ internal static class WmiServices {
         foreach(ManagementObject disk in searcher.Get()) {
           DiskInfo diskInfo = new();
           diskInfo.Name = disk[DiskNameKey] != null ? disk[DiskNameKey].ToString() : string.Empty;
-          diskInfo.DeviceId = disk[DeviceIdKey] != null ? int.Parse(disk[DeviceIdKey].ToString()) : int.MinValue;
+          //diskInfo.DeviceId = disk[DeviceIdKey] != null ? int.Parse(disk[DeviceIdKey].ToString()) : int.MinValue;
           diskInfo.MediaType = disk[MediaTypeKey] != null ? disk[MediaTypeKey].ToString() : string.Empty;
           diskInfo.Capacity = disk[SizeKey] != null ? ulong.Parse(disk[SizeKey].ToString()) : 0;
           diskInfo.SerialNum = disk[SerialNumberKey] != null ? disk[SerialNumberKey].ToString() : string.Empty;

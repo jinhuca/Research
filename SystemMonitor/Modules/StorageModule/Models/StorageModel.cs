@@ -10,7 +10,7 @@ namespace StorageModule.Models;
 public class StorageModel : BindableBase, IStorageModel {
   public StorageModel() {
     var temp = WmiServices.GetDiskinfo();
-    MsiServices.QueryMsi();
+    var tempx = MsiServices.QueryMsiLogicalDisks();
   }
 
   private ObservableCollection<DiskInfo> _disks;

@@ -6,7 +6,9 @@ namespace StorageModule.Interfaces;
 
 public class DiskInfo : BindableBase {
   public string? Name { get; set; }
-  public int DeviceId { get; set; }
+  public string? DeviceId { get; set; }
+  public string? VolumeName { get; set; }
+
   public string? SerialNum { get; set; }
   public string? MediaType { get; set; }
   public string? PhysicalType { get; set; }
@@ -18,6 +20,7 @@ public class DiskInfo : BindableBase {
   public string? Health { get; set; }
   public int TotalActiveTimePercentage { get; set; }
   public int ActiveTimePercentage { get; set; }
+  public string? FileSystem { get; internal set; }
 }
 
 public enum DiskType { 
