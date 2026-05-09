@@ -24,7 +24,9 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
   }
 
   private void initProperties() {
-    //BrandName = _model.BrandName ?? string.Empty;
+    if (_model.BasicInfo == null) {
+      return;
+    }
     BaseSpeed = HzUnitConverter.ConvertMHzToReadableUnit(_model.BasicInfo.BaseSpeed);
     SocketNum = _model.BasicInfo.SocketNum;
     PhysicalCoresNum = _model.BasicInfo.NumOfPhysicalCores;
