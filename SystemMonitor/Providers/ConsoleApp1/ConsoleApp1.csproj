@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <IntermediateOutputPath>$(SolutionDir)\Build\Intermediate\</IntermediateOutputPath>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -12,5 +13,9 @@
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="10.0.7" />
     <PackageReference Include="System.Management" Version="10.0.7" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="rd &quot;$(ProjectDir)obj&quot; /s /q" />
+  </Target>
 
 </Project>

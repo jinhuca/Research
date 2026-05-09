@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <IntermediateOutputPath>$(SolutionDir)\Build\Intermediate\</IntermediateOutputPath>
     <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
@@ -23,5 +24,9 @@
     <ProjectReference Include="..\LogModule\LogModule.csproj" />
     <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="rd &quot;$(ProjectDir)obj&quot; /s /q" />
+  </Target>
 
 </Project>

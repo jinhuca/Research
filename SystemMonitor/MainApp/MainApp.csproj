@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <IntermediateOutputPath>$(SolutionDir)\Build\Intermediate\</IntermediateOutputPath>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
@@ -27,5 +28,9 @@
     <ProjectReference Include="..\Modules\StorageModule\StorageModule.csproj" />
     <ProjectReference Include="..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="rd &quot;$(ProjectDir)obj&quot; /s /q" />
+  </Target>
 
 </Project>
