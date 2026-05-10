@@ -19,15 +19,20 @@
   <Folder Name="/Providers/">
     <Project Path="Providers/ConsoleApp1/ConsoleApp1.csproj" Id="3352c802-f7fd-4995-b4f0-e852ab1c9a17" />
     <Project Path="Providers/HardwareInfoProvider/HardwareInfoProvider.vcxproj" Id="292a69f1-f6b9-4a3a-ac61-aa3aaf35c9b3" />
+    <Project Path="Providers/LibreInfoProvider/LibreInfoProvider.csproj" Id="8f50bd84-7567-406f-b021-5ade0fcc563d" />
     <Project Path="Providers/SystemEnvironmentProvider/SystemEnvironmentProvider.csproj" />
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Converters/Converters.csproj" Id="7c6283d6-c0e3-4887-b21f-6117f32593b2" />
+    <Project Path="Shared/DataExchange/DataExchange.csproj" Id="9385104c-4007-4670-8c49-51ca6907db4a" />
     <Project Path="Shared/SharedDefinitions/SharedDefinitions.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/Temporaries/">
+    <Project Path="GetTemperatureFromLibre/GetTemperatureFromLibre.csproj" Id="6b12bd16-65c2-47de-ab86-e300743a8854" />
   </Folder>
   <Folder Name="/Unit Tests/">
     <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
