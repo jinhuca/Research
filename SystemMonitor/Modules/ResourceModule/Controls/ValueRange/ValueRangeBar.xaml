@@ -15,7 +15,7 @@
       <Setter.Value>
         <ControlTemplate TargetType="ProgressBar">
           <!-- Outer Border (Container) -->
-          <Border Background="#FFE0E0E0" CornerRadius="5" Padding="1" BorderBrush="Red">
+          <Border Background="#FFE0E0E0" CornerRadius="5" Padding="2" BorderBrush="Red" BorderThickness="1">
             <Grid x:Name="PART_Track">
               <!-- The actual moving bar -->
               <Border x:Name="PART_Indicator" 
