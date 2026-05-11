@@ -1,4 +1,5 @@
 ﻿using LibreHardwareMonitor.Hardware;
+using LibreInfoProvider.Interfaces;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Management;
@@ -15,11 +16,15 @@ struct CpuModelDefinitions {
 public class CpuModel : BindableBase, ICpuModel {
   private Timer _timer;
   private readonly ISMProvider? _smProvider;
+  private readonly ICpuInfoGenerator? _cpuInfoGenerator;
 
   public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
-  public CpuModel(ISMProvider? smProvider) {
+  public CpuModel(ISMProvider? smProvider, ICpuInfoGenerator generator) {
     _smProvider = smProvider;
+    _cpuInfoGenerator = generator;
+    var temp = _cpuInfoGenerator.GetCpuSummaryInfo();
+    var core = _cpuInfoGenerator.GetCpuCoreInfo();
     init();
     initTimer();
   }

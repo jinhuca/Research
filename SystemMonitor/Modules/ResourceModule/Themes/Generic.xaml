@@ -7,5 +7,6 @@
     <ResourceDictionary Source="/ResourceModule;component/Styles/StackPanelStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Styles/ViewBoxStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Controls/Meter/MeterCtrlStyles.xaml"/>
+    <ResourceDictionary Source="/ResourceModule;component/Controls/ValueRange/ValueRangeBar.xaml"/>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

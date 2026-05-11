@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Providers\LibreInfoProvider\LibreInfoProvider.csproj" />
     <ProjectReference Include="..\..\Providers\SystemManagementProvider\SystemManagementProvider.csproj" />
     <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
     <ProjectReference Include="..\..\Shared\DataExchange\DataExchange.csproj" />

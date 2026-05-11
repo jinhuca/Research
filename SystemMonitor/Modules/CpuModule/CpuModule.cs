@@ -1,5 +1,7 @@
 using CpuModule.Models;
 using CpuModule.Views;
+using LibreInfoProvider.Implementations;
+using LibreInfoProvider.Interfaces;
 using ResourceModule.Controls.Meter;
 using System.ComponentModel.DataAnnotations;
 using SystemManagementProvider;
@@ -17,17 +19,16 @@ public class CpuModule : IModule {
   }
 
   public void RegisterTypes(IContainerRegistry containerRegistry) {
-    containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
     containerRegistry.Register<ISMProvider, SMProvider>();
+    containerRegistry.Register<ICpuInfoGenerator, CpuInfoGenerator>();
+    containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
 
     _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuSummaryView));
     _regionManager.RegisterViewWithRegion(StatisticsRegionName, typeof(StatisticsView));
-
-
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {
-    //containerProvider.Resolve<ISMProvider>();
+    
     var cpuLoadMeter = containerProvider.Resolve<MeterControl>();
   }
 }
