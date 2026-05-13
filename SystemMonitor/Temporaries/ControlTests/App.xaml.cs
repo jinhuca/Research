@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace ProgressBar {
+namespace ControlTests {
   /// <summary>
   /// Interaction logic for App.xaml
   /// </summary>

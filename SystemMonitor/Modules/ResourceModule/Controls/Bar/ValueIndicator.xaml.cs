@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProgressBar.ValueRange;
+namespace ResourceModule.Controls.Bar;
 
 public partial class ValueIndicator : UserControl {
   public ValueIndicator() {
@@ -90,6 +90,8 @@ public partial class ValueIndicator : UserControl {
 
   #region Title Dependency Properties
 
+  #region Text
+
   public string Title {
     get => (string)GetValue(TitleProperty);
     set => SetValue(TitleProperty, value);
@@ -100,6 +102,10 @@ public partial class ValueIndicator : UserControl {
     typeof(string),
     typeof(ValueIndicator),
     new PropertyMetadata(string.Empty));
+
+  #endregion Text
+
+  #region FontSize
 
   [TypeConverter(typeof(FontSizeConverter))]
   [Localizability(LocalizationCategory.None)]
@@ -114,6 +120,10 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(10.0));
 
+  #endregion FontSize
+
+  #region FontWeight
+
   public FontWeight TitleFontWeight {
     get => (FontWeight)GetValue(TitleFontWeightProperty);
     set => SetValue(TitleFontWeightProperty, value);
@@ -124,6 +134,10 @@ public partial class ValueIndicator : UserControl {
     typeof(FontWeight),
     typeof(ValueIndicator),
     new PropertyMetadata(FontWeights.Regular));
+
+  #endregion FontWeight
+
+  #region Foreground
 
   public Brush TitleForeground {
     get => (Brush)GetValue(TitleForegroundProperty);
@@ -136,9 +150,13 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(Brushes.Black));
 
+  #endregion Foreground
+
   #endregion Title Dependency Properties
 
   #region ValueId Dependency Properties
+
+  #region Text
 
   public string ValueId {
     get => (string)GetValue(ValueIdProperty);
@@ -150,6 +168,10 @@ public partial class ValueIndicator : UserControl {
     typeof(string),
     typeof(ValueIndicator),
     new PropertyMetadata(string.Empty));
+
+  #endregion Text
+
+  #region FontSize
 
   [TypeConverter(typeof(FontSizeConverter))]
   [Localizability(LocalizationCategory.None)]
@@ -164,6 +186,10 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(10.0));
 
+  #endregion FontSize
+
+  #region FontWeight
+
   public FontWeight ValueIdFontWeight {
     get => (FontWeight)GetValue(ValueIdFontWeightProperty);
     set => SetValue(ValueIdFontWeightProperty, value);
@@ -175,6 +201,10 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(FontWeights.Regular));
 
+  #endregion FontWeight
+
+  #region Foreground
+
   public Brush ValueIdForeground {
     get => (Brush)GetValue(ValueIdForegroundProperty);
     set => SetValue(ValueIdForegroundProperty, value);
@@ -185,6 +215,8 @@ public partial class ValueIndicator : UserControl {
     typeof(Brush),
     typeof(ValueIndicator),
     new PropertyMetadata(Brushes.Black));
+
+  #endregion Foreground
 
   #endregion ValueId Dependency Properties
 
@@ -452,6 +484,8 @@ public partial class ValueIndicator : UserControl {
 
   #region Separator
 
+  #region Width
+
   [TypeConverter(typeof(LengthConverter))]
   [Localizability(LocalizationCategory.None, Readability = Readability.Unreadable)]
   public double SeparatorWidth {
@@ -465,6 +499,10 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(1.0));
 
+  #endregion Width
+
+  #region Margin
+
   public Thickness SeparatorMargin {
     get => (Thickness)GetValue(SeparatorMarginProperty);
     set => SetValue(SeparatorMarginProperty, value);
@@ -475,6 +513,10 @@ public partial class ValueIndicator : UserControl {
     typeof(Thickness),
     typeof(ValueIndicator),
     new PropertyMetadata(new Thickness(0)));
+
+  #endregion Margin
+
+  #region Brush
 
   public Brush SeparatorBrush {
     get => (Brush)GetValue(SeparatorBrushProperty);
@@ -487,9 +529,13 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(Brushes.LightGray));
 
+  #endregion Brush
+
   #endregion Separator
 
   #region Max Dependency Properties
+
+  #region Title
 
   public string MaxTitle {
     get => (string)GetValue(MaxTitleProperty);
@@ -501,6 +547,10 @@ public partial class ValueIndicator : UserControl {
     typeof(string),
     typeof(ValueIndicator),
     new PropertyMetadata(string.Empty));
+
+  #endregion Title
+
+  #region Title FontSize
 
   [TypeConverter(typeof(FontSizeConverter))]
   [Localizability(LocalizationCategory.None)]
@@ -515,6 +565,10 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(10.0));
 
+  #endregion Title FontSize
+
+  #region Title Brush
+
   public Brush MaxTitleBrush {
     get => (Brush)GetValue(MaxTitleBrushProperty);
     set => SetValue(MaxTitleBrushProperty, value);
@@ -526,6 +580,7 @@ public partial class ValueIndicator : UserControl {
     typeof(ValueIndicator),
     new PropertyMetadata(Brushes.Black));
 
+  #endregion Title Brush
 
   public double MaxValue {
     get => (double)GetValue(MaxValueProperty);

@@ -1,0 +1,20 @@
+﻿<Window x:Class="ControlTests.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctrl="clr-namespace:ResourceModule.Controls.Bar;assembly=ResourceModule"
+        xmlns:local="clr-namespace:ControlTests"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+  <Grid>
+    <ctrl:ValueIndicator Margin="20,0,0,0"
+                         Title="Core # 1"
+                         ValueId="Load"
+                         Value="34.543"
+                         Minimum="0" Maximum="100"
+                         Unit="%"
+                         MaxTitle="Max: "
+                         />
+  </Grid>
+</Window>

@@ -32,7 +32,8 @@
     <File Path=".editorconfig" />
   </Folder>
   <Folder Name="/Temporaries/">
-    <Project Path="GetTemperatureFromLibre/GetTemperatureFromLibre.csproj" Id="6b12bd16-65c2-47de-ab86-e300743a8854" />
+    <Project Path="Temporaries/ControlTests/ControlTests.csproj" />
+    <Project Path="Temporaries/GetTemperatureFromLibre/GetTemperatureFromLibre.csproj" />
   </Folder>
   <Folder Name="/Unit Tests/">
     <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
