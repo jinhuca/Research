@@ -3,13 +3,14 @@
                     xmlns:local="clr-namespace:ResourceModule.Controls.Bar">
   <Style TargetType="{x:Type local:ValueIndicator}" x:Key="BaseIndicatorStyle">
     <Setter Property="ControlFontFamily" Value="Arial Rounded MT Bold"/>
-    <Setter Property="ControlFontSize" Value="16"/>
-    <Setter Property="ControlFontWeight" Value="DemiBold"/>
+    <Setter Property="ControlFontWeight" Value="Regular"/>
     <Setter Property="ControlForeground" Value="DarkKhaki"/>
   </Style>
   <Style TargetType="{x:Type local:ValueIndicator}" 
          x:Key="TemperatureIndicatorStyle"
          BasedOn="{StaticResource BaseIndicatorStyle}">
+    <Setter Property="ValueIdFontWeight" Value="ExtraBlack"/>
+    <Setter Property="ValueIdForeground" Value="Red"/>
   </Style>
   <Style TargetType="{x:Type local:ValueIndicator}" 
          x:Key="LoadIndicatorStyle"

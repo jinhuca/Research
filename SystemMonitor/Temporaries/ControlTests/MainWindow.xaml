@@ -17,7 +17,7 @@
                          Minimum="0" Maximum="80"
                          Unit="%"
                          MaxTitle="Max: "
-                          Style="{StaticResource BaseIndicatorStyle}"
+                          Style="{StaticResource TemperatureIndicatorStyle}"
                          />
   </Grid>
 </Window>

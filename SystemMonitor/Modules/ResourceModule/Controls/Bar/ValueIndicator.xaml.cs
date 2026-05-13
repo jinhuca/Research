@@ -15,6 +15,12 @@ using System.Windows.Shapes;
 namespace ResourceModule.Controls.Bar;
 
 public partial class ValueIndicator : UserControl {
+  #region constants
+
+  private const double DefaultFontSize = 14.0;
+
+  #endregion constants
+
   public ValueIndicator() {
     InitializeComponent();
   }
@@ -52,7 +58,7 @@ public partial class ValueIndicator : UserControl {
     nameof(ControlFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(14.0));
+    new PropertyMetadata(DefaultFontSize));
 
   #endregion FontSize
 
@@ -118,7 +124,7 @@ public partial class ValueIndicator : UserControl {
     nameof(TitleFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(DefaultFontSize));
 
   #endregion FontSize
 
@@ -184,7 +190,7 @@ public partial class ValueIndicator : UserControl {
     nameof(ValueIdFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(DefaultFontSize));
 
   #endregion FontSize
 
@@ -329,7 +335,7 @@ public partial class ValueIndicator : UserControl {
     nameof(ValueFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(DefaultFontSize));
 
   #endregion FontSize
 
@@ -413,7 +419,7 @@ public partial class ValueIndicator : UserControl {
     nameof(UnitFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(DefaultFontSize));
 
   #endregion FontSize
 
@@ -563,7 +569,7 @@ public partial class ValueIndicator : UserControl {
     nameof(MaxTitleFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(DefaultFontSize));
 
   #endregion Title FontSize
 
@@ -621,7 +627,7 @@ public partial class ValueIndicator : UserControl {
     nameof(MaxValueFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(DefaultFontSize));
 
   public Brush MaxValueBrush {
     get => (Brush)GetValue(MaxValueBrushProperty);
