@@ -52,7 +52,7 @@ public partial class ValueIndicator : UserControl {
     nameof(ControlFontSize),
     typeof(double),
     typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
+    new PropertyMetadata(14.0));
 
   #endregion FontSize
 
@@ -273,71 +273,6 @@ public partial class ValueIndicator : UserControl {
 
   #endregion Indicator Bar Properties
 
-  #region Unit Dependency Properties
-
-  #region Unit
-
-  public string Unit {
-    get => (string)GetValue(UnitProperty);
-    set => SetValue(UnitProperty, value);
-  }
-
-  public static readonly DependencyProperty UnitProperty = DependencyProperty.Register(
-    nameof(Unit),
-    typeof(string),
-    typeof(ValueIndicator),
-    new PropertyMetadata(string.Empty));
-
-  #endregion Unit
-
-  #region FontSize
-
-  [TypeConverter(typeof(FontSizeConverter))]
-  [Localizability(LocalizationCategory.None)]
-  public double UnitFontSize {
-    get => (double)GetValue(UnitFontSizeProperty);
-    set => SetValue(UnitFontSizeProperty, value);
-  }
-
-  public static readonly DependencyProperty UnitFontSizeProperty = DependencyProperty.Register(
-    nameof(UnitFontSize),
-    typeof(double),
-    typeof(ValueIndicator),
-    new PropertyMetadata(10.0));
-
-  #endregion FontSize
-
-  #region FontWeight
-
-  public FontWeight UnitFontWeight {
-    get => (FontWeight)GetValue(UnitFontWeightProperty);
-    set => SetValue(UnitFontWeightProperty, value);
-  }
-
-  public static readonly DependencyProperty UnitFontWeightProperty = DependencyProperty.Register(
-    nameof(UnitFontWeight),
-    typeof(FontWeight),
-    typeof(ValueIndicator),
-    new PropertyMetadata(FontWeights.Regular));
-
-  #endregion FontWeight
-
-  #region Foreground
-
-  public Brush UnitForeground {
-    get => (Brush)GetValue(UnitForegroundProperty);
-    set => SetValue(UnitForegroundProperty, value);
-  }
-  public static readonly DependencyProperty UnitForegroundProperty = DependencyProperty.Register(
-    nameof(UnitForeground),
-    typeof(Brush),
-    typeof(ValueIndicator),
-    new PropertyMetadata(Brushes.Black));
-
-  #endregion Foreground
-
-  #endregion Unit Dependency Properties
-
   #region Value DependencyProperties
 
   #region Value
@@ -379,7 +314,7 @@ public partial class ValueIndicator : UserControl {
     RaiseEvent(args);
   }
 
-  #endregion Value
+  #endregion Value Text
 
   #region FontSize
 
@@ -446,7 +381,72 @@ public partial class ValueIndicator : UserControl {
 
   #endregion Foreground
 
-  #endregion Value text Foreground
+  #endregion Value Text
+
+  #region Unit Dependency Properties
+
+  #region Unit
+
+  public string Unit {
+    get => (string)GetValue(UnitProperty);
+    set => SetValue(UnitProperty, value);
+  }
+
+  public static readonly DependencyProperty UnitProperty = DependencyProperty.Register(
+    nameof(Unit),
+    typeof(string),
+    typeof(ValueIndicator),
+    new PropertyMetadata(string.Empty));
+
+  #endregion Unit
+
+  #region FontSize
+
+  [TypeConverter(typeof(FontSizeConverter))]
+  [Localizability(LocalizationCategory.None)]
+  public double UnitFontSize {
+    get => (double)GetValue(UnitFontSizeProperty);
+    set => SetValue(UnitFontSizeProperty, value);
+  }
+
+  public static readonly DependencyProperty UnitFontSizeProperty = DependencyProperty.Register(
+    nameof(UnitFontSize),
+    typeof(double),
+    typeof(ValueIndicator),
+    new PropertyMetadata(10.0));
+
+  #endregion FontSize
+
+  #region FontWeight
+
+  public FontWeight UnitFontWeight {
+    get => (FontWeight)GetValue(UnitFontWeightProperty);
+    set => SetValue(UnitFontWeightProperty, value);
+  }
+
+  public static readonly DependencyProperty UnitFontWeightProperty = DependencyProperty.Register(
+    nameof(UnitFontWeight),
+    typeof(FontWeight),
+    typeof(ValueIndicator),
+    new PropertyMetadata(FontWeights.Regular));
+
+  #endregion FontWeight
+
+  #region Foreground
+
+  public Brush UnitForeground {
+    get => (Brush)GetValue(UnitForegroundProperty);
+    set => SetValue(UnitForegroundProperty, value);
+  }
+  public static readonly DependencyProperty UnitForegroundProperty = DependencyProperty.Register(
+    nameof(UnitForeground),
+    typeof(Brush),
+    typeof(ValueIndicator),
+    new PropertyMetadata(Brushes.Black));
+
+  #endregion Foreground
+
+  #endregion Unit Dependency Properties
 
   #region Minimum DependencyProperty
 
@@ -567,6 +567,21 @@ public partial class ValueIndicator : UserControl {
 
   #endregion Title FontSize
 
+  #region Title FontWeight
+
+  public FontWeight MaxTitleFontWeight {
+    get => (FontWeight)GetValue(MaxTitleFontWeightProperty);
+    set => SetValue(MaxTitleFontWeightProperty, value);
+  }
+
+  public static readonly DependencyProperty MaxTitleFontWeightProperty = DependencyProperty.Register(
+    nameof(MaxTitleFontWeight),
+    typeof(FontWeight),
+    typeof(ValueIndicator),
+    new PropertyMetadata(FontWeights.Regular));
+
+  #endregion Title FontWeight
+
   #region Title Brush
 
   public Brush MaxTitleBrush {
@@ -582,6 +597,7 @@ public partial class ValueIndicator : UserControl {
 
   #endregion Title Brush
 
+  /*
   public double MaxValue {
     get => (double)GetValue(MaxValueProperty);
     set => SetValue(MaxValueProperty, value);
@@ -592,6 +608,7 @@ public partial class ValueIndicator : UserControl {
     typeof(double),
     typeof(ValueIndicator),
     new PropertyMetadata(0.0));
+  */
 
   [TypeConverter(typeof(FontSizeConverter))]
   [Localizability(LocalizationCategory.None)]
@@ -616,6 +633,17 @@ public partial class ValueIndicator : UserControl {
     typeof(Brush),
     typeof(ValueIndicator),
     new PropertyMetadata(Brushes.Black));
+
+  public FontWeight MaxValueFontWeight {
+    get => (FontWeight)GetValue(MaxValueFontWeightProperty);
+    set => SetValue(MaxValueFontWeightProperty, value);
+  }
+
+  public static readonly DependencyProperty MaxValueFontWeightProperty = DependencyProperty.Register(
+    nameof(MaxValueFontWeight),
+    typeof(FontWeight),
+    typeof(ValueIndicator),
+    new PropertyMetadata(FontWeights.Regular));
 
   #endregion Max Dependency Properties
 }

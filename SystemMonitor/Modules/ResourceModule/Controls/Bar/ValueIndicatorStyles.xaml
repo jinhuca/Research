@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ResourceModule.Controls.Bar">
+  <Style TargetType="{x:Type local:ValueIndicator}" x:Key="BaseIndicatorStyle">
+    <Setter Property="ControlFontFamily" Value="Arial Rounded MT Bold"/>
+    <Setter Property="ControlFontSize" Value="16"/>
+    <Setter Property="ControlFontWeight" Value="DemiBold"/>
+    <Setter Property="ControlForeground" Value="DarkKhaki"/>
+  </Style>
+  <Style TargetType="{x:Type local:ValueIndicator}" 
+         x:Key="TemperatureIndicatorStyle"
+         BasedOn="{StaticResource BaseIndicatorStyle}">
+  </Style>
+  <Style TargetType="{x:Type local:ValueIndicator}" 
+         x:Key="LoadIndicatorStyle"
+         BasedOn="{StaticResource BaseIndicatorStyle}">
+    <Setter Property="TitleFontWeight" Value="SemiBold"/>
+    <Setter Property="TitleFontSize" Value="20"/>
+  </Style>
+  <Style TargetType="{x:Type local:ValueIndicator}" 
+         x:Key="SpeedIndicatorStyle"
+         BasedOn="{StaticResource BaseIndicatorStyle}">
+  </Style>
+</ResourceDictionary>
