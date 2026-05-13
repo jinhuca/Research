@@ -13,7 +13,7 @@
                          IndicatorHeight="21"
                          Title="Core # 3"
                          ValueId="Temperature"
-                         Value="79.543"
+                         Value="19.543"
                          Minimum="0" Maximum="80"
                          Unit="%"
                          MaxTitle="Max: "

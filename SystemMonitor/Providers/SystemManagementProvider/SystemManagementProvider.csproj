@@ -14,8 +14,4 @@
     <PackageReference Include="System.Management" Version="10.0.7" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="rd &quot;$(ProjectDir)obj&quot; /s /q" />
-  </Target>
-
 </Project>

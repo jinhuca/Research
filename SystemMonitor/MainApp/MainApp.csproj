@@ -29,8 +29,4 @@
     <ProjectReference Include="..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="rd &quot;$(ProjectDir)obj&quot; /s /q" />
-  </Target>
-
 </Project>
