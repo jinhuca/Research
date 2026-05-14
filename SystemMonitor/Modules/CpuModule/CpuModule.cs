@@ -29,6 +29,6 @@ public class CpuModule : IModule {
 
   public void OnInitialized(IContainerProvider containerProvider) {
     
-    var cpuLoadMeter = containerProvider.Resolve<MeterControl>();
+    //var cpuLoadMeter = containerProvider.Resolve<MeterControl>();
   }
 }
