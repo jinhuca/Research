@@ -24,4 +24,8 @@
     <ProjectReference Include="..\..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
     <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>

@@ -5,15 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:prism="http://prismlibrary.com/" 
-             xmlns:ctrl="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
+             xmlns:meter="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
+             xmlns:bar="clr-namespace:ResourceModule.Controls.Bar;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
              xmlns:local="clr-namespace:CpuModule.Views" 
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
   <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="False">
+    <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
       <Grid.RowDefinitions>
-        <RowDefinition Height="2.50cm" MinHeight="2.50cm"/>
-        <RowDefinition Height="6.00cm" MinHeight="6.00cm"/>
+        <RowDefinition Height="Auto" MinHeight="2.50cm"/>
+        <RowDefinition Height="Auto" MinHeight="6.00cm"/>
+        <RowDefinition Height="Auto" MinHeight="6.00cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="2.00cm"/>
@@ -31,7 +33,6 @@
           <ColumnDefinition Width="6.00cm"/>
           <ColumnDefinition Width="7.00cm"/>
         </Grid.ColumnDefinitions>
-
         <Grid Grid.Row="0" Grid.Column="0">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.00cm"/>
@@ -127,21 +128,41 @@
       </Grid>
       <UniformGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Rows="1">
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
-          <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
+          <meter:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
                              Value="{Binding Utilization}" 
                              Style="{StaticResource PercentageMeterStyle}"/>
         </Viewbox>
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
-          <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
+          <meter:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
                                Value="{Binding CurrentSpeed}" 
                                Style="{StaticResource SpeedMeterStyle}"/>
         </Viewbox>
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
-          <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
+          <meter:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
                                Value="{Binding Temperature}" 
                                Style="{StaticResource TemperatureMeterStyle}"/>
         </Viewbox>
       </UniformGrid>
+      <Grid Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" ShowGridLines="True">
+        <!-- Processor Core info -->
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0"
+                  ItemsSource="{Binding}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <bar:ValueIndicator Title="Load" TitleForeground="White"/>
+              </StackPanel>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </Grid>
     </Grid>
   </Border>
 </UserControl>

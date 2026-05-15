@@ -9,10 +9,13 @@
              xmlns:local="clr-namespace:HomeModule.Views"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="80">
-  <Border Style="{StaticResource ModuleBorderStyle}">
+  <Border Style="{StaticResource ModuleBorderStyle}" VerticalAlignment="Stretch">
     <UniformGrid Columns="1" Margin="10" Background="Black"
                  VerticalAlignment="Top">
-      <Rectangle Width="50" Height="50" Fill="Blue" Margin="0,.5cm"/>
+      <Grid>
+      <Rectangle Width="50" Height="50" Fill="Transparent" Margin="0,.5cm"/>
+        <TextBlock Text="CPU" Foreground="White" FontSize="30"/>
+      </Grid>
       <Rectangle Width="50" Height="50" Fill="Red" Margin="0,.5cm"/>
       <Rectangle Width="50" Height="50" Fill="Yellow" Margin="0,.5cm"/>
     </UniformGrid>

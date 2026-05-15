@@ -12,13 +12,13 @@
         Background="#333333"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                CanContentScroll="True">
+                CanContentScroll="True" VerticalAlignment="Stretch">
     <Grid ShowGridLines="False">
       <Grid.RowDefinitions>
         <RowDefinition Height="1.60cm"/>
         <RowDefinition MinHeight="6.60cm"/>
-        <RowDefinition MinHeight="5.60cm"/>
-        <RowDefinition MinHeight="8.00cm"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="2.80cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
@@ -30,17 +30,17 @@
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
       <ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>
-      <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1" MinHeight="8.60cm"
+      <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
-      <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2" MinHeight="8.60cm"
+      <ContentControl x:Name="GpuRegion" Grid.Row="1" Grid.Column="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuSummaryRegionName}"/>
-      <ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
+      <!--<ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>
       <ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
       <ContentControl x:Name="BiosRegion" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>
-      <ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>-->
+      <ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>
     </Grid>
   </ScrollViewer>
