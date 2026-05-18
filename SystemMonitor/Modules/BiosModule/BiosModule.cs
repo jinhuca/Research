@@ -1,13 +1,11 @@
 using BiosModule.Models;
 using BiosModule.ViewModels;
 using BiosModule.Views;
-using ResourceModule.Controls.Meter;
 using System.ComponentModel.DataAnnotations;
-using SystemManagementProvider;
-using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
 
-namespace BiosModule; 
+namespace BiosModule;
+
 public class BiosModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;

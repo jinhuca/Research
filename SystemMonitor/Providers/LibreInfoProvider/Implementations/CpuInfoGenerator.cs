@@ -1,10 +1,7 @@
-﻿using LibreHardwareMonitor.Hardware;
-using LibreInfoProvider.Interfaces;
-using System.Diagnostics;
-using System.Management;
-using System.Text.RegularExpressions;
+﻿using LibreInfoProvider.Interfaces;
 
-namespace LibreInfoProvider.Implementations; 
+namespace LibreInfoProvider.Implementations;
+
 public class CpuInfoGenerator : ICpuInfoGenerator {
   /*
   public ICpuSummaryInfo GetCpuSummaryInfo() {

@@ -1,12 +1,9 @@
-﻿using Converters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Management;
-using System.Text;
 
-namespace MemoryModule.Models; 
+namespace MemoryModule.Models;
+
 internal class QueryMemoryInfo {
   public QueryMemoryInfo() { }
 

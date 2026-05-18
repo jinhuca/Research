@@ -1,10 +1,8 @@
 ﻿using DataStructures.Cpu.Implementations;
-using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace CpuInfoServices.Methods;  
+namespace CpuInfoServices.Methods;
+
 public class NativeMethods {
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
   [return: MarshalAs(UnmanagedType.BStr)]

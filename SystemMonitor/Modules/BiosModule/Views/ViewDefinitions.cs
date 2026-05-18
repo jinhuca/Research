@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace BiosModule.Views;
 
-namespace BiosModule.Views;  
 internal class ViewDefinitions {
   public const string ModuleName = "BIOS";
 

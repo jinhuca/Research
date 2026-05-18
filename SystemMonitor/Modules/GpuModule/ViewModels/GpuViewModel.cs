@@ -1,13 +1,8 @@
 ﻿using Converters;
 using GpuModule.Models;
-using GpuModule.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using static GpuModule.Views.ViewDefinitions;
 
-namespace GpuModule.ViewModels; 
+namespace GpuModule.ViewModels;
+
 public class GpuViewModel : BindableBase, IGpuViewModel {
   private readonly GpuModel _model;
 
@@ -30,24 +25,24 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
       var gpuName = gpuInfo.Key;
       var gpuDetails = gpuInfo.Value;
 
-      if(gpuName != null) {
+      if (gpuName != null) {
         GpuSummaryList[gpuName] = new Dictionary<string, string>();
-        if(gpuDetails.TryGetValue(ViewModelDefinitions.CaptionString, out var caption_)) {
+        if (gpuDetails.TryGetValue(ViewModelDefinitions.CaptionString, out var caption_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.CaptionString] = caption_.Item1;
         }
-        if(gpuDetails.TryGetValue(ViewModelDefinitions.AdapterRamString, out var ram_)) {
+        if (gpuDetails.TryGetValue(ViewModelDefinitions.AdapterRamString, out var ram_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.AdapterRamString] = ram_.Item1;
         }
-        if(gpuDetails.TryGetValue(ViewModelDefinitions.AdapterCompatibility, out var compatibility_)) {
+        if (gpuDetails.TryGetValue(ViewModelDefinitions.AdapterCompatibility, out var compatibility_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.AdapterCompatibility] = compatibility_.Item1;
         }
-        if(gpuDetails.TryGetValue(ViewModelDefinitions.DeviceId, out var deviceId_)) {
+        if (gpuDetails.TryGetValue(ViewModelDefinitions.DeviceId, out var deviceId_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.DeviceId] = deviceId_.Item1;
         }
-        if(gpuDetails.TryGetValue(ViewModelDefinitions.DriverVersion, out var driverVersion_)) {
+        if (gpuDetails.TryGetValue(ViewModelDefinitions.DriverVersion, out var driverVersion_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.DriverVersion] = driverVersion_.Item1;
         }
-        if(gpuDetails.TryGetValue(ViewModelDefinitions.AdapterDACType, out var dacType_)) {
+        if (gpuDetails.TryGetValue(ViewModelDefinitions.AdapterDACType, out var dacType_)) {
           GpuSummaryList[gpuName][ViewModelDefinitions.AdapterDACType] = dacType_.Item1;
         }
 
@@ -59,12 +54,12 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
   }
 
   private void InitializeSummary() {
-    foreach(var gpuName in GpuNameList) {
-      if(string.IsNullOrEmpty(gpuName)) continue;
+    foreach (var gpuName in GpuNameList) {
+      if (string.IsNullOrEmpty(gpuName)) continue;
 
       var g1_ = GpuSummaryList[gpuName];
-      if(g1_.TryGetValue(ViewModelDefinitions.AdapterDACType, out var type_)) {
-        if(type_.Contains(ViewModelDefinitions.InternalGpuType)) {
+      if (g1_.TryGetValue(ViewModelDefinitions.AdapterDACType, out var type_)) {
+        if (type_.Contains(ViewModelDefinitions.InternalGpuType)) {
           InternalGpuSummaryViewModel.ID = g1_[ViewModelDefinitions.DeviceId];
           InternalGpuSummaryViewModel.Name = g1_[ViewModelDefinitions.CaptionString].Replace("(R)", "");
           InternalGpuSummaryViewModel.Vendor = g1_[ViewModelDefinitions.AdapterCompatibility];
@@ -72,7 +67,7 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
           InternalGpuSummaryViewModel.Version = g1_[ViewModelDefinitions.DriverVersion];
           InternalGpuSummaryViewModel.Ram = ByteUnitConverters.ConvertBytesToReadableUnit(ulong.Parse(g1_[ViewModelDefinitions.AdapterRamString]));
         }
-        if(type_.Contains(ViewModelDefinitions.DedicatedGpuType)) {
+        if (type_.Contains(ViewModelDefinitions.DedicatedGpuType)) {
           DedicatedGpuSummaryViewModel.ID = g1_[ViewModelDefinitions.DeviceId];
           DedicatedGpuSummaryViewModel.Name = g1_[ViewModelDefinitions.CaptionString];
           DedicatedGpuSummaryViewModel.Vendor = g1_[ViewModelDefinitions.AdapterCompatibility];
@@ -132,7 +127,7 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
     }
   }
 
-  public float Speed { 
+  public float Speed {
     get => _model?.Speed ?? 0.0f;
     set {
       if (_model != null) {
@@ -142,7 +137,7 @@ public class GpuViewModel : BindableBase, IGpuViewModel {
     }
   }
 
-  public float Temperature { 
+  public float Temperature {
     get => _model?.Temperature ?? 0.0f;
     set {
       if (_model != null) {

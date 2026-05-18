@@ -1,4 +1,5 @@
-﻿namespace DataStructures;  
+﻿namespace DataStructures;
+
 public class DataStructureModule : IModule {
   public void OnInitialized(IContainerProvider containerProvider) {
     throw new NotImplementedException();

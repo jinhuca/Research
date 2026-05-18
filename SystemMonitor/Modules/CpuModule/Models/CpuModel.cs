@@ -1,8 +1,11 @@
-﻿using DataStructures.Cpu.Interfaces;
-using DataStructures.Cpu.Implementations;
+﻿using DataStructures.Cpu.Implementations;
+using DataStructures.Cpu.Interfaces;
+using System.Diagnostics;
+using System.Reactive.Linq;
 using static CpuInfoServices.Observables.CpuInfoGenerators;
 
-namespace CpuModule.Models; 
+namespace CpuModule.Models;
+
 public class CpuModel : BindableBase, ICpuModel {
   IObservable<ICpuSummaryInfo> summarySource_;
   IObservable<ICpuLiveInfo> liveSource_;
@@ -10,6 +13,10 @@ public class CpuModel : BindableBase, ICpuModel {
   public CpuModel() {
     summarySource_ = GenerateCpuSummaryInfo(TimeSpan.FromSeconds(0));
     liveSource_ = GenerateCpuLiveInfo(TimeSpan.FromSeconds(1));
+
+    //var runningMax = liveSource_.Select(static reading => reading.CpuOverallLiveInfo.PlatformPower.max.Value)
+    //  .Scan((currentMax, nextValue) => Math.Max(currentMax, nextValue));
+    //runningMax.Subscribe(max => Debug.WriteLine($"Highest value so far: {max}"));
 
     IDisposable cpuSummaryDisposable_ = summarySource_.Subscribe(
       newItem => { UpdateSummaryInfo(newItem); },
@@ -43,6 +50,16 @@ public class CpuModel : BindableBase, ICpuModel {
     LiveInfo.CpuOverallLiveInfo.TotalLoad = newItem.CpuOverallLiveInfo.TotalLoad;
     LiveInfo.CpuOverallLiveInfo.PackageTemperature = newItem.CpuOverallLiveInfo.PackageTemperature;
     LiveInfo.CpuOverallLiveInfo.CpuSpeed = newItem.CpuOverallLiveInfo.CpuSpeed;
+
+    LiveInfo.CpuOverallLiveInfo.Voltage = newItem.CpuOverallLiveInfo.Voltage;
+
+    LiveInfo.CpuOverallLiveInfo.PackagePower = newItem.CpuOverallLiveInfo.PackagePower;
+    LiveInfo.CpuOverallLiveInfo.PlatformPower = newItem.CpuOverallLiveInfo.PlatformPower;
+    LiveInfo.CpuOverallLiveInfo.CoresPower = newItem.CpuOverallLiveInfo.CoresPower;
+    LiveInfo.CpuOverallLiveInfo.MemoryPower = newItem.CpuOverallLiveInfo.MemoryPower;
+
+    LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature = newItem.CpuOverallLiveInfo.CoreAvgTemperature;
+    LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = newItem.CpuOverallLiveInfo.CoreMaxTemperature;
 
     RaisePropertyChanged(nameof(LiveInfo));
   }

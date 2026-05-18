@@ -1,14 +1,9 @@
 ﻿using LibreHardwareMonitor.Hardware;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 
-namespace GpuModule.Models; 
+namespace GpuModule.Models;
+
 struct GpuModelDefinitions {
   public const int TimerStartDelay = 0;
   public const int TimerInterval = 1000;
@@ -49,7 +44,7 @@ public class GpuModel : BindableBase, IGpuModel {
   private float GetCurrentGpuUsage() {
     Computer computer = new Computer { IsGpuEnabled = true };
     computer.Open();
-    foreach(var hardware in computer.Hardware) {
+    foreach (var hardware in computer.Hardware) {
       if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
         hardware.Update();
         foreach (var sensor in hardware.Sensors) {
@@ -78,21 +73,21 @@ public class GpuModel : BindableBase, IGpuModel {
         foreach (ISensor sensor in hardware.Sensors) {
           // Filter for Clock sensors (e.g., GPU Core, GPU Memory)
           if (sensor.SensorType == SensorType.Clock) {
-            return sensor.Value/1000 ?? 0.0f; // Return the clock speed in MHz
+            return sensor.Value / 1000 ?? 0.0f; // Return the clock speed in MHz
           }
         }
       }
     }
 
     computer.Close();
-  
+
     return 0.0f; // Return 0 if no clock speed is found
   }
 
   public float GetGpuTemperature() {
     Computer computer = new Computer { IsGpuEnabled = true };
     computer.Open();
-    foreach(var hardware in computer.Hardware) {
+    foreach (var hardware in computer.Hardware) {
       if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
         hardware.Update();
         foreach (var sensor in hardware.Sensors) {
@@ -120,7 +115,7 @@ public class GpuModel : BindableBase, IGpuModel {
 
   private string _name;
   public string Name {
-    get => _name; 
+    get => _name;
     set => SetProperty(ref _name, value);
   }
 

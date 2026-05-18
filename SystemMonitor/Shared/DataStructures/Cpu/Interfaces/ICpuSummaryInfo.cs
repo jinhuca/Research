@@ -1,6 +1,7 @@
 ﻿using DataStructures.Cpu.Implementations;
 
-namespace DataStructures.Cpu.Interfaces; 
+namespace DataStructures.Cpu.Interfaces;
+
 public interface ICpuSummaryInfo {
   string? BrandName { get; set; }
   string? VendorName { get; set; }

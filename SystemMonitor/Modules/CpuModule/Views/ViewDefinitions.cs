@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace CpuModule.Views;
 
-namespace CpuModule.Views;  
 internal static class ViewDefinitions {
   public const string ModuleName = "CPU";
   public const string VendorNameTitle = "Vendor:";
@@ -33,4 +30,14 @@ internal static class ViewDefinitions {
   public const string FamilyTitle = "Family:";
   public const string ModelTitle = "Model:";
   public const string SteppingTitle = "Stepping:";
+
+  public const string VoltageTitle = "CPU Voltage";
+
+  public const string CoreTemperatureTitle = "Core Temperature";
+
+  public const string PowerTitle = "Power";
+  public const string PlatFormPowerTitle = "Platform";
+  public const string PackagePowerTitle = "Package";
+  public const string CoresPowerTitle = "Cores";
+  public const string MemoryPowerTitle = "Memory";
 }

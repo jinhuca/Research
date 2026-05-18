@@ -1,15 +1,12 @@
 using CpuModule.Models;
 using CpuModule.Views;
-using DataStructures.Cpu.Interfaces;
-using LibreInfoProvider.Implementations;
-using LibreInfoProvider.Interfaces;
-using ResourceModule.Controls.Meter;
 using System.ComponentModel.DataAnnotations;
 using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
 
-namespace CpuModule; 
+namespace CpuModule;
+
 public class CpuModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;
@@ -30,6 +27,6 @@ public class CpuModule : IModule {
 
   public void OnInitialized(IContainerProvider containerProvider) {
     //IObservable<ICpuSummaryInfo2> subscription_ = CpuInfoServices.Queries.CpuInfoQueries.
-  
+
   }
 }

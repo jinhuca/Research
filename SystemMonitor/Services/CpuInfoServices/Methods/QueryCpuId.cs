@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Runtime.Intrinsics.X86;
 
-namespace CpuInfoServices.Methods;  
+namespace CpuInfoServices.Methods;
+
 public static class QueryCpuId {
   public static (int family, int model, int stepping) GetCpuFamily() {
     if (X86Base.IsSupported) {
@@ -27,7 +27,7 @@ public static class QueryCpuId {
     }
     else {
       Debug.WriteLine("X86/X64 CPUID instruction is not supported on this architecture.");
-      return (0,0,0);
+      return (0, 0, 0);
     }
   }
 }

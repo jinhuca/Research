@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
-
-namespace CpuModule.ViewModels;
+﻿namespace CpuModule.ViewModels;
 
 public class CpuLiveViewModel : BindableBase, ICpuLiveViewModel {
   private ICpuOverallLiveViewModel? _cpuOverallLiveViewModel = new CpuOverallLiveViewModel();

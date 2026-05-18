@@ -1,9 +1,7 @@
 ﻿using DataStructures.Cpu.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DataStructures.Cpu.Implementations;  
+namespace DataStructures.Cpu.Implementations;
+
 public class CpuCoreLiveInfo : ICpuCoreLiveInfo {
   public string Name { get; set; } = string.Empty;
   public (float? val, float? max) Voltage { get; set; } = (0.0f, 0.0f);

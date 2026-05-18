@@ -1,13 +1,14 @@
 ﻿using DataStructures.Cpu.Implementations;
 
-namespace CpuModule.ViewModels_V2;  
+namespace CpuModule.ViewModels_V2;
+
 internal static class ViewModelConversions {
   internal static string VendorNameConvert(string name) {
     if (name is null) throw new ArgumentNullException(nameof(name));
-    if(name.Contains(Definitions.Intel, StringComparison.OrdinalIgnoreCase)) {
+    if (name.Contains(Definitions.Intel, StringComparison.OrdinalIgnoreCase)) {
       return Definitions.Intel;
     }
-    if(name.Contains(Definitions.Amd, StringComparison.OrdinalIgnoreCase)) {
+    if (name.Contains(Definitions.Amd, StringComparison.OrdinalIgnoreCase)) {
       return Definitions.Amd;
     }
     return Definitions.UnknownBrandName;

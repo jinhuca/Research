@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace StorageModule.Interfaces;
 
-namespace StorageModule.Interfaces; 
 public class DiskInfo : BindableBase {
   public string? Name { get; set; }
   public string? DeviceId { get; set; }
@@ -22,6 +19,6 @@ public class DiskInfo : BindableBase {
   public string? FileSystem { get; internal set; }
 }
 
-public enum DiskType { 
+public enum DiskType {
 
 }

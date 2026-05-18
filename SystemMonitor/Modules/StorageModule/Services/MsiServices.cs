@@ -1,20 +1,17 @@
 ﻿using Microsoft.Management.Infrastructure;
-using Microsoft.Management.Infrastructure.Options;
 using StorageModule.Definitions;
 using StorageModule.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
-using System.Text;
 using static StorageModule.Definitions.MsiQueryDefinitions;
 
-namespace StorageModule.Services;  
+namespace StorageModule.Services;
+
 internal static class MsiServices {
   public static void QueryMsi() {
     using CimSession session = CimSession.Create(null);
     var instances = session.QueryInstances(namespaceName: @"root\cimv2", "WQL", "SELECT * FROM Win32_OperatingSystem");
-    foreach(var instance in instances) {
+    foreach (var instance in instances) {
       Debug.WriteLine($"OS: {instance.CimInstanceProperties["Caption"].Value}");
     }
   }

@@ -1,10 +1,8 @@
-﻿ using BiosModule.Models;
+﻿using BiosModule.Models;
 using BiosModule.ViewModels.SubViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BiosModule.ViewModels;  
+namespace BiosModule.ViewModels;
+
 public class BiosViewModel : BindableBase, IBiosViewModel {
   private readonly BiosModel _model;
   public BiosViewModel(BiosModel model) {
@@ -26,8 +24,8 @@ public class BiosViewModel : BindableBase, IBiosViewModel {
   }
 
   private ISM_SummaryViewModel _summary;
-  public ISM_SummaryViewModel Summary { 
-    get => _summary; 
-    set => SetProperty(ref _summary, value); 
+  public ISM_SummaryViewModel Summary {
+    get => _summary;
+    set => SetProperty(ref _summary, value);
   }
 }

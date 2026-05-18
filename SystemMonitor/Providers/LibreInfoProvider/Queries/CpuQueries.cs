@@ -1,8 +1,4 @@
-﻿using LibreHardwareMonitor.Hardware;
-using System.Diagnostics;
-using System.Management;
-
-namespace LibreInfoProvider.Queries;  
+﻿namespace LibreInfoProvider.Queries;
 //public class CpuQueries {
 //  public static ICpuSummaryInfo QuerySummaryInfo() {
 //    ICpuSummaryInfo result_ = new CpuSummaryInfo();

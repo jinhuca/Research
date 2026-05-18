@@ -1,19 +1,17 @@
 ﻿using Converters;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Management;
-using System.Text;
 using static MemoryModule.Definitions.Constants;
 
-namespace MemoryModule.Models; 
+namespace MemoryModule.Models;
+
 internal class QueryMemory {
   public QueryMemory() { }
 
   public static string GetRamFormFactor() {
     ManagementObjectSearcher searcher_ = new ManagementObjectSearcher(Win32PhysicalQueryString);
-    foreach(ManagementObject wmi_ in searcher_.Get()) {
+    foreach (ManagementObject wmi_ in searcher_.Get()) {
       return GetMemoryFormFactorName(wmi_[FormFactorQueryKey]);
     }
     return string.Empty;
@@ -47,8 +45,8 @@ internal class QueryMemory {
 
   public static ulong GetOSVisibleRAMSize() {
     ulong totalVisibleMemory_ = 0;
-    using(ManagementObjectSearcher searcher = new ManagementObjectSearcher(Win32OSQueryString)) {
-      foreach(ManagementObject obj in searcher.Get()) {
+    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(Win32OSQueryString)) {
+      foreach (ManagementObject obj in searcher.Get()) {
         totalVisibleMemory_ = (ulong)obj[TotalVisibleMemorySizeQueryKey] * 1024; // Convert KB to Bytes
       }
     }
@@ -57,15 +55,15 @@ internal class QueryMemory {
 
   public static void GetHardwareReservedRam() {
     ulong totalPhysicalMemory = 0;
-    using(ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT TotalPhysicalMemory FROM Win32_ComputerSystem")) {
-      foreach(ManagementObject obj in searcher.Get()) {
+    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT TotalPhysicalMemory FROM Win32_ComputerSystem")) {
+      foreach (ManagementObject obj in searcher.Get()) {
         totalPhysicalMemory = (ulong)obj["TotalPhysicalMemory"];
       }
     }
 
     ulong totalVisibleMemory = 0;
-    using(ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT TotalVisibleMemorySize FROM Win32_OperatingSystem")) {
-      foreach(ManagementObject obj in searcher.Get()) {
+    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT TotalVisibleMemorySize FROM Win32_OperatingSystem")) {
+      foreach (ManagementObject obj in searcher.Get()) {
         totalVisibleMemory = (ulong)obj["TotalVisibleMemorySize"] * 1024; // Convert KB to Bytes
       }
     }
@@ -81,7 +79,7 @@ internal class QueryMemory {
 
     ManagementObjectSearcher stickSearcher = new ManagementObjectSearcher("SELECT Capacity, Speed FROM Win32_PhysicalMemory");
 
-    foreach(ManagementObject stick in stickSearcher.Get()) {
+    foreach (ManagementObject stick in stickSearcher.Get()) {
       ulong capacity = (ulong)stick["Capacity"];
       uint speed = (uint)stick["Speed"];
       Debug.WriteLine(Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)capacity));
@@ -97,7 +95,7 @@ internal class QueryMemory {
   public static ulong GetInstalledMemorySize() {
     ulong totalPhysicalMemory = 0;
     ManagementObjectSearcher stickSearcher = new(Win32PhysicalQueryString);
-    foreach(var stick in stickSearcher.Get()) {
+    foreach (var stick in stickSearcher.Get()) {
       ulong capacity_ = (ulong)stick[StickCapacityKey];
       totalPhysicalMemory += capacity_;
     }
@@ -107,7 +105,7 @@ internal class QueryMemory {
   public static List<IStickInfo> GetStickInfo() {
     List<IStickInfo> result_ = new();
     ManagementObjectSearcher stickSearcher_ = new(Win32PhysicalQueryString);
-    foreach(var stick_ in stickSearcher_.Get()) {
+    foreach (var stick_ in stickSearcher_.Get()) {
       ulong capacity_ = (ulong)stick_[StickCapacityKey];
       uint speed_ = (uint)stick_[StickSpeedKey];
       string factor_ = GetMemoryFormFactorName(stick_[FormFactorQueryKey]);
@@ -134,7 +132,7 @@ internal class QueryMemory {
   public static int GetSlotsUsed() {
     ManagementObjectSearcher searcher_ = new(Win32PhysicalQueryString);
     int slotCount = 0;
-    foreach(ManagementObject wmi_ in searcher_.Get()) {
+    foreach (ManagementObject wmi_ in searcher_.Get()) {
       slotCount++;
     }
     Debug.WriteLine("Slots Used: " + slotCount);
@@ -146,12 +144,12 @@ internal class QueryMemory {
     try {
       ManagementObjectSearcher searcher = new("SELECT MemoryDevices FROM Win32_PhysicalMemoryArray");
 
-      foreach(ManagementObject obj in searcher.Get()) {
+      foreach (ManagementObject obj in searcher.Get()) {
         slotCount = (uint)obj["MemoryDevices"];
         Console.WriteLine("Total RAM Slots: " + slotCount);
       }
     }
-    catch(Exception ex) {
+    catch (Exception ex) {
       Debug.WriteLine(ex.Message);
       slotCount = 0;
     }
@@ -163,7 +161,7 @@ internal class QueryMemory {
     TypeConverter converter = TypeDescriptor.GetConverter(memoryValue.GetType());
 
     // 2. Check if it can convert to a string
-    if(converter != null && converter.CanConvertTo(typeof(string))) {
+    if (converter != null && converter.CanConvertTo(typeof(string))) {
       // 3. Return the converted string
       return converter.ConvertToString(memoryValue) ?? string.Empty;
     }
@@ -174,7 +172,7 @@ internal class QueryMemory {
 
   public static void GetMemoryType() {
     ManagementObjectSearcher searcher_ = new ManagementObjectSearcher(Win32PhysicalQueryString);
-    foreach(ManagementObject wmi_ in searcher_.Get()) {
+    foreach (ManagementObject wmi_ in searcher_.Get()) {
       var memoryTypeCode = int.Parse(wmi_["MemoryType"].ToString());
       var memoryType = GetMemoryTypeString(memoryTypeCode);
       Debug.WriteLine("Memory Type: " + memoryType);
@@ -186,7 +184,7 @@ internal class QueryMemory {
     QueryMemory.GetHardwareReservedRam();
 
     ManagementObjectSearcher searcher_ = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
-    foreach(ManagementObject wmi_ in searcher_.Get()) {
+    foreach (ManagementObject wmi_ in searcher_.Get()) {
       var cp1_ = ulong.Parse(wmi_["Capacity"].ToString());
       var cp_ = ByteUnitConverters.ConvertBytesToReadableUnit(cp1_);
       Debug.WriteLine("Capacity: " + cp_);

@@ -1,8 +1,8 @@
-﻿using CpuInfoServices.Observables;
-using DataStructures.Cpu.Implementations;
+﻿using DataStructures.Cpu.Implementations;
 using DataStructures.Cpu.Interfaces;
 
-namespace CpuInfoServices; 
+namespace CpuInfoServices;
+
 public class CpuInfoServicesModule : IModule {
   public void OnInitialized(IContainerProvider containerProvider) {
   }

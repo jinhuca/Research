@@ -1,8 +1,8 @@
 ﻿using Converters;
 using MemoryModule.Models;
-using System.ComponentModel;
 
-namespace MemoryModule.ViewModels; 
+namespace MemoryModule.ViewModels;
+
 public class MemoryViewModel : BindableBase, IMemoryViewModel {
   private readonly MemoryModel _model;
 
@@ -55,7 +55,7 @@ public class MemoryViewModel : BindableBase, IMemoryViewModel {
     get {
       _stickViewModel.Clear();
       int index_ = 1;
-      foreach(var stick_ in _model.RAMStickInfo) {
+      foreach (var stick_ in _model.RAMStickInfo) {
         StickInfoViewModel svm_ = new();
         svm_.Id = index_++;
         svm_.CapacityInGB = ByteUnitConverters.ConvertBytesToReadableUnit(stick_.Capacity);

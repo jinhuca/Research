@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace StorageModule.Definitions;
 
-namespace StorageModule.Definitions;  
 internal class Interpretations {
   public static string ConvertMediaType(int mediaType) {
     return mediaType switch {

@@ -11,7 +11,7 @@
              xmlns:local="clr-namespace:CpuModule.Views" 
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
   <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="0.5cm" Width="Auto" Height="8.00cm" ShowGridLines="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Grid Margin="0.5cm" Width="Auto" Height="10.00cm" ShowGridLines="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -203,8 +203,56 @@
         </Viewbox>
       </UniformGrid>
 
-      <Grid Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="True">
-        
+      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="Transparent" MinHeight="40"
+            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition/>
+          <RowDefinition/>
+          <RowDefinition/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Style="{StaticResource ModuleContentTitleStyle}"
+                   Text="{x:Static local:ViewDefinitions.PowerTitle}"/>
+        <bar:ValueIndicator Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                            Title="{x:Static local:ViewDefinitions.PlatFormPowerTitle}"
+                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
+                            Minimum="0"
+                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
+                            Unit=" W"
+                            MaxTitle="max: "
+                            Style="{StaticResource TemperatureIndicatorStyle}"/>
+        <bar:ValueIndicator Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                            Title="{x:Static local:ViewDefinitions.PackagePowerTitle}"
+                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerValueViewModel}"
+                            Minimum="0"
+                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMaxViewModel}"
+                            Unit=" W"
+                            MaxTitle="max: "
+                            Style="{StaticResource TemperatureIndicatorStyle}"/>
+        <bar:ValueIndicator Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                            Title="{x:Static local:ViewDefinitions.CoresPowerTitle}"
+                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerValueViewModel}"
+                            Minimum="0"
+                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMaxViewModel}"
+                            Unit=" W"
+                            MaxTitle="max: "
+                            Style="{StaticResource TemperatureIndicatorStyle}"/>
+        <bar:ValueIndicator Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                            Title="{x:Static local:ViewDefinitions.MemoryPowerTitle}"
+                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerValueViewModel}"
+                            Minimum="0"
+                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
+                            Unit=" W"
+                            MaxTitle="max: "
+                            Style="{StaticResource TemperatureIndicatorStyle}"/>
       </Grid>
       
       <Grid Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" ShowGridLines="True">

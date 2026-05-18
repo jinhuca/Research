@@ -1,4 +1,5 @@
-﻿namespace GpuInfoServices; 
+﻿namespace GpuInfoServices;
+
 public class GpuInfoServicesModule : IModule {
   public void OnInitialized(IContainerProvider containerProvider) {
     throw new NotImplementedException();

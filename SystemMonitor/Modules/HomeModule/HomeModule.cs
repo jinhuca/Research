@@ -5,7 +5,8 @@ using HomeModule.Views;
 using System.ComponentModel.DataAnnotations;
 using static SharedDefinitions.RegionNames;
 
-namespace HomeModule; 
+namespace HomeModule;
+
 public class HomeModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;

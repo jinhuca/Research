@@ -1,9 +1,9 @@
 ﻿using System.Management;
-using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 using static SystemManagementProvider.Constants.Win32_OperatingSystem;
 
-namespace SystemManagementProvider.Queries;  
+namespace SystemManagementProvider.Queries;
+
 public class QueryOperatingSystem : ISMQuery {
   private ManagementObjectSearcher _searcher;
   private static Dictionary<string, (string, string)> info = [];
@@ -12,11 +12,11 @@ public class QueryOperatingSystem : ISMQuery {
 
   public QueryOperatingSystem() {
     _searcher = new ManagementObjectSearcher(QueryString);
-    if(_searcher is null) 
+    if (_searcher is null)
       throw new ArgumentNullException(nameof(_searcher));
   }
 
-  public Dictionary<string,(string,string)> GetInfo() {
+  public Dictionary<string, (string, string)> GetInfo() {
     info.Clear();
     try {
       using ManagementObjectCollection objCollection_ = _searcher.Get();
@@ -75,8 +75,7 @@ public class QueryOperatingSystem : ISMQuery {
   }
 
   private static string GetNumbersOfLicensedUsers(int val) {
-    return val switch
-    {
+    return val switch {
       0 => "unlimited",
       -1 => "unknown",
       _ => val.ToString()
@@ -84,8 +83,7 @@ public class QueryOperatingSystem : ISMQuery {
   }
 
   private static string GetOperatingSystemSKU(uint val) {
-    return val switch
-    {
+    return val switch {
       0 => "Undefined(0)",
       1 => "Ultimate Edition",
       2 => "Home Basic Edition",
@@ -142,8 +140,7 @@ public class QueryOperatingSystem : ISMQuery {
   }
 
   private static string GetOSLanguage(uint val) {
-    return val switch
-    {
+    return val switch {
       1 => "Arabic",
       4 => "Chinese(Simplified)– China",
       9 => "English",
@@ -271,8 +268,7 @@ public class QueryOperatingSystem : ISMQuery {
   }
 
   private static string GetOSProductSuite(uint val) {
-    return val switch
-    {
+    return val switch {
       1 => "Microsoft Small Business Server installed",
       2 => "Windows Server 2008 Enterprise is installed",
       4 => "Windows BackOffice components are installed",
@@ -291,8 +287,7 @@ public class QueryOperatingSystem : ISMQuery {
   }
 
   private static string GetOSType(ushort val) {
-    return val switch
-    {
+    return val switch {
       0 => "Unknown",
       1 => "Other",
       2 => "MACOS",
@@ -353,7 +348,7 @@ public class QueryOperatingSystem : ISMQuery {
       57 => "Rhapsody",
       58 => "Windows 2000",
       59 => "Dedicated",
-      60 => "OS/390", 
+      60 => "OS/390",
       61 => "VSE",
       62 => "TPF",
       _ => "Unknown"
@@ -361,8 +356,7 @@ public class QueryOperatingSystem : ISMQuery {
   }
 
   private static string GetProductType(int val) {
-    return val switch
-    {
+    return val switch {
       1 => "Work Station",
       2 => "Domain Controller",
       3 => "Server",

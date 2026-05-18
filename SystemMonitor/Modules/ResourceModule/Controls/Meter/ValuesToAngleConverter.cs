@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ResourceModule.Controls.Meter; 
+namespace ResourceModule.Controls.Meter;
+
 public class ValuesToAngleConverter : IMultiValueConverter {
   public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
     // (1) cast the passed values to double

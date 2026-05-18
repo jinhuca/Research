@@ -1,4 +1,5 @@
-﻿namespace Converters; 
+﻿namespace Converters;
+
 public class ByteUnitConverters {
   public static string ConvertBytesToReadableUnit(ulong bytes) {
     string[] units = { "B", "KB", "MB", "GB", "TB" };
@@ -9,10 +10,10 @@ public class ByteUnitConverters {
       throw new ArgumentOutOfRangeException(nameof(bytes), "Bytes cannot be negative.");
     }
 
-    if(bytes < 1024) {
+    if (bytes < 1024) {
       return $"{bytes} B";
     }
-  
+
     while (size >= 1024 && unitIndex < units.Length - 1) {
       size /= 1024;
       unitIndex++;
@@ -23,7 +24,7 @@ public class ByteUnitConverters {
 
   public static long ConvertReadableUnitToBytes(string sizeString) {
     var parts = sizeString.Trim().Split(' ');
-    if(parts.Length < 2) return (long)double.Parse(parts[0]);
+    if (parts.Length < 2) return (long)double.Parse(parts[0]);
 
     double value = double.Parse(parts[0]);
     string unit = parts[1].ToUpper();

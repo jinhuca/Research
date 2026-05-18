@@ -1,12 +1,10 @@
 ﻿using BiosModule.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
-using System.Text;
 using static BiosModule.Constants.QueryKeys;
 
-namespace BiosModule.Services;  
+namespace BiosModule.Services;
+
 internal class SMServices {
   static ManagementObjectSearcher searcher_ = new(SMQueryString);
 
@@ -32,19 +30,19 @@ internal class SMServices {
 
         summaryInfo_.EmbeddedControllerMajorVersion = ushort.TryParse(wmi_[EmbeddedControllerMajorVersion]?.ToString(), out var temp7) ? temp7 : (ushort)0;
         summaryInfo_.EmbeddedControllerMinorVersion = ushort.TryParse(wmi_[EmbeddedControllerMinorVersion]?.ToString(), out var temp8) ? temp8 : (ushort)0;
-      
+
         summaryInfo_.IdentificationCode = wmi_[IdentificationCode]?.ToString() ?? string.Empty;
         summaryInfo_.InstallDate = DateTime.TryParse(wmi_[InstallDate]?.ToString(), out var temp10) ? temp10 : DateTime.MinValue;
 
         summaryInfo_.LanguageEdition = wmi_[LanguageEdition]?.ToString() ?? string.Empty;
-      
+
         summaryInfo_.Manufacturer = wmi_[Manufacturer]?.ToString() ?? string.Empty;
         summaryInfo_.Name = wmi_[Name]?.ToString() ?? string.Empty;
 
         summaryInfo_.PrimaryBIOS = bool.TryParse(wmi_[PrimaryBIOS]?.ToString(), out var temp14) ? temp14 : false;
         summaryInfo_.ReleaseDate = DateTime.TryParse(wmi_[ReleaseDate]?.ToString(), out var temp15) ? temp15 : DateTime.MinValue;
 
-        summaryInfo_.SerialNumber = wmi_[SerialNumber]?.ToString() ?? string.Empty;  
+        summaryInfo_.SerialNumber = wmi_[SerialNumber]?.ToString() ?? string.Empty;
         summaryInfo_.SMBIOSBIOSVersion = wmi_[SMBIOSBIOSVersion]?.ToString() ?? string.Empty;
         summaryInfo_.SMBIOSMajorVersion = ushort.TryParse(wmi_[SMBIOSMajorVersion]?.ToString(), out var temp18) ? temp18 : (ushort)0;
         summaryInfo_.SMBIOSMinorVersion = ushort.TryParse(wmi_[SMBIOSMinorVersion]?.ToString(), out var temp19) ? temp19 : (ushort)0;
@@ -59,7 +57,8 @@ internal class SMServices {
         summaryInfo_.TargetOperatingSystem = ushort.TryParse(wmi_[TargetOperatingSystem]?.ToString(), out var temp26) ? temp26 : (ushort)0;
         summaryInfo_.Version = wmi_[SMVersion]?.ToString() ?? string.Empty;
       }
-    } catch (Exception ex) {
+    }
+    catch (Exception ex) {
       Debug.WriteLine(ex.Message);
     }
     return summaryInfo_;

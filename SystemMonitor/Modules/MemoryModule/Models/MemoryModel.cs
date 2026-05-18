@@ -1,13 +1,5 @@
-﻿using Converters;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Management;
-using System.Text;
+﻿namespace MemoryModule.Models;
 
-namespace MemoryModule.Models; 
 public class MemoryModel : BindableBase, IMemoryModel {
   public MemoryModel() {
     init();
@@ -41,8 +33,8 @@ public class MemoryModel : BindableBase, IMemoryModel {
 
   private ulong _availableMemory;
   public ulong AvailableMemory {
-    get=> _availableMemory;
-    set=>SetProperty(ref _availableMemory, value);
+    get => _availableMemory;
+    set => SetProperty(ref _availableMemory, value);
   }
 
   private int _slotsUsed;
@@ -64,7 +56,8 @@ public class MemoryModel : BindableBase, IMemoryModel {
   }
 
   private List<IStickInfo> _ramStickInfo;
-  public List<IStickInfo> RAMStickInfo { 
-    get => _ramStickInfo; 
-    set => SetProperty(ref _ramStickInfo, value); }
+  public List<IStickInfo> RAMStickInfo {
+    get => _ramStickInfo;
+    set => SetProperty(ref _ramStickInfo, value);
+  }
 }

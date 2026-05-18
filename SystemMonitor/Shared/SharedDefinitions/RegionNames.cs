@@ -1,4 +1,5 @@
-﻿namespace SharedDefinitions;  
+﻿namespace SharedDefinitions;
+
 public static class RegionNames {
   public static string MainRegionName { get; set; } = "MainRegion";
   public static string HomeRegionName { get; set; } = "HomeRegion";

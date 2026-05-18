@@ -7,7 +7,8 @@ using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
 
-namespace GpuModule; 
+namespace GpuModule;
+
 public class GpuModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;

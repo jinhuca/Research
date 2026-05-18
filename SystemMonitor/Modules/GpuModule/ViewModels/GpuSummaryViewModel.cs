@@ -1,9 +1,7 @@
 ﻿using GpuModule.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GpuModule.ViewModels; 
+namespace GpuModule.ViewModels;
+
 public class GpuSummaryViewModel : BindableBase, IGpuSummaryViewModel {
   private GpuModel _gpuModel;
   public GpuSummaryViewModel(GpuModel gpuModel) {

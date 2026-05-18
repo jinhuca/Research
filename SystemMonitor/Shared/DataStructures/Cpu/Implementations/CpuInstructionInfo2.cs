@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Runtime.InteropServices;
 
-namespace DataStructures.Cpu.Implementations; 
+namespace DataStructures.Cpu.Implementations;
+
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 public struct CpuInstructionInfo2 {
   [MarshalAs(UnmanagedType.U1)]

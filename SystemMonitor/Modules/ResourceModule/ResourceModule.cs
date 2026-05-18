@@ -1,9 +1,8 @@
-
-using ResourceModule.Controls;
 using ResourceModule.Controls.Meter;
 using System.Windows;
 
-namespace ResourceModule; 
+namespace ResourceModule;
+
 public class ResourceModule : IModule {
   public void RegisterTypes(IContainerRegistry containerRegistry) {
     containerRegistry.Register<MeterControl>();

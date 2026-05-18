@@ -1,6 +1,7 @@
 ﻿using DataStructures.Cpu.Interfaces;
 
-namespace DataStructures.Cpu.Implementations; 
+namespace DataStructures.Cpu.Implementations;
+
 public class CpuSummaryInfo : BindableBase, ICpuSummaryInfo {
   private string? _brandName;
   public string? BrandName {

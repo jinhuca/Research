@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace DataStructures.Cpu.Interfaces;
 
-namespace DataStructures.Cpu.Interfaces;  
 public interface ICpuCoreLiveInfo {
   string Name { get; set; }
   (float? val, float? max) Voltage { get; set; }

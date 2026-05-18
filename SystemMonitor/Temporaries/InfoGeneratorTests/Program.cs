@@ -1,8 +1,7 @@
-﻿
-using CpuInfoServices.Observables;
-using static CpuInfoServices.Observables.CpuInfoGenerators;
+﻿using static CpuInfoServices.Observables.CpuInfoGenerators;
 
-namespace InfoGeneratorTests;  
+namespace InfoGeneratorTests;
+
 internal class Program {
 
   private static void TestCpuInfoQueries() {

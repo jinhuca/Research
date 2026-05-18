@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace MemoryModule.Definitions;
 
-namespace MemoryModule.Definitions;  
 internal class Constants {
   public const string Win32PhysicalQueryString = "SELECT * FROM Win32_PhysicalMemory";
 

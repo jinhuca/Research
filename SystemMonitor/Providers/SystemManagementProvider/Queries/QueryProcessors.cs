@@ -1,16 +1,16 @@
 ﻿using System.Management;
-using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 using static SystemManagementProvider.Constants.Win32_Processor;
 
-namespace SystemManagementProvider.Queries; 
+namespace SystemManagementProvider.Queries;
+
 public class QueryProcessors : ISMQuery {
   private ManagementObjectSearcher _searcher;
   private static Dictionary<string, (string, string)> info = [];
 
   public QueryProcessors() {
     using var _ = _searcher = new ManagementObjectSearcher(QueryString);
-    if(_searcher is null)
+    if (_searcher is null)
       throw new ArgumentNullException(nameof(_searcher));
     //info = GetInfo();
   }
@@ -129,8 +129,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetArchitecture(ushort arch) {
-    return arch switch
-    {
+    return arch switch {
       0 => "x86",
       1 => "MIPS",
       2 => "Alpha",
@@ -144,8 +143,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetAvailability(ushort avail) {
-    return avail switch
-    {
+    return avail switch {
       1 => "Other",
       2 => "Unknown",
       3 => "Running or Full Power",
@@ -172,8 +170,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetConfigManagerErrorCode(uint errorCode) {
-    return errorCode switch
-    {
+    return errorCode switch {
       0 => "This device is working properly. (0)",
       1 => "This device is not configured correctly. (1)",
       2 => "Windows cannot load the driver for this device. (2)",
@@ -211,8 +208,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetCpuStatus(ushort status) {
-    return status switch
-    {
+    return status switch {
       0 => "Unknown(0)",
       1 => "CPU Enabled(1)",
       2 => "CPU Disabled by User via BIOS Setup(2)",
@@ -236,8 +232,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetDataWidth(ushort dataWidth) {
-    return dataWidth switch
-    {
+    return dataWidth switch {
       32 => "32-bit",
       64 => "64-bit",
       _ => "Unknown"
@@ -245,8 +240,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetStatusInfo(ushort info) {
-    return info switch
-    {
+    return info switch {
       1 => "Other(1)",
       2 => "Unknown (2)",
       3 => "Enabled(3)",
@@ -257,8 +251,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetUpgradeMethod(ushort upgradeMethod) {
-    return upgradeMethod switch
-    {
+    return upgradeMethod switch {
       1 => "Other(1)",
       2 => "Unknown (2)",
       3 => "Daughter Board (3)",
@@ -282,8 +275,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetVoltageCaps(UInt32 caps) {
-    return caps switch
-    {
+    return caps switch {
       1 => "5V",
       2 => "3.3V",
       4 => "2.9V",
@@ -292,8 +284,7 @@ public class QueryProcessors : ISMQuery {
   }
 
   private static string GetFamilyName(ushort family) {
-    return family switch
-    {
+    return family switch {
       1 => "other",
       2 => "Unknown",
       3 => "8086",

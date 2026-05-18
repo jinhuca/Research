@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 
-namespace LogModule;  
+namespace LogModule;
+
 public static class TestDebug {
   public static void WriteOut(string msg) {
     Debug.WriteLine(msg);

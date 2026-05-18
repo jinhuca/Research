@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Text;
+﻿namespace MemoryModule.Models;
 
-namespace MemoryModule.Models;  
 public interface IMemoryModel {
   ulong TotalInstalledMemory { get; set; }
   ulong AvailableMemory { get; set; }
@@ -36,20 +31,20 @@ public class StickInfo : BindableBase, IStickInfo {
   }
 
   private ulong _capacity = 0u;
-  public ulong Capacity { 
-    get => _capacity; 
-    set => SetProperty(ref _capacity, value); 
+  public ulong Capacity {
+    get => _capacity;
+    set => SetProperty(ref _capacity, value);
   }
 
   private uint _speed = 0;
-  public uint Speed { 
-    get => _speed; 
+  public uint Speed {
+    get => _speed;
     set => SetProperty(ref _speed, value);
   }
 
   private string _formFactor = string.Empty;
-  public string FormFactor { 
-    get => _formFactor; 
-    set => SetProperty(ref _formFactor, value); 
+  public string FormFactor {
+    get => _formFactor;
+    set => SetProperty(ref _formFactor, value);
   }
 }

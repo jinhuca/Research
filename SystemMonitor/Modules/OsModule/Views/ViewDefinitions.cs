@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace OsModule.Views;
 
-namespace OsModule.Views;  
 public class ViewDefinitions {
   public const string ModuleName = "OS";
   public const string CaptionTitle = "Caption";

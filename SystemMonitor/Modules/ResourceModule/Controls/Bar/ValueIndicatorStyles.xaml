@@ -4,12 +4,19 @@
   <Style TargetType="{x:Type local:ValueIndicator}" x:Key="BaseIndicatorStyle">
     <Setter Property="ControlFontFamily" Value="Arial Rounded MT Bold"/>
     <Setter Property="ControlFontWeight" Value="Regular"/>
-    <Setter Property="ControlForeground" Value="DarkKhaki"/>
+    <Setter Property="ControlForeground" Value="White"/>
+    <Setter Property="TextElement.Foreground" Value="White"/>
+    <Setter Property="TitleForeground" Value="White"/>
+    <Setter Property="UnitForeground" Value="White"/>
+    <Setter Property="ValueForeground" Value="White"/>
+    <Setter Property="UnitForeground" Value="White"/>
+    <Setter Property="MaxTitleBrush" Value="White"/>
+    <Setter Property="MaxValueBrush" Value="White"/>
   </Style>
   <Style TargetType="{x:Type local:ValueIndicator}" 
          x:Key="TemperatureIndicatorStyle"
          BasedOn="{StaticResource BaseIndicatorStyle}">
-    <Setter Property="ValueIdFontWeight" Value="ExtraBlack"/>
+    <Setter Property="ValueIdFontWeight" Value="Black"/>
     <Setter Property="ValueIdForeground" Value="Red"/>
   </Style>
   <Style TargetType="{x:Type local:ValueIndicator}" 

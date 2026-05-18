@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
-using static ResourceModule.Controls.Meter.Definitions;
 
-namespace ResourceModule.Controls.Meter; 
+namespace ResourceModule.Controls.Meter;
+
 public class ValuesToDisplayConverter : IMultiValueConverter {
   public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
     if (values == null || values.Any(static v => v == DependencyProperty.UnsetValue))

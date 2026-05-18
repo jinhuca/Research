@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace BiosModule.ViewModels.SubViewModels;
 
-namespace BiosModule.ViewModels.SubViewModels; 
 public class SM_SummaryViewModel : BindableBase, ISM_SummaryViewModel {
   private string _name = string.Empty;
   public string Name {

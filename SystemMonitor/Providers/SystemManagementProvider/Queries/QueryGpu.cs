@@ -2,17 +2,18 @@
 using System.Management;
 using SystemManagementProvider.Interfaces;
 
-namespace SystemManagementProvider.Queries;  
+namespace SystemManagementProvider.Queries;
+
 public class QueryGpu : ISMQuery {
   private ManagementObjectSearcher _searcher;
   public List<string> GpuList { get; private set; } = new List<string>();
-  public Dictionary<string, Dictionary<string, (string, string)>> GpuInfoList { get; private set; } 
+  public Dictionary<string, Dictionary<string, (string, string)>> GpuInfoList { get; private set; }
     = new Dictionary<string, Dictionary<string, (string, string)>>();
 
   private static Dictionary<string, (string, string)> info = [];
 
   public QueryGpu() {
-  
+
   }
 
   private Dictionary<string, (string, string)> GetInfo() {
@@ -21,7 +22,7 @@ public class QueryGpu : ISMQuery {
       foreach (ManagementBaseObject? obj in _searcher.Get()) {
         //Debug.WriteLine($"GPU Count: {_searcher.Get().Count}");
         //Debug.WriteLine($"GPU Name: {obj["Name"]}");
-      
+
         GpuInfoList.Add(obj["Name"]?.ToString() ?? $"GPU_{GpuInfoList.Count + 1}", new Dictionary<string, (string, string)>());
 
         string name = obj["Name"]?.ToString()?.Replace("(R)", "") ?? "Unknown GPU";
@@ -43,7 +44,7 @@ public class QueryGpu : ISMQuery {
       }
     }
     catch (Exception ex) {
-      Debug.WriteLine($"Error querying GPU information: {ex.Message}"); 
+      Debug.WriteLine($"Error querying GPU information: {ex.Message}");
       Debug.WriteLine(ex.StackTrace);
       // Handle exceptions gracefully, perhaps log them
       info["Name"] = ("Unknown GPU", "GPU Name");
@@ -74,7 +75,7 @@ public class QueryGpu : ISMQuery {
       _searcher.Dispose();
     }
     catch (Exception ex) {
-      Debug.WriteLine($"Error querying multiple GPU information: {ex.Message}"); 
+      Debug.WriteLine($"Error querying multiple GPU information: {ex.Message}");
       Debug.WriteLine(ex.StackTrace);
       // Handle exceptions gracefully, perhaps log them
     }

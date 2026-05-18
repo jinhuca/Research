@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace DataStructures.Cpu.Interfaces;
 
-namespace DataStructures.Cpu.Interfaces; 
 public interface ICpuOverallLiveInfo {
   (float? val, float? max) BusSpeed { get; set; }
   (float? val, float? max) CpuSpeed { get; set; }

@@ -1,7 +1,8 @@
 ﻿using SystemManagementProvider;
 using SystemManagementProvider.Constants;
 
-namespace OsModule;  
+namespace OsModule;
+
 public class OsInfo {
   public Dictionary<string, (string, string)> Data = new();
   private readonly SMProvider _smProvider;

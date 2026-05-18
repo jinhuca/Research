@@ -2,7 +2,8 @@
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Queries;
 
-namespace SystemManagementProviderTests;  
+namespace SystemManagementProviderTests;
+
 [TestClass]
 public sealed class QueryProcessorTest {
   ManagementObjectSearcher? _searcher;
@@ -20,7 +21,7 @@ public sealed class QueryProcessorTest {
   }
 
   [TestCleanup]
-  public void Cleanup() { 
+  public void Cleanup() {
     _searcher?.Dispose();
   }
 

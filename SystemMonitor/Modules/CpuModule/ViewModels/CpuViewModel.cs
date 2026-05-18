@@ -1,11 +1,7 @@
 ﻿using Converters;
 using CpuModule.Models;
 using CpuModule.ViewModels_V2;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
-using System.Text;
 using static Converters.ByteUnitConverters;
 
 namespace CpuModule.ViewModels;
@@ -65,9 +61,21 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
   private void UpdateLiveViewModel() {
     LiveViewModel?.CpuOverallLiveViewModel?.LoadViewModel = _model.LiveInfo.CpuOverallLiveInfo.TotalLoad.val;
-    LiveViewModel?.CpuOverallLiveViewModel?.SpeedViewModel = (float)Math.Round((double)_model.LiveInfo.CpuOverallLiveInfo.CpuSpeed.val/1000, 2);
+    LiveViewModel?.CpuOverallLiveViewModel?.SpeedViewModel = (float)Math.Round((double)_model.LiveInfo.CpuOverallLiveInfo.CpuSpeed.val / 1000, 2);
     LiveViewModel?.CpuOverallLiveViewModel?.TemperatureViewModel = _model.LiveInfo.CpuOverallLiveInfo.PackageTemperature.val;
+    LiveViewModel?.CpuOverallLiveViewModel?.VoltageViewModel = _model.LiveInfo.CpuOverallLiveInfo.Voltage.val;
 
+    LiveViewModel?.CpuOverallLiveViewModel.PlatformPowerValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.PlatformPower.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.PlatformPowerMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.PlatformPower.max.Value;
+
+    LiveViewModel?.CpuOverallLiveViewModel.PackagePowerValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.PackagePower.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.PackagePowerMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.PackagePower.max.Value;
+
+    LiveViewModel?.CpuOverallLiveViewModel.CoresPowerValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.CoresPower.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.CoresPowerMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.CoresPower.max.Value;
+
+    LiveViewModel?.CpuOverallLiveViewModel.MemoryPowerValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.MemoryPower.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.MemoryPowerMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.MemoryPower.max.Value;
   }
 
   private ICpuSummaryViewModel _summaryViewModel = new CpuSummaryViewModel();

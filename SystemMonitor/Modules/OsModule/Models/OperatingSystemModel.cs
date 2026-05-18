@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 
-namespace OsModule.Models; 
+namespace OsModule.Models;
+
 public class OperatingSystemModel : BindableBase, IOperatingSystemModel {
   private readonly ISMProvider? _smProvider;
 

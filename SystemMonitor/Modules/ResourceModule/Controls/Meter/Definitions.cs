@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace ResourceModule.Controls.Meter;
 
-namespace ResourceModule.Controls.Meter; 
 public enum Unit {
   None,
   Percent,
@@ -11,8 +8,7 @@ public enum Unit {
   Celsius,
 }
 
-public static class Definitions
-{
+public static class Definitions {
   // Display strings used by UnitToDisplayConverter. Adjust defaults as needed.
   public static string? AbsoluteString { get; set; } = "units";
   public static string? PercentageString { get; set; } = "%";

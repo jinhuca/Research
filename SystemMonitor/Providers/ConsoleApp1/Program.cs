@@ -1,8 +1,8 @@
-﻿using System.Runtime.InteropServices;
-using System.Management;
-using System.Diagnostics;
+﻿using System.Management;
+using System.Runtime.InteropServices;
 
-namespace ConsoleApp1; 
+namespace ConsoleApp1;
+
 public struct ProcessorInfo {
   public string Vendor { get; init; }
   public string Brand { get; init; }

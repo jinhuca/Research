@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace ResourceModule.Controls.Meter; 
+namespace ResourceModule.Controls.Meter;
+
 [ValueConversion(typeof(Unit), typeof(string))]
 public class UnitToDisplayConverter : IValueConverter {
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {

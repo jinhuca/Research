@@ -1,7 +1,5 @@
-﻿using System.Reactive.Linq;
-using LibreInfoProvider.Queries;
+﻿namespace LibreInfoProvider.Generators;
 
-namespace LibreInfoProvider.Generators;  
 public class CpuDataGenerators {
   //public static IObservable<ICpuSummaryInfo> GenerateCpuCoreInfo(TimeSpan interval) {
   //  return Observable.Defer(() => Observable.FromAsync(() => ExecuteCpuSummaryQueryAsync())

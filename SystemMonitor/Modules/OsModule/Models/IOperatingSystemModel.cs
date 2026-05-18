@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace OsModule.Models; 
+namespace OsModule.Models;
+
 public interface IOperatingSystemModel : INotifyPropertyChanged {
   string Caption { get; set; }
   string BuildNumber { get; set; }

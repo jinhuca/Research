@@ -2,7 +2,8 @@
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Queries;
 
-namespace SystemManagementProviderTests; 
+namespace SystemManagementProviderTests;
+
 [TestClass]
 public sealed class QueryOSTest {
   ManagementObjectSearcher? _searcher;

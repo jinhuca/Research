@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace GpuModule.ViewModels;
 
-namespace GpuModule.ViewModels; 
 internal static class ViewModelDefinitions {
   public static string AdapterCompatibility = "AdapterCompatibility";
   public static string CaptionString = "Caption";

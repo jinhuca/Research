@@ -1,23 +1,19 @@
 ﻿using BiosModule.ViewModels;
 using BiosModule.Views;
-using CpuModule.Models;
 using CpuModule.ViewModels;
 using CpuModule.Views;
-using GpuModule;
 using GpuModule.ViewModels;
 using GpuModule.Views;
 using MemoryModule.ViewModels;
 using MemoryModule.Views;
-using OsModule;
 using OsModule.ViewModels;
 using OsModule.Views;
 using StorageModule.ViewModels;
 using StorageModule.Views;
 using System.Windows;
-using SystemManagementProvider;
-using SystemManagementProvider.Interfaces;
 
-namespace MainApp; 
+namespace MainApp;
+
 public partial class App : PrismApplication {
   protected override Window CreateShell() {
     //base.InitializeModules();

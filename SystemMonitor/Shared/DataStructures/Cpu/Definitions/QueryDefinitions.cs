@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace DataStructures.Cpu.Definitions;
 
-namespace DataStructures.Cpu.Definitions;  
 public static class QueryDefinitions {
   public static string CpuBusSpeed = "Bus Speed";
   public static string CpuTotalLoad = "CPU Total";

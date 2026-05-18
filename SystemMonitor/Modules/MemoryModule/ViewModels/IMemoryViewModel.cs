@@ -1,10 +1,5 @@
-﻿using MemoryModule.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿namespace MemoryModule.ViewModels;
 
-namespace MemoryModule.ViewModels;  
 public interface IMemoryViewModel {
   string TotalMemorySize { get; }
   string AvailableMemorySize { get; }

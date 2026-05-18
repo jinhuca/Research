@@ -1,9 +1,7 @@
 ﻿using DataStructures.Cpu.Implementations;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CpuModule.ViewModels;  
+namespace CpuModule.ViewModels;
+
 public interface ICpuSummaryViewModel {
   string? BrandNameViewModel { get; set; }
   string? VendorNameViewModel { get; set; }

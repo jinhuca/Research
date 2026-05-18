@@ -1,4 +1,5 @@
 
-namespace SystemEnvironmentProvider;  
+namespace SystemEnvironmentProvider;
+
 public class SEProvider {
 }

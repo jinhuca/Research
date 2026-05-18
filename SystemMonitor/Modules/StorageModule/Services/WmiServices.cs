@@ -1,14 +1,10 @@
 ﻿using StorageModule.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
-using System.Text;
-using LogModule;
-using StorageModule.Definitions;
 using static StorageModule.Definitions.WmiQueryDefinitions;
 
-namespace StorageModule.Services; 
+namespace StorageModule.Services;
+
 internal static class WmiServices {
   public static List<DiskInfo> GetDiskinfo() {
     List<DiskInfo> result_ = new();
@@ -20,8 +16,8 @@ internal static class WmiServices {
 
       // (2) Query MSFT_PhysicalDisk
       var query = new ObjectQuery(PhysicalDiskQueryString);
-      using(var searcher = new ManagementObjectSearcher(scope, query)) {
-        foreach(ManagementObject disk in searcher.Get()) {
+      using (var searcher = new ManagementObjectSearcher(scope, query)) {
+        foreach (ManagementObject disk in searcher.Get()) {
           DiskInfo diskInfo = new();
           diskInfo.Name = disk[DiskNameKey] != null ? disk[DiskNameKey].ToString() : string.Empty;
           //diskInfo.DeviceId = disk[DeviceIdKey] != null ? int.Parse(disk[DeviceIdKey].ToString()) : int.MinValue;
@@ -42,13 +38,13 @@ internal static class WmiServices {
         }
       }
     }
-    catch(ManagementException mex) {
+    catch (ManagementException mex) {
       Debug.WriteLine("WMI query failed: " + mex.Message);
     }
-    catch(UnauthorizedAccessException uae) {
+    catch (UnauthorizedAccessException uae) {
       Debug.WriteLine("Access denied. Try running as Administrator: " + uae.Message);
     }
-    catch(Exception ex) {
+    catch (Exception ex) {
 
     }
 

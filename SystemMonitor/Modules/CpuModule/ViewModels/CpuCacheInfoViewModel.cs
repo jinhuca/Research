@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace CpuModule.ViewModels;
 
-namespace CpuModule.ViewModels; 
 public class CpuCacheInfoViewModel : BindableBase {
   private string _L1_Cache_size = string.Empty;
   public string L1_Cache_size {

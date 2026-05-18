@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace StorageModule.Definitions;
 
-namespace StorageModule.Definitions;  
 internal static class MsiQueryDefinitions {
 
   public const string Cim2NamespaceName = @"root\cimv2";

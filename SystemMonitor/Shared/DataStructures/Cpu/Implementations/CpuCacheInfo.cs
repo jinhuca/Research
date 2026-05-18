@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace DataStructures.Cpu.Implementations;  
+namespace DataStructures.Cpu.Implementations;
+
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 public struct CpuCacheInfo {
   public int L1_cache_size;

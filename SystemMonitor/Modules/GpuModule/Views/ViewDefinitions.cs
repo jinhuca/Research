@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace GpuModule.Views;
 
-namespace GpuModule.Views;  
 internal class ViewDefinitions {
   public const string ModuleName = "GPU";
   public const string InternalGpuTitle = "Internal GPU";

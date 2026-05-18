@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace BiosModule.Models;
 
-namespace BiosModule.Models;  
 public class SMSummary {
   public string[] BiosVersion { get; set; } = Array.Empty<string>();
   public string BuildNumber { get; set; } = string.Empty;
@@ -37,7 +34,7 @@ public class SMSummary {
   public ushort SoftwareElementState { get; set; } = 0;
   public string Status { get; set; } = string.Empty;
   public ushort SystemBiosMajorVersion { get; set; } = 0;
-  public ushort SystemBiosMinorVersion { get; set; } = 0;  
+  public ushort SystemBiosMinorVersion { get; set; } = 0;
   public ushort TargetOperatingSystem { get; set; } = 0;
 
   public string Version { get; set; } = string.Empty;

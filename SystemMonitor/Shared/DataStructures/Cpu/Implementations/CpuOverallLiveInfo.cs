@@ -1,9 +1,7 @@
 ﻿using DataStructures.Cpu.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DataStructures.Cpu.Implementations; 
+namespace DataStructures.Cpu.Implementations;
+
 public class CpuOverallLiveInfo : ICpuOverallLiveInfo {
   public (float? val, float? max) BusSpeed { get; set; } = (0.0f, 0.0f);
   public (float? val, float? max) CpuSpeed { get; set; } = (0.0f, 0.0f);
