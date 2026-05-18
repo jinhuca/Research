@@ -53,10 +53,49 @@ public class CpuModel : BindableBase, ICpuModel {
 
     LiveInfo.CpuOverallLiveInfo.Voltage = newItem.CpuOverallLiveInfo.Voltage;
 
-    LiveInfo.CpuOverallLiveInfo.PackagePower = newItem.CpuOverallLiveInfo.PackagePower;
-    LiveInfo.CpuOverallLiveInfo.PlatformPower = newItem.CpuOverallLiveInfo.PlatformPower;
-    LiveInfo.CpuOverallLiveInfo.CoresPower = newItem.CpuOverallLiveInfo.CoresPower;
-    LiveInfo.CpuOverallLiveInfo.MemoryPower = newItem.CpuOverallLiveInfo.MemoryPower;
+    _maxPlatformPower = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue 
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower)
+      : _maxPlatformPower;
+    var platformPowerValue_ = newItem.CpuOverallLiveInfo.PlatformPower.val.HasValue 
+      ? newItem.CpuOverallLiveInfo.PlatformPower.val 
+      : LiveInfo.CpuOverallLiveInfo.PlatformPower.val;
+    var platformPowerMax_ = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue 
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower) 
+      : _maxPlatformPower;
+    LiveInfo.CpuOverallLiveInfo.PlatformPower = (platformPowerValue_, platformPowerMax_);
+
+    _maxPackagePower = newItem.CpuOverallLiveInfo.PackagePower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PackagePower.max.Value, _maxPackagePower) 
+      : _maxPackagePower;
+    var packagePowerValue_ = newItem.CpuOverallLiveInfo.PackagePower.val.HasValue
+      ? newItem.CpuOverallLiveInfo.PackagePower.val
+      : LiveInfo.CpuOverallLiveInfo.PackagePower.val;
+    var packagePowerMax_ = newItem.CpuOverallLiveInfo.PackagePower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PackagePower.max.Value, _maxPackagePower)
+      : _maxPackagePower;
+    LiveInfo.CpuOverallLiveInfo.PackagePower = (packagePowerValue_, packagePowerMax_);
+
+    _maxCoresPower = newItem.CpuOverallLiveInfo.CoresPower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoresPower.max.Value, _maxCoresPower) 
+      : _maxCoresPower;
+    var coresPowerValue_ = newItem.CpuOverallLiveInfo.CoresPower.val.HasValue
+      ? newItem.CpuOverallLiveInfo.CoresPower.val
+      : LiveInfo.CpuOverallLiveInfo.CoresPower.val;
+    var coresPowerMax_ = newItem.CpuOverallLiveInfo.CoresPower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoresPower.max.Value, _maxCoresPower)
+      : _maxCoresPower;
+    LiveInfo.CpuOverallLiveInfo.CoresPower = (coresPowerValue_, coresPowerMax_);
+
+    _maxMemoryPower = newItem.CpuOverallLiveInfo.MemoryPower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.MemoryPower.max.Value, _maxMemoryPower) 
+      : _maxMemoryPower;
+    var memoryPowerValue_ = newItem.CpuOverallLiveInfo.MemoryPower.val.HasValue
+      ? newItem.CpuOverallLiveInfo.MemoryPower.val
+      : LiveInfo.CpuOverallLiveInfo.MemoryPower.val;
+    var memoryPowerMax_ = newItem.CpuOverallLiveInfo.MemoryPower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.MemoryPower.max.Value, _maxMemoryPower)
+      : _maxMemoryPower;
+    LiveInfo.CpuOverallLiveInfo.MemoryPower = (memoryPowerValue_, memoryPowerMax_);
 
     LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature = newItem.CpuOverallLiveInfo.CoreAvgTemperature;
     LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = newItem.CpuOverallLiveInfo.CoreMaxTemperature;
@@ -75,4 +114,9 @@ public class CpuModel : BindableBase, ICpuModel {
     get => _cpuLiveInfo;
     set => SetProperty(ref _cpuLiveInfo, value);
   }
+
+  private float _maxPlatformPower = 0.0f;
+  private float _maxPackagePower = 0.0f;
+  private float _maxCoresPower = 0.0f;
+  private float _maxMemoryPower = 0.0f;
 }

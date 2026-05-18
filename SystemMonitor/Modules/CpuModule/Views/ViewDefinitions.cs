@@ -21,7 +21,7 @@ internal static class ViewDefinitions {
   public const string L3CacheLineSizeTitle = "Line Size:";
   public const string UtilizationTitle = "Utilization";
   public const string SpeedTitle = "Speed";
-  public const string TemperatureTitle = "Temperature";
+  
   public const string ProcessesTitle = "Processes";
   public const string ThreadsTitle = "Threads";
   public const string HandlesTitle = "Handles";
@@ -31,13 +31,20 @@ internal static class ViewDefinitions {
   public const string ModelTitle = "Model:";
   public const string SteppingTitle = "Stepping:";
 
-  public const string VoltageTitle = "CPU Voltage";
-
   public const string CoreTemperatureTitle = "Core Temperature";
 
-  public const string PowerTitle = "Power";
+
+  public const string VoltageTitle = "Voltage (V)";
+
+  public const string PowerTitle = "Power (W)";
   public const string PlatFormPowerTitle = "Platform";
   public const string PackagePowerTitle = "Package";
   public const string CoresPowerTitle = "Cores";
   public const string MemoryPowerTitle = "Memory";
+
+  public const string ClockTitle = "Clocks (GHz)";
+
+  public const string TemperatureTitle = "Temperature (\u00B0\u0043)";
+
+  public const string LoadsTitle = "Loads (%)";
 }
