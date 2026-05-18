@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MemoryModule.Views; 
+namespace MemoryModule.Views;  
 /// <summary>
 /// Interaction logic for MemorySummaryView.xaml
 /// </summary>

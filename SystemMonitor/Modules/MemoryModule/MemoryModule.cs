@@ -4,8 +4,7 @@ using MemoryModule.Views;
 using System.ComponentModel.DataAnnotations;
 using static SharedDefinitions.RegionNames;
 
-namespace MemoryModule;
-
+namespace MemoryModule; 
 public class MemoryModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;

@@ -2,8 +2,7 @@
 using System.Management;
 using System.Diagnostics;
 
-namespace ConsoleApp1;
-
+namespace ConsoleApp1; 
 public struct ProcessorInfo {
   public string Vendor { get; init; }
   public string Brand { get; init; }

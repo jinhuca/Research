@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace BiosModule.Constants;
-
+namespace BiosModule.Constants; 
 internal static class QueryKeys {
   public const string SMQueryString = "SELECT * FROM Win32_BIOS";
 

@@ -7,8 +7,7 @@ using System.Diagnostics;
 using System.Management;
 using System.Text;
 
-namespace MemoryModule.Models;
-
+namespace MemoryModule.Models; 
 public class MemoryModel : BindableBase, IMemoryModel {
   public MemoryModel() {
     init();

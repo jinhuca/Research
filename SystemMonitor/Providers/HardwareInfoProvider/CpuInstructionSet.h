@@ -185,6 +185,7 @@ private:
 // Initialize static member data
 const InstructionSet::InstructionSet_Internal InstructionSet::CPU_Rep;
 
+/*
 // Print out supported instruction set extensions
 int main() {
   auto& outstream = std::cout;
@@ -248,3 +249,4 @@ int main() {
   support_message("XOP", InstructionSet::XOP());
   support_message("XSAVE", InstructionSet::XSAVE());
 }
+*/

@@ -1,284 +1,83 @@
 ﻿using Converters;
 using CpuModule.Models;
-using CpuModule.Views;
-using System.Diagnostics;
+using CpuModule.ViewModels_V2;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Text;
+using static Converters.ByteUnitConverters;
 
 namespace CpuModule.ViewModels;
 
 public class CpuViewModel : BindableBase, ICpuViewModel {
-  private readonly CpuModel _model;
+  private CpuModel _model;
   public CpuViewModel(CpuModel model) {
     _model = model;
-    _model.PropertyChanged += (s, e) => {
-      if (e.PropertyName == nameof(_model.RealTimeInfo)) {
-        RaisePropertyChanged(nameof(Utilization));
-        RaisePropertyChanged(nameof(CurrentSpeed));
-        RaisePropertyChanged(nameof(UpTime));
-        RaisePropertyChanged(nameof(Processes));
-        RaisePropertyChanged(nameof(Threads));
-        RaisePropertyChanged(nameof(Handles));
-        RaisePropertyChanged(nameof(Temperature));
-      }
-    };
-    initProperties();
+    _model.PropertyChanged += Model_PropertyChanged;
   }
 
-  private void initProperties() {
-    if (_model.BasicInfo == null) {
-      return;
-    }
-    BaseSpeed = HzUnitConverter.ConvertMHzToReadableUnit(_model.BasicInfo.BaseSpeed);
-    SocketNum = _model.BasicInfo.SocketNum;
-    PhysicalCoresNum = _model.BasicInfo.NumOfPhysicalCores;
-    LogicalCoresNum = _model.BasicInfo.NumOfLogicalCores;
-    Virtualization = _model.BasicInfo.VirtualizationEnabled ? "Enabled" : "Disabled";
-    L1CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L1_cache_size);
-    var temp = _model.CacheSize.L2_cache_line_size;
-    L2CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L2_cache_size);
-    L3CacheSize = ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L3_cache_size);
-
-    Utilization = _model.RealTimeInfo?.Utilization ?? 0;
-    CurrentSpeed = _model.RealTimeInfo?.Speed ?? 0;
-  }
-
-  public string BrandName {
-    get {
-      return _model.BrandName.Replace("(R)", "").Replace("  ", "");
-    }
-    set {
-      if(_model.BrandName.Replace("(R)", "").Replace("  ", "") != value) {
-        _model.BrandName = value;
-        RaisePropertyChanged(nameof(BrandName));
-      }
+  private void Model_PropertyChanged(object? sender, PropertyChangedEventArgs e) {
+    switch (e.PropertyName) {
+      case nameof(_model.SummaryInfo):
+        UpdateSummaryViewModel();
+        break;
+      case nameof(_model.LiveInfo):
+        UpdateLiveViewModel();
+        break;
     }
   }
 
-  public string VendorName {
-    get {
-      return ViewModelConversions.VendorNameConvert(_model.VendorName);
+  private void UpdateSummaryViewModel() {
+    SummaryViewModel.BrandNameViewModel = _model.SummaryInfo.BrandName;
+    SummaryViewModel.VendorNameViewModel = ViewModelConversions.VendorNameConvert(_model.SummaryInfo.VendorName);
+    SummaryViewModel.FamilyIdViewModel = _model.SummaryInfo.FamilyId;
+    SummaryViewModel.ModelIdViewModel = _model.SummaryInfo.ModelId;
+    SummaryViewModel.SteppingIdViewModel = _model.SummaryInfo.SteppingId;
+
+    SummaryViewModel.BaseSpeedViewModel = _model.SummaryInfo.BaseSpeed.HasValue
+      ? HzUnitConverter.ConvertMHzToReadableUnit((double)_model.SummaryInfo.BaseSpeed)
+      : string.Empty;
+
+    SummaryViewModel.BusSpeedViewModel = _model.SummaryInfo.BusSpeed.HasValue
+      ? HzUnitConverter.ConvertMHzToReadableUnit((double)_model.SummaryInfo.BusSpeed)
+      : string.Empty;
+
+    SummaryViewModel.SocketNumViewModel = _model.SummaryInfo.SocketNum;
+    SummaryViewModel.PhysicalCoreNumViewModel = _model.SummaryInfo.PhysicalCoreNum;
+    SummaryViewModel.LogicalCoreNumViewModel = _model.SummaryInfo.LogicalCoreNum;
+    SummaryViewModel.VirtualizationViewModel = _model.SummaryInfo.Virtualization;
+    if (_model.SummaryInfo.CacheInfo.HasValue) {
+      var cacheViewModel_ = new CpuCacheInfoViewModel() {
+        L1_Cache_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L1_cache_size),
+        L1_Cache_Line_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L1_cache_line_size),
+        L2_Cache_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L2_cache_size),
+        L2_Cache_Line_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L2_cache_line_size),
+        L3_Cache_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L3_cache_size),
+        L3_Cache_Line_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L3_cache_line_size),
+      };
+      SummaryViewModel.CacheInfoViewModel = cacheViewModel_;
     }
-    set {
-      if(_model.VendorName != value) {
-        _model.VendorName = value;
-        RaisePropertyChanged(nameof(VendorName));
-      }
-    }
+
+    SummaryViewModel.InstructionSetViewModel = _model.SummaryInfo.InstructionSet;
+    //RaisePropertyChanged(nameof(SummaryViewModel));
   }
 
-  public string BaseSpeed {
-    get {
-      return HzUnitConverter.ConvertMHzToReadableUnit(_model.BasicInfo.BaseSpeed);
-    }
-    set {
-      if(HzUnitConverter.ConvertMHzToReadableUnit(_model.BasicInfo.BaseSpeed) != value) {
-        _model.BasicInfo.BaseSpeed = Convert.ToInt32(value);
-        RaisePropertyChanged(nameof(BaseSpeed));
-      }
-    }
+  private void UpdateLiveViewModel() {
+    LiveViewModel?.CpuOverallLiveViewModel?.LoadViewModel = _model.LiveInfo.CpuOverallLiveInfo.TotalLoad.val;
+    LiveViewModel?.CpuOverallLiveViewModel?.SpeedViewModel = (float)Math.Round((double)_model.LiveInfo.CpuOverallLiveInfo.CpuSpeed.val/1000, 2);
+    LiveViewModel?.CpuOverallLiveViewModel?.TemperatureViewModel = _model.LiveInfo.CpuOverallLiveInfo.PackageTemperature.val;
+
   }
 
-  public int SocketNum {
-    get {
-      return _model.BasicInfo.SocketNum;
-    }
-    set {
-      if(_model.BasicInfo.SocketNum != value) {
-        _model.BasicInfo.SocketNum = value;
-        RaisePropertyChanged(nameof(SocketNum));
-      }
-    }
+  private ICpuSummaryViewModel _summaryViewModel = new CpuSummaryViewModel();
+  public ICpuSummaryViewModel SummaryViewModel {
+    get => _summaryViewModel;
+    set => SetProperty(ref _summaryViewModel, value);
   }
-
-  public int PhysicalCoresNum {
-    get {
-      return _model.BasicInfo.NumOfPhysicalCores;
-    }
-    set {
-      if(_model.BasicInfo.NumOfPhysicalCores != value) {
-        _model.BasicInfo.NumOfPhysicalCores = value;
-        RaisePropertyChanged(nameof(PhysicalCoresNum));
-      }
-    }
-  }
-
-  public int LogicalCoresNum {
-    get {
-      return _model.BasicInfo.NumOfLogicalCores;
-    }
-    set {
-      if(_model.BasicInfo.NumOfLogicalCores != value) {
-        _model.BasicInfo.NumOfLogicalCores = value;
-        RaisePropertyChanged(nameof(LogicalCoresNum));
-      }
-    }
-  }
-
-  public string Virtualization {
-    get {
-      return _model.BasicInfo.VirtualizationEnabled
-        ? ViewDefinitions.EnabledText
-        : ViewDefinitions.DisabledText;
-    }
-    set {
-      if(value == ViewDefinitions.EnabledText) {
-        _model.BasicInfo.VirtualizationEnabled = true;
-      }
-      else {
-        _model.BasicInfo.VirtualizationEnabled = false;
-      }
-      RaisePropertyChanged(nameof(Virtualization));
-    }
-  }
-
-  public string L1CacheSize {
-    get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L1_cache_size);
-    }
-    set {
-      if(_model.CacheSize.L1_cache_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
-        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
-        CacheSize cs = _model.CacheSize;
-        cs.L1_cache_size = (int)temp;
-        _model.CacheSize = cs;
-        RaisePropertyChanged(nameof(L1CacheSize));
-      }
-    }
-  }
-
-  public string L1CacheLineSize {
-    get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L1_cache_line_size);
-    }
-    set {
-      if(_model.CacheSize.L1_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
-        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
-        CacheSize cs = _model.CacheSize;
-        cs.L1_cache_line_size = (int)temp;
-        _model.CacheSize = cs;
-        RaisePropertyChanged(nameof(L1CacheLineSize));
-      }
-    }
-  }
-
-  public string L2CacheSize {
-    get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L2_cache_size);
-    }
-    set {
-      if(_model.CacheSize.L2_cache_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
-        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
-        CacheSize cs = _model.CacheSize;
-        cs.L2_cache_size = (int)temp;
-        _model.CacheSize = cs;
-        RaisePropertyChanged(nameof(L2CacheSize));
-      }
-    }
-  }
-
-  public string L2CacheLineSize {
-    get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L2_cache_line_size);
-    }
-    set {
-      if(_model.CacheSize.L2_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
-        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
-        CacheSize cs = _model.CacheSize;
-        cs.L2_cache_line_size = (int)temp;
-        _model.CacheSize = cs;
-        RaisePropertyChanged(nameof(L2CacheLineSize));
-      }
-    }
-  }
-
-  public string L3CacheSize {
-    get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L3_cache_size);
-    }
-    set {
-      if(_model.CacheSize.L3_cache_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
-        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
-        CacheSize cs = _model.CacheSize;
-        cs.L3_cache_size = (int)temp;
-        _model.CacheSize = cs;
-        RaisePropertyChanged(nameof(L3CacheSize));
-      }
-    }
-  }
-
-  public string L3CacheLineSize {
-    get {
-      return ByteUnitConverters.ConvertBytesToReadableUnit((ulong)_model.CacheSize.L3_cache_line_size);
-    }
-    set {
-      if(_model.CacheSize.L3_cache_line_size != ByteUnitConverters.ConvertReadableUnitToBytes(value)) {
-        long temp = ByteUnitConverters.ConvertReadableUnitToBytes(value);
-        CacheSize cs = _model.CacheSize;
-        cs.L3_cache_line_size = (int)temp;
-        _model.CacheSize = cs;
-        RaisePropertyChanged(nameof(L3CacheLineSize));
-      }
-    }
-  }
-
-  public double Utilization {
-    get => _model.RealTimeInfo.Utilization;
-    set {
-      _model.RealTimeInfo.Utilization = value;
-      RaisePropertyChanged();
-    }
-  }
-
-  public float Temperature {
-    get => _model.RealTimeInfo.Temperature;
-    set {
-      _model.RealTimeInfo.Temperature = value;
-      RaisePropertyChanged();
-    }
-  }
-
-  public double CurrentSpeed {
-    get => _model.RealTimeInfo.Speed;
-    set {
-      _model.RealTimeInfo.Speed = value;
-      RaisePropertyChanged();
-    }
-  }
-
-  public TimeSpan UpTime {
-    get => _model.RealTimeInfo.UpTime;
-    set {
-      _model.RealTimeInfo.UpTime = value;
-      RaisePropertyChanged();
-    }
-  }
-
-  public int Processes {
-    get => _model.RealTimeInfo.Processes;
-    set {
-      if (_model.RealTimeInfo.Processes != value) {
-        _model.RealTimeInfo.Processes = value;
-        RaisePropertyChanged(nameof(Processes));
-      }
-    }
-  }
-
-  public int Threads {
-    get => _model.RealTimeInfo.Threads;
-    set {
-      if (_model.RealTimeInfo.Threads != value) {
-        _model.RealTimeInfo.Threads = value;
-        RaisePropertyChanged(nameof(Threads));
-      }
-    }
-  }
-
-  public int Handles {
-    get => _model.RealTimeInfo.Handles;
-    set {
-      if (_model.RealTimeInfo.Handles != value) {
-        _model.RealTimeInfo.Handles = value;
-        RaisePropertyChanged(nameof(Handles));
-      }
-    }
+  private ICpuLiveViewModel _liveViewModel = new CpuLiveViewModel();
+  public ICpuLiveViewModel LiveViewModel {
+    get => _liveViewModel;
+    set => SetProperty(ref _liveViewModel, value);
   }
 }

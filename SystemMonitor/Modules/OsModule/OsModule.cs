@@ -6,8 +6,7 @@ using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
 
-namespace OsModule;
-
+namespace OsModule; 
 public class OsModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;
@@ -24,6 +23,6 @@ public class OsModule : IModule {
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {
-    
+  
   }
 }

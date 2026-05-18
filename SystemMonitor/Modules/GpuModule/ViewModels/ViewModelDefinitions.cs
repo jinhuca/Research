@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GpuModule.ViewModels;
-
+namespace GpuModule.ViewModels; 
 internal static class ViewModelDefinitions {
   public static string AdapterCompatibility = "AdapterCompatibility";
   public static string CaptionString = "Caption";
@@ -15,5 +14,5 @@ internal static class ViewModelDefinitions {
   public static string InternalGpuType = "Internal";
   public static string DedicatedGpuType = "Integrated";
 
-  
+
 }

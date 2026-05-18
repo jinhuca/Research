@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace StorageModule.Models;
-
+namespace StorageModule.Models; 
 public class StorageModel : BindableBase, IStorageModel {
   public StorageModel() {
     var temp = WmiServices.GetDiskinfo();

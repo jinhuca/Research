@@ -7,8 +7,7 @@ using System.Management;
 using System.Text;
 using static MemoryModule.Definitions.Constants;
 
-namespace MemoryModule.Models;
-
+namespace MemoryModule.Models; 
 internal class QueryMemory {
   public QueryMemory() { }
 

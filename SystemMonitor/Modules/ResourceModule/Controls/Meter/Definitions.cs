@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ResourceModule.Controls.Meter;
-
+namespace ResourceModule.Controls.Meter; 
 public enum Unit {
   None,
   Percent,

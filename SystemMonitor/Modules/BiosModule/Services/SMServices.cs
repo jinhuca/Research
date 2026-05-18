@@ -6,7 +6,7 @@ using System.Management;
 using System.Text;
 using static BiosModule.Constants.QueryKeys;
 
-namespace BiosModule.Services; 
+namespace BiosModule.Services;  
 internal class SMServices {
   static ManagementObjectSearcher searcher_ = new(SMQueryString);
 
@@ -32,12 +32,12 @@ internal class SMServices {
 
         summaryInfo_.EmbeddedControllerMajorVersion = ushort.TryParse(wmi_[EmbeddedControllerMajorVersion]?.ToString(), out var temp7) ? temp7 : (ushort)0;
         summaryInfo_.EmbeddedControllerMinorVersion = ushort.TryParse(wmi_[EmbeddedControllerMinorVersion]?.ToString(), out var temp8) ? temp8 : (ushort)0;
-        
+      
         summaryInfo_.IdentificationCode = wmi_[IdentificationCode]?.ToString() ?? string.Empty;
         summaryInfo_.InstallDate = DateTime.TryParse(wmi_[InstallDate]?.ToString(), out var temp10) ? temp10 : DateTime.MinValue;
 
         summaryInfo_.LanguageEdition = wmi_[LanguageEdition]?.ToString() ?? string.Empty;
-        
+      
         summaryInfo_.Manufacturer = wmi_[Manufacturer]?.ToString() ?? string.Empty;
         summaryInfo_.Name = wmi_[Name]?.ToString() ?? string.Empty;
 

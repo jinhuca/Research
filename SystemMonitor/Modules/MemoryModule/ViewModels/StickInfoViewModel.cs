@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MemoryModule.ViewModels;
-
+namespace MemoryModule.ViewModels; 
 public class StickInfoViewModel : BindableBase {
   public StickInfoViewModel() {
 

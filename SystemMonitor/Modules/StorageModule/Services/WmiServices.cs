@@ -8,8 +8,7 @@ using LogModule;
 using StorageModule.Definitions;
 using static StorageModule.Definitions.WmiQueryDefinitions;
 
-namespace StorageModule.Services;
-
+namespace StorageModule.Services; 
 internal static class WmiServices {
   public static List<DiskInfo> GetDiskinfo() {
     List<DiskInfo> result_ = new();

@@ -1,10 +1,10 @@
-﻿using DataExchange.Cpu;
+﻿//using DataExchange.Cpu;
 
-namespace LibreInfoProvider; 
-public static class LibreProvider {
-  public static List<ICpuCoreInfo> GetCoreInfo() {
-    List<ICpuCoreInfo> result_ = new();
+//namespace LibreInfoProvider; 
+//public static class LibreProvider {
+//  public static List<ICpuCoreInfo> GetCoreInfo() {
+//    List<ICpuCoreInfo> result_ = new();
 
-    return result_;
-  }
-}
+//    return result_;
+//  }
+//}

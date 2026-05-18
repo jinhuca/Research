@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HomeModule.Views; 
+namespace HomeModule.Views;  
 /// <summary>
 /// Interaction logic for HomeBarView.xaml
 /// </summary>

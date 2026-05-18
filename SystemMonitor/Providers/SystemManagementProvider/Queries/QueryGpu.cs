@@ -2,7 +2,7 @@
 using System.Management;
 using SystemManagementProvider.Interfaces;
 
-namespace SystemManagementProvider.Queries; 
+namespace SystemManagementProvider.Queries;  
 public class QueryGpu : ISMQuery {
   private ManagementObjectSearcher _searcher;
   public List<string> GpuList { get; private set; } = new List<string>();
@@ -12,7 +12,7 @@ public class QueryGpu : ISMQuery {
   private static Dictionary<string, (string, string)> info = [];
 
   public QueryGpu() {
-    
+  
   }
 
   private Dictionary<string, (string, string)> GetInfo() {
@@ -21,7 +21,7 @@ public class QueryGpu : ISMQuery {
       foreach (ManagementBaseObject? obj in _searcher.Get()) {
         //Debug.WriteLine($"GPU Count: {_searcher.Get().Count}");
         //Debug.WriteLine($"GPU Name: {obj["Name"]}");
-        
+      
         GpuInfoList.Add(obj["Name"]?.ToString() ?? $"GPU_{GpuInfoList.Count + 1}", new Dictionary<string, (string, string)>());
 
         string name = obj["Name"]?.ToString()?.Replace("(R)", "") ?? "Unknown GPU";

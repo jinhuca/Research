@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace OsModule.ViewModels;
-
+namespace OsModule.ViewModels; 
 public class OperatingSystemViewModel : BindableBase, IOperatingSystemViewModel {
   private readonly OperatingSystemModel _operatingSystemModel;
 

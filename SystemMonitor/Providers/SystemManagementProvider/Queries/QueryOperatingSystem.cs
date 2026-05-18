@@ -3,7 +3,7 @@ using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 using static SystemManagementProvider.Constants.Win32_OperatingSystem;
 
-namespace SystemManagementProvider.Queries; 
+namespace SystemManagementProvider.Queries;  
 public class QueryOperatingSystem : ISMQuery {
   private ManagementObjectSearcher _searcher;
   private static Dictionary<string, (string, string)> info = [];

@@ -6,8 +6,7 @@ using System.Diagnostics;
 using System.Management;
 using System.Text;
 
-namespace MemoryModule.Models;
-
+namespace MemoryModule.Models; 
 internal class QueryMemoryInfo {
   public QueryMemoryInfo() { }
 

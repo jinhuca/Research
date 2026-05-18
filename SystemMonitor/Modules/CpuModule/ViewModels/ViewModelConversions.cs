@@ -1,15 +1,14 @@
-﻿using CpuModule.Models;
+﻿using DataStructures.Cpu.Implementations;
 
-namespace CpuModule.ViewModels; 
-
+namespace CpuModule.ViewModels_V2;  
 internal static class ViewModelConversions {
   internal static string VendorNameConvert(string name) {
     if (name is null) throw new ArgumentNullException(nameof(name));
     if(name.Contains(Definitions.Intel, StringComparison.OrdinalIgnoreCase)) {
-      return Definitions.IntelBrandName;
+      return Definitions.Intel;
     }
     if(name.Contains(Definitions.Amd, StringComparison.OrdinalIgnoreCase)) {
-      return Definitions.AmdBrandName;
+      return Definitions.Amd;
     }
     return Definitions.UnknownBrandName;
   }
@@ -33,7 +32,7 @@ public struct ReadableCacheSize {
 }
 
 public static class CacheSizeExtension {
-  public static ReadableCacheSize ToReadableCacheSize(this CacheSize cacheSize) {
+  public static ReadableCacheSize ToReadableCacheSize(this CpuCacheInfo cacheSize) {
     return new ReadableCacheSize {
       L1_cache_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L1_cache_size),
       L1_cache_line_size = Converters.ByteUnitConverters.ConvertBytesToReadableUnit((ulong)cacheSize.L1_cache_line_size),

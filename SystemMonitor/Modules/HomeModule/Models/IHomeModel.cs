@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HomeModule.Models; 
+namespace HomeModule.Models;  
 internal interface IHomeModel {
 }

@@ -9,7 +9,7 @@ using System.Management;
 using System.Text;
 using static StorageModule.Definitions.MsiQueryDefinitions;
 
-namespace StorageModule.Services; 
+namespace StorageModule.Services;  
 internal static class MsiServices {
   public static void QueryMsi() {
     using CimSession session = CimSession.Create(null);

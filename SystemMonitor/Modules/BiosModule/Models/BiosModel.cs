@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiosModule.Models;
-
+namespace BiosModule.Models; 
 public class BiosModel : BindableBase, IBiosModel {
   public BiosModel() {
     Init();

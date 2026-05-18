@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OsModule.ViewModels; 
+namespace OsModule.ViewModels;  
 public interface IOperatingSystemViewModel {
   string Caption { get; set; }
   string BuildNumber { get; set; }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GpuModule.ViewModels; 
+namespace GpuModule.ViewModels;  
 public interface IGpuSummaryViewModel {
   string ID { get; set; }
   string Name { get; set; }

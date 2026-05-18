@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StorageModule.Interfaces;
-
+namespace StorageModule.Interfaces; 
 public class DiskInfo : BindableBase {
   public string? Name { get; set; }
   public string? DeviceId { get; set; }
@@ -16,7 +15,7 @@ public class DiskInfo : BindableBase {
   public ulong FormattedCapacity { get; set; }
   public bool SystemDisk { get; set; }
   public bool PageFile { get; set; }
-  
+
   public string? Health { get; set; }
   public int TotalActiveTimePercentage { get; set; }
   public int ActiveTimePercentage { get; set; }

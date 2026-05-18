@@ -17,8 +17,7 @@ using System.Windows;
 using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 
-namespace MainApp;
-
+namespace MainApp; 
 public partial class App : PrismApplication {
   protected override Window CreateShell() {
     //base.InitializeModules();
@@ -50,8 +49,7 @@ public partial class App : PrismApplication {
     ViewModelLocationProvider.Register<GpuSummaryView, GpuViewModel>();
     ViewModelLocationProvider.Register<MemorySummaryView, MemoryViewModel>();
     ViewModelLocationProvider.Register<StorageSummaryView, StorageViewModel>();
-    ViewModelLocationProvider.Register<StatisticsView, CpuViewModel>();
+    //ViewModelLocationProvider.Register<StatisticsView, CpuViewModel>();
     ViewModelLocationProvider.Register<BiosSummaryView, BiosViewModel>();
   }
 }
-

@@ -9,10 +9,11 @@
   <ItemGroup>
     <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6" />
     <PackageReference Include="Prism.Core" Version="9.0.537" />
+    <PackageReference Include="System.Reactive" Version="6.1.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\DataExchange\DataExchange.csproj" />
     <ProjectReference Include="..\..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
   </ItemGroup>
 

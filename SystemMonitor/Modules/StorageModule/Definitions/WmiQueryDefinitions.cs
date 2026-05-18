@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StorageModule.Definitions; 
+namespace StorageModule.Definitions;  
 internal static class WmiQueryDefinitions {
   public const string QueryScopeString = @"\\.\ROOT\Microsoft\Windows\Storage";
   public const string PhysicalDiskQueryString = "SELECT * FROM MSFT_PhysicalDisk";

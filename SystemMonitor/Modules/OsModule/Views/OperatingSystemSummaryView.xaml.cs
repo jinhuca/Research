@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OsModule.Views; 
+namespace OsModule.Views;  
 /// <summary>
 /// Interaction logic for OperatingSystemSummaryView.xaml
 /// </summary>

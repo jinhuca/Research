@@ -1,17 +1,17 @@
-﻿using DataExchange.Cpu;
-using LibreHardwareMonitor.Hardware;
+﻿using LibreHardwareMonitor.Hardware;
 using LibreInfoProvider.Interfaces;
 using System.Diagnostics;
 using System.Management;
 using System.Text.RegularExpressions;
 
-namespace LibreInfoProvider.Implementations;
-
+namespace LibreInfoProvider.Implementations; 
 public class CpuInfoGenerator : ICpuInfoGenerator {
-    public ICpuSummaryInfo GetCpuSummaryInfo() {
+  /*
+  public ICpuSummaryInfo GetCpuSummaryInfo() {
     ICpuSummaryInfo result_ = new CpuSummaryInfo();
     Computer computer_ = new Computer { IsCpuEnabled = true };
     computer_.Open();
+
     try {
       var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
       if (cpu_ == null) {
@@ -98,20 +98,20 @@ public class CpuInfoGenerator : ICpuInfoGenerator {
             .GroupBy(s => Regex.Match(s.Name, @"#\d+").Value) // Extract "#1", "#2", etc.
             .Select(group => new {
               CoreIdentifier = "Core " + group.Key,
-              Voltage = group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Value,
-              Clock = group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Value,
-              Temperature = group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Value,
-              Load = group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Value
+              Voltage = (group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Max),
+              Clock = (group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Max),
+              Temperature = (group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Max),
+              Load = (group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Max)
             });
 
         foreach (var core in coreGroups) {
-          Console.WriteLine($"{core.CoreIdentifier}: Voltage: {core.Voltage}V, Temp: {core.Temperature}°C, Load: {core.Load}%, Clock: {core.Clock}MHz");
+          //Console.WriteLine($"{core.CoreIdentifier}: Voltage: {core.Voltage}V, Temp: {core.Temperature}°C, Load: {core.Load}%, Clock: {core.Clock}MHz");
           result_.Add(new CpuCoreInfo {
             Name = core.CoreIdentifier,
-            Voltage = core.Voltage,
-            Temperature = core.Temperature,
-            Load = core.Load,
-            Speed = core.Clock
+            Voltage = (core.Voltage.Value, core.Voltage.Max),
+            Temperature = (core.Temperature.Value, core.Temperature.Max),
+            Load = (core.Load.Value, core.Load.Max),
+            Speed = (core.Clock.Value, core.Clock.Max)
           });
         }
       }
@@ -132,4 +132,6 @@ public class CpuInfoGenerator : ICpuInfoGenerator {
 
     return result_;
   }
+
+  */
 }

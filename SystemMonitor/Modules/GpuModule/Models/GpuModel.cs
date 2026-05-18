@@ -8,8 +8,7 @@ using System.Text;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 
-namespace GpuModule.Models;
-
+namespace GpuModule.Models; 
 struct GpuModelDefinitions {
   public const int TimerStartDelay = 0;
   public const int TimerInterval = 1000;
@@ -86,7 +85,7 @@ public class GpuModel : BindableBase, IGpuModel {
     }
 
     computer.Close();
-    
+  
     return 0.0f; // Return 0 if no clock speed is found
   }
 

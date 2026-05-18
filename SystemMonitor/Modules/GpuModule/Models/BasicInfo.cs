@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GpuModule.Models; 
+namespace GpuModule.Models;  
 public class BasicInfo : BindableBase {
   public BasicInfo() {
 

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DataStructures.Cpu.Implementations;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace CpuModule.Models; 
-public class NativeMethodGroup {
+namespace CpuInfoServices.Methods;  
+public class NativeMethods {
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
   [return: MarshalAs(UnmanagedType.BStr)]
   public static extern string Brand();
@@ -14,10 +15,10 @@ public class NativeMethodGroup {
   public static extern string Vendor();
 
   [DllImport("HardwareInfoProvider.dll", EntryPoint = "GetInstructionSetStruct", CallingConvention = CallingConvention.Cdecl)]
-  public static extern InstructionInfo GetInstructionSetStruct();
+  public static extern CpuInstructionInfo2 GetInstructionSetStruct();
 
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
-  public static extern CacheSize GetCacheSize();
+  public static extern CpuCacheInfo GetCacheSize();
 
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.Cdecl)]
   public static extern void GetLogicalProcessorInfo();

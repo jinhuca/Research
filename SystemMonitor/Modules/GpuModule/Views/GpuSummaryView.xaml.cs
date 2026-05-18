@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GpuModule.Views; 
+namespace GpuModule.Views;  
 /// <summary>
 /// Interaction logic for GpuSummaryView.xaml
 /// </summary>

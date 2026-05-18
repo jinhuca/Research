@@ -11,8 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ResourceModule.Controls.Meter;
-
+namespace ResourceModule.Controls.Meter; 
 public partial class MeterControl : UserControl {
   public MeterControl() {
     InitializeComponent();

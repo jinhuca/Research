@@ -2,8 +2,7 @@
 using MemoryModule.Models;
 using System.ComponentModel;
 
-namespace MemoryModule.ViewModels;
-
+namespace MemoryModule.ViewModels; 
 public class MemoryViewModel : BindableBase, IMemoryViewModel {
   private readonly MemoryModel _model;
 

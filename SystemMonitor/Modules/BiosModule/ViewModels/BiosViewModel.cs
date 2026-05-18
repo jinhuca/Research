@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiosModule.ViewModels; 
+namespace BiosModule.ViewModels;  
 public class BiosViewModel : BindableBase, IBiosViewModel {
   private readonly BiosModel _model;
   public BiosViewModel(BiosModel model) {

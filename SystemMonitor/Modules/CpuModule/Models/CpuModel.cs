@@ -1,213 +1,61 @@
-﻿using LibreHardwareMonitor.Hardware;
-using LibreInfoProvider.Interfaces;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Management;
-using SystemManagementProvider.Constants;
-using SystemManagementProvider.Interfaces;
+﻿using DataStructures.Cpu.Interfaces;
+using DataStructures.Cpu.Implementations;
+using static CpuInfoServices.Observables.CpuInfoGenerators;
 
-namespace CpuModule.Models;
-
-struct CpuModelDefinitions {
-  public const int TimerStartDelay = 0;
-  public const int TimerInterval = 1000;
-}
-
+namespace CpuModule.Models; 
 public class CpuModel : BindableBase, ICpuModel {
-  private Timer _timer;
-  private readonly ISMProvider? _smProvider;
-  private readonly ICpuInfoGenerator? _cpuInfoGenerator;
+  IObservable<ICpuSummaryInfo> summarySource_;
+  IObservable<ICpuLiveInfo> liveSource_;
 
-  public event NotifyCollectionChangedEventHandler? CollectionChanged;
+  public CpuModel() {
+    summarySource_ = GenerateCpuSummaryInfo(TimeSpan.FromSeconds(0));
+    liveSource_ = GenerateCpuLiveInfo(TimeSpan.FromSeconds(1));
 
-  public CpuModel(ISMProvider? smProvider, ICpuInfoGenerator generator) {
-    _smProvider = smProvider;
-    _cpuInfoGenerator = generator;
-    var temp = _cpuInfoGenerator.GetCpuSummaryInfo();
-    var core = _cpuInfoGenerator.GetCpuCoreInfo();
-    init();
-    initTimer();
+    IDisposable cpuSummaryDisposable_ = summarySource_.Subscribe(
+      newItem => { UpdateSummaryInfo(newItem); },
+      ex => { },
+      () => { });
+
+    IDisposable cpuLiveDisposable_ = liveSource_.Subscribe(
+      newItem => { UpdateLiveInfo(newItem); },
+      ex => { },
+      () => { });
   }
 
-  private void initTimer() {
-    _timer = new Timer(
-      callback: fetchSystemInfo,
-      state: DateTime.UtcNow,
-      dueTime: CpuModelDefinitions.TimerStartDelay,
-      period: CpuModelDefinitions.TimerInterval);
+  private void UpdateSummaryInfo(ICpuSummaryInfo info) {
+    SummaryInfo.BrandName = info.BrandName ?? string.Empty;
+    SummaryInfo.VendorName = info.VendorName ?? string.Empty;
+    SummaryInfo.FamilyId = info.FamilyId ?? 0;
+    SummaryInfo.ModelId = info.ModelId ?? 0;
+    SummaryInfo.SteppingId = info.SteppingId ?? 0;
+    SummaryInfo.BaseSpeed = info.BaseSpeed ?? float.NaN;
+    SummaryInfo.BusSpeed = info.BusSpeed ?? float.NaN;
+    SummaryInfo.SocketNum = info.SocketNum ?? 0;
+    SummaryInfo.PhysicalCoreNum = info.PhysicalCoreNum ?? 0;
+    SummaryInfo.LogicalCoreNum = info.LogicalCoreNum ?? 0;
+    SummaryInfo.Virtualization = info.Virtualization ?? false;
+    SummaryInfo.CacheInfo = info.CacheInfo;
+    SummaryInfo.InstructionSet = info.InstructionSet;
+    RaisePropertyChanged(nameof(SummaryInfo));
   }
 
-  private double GetCurrentCpuSpeed() {
-    // 1. Get the Maximum clock speed of the CPU via WMI (returned in MHz)
-    uint maxClockSpeed = 0;
-    using (var searcher = new ManagementObjectSearcher("SELECT MaxClockSpeed FROM Win32_Processor")) {
-      foreach (var obj in searcher.Get()) {
-        maxClockSpeed = (uint)obj["MaxClockSpeed"];
-        break; // Assuming there's only one processor
-      }
-    }
-    // 2. Setup the Performance Counter for current performance percentage
-    // This represents the current speed as a % of the max speed
-    using (var cpuPerfCounter = new PerformanceCounter("Processor Information", "% Processor Performance", "_Total")) {
-      // Initial call often returns 0; needs a small delay for an accurate reading
-      cpuPerfCounter.NextValue();
-      Thread.Sleep(1000);
+  private void UpdateLiveInfo(ICpuLiveInfo newItem) {
+    LiveInfo.CpuOverallLiveInfo.TotalLoad = newItem.CpuOverallLiveInfo.TotalLoad;
+    LiveInfo.CpuOverallLiveInfo.PackageTemperature = newItem.CpuOverallLiveInfo.PackageTemperature;
+    LiveInfo.CpuOverallLiveInfo.CpuSpeed = newItem.CpuOverallLiveInfo.CpuSpeed;
 
-      //while (true) {
-      float perfPercentage = cpuPerfCounter.NextValue();
-
-      // 3. Calculate current speed in MHz
-      double currentSpeedMhz = (maxClockSpeed * perfPercentage) / 100.0;
-      double currentSpeedGhz = currentSpeedMhz / 1000.0;
-
-      //Console.WriteLine($"Max Speed:     {maxClockSpeed} MHz");
-      //Console.WriteLine($"Current Perf:  {perfPercentage:F2}%");
-      //Console.WriteLine($"Current Speed: {currentSpeedGhz:F2} GHz");
-
-      //Thread.Sleep(1000); // Update every second
-      //RealTimeInfo.Speed = currentSpeedGhz;
-      return currentSpeedGhz;
-    }
+    RaisePropertyChanged(nameof(LiveInfo));
   }
 
-  private void fetchSystemInfo(object data) {
-    RealTimeInfo = new RealTimeInfo {
-      Utilization = NativeMethodGroup.GetTotalCpuUtilization(),
-      Speed = GetCurrentCpuSpeed(),
-      Processes = Process.GetProcesses().Length,
-      Threads = Process.GetProcesses().Sum(proc => proc.Threads.Count),
-      Handles = Process.GetProcesses().Sum(proc => proc.HandleCount),
-      UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64),
-      Temperature = GetTemperature()
-    };
-
-    //Utilization = NativeMethodGroup.GetTotalCpuUtilization();
-    //Debug.WriteLine("++++");
-    //Debug.WriteLine(Utilization);
-    //RealTimeInfo = realTime_;
-    //GetCurrentCpuSpeed();
-
-    //Debug.WriteLine("======================");
-    //Debug.WriteLine("Utilization =   " + RealTimeInfo.Utilization);
-    //Debug.WriteLine("Current Speed = " + RealTimeInfo.Speed);
-    //Debug.WriteLine("Processes =     " + RealTimeInfo.Processes);
-    //Debug.WriteLine("Threads =       " + RealTimeInfo.Threads);
-    //Debug.WriteLine("Handles =       " + RealTimeInfo.Handles);
-    //Debug.WriteLine("Up time =       " + RealTimeInfo.UpTime);
-    //Debug.WriteLine("Temperature =   " + RealTimeInfo.Temperature);
-    //Debug.WriteLine("");
+  private ICpuSummaryInfo _cpuSummaryInfo = new CpuSummaryInfo();
+  public ICpuSummaryInfo SummaryInfo {
+    get => _cpuSummaryInfo;
+    set => SetProperty(ref _cpuSummaryInfo, value);
   }
 
-  private void init() {
-    try {
-      VendorName = NativeMethodGroup.Vendor();
-      BrandName = NativeMethodGroup.Brand();
-
-      BasicInfo = new BasicInfo {
-        BaseSpeed = NativeMethodGroup.GetBaseSpeed(),
-        SocketNum = NativeMethodGroup.GetSocketNum(),
-        NumOfPhysicalCores = NativeMethodGroup.GetPhysicalCoreCount(),
-        NumOfLogicalCores = NativeMethodGroup.GetLogicalCoreCount(),
-        VirtualizationEnabled = NativeMethodGroup.VirtualizationEnabled(),
-      };
-      InstructionInfo = NativeMethodGroup.GetInstructionSetStruct();
-      CacheSize = NativeMethodGroup.GetCacheSize();
-      //ReadableCacheSize = CacheSize.Value.ToReadableCacheSize();
-      var temp = Converters.HzUnitConverter.ConvertMHzToReadableUnit(BasicInfo.BaseSpeed);
-    }
-    catch (Exception ex) {
-      //BasicInfo = null;
-      Console.WriteLine(ex.Message);
-    }
-
-    try {
-      if (_smProvider != null) {
-        ISMQuery cpuQuery_ = _smProvider.GetQueryProvider(SMCategories.Processor);
-        ExtendedInfo = new ExtendedInfo { InfoDictionary = cpuQuery_.Query(Win32_Processor.QueryString) };
-      }
-    }
-    catch (System.Management.ManagementException smx) {
-      ExtendedInfo = null;
-      Console.WriteLine(smx.Message);
-    }
-
-    RealTimeInfo = new RealTimeInfo {
-      //Utilization = NativeMethodGroup.GetTotalCpuUtilization(),
-    };
-  }
-
-  private float GetTemperature() {
-    try {
-      Computer computer = new Computer { IsCpuEnabled = true };
-      computer.Open();
-      foreach (var hardware in computer.Hardware) {
-        if (hardware.HardwareType == HardwareType.Cpu) {
-          hardware.Update();
-          foreach (var sensor in hardware.Sensors) {
-            if (sensor.SensorType == SensorType.Temperature) {
-              return sensor.Value ?? 0;
-            }
-          }
-        }
-      }
-    }
-    catch (Exception ex) {
-      Console.WriteLine(ex.Message);
-    }
-    return 0;
-  }
-
-  private string _vendorName = string.Empty;
-  public string VendorName {
-    get => _vendorName;
-    set => SetProperty(ref _vendorName, value);
-  }
-
-  private string _brandName = string.Empty;
-  public string BrandName {
-    get => _brandName;
-    set => SetProperty(ref _brandName, value);
-  }
-
-  private BasicInfo _processorInfo;
-  public BasicInfo BasicInfo {
-    get => _processorInfo;
-    set => SetProperty(ref _processorInfo, value);
-  }
-
-  private InstructionInfo? _instructionInfo;
-  public InstructionInfo? InstructionInfo {
-    get => _instructionInfo;
-    set => SetProperty(ref _instructionInfo, value);
-  }
-
-  private ExtendedInfo? _extendedInfo;
-  public ExtendedInfo? ExtendedInfo {
-    get => _extendedInfo;
-    set => SetProperty(ref _extendedInfo, value);
-  }
-
-  private CacheSize _cacheSize;
-  public CacheSize CacheSize {
-    get => _cacheSize;
-    set => SetProperty(ref _cacheSize, value);
-  }
-
-  //private ReadableCacheSize _readableCacheSize;
-  //public ReadableCacheSize ReadableCacheSize {
-  //  get => _readableCacheSize;
-  //  set => SetProperty(ref _readableCacheSize, value);
-  //}
-
-  private RealTimeInfo _realTimeInfo;
-  public RealTimeInfo RealTimeInfo {
-    get => _realTimeInfo;
-    set => SetProperty(ref _realTimeInfo, value);
-  }
-
-  private double _utilization;
-  public double Utilization {
-    get => _utilization;
-    set => SetProperty(ref _utilization, value);
+  private ICpuLiveInfo _cpuLiveInfo = new CpuLiveInfo();
+  public ICpuLiveInfo LiveInfo {
+    get => _cpuLiveInfo;
+    set => SetProperty(ref _cpuLiveInfo, value);
   }
 }

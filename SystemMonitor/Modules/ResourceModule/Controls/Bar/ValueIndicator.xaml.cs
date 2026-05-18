@@ -12,8 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ResourceModule.Controls.Bar;
-
+namespace ResourceModule.Controls.Bar; 
 public partial class ValueIndicator : UserControl {
   #region constants
 

@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 
-namespace OsModule.Models;
-
+namespace OsModule.Models; 
 public class OperatingSystemModel : BindableBase, IOperatingSystemModel {
   private readonly ISMProvider? _smProvider;
 

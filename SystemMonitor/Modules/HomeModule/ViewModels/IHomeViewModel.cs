@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HomeModule.ViewModels; 
+namespace HomeModule.ViewModels;  
 public interface IHomeViewModel {
 }

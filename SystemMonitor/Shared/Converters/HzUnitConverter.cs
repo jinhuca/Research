@@ -1,4 +1,4 @@
-﻿namespace Converters; 
+﻿namespace Converters;  
 public class HzUnitConverter {
   public static string ConvertMHzToReadableUnit(double frequencyInMHz) {
     if (frequencyInMHz < 0) {
@@ -10,4 +10,6 @@ public class HzUnitConverter {
     double frequencyInGHz = frequencyInMHz / 1000;
     return $"{frequencyInGHz:F2} GHz";
   }
+
+
 }

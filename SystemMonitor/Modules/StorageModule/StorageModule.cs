@@ -7,7 +7,7 @@ using SystemManagementProvider;
 using SystemManagementProvider.Interfaces;
 using static SharedDefinitions.RegionNames;
 
-namespace StorageModule; 
+namespace StorageModule;  
 public class StorageModule : IModule {
   [Required]
   private readonly IRegionManager _regionManager;
@@ -24,6 +24,6 @@ public class StorageModule : IModule {
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {
-    
+  
   }
 }

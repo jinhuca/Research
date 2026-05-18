@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StorageModule.Views; 
+namespace StorageModule.Views;  
 /// <summary>
 /// Interaction logic for StorageSummaryView.xaml
 /// </summary>

@@ -1,7 +1,6 @@
 ﻿using Converters;
 
-namespace ConverterTests;
-
+namespace ConverterTests; 
 [TestClass]
 public sealed class BytesUnitConvertersTests {
   [TestMethod]

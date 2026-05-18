@@ -3,8 +3,7 @@ using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 using SystemManagementProvider.Queries;
 
-namespace SystemManagementProvider;
-
+namespace SystemManagementProvider; 
 public class SMProvider : ISMProvider {
 
   private readonly ManagementObjectSearcher? _objectSearcher;

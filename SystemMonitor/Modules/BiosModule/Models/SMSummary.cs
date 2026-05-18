@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BiosModule.Models; 
+namespace BiosModule.Models;  
 public class SMSummary {
   public string[] BiosVersion { get; set; } = Array.Empty<string>();
   public string BuildNumber { get; set; } = string.Empty;

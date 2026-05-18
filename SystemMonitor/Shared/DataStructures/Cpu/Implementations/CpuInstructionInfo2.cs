@@ -1,9 +1,11 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
 
-namespace CpuModule.Models;
-
+namespace DataStructures.Cpu.Implementations; 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-public struct InstructionInfo {
+public struct CpuInstructionInfo2 {
   [MarshalAs(UnmanagedType.U1)]
   public bool _3DNOW;
   [MarshalAs(UnmanagedType.U1)]
@@ -107,4 +109,3 @@ public struct InstructionInfo {
   [MarshalAs(UnmanagedType.U1)]
   bool XSAVE;
 }
-

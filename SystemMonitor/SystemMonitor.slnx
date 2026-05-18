@@ -23,9 +23,13 @@
     <Project Path="Providers/SystemEnvironmentProvider/SystemEnvironmentProvider.csproj" />
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
   </Folder>
+  <Folder Name="/Services/">
+    <Project Path="Services/CpuInfoServices/CpuInfoServices.csproj" />
+    <Project Path="Services/GpuInfoServices/GpuInfoServices.csproj" Id="d097b3a0-80c3-4dd7-8dcf-c89166c38952" />
+  </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Converters/Converters.csproj" Id="7c6283d6-c0e3-4887-b21f-6117f32593b2" />
-    <Project Path="Shared/DataExchange/DataExchange.csproj" Id="9385104c-4007-4670-8c49-51ca6907db4a" />
+    <Project Path="Shared/DataStructures/DataStructures.csproj" Id="ad719134-39ba-4429-a034-2972e49e760b" />
     <Project Path="Shared/SharedDefinitions/SharedDefinitions.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
@@ -34,6 +38,7 @@
   <Folder Name="/Temporaries/">
     <Project Path="Temporaries/ControlTests/ControlTests.csproj" />
     <Project Path="Temporaries/GetTemperatureFromLibre/GetTemperatureFromLibre.csproj" />
+    <Project Path="Temporaries/InfoGeneratorTests/InfoGeneratorTests.csproj" Id="bf1e8b9f-9506-472c-9687-d80f19f02553" />
   </Folder>
   <Folder Name="/Unit Tests/">
     <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />

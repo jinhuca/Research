@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BiosModule.Views; 
+namespace BiosModule.Views;  
 /// <summary>
 /// Interaction logic for BiosSummaryView.xaml
 /// </summary>

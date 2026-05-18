@@ -1,5 +1,4 @@
-﻿namespace Converters;
-
+﻿namespace Converters; 
 public class ByteUnitConverters {
   public static string ConvertBytesToReadableUnit(ulong bytes) {
     string[] units = { "B", "KB", "MB", "GB", "TB" };
@@ -13,7 +12,7 @@ public class ByteUnitConverters {
     if(bytes < 1024) {
       return $"{bytes} B";
     }
-    
+  
     while (size >= 1024 && unitIndex < units.Length - 1) {
       size /= 1024;
       unitIndex++;

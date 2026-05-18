@@ -24,9 +24,6 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InstructionSet.h">
-      <Filter>Processors</Filter>
-    </ClInclude>
     <ClInclude Include="CpuInfoExport.h">
       <Filter>Processors</Filter>
     </ClInclude>
@@ -34,6 +31,9 @@
       <Filter>Processors</Filter>
     </ClInclude>
     <ClInclude Include="RealTimeFetchers.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="CpuInstructionSet.h">
       <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>

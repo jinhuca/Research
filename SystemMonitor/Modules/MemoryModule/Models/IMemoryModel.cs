@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 
-namespace MemoryModule.Models; 
+namespace MemoryModule.Models;  
 public interface IMemoryModel {
   ulong TotalInstalledMemory { get; set; }
   ulong AvailableMemory { get; set; }

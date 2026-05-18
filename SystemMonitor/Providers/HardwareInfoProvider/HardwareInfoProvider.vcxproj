@@ -155,8 +155,8 @@
   <ItemGroup>
     <ClInclude Include="CacheSize.h" />
     <ClInclude Include="CpuInfoExport.h" />
+    <ClInclude Include="CpuInstructionSet.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="InstructionSet.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RealTimeFetchers.h" />
   </ItemGroup>

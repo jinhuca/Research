@@ -9,7 +9,6 @@
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="10,0,0,0"/>
   </Style>
-  
   <Style TargetType="TextBlock" x:Key="ModuleSubTitleTextStyle">
     <Setter Property="FontSize" Value="0.35cm"/>
     <Setter Property="FontStyle" Value="Normal"/>

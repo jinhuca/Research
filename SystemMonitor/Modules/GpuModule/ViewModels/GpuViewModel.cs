@@ -7,8 +7,7 @@ using System.ComponentModel;
 using System.Text;
 using static GpuModule.Views.ViewDefinitions;
 
-namespace GpuModule.ViewModels;
-
+namespace GpuModule.ViewModels; 
 public class GpuViewModel : BindableBase, IGpuViewModel {
   private readonly GpuModel _model;
 
