@@ -76,6 +76,15 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
 
     LiveViewModel?.CpuOverallLiveViewModel.MemoryPowerValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.MemoryPower.val.Value;
     LiveViewModel?.CpuOverallLiveViewModel.MemoryPowerMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.MemoryPower.max.Value;
+
+    LiveViewModel?.CpuOverallLiveViewModel.PackageTemperatureValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.PackageTemperature.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.PackageTemperatureMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.PackageTemperature.max.Value;
+
+    LiveViewModel?.CpuOverallLiveViewModel.CoreAvgTemperatureValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.CoreAvgTemperatureMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature.max.Value;
+
+    LiveViewModel?.CpuOverallLiveViewModel.CoreMaxTemperatureValueViewModel = _model.LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature.val.Value;
+    LiveViewModel?.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel = _model.LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature.max.Value;
   }
 
   private ICpuSummaryViewModel _summaryViewModel = new CpuSummaryViewModel();

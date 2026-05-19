@@ -48,24 +48,24 @@ public class CpuModel : BindableBase, ICpuModel {
 
   private void UpdateLiveInfo(ICpuLiveInfo newItem) {
     LiveInfo.CpuOverallLiveInfo.TotalLoad = newItem.CpuOverallLiveInfo.TotalLoad;
-    LiveInfo.CpuOverallLiveInfo.PackageTemperature = newItem.CpuOverallLiveInfo.PackageTemperature;
+
     LiveInfo.CpuOverallLiveInfo.CpuSpeed = newItem.CpuOverallLiveInfo.CpuSpeed;
 
     LiveInfo.CpuOverallLiveInfo.Voltage = newItem.CpuOverallLiveInfo.Voltage;
 
-    _maxPlatformPower = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue 
+    _maxPlatformPower = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue
       ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower)
       : _maxPlatformPower;
-    var platformPowerValue_ = newItem.CpuOverallLiveInfo.PlatformPower.val.HasValue 
-      ? newItem.CpuOverallLiveInfo.PlatformPower.val 
+    var platformPowerValue_ = newItem.CpuOverallLiveInfo.PlatformPower.val.HasValue
+      ? newItem.CpuOverallLiveInfo.PlatformPower.val
       : LiveInfo.CpuOverallLiveInfo.PlatformPower.val;
-    var platformPowerMax_ = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue 
-      ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower) 
+    var platformPowerMax_ = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower)
       : _maxPlatformPower;
     LiveInfo.CpuOverallLiveInfo.PlatformPower = (platformPowerValue_, platformPowerMax_);
 
     _maxPackagePower = newItem.CpuOverallLiveInfo.PackagePower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.PackagePower.max.Value, _maxPackagePower) 
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PackagePower.max.Value, _maxPackagePower)
       : _maxPackagePower;
     var packagePowerValue_ = newItem.CpuOverallLiveInfo.PackagePower.val.HasValue
       ? newItem.CpuOverallLiveInfo.PackagePower.val
@@ -76,7 +76,7 @@ public class CpuModel : BindableBase, ICpuModel {
     LiveInfo.CpuOverallLiveInfo.PackagePower = (packagePowerValue_, packagePowerMax_);
 
     _maxCoresPower = newItem.CpuOverallLiveInfo.CoresPower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.CoresPower.max.Value, _maxCoresPower) 
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoresPower.max.Value, _maxCoresPower)
       : _maxCoresPower;
     var coresPowerValue_ = newItem.CpuOverallLiveInfo.CoresPower.val.HasValue
       ? newItem.CpuOverallLiveInfo.CoresPower.val
@@ -87,7 +87,7 @@ public class CpuModel : BindableBase, ICpuModel {
     LiveInfo.CpuOverallLiveInfo.CoresPower = (coresPowerValue_, coresPowerMax_);
 
     _maxMemoryPower = newItem.CpuOverallLiveInfo.MemoryPower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.MemoryPower.max.Value, _maxMemoryPower) 
+      ? MathF.Max(newItem.CpuOverallLiveInfo.MemoryPower.max.Value, _maxMemoryPower)
       : _maxMemoryPower;
     var memoryPowerValue_ = newItem.CpuOverallLiveInfo.MemoryPower.val.HasValue
       ? newItem.CpuOverallLiveInfo.MemoryPower.val
@@ -97,8 +97,38 @@ public class CpuModel : BindableBase, ICpuModel {
       : _maxMemoryPower;
     LiveInfo.CpuOverallLiveInfo.MemoryPower = (memoryPowerValue_, memoryPowerMax_);
 
-    LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature = newItem.CpuOverallLiveInfo.CoreAvgTemperature;
-    LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = newItem.CpuOverallLiveInfo.CoreMaxTemperature;
+    _maxPackageTemperature = newItem.CpuOverallLiveInfo.PackageTemperature.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PackageTemperature.max.Value, _maxPackageTemperature)
+      : _maxPackageTemperature;
+    var packageTemperatureValue_ = newItem.CpuOverallLiveInfo.PackageTemperature.val.HasValue
+      ? newItem.CpuOverallLiveInfo.PackageTemperature.val
+      : LiveInfo.CpuOverallLiveInfo.PackageTemperature.val;
+    var packageTemperatureMax_ = newItem.CpuOverallLiveInfo.PackageTemperature.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.PackageTemperature.max.Value, _maxPackageTemperature)
+      : _maxPackageTemperature;
+    LiveInfo.CpuOverallLiveInfo.PackageTemperature = (packageTemperatureValue_, packageTemperatureMax_);
+
+    _maxCoreAvgTemperature = newItem.CpuOverallLiveInfo.CoreAvgTemperature.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoreAvgTemperature.max.Value, _maxCoreAvgTemperature)
+      : _maxCoreAvgTemperature;
+    var coreAvgTemperatureValue_ = newItem.CpuOverallLiveInfo.CoreAvgTemperature.val.HasValue
+      ? newItem.CpuOverallLiveInfo.CoreAvgTemperature.val
+      : LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature.val;
+    var coreAverageTemperatureMax_ = newItem.CpuOverallLiveInfo.CoreAvgTemperature.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoreAvgTemperature.max.Value, _maxCoreAvgTemperature)
+      : _maxCoreAvgTemperature;
+    LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature = (coreAvgTemperatureValue_, coreAverageTemperatureMax_);
+
+    _maxCoreMaxTemperature = newItem.CpuOverallLiveInfo.CoreMaxTemperature.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoreMaxTemperature.max.Value, _maxCoreMaxTemperature) 
+      : _maxCoreMaxTemperature;
+    var coreMaxTemperatureValue_ = newItem.CpuOverallLiveInfo.CoreMaxTemperature.val.HasValue
+      ? newItem.CpuOverallLiveInfo.CoreMaxTemperature.val
+      : LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature.val;
+    var coreMaxTemperatureMax_ = newItem.CpuOverallLiveInfo.CoreMaxTemperature.max.HasValue
+      ? MathF.Max(newItem.CpuOverallLiveInfo.CoreMaxTemperature.max.Value, _maxCoreMaxTemperature)
+      : _maxCoreMaxTemperature;
+    LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = (coreMaxTemperatureValue_, coreMaxTemperatureMax_);
 
     RaisePropertyChanged(nameof(LiveInfo));
   }
@@ -119,4 +149,8 @@ public class CpuModel : BindableBase, ICpuModel {
   private float _maxPackagePower = 0.0f;
   private float _maxCoresPower = 0.0f;
   private float _maxMemoryPower = 0.0f;
+
+  private float _maxPackageTemperature = 0.0f;
+  private float _maxCoreAvgTemperature = 0.0f;
+  private float _maxCoreMaxTemperature = 0.0f;
 }

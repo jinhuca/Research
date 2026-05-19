@@ -7,6 +7,7 @@
              xmlns:prism="http://prismlibrary.com/" 
              xmlns:meter="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
              xmlns:bar="clr-namespace:ResourceModule.Controls.Bar;assembly=ResourceModule"
+             xmlns:ctrl="clr-namespace:ResourceModule.Controls.Indicator;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
              xmlns:local="clr-namespace:CpuModule.Views" 
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
@@ -22,10 +23,10 @@
         <ColumnDefinition Width="2.00cm"/>
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
-      
+
       <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}" 
                  Text="{x:Static local:ViewDefinitions.ModuleName}"/>
-      
+
       <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top"  ShowGridLines="False">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
@@ -57,7 +58,7 @@
           <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
                      Margin="10,0"
                      Text="{Binding SummaryViewModel.VendorNameViewModel}"/>
-          
+
           <TextBlock Grid.Column="2" Style="{StaticResource ModuleContentTitleStyle}" 
                      Margin="10,0"
                      Text="{x:Static local:ViewDefinitions.BrandNameTitle}"/>
@@ -86,7 +87,7 @@
                      Margin="10,0"
                      Text="{Binding SummaryViewModel.SteppingIdViewModel}"/>
         </Grid>
-        
+
         <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="0.15cm"/>
@@ -184,7 +185,7 @@
                      Text="{Binding SummaryViewModel.CacheInfoViewModel.L3_Cache_Line_size}"/>
         </Grid>
       </Grid>
-      
+
       <UniformGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Rows="1">
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <meter:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}"
@@ -203,80 +204,96 @@
         </Viewbox>
       </UniformGrid>
 
-      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="Transparent" MinHeight="40"
-            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
         <Grid.ColumnDefinitions>
           <ColumnDefinition/>
           <ColumnDefinition/>
           <ColumnDefinition/>
-          <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition/>
-          <RowDefinition/>
-          <RowDefinition/>
-          <RowDefinition/>
-          <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+        <Grid Grid.Row="0" Grid.Column="0" Background="Transparent" MinHeight="40" 
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,10"
                    Style="{StaticResource ModuleSubTitleTextStyle}"
                    Text="{x:Static local:ViewDefinitions.PowerTitle}"/>
-        <bar:ValueIndicator Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
-                            Margin="0,5"
-                            ValueId="{x:Static local:ViewDefinitions.PlatFormPowerTitle}"
-                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
-                            Minimum="0"
-                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
-                            Unit="W"
-                            MaxTitle="max:"
-                            Style="{StaticResource TemperatureIndicatorStyle}"/>
-        <bar:ValueIndicator Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
-                            ValueId="{x:Static local:ViewDefinitions.PackagePowerTitle}"
-                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerValueViewModel}"
-                            Minimum="0"
-                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMaxViewModel}"
-                            Unit="W"
-                            MaxTitle="max:"
-                            Style="{StaticResource TemperatureIndicatorStyle}"/>
-        <bar:ValueIndicator Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
-                            ValueId="{x:Static local:ViewDefinitions.CoresPowerTitle}"
-                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerValueViewModel}"
-                            Minimum="0"
-                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMaxViewModel}"
-                            Unit="W"
-                            MaxTitle="max:"
-                            Style="{StaticResource TemperatureIndicatorStyle}"/>
-        <bar:ValueIndicator Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
-                            ValueId="{x:Static local:ViewDefinitions.MemoryPowerTitle}"
-                            Value="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerValueViewModel}"
-                            Minimum="0"
-                            Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
-                            Unit="W"
-                            MaxTitle="max:"
-                            Style="{StaticResource TemperatureIndicatorStyle}"/>
+          <ctrl:ValueBar Grid.Row="1" Grid.Column="0" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.PlatFormPowerTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
+                       Style="{StaticResource PowerIndicatorStyle}"/>
+          <ctrl:ValueBar Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.PackagePowerTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMaxViewModel}"
+                       Style="{StaticResource PowerIndicatorStyle}"/>
+          <ctrl:ValueBar Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.CoresPowerTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMaxViewModel}"
+                       Style="{StaticResource PowerIndicatorStyle}"/>
+          <ctrl:ValueBar Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.MemoryPowerTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
+                       Style="{StaticResource PowerIndicatorStyle}"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Background="Transparent" MinHeight="40" 
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,10"
+                   Style="{StaticResource ModuleSubTitleTextStyle}"
+                   Text="{x:Static local:ViewDefinitions.TemperatureTitle}"/>
+          <ctrl:ValueBar Grid.Row="1" Grid.Column="0" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.PackageTemperatureTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureMaxViewModel}"
+                       Style="{StaticResource TemperatureIndicatorStyle}"/>
+          
+          <ctrl:ValueBar Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.CoreAvgTemperatureTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureMaxViewModel}"
+                       Style="{StaticResource TemperatureIndicatorStyle}"/>
+          
+          <ctrl:ValueBar Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
+                       Title="{x:Static local:ViewDefinitions.CoreMaxTemperatureTitle}"
+                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureValueViewModel}"
+                       Minimum="0"
+                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
+                       Style="{StaticResource TemperatureIndicatorStyle}"/>
+        </Grid>
       </Grid>
-      
-      <!--<Grid Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" ShowGridLines="True">
-        --><!-- Processor Core info --><!--
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-          <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0"
-                  ItemsSource="{Binding}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
-          <ListView.ItemTemplate>
-            <DataTemplate>
-              <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                <bar:ValueIndicator Title="Load" TitleForeground="White"/>
-              </StackPanel>
-            </DataTemplate>
-          </ListView.ItemTemplate>
-        </ListView>
-      </Grid>-->
-      
+
     </Grid>
   </Border>
 </UserControl>

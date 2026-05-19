@@ -2,7 +2,7 @@
 
 public interface ICpuOverallLiveViewModel {
   float? LoadViewModel { get; set; }
-  float? TemperatureViewModel { get; set; }
+  
   float? SpeedViewModel { get; set; }
   float? VoltageViewModel { get; set; }
 
@@ -17,4 +17,15 @@ public interface ICpuOverallLiveViewModel {
 
   float MemoryPowerValueViewModel { get; set; }
   float MemoryPowerMaxViewModel { get; set; }
+
+  float? TemperatureViewModel { get; set; }
+
+  float PackageTemperatureValueViewModel { get; set; }
+  float PackageTemperatureMaxViewModel { get; set; }
+
+  float CoreAvgTemperatureValueViewModel { get; set; }
+  float CoreAvgTemperatureMaxViewModel { get; set; }
+
+  float CoreMaxTemperatureValueViewModel { get; set; }
+  float CoreMaxTemperatureMaxViewModel { get; set; }
 }

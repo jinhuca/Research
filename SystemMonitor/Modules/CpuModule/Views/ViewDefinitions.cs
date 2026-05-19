@@ -45,6 +45,9 @@ internal static class ViewDefinitions {
   public const string ClockTitle = "Clocks (GHz)";
 
   public const string TemperatureTitle = "Temperature (\u00B0\u0043)";
+  public const string PackageTemperatureTitle = "Package";
+  public const string CoreAvgTemperatureTitle = "Core Avg";
+  public const string CoreMaxTemperatureTitle = "Core Max";
 
   public const string LoadsTitle = "Loads (%)";
 }

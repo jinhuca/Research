@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ResourceModule.Controls.Indicator">
+  <Style TargetType="{x:Type local:ValueBar}" x:Key="BaseValueBarStyle">
+    <Setter Property="SeparatorWidth" Value="3"/>
+    <Setter Property="IndicatorHeight" Value="20"/>
+    <Setter Property="IndicatorWidth" Value="4.5cm"/>
+    <Setter Property="IndicatorBrush" Value="Green"/>
+  </Style>
+  <Style TargetType="{x:Type local:ValueBar}" BasedOn="{StaticResource BaseValueBarStyle}"
+         x:Key="PowerIndicatorStyle">
+    <Setter Property="IndicatorBrush" Value="DodgerBlue"/>
+    <Setter Property="TitleForeground" Value="White"/>
+    <Setter Property="ValueForeground" Value="White"/>
+    <Setter Property="MaxValueBrush" Value="White"/>
+  </Style>
+  <Style TargetType="{x:Type local:ValueBar}" BasedOn="{StaticResource BaseValueBarStyle}"
+         x:Key="TemperatureIndicatorStyle">
+    <Setter Property="IndicatorBrush" Value="OrangeRed"/>
+    <Setter Property="TitleForeground" Value="White"/>
+    <Setter Property="ValueForeground" Value="White"/>
+    <Setter Property="MaxValueBrush" Value="White"/>
+  </Style>
+</ResourceDictionary>

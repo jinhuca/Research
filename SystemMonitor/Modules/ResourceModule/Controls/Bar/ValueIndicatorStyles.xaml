@@ -15,11 +15,19 @@
     <Setter Property="SeparatorWidth" Value="3"/>
     <Setter Property="IndicatorWidth" Value="5.0cm"/>
     <Setter Property="IndicatorHeight" Value="0.45cm"/>
+    <Setter Property="IndicatorBrush" Value="Green"/>
+  </Style>
+  <Style TargetType="{x:Type local:ValueIndicator}" 
+       x:Key="PowerIndicatorStyle"
+       BasedOn="{StaticResource BaseIndicatorStyle}">
     <Setter Property="IndicatorBrush" Value="DodgerBlue"/>
+    <Setter Property="ValueIdFontWeight" Value="Normal"/>
+    <Setter Property="ValueIdForeground" Value="White"/>
   </Style>
   <Style TargetType="{x:Type local:ValueIndicator}" 
          x:Key="TemperatureIndicatorStyle"
          BasedOn="{StaticResource BaseIndicatorStyle}">
+    <Setter Property="IndicatorBrush" Value="Coral"/>
     <Setter Property="ValueIdFontWeight" Value="Normal"/>
     <Setter Property="ValueIdForeground" Value="White"/>
   </Style>
