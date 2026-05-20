@@ -20,8 +20,6 @@ public class CpuInfoQueries {
     _containerProvider = containerProvider;
   }
 
-
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
   public static ICpuSummaryInfo QuerySummaryInfo() {
     ICpuSummaryInfo result_ = new CpuSummaryInfo();
     Computer computer_ = new Computer { IsCpuEnabled = true };
@@ -48,14 +46,6 @@ public class CpuInfoQueries {
       result_.Virtualization = NativeMethods.VirtualizationEnabled();
       result_.InstructionSet = NativeMethods.GetInstructionSetStruct();
       result_.CacheInfo = NativeMethods.GetCacheSize();
-
-      //using var searcher = new ManagementObjectSearcher("Select * From Win32_Processor");
-      //foreach (ManagementObject obj in searcher.Get()) {
-      //  var family = obj["Family"];
-      //  var model = obj["Level"];
-      //  var stepping = obj["Stepping"];
-      //  var name = obj["Name"];
-      //}
 
       (result_.FamilyId, result_.ModelId, result_.SteppingId) = QueryCpuId.GetCpuFamily();
     }
