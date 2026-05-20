@@ -13,7 +13,7 @@ public class NativeMethods {
   public static extern string Vendor();
 
   [DllImport("HardwareInfoProvider.dll", EntryPoint = "GetInstructionSetStruct", CallingConvention = CallingConvention.Cdecl)]
-  public static extern CpuInstructionInfo2 GetInstructionSetStruct();
+  public static extern CpuInstructionInfo GetInstructionSetStruct();
 
   [DllImport("HardwareInfoProvider.dll", CallingConvention = CallingConvention.StdCall)]
   public static extern CpuCacheInfo GetCacheSize();

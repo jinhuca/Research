@@ -15,5 +15,5 @@ public interface ICpuSummaryViewModel {
   int? LogicalCoreNumViewModel { get; set; }
   bool? VirtualizationViewModel { get; set; }
   CpuCacheInfoViewModel? CacheInfoViewModel { get; set; }
-  CpuInstructionInfo2? InstructionSetViewModel { get; set; }
+  CpuInstructionInfo? InstructionSetViewModel { get; set; }
 }

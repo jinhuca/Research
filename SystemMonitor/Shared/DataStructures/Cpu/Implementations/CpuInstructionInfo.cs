@@ -3,7 +3,7 @@
 namespace DataStructures.Cpu.Implementations;
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-public struct CpuInstructionInfo2 {
+public struct CpuInstructionInfo {
   [MarshalAs(UnmanagedType.U1)]
   public bool _3DNOW;
   [MarshalAs(UnmanagedType.U1)]

@@ -75,8 +75,8 @@ public class CpuSummaryInfo : BindableBase, ICpuSummaryInfo {
     set => SetProperty(ref _cpuCacheInfo, value);
   }
 
-  private CpuInstructionInfo2? _cpuInstructionInfo;
-  public CpuInstructionInfo2? InstructionSet {
+  private CpuInstructionInfo? _cpuInstructionInfo;
+  public CpuInstructionInfo? InstructionSet {
     get => _cpuInstructionInfo;
     set => SetProperty(ref _cpuInstructionInfo, value);
   }

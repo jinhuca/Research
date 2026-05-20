@@ -77,8 +77,8 @@ public class CpuSummaryViewModel : BindableBase, ICpuSummaryViewModel {
     set => SetProperty(ref _cacheInfoViewModel, value);
   }
 
-  private CpuInstructionInfo2? _instructionInfo2ViewModel;
-  public CpuInstructionInfo2? InstructionSetViewModel {
+  private CpuInstructionInfo? _instructionInfo2ViewModel;
+  public CpuInstructionInfo? InstructionSetViewModel {
     get => _instructionInfo2ViewModel;
     set => SetProperty(ref _instructionInfo2ViewModel, value);
   }

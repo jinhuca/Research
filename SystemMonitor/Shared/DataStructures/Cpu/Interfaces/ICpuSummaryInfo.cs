@@ -15,5 +15,5 @@ public interface ICpuSummaryInfo {
   int? LogicalCoreNum { get; set; }
   bool? Virtualization { get; set; }
   CpuCacheInfo? CacheInfo { get; set; }
-  CpuInstructionInfo2? InstructionSet { get; set; }
+  CpuInstructionInfo? InstructionSet { get; set; }
 }
