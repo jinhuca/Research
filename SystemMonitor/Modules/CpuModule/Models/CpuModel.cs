@@ -20,8 +20,8 @@ public class CpuModel : BindableBase, ICpuModel {
 
     IDisposable cpuSummaryDisposable_ = summarySource_.Subscribe(
       newItem => { UpdateSummaryInfo(newItem); },
-      ex => { },
-      () => { });
+      ex => { Debug.WriteLine(ex.Message); },
+      () => { Debug.WriteLine("query cpu summary completed."); });
 
     IDisposable cpuLiveDisposable_ = liveSource_.Subscribe(
       newItem => { UpdateLiveInfo(newItem); },
@@ -53,28 +53,51 @@ public class CpuModel : BindableBase, ICpuModel {
 
     LiveInfo.CpuOverallLiveInfo.Voltage = newItem.CpuOverallLiveInfo.Voltage;
 
-    _maxPlatformPower = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower)
+    // == Update Platform Power Record
+    // (1) grab the updated record
+    var updatedPlatformPower_ = newItem.CpuOverallLiveInfo.PlatformPower;
+    // (2) update min and max 
+    _minPlatformPower = updatedPlatformPower_.Min.HasValue
+      ? MathF.Min(updatedPlatformPower_.Min.Value, _minPlatformPower)
+      : _minPlatformPower;
+    _maxPlatformPower = updatedPlatformPower_.Max.HasValue
+      ? MathF.Max(updatedPlatformPower_.Max.Value, _maxPlatformPower)
       : _maxPlatformPower;
-    var platformPowerValue_ = newItem.CpuOverallLiveInfo.PlatformPower.val.HasValue
-      ? newItem.CpuOverallLiveInfo.PlatformPower.val
+    // (3) update record
+    var platformPowerValue_ = updatedPlatformPower_.val.HasValue
+      ? updatedPlatformPower_.val
       : LiveInfo.CpuOverallLiveInfo.PlatformPower.val;
-    var platformPowerMax_ = newItem.CpuOverallLiveInfo.PlatformPower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.PlatformPower.max.Value, _maxPlatformPower)
+    var platformPowerMin_ = updatedPlatformPower_.Min.HasValue
+      ? MathF.Min(updatedPlatformPower_.Min.Value, _minPlatformPower)
+      : _minPlatformPower;
+    var platformPowerMax_ = updatedPlatformPower_.Max.HasValue
+      ? MathF.Max(updatedPlatformPower_.Max.Value, _maxPlatformPower)
       : _maxPlatformPower;
-    LiveInfo.CpuOverallLiveInfo.PlatformPower = (platformPowerValue_, platformPowerMax_);
+    LiveInfo.CpuOverallLiveInfo.PlatformPower = (platformPowerValue_, platformPowerMin_, platformPowerMax_);
 
-    _maxPackagePower = newItem.CpuOverallLiveInfo.PackagePower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.PackagePower.max.Value, _maxPackagePower)
+    // == Update Package Power Record
+    // (1) grab the updated record
+    var updatedPackagePower_ = newItem.CpuOverallLiveInfo.PackagePower;
+    // (2) update min and max
+    _minPackagePower = updatedPackagePower_.Min.HasValue
+      ? MathF.Min(updatedPackagePower_.Min.Value, _minPackagePower)
+      : _minPackagePower;
+    _maxPackagePower = updatedPackagePower_.Max.HasValue
+      ? MathF.Max(updatedPackagePower_.Max.Value, _maxPackagePower)
       : _maxPackagePower;
-    var packagePowerValue_ = newItem.CpuOverallLiveInfo.PackagePower.val.HasValue
-      ? newItem.CpuOverallLiveInfo.PackagePower.val
+    // (3) update record
+    var packagePowerValue_ = updatedPackagePower_.val.HasValue
+      ? updatedPackagePower_.val
       : LiveInfo.CpuOverallLiveInfo.PackagePower.val;
-    var packagePowerMax_ = newItem.CpuOverallLiveInfo.PackagePower.max.HasValue
-      ? MathF.Max(newItem.CpuOverallLiveInfo.PackagePower.max.Value, _maxPackagePower)
+    var packagePowerMin_ = updatedPackagePower_.Min.HasValue
+      ? MathF.Min(updatedPackagePower_.Min.Value, _minPackagePower)
+      : _minPackagePower;
+    var packagePowerMax_ = updatedPackagePower_.Max.HasValue
+      ? MathF.Max(updatedPackagePower_.Max.Value, _maxPackagePower)
       : _maxPackagePower;
-    LiveInfo.CpuOverallLiveInfo.PackagePower = (packagePowerValue_, packagePowerMax_);
+    LiveInfo.CpuOverallLiveInfo.PackagePower = (packagePowerValue_, packagePowerMin_, packagePowerMax_);
 
+    /*
     _maxCoresPower = newItem.CpuOverallLiveInfo.CoresPower.max.HasValue
       ? MathF.Max(newItem.CpuOverallLiveInfo.CoresPower.max.Value, _maxCoresPower)
       : _maxCoresPower;
@@ -129,7 +152,7 @@ public class CpuModel : BindableBase, ICpuModel {
       ? MathF.Max(newItem.CpuOverallLiveInfo.CoreMaxTemperature.max.Value, _maxCoreMaxTemperature)
       : _maxCoreMaxTemperature;
     LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = (coreMaxTemperatureValue_, coreMaxTemperatureMax_);
-
+    */
     RaisePropertyChanged(nameof(LiveInfo));
   }
 
@@ -145,12 +168,17 @@ public class CpuModel : BindableBase, ICpuModel {
     set => SetProperty(ref _cpuLiveInfo, value);
   }
 
-  private float _maxPlatformPower = 0.0f;
-  private float _maxPackagePower = 0.0f;
-  private float _maxCoresPower = 0.0f;
-  private float _maxMemoryPower = 0.0f;
+  private static float _minPlatformPower = 0.0f;
+  private static float _maxPlatformPower = 0.0f;
 
-  private float _maxPackageTemperature = 0.0f;
-  private float _maxCoreAvgTemperature = 0.0f;
-  private float _maxCoreMaxTemperature = 0.0f;
+  private static float _minPackagePower = 0.0f;
+  private static float _maxPackagePower = 0.0f;
+
+
+  private static float _maxCoresPower = 0.0f;
+  private static float _maxMemoryPower = 0.0f;
+
+  private static float _maxPackageTemperature = 0.0f;
+  private static float _maxCoreAvgTemperature = 0.0f;
+  private static float _maxCoreMaxTemperature = 0.0f;
 }

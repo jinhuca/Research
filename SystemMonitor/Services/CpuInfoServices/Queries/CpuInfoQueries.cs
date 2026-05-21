@@ -1,6 +1,7 @@
 ﻿using CpuInfoServices.Methods;
 using DataStructures.Cpu.Implementations;
 using DataStructures.Cpu.Interfaces;
+using DataStructures.TypeDefinitions;
 using LibreHardwareMonitor.Hardware;
 using System.Diagnostics;
 using System.Management;
@@ -73,58 +74,42 @@ public class CpuInfoQueries {
       }
       cpu_.Update();
 
-      // Bus Speed
-      ISensor? busSpeed_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuBusSpeed && s.SensorType == SensorType.Clock);
-      result_.BusSpeed = (busSpeed_?.Value, busSpeed_?.Max);
+      ISensor? busSpeed_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuBusSpeed && s.SensorType == SensorType.Clock);
+      result_.BusSpeed = (busSpeed_?.Value, busSpeed_?.Min, busSpeed_?.Max);
 
-      var cpuSpeed_ = cpu_.Sensors.Where(s => s.SensorType == SensorType.Clock).Average(sp => sp.Value);
-      var cpuMax_ = cpu_.Sensors.Where(s => s.SensorType == SensorType.Clock).Max(sp => sp.Value);
-      result_.CpuSpeed = (cpuSpeed_, cpuMax_);
+      ISensor? cpuSpeed_ = cpu_.Sensors.FirstOrDefault(s => s.SensorType == SensorType.Clock);
+      result_.CpuSpeed = (cpuSpeed_?.Value, cpuSpeed_?.Min, cpuSpeed_?.Max);
 
-      // Load
-      ISensor? totalLoad_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuTotalLoad && s.SensorType == SensorType.Load);
-      result_.TotalLoad = (totalLoad_ == null) ? (0, 0) : (totalLoad_.Value, totalLoad_.Max);
+      ISensor? totalLoad_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuTotalLoad && s.SensorType == SensorType.Load);
+      result_.TotalLoad = (totalLoad_?.Value, totalLoad_?.Min, totalLoad_?.Max);
 
-      ISensor? coreMaxLoad_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuCoreMaxLoad && s.SensorType == SensorType.Load);
-      result_.CoreMaxLoad = (coreMaxLoad_ == null) ? (0, 100) : (coreMaxLoad_.Value, 100);
+      ISensor? coreMaxLoad_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuCoreMaxLoad && s.SensorType == SensorType.Load);
+      result_.CoreMaxLoad = (coreMaxLoad_?.Value, coreMaxLoad_?.Min, coreMaxLoad_?.Max);
 
-      // Voltage
-      ISensor? voltage_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuCore && s.SensorType == SensorType.Voltage);
-      result_.Voltage = (voltage_?.Value, voltage_?.Max);
+      ISensor? voltage_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuCore && s.SensorType == SensorType.Voltage);
+      result_.Voltage = (voltage_?.Value, voltage_?.Min, voltage_?.Max);
 
       // Power
-      ISensor? platformPower_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuPlatform && s.SensorType == SensorType.Power);
-      result_.PlatformPower = (platformPower_?.Value, platformPower_?.Max);
+      ISensor? platformPower_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuPlatform && s.SensorType == SensorType.Power);
+      result_.PlatformPower = (platformPower_?.Value, platformPower_?.Min, platformPower_?.Max);
 
-      ISensor? packagePower_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuPackage && s.SensorType == SensorType.Power);
-      result_.PackagePower = (packagePower_?.Value, packagePower_?.Max);
+      ISensor? packagePower_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuPackage && s.SensorType == SensorType.Power);
+      result_.PackagePower = (packagePower_?.Value, packagePower_?.Min, packagePower_?.Max);
 
-      ISensor? coresPower_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuCores && s.SensorType == SensorType.Power);
-      result_.CoresPower = (coresPower_?.Value, coresPower_?.Max);
+      ISensor? coresPower_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuCores && s.SensorType == SensorType.Power);
+      result_.CoresPower = (coresPower_?.Value, coresPower_?.Min, coresPower_?.Max);
 
-      ISensor? memoryPowers_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CPUMemory && s.SensorType == SensorType.Power);
-      result_.MemoryPower = (memoryPowers_?.Value, memoryPowers_?.Max);
+      ISensor? memoryPowers_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CPUMemory && s.SensorType == SensorType.Power);
+      result_.MemoryPower = (memoryPowers_?.Value, memoryPowers_?.Min, memoryPowers_?.Max);
 
-      // Temperature
-      ISensor? coreMaxTemperature_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CoreMax && s.SensorType == SensorType.Temperature);
-      result_.CoreMaxTemperature = (coreMaxTemperature_?.Value, coreMaxTemperature_?.Max);
+      ISensor? coreMaxTemperature_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CoreMax && s.SensorType == SensorType.Temperature);
+      result_.CoreMaxTemperature = (coreMaxTemperature_?.Value, coreMaxTemperature_?.Min, coreMaxTemperature_?.Max);
 
-      ISensor? coreAvgTemperature_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CoreAverage && s.SensorType == SensorType.Temperature);
-      result_.CoreAvgTemperature = (coreAvgTemperature_?.Value, coreAvgTemperature_?.Max);
+      ISensor? coreAvgTemperature_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CoreAverage && s.SensorType == SensorType.Temperature);
+      result_.CoreAvgTemperature = (coreAvgTemperature_?.Value, coreAvgTemperature_?.Min, coreAvgTemperature_?.Max);
 
-      ISensor? packageTemperature_ = cpu_.Sensors
-        .FirstOrDefault(s => s.Name == CpuPackage && s.SensorType == SensorType.Temperature);
-      result_.PackageTemperature = (packageTemperature_?.Value, packageTemperature_?.Max);
+      ISensor? packageTemperature_ = cpu_.Sensors.FirstOrDefault(s => s.Name == CpuPackage && s.SensorType == SensorType.Temperature);
+      result_.PackageTemperature = (packageTemperature_?.Value, packageTemperature_?.Min, packageTemperature_?.Max);
     }
     catch (DllNotFoundException nfe) {
       Debug.WriteLine(nfe.Message);
@@ -159,19 +144,27 @@ public class CpuInfoQueries {
           .GroupBy(s => Regex.Match(s.Name, @"#\d+").Value) // Extract "#1", "#2", etc.
           .Select(group => new {
             CoreIdentifier = "Core " + group.Key,
-            Voltage = (group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Max),
-            Clock = (group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Max),
-            Temperature = (group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Max),
-            Load = (group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Value, group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Max)
+            Voltage = (group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Value, 
+                       group.FirstOrDefault(s=>s.SensorType == SensorType.Voltage)?.Min,
+                       group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Max),
+            Clock = (group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Value,
+                     group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Min,
+                     group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Max),
+            Temperature = (group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Value,
+                           group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Min,
+                           group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Max),
+            Load = (group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Value,
+                    group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Min,
+                    group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Max)
           });
       //Console.WriteLine($"{core.CoreIdentifier}: Voltage: {core.Voltage}V, Temp: {core.Temperature}°C, Load: {core.Load}%, Clock: {core.Clock}MHz");
       result_.AddRange(from core in coreGroups
                        select new CpuCoreLiveInfo {
                          Name = core.CoreIdentifier,
-                         Voltage = (core.Voltage.Value, core.Voltage.Max),
-                         Temperature = (core.Temperature.Value, core.Temperature.Max),
-                         Load = (core.Load.Value, core.Load.Max),
-                         Speed = (core.Clock.Value, core.Clock.Max)
+                         Voltage = (core.Voltage.Value, core.Voltage.Min, core.Voltage.Max),
+                         Temperature = (core.Temperature.Value, core.Temperature.Min, core.Temperature.Max),
+                         Load = (core.Load.Value, core.Load.Min, core.Load.Max),
+                         Speed = (core.Clock.Value, core.Clock.Min, core.Clock.Max)
                        });
       return result_;
     }

@@ -1,16 +1,18 @@
-﻿namespace DataStructures.Cpu.Interfaces;
+﻿using DataStructures.TypeDefinitions;
+
+namespace DataStructures.Cpu.Interfaces;
 
 public interface ICpuOverallLiveInfo {
-  (float? val, float? max) BusSpeed { get; set; }
-  (float? val, float? max) CpuSpeed { get; set; }
-  (float? val, float? max) Voltage { get; set; }
-  (float? val, float? max) PlatformPower { get; set; }
-  (float? val, float? max) PackagePower { get; set; }
-  (float? val, float? max) MemoryPower { get; set; }
-  (float? val, float? max) CoresPower { get; set; }
-  (float? val, float? max) PackageTemperature { get; set; }
-  (float? val, float? max) CoreMaxTemperature { get; set; }
-  (float? val, float? max) CoreAvgTemperature { get; set; }
-  (float? val, float? max) TotalLoad { get; set; }
-  (float? val, float? max) CoreMaxLoad { get; set; }
+  SensorDataType BusSpeed { get; set; }
+  SensorDataType CpuSpeed { get; set; }
+  SensorDataType Voltage { get; set; }
+  SensorDataType PlatformPower { get; set; }
+  SensorDataType PackagePower { get; set; }
+  SensorDataType MemoryPower { get; set; }
+  SensorDataType CoresPower { get; set; }
+  SensorDataType PackageTemperature { get; set; }
+  SensorDataType CoreMaxTemperature { get; set; }
+  SensorDataType CoreAvgTemperature { get; set; }
+  SensorDataType TotalLoad { get; set; }
+  SensorDataType CoreMaxLoad { get; set; }
 }

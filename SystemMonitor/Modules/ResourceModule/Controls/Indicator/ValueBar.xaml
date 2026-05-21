@@ -42,6 +42,8 @@
       <ColumnDefinition Width="0.9cm"/>
       <ColumnDefinition Width="0.6cm"/>
       <ColumnDefinition Width="0.9cm"/>
+      <ColumnDefinition Width="0.6cm"/>
+      <ColumnDefinition Width="0.9cm"/>
     </Grid.ColumnDefinitions>
     <!-- (0) Title -->
     <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0.3cm,0" 
@@ -67,7 +69,18 @@
                Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Width="{Binding SeparatorWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-    <!-- (4) Max Value -->
+    <!-- (4) Min Value -->
+    <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" 
+               Text="{Binding Minimum, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}"
+               FontSize="{Binding MinValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               FontWeight="{Binding MinValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               Foreground="{Binding MinValueBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+    <!-- (5) Separator -->
+    <Rectangle Grid.Column="3" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
+               Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               Width="{Binding SeparatorWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+               Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+    <!-- (6) Max Value -->
     <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" 
                Text="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}"
                FontSize="{Binding MaxValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"

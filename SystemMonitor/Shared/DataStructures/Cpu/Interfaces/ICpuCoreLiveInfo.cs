@@ -1,9 +1,11 @@
-﻿namespace DataStructures.Cpu.Interfaces;
+﻿using DataStructures.TypeDefinitions;
+
+namespace DataStructures.Cpu.Interfaces;
 
 public interface ICpuCoreLiveInfo {
   string Name { get; set; }
-  (float? val, float? max) Voltage { get; set; }
-  (float? val, float? max) Speed { get; set; }
-  (float? val, float? max) Temperature { get; set; }
-  (float? val, float? max) Load { get; set; }
+  SensorDataType Voltage { get; set; }
+  SensorDataType Speed { get; set; }
+  SensorDataType Temperature { get; set; }
+  SensorDataType Load { get; set; }
 }
