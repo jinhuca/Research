@@ -31,6 +31,12 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     set => SetProperty(ref _platformPowerValueViewModel, value);
   }
 
+  private float _platformPowerMinViewModel;
+  public float PlatformPowerMinViewModel {
+    get => _platformPowerMinViewModel;
+    set => SetProperty(ref _platformPowerMinViewModel, value);
+  }
+
   private float _platformPowerMaxViewModel;
   public float PlatformPowerMaxViewModel {
     get => _platformPowerMaxViewModel;
@@ -41,6 +47,12 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
   public float PackagePowerValueViewModel {
     get => _packagePowerValueViewModel;
     set => SetProperty(ref _packagePowerValueViewModel, value);
+  }
+
+  private float _packagePowerMinViewModel;
+  public float PackagePowerMinViewModel {
+    get => _packagePowerMinViewModel;
+    set => SetProperty(ref _packagePowerMinViewModel, value);
   }
 
   private float _packagePowerMaxViewModel;
@@ -55,6 +67,12 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     set => SetProperty(ref _coresPowerValueViewModel, value);
   }
 
+  private float _coresPowerMinViewModel;
+  public float CoresPowerMinViewModel {
+    get => _coresPowerMinViewModel;
+    set => SetProperty(ref _coresPowerMinViewModel, value);
+  }
+
   private float _coresPowerMaxViewModel;
   public float CoresPowerMaxViewModel {
     get => _coresPowerMaxViewModel;
@@ -65,6 +83,12 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
   public float MemoryPowerValueViewModel {
     get => _memoryPowerValueViewModel;
     set => SetProperty(ref _memoryPowerValueViewModel, value);
+  }
+
+  private float _memoryPowerMinViewModel;
+  public float MemoryPowerMinViewModel {
+    get => _memoryPowerMinViewModel;
+    set => SetProperty(ref _memoryPowerMinViewModel, value);
   }
 
   private float _memoryPowerMaxViewModel;
@@ -79,6 +103,12 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     set => SetProperty(ref _packageTemperatureValueViewModel, value);
   }
 
+  private float _packageTemperatureMinViewModel;
+  public float PackageTemperatureMinViewModel {
+    get => _packageTemperatureMinViewModel;
+    set => SetProperty(ref _packageTemperatureMinViewModel, value);
+  }
+
   private float _packageTemperatureMaxViewModel;
   public float PackageTemperatureMaxViewModel {
     get => _packageTemperatureMaxViewModel;
@@ -91,16 +121,34 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     set => SetProperty(ref _coreAvgTemperatureValueViewModel, value);
   }
 
+  private float _coreAvgTemperatureMinViewModel;
+  public float CoreAvgTemperatureMinViewModel {
+    get => _coreAvgTemperatureMinViewModel;
+    set => SetProperty(ref _coreAvgTemperatureMinViewModel, value);
+  }
+
   private float _coreAvgTemperatureMaxViewModel;
   public float CoreAvgTemperatureMaxViewModel {
     get => _coreAvgTemperatureMaxViewModel;
     set => SetProperty(ref _coreAvgTemperatureMaxViewModel, value);
   }
 
+  private float _coreAverageTemperatureMinViewModel;
+  public float CoreAverageTemperatureMinViewModel {
+    get => _coreAverageTemperatureMinViewModel;
+    set => SetProperty(ref _coreAverageTemperatureMinViewModel, value);
+  }
+
   private float _coreMaxTemperatureValueViewModel;
   public float CoreMaxTemperatureValueViewModel {
     get => _coreMaxTemperatureValueViewModel;
     set => SetProperty(ref _coreMaxTemperatureValueViewModel, value);
+  }
+
+  private float _coreMaxTemperatureMinViewModel;
+  public float CoreMaxTemperatureMinViewModel {
+    get => _coreMaxTemperatureMinViewModel;
+    set => SetProperty(ref _coreMaxTemperatureMinViewModel, value);
   }
 
   private float _coreMaxTemperatureMaxViewModel;

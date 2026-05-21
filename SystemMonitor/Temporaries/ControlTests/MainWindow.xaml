@@ -3,9 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ctrl="clr-namespace:ResourceModule.Controls.Bar;assembly=ResourceModule"
         xmlns:ctrl2="clr-namespace:ResourceModule.Controls.Indicator;assembly=ResourceModule"
-        xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
         xmlns:local="clr-namespace:ControlTests"
         mc:Ignorable="d" Background="Black"
         Title="MainWindow" Height="450" Width="800">
@@ -14,7 +12,7 @@
       <RowDefinition/>
       <RowDefinition/>
     </Grid.RowDefinitions>
-    <ctrl:ValueIndicator Margin="0,0,0,0" Grid.Row="0"
+    <!--<ctrl:ValueIndicator Margin="0,0,0,0" Grid.Row="0"
                          IndicatorHeight="21"
                          Title="Core # 3"
                          ValueId="Temperature"
@@ -23,13 +21,12 @@
                          Unit="%"
                          MaxTitle="Max: "
                           Style="{StaticResource TemperatureIndicatorStyle}"
-                         IndicatorWidth="5.0cm"/>
+                         IndicatorWidth="5.0cm"/>-->
     <ctrl2:ValueBar Margin="0" Grid.Row="1" 
-                    Style="{StaticResource DarkValueBarStyle}"
+                    Style="{StaticResource TemperatureIndicatorStyle}"
                     Title="Core # 3"
                     Value="19.543"
-                    Minimum="0" Maximum="80" 
-                    
-                         />
+                    Minimum="0" 
+                    Maximum="80"/>
   </Grid>
 </Window>

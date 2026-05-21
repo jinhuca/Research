@@ -1,5 +1,4 @@
-﻿using ResourceModule.Controls.Bar;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -331,8 +330,93 @@ public partial class ValueBar : UserControl {
 
   #endregion Separator
 
-  #region Max Dependency Properties
+  #region Min Dependency Properties
 
+  #region Title FontSize
+
+  [TypeConverter(typeof(FontSizeConverter))]
+  [Localizability(LocalizationCategory.None)]
+  public double MinTitleFontSize {
+    get => (double)GetValue(MinTitleFontSizeProperty);
+    set => SetValue(MinTitleFontSizeProperty, value);
+  }
+
+  public static readonly DependencyProperty MinTitleFontSizeProperty = DependencyProperty.Register(
+    nameof(MinTitleFontSize),
+    typeof(double),
+    typeof(ValueBar),
+    new PropertyMetadata(DefaultFontSize));
+
+  #endregion Title FontSize
+
+  #region Title FontWeight
+
+  public FontWeight MinTitleFontWeight {
+    get => (FontWeight)GetValue(MinTitleFontWeightProperty);
+    set => SetValue(MinTitleFontWeightProperty, value);
+  }
+
+  public static readonly DependencyProperty MinTitleFontWeightProperty = DependencyProperty.Register(
+    nameof(MinTitleFontWeight),
+    typeof(FontWeight),
+    typeof(ValueBar),
+    new PropertyMetadata(FontWeights.Regular));
+
+  #endregion Title FontWeight
+
+  #region Title Brush
+
+  public Brush MinTitleBrush {
+    get => (Brush)GetValue(MinTitleBrushProperty);
+    set => SetValue(MinTitleBrushProperty, value);
+  }
+
+  public static readonly DependencyProperty MinTitleBrushProperty = DependencyProperty.Register(
+    nameof(MinTitleBrush),
+    typeof(Brush),
+    typeof(ValueBar),
+    new PropertyMetadata(Brushes.Black));
+
+  #endregion Title Brush
+
+  [TypeConverter(typeof(FontSizeConverter))]
+  [Localizability(LocalizationCategory.None)]
+  public double MinValueFontSize {
+    get => (double)GetValue(MinValueFontSizeProperty);
+    set => SetValue(MinValueFontSizeProperty, value);
+  }
+
+  public static readonly DependencyProperty MinValueFontSizeProperty = DependencyProperty.Register(
+    nameof(MinValueFontSize),
+    typeof(double),
+    typeof(ValueBar),
+    new PropertyMetadata(DefaultFontSize));
+
+  public Brush MinValueBrush {
+    get => (Brush)GetValue(MinValueBrushProperty);
+    set => SetValue(MinValueBrushProperty, value);
+  }
+
+  public static readonly DependencyProperty MinValueBrushProperty = DependencyProperty.Register(
+    nameof(MinValueBrush),
+    typeof(Brush),
+    typeof(ValueBar),
+    new PropertyMetadata(Brushes.Black));
+
+  public FontWeight MinValueFontWeight {
+    get => (FontWeight)GetValue(MinValueFontWeightProperty);
+    set => SetValue(MinValueFontWeightProperty, value);
+  }
+
+  public static readonly DependencyProperty MinValueFontWeightProperty = DependencyProperty.Register(
+    nameof(MinValueFontWeight),
+    typeof(FontWeight),
+    typeof(ValueBar),
+    new PropertyMetadata(FontWeights.Regular));
+
+  #endregion Min Dependency Properties
+
+  #region Max Dependency Properties
 
   #region Title FontSize
 

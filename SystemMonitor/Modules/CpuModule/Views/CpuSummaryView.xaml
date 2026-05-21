@@ -6,7 +6,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:prism="http://prismlibrary.com/" 
              xmlns:meter="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
-             xmlns:bar="clr-namespace:ResourceModule.Controls.Bar;assembly=ResourceModule"
              xmlns:ctrl="clr-namespace:ResourceModule.Controls.Indicator;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
              xmlns:local="clr-namespace:CpuModule.Views" 
@@ -231,25 +230,25 @@
           <ctrl:ValueBar Grid.Row="1" Grid.Column="0" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.PlatFormPowerTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
                        Style="{StaticResource PowerIndicatorStyle}"/>
           <ctrl:ValueBar Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.PackagePowerTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMaxViewModel}"
                        Style="{StaticResource PowerIndicatorStyle}"/>
           <ctrl:ValueBar Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.CoresPowerTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMaxViewModel}"
                        Style="{StaticResource PowerIndicatorStyle}"/>
           <ctrl:ValueBar Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.MemoryPowerTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
                        Style="{StaticResource PowerIndicatorStyle}"/>
         </Grid>
@@ -274,21 +273,21 @@
           <ctrl:ValueBar Grid.Row="1" Grid.Column="0" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.PackageTemperatureTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
           
           <ctrl:ValueBar Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.CoreAvgTemperatureTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
           
           <ctrl:ValueBar Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.CoreMaxTemperatureTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureValueViewModel}"
-                       Minimum="0"
+                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
         </Grid>

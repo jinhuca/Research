@@ -76,12 +76,12 @@
                FontWeight="{Binding MinValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Foreground="{Binding MinValueBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
     <!-- (5) Separator -->
-    <Rectangle Grid.Column="3" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
+    <Rectangle Grid.Column="5" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
                Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Width="{Binding SeparatorWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
     <!-- (6) Max Value -->
-    <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" 
+    <TextBlock Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center" 
                Text="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}"
                FontSize="{Binding MaxValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontWeight="{Binding MaxValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
