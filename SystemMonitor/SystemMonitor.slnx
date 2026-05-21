@@ -37,7 +37,6 @@
   </Folder>
   <Folder Name="/Temporaries/">
     <Project Path="Temporaries/ControlTests/ControlTests.csproj" />
-    <Project Path="Temporaries/GetTemperatureFromLibre/GetTemperatureFromLibre.csproj" />
     <Project Path="Temporaries/InfoGeneratorTests/InfoGeneratorTests.csproj" Id="bf1e8b9f-9506-472c-9687-d80f19f02553" />
   </Folder>
   <Folder Name="/Unit Tests/">
