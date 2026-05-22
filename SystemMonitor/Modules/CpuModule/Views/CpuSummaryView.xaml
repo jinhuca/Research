@@ -11,7 +11,7 @@
              xmlns:local="clr-namespace:CpuModule.Views" 
              mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
   <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="0.5cm" ShowGridLines="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Grid Margin="0.5cm" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
         <RowDefinition Height="*"/>
@@ -37,7 +37,6 @@
           <ColumnDefinition Width="*"/>
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -86,7 +85,6 @@
                      Margin="10,0"
                      Text="{Binding SummaryViewModel.SteppingIdViewModel}"/>
         </Grid>
-
         <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="0.15cm"/>
@@ -208,15 +206,11 @@
           <ColumnDefinition/>
           <ColumnDefinition/>
           <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0" Background="Transparent" MinHeight="40" 
+        <Grid Grid.Row="0" Grid.Column="4" Background="Transparent" MinHeight="40" 
               VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-          </Grid.ColumnDefinitions>
           <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -224,7 +218,8 @@
             <RowDefinition/>
             <RowDefinition/>
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,10"
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10"
+                     
                    Style="{StaticResource ModuleSubTitleTextStyle}"
                    Text="{x:Static local:ViewDefinitions.PowerTitle}"/>
           <ctrl:ValueBar Grid.Row="1" Grid.Column="0" Margin="0,5"
@@ -252,14 +247,9 @@
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
                        Style="{StaticResource PowerIndicatorStyle}"/>
         </Grid>
+        
         <Grid Grid.Row="0" Grid.Column="1" Background="Transparent" MinHeight="40" 
               VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-          </Grid.ColumnDefinitions>
           <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -267,7 +257,7 @@
             <RowDefinition/>
             <RowDefinition/>
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,10"
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,10"
                    Style="{StaticResource ModuleSubTitleTextStyle}"
                    Text="{x:Static local:ViewDefinitions.TemperatureTitle}"/>
           <ctrl:ValueBar Grid.Row="1" Grid.Column="0" Margin="0,5"
@@ -290,6 +280,15 @@
                        Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2" MinHeight="40" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
         </Grid>
       </Grid>
 

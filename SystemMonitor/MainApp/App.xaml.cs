@@ -1,6 +1,6 @@
 ﻿using BiosModule.ViewModels;
 using BiosModule.Views;
-using CpuModule.ViewModels;
+using CpuModule.ViewModels.Implementations;
 using CpuModule.Views;
 using GpuModule.ViewModels;
 using GpuModule.Views;

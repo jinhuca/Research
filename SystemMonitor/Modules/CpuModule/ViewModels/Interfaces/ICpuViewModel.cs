@@ -1,4 +1,4 @@
-﻿namespace CpuModule.ViewModels;
+﻿namespace CpuModule.ViewModels.Interfaces;
 
 public interface ICpuViewModel {
   ICpuSummaryViewModel SummaryViewModel { get; set; }

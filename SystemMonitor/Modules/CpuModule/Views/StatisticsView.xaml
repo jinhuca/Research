@@ -11,7 +11,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="0.5cm" Width="Auto" Height="3.40cm" ShowGridLines="False">
+    <Grid Margin="0.5cm" Width="Auto" VerticalAlignment="Stretch" ShowGridLines="False">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="4.00cm"/>
           <ColumnDefinition Width="4.00cm"/>

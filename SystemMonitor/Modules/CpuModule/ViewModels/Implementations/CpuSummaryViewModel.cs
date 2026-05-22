@@ -1,6 +1,7 @@
-﻿using DataStructures.Cpu.Implementations;
+﻿using CpuModule.ViewModels.Interfaces;
+using DataStructures.Cpu.Implementations;
 
-namespace CpuModule.ViewModels;
+namespace CpuModule.ViewModels.Implementations;
 
 public class CpuSummaryViewModel : BindableBase, ICpuSummaryViewModel {
   public CpuSummaryViewModel() { }

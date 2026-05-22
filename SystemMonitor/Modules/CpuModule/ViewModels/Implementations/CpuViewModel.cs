@@ -1,10 +1,11 @@
 ﻿using Converters;
 using CpuModule.Models;
-using CpuModule.ViewModels_V2;
+using CpuModule.ViewModels.Definitions;
+using CpuModule.ViewModels.Interfaces;
 using System.ComponentModel;
 using static Converters.ByteUnitConverters;
 
-namespace CpuModule.ViewModels;
+namespace CpuModule.ViewModels.Implementations;
 
 public class CpuViewModel : BindableBase, ICpuViewModel {
   private CpuModel _model;

@@ -1,4 +1,4 @@
-﻿namespace CpuModule.ViewModels;
+﻿namespace CpuModule.ViewModels.Implementations;
 
 public class CpuCacheInfoViewModel : BindableBase {
   private string _L1_Cache_size = string.Empty;

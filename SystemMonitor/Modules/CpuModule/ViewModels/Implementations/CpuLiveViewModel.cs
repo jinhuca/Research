@@ -1,4 +1,6 @@
-﻿namespace CpuModule.ViewModels;
+﻿using CpuModule.ViewModels.Interfaces;
+
+namespace CpuModule.ViewModels.Implementations;
 
 public class CpuLiveViewModel : BindableBase, ICpuLiveViewModel {
   private ICpuOverallLiveViewModel _cpuOverallLiveViewModel = new CpuOverallLiveViewModel();

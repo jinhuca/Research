@@ -1,6 +1,6 @@
 ﻿using DataStructures.Cpu.Implementations;
 
-namespace CpuModule.ViewModels_V2;
+namespace CpuModule.ViewModels.Definitions;
 
 internal static class ViewModelConversions {
   internal static string VendorNameConvert(string name) {
