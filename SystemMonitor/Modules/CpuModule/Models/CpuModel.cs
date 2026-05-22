@@ -348,14 +348,14 @@ public class CpuModel : BindableBase, ICpuModel {
 
     Debug.WriteLine("Core info count: " + coreInfoList_.Count);
     foreach (var newCoreInfo_ in coreInfoList_) {
-      ICpuCoreLiveInfo currentCoreInfo_ = new CpuCoreLiveInfo() {
+      ICpuCoreLiveInfo updatedCoreInfo_ = new CpuCoreLiveInfo() {
         Name = newCoreInfo_.Name,
         Load = newCoreInfo_.Load,
         Voltage = newCoreInfo_.Voltage,
         Speed = newCoreInfo_.Speed,
         Temperature = newCoreInfo_.Temperature
       };
-      LiveInfo.CpuCoreLiveInfo.Add(new CpuCoreLiveInfo());
+      LiveInfo.CpuCoreLiveInfo.Add(updatedCoreInfo_);
     }
 
     RaisePropertyChanged(nameof(LiveInfo));
