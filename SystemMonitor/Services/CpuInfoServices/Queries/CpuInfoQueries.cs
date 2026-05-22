@@ -1,10 +1,8 @@
-﻿using BlackSharp.Core.Converters;
-using CpuInfoServices.Methods;
+﻿using CpuInfoServices.Methods;
 using DataStructures.Cpu.Implementations;
 using DataStructures.Cpu.Interfaces;
 using DataStructures.TypeDefinitions;
 using LibreHardwareMonitor.Hardware;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Management;
 using System.Text.RegularExpressions;
@@ -64,13 +62,7 @@ public class CpuInfoQueries {
     finally { computer_.Close(); }
     return result_;
   }
-  /*
-  public static ICpuOverallLiveInfo QueryCpuOverallLiveInfo() {
-    List<ISensor> sensorValueList_ = FetchSensorValues();
-    ICpuOverallLiveInfo result_ = QueryOverallInfo(sensorValueList_);
-    return result_;
-  }
-  */
+
   private static List<ISensor> FetchSensorValues() {
     List<ISensor> sensors_ = new List<ISensor>();
     lock (_queryCpuLiveInfoLock) {
@@ -95,6 +87,10 @@ public class CpuInfoQueries {
       }
       catch (ManagementException mex) {
         Debug.WriteLine(mex.Message);
+        sensors_.Clear();
+      }
+      catch(Exception ex) {
+        Debug.WriteLine(ex.Message);
         sensors_.Clear();
       }
       finally {
@@ -177,63 +173,7 @@ public class CpuInfoQueries {
                      });
     return result_;
   }
-  /*
-  private static List<ICpuCoreLiveInfo> QueryCpuCoreLiveInfo() {
-    List<ICpuCoreLiveInfo> result_ = new();
-    Computer computer_ = new Computer { IsCpuEnabled = true };
-    computer_.Open();
-    try {
-      var cpu = computer_.Hardware.FirstOrDefault(h => h.HardwareType == HardwareType.Cpu);
-      if (cpu == null) {
-        return result_;
-      }
-      cpu?.Update();
-      var coreGroups = cpu?.Sensors
-          .Where(s => s.Name.Contains("Core #"))
-          .GroupBy(s => Regex.Match(s.Name, @"#\d+").Value) // Extract "#1", "#2", etc.
-          .Select(group => new {
-            CoreIdentifier = "Core " + group.Key,
-            Voltage = (group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Value,
-                       group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Min,
-                       group.FirstOrDefault(s => s.SensorType == SensorType.Voltage)?.Max),
-            Clock = (group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Value,
-                     group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Min,
-                     group.FirstOrDefault(s => s.SensorType == SensorType.Clock)?.Max),
-            Temperature = (group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Value,
-                           group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Min,
-                           group.FirstOrDefault(s => s.SensorType == SensorType.Temperature)?.Max),
-            Load = (group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Value,
-                    group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Min,
-                    group.FirstOrDefault(s => s.SensorType == SensorType.Load)?.Max)
-          });
-      result_.AddRange(from core in coreGroups
-                       select new CpuCoreLiveInfo {
-                         Name = core.CoreIdentifier,
-                         Voltage = new SensorDataType{ Value = core.Voltage.Value, Min = core.Voltage.Min, Max = core.Voltage.Max },
-                         Temperature = new SensorDataType{ Value = core.Temperature.Value, Min = core.Temperature.Min, Max = core.Temperature.Max },
-                         Load = new SensorDataType{ Value = core.Load.Value, Min = core.Load.Min, Max = core.Load.Max },
-                         Speed = new SensorDataType{ Value = core.Clock.Value, Min = core.Clock.Min, Max = core.Clock.Max }
-                       });
-      return result_;
-    }
-    catch (UnauthorizedAccessException uae) {
-      //Debug.WriteLine(Messages.AccessDenied + uae.Message);
-      result_.Clear();
-    }
-    catch (ManagementException mex) {
-      result_.Clear();
-    }
-    catch (Exception e) {
-      result_.Clear();
-    }
-    finally {
-      computer_.Close();
-    }
-
-    return result_;
-  }
-  */
-
+  
   private static ICpuLiveInfo QueryCpuInfo(List<ISensor> sensors) {
     ICpuLiveInfo result_ = new CpuLiveInfo() {
       CpuOverallLiveInfo = QueryOverallInfo(sensors),

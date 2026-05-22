@@ -1,12 +1,15 @@
 ﻿namespace CpuModule.ViewModels;
 
 public class CpuLiveViewModel : BindableBase, ICpuLiveViewModel {
-  private ICpuOverallLiveViewModel? _cpuOverallLiveViewModel = new CpuOverallLiveViewModel();
-  public ICpuOverallLiveViewModel? CpuOverallLiveViewModel {
+  private ICpuOverallLiveViewModel _cpuOverallLiveViewModel = new CpuOverallLiveViewModel();
+  public ICpuOverallLiveViewModel CpuOverallLiveViewModel {
     get => _cpuOverallLiveViewModel;
     set => SetProperty(ref _cpuOverallLiveViewModel, value);
   }
 
-  public ICoreLiveViewModel CoreLiveViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+  private ICoreLiveViewModel _coreLiveViewModel = new CoreLiveViewModel();
+  public ICoreLiveViewModel CoreLiveViewModel {
+    get => _coreLiveViewModel;
+    set => SetProperty(ref _coreLiveViewModel, value);
+  }
 }

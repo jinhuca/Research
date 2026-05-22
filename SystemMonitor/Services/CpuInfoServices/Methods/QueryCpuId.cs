@@ -20,9 +20,6 @@ public static class QueryCpuId {
       int family = (baseFamily == 15) ? (baseFamily + extFamily) : baseFamily;
       int model = (baseFamily == 6 || baseFamily == 15) ? ((extModel << 4) + baseModel) : baseModel;
 
-      Debug.WriteLine($"Family: {family}");
-      Debug.WriteLine($"Model: {model}");
-      Debug.WriteLine($"Stepping: {stepping}");
       return (family, model, stepping);
     }
     else {
