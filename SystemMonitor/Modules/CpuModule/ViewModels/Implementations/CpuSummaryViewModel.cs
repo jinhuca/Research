@@ -1,86 +1,93 @@
 ﻿using CpuModule.ViewModels.Interfaces;
 using DataStructures.Cpu.Implementations;
+using System.ComponentModel.DataAnnotations;
 
 namespace CpuModule.ViewModels.Implementations;
 
 public class CpuSummaryViewModel : BindableBase, ICpuSummaryViewModel {
   public CpuSummaryViewModel() { }
 
-  private string? _brandNameViewModel;
-  public string? BrandNameViewModel {
-    get => _brandNameViewModel;
-    set => SetProperty(ref _brandNameViewModel, value);
+  [Required] 
+  public string BrandNameViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private string? _vendorNameViewModel;
-  public string? VendorNameViewModel {
-    get => _vendorNameViewModel;
-    set => SetProperty(ref _vendorNameViewModel, value);
+  [Required] 
+  public string VendorNameViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private int? _familyIdViewModel;
-  public int? FamilyIdViewModel {
-    get => _familyIdViewModel;
-    set => SetProperty(ref _familyIdViewModel, value);
+  [Required]
+  public int FamilyIdViewModel {
+    get;
+    set => SetProperty(ref field, value);
+  }
+  
+  [Required]
+  public int ModelIdViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private int? _modelIdViewModel;
-  public int? ModelIdViewModel {
-    get => _modelIdViewModel;
-    set => SetProperty(ref _modelIdViewModel, value);
+  [Required]
+  public int SteppingIdViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private int? _steppingIdViewModel;
-  public int? SteppingIdViewModel {
-    get => _steppingIdViewModel;
-    set => SetProperty(ref _steppingIdViewModel, value);
+  [Required]
+  public string BaseSpeedViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private string? _baseSpeedViewModel;
-  public string? BaseSpeedViewModel {
-    get => _baseSpeedViewModel;
-    set => SetProperty(ref _baseSpeedViewModel, value);
+  [Required]
+  public string BusSpeedViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private string? _busSpeedViewModel;
-  public string? BusSpeedViewModel {
-    get => _busSpeedViewModel;
-    set => SetProperty(ref _busSpeedViewModel, value);
+  [Required]
+  public int SocketNumViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private int? _socketNumViewModel;
-  public int? SocketNumViewModel {
-    get => _socketNumViewModel;
-    set => SetProperty(ref _socketNumViewModel, value);
+  [Required]
+  public int PhysicalCoreNumViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private int? _physicalCoreNumViewModel;
-  public int? PhysicalCoreNumViewModel {
-    get => _physicalCoreNumViewModel;
-    set => SetProperty(ref _physicalCoreNumViewModel, value);
+  [Required]
+  public int LogicalCoreNumViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private int? _logicalCoreNumViewModel;
-  public int? LogicalCoreNumViewModel {
-    get => _logicalCoreNumViewModel;
-    set => SetProperty(ref _logicalCoreNumViewModel, value);
+  [Required]
+  public bool VirtualizationViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 
-  private bool? _virtualization;
-  public bool? VirtualizationViewModel {
-    get => _virtualization;
-    set => SetProperty(ref _virtualization, value);
-  }
+  [field: Required]
+  public CpuCacheInfoViewModel CacheInfoViewModel {
+    get;
+    set => SetProperty(ref field, value);
+  } = new CpuCacheInfoViewModel();
 
-  private CpuCacheInfoViewModel? _cacheInfoViewModel;
-  public CpuCacheInfoViewModel? CacheInfoViewModel {
-    get => _cacheInfoViewModel;
-    set => SetProperty(ref _cacheInfoViewModel, value);
-  }
+  //private CpuInstructionInfo? _instructionInfo2ViewModel;
+  //public CpuInstructionInfo? InstructionSetViewModel {
+  //  get => _instructionInfo2ViewModel;
+  //  set => SetProperty(ref _instructionInfo2ViewModel, value);
+  //}
 
-  private CpuInstructionInfo? _instructionInfo2ViewModel;
-  public CpuInstructionInfo? InstructionSetViewModel {
-    get => _instructionInfo2ViewModel;
-    set => SetProperty(ref _instructionInfo2ViewModel, value);
+  [Required]
+  public Dictionary<string, bool> CpuInstructionsViewModel {
+    get;
+    set => SetProperty(ref field, value);
   }
 }

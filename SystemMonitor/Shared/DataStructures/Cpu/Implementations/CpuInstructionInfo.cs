@@ -9,101 +9,101 @@ public struct CpuInstructionInfo {
   [MarshalAs(UnmanagedType.U1)]
   public bool _3DNOWEXT;
   [MarshalAs(UnmanagedType.U1)]
-  bool ABM;
+  public bool ABM;
   [MarshalAs(UnmanagedType.U1)]
-  bool ADX;
+  public bool ADX;
   [MarshalAs(UnmanagedType.U1)]
-  bool AES;
+  public bool AES;
   [MarshalAs(UnmanagedType.U1)]
-  bool AVX;
+  public bool AVX;
   [MarshalAs(UnmanagedType.U1)]
-  bool AVX2;
+  public bool AVX2;
   [MarshalAs(UnmanagedType.U1)]
-  bool AVX512CD;
+  public bool AVX512CD;
   [MarshalAs(UnmanagedType.U1)]
-  bool AVX512ER;
+  public bool AVX512ER;
   [MarshalAs(UnmanagedType.U1)]
-  bool AVX512F;
+  public bool AVX512F;
   [MarshalAs(UnmanagedType.U1)]
-  bool AVX512PF;
+  public bool AVX512PF;
   [MarshalAs(UnmanagedType.U1)]
-  bool BMI1;
+  public bool BMI1;
   [MarshalAs(UnmanagedType.U1)]
-  bool BMI2;
+  public bool BMI2;
   [MarshalAs(UnmanagedType.U1)]
-  bool CLFSH;
+  public bool CLFSH;
   [MarshalAs(UnmanagedType.U1)]
-  bool CMPXCHG16B;
+  public bool CMPXCHG16B;
   [MarshalAs(UnmanagedType.U1)]
-  bool CX8;
+  public bool CX8;
   [MarshalAs(UnmanagedType.U1)]
-  bool ERMS;
+  public bool ERMS;
   [MarshalAs(UnmanagedType.U1)]
-  bool F16C;
+  public bool F16C;
   [MarshalAs(UnmanagedType.U1)]
-  bool FMA;
+  public bool FMA;
   [MarshalAs(UnmanagedType.U1)]
-  bool FSGSBASE;
+  public bool FSGSBASE;
   [MarshalAs(UnmanagedType.U1)]
-  bool FXSR;
+  public bool FXSR;
   [MarshalAs(UnmanagedType.U1)]
-  bool HLE;
+  public bool HLE;
   [MarshalAs(UnmanagedType.U1)]
-  bool INVPCID;
+  public bool INVPCID;
   [MarshalAs(UnmanagedType.U1)]
-  bool LAHF;
+  public bool LAHF;
   [MarshalAs(UnmanagedType.U1)]
-  bool LZCNT;
+  public bool LZCNT;
   [MarshalAs(UnmanagedType.U1)]
-  bool MMX;
+  public bool MMX;
   [MarshalAs(UnmanagedType.U1)]
-  bool MMXEXT;
+  public bool MMXEXT;
   [MarshalAs(UnmanagedType.U1)]
-  bool MONITOR;
+  public bool MONITOR;
   [MarshalAs(UnmanagedType.U1)]
-  bool MOVBE;
+  public bool MOVBE;
   [MarshalAs(UnmanagedType.U1)]
-  bool MSR;
+  public bool MSR;
   [MarshalAs(UnmanagedType.U1)]
-  bool OSXSAVE;
+  public bool OSXSAVE;
   [MarshalAs(UnmanagedType.U1)]
-  bool PCLMULQDQ;
+  public bool PCLMULQDQ;
   [MarshalAs(UnmanagedType.U1)]
-  bool POPCNT;
+  public bool POPCNT;
   [MarshalAs(UnmanagedType.U1)]
-  bool PREFETCHWT1;
+  public bool PREFETCHWT1;
   [MarshalAs(UnmanagedType.U1)]
-  bool RDRAND;
+  public bool RDRAND;
   [MarshalAs(UnmanagedType.U1)]
-  bool RDSEED;
+  public bool RDSEED;
   [MarshalAs(UnmanagedType.U1)]
-  bool RDTSCP;
+  public bool RDTSCP;
   [MarshalAs(UnmanagedType.U1)]
-  bool RTM;
+  public bool RTM;
   [MarshalAs(UnmanagedType.U1)]
-  bool SEP;
+  public bool SEP;
   [MarshalAs(UnmanagedType.U1)]
-  bool SHA;
+  public bool SHA;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSE;
+  public bool SSE;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSE2;
+  public bool SSE2;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSE3;
+  public bool SSE3;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSE41;
+  public bool SSE41;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSE42;
+  public bool SSE42;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSE4a;
+  public bool SSE4a;
   [MarshalAs(UnmanagedType.U1)]
-  bool SSSE3;
+  public bool SSSE3;
   [MarshalAs(UnmanagedType.U1)]
-  bool SYSCALL;
+  public bool SYSCALL;
   [MarshalAs(UnmanagedType.U1)]
-  bool TBM;
+  public bool TBM;
   [MarshalAs(UnmanagedType.U1)]
-  bool XOP;
+  public bool XOP;
   [MarshalAs(UnmanagedType.U1)]
-  bool XSAVE;
+  public bool XSAVE;
 }

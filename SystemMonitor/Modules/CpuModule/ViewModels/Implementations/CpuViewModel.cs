@@ -2,7 +2,10 @@
 using CpuModule.Models;
 using CpuModule.ViewModels.Definitions;
 using CpuModule.ViewModels.Interfaces;
+using DataStructures.Cpu.Implementations;
+using LibreHardwareMonitor.Hardware.Motherboard;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using static Converters.ByteUnitConverters;
 
 namespace CpuModule.ViewModels.Implementations;
@@ -26,11 +29,11 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
   }
 
   private void UpdateSummaryViewModel() {
-    SummaryViewModel.BrandNameViewModel = _model.SummaryInfo.BrandName;
+    SummaryViewModel.BrandNameViewModel = _model.SummaryInfo.BrandName != null ? _model.SummaryInfo.BrandName : string.Empty;
     SummaryViewModel.VendorNameViewModel = ViewModelConversions.VendorNameConvert(_model.SummaryInfo.VendorName);
-    SummaryViewModel.FamilyIdViewModel = _model.SummaryInfo.FamilyId;
-    SummaryViewModel.ModelIdViewModel = _model.SummaryInfo.ModelId;
-    SummaryViewModel.SteppingIdViewModel = _model.SummaryInfo.SteppingId;
+    SummaryViewModel.FamilyIdViewModel = _model.SummaryInfo.FamilyId.HasValue ? _model.SummaryInfo.FamilyId.Value : 0;
+    SummaryViewModel.ModelIdViewModel = _model.SummaryInfo.ModelId.HasValue ? _model.SummaryInfo.ModelId.Value : 0;
+    SummaryViewModel.SteppingIdViewModel = _model.SummaryInfo.SteppingId.HasValue ? _model.SummaryInfo.SteppingId.Value : 0;
 
     SummaryViewModel.BaseSpeedViewModel = _model.SummaryInfo.BaseSpeed.HasValue
       ? HzUnitConverter.ConvertMHzToReadableUnit((double)_model.SummaryInfo.BaseSpeed)
@@ -40,10 +43,11 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
       ? HzUnitConverter.ConvertMHzToReadableUnit((double)_model.SummaryInfo.BusSpeed)
       : string.Empty;
 
-    SummaryViewModel.SocketNumViewModel = _model.SummaryInfo.SocketNum;
-    SummaryViewModel.PhysicalCoreNumViewModel = _model.SummaryInfo.PhysicalCoreNum;
-    SummaryViewModel.LogicalCoreNumViewModel = _model.SummaryInfo.LogicalCoreNum;
-    SummaryViewModel.VirtualizationViewModel = _model.SummaryInfo.Virtualization;
+    SummaryViewModel.SocketNumViewModel = _model.SummaryInfo.SocketNum.HasValue ? _model.SummaryInfo.SocketNum.Value : 0;
+    SummaryViewModel.PhysicalCoreNumViewModel = _model.SummaryInfo.PhysicalCoreNum.HasValue ? _model.SummaryInfo.PhysicalCoreNum.Value : 0;
+    SummaryViewModel.LogicalCoreNumViewModel = _model.SummaryInfo.LogicalCoreNum.HasValue ? _model.SummaryInfo.LogicalCoreNum.Value : 0;
+    SummaryViewModel.VirtualizationViewModel = _model.SummaryInfo.Virtualization.HasValue ? _model.SummaryInfo.Virtualization.Value : false;
+
     if (_model.SummaryInfo.CacheInfo.HasValue) {
       var cacheViewModel_ = new CpuCacheInfoViewModel() {
         L1_Cache_size = ConvertBytesToReadableUnit((ulong)_model.SummaryInfo.CacheInfo.Value.L1_cache_size),
@@ -56,7 +60,79 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
       SummaryViewModel.CacheInfoViewModel = cacheViewModel_;
     }
 
-    SummaryViewModel.InstructionSetViewModel = _model.SummaryInfo.InstructionSet;
+    //SummaryViewModel.InstructionSetViewModel = _model.SummaryInfo.InstructionSet;
+
+    CpuInstructionInfo instructionInfoValues_ = _model.SummaryInfo.InstructionSet.HasValue
+      ? _model.SummaryInfo.InstructionSet.Value : new CpuInstructionInfo();
+
+    SummaryViewModel.CpuInstructionsViewModel = new Dictionary<string, bool> {
+      { nameof(instructionInfoValues_._3DNOW), instructionInfoValues_._3DNOW },
+      { nameof(instructionInfoValues_._3DNOWEXT), instructionInfoValues_._3DNOWEXT },
+
+      { nameof(instructionInfoValues_.ABM), instructionInfoValues_.ABM },
+      { nameof(instructionInfoValues_.ADX), instructionInfoValues_.ADX  },
+      { nameof(instructionInfoValues_.AES), instructionInfoValues_.AES },
+      { nameof(instructionInfoValues_.AVX), instructionInfoValues_.AVX },
+      { nameof(instructionInfoValues_.AVX2), instructionInfoValues_.AVX2 },
+      { nameof(instructionInfoValues_.AVX512CD), instructionInfoValues_.AVX512CD },
+      { nameof(instructionInfoValues_.AVX512ER), instructionInfoValues_.AVX512ER  },
+      { nameof(instructionInfoValues_.AVX512F), instructionInfoValues_.AVX512F },
+      { nameof(instructionInfoValues_.AVX512PF), instructionInfoValues_.AVX512PF },
+
+      { nameof(instructionInfoValues_.BMI1), instructionInfoValues_.BMI1 },
+      { nameof(instructionInfoValues_.BMI2), instructionInfoValues_.BMI2 },
+
+      { nameof(instructionInfoValues_.CLFSH), instructionInfoValues_.CLFSH },
+      { nameof(instructionInfoValues_.CMPXCHG16B), instructionInfoValues_.CMPXCHG16B },
+      { nameof(instructionInfoValues_.CX8), instructionInfoValues_.CX8 },
+
+      { nameof(instructionInfoValues_.ERMS), instructionInfoValues_.ERMS },
+      
+      { nameof(instructionInfoValues_.F16C), instructionInfoValues_.F16C },
+      { nameof(instructionInfoValues_.FMA), instructionInfoValues_.FMA },
+      { nameof(instructionInfoValues_.FSGSBASE), instructionInfoValues_.FSGSBASE },
+      { nameof(instructionInfoValues_.FXSR), instructionInfoValues_.FXSR },
+
+      { nameof(instructionInfoValues_.HLE), instructionInfoValues_.HLE },
+
+      { nameof(instructionInfoValues_.INVPCID), instructionInfoValues_.INVPCID },
+
+      { nameof(instructionInfoValues_.LAHF), instructionInfoValues_.LAHF },
+      { nameof(instructionInfoValues_.LZCNT), instructionInfoValues_.LZCNT },
+
+      { nameof(instructionInfoValues_.MMX), instructionInfoValues_.MMX },
+      { nameof(instructionInfoValues_.MMXEXT), instructionInfoValues_.MMXEXT },
+      { nameof(instructionInfoValues_.MONITOR), instructionInfoValues_.MONITOR },
+      { nameof(instructionInfoValues_.MOVBE), instructionInfoValues_.MOVBE },
+      { nameof(instructionInfoValues_.MSR), instructionInfoValues_.MSR },
+
+      { nameof(instructionInfoValues_.OSXSAVE), instructionInfoValues_.OSXSAVE },
+
+      { nameof(instructionInfoValues_.PCLMULQDQ), instructionInfoValues_.PCLMULQDQ },
+      { nameof(instructionInfoValues_.POPCNT), instructionInfoValues_.POPCNT },
+      { nameof(instructionInfoValues_.PREFETCHWT1), instructionInfoValues_.PREFETCHWT1 },
+
+      { nameof(instructionInfoValues_.RDRAND), instructionInfoValues_.RDRAND },
+      { nameof(instructionInfoValues_.RDSEED), instructionInfoValues_.RDSEED },
+      { nameof(instructionInfoValues_.RDTSCP), instructionInfoValues_.RDTSCP },
+      { nameof(instructionInfoValues_.RTM), instructionInfoValues_.RTM },
+
+      { nameof(instructionInfoValues_.SEP), instructionInfoValues_.SEP },
+      { nameof(instructionInfoValues_.SHA), instructionInfoValues_.SHA },
+      { nameof(instructionInfoValues_.SSE), instructionInfoValues_.SSE },
+      { nameof(instructionInfoValues_.SSE2), instructionInfoValues_.SSE2 },
+
+      { nameof(instructionInfoValues_.SSE3), instructionInfoValues_.SSE3 },
+      { nameof(instructionInfoValues_.SSE41), instructionInfoValues_.SSE41 },
+      { nameof(instructionInfoValues_.SSE42), instructionInfoValues_.SSE42 },
+      { nameof(instructionInfoValues_.SSE4a), instructionInfoValues_.SSE4a },
+
+      { nameof(instructionInfoValues_.SSSE3), instructionInfoValues_.SSSE3 },
+      { nameof(instructionInfoValues_.SYSCALL), instructionInfoValues_.SYSCALL },
+      { nameof(instructionInfoValues_.TBM), instructionInfoValues_.TBM },
+      { nameof(instructionInfoValues_.XOP), instructionInfoValues_.XOP },
+      { nameof(instructionInfoValues_.XSAVE), instructionInfoValues_.XSAVE },
+    };
     //RaisePropertyChanged(nameof(SummaryViewModel));
   }
 
@@ -78,7 +154,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
       ? (float)Math.Round((double)cpuModelValue_.CpuSpeed.Value / 1000, 2) : 0.0f;
 
     cpuViewModel_.TemperatureViewModel = cpuModelValue_.PackageTemperature.Value;
-    
+
     //cpuViewModel_.VoltageViewModel = cpuModelValue_.Voltage.Value;
 
     cpuViewModel_.PlatformVoltageValueViewModel = cpuModelValue_.Voltage.Value ?? cpuViewModel_.PlatformVoltageValueViewModel;

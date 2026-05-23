@@ -15,6 +15,8 @@
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
         <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
@@ -157,7 +159,7 @@
                      Text="{Binding SummaryViewModel.CacheInfoViewModel.L1_Cache_Line_size}"/>
         </Grid>
       </Grid>
-
+      
       <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
           <ColumnDefinition/>
@@ -313,6 +315,47 @@
         </Grid>
       </Grid>
 
+      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,30,0,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Text="Instruction Set Features: " Style="{StaticResource ModuleContentTitleStyle}"
+             VerticalAlignment="Top" Foreground="Yellow"/>
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding SummaryViewModel.CpuInstructionsViewModel}"
+                Margin="20,5" Background="Transparent">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <UniformGrid Rows="4"/>
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemContainerStyle>
+            <Style TargetType="ContentPresenter">
+              <Setter Property="Width" Value="100"/>
+              <Setter Property="Height" Value="26"/>
+              <Setter Property="Margin" Value="0,-5,0,-5"/>
+              <Setter Property="HorizontalAlignment" Value="Center"/>
+              <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+          </ItemsControl.ItemContainerStyle>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Label Content="{Binding Key}" FontWeight="Bold" Margin="0">
+                <Label.Style>
+                  <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="DarkGray"/>
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding Value}" Value="True">
+                        <Setter Property="Foreground" Value="LightGreen"/>
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </Label.Style>
+              </Label>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </Grid>
     </Grid>
   </Border>
 </UserControl>
