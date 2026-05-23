@@ -21,10 +21,28 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     set => SetProperty(ref _speedViewModel, value);
   }
 
-  private float? _voltageViewModel;
-  public float? VoltageViewModel {
-    get => _voltageViewModel;
-    set => SetProperty(ref _voltageViewModel, value);
+  //private float? _voltageViewModel;
+  //public float? VoltageViewModel {
+  //  get => _voltageViewModel;
+  //  set => SetProperty(ref _voltageViewModel, value);
+  //}
+
+  private float _platformVoltageValueViewModel = 0.0f;
+  public float PlatformVoltageValueViewModel {
+    get => _platformVoltageValueViewModel;
+    set => SetProperty(ref _platformVoltageValueViewModel, value);
+  }
+
+  private float _platformVoltageMinViewModel;
+  public float PlatformVoltageMinViewModel {
+    get => _platformVoltageMinViewModel;
+    set => SetProperty(ref _platformVoltageMinViewModel, value);
+  }
+
+  private float _platformVoltageMaxViewModel;
+  public float PlatformVoltageMaxViewModel {
+    get => _platformVoltageMaxViewModel;
+    set => SetProperty(ref _platformVoltageMaxViewModel, value);
   }
 
   private float _platformPowerValueViewModel;
@@ -158,4 +176,5 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     get => _coreMaxTemperatureMaxViewModel;
     set => SetProperty(ref _coreMaxTemperatureMaxViewModel, value);
   }
+
 }

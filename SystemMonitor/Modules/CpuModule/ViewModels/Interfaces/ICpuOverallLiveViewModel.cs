@@ -4,7 +4,12 @@ public interface ICpuOverallLiveViewModel {
   float? LoadViewModel { get; set; }
   
   float? SpeedViewModel { get; set; }
-  float? VoltageViewModel { get; set; }
+
+  //float? VoltageViewModel { get; set; }
+
+  float PlatformVoltageValueViewModel { get; set; }
+  float PlatformVoltageMinViewModel { get; set; }
+  float PlatformVoltageMaxViewModel { get; set; }
 
   float PlatformPowerValueViewModel { get; set; }
   float PlatformPowerMinViewModel { get; set; }

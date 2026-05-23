@@ -375,22 +375,17 @@ public class CpuModel : BindableBase, ICpuModel {
 
   private static float? _minPlatformPower;
   private static float? _maxPlatformPower;
-
   private static float? _minPackagePower;
   private static float? _maxPackagePower;
-
   private static float? _minCoresPower;
   private static float? _maxCoresPower;
-
   private static float? _minMemoryPower;
   private static float? _maxMemoryPower;
 
   private static float? _minPackageTemperature;
   private static float? _maxPackageTemperature;
-
   private static float? _minCoreAvgTemperature;
   private static float? _maxCoreAvgTemperature;
-
   private static float? _minCoreMaxTemperature;
   private static float? _maxCoreMaxTemperature;
 }

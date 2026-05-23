@@ -37,16 +37,16 @@
   </UserControl.Resources>
   <Grid Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}" ShowGridLines="False">
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="3.0cm"/>
-      <ColumnDefinition Width="5.0cm"/>
-      <ColumnDefinition Width="0.9cm"/>
-      <ColumnDefinition Width="0.6cm"/>
-      <ColumnDefinition Width="0.9cm"/>
-      <ColumnDefinition Width="0.6cm"/>
-      <ColumnDefinition Width="0.9cm"/>
+      <ColumnDefinition Width="2.3cm"/>
+      <ColumnDefinition Width="3.2cm"/>
+      <ColumnDefinition Width="1.2cm"/>
+      <!--<ColumnDefinition Width="0.3cm"/>-->
+      <ColumnDefinition Width="1.4cm"/>
+      <!--<ColumnDefinition Width="0.6cm"/>-->
+      <ColumnDefinition Width="1.2cm"/>
     </Grid.ColumnDefinitions>
     <!-- (0) Title -->
-    <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0.3cm,0" 
+    <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0.1cm,0" 
                Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontSize="{Binding TitleFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontWeight="{Binding TitleFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -59,29 +59,33 @@
                  Maximum="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  Value="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
     <!-- (2) Value Text -->
-    <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0"
+    <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0"
                Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}" 
                FontSize="{Binding ValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontWeight="{Binding ValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Foreground="{Binding ValueForeground, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
     <!-- (3) Separator -->
-    <Rectangle Grid.Column="3" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
+    <!--<Rectangle Grid.Column="3" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
                Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Width="{Binding SeparatorWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-               Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-    <!-- (4) Min Value -->
-    <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" 
+               Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>-->
+    <!-- (3) Min Value -->
+    <TextBlock Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" 
                Text="{Binding Minimum, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}"
                FontSize="{Binding MinValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontWeight="{Binding MinValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Foreground="{Binding MinValueBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
     <!-- (5) Separator -->
-    <Rectangle Grid.Column="5" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
+    <!--<TextBlock Grid.Column="5" Text="," Foreground="LightGray"
+               FontSize="{Binding ValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               FontWeight="{Binding ValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               />-->
+    <!--<Rectangle Grid.Column="5" RadiusX="1" RadiusY="1" Margin="1,4,0,4" HorizontalAlignment="Center"
                Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
                Width="{Binding SeparatorWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-               Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-    <!-- (6) Max Value -->
-    <TextBlock Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center" 
+               Fill="{Binding SeparatorBrush, RelativeSource={RelativeSource AncestorType=UserControl}}"/>-->
+    <!-- (4) Max Value -->
+    <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" 
                Text="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}"
                FontSize="{Binding MaxValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontWeight="{Binding MaxValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"

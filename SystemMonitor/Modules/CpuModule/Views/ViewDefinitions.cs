@@ -51,3 +51,4 @@ internal static class ViewDefinitions {
 
   public const string LoadsTitle = "Loads (%)";
 }
+ 

@@ -79,12 +79,12 @@
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}" 
                              Value="{Binding Utilization}" 
-                             Style="{StaticResource PercentageMeterStyle}"/>
+                             Style="{StaticResource LoadsMeterStyle}"/>
         </Viewbox>
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
                              Value="{Binding Speed}" 
-                             Style="{StaticResource SpeedMeterStyle}"/>
+                             Style="{StaticResource ClockMeterStyle}"/>
         </Viewbox>
         <Viewbox Style="{StaticResource MeterViewBoxStyle}">
           <ctrl:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 

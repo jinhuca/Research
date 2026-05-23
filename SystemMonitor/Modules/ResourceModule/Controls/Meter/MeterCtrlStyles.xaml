@@ -2,12 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:brushes="clr-namespace:ResourceModule"
                     xmlns:local="clr-namespace:ResourceModule.Controls.Meter">
-  <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
-  <SolidColorBrush x:Key="MeterNeedlePercentageColor" Color="#FFFFA726"/>
-  <SolidColorBrush x:Key="MeterNeedleSpeedColor" Color="#FF42A5F5"/>
-  <SolidColorBrush x:Key="MeterNeedleTemperatureColor" Color="#FFEF5350"/>
-  
-  <Style TargetType="{x:Type local:MeterControl}" x:Key="MeterStyle100">
+  <Style x:Key="MeterBaseStyle" 
+         TargetType="{x:Type local:MeterControl}">
     <Setter Property="CtrlHeight" Value="200"/>
     <Setter Property="CtrlWidth" Value="200"/>
     <Setter Property="CtrlBackground" Value="Transparent"/>
@@ -17,18 +13,18 @@
     <Setter Property="ArcStrokeThickness" Value="10"/>
   </Style>
 
-  <Style x:Key="PercentageMeterStyle" 
+  <Style x:Key="LoadsMeterStyle" 
          TargetType="{x:Type local:MeterControl}" 
-         BasedOn="{StaticResource MeterStyle100}">
+         BasedOn="{StaticResource MeterBaseStyle}">
     <Setter Property="NeedleColor" Value="{StaticResource MeterNeedlePercentageColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="100"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.Percent}"/>
   </Style>
 
-  <Style x:Key="SpeedMeterStyle"
+  <Style x:Key="ClockMeterStyle"
          TargetType="{x:Type local:MeterControl}" 
-         BasedOn="{StaticResource MeterStyle100}">
+         BasedOn="{StaticResource MeterBaseStyle}">
     <Setter Property="NeedleColor" Value="{StaticResource MeterNeedleSpeedColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="8"/>
@@ -37,10 +33,28 @@
 
   <Style x:Key="TemperatureMeterStyle"
          TargetType="{x:Type local:MeterControl}" 
-         BasedOn="{StaticResource MeterStyle100}">
+         BasedOn="{StaticResource MeterBaseStyle}">
     <Setter Property="NeedleColor" Value="{StaticResource MeterNeedleTemperatureColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="120"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.Celsius}"/>
+  </Style>
+
+  <Style x:Key="VoltageMeterStyle"
+         TargetType="{x:Type local:MeterControl}" 
+         BasedOn="{StaticResource MeterBaseStyle}">
+    <Setter Property="NeedleColor" Value="{StaticResource MeterNeedleLoadColor}"/>
+    <Setter Property="MinValue" Value="0"/>
+    <Setter Property="MaxValue" Value="100"/>
+    <Setter Property="Unit" Value="{x:Static local:Unit.Percent}"/>
+  </Style>
+
+  <Style x:Key="PowerMeterStyle"
+         TargetType="{x:Type local:MeterControl}" 
+         BasedOn="{StaticResource MeterBaseStyle}">
+    <Setter Property="NeedleColor" Value="{StaticResource MeterNeedlePowerColor}"/>
+    <Setter Property="MinValue" Value="0"/>
+    <Setter Property="MaxValue" Value="100"/>
+    <Setter Property="Unit" Value="{x:Static local:Unit.Percent}"/>
   </Style>
 </ResourceDictionary>

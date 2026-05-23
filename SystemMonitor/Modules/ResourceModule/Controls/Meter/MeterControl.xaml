@@ -46,6 +46,7 @@
         <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-12,0,0"
                    FontSize="60" FontWeight="Light">
           <TextBlock.Text>
+          
             <MultiBinding Converter="{StaticResource valuesToDisplayConverter}">
               <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
               <Binding Path="MinValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>

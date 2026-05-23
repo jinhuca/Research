@@ -6,6 +6,7 @@ public enum Unit {
   Absolute,
   GHz,
   Celsius,
+
 }
 
 public static class Definitions {

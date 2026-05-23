@@ -20,12 +20,12 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
     }
     catch (InvalidCastException ice) {
       Debug.WriteLine(ice.Message);
-      return double.NaN;
+      return string.Empty;
     }
 
     // (2) check the passed values validation
     if (!IsValidInput(valuePassed_, minValuePassed_, maxValuePassed_)) {
-      return double.NaN;
+      return string.Empty;
     }
 
     // (3) cast the passed value to Unit defined

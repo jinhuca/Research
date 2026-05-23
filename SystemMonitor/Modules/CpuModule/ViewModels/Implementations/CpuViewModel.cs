@@ -78,7 +78,12 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
       ? (float)Math.Round((double)cpuModelValue_.CpuSpeed.Value / 1000, 2) : 0.0f;
 
     cpuViewModel_.TemperatureViewModel = cpuModelValue_.PackageTemperature.Value;
-    cpuViewModel_.VoltageViewModel = cpuModelValue_.Voltage.Value;
+    
+    //cpuViewModel_.VoltageViewModel = cpuModelValue_.Voltage.Value;
+
+    cpuViewModel_.PlatformVoltageValueViewModel = cpuModelValue_.Voltage.Value ?? cpuViewModel_.PlatformVoltageValueViewModel;
+    cpuViewModel_.PlatformVoltageMinViewModel = cpuModelValue_.Voltage.Min ?? cpuViewModel_.PlatformVoltageMinViewModel;
+    cpuViewModel_.PlatformVoltageMaxViewModel = cpuModelValue_.Voltage.Max ?? cpuViewModel_.PlatformVoltageMaxViewModel;
 
     cpuViewModel_.PlatformPowerValueViewModel = cpuModelValue_.PlatformPower.Value ?? cpuViewModel_.PlatformPowerValueViewModel;
     cpuViewModel_.PlatformPowerMinViewModel = cpuModelValue_.PlatformPower.Min ?? cpuViewModel_.PlatformPowerMinViewModel;
