@@ -5,8 +5,8 @@
   
   <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
 
-  <SolidColorBrush x:Key="MeterNeedlePercentageColor" Color="#FFFFA726"/>
-  <SolidColorBrush x:Key="MeterNeedleSpeedColor" Color="#FF42A5F5"/>
+  <SolidColorBrush x:Key="LoadsColor" Color="#FFFFA726"/>
+  <SolidColorBrush x:Key="SpeedColor" Color="#FF42A5F5"/>
   <SolidColorBrush x:Key="MeterNeedleTemperatureColor" Color="#FFEF5350"/>
   <SolidColorBrush x:Key="VoltageColor" Color="Orange"/>
   

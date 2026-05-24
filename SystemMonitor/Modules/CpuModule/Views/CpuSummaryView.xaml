@@ -174,6 +174,7 @@
             <RowDefinition Height="2.0cm"/>
             <RowDefinition Height="5.0cm"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
@@ -186,7 +187,7 @@
                                 Unit="Volts"
                                 Style="{StaticResource VoltageMeterStyle}"/>
           </Viewbox>
-          <ListView Grid.Row="2" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
               <DataTemplate>
@@ -195,7 +196,8 @@
                                Minimum="0"
                                Maximum="2.5"
                                Style="{StaticResource VoltageIndicatorStyle}"
-                               TitleForeground="White"/>
+                               TitleForeground="White"
+                               Margin="0,3,0,3"/>
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>
@@ -205,6 +207,7 @@
           <Grid.RowDefinitions>
             <RowDefinition Height="2.0cm"/>
             <RowDefinition Height="5.0cm"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
@@ -250,12 +253,27 @@
                        Style="{StaticResource PowerIndicatorStyle}"/>
 
           </Grid>
+          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <!--<ctrl:ValueBar Title="{Binding Name}"
+                               Value="{Binding Power.Value}"
+                               Minimum="{Binding Power.Min}"
+                               Maximum="{Binding Power.Max}"
+                               Style="{StaticResource PowerIndicatorStyle}"
+                               TitleForeground="White"
+                               Margin="0,3,0,3"/>-->
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
         </Grid>
         <!-- Temperatures -->
         <Grid Grid.Column="2">
           <Grid.RowDefinitions>
             <RowDefinition Height="2.0cm"/>
             <RowDefinition Height="5.0cm"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
@@ -293,12 +311,27 @@
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
           </Grid>
+          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ctrl:ValueBar Title="{Binding Name}"
+                               Value="{Binding Temperature.Value}"
+                               Minimum="{Binding Temperature.Min}"
+                               Maximum="{Binding Temperature.Max}"
+                               Style="{StaticResource TemperatureIndicatorStyle}"
+                               TitleForeground="White"
+                               Margin="0,3,0,3"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
         </Grid>
         <!-- Clocks -->
         <Grid Grid.Column="3">
           <Grid.RowDefinitions>
             <RowDefinition Height="2.0cm"/>
             <RowDefinition Height="5.0cm"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
@@ -309,12 +342,28 @@
                                Value="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel}"
                                Style="{StaticResource ClockMeterStyle}"/>
           </Viewbox>
+          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ctrl:ValueBar Title="{Binding Name}"
+                               Value="{Binding Speed.Value}"
+                               Minimum="{Binding Speed.Min}"
+                               Maximum="{Binding Speed.Max}"
+                               Style="{StaticResource ClocksIndicatorStyle}"
+                               TitleForeground="White"
+                               Margin="0,3,0,3"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+
         </Grid>
         <!-- Loads -->
         <Grid Grid.Column="4" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="2.0cm"/>
             <RowDefinition Height="5.0cm"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
@@ -325,7 +374,20 @@
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel}"
                                 Style="{StaticResource LoadsMeterStyle}"/>
           </Viewbox>
-
+          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ctrl:ValueBar Title="{Binding Name}"
+                               Value="{Binding Load.Value}"
+                               Minimum="{Binding Load.Min}"
+                               Maximum="{Binding Load.Max}"
+                               Style="{StaticResource LoadsIndicatorStyle}"
+                               TitleForeground="White"
+                               Margin="0,3,0,3"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
         </Grid>
       </Grid>
 
