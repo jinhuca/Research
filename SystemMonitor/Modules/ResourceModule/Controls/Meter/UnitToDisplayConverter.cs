@@ -20,6 +20,8 @@ public class UnitToDisplayConverter : IValueConverter {
         Unit.Absolute => parameter?.ToString() ?? abs,
         Unit.GHz => ghz,
         Unit.Celsius => celsius,
+        Unit.Volts => Definitions.VoltsString ?? string.Empty,
+        Unit.Walts => Definitions.WaltsString ?? string.Empty,
         Unit.None => none,
         _ => string.Empty,
       };

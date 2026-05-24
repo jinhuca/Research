@@ -42,8 +42,8 @@
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
       <ContentControl x:Name="BiosRegion" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>-->
-      <ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>
+      <!--<ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>-->
     </Grid>
   </ScrollViewer>
 </Window>

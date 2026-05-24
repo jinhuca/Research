@@ -177,4 +177,27 @@ class CpuOverallLiveViewModel : BindableBase, ICpuOverallLiveViewModel {
     set => SetProperty(ref _coreMaxTemperatureMaxViewModel, value);
   }
 
+  private int _processNum = 0;
+  public int ProcessNum {
+    get => _processNum;
+    set => SetProperty(ref _processNum, value);
+  }
+
+  private int _threadNum = 0;
+  public int ThreadNum {
+    get => _threadNum;
+    set => SetProperty(ref _threadNum, value);
+  }
+
+  private int _handleNum = 0;
+  public int HandleNum {
+    get => _handleNum;
+    set => SetProperty(ref _handleNum, value);
+  }
+
+  private TimeSpan _upTime;
+  public TimeSpan UpTime {
+    get => _upTime;
+    set => SetProperty(ref _upTime, value);
+  }
 }

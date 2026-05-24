@@ -3,9 +3,11 @@ using CpuModule.Models;
 using CpuModule.ViewModels.Definitions;
 using CpuModule.ViewModels.Interfaces;
 using DataStructures.Cpu.Implementations;
+using DataStructures.Cpu.Interfaces;
 using LibreHardwareMonitor.Hardware.Motherboard;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Windows;
 using static Converters.ByteUnitConverters;
 
 namespace CpuModule.ViewModels.Implementations;
@@ -14,6 +16,15 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
   private CpuModel _model;
   public CpuViewModel(CpuModel model) {
     _model = model;
+    foreach(var core_ in _model.LiveInfo.CpuCoreLiveInfo) {
+      LiveViewModel.CoreLiveViewModel.Add(new CoreLiveViewModel {
+        Name = core_.Name,
+        Voltage = core_.Voltage,
+        Speed = core_.Speed,
+        Temperature = core_.Temperature,
+        Load = core_.Load
+      });
+    }
     _model.PropertyChanged += Model_PropertyChanged;
   }
 
@@ -87,7 +98,7 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
       { nameof(instructionInfoValues_.CX8), instructionInfoValues_.CX8 },
 
       { nameof(instructionInfoValues_.ERMS), instructionInfoValues_.ERMS },
-      
+
       { nameof(instructionInfoValues_.F16C), instructionInfoValues_.F16C },
       { nameof(instructionInfoValues_.FMA), instructionInfoValues_.FMA },
       { nameof(instructionInfoValues_.FSGSBASE), instructionInfoValues_.FSGSBASE },
@@ -140,54 +151,111 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
     if (LiveViewModel == null || LiveViewModel.CpuOverallLiveViewModel == null || _model.LiveInfo.CpuOverallLiveInfo == null)
       return;
 
-    var cpuModelValue_ = _model.LiveInfo.CpuOverallLiveInfo;
-    if (cpuModelValue_ == null)
+    var cpuOverallModelValue_ = _model.LiveInfo.CpuOverallLiveInfo;
+    if (cpuOverallModelValue_ == null)
       return;
 
-    var cpuViewModel_ = LiveViewModel.CpuOverallLiveViewModel;
-    if (cpuViewModel_ == null)
+    ICpuOverallLiveViewModel cpuOverallViewModel_ = LiveViewModel.CpuOverallLiveViewModel;
+
+    if (cpuOverallViewModel_ == null)
       return;
 
-    cpuViewModel_.LoadViewModel = _model.LiveInfo.CpuOverallLiveInfo.TotalLoad.Value;
+    if (_model.LiveInfo.OsLiveInfo != null) {
+      cpuOverallViewModel_.ProcessNum = _model.LiveInfo.OsLiveInfo.ProcessNum;
+      cpuOverallViewModel_.ThreadNum = _model.LiveInfo.OsLiveInfo.ThreadsNum;
+      cpuOverallViewModel_.HandleNum = _model.LiveInfo.OsLiveInfo.HandlesNum;
+      cpuOverallViewModel_.UpTime = _model.LiveInfo.OsLiveInfo.UpTime;
+    }
 
-    cpuViewModel_.SpeedViewModel = cpuModelValue_.CpuSpeed.Value.HasValue
-      ? (float)Math.Round((double)cpuModelValue_.CpuSpeed.Value / 1000, 2) : 0.0f;
+    cpuOverallViewModel_.LoadViewModel = _model.LiveInfo.CpuOverallLiveInfo.TotalLoad.Value;
 
-    cpuViewModel_.TemperatureViewModel = cpuModelValue_.PackageTemperature.Value;
+    cpuOverallViewModel_.SpeedViewModel = cpuOverallModelValue_.CpuSpeed.Value.HasValue
+      ? (float)Math.Round((double)cpuOverallModelValue_.CpuSpeed.Value / 1000, 2) : 0.0f;
+
+    cpuOverallViewModel_.TemperatureViewModel = cpuOverallModelValue_.PackageTemperature.Value;
 
     //cpuViewModel_.VoltageViewModel = cpuModelValue_.Voltage.Value;
 
-    cpuViewModel_.PlatformVoltageValueViewModel = cpuModelValue_.Voltage.Value ?? cpuViewModel_.PlatformVoltageValueViewModel;
-    cpuViewModel_.PlatformVoltageMinViewModel = cpuModelValue_.Voltage.Min ?? cpuViewModel_.PlatformVoltageMinViewModel;
-    cpuViewModel_.PlatformVoltageMaxViewModel = cpuModelValue_.Voltage.Max ?? cpuViewModel_.PlatformVoltageMaxViewModel;
+    cpuOverallViewModel_.PlatformVoltageValueViewModel = cpuOverallModelValue_.Voltage.Value ?? cpuOverallViewModel_.PlatformVoltageValueViewModel;
+    cpuOverallViewModel_.PlatformVoltageMinViewModel = cpuOverallModelValue_.Voltage.Min ?? cpuOverallViewModel_.PlatformVoltageMinViewModel;
+    cpuOverallViewModel_.PlatformVoltageMaxViewModel = cpuOverallModelValue_.Voltage.Max ?? cpuOverallViewModel_.PlatformVoltageMaxViewModel;
 
-    cpuViewModel_.PlatformPowerValueViewModel = cpuModelValue_.PlatformPower.Value ?? cpuViewModel_.PlatformPowerValueViewModel;
-    cpuViewModel_.PlatformPowerMinViewModel = cpuModelValue_.PlatformPower.Min ?? cpuViewModel_.PlatformPowerMinViewModel;
-    cpuViewModel_.PlatformPowerMaxViewModel = cpuModelValue_.PlatformPower.Max ?? cpuViewModel_.PlatformPowerMaxViewModel;
+    cpuOverallViewModel_.PlatformPowerValueViewModel = cpuOverallModelValue_.PlatformPower.Value ?? cpuOverallViewModel_.PlatformPowerValueViewModel;
+    cpuOverallViewModel_.PlatformPowerMinViewModel = cpuOverallModelValue_.PlatformPower.Min ?? cpuOverallViewModel_.PlatformPowerMinViewModel;
+    cpuOverallViewModel_.PlatformPowerMaxViewModel = cpuOverallModelValue_.PlatformPower.Max ?? cpuOverallViewModel_.PlatformPowerMaxViewModel;
 
-    cpuViewModel_.PackagePowerValueViewModel = cpuModelValue_.PackagePower.Value ?? cpuViewModel_.PackagePowerValueViewModel;
-    cpuViewModel_.PackagePowerMinViewModel = cpuModelValue_.PackagePower.Min ?? cpuViewModel_.PackagePowerMinViewModel;
-    cpuViewModel_.PackagePowerMaxViewModel = cpuModelValue_.PackagePower.Max ?? cpuViewModel_.PackagePowerMaxViewModel;
+    cpuOverallViewModel_.PackagePowerValueViewModel = cpuOverallModelValue_.PackagePower.Value ?? cpuOverallViewModel_.PackagePowerValueViewModel;
+    cpuOverallViewModel_.PackagePowerMinViewModel = cpuOverallModelValue_.PackagePower.Min ?? cpuOverallViewModel_.PackagePowerMinViewModel;
+    cpuOverallViewModel_.PackagePowerMaxViewModel = cpuOverallModelValue_.PackagePower.Max ?? cpuOverallViewModel_.PackagePowerMaxViewModel;
 
-    cpuViewModel_.CoresPowerValueViewModel = cpuModelValue_.CoresPower.Value ?? cpuViewModel_.CoresPowerValueViewModel;
-    cpuViewModel_.CoresPowerMinViewModel = cpuModelValue_.CoresPower.Min ?? cpuViewModel_.CoresPowerMinViewModel;
-    cpuViewModel_.CoresPowerMaxViewModel = cpuModelValue_.CoresPower.Max ?? cpuViewModel_.CoresPowerMaxViewModel;
+    cpuOverallViewModel_.CoresPowerValueViewModel = cpuOverallModelValue_.CoresPower.Value ?? cpuOverallViewModel_.CoresPowerValueViewModel;
+    cpuOverallViewModel_.CoresPowerMinViewModel = cpuOverallModelValue_.CoresPower.Min ?? cpuOverallViewModel_.CoresPowerMinViewModel;
+    cpuOverallViewModel_.CoresPowerMaxViewModel = cpuOverallModelValue_.CoresPower.Max ?? cpuOverallViewModel_.CoresPowerMaxViewModel;
 
-    cpuViewModel_.MemoryPowerValueViewModel = cpuModelValue_.MemoryPower.Value ?? cpuViewModel_.MemoryPowerValueViewModel;
-    cpuViewModel_.MemoryPowerMinViewModel = cpuModelValue_.MemoryPower.Min ?? cpuViewModel_.MemoryPowerMinViewModel;
-    cpuViewModel_.MemoryPowerMaxViewModel = cpuModelValue_.MemoryPower.Max ?? cpuViewModel_.MemoryPowerMaxViewModel;
+    cpuOverallViewModel_.MemoryPowerValueViewModel = cpuOverallModelValue_.MemoryPower.Value ?? cpuOverallViewModel_.MemoryPowerValueViewModel;
+    cpuOverallViewModel_.MemoryPowerMinViewModel = cpuOverallModelValue_.MemoryPower.Min ?? cpuOverallViewModel_.MemoryPowerMinViewModel;
+    cpuOverallViewModel_.MemoryPowerMaxViewModel = cpuOverallModelValue_.MemoryPower.Max ?? cpuOverallViewModel_.MemoryPowerMaxViewModel;
 
-    cpuViewModel_.PackageTemperatureValueViewModel = cpuModelValue_.PackageTemperature.Value ?? cpuViewModel_.PackageTemperatureValueViewModel;
-    cpuViewModel_.PackageTemperatureMinViewModel = cpuModelValue_.PackageTemperature.Min ?? cpuViewModel_.PackageTemperatureMinViewModel;
-    cpuViewModel_.PackageTemperatureMaxViewModel = cpuModelValue_.PackageTemperature.Max ?? cpuViewModel_.PackageTemperatureMaxViewModel;
+    cpuOverallViewModel_.PackageTemperatureValueViewModel = cpuOverallModelValue_.PackageTemperature.Value ?? cpuOverallViewModel_.PackageTemperatureValueViewModel;
+    cpuOverallViewModel_.PackageTemperatureMinViewModel = cpuOverallModelValue_.PackageTemperature.Min ?? cpuOverallViewModel_.PackageTemperatureMinViewModel;
+    cpuOverallViewModel_.PackageTemperatureMaxViewModel = cpuOverallModelValue_.PackageTemperature.Max ?? cpuOverallViewModel_.PackageTemperatureMaxViewModel;
 
-    cpuViewModel_.CoreAvgTemperatureValueViewModel = cpuModelValue_.CoreAvgTemperature.Value ?? cpuViewModel_.CoreAvgTemperatureValueViewModel;
-    cpuViewModel_.CoreAvgTemperatureMinViewModel = cpuModelValue_.CoreAvgTemperature.Min ?? cpuViewModel_.CoreAvgTemperatureMinViewModel;
-    cpuViewModel_.CoreAvgTemperatureMaxViewModel = cpuModelValue_.CoreAvgTemperature.Max ?? cpuViewModel_.CoreAvgTemperatureMaxViewModel;
+    cpuOverallViewModel_.CoreAvgTemperatureValueViewModel = cpuOverallModelValue_.CoreAvgTemperature.Value ?? cpuOverallViewModel_.CoreAvgTemperatureValueViewModel;
+    cpuOverallViewModel_.CoreAvgTemperatureMinViewModel = cpuOverallModelValue_.CoreAvgTemperature.Min ?? cpuOverallViewModel_.CoreAvgTemperatureMinViewModel;
+    cpuOverallViewModel_.CoreAvgTemperatureMaxViewModel = cpuOverallModelValue_.CoreAvgTemperature.Max ?? cpuOverallViewModel_.CoreAvgTemperatureMaxViewModel;
 
-    cpuViewModel_.CoreMaxTemperatureValueViewModel = cpuModelValue_.CoreMaxTemperature.Value ?? cpuViewModel_.CoreMaxTemperatureValueViewModel;
-    cpuViewModel_.CoreMaxTemperatureMinViewModel = cpuModelValue_.CoreMaxTemperature.Min ?? cpuViewModel_.CoreMaxTemperatureMinViewModel;
-    cpuViewModel_.CoreMaxTemperatureMaxViewModel = cpuModelValue_.CoreMaxTemperature.Max ?? cpuViewModel_.CoreMaxTemperatureMaxViewModel;
+    cpuOverallViewModel_.CoreMaxTemperatureValueViewModel = cpuOverallModelValue_.CoreMaxTemperature.Value ?? cpuOverallViewModel_.CoreMaxTemperatureValueViewModel;
+    cpuOverallViewModel_.CoreMaxTemperatureMinViewModel = cpuOverallModelValue_.CoreMaxTemperature.Min ?? cpuOverallViewModel_.CoreMaxTemperatureMinViewModel;
+    cpuOverallViewModel_.CoreMaxTemperatureMaxViewModel = cpuOverallModelValue_.CoreMaxTemperature.Max ?? cpuOverallViewModel_.CoreMaxTemperatureMaxViewModel;
+
+    var coreModelInfo_ = _model.LiveInfo.CpuCoreLiveInfo;
+    var coreViewModel_ = LiveViewModel.CoreLiveViewModel;
+    
+
+    if (coreModelInfo_ != null && coreViewModel_ != null) {
+      if(coreViewModel_.Count != coreModelInfo_.Count) {
+        foreach (ICpuCoreLiveInfo coreInfo in coreModelInfo_) {
+          Application.Current.Dispatcher.Invoke(() => {
+            coreViewModel_.Add(new CoreLiveViewModel {
+              Name = coreInfo.Name,
+              Voltage = coreInfo.Voltage,
+              Speed = coreInfo.Speed,
+              Temperature = coreInfo.Temperature,
+              Load = coreInfo.Load
+            });
+          });
+        }
+      }
+      else {
+        for (int i = 0; i < coreModelInfo_.Count; i++) {
+          var coreInfo = coreModelInfo_[i];
+          var coreViewModel = coreViewModel_[i];
+          if (coreViewModel.Name == coreInfo.Name) {
+            coreViewModel.Voltage = coreInfo.Voltage;
+            coreViewModel.Speed = coreInfo.Speed;
+            coreViewModel.Temperature = coreInfo.Temperature;
+            coreViewModel.Load = coreInfo.Load;
+          }
+        }
+      }
+      /*
+      foreach (ICpuCoreLiveInfo coreInfo in coreModelInfo_) {
+        coreViewModel_?.FirstOrDefault(c => c.Name == coreInfo.Name)?.Voltage = coreInfo.Voltage;
+        coreViewModel_?.FirstOrDefault(c => c.Name == coreInfo.Name)?.Speed = coreInfo.Speed;
+        coreViewModel_?.FirstOrDefault(c => c.Name == coreInfo.Name)?.Temperature = coreInfo.Temperature;
+        coreViewModel_?.FirstOrDefault(c => c.Name == coreInfo.Name)?.Load = coreInfo.Load;
+
+        //coreViewModel_.Add(new CoreLiveViewModel {
+        //  Name = coreInfo.Name,
+        //  Voltage = coreInfo.Voltage,
+        //  Speed = coreInfo.Speed,
+        //  Temperature = coreInfo.Temperature,
+        //  Load = coreInfo.Load
+        //});
+      }
+      RaisePropertyChanged(nameof(LiveViewModel.CoreLiveViewModel));
+      */
+    }
   }
 
   private ICpuSummaryViewModel _summaryViewModel = new CpuSummaryViewModel();

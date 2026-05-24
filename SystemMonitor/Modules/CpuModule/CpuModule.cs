@@ -22,7 +22,7 @@ public class CpuModule : IModule {
     containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
 
     _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuSummaryView));
-    _regionManager.RegisterViewWithRegion(StatisticsRegionName, typeof(StatisticsView));
+    //_regionManager.RegisterViewWithRegion(StatisticsRegionName, typeof(StatisticsView));
   }
 
   public void OnInitialized(IContainerProvider containerProvider) {

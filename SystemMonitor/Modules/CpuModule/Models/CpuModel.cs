@@ -46,6 +46,9 @@ public class CpuModel : BindableBase, ICpuModel {
   private void UpdateLiveInfo(ICpuLiveInfo newInfo) {
     ICpuOverallLiveInfo currentCpuOverallInfo = LiveInfo.CpuOverallLiveInfo;
     ICpuOverallLiveInfo newCpuOverallInfo = newInfo.CpuOverallLiveInfo;
+    IOSLiveInfo newOSLiveInfo = newInfo.OsLiveInfo;
+
+    LiveInfo.OsLiveInfo = newOSLiveInfo;
 
     currentCpuOverallInfo.TotalLoad = newCpuOverallInfo.TotalLoad;
     currentCpuOverallInfo.CpuSpeed = newCpuOverallInfo.CpuSpeed;
@@ -388,4 +391,6 @@ public class CpuModel : BindableBase, ICpuModel {
   private static float? _maxCoreAvgTemperature;
   private static float? _minCoreMaxTemperature;
   private static float? _maxCoreMaxTemperature;
+
+
 }

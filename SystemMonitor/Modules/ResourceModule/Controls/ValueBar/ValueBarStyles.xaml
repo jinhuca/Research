@@ -6,14 +6,19 @@
          TargetType="{x:Type local:ValueBar}">
     <Setter Property="TitleForeground" Value="White"/>
     <Setter Property="ValueForeground" Value="White"/>
-    <!--<Setter Property="SeparatorWidth" Value="3"/>-->
     <Setter Property="IndicatorHeight" Value="12"/>
     <Setter Property="IndicatorWidth" Value="4.5cm"/>
     <Setter Property="IndicatorBrush" Value="Green"/>
     <Setter Property="MinValueBrush" Value="Gray"/>
-    <!--<Setter Property="MinTitleBrush" Value="Gray"/>-->
     <Setter Property="MaxValueBrush" Value="Gray"/>
   </Style>
+  <Style x:Key="VoltageIndicatorStyle" 
+         TargetType="{x:Type local:ValueBar}" 
+         BasedOn="{StaticResource BaseValueBarStyle}">
+    <Setter Property="IndicatorBrush" Value="{StaticResource VoltageColor}"/>
+    
+  </Style>
+
   <Style x:Key="PowerIndicatorStyle"
          TargetType="{x:Type local:ValueBar}" 
          BasedOn="{StaticResource BaseValueBarStyle}"> 
@@ -33,4 +38,5 @@
     <!--<Setter Property="MinValueBrush" Value="White"/>
     <Setter Property="MaxValueBrush" Value="White"/>-->
   </Style>
+  
 </ResourceDictionary>

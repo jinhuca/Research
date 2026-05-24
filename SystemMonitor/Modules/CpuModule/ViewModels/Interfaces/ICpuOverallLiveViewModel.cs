@@ -7,6 +7,11 @@ public interface ICpuOverallLiveViewModel {
 
   //float? VoltageViewModel { get; set; }
 
+  int ProcessNum { get; set; }
+  int ThreadNum { get; set; }
+  int HandleNum { get; set; }
+  TimeSpan UpTime { get; set; }
+
   float PlatformVoltageValueViewModel { get; set; }
   float PlatformVoltageMinViewModel { get; set; }
   float PlatformVoltageMaxViewModel { get; set; }

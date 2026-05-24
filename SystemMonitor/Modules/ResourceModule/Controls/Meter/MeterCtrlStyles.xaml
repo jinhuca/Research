@@ -43,7 +43,7 @@
   <Style x:Key="VoltageMeterStyle"
          TargetType="{x:Type local:MeterControl}" 
          BasedOn="{StaticResource MeterBaseStyle}">
-    <Setter Property="NeedleColor" Value="{StaticResource MeterNeedleLoadColor}"/>
+    <Setter Property="NeedleColor" Value="{StaticResource VoltageColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="100"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.Percent}"/>

@@ -173,9 +173,21 @@ public class CpuInfoQueries {
                      });
     return result_;
   }
-  
+
+  private static IOSLiveInfo QueryOSLiveInfo() {
+    var result = new OSLiveInfo {
+      ProcessNum = Process.GetProcesses().Length,
+      ThreadsNum = Process.GetProcesses().Sum(proc => proc.Threads.Count),
+      HandlesNum = Process.GetProcesses().Sum(proc => proc.HandleCount),
+      UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64)
+    };
+
+    return result;
+  }
+
   private static ICpuLiveInfo QueryCpuInfo(List<ISensor> sensors) {
     ICpuLiveInfo result_ = new CpuLiveInfo() {
+      OsLiveInfo = QueryOSLiveInfo(),
       CpuOverallLiveInfo = QueryOverallInfo(sensors),
       CpuCoreLiveInfo = QueryCoreInfo(sensors)
     };
