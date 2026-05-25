@@ -18,7 +18,7 @@ public class OperatingSystemModel : BindableBase, IOperatingSystemModel {
   private void fetchSystemInfo(object? state) {
     ISMQuery? osQuery_ = _smProvider?.GetQueryProvider(SMCategories.OperatingSystem);
     var osInfoDict = osQuery_?.Query(Win32_OperatingSystem.QueryString);
-    if (osInfoDict != null) {
+    if(osInfoDict != null) {
       Caption = osInfoDict[Win32_OperatingSystem.CaptionKey].Item1;
       BuildNumber = osInfoDict[Win32_OperatingSystem.BuildNumberKey].Item1;
       Version = osInfoDict[Win32_OperatingSystem.VersionKey].Item1;
@@ -91,7 +91,4 @@ public class OperatingSystemModel : BindableBase, IOperatingSystemModel {
     get => _locale;
     set => SetProperty(ref _locale, value);
   }
-
-  public event PropertyChangedEventHandler? PropertyChanged;
-  public event NotifyCollectionChangedEventHandler? CollectionChanged;
 }

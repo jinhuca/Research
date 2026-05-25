@@ -6,23 +6,11 @@ public class MemoryModel : BindableBase, IMemoryModel {
   }
 
   private void init() {
-    //FormFactor = QueryMemory.GetRamFormFactor();
-    //QueryMemory.GetHardwareReservedRam();
-
-    //var capacity_ = QueryMemory.GetInstalledMemorySize();
-    //Debug.WriteLine(capacity_);
-    //var capacityString_ = QueryMemory.GetInstalledMemorySizeInString(capacity_);
-    //Debug.WriteLine(capacityString_ + Environment.NewLine);
-
-
-    //QueryMemory.GetHardwareReservedRam();
-
     RAMStickInfo = QueryMemory.GetStickInfo();
     TotalInstalledMemory = QueryMemory.GetInstalledMemorySize();
     AvailableMemory = QueryMemory.GetOSVisibleRAMSize();
 
     SlotsUsed = QueryMemory.GetSlotsUsed();
-    //TotalSlots = QueryMemory.GetSlotsTotal();
   }
 
   private ulong _totalInstalledMemory;
@@ -55,7 +43,7 @@ public class MemoryModel : BindableBase, IMemoryModel {
     set => SetProperty(ref _hardwareReservedMemory, value);
   }
 
-  private List<IStickInfo> _ramStickInfo;
+  private List<IStickInfo> _ramStickInfo = new List<IStickInfo>();
   public List<IStickInfo> RAMStickInfo {
     get => _ramStickInfo;
     set => SetProperty(ref _ramStickInfo, value);

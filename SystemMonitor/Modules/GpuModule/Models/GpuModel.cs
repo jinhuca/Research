@@ -1,6 +1,7 @@
 ﻿using LibreHardwareMonitor.Hardware;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
+using System.Threading;
 
 namespace GpuModule.Models;
 
@@ -10,7 +11,7 @@ struct GpuModelDefinitions {
 }
 
 public class GpuModel : BindableBase, IGpuModel {
-  private Timer _timer;
+  private Timer? _timer;
   private readonly ISMProvider? _smProvider;
   public Dictionary<string, Dictionary<string, (string, string)>> GpuInfoList { get; private set; }
   = new Dictionary<string, Dictionary<string, (string, string)>>();
@@ -36,19 +37,16 @@ public class GpuModel : BindableBase, IGpuModel {
     RaisePropertyChanged(nameof(Utilization));
     RaisePropertyChanged(nameof(Speed));
     RaisePropertyChanged(nameof(Temperature));
-    //Debug.WriteLine($"Current GPU Usage: {GetCurrentGpuUsage():F2}%");
-    //Debug.WriteLine($"Current GPU Clock Speed: {GetGpuClockSpeed():F2} MHz");
-    //Debug.WriteLine($"Current GPU Temperature: {GetGpuTemperature():F2} °C");
   }
 
   private float GetCurrentGpuUsage() {
     Computer computer = new Computer { IsGpuEnabled = true };
     computer.Open();
-    foreach (var hardware in computer.Hardware) {
-      if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
+    foreach(var hardware in computer.Hardware) {
+      if(hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
         hardware.Update();
-        foreach (var sensor in hardware.Sensors) {
-          if (sensor.SensorType == SensorType.Load && sensor.Name.Equals("GPU Core", StringComparison.OrdinalIgnoreCase)) {
+        foreach(var sensor in hardware.Sensors) {
+          if(sensor.SensorType == SensorType.Load && sensor.Name.Equals("GPU Core", StringComparison.OrdinalIgnoreCase)) {
             return sensor.Value ?? 0.0f;
           }
         }
@@ -64,16 +62,14 @@ public class GpuModel : BindableBase, IGpuModel {
 
     computer.Open();
 
-    foreach (IHardware hardware in computer.Hardware) {
-      // Only look at GPU hardware (Nvidia or AMD)
-      if (hardware.HardwareType == HardwareType.GpuNvidia ||
+    foreach(IHardware hardware in computer.Hardware) {
+      if(hardware.HardwareType == HardwareType.GpuNvidia ||
           hardware.HardwareType == HardwareType.GpuAmd) {
-        hardware.Update(); // Refresh sensor data
+        hardware.Update();
 
-        foreach (ISensor sensor in hardware.Sensors) {
-          // Filter for Clock sensors (e.g., GPU Core, GPU Memory)
-          if (sensor.SensorType == SensorType.Clock) {
-            return sensor.Value / 1000 ?? 0.0f; // Return the clock speed in MHz
+        foreach(ISensor sensor in hardware.Sensors) {
+          if(sensor.SensorType == SensorType.Clock) {
+            return sensor.Value / 1000 ?? 0.0f;
           }
         }
       }
@@ -81,17 +77,17 @@ public class GpuModel : BindableBase, IGpuModel {
 
     computer.Close();
 
-    return 0.0f; // Return 0 if no clock speed is found
+    return 0.0f;
   }
 
   public float GetGpuTemperature() {
     Computer computer = new Computer { IsGpuEnabled = true };
     computer.Open();
-    foreach (var hardware in computer.Hardware) {
-      if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
+    foreach(var hardware in computer.Hardware) {
+      if(hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
         hardware.Update();
-        foreach (var sensor in hardware.Sensors) {
-          if (sensor.SensorType == SensorType.Temperature && sensor.Name.Equals("GPU Core", StringComparison.OrdinalIgnoreCase)) {
+        foreach(var sensor in hardware.Sensors) {
+          if(sensor.SensorType == SensorType.Temperature && sensor.Name.Equals("GPU Core", StringComparison.OrdinalIgnoreCase)) {
             return sensor.Value ?? 0.0f;
           }
         }
@@ -103,17 +99,14 @@ public class GpuModel : BindableBase, IGpuModel {
   private void Init() {
     try {
       ISMQuery? gpuQuery_ = _smProvider?.GetQueryProvider(SMCategories.Gpu);
-      GpuInfoList = gpuQuery_?.QueryMultiple("SELECT * FROM Win32_VideoController") ?? [];
-
-      //var temp =gpuQuery_.QueryMultiple("SELECT * FROM Win32_VideoController").Values;
+      GpuInfoList = gpuQuery_?.QueryMultiple("SELECT * FROM Win32_VideoController") ?? new Dictionary<string, Dictionary<string, (string, string)>>();
     }
-    catch (Exception ex) {
-      // Handle exceptions gracefully, perhaps log them
+    catch(Exception ex) {
       Name = "Unknown GPU";
     }
   }
 
-  private string _name;
+  private string _name = string.Empty;
   public string Name {
     get => _name;
     set => SetProperty(ref _name, value);

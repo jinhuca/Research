@@ -10,19 +10,12 @@ public class SMProvider : ISMProvider {
   private readonly ManagementObjectSearcher? _objectSearcher;
 
   public SMProvider() {
-
   }
 
-  //public SMProvider(ManagementObjectSearcher searcher_) {
-  //  _objectSearcher = searcher_;
-  //  initializeData();
-  //}
-
   private void initializeData() {
-    if (_objectSearcher == null) {
+    if(_objectSearcher == null) {
       return;
     }
-
   }
 
   public Dictionary<string, string>? ProcessorInfo { get; private set; }
@@ -40,7 +33,7 @@ public class SMProvider : ISMProvider {
   public string Query(SMCategories category, string query) {
     var result_ = string.Empty;
 
-    switch (category) {
+    switch(category) {
       case SMCategories.Processor:
         break;
       case SMCategories.Bios:
@@ -55,7 +48,7 @@ public class SMProvider : ISMProvider {
   }
 
   public ISMQuery GetQueryProvider(SMCategories category) {
-    switch (category) {
+    switch(category) {
       case SMCategories.Processor:
         return new QueryProcessors();
       case SMCategories.Bios:

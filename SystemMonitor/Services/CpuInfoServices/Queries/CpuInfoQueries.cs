@@ -6,6 +6,7 @@ using LibreHardwareMonitor.Hardware;
 using System.Diagnostics;
 using System.Management;
 using System.Text.RegularExpressions;
+using System.Linq;
 using static DataStructures.Cpu.Definitions.QueryDefinitions;
 
 namespace CpuInfoServices.Queries;
@@ -27,18 +28,17 @@ public class CpuInfoQueries {
     computer_.Open();
     try {
       var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
-      if (cpu_ == null) {
+      if(cpu_ == null) {
         return new CpuSummaryInfo();
       }
 
       result_.BrandName = cpu_.Name;
-      foreach (ISensor sensor_ in cpu_.Sensors) {
-        if (sensor_.SensorType == SensorType.Clock && sensor_.Name.Contains("Bus Speed")) {
+      foreach(ISensor sensor_ in cpu_.Sensors) {
+        if(sensor_.SensorType == SensorType.Clock && sensor_.Name.Contains("Bus Speed")) {
           result_.BusSpeed = sensor_.Value;
         }
       }
 
-      //result_.BrandName = NativeMethods.Brand();
       result_.VendorName = NativeMethods.Vendor();
       result_.BaseSpeed = NativeMethods.GetBaseSpeed();
       result_.SocketNum = NativeMethods.GetSocketNum();
@@ -50,14 +50,17 @@ public class CpuInfoQueries {
 
       (result_.FamilyId, result_.ModelId, result_.SteppingId) = QueryCpuId.GetCpuFamily();
     }
-    catch (DllNotFoundException nfe) {
-
+    catch(DllNotFoundException ex) {
+      Debug.WriteLine(ex.Message);
     }
-    catch (UnauthorizedAccessException uae) {
+    catch(UnauthorizedAccessException ex) {
+      Debug.WriteLine(ex.Message);
     }
-    catch (ManagementException mex) {
+    catch(ManagementException ex) {
+      Debug.WriteLine(ex.Message);
     }
-    catch (Exception e) {
+    catch(Exception e) {
+      Debug.WriteLine(e.Message);
     }
     finally { computer_.Close(); }
     return result_;
@@ -65,27 +68,27 @@ public class CpuInfoQueries {
 
   private static List<ISensor> FetchSensorValues() {
     List<ISensor> sensors_ = new List<ISensor>();
-    lock (_queryCpuLiveInfoLock) {
+    lock(_queryCpuLiveInfoLock) {
       Computer computer_ = new Computer { IsCpuEnabled = true };
       computer_.Open();
       try {
         var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
-        if (cpu_ == null) {
+        if(cpu_ == null) {
           sensors_.Clear();
           return sensors_;
         }
         cpu_.Update();
-        sensors_ = [.. cpu_.Sensors];
+        sensors_ = cpu_.Sensors.ToList();
       }
-      catch (DllNotFoundException nfe) {
+      catch(DllNotFoundException nfe) {
         Debug.WriteLine(nfe.Message);
         sensors_.Clear();
       }
-      catch (UnauthorizedAccessException uae) {
+      catch(UnauthorizedAccessException uae) {
         Debug.WriteLine(uae.Message);
         sensors_.Clear();
       }
-      catch (ManagementException mex) {
+      catch(ManagementException mex) {
         Debug.WriteLine(mex.Message);
         sensors_.Clear();
       }
@@ -102,7 +105,7 @@ public class CpuInfoQueries {
 
   private static ICpuOverallLiveInfo QueryOverallInfo(List<ISensor> sensors) {
     ICpuOverallLiveInfo result_ = new CpuOverallLiveInfo();
-    if (sensors == null || sensors.Count < 1) return result_;
+    if(sensors == null || sensors.Count < 1) return result_;
 
     ISensor? busSpeed_ = sensors.FirstOrDefault(s => s.Name == CpuBusSpeed && s.SensorType == SensorType.Clock);
     result_.BusSpeed = new SensorDataType { Value = busSpeed_?.Value, Min = busSpeed_?.Min, Max = busSpeed_?.Max };
@@ -168,8 +171,8 @@ public class CpuInfoQueries {
                        Name = core.CoreIdentifier,
                        Voltage = new SensorDataType { Value = core.Voltage.Value, Min = core.Voltage.Min, Max = core.Voltage.Max },
                        Temperature = new SensorDataType { Value = core.Temperature.Value, Min = core.Temperature.Min, Max = core.Temperature.Max },
-                       Load = new SensorDataType{ Value = core.Load.Value, Min = core.Load.Min, Max = core.Load.Max },
-                       Speed = new SensorDataType{ Value = core.Clock.Value, Min = core.Clock.Min, Max = core.Clock.Max }
+                       Load = new SensorDataType { Value = core.Load.Value, Min = core.Load.Min, Max = core.Load.Max },
+                       Speed = new SensorDataType { Value = core.Clock.Value, Min = core.Clock.Min, Max = core.Clock.Max }
                      });
     return result_;
   }

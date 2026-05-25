@@ -21,4 +21,8 @@
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Crystal.Plot2D\Crystal.Plot2D.csproj" />
+  </ItemGroup>
+
 </Project>

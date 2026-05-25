@@ -26,6 +26,8 @@ public partial class MainWindow
 
     plotter.Viewport.Visible = new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
     plotter.Visible = new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
+    plotter.FitToView();
+
 
     plotter.AxisGrid.GridPath.Stroke = Brushes.Gray;
     plotter.AxisGrid.IsVisibleChanged += (s, e) => {
@@ -36,11 +38,18 @@ public partial class MainWindow
     xLineGraph = plotter.AddLineGraph(_data.AsDataSource());
     xLineGraph.LinePen = new Pen(Brushes.Black, 1);
 
+    //plotter.AddLineGraph(new[] {
+    //  new Point(0, 0),
+    //  new Point(1, 2),
+    //  new Point(2, 1),
+    //  new Point(3, 3),
+    //  new Point(60, 100)
+    //}.AsDataSource()).LinePen = new Pen(Brushes.Red, 1);
+
     for (int i = 0; i < 60; i++) {
       //AddNextPoint();
       Add60Point();
     }
-
     Loaded += MainWindow_Loaded;
   }
 
@@ -82,7 +91,9 @@ public partial class MainWindow
   void timer_tick(object? sender, EventArgs e)
   {
     AddNextPoint();
-    _data.RemoveAt(0);
+
+      _data.RemoveAt(0);
+    
     xLineGraph.LinePen = new Pen(Brushes.Black, 1);
     plotter.FitToView();
   }

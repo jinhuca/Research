@@ -6,11 +6,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:prism="http://prismlibrary.com/" 
              xmlns:meter="clr-namespace:ResourceModule.Controls.Meter;assembly=ResourceModule"
+             xmlns:ploter="clr-namespace:ResourceModule.Controls.Plotter;assembly=ResourceModule"
              xmlns:ctrl="clr-namespace:ResourceModule.Controls.Indicator;assembly=ResourceModule"
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
              xmlns:wpfConverters="clr-namespace:WpfConverters;assembly=WpfConverters"
              xmlns:local="clr-namespace:CpuModule.Views" 
-             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="1800">
   <UserControl.Resources>
     <wpfConverters:MHzToGHzConverter x:Key="MHzToGHzConverter"/>
   </UserControl.Resources>
@@ -165,10 +166,9 @@
         </Grid>
       </Grid>
       
-      <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,30,0,30" 
+      <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,10" 
             HorizontalAlignment="Center" VerticalAlignment="Top" ShowGridLines="True">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="360"/>
           <ColumnDefinition Width="360"/>
           <ColumnDefinition Width="360"/>
           <ColumnDefinition Width="360"/>
@@ -180,7 +180,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="Auto"/>-->
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
@@ -193,12 +193,12 @@
                                 Unit="Volts"
                                 Style="{StaticResource VoltageMeterStyle}"/>
           </Viewbox>
-          <ListView Grid.Row="3" Margin="0,0,0,0" Background="Transparent" BorderThickness="0"
+          <!--<ListView Grid.Row="3" Margin="0,0,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
               <DataTemplate>
                 <ctrl:ValueBar Title="{Binding Name}"
-                               Value="{Binding Voltage.Value}"
+                               Value="{Binding Voltage.Value, TargetNullValue='0'}"
                                Minimum="0"
                                Maximum="2"
                                Style="{StaticResource VoltageIndicatorStyle}"
@@ -206,7 +206,7 @@
                                />
               </DataTemplate>
             </ListView.ItemTemplate>
-          </ListView>
+          </ListView>-->
         </Grid>
         <!-- Powers -->
         <Grid Grid.Column="1" ShowGridLines="True">
@@ -214,7 +214,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="*"/>-->
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
@@ -278,7 +278,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="*"/>-->
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
@@ -314,19 +314,19 @@
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
           </Grid>
-          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+          <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
               <DataTemplate>
                 <ctrl:ValueBar Title="{Binding Name}"
-                               Value="{Binding Temperature.Value}"
-                               Minimum="{Binding Temperature.Min}"
-                               Maximum="{Binding Temperature.Max}"
+                               Value="{Binding Temperature.Value, TargetNullValue='0'}"
+                               Minimum="{Binding Temperature.Min, TargetNullValue='0'}"
+                               Maximum="{Binding Temperature.Max, TargetNullValue='0'}"
                                Style="{StaticResource TemperatureIndicatorStyle}"
                                HorizontalAlignment="Right"/>
               </DataTemplate>
             </ListView.ItemTemplate>
-          </ListView>
+          </ListView>-->
         </Grid>
         <!-- Clocks -->
         <Grid Grid.Column="3" ShowGridLines="True">
@@ -334,7 +334,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="Auto"/>-->
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
@@ -344,7 +344,7 @@
                                Value="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel}"
                                Style="{StaticResource ClockMeterStyle}"/>
           </Viewbox>
-          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+          <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
               <DataTemplate>
@@ -355,11 +355,11 @@
                                Style="{StaticResource ClocksIndicatorStyle}"/>
               </DataTemplate>
             </ListView.ItemTemplate>
-          </ListView>
+          </ListView>-->
 
         </Grid>
         <!-- Loads -->
-        <Grid Grid.Column="4" ShowGridLines="True">
+        <!--<Grid Grid.Column="4" ShowGridLines="True">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -386,9 +386,20 @@
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>
-        </Grid>
+        </Grid>-->
       </Grid>
 
+      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,10" 
+            MinHeight="30" Height="6cm">
+        <ploter:PlotterControl Margin="0" 
+                               Background="Transparent"
+                               BorderThickness="0"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch" 
+                               PlotStroke="AliceBlue"
+                               DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
+      </Grid>
+      
       <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0">
         <!--<Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
