@@ -29,13 +29,17 @@ public sealed class PenDescription : StandardDescription
     base.AttachCore(element: graph);
     if (graph is LineGraph g)
     {
-      SetBinding(dp: StrokeProperty, binding: new Binding(path: nameof(g.LinePen.Brush)) { Source = g });
-      SetBinding(dp: StrokeThicknessProperty, binding: new Binding(path: nameof(g.LinePen.Thickness)) { Source = g });
+      // Bind to the LinePen's Brush and Thickness. Use the property names on the types
+      // to build the path (e.g. "LinePen.Brush") because nameof(g.LinePen.Brush) yields
+      // only the last identifier ("Brush") which tries to resolve a "Brush" property
+      // on the LineGraph and causes the binding error.
+      SetBinding(dp: StrokeProperty, binding: new Binding(path: nameof(LineGraph.LinePen) + "." + nameof(Pen.Brush)) { Source = g });
+      SetBinding(dp: StrokeThicknessProperty, binding: new Binding(path: nameof(LineGraph.LinePen) + "." + nameof(Pen.Thickness)) { Source = g });
     }
   }
 
   public Brush Stroke
-  {
+  { 
     get => (Brush)GetValue(dp: StrokeProperty);
     set => SetValue(dp: StrokeProperty, value: value);
   }

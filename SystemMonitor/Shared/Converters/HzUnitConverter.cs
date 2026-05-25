@@ -11,6 +11,4 @@ public class HzUnitConverter {
     double frequencyInGHz = frequencyInMHz / 1000;
     return $"{frequencyInGHz:F2} GHz";
   }
-
-
 }

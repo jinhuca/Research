@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
     <ProjectReference Include="..\..\Shared\DataStructures\DataStructures.csproj" />
     <ProjectReference Include="..\..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
+    <ProjectReference Include="..\..\Shared\WpfConverters\WpfConverters.csproj" />
     <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
   </ItemGroup>
 </Project>

@@ -219,9 +219,9 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
             coreViewModel_.Add(new CoreLiveViewModel {
               Name = coreInfo.Name,
               Voltage = coreInfo.Voltage,
-              Speed = coreInfo.Speed,
               Temperature = coreInfo.Temperature,
-              Load = coreInfo.Load
+              Load = coreInfo.Load,
+              Speed = coreInfo.Speed
             });
           });
         }

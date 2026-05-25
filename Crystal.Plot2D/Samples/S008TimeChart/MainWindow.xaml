@@ -1,16 +1,11 @@
-﻿<Window x:Class="S007DynamicPointAddSample.MainWindow"
+﻿<Window x:Class="S008TimeChart.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:S008TimeChart"
         xmlns:d3="http://schemas.crystal.com/Plot2D"
-        xmlns:local="clr-namespace:S007DynamicPointAddSample"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-  <Grid>
-    <d3:Plotter x:Name="plotter" Margin="20" Background="Transparent" HorizontalContentAlignment="Center">
-    
-    </d3:Plotter>
-
-  </Grid>
+<d3:Plotter x:Name="plotter" Margin="20"/>
 </Window>

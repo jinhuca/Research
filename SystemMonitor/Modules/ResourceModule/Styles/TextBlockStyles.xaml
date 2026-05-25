@@ -22,7 +22,7 @@
     <Setter Property="FontSize" Value="0.35cm"/>
     <Setter Property="FontStyle" Value="Normal"/>
     <Setter Property="FontWeight" Value="ExtraLight"/>
-    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="Foreground" Value="{StaticResource ValueBrush}"/>
     <Setter Property="VerticalAlignment" Value="Top"/>
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="10,0,0,0"/>
@@ -37,14 +37,14 @@
   </Style>
   <Style TargetType="TextBlock" x:Key="ModuleContentTextStyle">
     <Setter Property="FontSize" Value="0.4cm"/>
-    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="Foreground" Value="{StaticResource ValueBrush}"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="1,0,0,0"/>
   </Style>
   <Style TargetType="TextBlock" x:Key="ModuleContentValueStyle">
     <Setter Property="FontSize" Value="0.7cm"/>
-    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="Foreground" Value="{StaticResource SmallValueBrush}"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="1,0,0,0"/>

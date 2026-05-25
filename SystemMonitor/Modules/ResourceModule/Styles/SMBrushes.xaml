@@ -2,7 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <SolidColorBrush x:Key="ModuleContentTitleBrush" Color="#FF878A9F"/>
   <SolidColorBrush x:Key="ModuleContentTextBrush" Color="#FFFFFF"/>
-  
+
+  <SolidColorBrush x:Key="ValueBrush" Color="LightGreen"/>
+  <SolidColorBrush x:Key="SmallValueBrush" Color="LightYellow"/>
+
   <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
 
   <SolidColorBrush x:Key="LoadsColor" Color="#FFFFA726"/>

@@ -37,11 +37,11 @@
   </UserControl.Resources>
   <Grid Height="{Binding IndicatorHeight, RelativeSource={RelativeSource AncestorType=UserControl}}" ShowGridLines="False">
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="2.3cm"/>
-      <ColumnDefinition Width="3.2cm"/>
+      <ColumnDefinition Width="2.0cm"/>
+      <ColumnDefinition Width="2.2cm"/>
       <ColumnDefinition Width="1.2cm"/>
       <!--<ColumnDefinition Width="0.3cm"/>-->
-      <ColumnDefinition Width="1.4cm"/>
+      <ColumnDefinition Width="1.2cm"/>
       <!--<ColumnDefinition Width="0.6cm"/>-->
       <ColumnDefinition Width="1.2cm"/>
     </Grid.ColumnDefinitions>
@@ -59,7 +59,7 @@
                  Maximum="{Binding Maximum, RelativeSource={RelativeSource AncestorType=UserControl}}"
                  Value="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
     <!-- (2) Value Text -->
-    <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0"
+    <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="1,0,0,0"
                Text="{Binding Value, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:F2}}" 
                FontSize="{Binding ValueFontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontWeight="{Binding ValueFontWeight, RelativeSource={RelativeSource AncestorType=UserControl}}"
