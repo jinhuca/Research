@@ -21,6 +21,7 @@
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
@@ -388,7 +389,7 @@
         </Grid>
       </Grid>
 
-      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
+      <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0">
         <!--<Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
           <ColumnDefinition Width="Auto"/>
@@ -403,7 +404,7 @@
                 Margin="20,5" Background="Transparent">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <UniformGrid Rows="3" Margin="0,0,10,0"/>
+              <UniformGrid Columns="12" Margin="0,0,10,0"/>
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemContainerStyle>
@@ -434,7 +435,7 @@
         </ItemsControl>
       </Grid>
 
-      <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" 
+      <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" 
             VerticalAlignment="Stretch" HorizontalAlignment="Right" ShowGridLines="True">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="4.00cm"/>

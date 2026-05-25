@@ -11,7 +11,8 @@
         WindowState="Maximized"
         Background="#333333"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
-  <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+  <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden"
+                ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
       <Grid.RowDefinitions>
         <RowDefinition Height="1.60cm"/>
