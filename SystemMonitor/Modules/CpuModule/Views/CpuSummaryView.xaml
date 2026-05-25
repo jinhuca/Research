@@ -15,7 +15,7 @@
     <wpfConverters:MHzToGHzConverter x:Key="MHzToGHzConverter"/>
   </UserControl.Resources>
   <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="0.5cm" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+    <Grid Margin="0.5cm" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="True">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -388,18 +388,22 @@
         </Grid>
       </Grid>
 
-      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,50,0,40">
-        <Grid.ColumnDefinitions>
+      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
+        <!--<Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
           <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Text="Instruction Set Features: " Style="{StaticResource ModuleContentTitleStyle}"
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Instruction Set Features: " Style="{StaticResource ModuleContentTitleStyle}"
              VerticalAlignment="Top" Foreground="Yellow"/>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding SummaryViewModel.CpuInstructionsViewModel}"
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding SummaryViewModel.CpuInstructionsViewModel}"
                 Margin="20,5" Background="Transparent">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <UniformGrid Rows="4"/>
+              <UniformGrid Rows="3" Margin="0,0,10,0"/>
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemContainerStyle>
@@ -416,7 +420,7 @@
               <Label Content="{Binding Key}" FontWeight="Bold" Margin="0">
                 <Label.Style>
                   <Style TargetType="Label">
-                    <Setter Property="Foreground" Value="DarkGray"/>
+                    <Setter Property="Foreground" Value="Gray"/>
                     <Style.Triggers>
                       <DataTrigger Binding="{Binding Value}" Value="True">
                         <Setter Property="Foreground" Value="{StaticResource ValueBrush}"/>
@@ -430,7 +434,8 @@
         </ItemsControl>
       </Grid>
 
-      <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" VerticalAlignment="Stretch" ShowGridLines="False">
+      <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" 
+            VerticalAlignment="Stretch" HorizontalAlignment="Right" ShowGridLines="True">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="4.00cm"/>
           <ColumnDefinition Width="4.00cm"/>
