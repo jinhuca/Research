@@ -11,16 +11,19 @@
              xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule" 
              xmlns:wpfConverters="clr-namespace:WpfConverters;assembly=WpfConverters"
              xmlns:local="clr-namespace:CpuModule.Views" 
-             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="1800">
+             mc:Ignorable="d"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"
+             d:DesignHeight="450" d:DesignWidth="1800">
   <UserControl.Resources>
     <wpfConverters:MHzToGHzConverter x:Key="MHzToGHzConverter"/>
   </UserControl.Resources>
-  <Border Style="{StaticResource ModuleBorderStyle}">
-    <Grid Margin="0.5cm" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="True">
+  <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Border Style="{StaticResource ModuleBorderStyle}" Width="Auto" Height="Auto">
+    <Grid Margin="0.5cm" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
@@ -167,25 +170,25 @@
       </Grid>
       
       <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,10" 
-            HorizontalAlignment="Center" VerticalAlignment="Top" ShowGridLines="True">
+            HorizontalAlignment="Stretch" VerticalAlignment="Top" ShowGridLines="False">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="360"/>
-          <ColumnDefinition Width="360"/>
-          <ColumnDefinition Width="360"/>
-          <ColumnDefinition Width="360"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- Voltages -->
-        <Grid Grid.Column="0" ShowGridLines="True">
+        <Grid Grid.Column="0" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>
+            <!--<RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>-->
             <!--<RowDefinition Height="Auto"/>-->
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
+          <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.VoltageTitle}"/>
-          <Viewbox Grid.Row="1" Style="{StaticResource MeterViewBoxStyle}" Width="120">
+                     Text="{x:Static local:ViewDefinitions.VoltageTitle}"/>-->
+          <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
             <meter:MeterControl Label="{x:Static local:ViewDefinitions.VoltageTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel}"
                                 MinValue="0"
@@ -209,35 +212,35 @@
           </ListView>-->
         </Grid>
         <!-- Powers -->
-        <Grid Grid.Column="1" ShowGridLines="True">
+        <Grid Grid.Column="1" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>
+            <!--<RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>-->
             <!--<RowDefinition Height="*"/>-->
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
+          <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.PowerTitle}"/>
-          <Viewbox Grid.Row="1" Style="{StaticResource MeterViewBoxStyle}" Width="120">
+                     Text="{x:Static local:ViewDefinitions.PowerTitle}"/>-->
+            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
             <meter:MeterControl Label="{x:Static local:ViewDefinitions.PowerTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
                                 MinValue="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMinViewModel}"
                                 MaxValue="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
                                 Style="{StaticResource PowerMeterStyle}"/>
           </Viewbox>
-          <Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
+          <!--<Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
             <Grid.RowDefinitions>
               <RowDefinition/>
               <RowDefinition/>
               <RowDefinition/>
             </Grid.RowDefinitions>
-            <!--<ctrl:ValueBar Grid.Row="0" Margin="0,5"
+            <ctrl:ValueBar Grid.Row="0" Margin="0,5"
                        Title="{x:Static local:ViewDefinitions.PlatFormPowerTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
                        Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
-                       Style="{StaticResource PowerIndicatorStyle}"/>-->
+                       Style="{StaticResource PowerIndicatorStyle}"/>
             <ctrl:ValueBar Grid.Row="0" VerticalAlignment="Center"
                        Title="{x:Static local:ViewDefinitions.PackagePowerTitle}"
                        Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerValueViewModel}"
@@ -256,7 +259,7 @@
                        Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
                        Style="{StaticResource PowerIndicatorStyle}"/>
-          </Grid>
+          </Grid>-->
           <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
@@ -273,22 +276,22 @@
           </ListView>-->
         </Grid>
         <!-- Temperatures -->
-        <Grid Grid.Column="2" ShowGridLines="True">
+        <Grid Grid.Column="2" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>
+            <!--<RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>-->
             <!--<RowDefinition Height="*"/>-->
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
+          <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.TemperatureTitle}"/>
-          <Viewbox Grid.Row="1" Style="{StaticResource MeterViewBoxStyle}" Width="120">
+                     Text="{x:Static local:ViewDefinitions.TemperatureTitle}"/>-->
+            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
             <meter:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel}"
                                 Style="{StaticResource TemperatureMeterStyle}"/>
           </Viewbox>
-          <Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
+          <!--<Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
             <Grid.RowDefinitions>
               <RowDefinition/>
               <RowDefinition/>
@@ -313,7 +316,7 @@
                        Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMinViewModel}"
                        Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
                        Style="{StaticResource TemperatureIndicatorStyle}"/>
-          </Grid>
+          </Grid>-->
           <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
@@ -329,17 +332,17 @@
           </ListView>-->
         </Grid>
         <!-- Clocks -->
-        <Grid Grid.Column="3" ShowGridLines="True">
+        <Grid Grid.Column="3" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>
+            <!--<RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>-->
             <!--<RowDefinition Height="Auto"/>-->
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
+          <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
                      Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.ClockTitle}"/>
-          <Viewbox Grid.Row="1" Style="{StaticResource MeterViewBoxStyle}" Width="120">
+                     Text="{x:Static local:ViewDefinitions.ClockTitle}"/>-->
+            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
             <meter:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
                                Value="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel}"
                                Style="{StaticResource ClockMeterStyle}"/>
@@ -390,17 +393,23 @@
       </Grid>
 
       <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,10" 
-            MinHeight="30" Height="6cm">
-        <ploter:PlotterControl Margin="0" 
-                               Background="Transparent"
-                               BorderThickness="0"
-                               HorizontalAlignment="Stretch"
-                               VerticalAlignment="Stretch" 
-                               PlotStroke="AliceBlue"
-                               DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
+            MinHeight="30" Height="7cm">
+
+          <ploter:PlotterControl Grid.Row="0" 
+                                 Margin="0" 
+                                 Background="Transparent"
+                                 BorderThickness="0" 
+                                 HorizontalAlignment="Stretch" 
+                                 VerticalAlignment="Stretch" 
+                                 Width="Auto" 
+                                 Height="Auto"
+                                 PlotStroke="AliceBlue" 
+                                 YMin="0" 
+                                 YMax="100" 
+                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
       </Grid>
       
-      <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0">
+      <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0">
         <!--<Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
           <ColumnDefinition Width="Auto"/>
@@ -446,8 +455,8 @@
         </ItemsControl>
       </Grid>
 
-      <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" 
-            VerticalAlignment="Stretch" HorizontalAlignment="Right" ShowGridLines="True">
+      <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" 
+            VerticalAlignment="Stretch" HorizontalAlignment="Right" ShowGridLines="False">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="4.00cm"/>
           <ColumnDefinition Width="4.00cm"/>
@@ -484,5 +493,6 @@
       </Grid>
 
     </Grid>
-  </Border>
+    </Border>
+  </Grid>
 </UserControl>

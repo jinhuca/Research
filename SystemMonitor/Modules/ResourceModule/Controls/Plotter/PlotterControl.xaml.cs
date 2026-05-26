@@ -183,6 +183,53 @@ public partial class PlotterControl : UserControl {
     // unsupported types are ignored silently
   }
 
+  // Global Y range properties (user can set YMin as baseline and YMax)
+  public double YMin {
+    get => (double)GetValue(YMinProperty);
+    set => SetValue(YMinProperty, value);
+  }
+
+  public static readonly DependencyProperty YMinProperty =
+    DependencyProperty.Register(
+      name: nameof(YMin),
+      propertyType: typeof(double),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.None, OnYRangeChanged));
+
+  public double YMax {
+    get => (double)GetValue(YMaxProperty);
+    set => SetValue(YMaxProperty, value);
+  }
+
+  public static readonly DependencyProperty YMaxProperty =
+    DependencyProperty.Register(
+      name: nameof(YMax),
+      propertyType: typeof(double),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.None, OnYRangeChanged));
+
+  private static void OnYRangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+    var control = (PlotterControl)d;
+    control.Dispatcher.BeginInvoke((Action)(() => {
+      control.UpdateArea();
+      control.UpdateMultiAreas();
+    }), DispatcherPriority.Render);
+  }
+
+  // Return effective Y range: if YMin/YMax are NaN use defaults (Baseline/100)
+  private (double ymin, double ymax) EffectiveYRange() {
+    double ymin = double.IsNaN(YMin) ? Baseline : YMin;
+    double ymax = double.IsNaN(YMax) ? 100.0 : YMax;
+    return (ymin, ymax);
+  }
+
+  // Hook for potential multi-series area updates (kept simple here)
+  private void UpdateMultiAreas() {
+    // If multi-series areas are present this would update them.
+    // For now ensure the single area is refreshed.
+    UpdateArea();
+  }
+
   private void InitializePlot() {
     xLineGraph = plotter.AddLineGraph(_data.AsDataSource());
     var initialStroke = PlotStroke ?? new SolidColorBrush(Color.FromRgb(173, 216, 230));
@@ -220,7 +267,11 @@ public partial class PlotterControl : UserControl {
 
   private void UpdateArea() {
     if(areaPath == null || _data.Count < 2 || plotter == null) return;
-    if(_data.All(p => DoubleEquals(p.Y, Baseline))) {
+
+    // Determine baseline: prefer global YMin if set, otherwise fall back to default Baseline const
+    double baseline = double.IsNaN(YMin) ? Baseline : YMin;
+
+    if(_data.All(p => DoubleEquals(p.Y, baseline))) {
       areaPath.Data = null;
       return;
     }
@@ -234,9 +285,9 @@ public partial class PlotterControl : UserControl {
         var screen = new Point(_data[i].X, _data[i].Y).DataToScreen(transform: transform);
         ctx.LineTo(screen, isStroked: false, isSmoothJoin: false);
       }
-      var lastBaseline = new Point(_data[^1].X, Baseline).DataToScreen(transform: transform);
+      var lastBaseline = new Point(_data[^1].X, baseline).DataToScreen(transform: transform);
       ctx.LineTo(lastBaseline, isStroked: false, isSmoothJoin: false);
-      var firstBaseline = new Point(_data[0].X, Baseline).DataToScreen(transform: transform);
+      var firstBaseline = new Point(_data[0].X, baseline).DataToScreen(transform: transform);
       ctx.LineTo(firstBaseline, isStroked: false, isSmoothJoin: false);
     }
     geom.Freeze();
@@ -258,7 +309,9 @@ public partial class PlotterControl : UserControl {
       if (_data.Count > 0) {
         double xMax = _data.Last().X;
         double xMin = Math.Max(0, xMax - 59);
-        plotter.Viewport.Visible = new DataRect(new Rect(xMin, Baseline, xMax - xMin, 100 - Baseline));
+        // Use effective Y range (global YMin/YMax) when updating viewport
+        var (ymin, ymax) = EffectiveYRange();
+        plotter.Viewport.Visible = new DataRect(new Rect(xMin, ymin, xMax - xMin, ymax - ymin));
         // update area immediately so it stays in sync with viewport & line graph
         UpdateArea();
       }

@@ -417,3 +417,4 @@ FodyWeavers.xsd
 *.msm
 *.msp
 /Crystal.Plot2D/BenchmarkSuite1
+/SystemMonitor/debug_request.txt
