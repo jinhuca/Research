@@ -227,6 +227,7 @@
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
                                 MinValue="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMinViewModel}"
                                 MaxValue="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
+                                Unit="Watts"
                                 Style="{StaticResource PowerMeterStyle}"/>
           </Viewbox>
           <!--<Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
@@ -289,6 +290,7 @@
             <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
             <meter:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel}"
+                                Unit="Celsius"
                                 Style="{StaticResource TemperatureMeterStyle}"/>
           </Viewbox>
           <!--<Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">

@@ -21,7 +21,7 @@ public class UnitToDisplayConverter : IValueConverter {
         Unit.GHz => ghz,
         Unit.Celsius => celsius,
         Unit.Volts => Definitions.VoltsString ?? string.Empty,
-        Unit.Walts => Definitions.WaltsString ?? string.Empty,
+        Unit.Watts => Definitions.WattsString ?? string.Empty,
         Unit.None => none,
         _ => string.Empty,
       };

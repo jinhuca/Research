@@ -46,6 +46,9 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
       case Unit.Absolute:
         calculatedValue_ = valuePassed_ - minValuePassed_;
         return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
+      case Unit.Watts:
+        calculatedValue_ = valuePassed_;
+        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
       default:
         calculatedValue_ = valuePassed_;
         return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);

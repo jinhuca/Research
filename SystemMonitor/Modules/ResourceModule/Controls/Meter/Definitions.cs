@@ -7,7 +7,7 @@ public enum Unit {
   GHz,
   Celsius,
   Volts,
-  Walts,
+  Watts
 }
 
 // Display strings used by UnitToDisplayConverter. Adjust defaults as needed.
@@ -18,5 +18,5 @@ public static class Definitions {
   public static string? GHzString { get; set; } = "GHz";
   public static string? CelsiusString { get; set; } = "°C";
   public static string? VoltsString { get; set; } = "V";
-  public static string? WaltsString { get; set; } = "W";
+  public static string? WattsString { get; set; } = "W";
 }

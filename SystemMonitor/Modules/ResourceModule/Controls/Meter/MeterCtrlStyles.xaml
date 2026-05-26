@@ -46,7 +46,7 @@
     <Setter Property="NeedleColor" Value="{StaticResource VoltageColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="100"/>
-    <Setter Property="Unit" Value="{x:Static local:Unit.Percent}"/>
+    <Setter Property="Unit" Value="{x:Static local:Unit.Volts}"/>
   </Style>
 
   <Style x:Key="PowerMeterStyle"
@@ -55,6 +55,6 @@
     <Setter Property="NeedleColor" Value="{StaticResource MeterNeedlePowerColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="100"/>
-    <Setter Property="Unit" Value="{x:Static local:Unit.Percent}"/>
+    <Setter Property="Unit" Value="{x:Static local:Unit.Watts}"/>
   </Style>
 </ResourceDictionary>
