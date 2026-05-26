@@ -167,12 +167,11 @@ public class CpuViewModel : BindableBase, ICpuViewModel {
       cpuOverallViewModel_.UpTime = _model.LiveInfo.OsLiveInfo.UpTime;
     }
 
-    cpuOverallViewModel_.LoadViewModel = _model.LiveInfo.CpuOverallLiveInfo.TotalLoad.Value;
+    cpuOverallViewModel_.LoadViewModel = cpuOverallModelValue_.TotalLoad.Value;
+    cpuOverallViewModel_.TemperatureViewModel = cpuOverallModelValue_.PackageTemperature.Value;
 
     cpuOverallViewModel_.SpeedViewModel = cpuOverallModelValue_.CpuSpeed.Value.HasValue
       ? (float)Math.Round((double)cpuOverallModelValue_.CpuSpeed.Value / 1000, 2) : 0.0f;
-
-    cpuOverallViewModel_.TemperatureViewModel = cpuOverallModelValue_.PackageTemperature.Value;
 
     //cpuViewModel_.VoltageViewModel = cpuModelValue_.Voltage.Value;
 

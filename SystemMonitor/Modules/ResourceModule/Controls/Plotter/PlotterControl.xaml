@@ -18,10 +18,12 @@
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Grid.Column="0" Foreground="White" FontSize="14" Text="% Utilization" 
+      <TextBlock Grid.Column="0" Foreground="White" FontSize="14" 
+                 Text="{Binding TitleText, RelativeSource={RelativeSource AncestorType=local:PlotterControl}}"
                Margin="8,0,0,0"
                HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-      <TextBlock Grid.Column="1" Foreground="White" FontSize="14" Text="100%" 
+      <TextBlock Grid.Column="1" Foreground="White" FontSize="14" 
+                 Text="{Binding ValueText, RelativeSource={RelativeSource AncestorType=local:PlotterControl}}"
                Margin="0,0,8,0"
                HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>

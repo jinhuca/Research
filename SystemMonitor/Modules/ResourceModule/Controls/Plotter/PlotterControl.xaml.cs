@@ -26,6 +26,9 @@ public partial class PlotterControl : UserControl {
   private Path areaPath;
   private const double Baseline = 0.0;
 
+  private readonly List<Path> _areaPaths = new();
+private readonly List<LineGraph?> _seriesList = new();
+
   public PlotterControl() {
     InitializeComponent();
 
@@ -45,8 +48,8 @@ public partial class PlotterControl : UserControl {
       }
     };
 
-    areaPath = new Path {
-      Fill = new SolidColorBrush(Color.FromArgb(120, 30, 144, 255)),
+  areaPath = new Path {
+    Fill = RangeAreaBrush ?? new SolidColorBrush(Color.FromArgb(120, 30, 144, 255)),
       Stroke = null,
       IsHitTestVisible = false,
       Visibility = Visibility.Collapsed
@@ -183,6 +186,38 @@ public partial class PlotterControl : UserControl {
     // unsupported types are ignored silently
   }
 
+  #region Title Text Dependency Property
+
+  public string TitleText {
+    get => (string)GetValue(TitleTextProperty);
+    set => SetValue(TitleTextProperty, value);
+  }
+
+  public static readonly DependencyProperty TitleTextProperty =
+    DependencyProperty.Register(
+      name: nameof(TitleText),
+      propertyType: typeof(string),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.None));
+
+  #endregion Title Text Dependency Property
+
+  #region Value Text Dependency Property
+
+  public string ValueText {
+    get => (string)GetValue(ValueTextProperty);
+    set => SetValue(ValueTextProperty, value);
+  }
+
+  public static readonly DependencyProperty ValueTextProperty =
+    DependencyProperty.Register(
+      name: nameof(ValueText),
+      propertyType: typeof(string),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.None));
+
+  #endregion Value Text Dependency Property
+
   // Global Y range properties (user can set YMin as baseline and YMax)
   public double YMin {
     get => (double)GetValue(YMinProperty);
@@ -222,6 +257,45 @@ public partial class PlotterControl : UserControl {
     double ymax = double.IsNaN(YMax) ? 100.0 : YMax;
     return (ymin, ymax);
   }
+
+
+  // Range area brush dependency property (used when series.Fill is not set)
+  public Brush RangeAreaBrush {
+    get => (Brush)GetValue(RangeAreaBrushProperty);
+    set => SetValue(RangeAreaBrushProperty, value);
+  }
+
+  public static readonly DependencyProperty RangeAreaBrushProperty =
+    DependencyProperty.Register(
+      name: nameof(RangeAreaBrush),
+      propertyType: typeof(Brush),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(new SolidColorBrush(Color.FromArgb(120, 30, 144, 255)), FrameworkPropertyMetadataOptions.None, OnRangeAreaBrushChanged));
+
+  private static void OnRangeAreaBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+  var control = (PlotterControl)d;
+  var brush = (Brush)e.NewValue;
+  control.Dispatcher.BeginInvoke((Action)(() => {
+    if(control.areaPath != null) control.areaPath.Fill = brush;
+    for(int i = 0; i < control._areaPaths.Count; i++) {
+      var p = control._areaPaths[i];
+      if(p == null) continue;
+      var series = i < control._seriesList.Count ? control._seriesList[i] : null;
+
+      // only overwrite fills for series that don't have explicit Fill set
+      bool hasExplicitFill = false;
+      if(series != null) {
+        var prop = series.GetType().GetProperty("Fill");
+        if(prop != null) {
+          var val = prop.GetValue(series);
+          hasExplicitFill = val != null;
+        }
+      }
+
+      if(!hasExplicitFill) p.Fill = brush;
+    }
+  }), DispatcherPriority.Render);
+}
 
   // Hook for potential multi-series area updates (kept simple here)
   private void UpdateMultiAreas() {
