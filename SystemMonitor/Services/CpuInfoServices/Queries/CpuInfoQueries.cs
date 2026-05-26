@@ -71,32 +71,45 @@ public class CpuInfoQueries {
     lock(_queryCpuLiveInfoLock) {
       Computer computer_ = new Computer { IsCpuEnabled = true };
       computer_.Open();
-      try {
+      try
+      {
         var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
-        if(cpu_ == null) {
+        if (cpu_ == null)
+        {
           sensors_.Clear();
           return sensors_;
         }
+
         cpu_.Update();
         sensors_ = cpu_.Sensors.ToList();
       }
-      catch(DllNotFoundException nfe) {
-        Debug.WriteLine(nfe.Message);
+      catch (NullReferenceException nre)
+      {
+        Debug.WriteLine(nre.ToString());
         sensors_.Clear();
       }
-      catch(UnauthorizedAccessException uae) {
-        Debug.WriteLine(uae.Message);
+      catch (DllNotFoundException nfe)
+      {
+        Debug.WriteLine(nfe.ToString());
         sensors_.Clear();
       }
-      catch(ManagementException mex) {
-        Debug.WriteLine(mex.Message);
+      catch (UnauthorizedAccessException uae)
+      {
+        Debug.WriteLine(uae.ToString());
         sensors_.Clear();
       }
-      catch(Exception ex) {
-        Debug.WriteLine(ex.Message);
+      catch (ManagementException mex)
+      {
+        Debug.WriteLine(mex.ToString());
         sensors_.Clear();
       }
-      finally {
+      catch (Exception ex)
+      {
+        Debug.WriteLine(ex.ToString());
+        sensors_.Clear();
+      }
+      finally
+      {
         computer_.Close();
       }
     }

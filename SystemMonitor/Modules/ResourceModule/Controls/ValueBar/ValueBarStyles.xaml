@@ -26,17 +26,17 @@
     <Setter Property="ValueForeground" Value="White"/>-->
     <!--<Setter Property="MinValueBrush" Value="White"/>
     <Setter Property="MaxValueBrush" Value="White"/>-->
-    <Setter Property="IndicatorBrush" Value="{StaticResource MeterNeedlePowerColor}"/>
+    <Setter Property="IndicatorBrush" Value="{StaticResource PowerColor}"/>
   </Style>
   <Style x:Key="TemperatureIndicatorStyle" 
          TargetType="{x:Type local:ValueBar}" 
          BasedOn="{StaticResource BaseValueBarStyle}">
-    <Setter Property="IndicatorBrush" Value="{StaticResource MeterNeedleTemperatureColor}"/>
+    <Setter Property="IndicatorBrush" Value="{StaticResource TemperatureColor}"/>
   </Style>
   <Style x:Key="ClocksIndicatorStyle" 
          TargetType="{x:Type local:ValueBar}" 
          BasedOn="{StaticResource BaseValueBarStyle}">
-    <Setter Property="IndicatorBrush" Value="{StaticResource SpeedColor}"/>
+    <Setter Property="IndicatorBrush" Value="{StaticResource ClockColor}"/>
   </Style>
   <Style x:Key="LoadsIndicatorStyle" 
          TargetType="{x:Type local:ValueBar}" 

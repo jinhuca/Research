@@ -8,13 +8,9 @@
 
   <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
 
-  <SolidColorBrush x:Key="LoadsColor" Color="#FFFFA726"/>
-  <SolidColorBrush x:Key="SpeedColor" Color="#FF42A5F5"/>
-  <SolidColorBrush x:Key="MeterNeedleTemperatureColor" Color="#FFEF5350"/>
+  <SolidColorBrush x:Key="LoadsColor" Color="#FF91CB77"/>
+  <SolidColorBrush x:Key="ClockColor" Color="#FF42A5F5"/>
+  <SolidColorBrush x:Key="TemperatureColor" Color="#FFEF5350"/>
   <SolidColorBrush x:Key="VoltageColor" Color="Orange"/>
-  
-
-  <SolidColorBrush x:Key="MeterNeedleLoadColor" Color="#FF91CB77"/>
-  <SolidColorBrush x:Key="MeterNeedlePowerColor" Color="#FFE8EF60"/>
-  
+  <SolidColorBrush x:Key="PowerColor" Color="#FFE8EF60"/>
 </ResourceDictionary>

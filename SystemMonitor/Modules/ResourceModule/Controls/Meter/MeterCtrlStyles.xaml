@@ -25,16 +25,16 @@
   <Style x:Key="ClockMeterStyle"
          TargetType="{x:Type local:MeterControl}" 
          BasedOn="{StaticResource MeterBaseStyle}">
-    <Setter Property="NeedleColor" Value="{StaticResource SpeedColor}"/>
+    <Setter Property="NeedleColor" Value="{StaticResource ClockColor}"/>
     <Setter Property="MinValue" Value="0"/>
-    <Setter Property="MaxValue" Value="8"/>
+    <Setter Property="MaxValue" Value="6"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.GHz}"/>
   </Style>
 
   <Style x:Key="TemperatureMeterStyle"
          TargetType="{x:Type local:MeterControl}" 
          BasedOn="{StaticResource MeterBaseStyle}">
-    <Setter Property="NeedleColor" Value="{StaticResource MeterNeedleTemperatureColor}"/>
+    <Setter Property="NeedleColor" Value="{StaticResource TemperatureColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="120"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.Celsius}"/>
@@ -45,14 +45,14 @@
          BasedOn="{StaticResource MeterBaseStyle}">
     <Setter Property="NeedleColor" Value="{StaticResource VoltageColor}"/>
     <Setter Property="MinValue" Value="0"/>
-    <Setter Property="MaxValue" Value="100"/>
+    <Setter Property="MaxValue" Value="5"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.Volts}"/>
   </Style>
 
   <Style x:Key="PowerMeterStyle"
          TargetType="{x:Type local:MeterControl}" 
          BasedOn="{StaticResource MeterBaseStyle}">
-    <Setter Property="NeedleColor" Value="{StaticResource MeterNeedlePowerColor}"/>
+    <Setter Property="NeedleColor" Value="{StaticResource PowerColor}"/>
     <Setter Property="MinValue" Value="0"/>
     <Setter Property="MaxValue" Value="100"/>
     <Setter Property="Unit" Value="{x:Static local:Unit.Watts}"/>
