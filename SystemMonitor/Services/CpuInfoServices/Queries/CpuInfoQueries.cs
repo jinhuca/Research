@@ -73,13 +73,55 @@ public class CpuInfoQueries {
       Computer computer_ = new Computer { IsCpuEnabled = true };
       computer_.Open();
       try {
-        var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
-        if (cpu_ == null) {
+        computer_.Accept(new UpdateVisitor());
+        IHardware? cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
+        if (cpu_ != null) {
+          try {
+            cpu_.Update();
+          }
+          catch (NullReferenceException e) {
+            // Certain versions of the underlying library may throw a NullReferenceException here.
+            // Log the full exception and return an empty sensor list to fail safely.
+            Debug.WriteLine(e.ToString());
+            sensors_.Clear();
+            return sensors_;
+          }
+          catch (Exception e) {
+            // Log the full exception and attempt to persist details to a file. Protect file IO with its own try/catch.
+            Debug.WriteLine("cpu_.Update() threw: " + e.ToString());
+            try {
+              string logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cpu_update_errors.log");
+              var sb = new System.Text.StringBuilder();
+              sb.AppendLine(DateTime.UtcNow.ToString("o") + " - cpu_.Update() threw: " + e.GetType().FullName);
+              sb.AppendLine("Message: " + (e.Message ?? "(no message)"));
+              sb.AppendLine("StackTrace:");
+              sb.AppendLine(e.StackTrace ?? "(no stack trace)");
+              try { sb.AppendLine("MachineName: " + System.Environment.MachineName); } catch { }
+              try { sb.AppendLine("ProcessId: " + System.Diagnostics.Process.GetCurrentProcess().Id); } catch { }
+              try { sb.AppendLine("ProcessName: " + System.Diagnostics.Process.GetCurrentProcess().ProcessName); } catch { }
+              try { sb.AppendLine("OSVersion: " + System.Environment.OSVersion); } catch { }
+              try { sb.AppendLine("Framework: " + System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription); } catch { }
+              try { sb.AppendLine("OSArch: " + System.Runtime.InteropServices.RuntimeInformation.OSArchitecture); } catch { }
+              try { sb.AppendLine("ProcessArch: " + System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture); } catch { }
+              try { sb.AppendLine("ThreadId: " + System.Threading.Thread.CurrentThread.ManagedThreadId); } catch { }
+              sb.AppendLine();
+              try {
+                System.IO.File.AppendAllText(logPath, sb.ToString());
+              } catch (Exception fileEx) {
+                Debug.WriteLine("Failed to write cpu update log: " + fileEx.ToString());
+              }
+            }
+            catch (Exception fileEx) {
+              Debug.WriteLine("Failed to write cpu update log: " + fileEx.ToString());
+            }
+            sensors_.Clear();
+            return sensors_;
+          }
+        }
+        else {
           sensors_.Clear();
           return sensors_;
         }
-
-        cpu_.Update();
         sensors_ = cpu_.Sensors.ToList();
       }
       catch (NullReferenceException nre) {

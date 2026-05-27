@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="10.0.7" />
-    <PackageReference Include="System.Management" Version="10.0.7" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="10.0.8" />
+    <PackageReference Include="System.Management" Version="10.0.8" />
   </ItemGroup>
 
 </Project>

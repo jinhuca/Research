@@ -5,6 +5,13 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Build/" />
+  <Folder Name="/Hardware/">
+    <Project Path="Hardware/LibreHardwareMonitorLib/LibreHardwareMonitorLib.csproj">
+      <Platform Solution="*|Any CPU" Project="x64" />
+      <Platform Solution="*|x64" Project="x64" />
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+  </Folder>
   <Folder Name="/Modules/">
     <Project Path="Modules/BiosModule/BiosModule.csproj" />
     <Project Path="Modules/CpuModule/CpuModule.csproj" />
