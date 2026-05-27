@@ -1,0 +1,26 @@
+﻿<Window x:Class="DoubleDisplay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoubleDisplay"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+  <Window.Resources>
+    <local:DoublePartConverter x:Key="DoublePartConverter"/>
+  </Window.Resources>
+
+  <TextBlock VerticalAlignment="Center">
+    <!-- Integral Part: Large and Bold -->
+    <Run Text="{Binding MyDoubleValue, Converter={StaticResource DoublePartConverter}, ConverterParameter=int}" 
+         FontSize="24" 
+         FontWeight="Bold" 
+         Foreground="Black"/>
+    
+    <!-- Decimal Part: Small and Gray -->
+    <Run Text="{Binding MyDoubleValue, Converter={StaticResource DoublePartConverter}, ConverterParameter=dec}" 
+         FontSize="14" 
+         FontWeight="Normal" 
+         Foreground="Gray"/>
+  </TextBlock>
+</Window>

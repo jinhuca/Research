@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace CustomizeTitleBar; 
+namespace DoubleDisplay; 
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
