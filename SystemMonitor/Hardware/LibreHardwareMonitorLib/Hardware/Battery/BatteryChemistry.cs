@@ -5,13 +5,12 @@
 
 namespace LibreHardwareMonitor.Hardware.Battery;
 
-internal enum BatteryChemistry
-{
-    Unknown,
-    LeadAcid,
-    NickelCadmium,
-    NickelMetalHydride,
-    LithiumIon,
-    NickelZinc,
-    AlkalineManganese
+internal enum BatteryChemistry {
+  Unknown,
+  LeadAcid,
+  NickelCadmium,
+  NickelMetalHydride,
+  LithiumIon,
+  NickelZinc,
+  AlkalineManganese
 }

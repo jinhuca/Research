@@ -1,23 +1,22 @@
 ﻿// ported from: https://gitlab.com/leogx9r/ryzen_smu
 // and: https://github.com/irusanov/SMUDebugTool
 
+using LibreHardwareMonitor.PawnIo;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LibreHardwareMonitor.PawnIo;
 
 // ReSharper disable InconsistentNaming
 
 namespace LibreHardwareMonitor.Hardware;
 
-internal class RyzenSMU
-{
-    private readonly CpuCodeName _cpuCodeName;
-    private readonly bool _supportedCPU;
-    private readonly Exception _unsupportedCPUException;
+internal class RyzenSMU {
+  private readonly CpuCodeName _cpuCodeName;
+  private readonly bool _supportedCPU;
+  private readonly Exception _unsupportedCPUException;
 
-    private readonly Dictionary<uint, Dictionary<uint, SmuSensorType>> _supportedPmTableVersions = new()
-    {
+  private readonly Dictionary<uint, Dictionary<uint, SmuSensorType>> _supportedPmTableVersions = new()
+  {
         {
             // Zen Raven Ridge APU.
             0x001E0004, new Dictionary<uint, SmuSensorType>
@@ -144,296 +143,270 @@ internal class RyzenSMU
         }
     };
 
-    private uint _pmTableSize;
-    private uint _pmTableSizeAlt;
-    private uint _pmTableVersion;
-    private uint _dramBaseAddr;
+  private uint _pmTableSize;
+  private uint _pmTableSizeAlt;
+  private uint _pmTableVersion;
+  private uint _dramBaseAddr;
 
-    private readonly RyzenSmu _ryzenSmu;
+  private readonly RyzenSmu _ryzenSmu;
 
-    public RyzenSMU()
-    {
-        try
-        {
-            _ryzenSmu = new RyzenSmu();
+  public RyzenSMU() {
+    try {
+      _ryzenSmu = new RyzenSmu();
 
-            _cpuCodeName = (CpuCodeName)_ryzenSmu.GetCodeName();
+      _cpuCodeName = (CpuCodeName)_ryzenSmu.GetCodeName();
 
-            _ryzenSmu.ResolvePmTable(out _pmTableVersion, out _dramBaseAddr);
+      _ryzenSmu.ResolvePmTable(out _pmTableVersion, out _dramBaseAddr);
 
-            SetupPmTableSize();
+      SetupPmTableSize();
 
-            _supportedCPU = true;
+      _supportedCPU = true;
+    }
+    catch (Exception e) {
+      _supportedCPU = false;
+      _unsupportedCPUException = e;
+    }
+  }
+
+  public void Close() => _ryzenSmu.Close();
+
+  public string GetReport() {
+    StringBuilder r = new();
+
+    r.AppendLine("Ryzen SMU");
+    r.AppendLine();
+    r.AppendLine($" PM table version: 0x{_pmTableVersion:X8}");
+    r.AppendLine($" PM table supported: {_supportedCPU}");
+    r.AppendLine($" PM table layout defined: {IsPmTableLayoutDefined()}");
+
+    if (_supportedCPU) {
+      r.AppendLine($" PM table size: 0x{_pmTableSize:X3}");
+      r.AppendLine($" PM table start address: 0x{_dramBaseAddr:X8}");
+      r.AppendLine();
+      r.AppendLine(" PM table dump:");
+
+      try {
+        float[] pm_values = UpdateAndReadDram();
+        r.AppendLine("  Idx    Offset   Value");
+        r.AppendLine(" ------------------------");
+        for (int i = 0; i < pm_values.Length; i++) {
+          r.AppendLine($" {i,4}    0x{i * 4:X3}    {pm_values[i]}");
         }
-        catch (Exception e)
-        {
-            _supportedCPU = false;
-            _unsupportedCPUException = e;
-        }
+      }
+      catch (Exception e) {
+        r.AppendLine($" Exception: {e.Message}");
+      }
+    }
+    else {
+      r.AppendLine($" Initialization exception: {_unsupportedCPUException.Message}");
     }
 
-    public void Close() => _ryzenSmu.Close();
+    return r.ToString();
+  }
 
-    public string GetReport()
-    {
-        StringBuilder r = new();
+  public Dictionary<uint, SmuSensorType> GetPmTableStructure() {
+    if (!IsPmTableLayoutDefined())
+      return new Dictionary<uint, SmuSensorType>();
 
-        r.AppendLine("Ryzen SMU");
-        r.AppendLine();
-        r.AppendLine($" PM table version: 0x{_pmTableVersion:X8}");
-        r.AppendLine($" PM table supported: {_supportedCPU}");
-        r.AppendLine($" PM table layout defined: {IsPmTableLayoutDefined()}");
+    return _supportedPmTableVersions[_pmTableVersion];
+  }
 
-        if (_supportedCPU)
-        {
-            r.AppendLine($" PM table size: 0x{_pmTableSize:X3}");
-            r.AppendLine($" PM table start address: 0x{_dramBaseAddr:X8}");
-            r.AppendLine();
-            r.AppendLine(" PM table dump:");
+  public bool IsPmTableLayoutDefined() {
+    return _supportedPmTableVersions.ContainsKey(_pmTableVersion);
+  }
 
-            try
-            {
-                float[] pm_values = UpdateAndReadDram();
-                r.AppendLine("  Idx    Offset   Value");
-                r.AppendLine(" ------------------------");
-                for (int i = 0; i < pm_values.Length; i++)
-                {
-                    r.AppendLine($" {i,4}    0x{i * 4:X3}    {pm_values[i]}");
-                }
-            }
-            catch (Exception e)
-            {
-                r.AppendLine($" Exception: {e.Message}");
-            }
-        }
-        else
-        {
-            r.AppendLine($" Initialization exception: {_unsupportedCPUException.Message}");
-        }
+  public float[] GetPmTable() {
+    if (!_supportedCPU)
+      return [0];
 
-        return r.ToString();
-    }
+    float[] table = null;
+    for (int tries_left = 2; tries_left != 0; --tries_left) {
+      table = null;
+      try {
+        table = UpdateAndReadDram();
+      }
+      catch {
+        // ignored
+      }
 
-    public Dictionary<uint, SmuSensorType> GetPmTableStructure()
-    {
-        if (!IsPmTableLayoutDefined())
-            return new Dictionary<uint, SmuSensorType>();
-
-        return _supportedPmTableVersions[_pmTableVersion];
-    }
-
-    public bool IsPmTableLayoutDefined()
-    {
-        return _supportedPmTableVersions.ContainsKey(_pmTableVersion);
-    }
-
-    public float[] GetPmTable()
-    {
-        if (!_supportedCPU)
-            return [0];
-
-        float[] table = null;
-        for (int tries_left = 2; tries_left != 0; --tries_left)
-        {
-            table = null;
-            try
-            {
-                table = UpdateAndReadDram();
-            }
-            catch
-            {
-                // ignored
-            }
-
-            if (table is { Length: > 0 } && table[0] != 0)
-            {
-                return table;
-            }
-        }
-
-        return table is { Length: > 0 } ? table : [0];
-    }
-
-    private float[] UpdateAndReadDram()
-    {
-        float[] table = new float[_pmTableSize / 4];
-
-        _ryzenSmu.UpdatePmTable();
-        long[] read = _ryzenSmu.ReadPmTable((int)((_pmTableSize + 7) / 8));
-        Buffer.BlockCopy(read, 0, table, 0, (int)_pmTableSize);
-
+      if (table is { Length: > 0 } && table[0] != 0) {
         return table;
+      }
     }
 
-    private void SetupPmTableSize()
-    {
-        switch (_cpuCodeName)
-        {
-            case CpuCodeName.Matisse:
-                switch (_pmTableVersion)
-                {
-                    case 0x240902:
-                        _pmTableSize = 0x514;
-                        break;
-                    case 0x240903:
-                        _pmTableSize = 0x518;
-                        break;
-                    case 0x240802:
-                        _pmTableSize = 0x7E0;
-                        break;
-                    case 0x240803:
-                        _pmTableSize = 0x7E4;
-                        break;
-                    default:
-                        return;
-                }
+    return table is { Length: > 0 } ? table : [0];
+  }
 
-                break;
+  private float[] UpdateAndReadDram() {
+    float[] table = new float[_pmTableSize / 4];
 
-            case CpuCodeName.Vermeer:
-                switch (_pmTableVersion)
-                {
-                    case 0x2D0903:
-                        _pmTableSize = 0x594;
-                        break;
-                    case 0x380904:
-                        _pmTableSize = 0x5A4;
-                        break;
-                    case 0x380905:
-                        _pmTableSize = 0x5D0;
-                        break;
-                    case 0x2D0803:
-                        _pmTableSize = 0x894;
-                        break;
-                    case 0x380804:
-                        _pmTableSize = 0x8A4;
-                        break;
-                    case 0x380805:
-                        _pmTableSize = 0x8F0;
-                        break;
-                    default:
-                        return;
-                }
+    _ryzenSmu.UpdatePmTable();
+    long[] read = _ryzenSmu.ReadPmTable((int)((_pmTableSize + 7) / 8));
+    Buffer.BlockCopy(read, 0, table, 0, (int)_pmTableSize);
 
-                break;
+    return table;
+  }
 
-            case CpuCodeName.Renoir:
-                switch (_pmTableVersion)
-                {
-                    case 0x370000:
-                        _pmTableSize = 0x794;
-                        break;
-                    case 0x370001:
-                        _pmTableSize = 0x884;
-                        break;
-                    case 0x370002:
-                    case 0x370003:
-                        _pmTableSize = 0x88C;
-                        break;
-                    case 0x370004:
-                        _pmTableSize = 0x8AC;
-                        break;
-                    case 0x370005:
-                        _pmTableSize = 0x8C8;
-                        break;
-                    default:
-                        return;
-                }
-
-                break;
-
-            case CpuCodeName.Cezanne:
-                switch (_pmTableVersion)
-                {
-                    case 0x400005:
-                        _pmTableSize = 0x944;
-                        break;
-
-                    default:
-                        return;
-                }
-
-                break;
-
-            case CpuCodeName.Picasso:
-            case CpuCodeName.RavenRidge:
-            case CpuCodeName.RavenRidge2:
-                _pmTableSizeAlt = 0xA4;
-                _pmTableSize = 0x608 + _pmTableSizeAlt;
-                break;
-
-            case CpuCodeName.Raphael:
-            case CpuCodeName.GraniteRidge:
-                switch (_pmTableVersion)
-                {
-                    case 0x00540004:
-                        _pmTableSize = 0x948;
-                        break;
-
-                    case 0x00540104:
-                        _pmTableSize = 0x950;
-                        break;
-
-                    default:
-                        return;
-                }
-
-                break;
-
-            default:
-                return;
+  private void SetupPmTableSize() {
+    switch (_cpuCodeName) {
+      case CpuCodeName.Matisse:
+        switch (_pmTableVersion) {
+          case 0x240902:
+            _pmTableSize = 0x514;
+            break;
+          case 0x240903:
+            _pmTableSize = 0x518;
+            break;
+          case 0x240802:
+            _pmTableSize = 0x7E0;
+            break;
+          case 0x240803:
+            _pmTableSize = 0x7E4;
+            break;
+          default:
+            return;
         }
-    }
 
-    public struct SmuSensorType
-    {
-        public string Name;
-        public SensorType Type;
-        public float Scale;
+        break;
+
+      case CpuCodeName.Vermeer:
+        switch (_pmTableVersion) {
+          case 0x2D0903:
+            _pmTableSize = 0x594;
+            break;
+          case 0x380904:
+            _pmTableSize = 0x5A4;
+            break;
+          case 0x380905:
+            _pmTableSize = 0x5D0;
+            break;
+          case 0x2D0803:
+            _pmTableSize = 0x894;
+            break;
+          case 0x380804:
+            _pmTableSize = 0x8A4;
+            break;
+          case 0x380805:
+            _pmTableSize = 0x8F0;
+            break;
+          default:
+            return;
+        }
+
+        break;
+
+      case CpuCodeName.Renoir:
+        switch (_pmTableVersion) {
+          case 0x370000:
+            _pmTableSize = 0x794;
+            break;
+          case 0x370001:
+            _pmTableSize = 0x884;
+            break;
+          case 0x370002:
+          case 0x370003:
+            _pmTableSize = 0x88C;
+            break;
+          case 0x370004:
+            _pmTableSize = 0x8AC;
+            break;
+          case 0x370005:
+            _pmTableSize = 0x8C8;
+            break;
+          default:
+            return;
+        }
+
+        break;
+
+      case CpuCodeName.Cezanne:
+        switch (_pmTableVersion) {
+          case 0x400005:
+            _pmTableSize = 0x944;
+            break;
+
+          default:
+            return;
+        }
+
+        break;
+
+      case CpuCodeName.Picasso:
+      case CpuCodeName.RavenRidge:
+      case CpuCodeName.RavenRidge2:
+        _pmTableSizeAlt = 0xA4;
+        _pmTableSize = 0x608 + _pmTableSizeAlt;
+        break;
+
+      case CpuCodeName.Raphael:
+      case CpuCodeName.GraniteRidge:
+        switch (_pmTableVersion) {
+          case 0x00540004:
+            _pmTableSize = 0x948;
+            break;
+
+          case 0x00540104:
+            _pmTableSize = 0x950;
+            break;
+
+          default:
+            return;
+        }
+
+        break;
+
+      default:
+        return;
     }
+  }
+
+  public struct SmuSensorType {
+    public string Name;
+    public SensorType Type;
+    public float Scale;
+  }
 
 
-    private enum CpuCodeName
-    {
-        Undefined = -1,
-        Colfax,
-        Renoir,
-        Picasso,
-        Matisse,
-        Threadripper,
-        CastlePeak,
-        RavenRidge,
-        RavenRidge2,
-        SummitRidge,
-        PinnacleRidge,
-        Rembrandt,
-        Vermeer,
-        Vangogh,
-        Cezanne,
-        Milan,
-        Dali,
-        Raphael,
-        GraniteRidge,
-        Naples,
-        FireFlight,
-        Rome,
-        Chagall,
-        Lucienne,
-        Phoenix,
-        Phoenix2,
-        Mendocino,
-        Genoa,
-        StormPeak,
-        DragonRange,
-        Mero,
-        HawkPoint,
-        StrixPoint,
-        StrixHalo,
-        KrackanPoint,
-        KrackanPoint2,
-        Turin,
-        TurinD,
-        Bergamo,
-        ShimadaPeak,
-    }
+  private enum CpuCodeName {
+    Undefined = -1,
+    Colfax,
+    Renoir,
+    Picasso,
+    Matisse,
+    Threadripper,
+    CastlePeak,
+    RavenRidge,
+    RavenRidge2,
+    SummitRidge,
+    PinnacleRidge,
+    Rembrandt,
+    Vermeer,
+    Vangogh,
+    Cezanne,
+    Milan,
+    Dali,
+    Raphael,
+    GraniteRidge,
+    Naples,
+    FireFlight,
+    Rome,
+    Chagall,
+    Lucienne,
+    Phoenix,
+    Phoenix2,
+    Mendocino,
+    Genoa,
+    StormPeak,
+    DragonRange,
+    Mero,
+    HawkPoint,
+    StrixPoint,
+    StrixHalo,
+    KrackanPoint,
+    KrackanPoint2,
+    Turin,
+    TurinD,
+    Bergamo,
+    ShimadaPeak,
+  }
 }

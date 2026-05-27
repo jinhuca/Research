@@ -8,10 +8,9 @@ using System.Collections.Generic;
 
 namespace LibreHardwareMonitor.Hardware.Storage;
 
-public interface ISmart
-{
-    /// <summary>
-    /// Gets all available smart attributes.
-    /// </summary>
-    IReadOnlyList<SmartAttribute> Attributes { get; }
+public interface ISmart {
+  /// <summary>
+  /// Gets all available smart attributes.
+  /// </summary>
+  IReadOnlyList<SmartAttribute> Attributes { get; }
 }

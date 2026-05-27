@@ -6,7 +6,6 @@
 
 namespace LibreHardwareMonitor.Hardware.PowerMonitor;
 
-internal interface IPowerMonitor
-{
-    //To be filled
+internal interface IPowerMonitor {
+  //To be filled
 }

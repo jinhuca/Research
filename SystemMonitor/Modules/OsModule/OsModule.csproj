@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\IconPng.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Prism.Core" Version="9.0.537" />
     <PackageReference Include="Prism.Unity" Version="9.0.537" />
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
@@ -21,6 +25,10 @@
     <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
     <ProjectReference Include="..\..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
     <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\IconPng.png" />
   </ItemGroup>
 
 </Project>

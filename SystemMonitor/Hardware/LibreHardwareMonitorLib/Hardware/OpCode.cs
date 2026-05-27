@@ -15,34 +15,32 @@ using System.Reflection;
 #endif
 using Windows.Win32;
 using Windows.Win32.System.Memory;
-using System.Diagnostics;
 
 namespace LibreHardwareMonitor.Hardware;
 
-internal static class OpCode
-{
-    private static readonly object _syncLock = new object();
-    public static CpuidDelegate CpuId;
-    public static RdtscDelegate Rdtsc;
+internal static class OpCode {
+  private static readonly object _syncLock = new object();
+  public static CpuidDelegate CpuId;
+  public static RdtscDelegate Rdtsc;
 
-    private static IntPtr _codeBuffer;
-    private static ulong _size;
+  private static IntPtr _codeBuffer;
+  private static ulong _size;
 
-    // void __stdcall cpuidex(unsigned int index, unsigned int ecxValue,
-    //   unsigned int* eax, unsigned int* ebx, unsigned int* ecx,
-    //   unsigned int* edx)
-    // {
-    //   int info[4];
-    //   __cpuidex(info, index, ecxValue);
-    //   *eax = info[0];
-    //   *ebx = info[1];
-    //   *ecx = info[2];
-    //   *edx = info[3];
-    // }
+  // void __stdcall cpuidex(unsigned int index, unsigned int ecxValue,
+  //   unsigned int* eax, unsigned int* ebx, unsigned int* ecx,
+  //   unsigned int* edx)
+  // {
+  //   int info[4];
+  //   __cpuidex(info, index, ecxValue);
+  //   *eax = info[0];
+  //   *ebx = info[1];
+  //   *ecx = info[2];
+  //   *edx = info[3];
+  // }
 
-    private static readonly byte[] CpuId32 =
-    [
-        0x55, // push ebp
+  private static readonly byte[] CpuId32 =
+  [
+      0x55, // push ebp
         0x8B,
         0xEC, // mov ebp, esp
         0x83,
@@ -110,11 +108,11 @@ internal static class OpCode
         0xC2,
         0x18,
         0x00 // ret 18h
-    ];
+  ];
 
-    private static readonly byte[] CpuId64Linux =
-    [
-        0x49,
+  private static readonly byte[] CpuId64Linux =
+  [
+      0x49,
         0x89,
         0xD2, // mov r10, rdx
         0x49,
@@ -141,11 +139,11 @@ internal static class OpCode
         0x11, // mov dword ptr [r9], edx
         0x5B, // pop rbx
         0xC3 // ret
-    ];
+  ];
 
-    private static readonly byte[] CpuId64Windows =
-    [
-        0x48,
+  private static readonly byte[] CpuId64Windows =
+  [
+      0x48,
         0x89,
         0x5C,
         0x24,
@@ -182,22 +180,22 @@ internal static class OpCode
         0x89,
         0x10, // mov dword ptr [rax], edx
         0xC3 // ret
-    ];
+  ];
 
-    // unsigned __int64 __stdcall rdtsc() {
-    //   return __rdtsc();
-    // }
+  // unsigned __int64 __stdcall rdtsc() {
+  //   return __rdtsc();
+  // }
 
-    private static readonly byte[] Rdtsc32 =
-    [
-        0x0F,
+  private static readonly byte[] Rdtsc32 =
+  [
+      0x0F,
         0x31, // rdtsc
         0xC3 // ret
-    ];
+  ];
 
-    private static readonly byte[] Rdtsc64 =
-    [
-        0x0F,
+  private static readonly byte[] Rdtsc64 =
+  [
+      0x0F,
         0x31, // rdtsc
         0x48,
         0xC1,
@@ -207,36 +205,32 @@ internal static class OpCode
         0x0B,
         0xC2, // or rax, rdx
         0xC3 // ret
-    ];
+  ];
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate bool CpuidDelegate(uint index, uint ecxValue, out uint eax, out uint ebx, out uint ecx, out uint edx);
+  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+  public delegate bool CpuidDelegate(uint index, uint ecxValue, out uint eax, out uint ebx, out uint ecx, out uint edx);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate ulong RdtscDelegate();
+  [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+  public delegate ulong RdtscDelegate();
 
 #if NET
-    [RequiresUnreferencedCode("Dynamic code generation for OpCode delegates")]
+  [RequiresUnreferencedCode("Dynamic code generation for OpCode delegates")]
 #endif
-    public static unsafe void Open()
-    {
-        byte[] rdTscCode;
-        byte[] cpuidCode;
-        if (IntPtr.Size == 4)
-        {
-            rdTscCode = Rdtsc32;
-            cpuidCode = CpuId32;
-        }
-        else
-        {
-            rdTscCode = Rdtsc64;
-            cpuidCode = Software.OperatingSystem.IsUnix ? CpuId64Linux : CpuId64Windows;
-        }
+  public static unsafe void Open() {
+    byte[] rdTscCode;
+    byte[] cpuidCode;
+    if (IntPtr.Size == 4) {
+      rdTscCode = Rdtsc32;
+      cpuidCode = CpuId32;
+    }
+    else {
+      rdTscCode = Rdtsc64;
+      cpuidCode = Software.OperatingSystem.IsUnix ? CpuId64Linux : CpuId64Windows;
+    }
 
-        _size = (ulong)(rdTscCode.Length + cpuidCode.Length);
+    _size = (ulong)(rdTscCode.Length + cpuidCode.Length);
 
-        if (Software.OperatingSystem.IsUnix)
-        {
+    if (Software.OperatingSystem.IsUnix) {
 #if NETFRAMEWORK
             Assembly assembly = Assembly.Load("Mono.Posix, Version=2.0.0.0, Culture=neutral, " + "PublicKeyToken=0738eb9f132ed756");
 
@@ -257,59 +251,50 @@ internal static class OpCode
             if (mmap != null)
                 _codeBuffer = (IntPtr)mmap.Invoke(null, [IntPtr.Zero, _size, mmapProtsParam, mmapFlagsParam, -1, 0]);
 #else
-            _codeBuffer = Syscall.mmap(IntPtr.Zero, _size,
-                MmapProts.PROT_READ | MmapProts.PROT_WRITE | MmapProts.PROT_EXEC,
-                MmapFlags.MAP_ANONYMOUS | MmapFlags.MAP_PRIVATE, -1, 0);
+      _codeBuffer = Syscall.mmap(IntPtr.Zero, _size,
+          MmapProts.PROT_READ | MmapProts.PROT_WRITE | MmapProts.PROT_EXEC,
+          MmapFlags.MAP_ANONYMOUS | MmapFlags.MAP_PRIVATE, -1, 0);
 #endif
-        }
-        else
-        {
-            _codeBuffer = (IntPtr)PInvoke.VirtualAlloc(null,
-                                                       (UIntPtr)_size,
-                                                       VIRTUAL_ALLOCATION_TYPE.MEM_COMMIT | VIRTUAL_ALLOCATION_TYPE.MEM_RESERVE,
-                                                       PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE);
-        }
-
-        lock (_syncLock)
-        {
-            Marshal.Copy(rdTscCode, 0, _codeBuffer, rdTscCode.Length);
-            try
-            {
-                Rdtsc = Marshal.GetDelegateForFunctionPointer<RdtscDelegate>(_codeBuffer);
-                Debug.WriteLine("OpCode.Open: Rdtsc delegate assigned");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("OpCode.Open: Failed to assign Rdtsc delegate: " + ex);
-                Rdtsc = null;
-            }
-
-            IntPtr cpuidAddress = (IntPtr)((long)_codeBuffer + rdTscCode.Length);
-            Marshal.Copy(cpuidCode, 0, cpuidAddress, cpuidCode.Length);
-            try
-            {
-                CpuId = Marshal.GetDelegateForFunctionPointer<CpuidDelegate>(cpuidAddress);
-                Debug.WriteLine("OpCode.Open: CpuId delegate assigned");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("OpCode.Open: Failed to assign CpuId delegate: " + ex);
-                CpuId = null;
-            }
-        }
+    }
+    else {
+      _codeBuffer = (IntPtr)PInvoke.VirtualAlloc(null,
+                                                 (UIntPtr)_size,
+                                                 VIRTUAL_ALLOCATION_TYPE.MEM_COMMIT | VIRTUAL_ALLOCATION_TYPE.MEM_RESERVE,
+                                                 PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE);
     }
 
-    public static unsafe void Close()
-    {
-        lock (_syncLock)
-        {
-            Rdtsc = null;
-            CpuId = null;
-            Debug.WriteLine("OpCode.Close: delegates cleared");
-        }
+    lock (_syncLock) {
+      Marshal.Copy(rdTscCode, 0, _codeBuffer, rdTscCode.Length);
+      try {
+        Rdtsc = Marshal.GetDelegateForFunctionPointer<RdtscDelegate>(_codeBuffer);
+        Debug.WriteLine("OpCode.Open: Rdtsc delegate assigned");
+      }
+      catch (Exception ex) {
+        Debug.WriteLine("OpCode.Open: Failed to assign Rdtsc delegate: " + ex);
+        Rdtsc = null;
+      }
 
-        if (Software.OperatingSystem.IsUnix)
-        {
+      IntPtr cpuidAddress = (IntPtr)((long)_codeBuffer + rdTscCode.Length);
+      Marshal.Copy(cpuidCode, 0, cpuidAddress, cpuidCode.Length);
+      try {
+        CpuId = Marshal.GetDelegateForFunctionPointer<CpuidDelegate>(cpuidAddress);
+        Debug.WriteLine("OpCode.Open: CpuId delegate assigned");
+      }
+      catch (Exception ex) {
+        Debug.WriteLine("OpCode.Open: Failed to assign CpuId delegate: " + ex);
+        CpuId = null;
+      }
+    }
+  }
+
+  public static unsafe void Close() {
+    lock (_syncLock) {
+      Rdtsc = null;
+      CpuId = null;
+      Debug.WriteLine("OpCode.Close: delegates cleared");
+    }
+
+    if (Software.OperatingSystem.IsUnix) {
 #if NETFRAMEWORK
             Assembly assembly = Assembly.Load("Mono.Posix, Version=2.0.0.0, Culture=neutral, " + "PublicKeyToken=0738eb9f132ed756");
 
@@ -317,36 +302,30 @@ internal static class OpCode
             MethodInfo method = sysCall.GetMethod("munmap");
             method?.Invoke(null, [_codeBuffer, _size]);
 #else
-            Syscall.munmap(_codeBuffer, _size);
+      Syscall.munmap(_codeBuffer, _size);
 #endif
-        }
-        else
-        {
-            PInvoke.VirtualFree((void*)_codeBuffer, UIntPtr.Zero, VIRTUAL_FREE_TYPE.MEM_RELEASE);
-        }
     }
-    public static bool TryRdtsc(out ulong value)
-    {
-        lock (_syncLock)
-        {
-            if (Rdtsc != null)
-            {
-                try
-                {
-                    value = Rdtsc();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("OpCode.TryRdtsc: Rdtsc invocation failed: " + ex);
-                    value = 0;
-                    return false;
-                }
-            }
+    else {
+      PInvoke.VirtualFree((void*)_codeBuffer, UIntPtr.Zero, VIRTUAL_FREE_TYPE.MEM_RELEASE);
+    }
+  }
+  public static bool TryRdtsc(out ulong value) {
+    lock (_syncLock) {
+      if (Rdtsc != null) {
+        try {
+          value = Rdtsc();
+          return true;
+        }
+        catch (Exception ex) {
+          Debug.WriteLine("OpCode.TryRdtsc: Rdtsc invocation failed: " + ex);
+          value = 0;
+          return false;
+        }
+      }
 
-            Debug.WriteLine("OpCode.TryRdtsc: Rdtsc delegate is null");
-            value = 0;
-            return false;
-        }
+      Debug.WriteLine("OpCode.TryRdtsc: Rdtsc delegate is null");
+      value = 0;
+      return false;
     }
+  }
 }

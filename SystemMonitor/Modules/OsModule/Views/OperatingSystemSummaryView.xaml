@@ -19,7 +19,7 @@
         <RowDefinition Height="0.6cm"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="2.00cm"/>
+        <ColumnDefinition Width="3.00cm"/>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
@@ -34,7 +34,10 @@
       <!--<TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
                  Style="{StaticResource ModuleTitleTextStyle}" VerticalAlignment="Center"
                  Text="{x:Static localView:ViewDefinitions.ModuleName}"/>-->
-
+      <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="/OsModule;component/Assets/IconPng.png"
+             Stretch="Uniform"
+             Margin="-50,5,0,1"/>
+      
       <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" 
                   Style="{StaticResource VerticalKeyValueStackPanelStyle}">
         <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,0.5cm,0"

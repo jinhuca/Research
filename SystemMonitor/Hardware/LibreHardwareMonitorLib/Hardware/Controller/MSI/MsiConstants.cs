@@ -7,10 +7,9 @@ using System.Collections.Generic;
 
 namespace LibreHardwareMonitor.Hardware.Controller.MSI;
 
-internal static class MsiConstants
-{
-    public static readonly IReadOnlyList<MsiDevice> SupportedDevices = new List<MsiDevice>
-    {
+internal static class MsiConstants {
+  public static readonly IReadOnlyList<MsiDevice> SupportedDevices = new List<MsiDevice>
+  {
         new MsiDevice(MsiDeviceType.S280, 0x0DB0, 0x75B6, 0x6A04),
         new MsiDevice(MsiDeviceType.S360, 0x0DB0, 0x9BA6, 0x6A05),
         new MsiDevice(MsiDeviceType.S360MEG, 0x1462, 0x9BA6, 0x6A05),

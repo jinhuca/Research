@@ -8,9 +8,8 @@ using System;
 
 namespace LibreHardwareMonitor.Hardware.Motherboard.Lpc;
 
-internal interface IGigabyteController: IDisposable
-{
-    bool Enable(bool enabled);
+internal interface IGigabyteController : IDisposable {
+  bool Enable(bool enabled);
 
-    void Restore();
+  void Restore();
 }

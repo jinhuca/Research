@@ -11,14 +11,13 @@ using System.Text;
 
 namespace LibreHardwareMonitor.Hardware.Motherboard.Lpc.EC;
 
-public abstract class EmbeddedController : Hardware
-{
-    // If you are updating board information, please consider sharing your changes with the corresponding Linux driver.
-    // You can do that at https://github.com/zeule/asus-ec-sensors or contribute directly to Linux HWMON.
-    // If you are adding a new board, please share DSDT table for the board at https://github.com/zeule/asus-ec-sensors.
-    // https://dortania.github.io/Getting-Started-With-ACPI/Manual/dump.html
-    private static readonly BoardInfo[] _boards =
-    {
+public abstract class EmbeddedController : Hardware {
+  // If you are updating board information, please consider sharing your changes with the corresponding Linux driver.
+  // You can do that at https://github.com/zeule/asus-ec-sensors or contribute directly to Linux HWMON.
+  // If you are adding a new board, please share DSDT table for the board at https://github.com/zeule/asus-ec-sensors.
+  // https://dortania.github.io/Getting-Started-With-ACPI/Manual/dump.html
+  private static readonly BoardInfo[] _boards =
+  {
         new (Model.ROG_CROSSHAIR_X870E_DARK_HERO,
             BoardFamily.Amd800,
             ECSensor.TempTSensor),
@@ -378,8 +377,8 @@ public abstract class EmbeddedController : Hardware
             null)
     };
 
-    private static readonly Dictionary<BoardFamily, Dictionary<ECSensor, EmbeddedControllerSource>> _knownSensors = new()
-    {
+  private static readonly Dictionary<BoardFamily, Dictionary<ECSensor, EmbeddedControllerSource>> _knownSensors = new()
+  {
         {
             BoardFamily.Amd400, new Dictionary<ECSensor, EmbeddedControllerSource>() // no chipset fans in this generation
             {
@@ -495,266 +494,234 @@ public abstract class EmbeddedController : Hardware
         }
     };
 
-    private readonly byte[] _data;
-    private readonly ushort[] _registers;
-    private readonly List<Sensor> _sensors;
+  private readonly byte[] _data;
+  private readonly ushort[] _registers;
+  private readonly List<Sensor> _sensors;
 
-    private readonly IReadOnlyList<EmbeddedControllerSource> _sources;
+  private readonly IReadOnlyList<EmbeddedControllerSource> _sources;
 
-    protected EmbeddedController(IEnumerable<EmbeddedControllerSource> sources, ISettings settings) : base("Embedded Controller", new Identifier("lpc", "ec"), settings)
-    {
-        // sorting by address, which implies sorting by bank, for optimized EC access
-        var sourcesList = sources.ToList();
-        sourcesList.Sort((left, right) => left.Register.CompareTo(right.Register));
-        _sources = sourcesList;
-        var indices = new Dictionary<SensorType, int>();
-        foreach (SensorType t in Enum.GetValues(typeof(SensorType)))
-        {
-            indices.Add(t, 0);
-        }
-
-        _sensors = new List<Sensor>();
-        List<ushort> registers = new();
-        foreach (EmbeddedControllerSource s in _sources)
-        {
-            int index = indices[s.Type];
-            indices[s.Type] = index + 1;
-            _sensors.Add(new Sensor(s.Name, index, s.Type, this, settings));
-            for (int i = 0; i < s.Size; ++i)
-            {
-                registers.Add((ushort)(s.Register + i));
-            }
-
-            ActivateSensor(_sensors[_sensors.Count - 1]);
-        }
-
-        _registers = registers.ToArray();
-        _data = new byte[_registers.Length];
+  protected EmbeddedController(IEnumerable<EmbeddedControllerSource> sources, ISettings settings) : base("Embedded Controller", new Identifier("lpc", "ec"), settings) {
+    // sorting by address, which implies sorting by bank, for optimized EC access
+    var sourcesList = sources.ToList();
+    sourcesList.Sort((left, right) => left.Register.CompareTo(right.Register));
+    _sources = sourcesList;
+    var indices = new Dictionary<SensorType, int>();
+    foreach (SensorType t in Enum.GetValues(typeof(SensorType))) {
+      indices.Add(t, 0);
     }
 
-    public override HardwareType HardwareType => HardwareType.EmbeddedController;
+    _sensors = new List<Sensor>();
+    List<ushort> registers = new();
+    foreach (EmbeddedControllerSource s in _sources) {
+      int index = indices[s.Type];
+      indices[s.Type] = index + 1;
+      _sensors.Add(new Sensor(s.Name, index, s.Type, this, settings));
+      for (int i = 0; i < s.Size; ++i) {
+        registers.Add((ushort)(s.Register + i));
+      }
 
-    internal static EmbeddedController Create(Model model, ISettings settings)
-    {
-        var boards = _boards.Where(b => b.Models.Contains(model)).ToList();
-        switch (boards.Count)
-        {
-            case 0:
-                return null;
-            case > 1:
-                throw new MultipleBoardRecordsFoundException(model.ToString());
-        }
-
-        BoardInfo board = boards[0];
-
-        if (board.Family == BoardFamily.CrOS)
-        {
-            return ChromeOSEmbeddedController.Create(settings);
-        }
-
-        IEnumerable<EmbeddedControllerSource> sources = board.Sensors.Select(ecs => _knownSensors[board.Family][ecs]);
-
-        return Environment.OSVersion.Platform switch
-        {
-            PlatformID.Win32NT => new WindowsEmbeddedController(sources, settings),
-            _ => null
-        };
+      ActivateSensor(_sensors[_sensors.Count - 1]);
     }
 
-    public override void Update()
-    {
-        if (!TryUpdateData())
-        {
-            // just skip this update cycle?
-            return;
-        }
+    _registers = registers.ToArray();
+    _data = new byte[_registers.Length];
+  }
 
-        int readRegister = 0;
-        for (int si = 0; si < _sensors.Count; ++si)
-        {
-            int littleEndian    = _sources[si].IsLittleEndian ? 1 : 0;
-            int bigEndian       = _sources[si].IsLittleEndian ? 0 : 1;
+  public override HardwareType HardwareType => HardwareType.EmbeddedController;
 
-            int val = _sources[si].Size switch
-            {
-                1 => _sources[si].Type switch { SensorType.Temperature => unchecked((sbyte)_data[readRegister]), _ => _data[readRegister] },
-                2 => unchecked((short)((_data[readRegister + littleEndian] << 8) + _data[readRegister + bigEndian])),
-                _ => 0
-            };
-
-            readRegister += _sources[si].Size;
-
-            _sensors[si].Value = val != _sources[si].Blank ? (val * _sources[si].Factor) + _sources[si].Offset : null;
-        }
+  internal static EmbeddedController Create(Model model, ISettings settings) {
+    var boards = _boards.Where(b => b.Models.Contains(model)).ToList();
+    switch (boards.Count) {
+      case 0:
+        return null;
+      case > 1:
+        throw new MultipleBoardRecordsFoundException(model.ToString());
     }
 
-    public override string GetReport()
-    {
-        StringBuilder r = new();
+    BoardInfo board = boards[0];
 
-        r.AppendLine("EC " + GetType().Name);
-        r.AppendLine("Embedded Controller Registers");
+    if (board.Family == BoardFamily.CrOS) {
+      return ChromeOSEmbeddedController.Create(settings);
+    }
+
+    IEnumerable<EmbeddedControllerSource> sources = board.Sensors.Select(ecs => _knownSensors[board.Family][ecs]);
+
+    return Environment.OSVersion.Platform switch {
+      PlatformID.Win32NT => new WindowsEmbeddedController(sources, settings),
+      _ => null
+    };
+  }
+
+  public override void Update() {
+    if (!TryUpdateData()) {
+      // just skip this update cycle?
+      return;
+    }
+
+    int readRegister = 0;
+    for (int si = 0; si < _sensors.Count; ++si) {
+      int littleEndian = _sources[si].IsLittleEndian ? 1 : 0;
+      int bigEndian = _sources[si].IsLittleEndian ? 0 : 1;
+
+      int val = _sources[si].Size switch {
+        1 => _sources[si].Type switch { SensorType.Temperature => unchecked((sbyte)_data[readRegister]), _ => _data[readRegister] },
+        2 => unchecked((short)((_data[readRegister + littleEndian] << 8) + _data[readRegister + bigEndian])),
+        _ => 0
+      };
+
+      readRegister += _sources[si].Size;
+
+      _sensors[si].Value = val != _sources[si].Blank ? (val * _sources[si].Factor) + _sources[si].Offset : null;
+    }
+  }
+
+  public override string GetReport() {
+    StringBuilder r = new();
+
+    r.AppendLine("EC " + GetType().Name);
+    r.AppendLine("Embedded Controller Registers");
+    r.AppendLine();
+    r.AppendLine("      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F");
+    r.AppendLine();
+
+    try {
+      using IEmbeddedControllerIO embeddedControllerIO = AcquireIOInterface();
+      ushort[] src = new ushort[0x100];
+      byte[] data = new byte[0x100];
+      for (ushort i = 0; i < src.Length; ++i) {
+        src[i] = i;
+      }
+
+      embeddedControllerIO.Read(src, data);
+      for (int i = 0; i <= 0xF; ++i) {
+        r.Append(" ");
+        r.Append((i << 4).ToString("X2", CultureInfo.InvariantCulture));
+        r.Append("  ");
+        for (int j = 0; j <= 0xF; ++j) {
+          byte address = (byte)(i << 4 | j);
+          r.Append(" ");
+          r.Append(data[address].ToString("X2", CultureInfo.InvariantCulture));
+        }
+
         r.AppendLine();
-        r.AppendLine("      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F");
-        r.AppendLine();
-
-        try
-        {
-            using IEmbeddedControllerIO embeddedControllerIO = AcquireIOInterface();
-            ushort[] src = new ushort[0x100];
-            byte[] data = new byte[0x100];
-            for (ushort i = 0; i < src.Length; ++i)
-            {
-                src[i] = i;
-            }
-
-            embeddedControllerIO.Read(src, data);
-            for (int i = 0; i <= 0xF; ++i)
-            {
-                r.Append(" ");
-                r.Append((i << 4).ToString("X2", CultureInfo.InvariantCulture));
-                r.Append("  ");
-                for (int j = 0; j <= 0xF; ++j)
-                {
-                    byte address = (byte)(i << 4 | j);
-                    r.Append(" ");
-                    r.Append(data[address].ToString("X2", CultureInfo.InvariantCulture));
-                }
-
-                r.AppendLine();
-            }
-        }
-        catch (IOException e)
-        {
-            r.AppendLine(e.Message);
-        }
-
-        return r.ToString();
+      }
+    }
+    catch (IOException e) {
+      r.AppendLine(e.Message);
     }
 
-    protected abstract IEmbeddedControllerIO AcquireIOInterface();
+    return r.ToString();
+  }
 
-    private bool TryUpdateData()
-    {
-        try
-        {
-            using IEmbeddedControllerIO embeddedControllerIO = AcquireIOInterface();
-            embeddedControllerIO.Read(_registers, _data);
-            return true;
-        }
-        catch (IOException)
-        {
-            return false;
-        }
+  protected abstract IEmbeddedControllerIO AcquireIOInterface();
+
+  private bool TryUpdateData() {
+    try {
+      using IEmbeddedControllerIO embeddedControllerIO = AcquireIOInterface();
+      embeddedControllerIO.Read(_registers, _data);
+      return true;
+    }
+    catch (IOException) {
+      return false;
+    }
+  }
+
+  private enum ECSensor {
+    /// <summary>Chipset temperature [℃]</summary>
+    TempChipset,
+
+    /// <summary>CPU temperature [℃]</summary>
+    TempCPU,
+
+    /// <summary>CPU Package temperature [℃]</summary>
+    TempCPUPackage,
+
+    /// <summary>motherboard temperature [℃]</summary>
+    TempMB,
+
+    /// <summary>"T_Sensor" temperature sensor reading [℃]</summary>
+    TempTSensor,
+
+    /// <summary>"T_Sensor 2" temperature sensor reading [℃]</summary>
+    TempTSensor2,
+
+    /// <summary>VRM temperature [℃]</summary>
+    TempVrm,
+
+    /// <summary>CPU Core voltage [mV]</summary>
+    VoltageCPU,
+
+    /// <summary>CPU_Opt fan [RPM]</summary>
+    FanCPUOpt,
+
+    /// <summary>VRM heat sink fan [RPM]</summary>
+    FanVrmHS,
+
+    /// <summary>Chipset fan [RPM]</summary>
+    FanChipset,
+
+    /// <summary>Water Pump [RPM]</summary>
+    FanWaterPump,
+
+    /// <summary>Water flow sensor reading [RPM]</summary>
+    FanWaterFlow,
+
+    /// <summary>CPU current [A]</summary>
+    CurrCPU,
+
+    /// <summary>"Water_In" temperature sensor reading [℃]</summary>
+    TempWaterIn,
+
+    /// <summary>"Water_Out" temperature sensor reading [℃]</summary>
+    TempWaterOut,
+
+    /// <summary>Water block temperature sensor reading [℃]</summary>
+    TempWaterBlockIn,
+    Max
+  }
+
+  private enum BoardFamily {
+    Amd400,
+    Amd500,
+    Amd600,
+    Amd800,
+    Intel100,
+    Intel300,
+    Intel400,
+    Intel600,
+    Intel700,
+    CrOS
+  }
+
+  private struct BoardInfo {
+    public BoardInfo(Model[] models, BoardFamily family, params ECSensor[] sensors) {
+      Models = models;
+      Family = family;
+      Sensors = sensors;
     }
 
-    private enum ECSensor
-    {
-        /// <summary>Chipset temperature [℃]</summary>
-        TempChipset,
-
-        /// <summary>CPU temperature [℃]</summary>
-        TempCPU,
-		
-        /// <summary>CPU Package temperature [℃]</summary>
-        TempCPUPackage,
-
-        /// <summary>motherboard temperature [℃]</summary>
-        TempMB,
-
-        /// <summary>"T_Sensor" temperature sensor reading [℃]</summary>
-        TempTSensor,
-
-        /// <summary>"T_Sensor 2" temperature sensor reading [℃]</summary>
-        TempTSensor2,
-
-        /// <summary>VRM temperature [℃]</summary>
-        TempVrm,
-
-        /// <summary>CPU Core voltage [mV]</summary>
-        VoltageCPU,
-
-        /// <summary>CPU_Opt fan [RPM]</summary>
-        FanCPUOpt,
-
-        /// <summary>VRM heat sink fan [RPM]</summary>
-        FanVrmHS,
-
-        /// <summary>Chipset fan [RPM]</summary>
-        FanChipset,
-
-        /// <summary>Water Pump [RPM]</summary>
-        FanWaterPump,
-
-        /// <summary>Water flow sensor reading [RPM]</summary>
-        FanWaterFlow,
-
-        /// <summary>CPU current [A]</summary>
-        CurrCPU,
-
-        /// <summary>"Water_In" temperature sensor reading [℃]</summary>
-        TempWaterIn,
-
-        /// <summary>"Water_Out" temperature sensor reading [℃]</summary>
-        TempWaterOut,
-
-        /// <summary>Water block temperature sensor reading [℃]</summary>
-        TempWaterBlockIn,
-        Max
+    public BoardInfo(Model model, BoardFamily family, params ECSensor[] sensors) {
+      Models = new[] { model };
+      Family = family;
+      Sensors = sensors;
     }
 
-    private enum BoardFamily
-    {
-        Amd400,
-        Amd500,
-        Amd600,
-		Amd800,
-        Intel100,
-        Intel300,
-        Intel400,
-        Intel600,
-        Intel700,
-        CrOS
-    }
+    public Model[] Models { get; }
 
-    private struct BoardInfo
-    {
-        public BoardInfo(Model[] models, BoardFamily family, params ECSensor[] sensors)
-        {
-            Models = models;
-            Family = family;
-            Sensors = sensors;
-        }
+    public BoardFamily Family { get; }
 
-        public BoardInfo(Model model, BoardFamily family, params ECSensor[] sensors)
-        {
-            Models = new[] { model };
-            Family = family;
-            Sensors = sensors;
-        }
+    public ECSensor[] Sensors { get; }
+  }
 
-        public Model[] Models { get; }
+  public class IOException : System.IO.IOException {
+    public IOException(string message) : base($"ACPI embedded controller I/O error: {message}") { }
+  }
 
-        public BoardFamily Family { get; }
+  public class BadConfigurationException : Exception {
+    public BadConfigurationException(string message) : base(message) { }
+  }
 
-        public ECSensor[] Sensors { get; }
-    }
-
-    public class IOException : System.IO.IOException
-    {
-        public IOException(string message) : base($"ACPI embedded controller I/O error: {message}")
-        { }
-    }
-
-    public class BadConfigurationException : Exception
-    {
-        public BadConfigurationException(string message) : base(message)
-        { }
-    }
-
-    public class MultipleBoardRecordsFoundException : BadConfigurationException
-    {
-        public MultipleBoardRecordsFoundException(string model) : base($"Multiple board records refer to the same model '{model}'")
-        { }
-    }
+  public class MultipleBoardRecordsFoundException : BadConfigurationException {
+    public MultipleBoardRecordsFoundException(string model) : base($"Multiple board records refer to the same model '{model}'") { }
+  }
 }

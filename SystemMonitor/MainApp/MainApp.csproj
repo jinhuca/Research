@@ -10,6 +10,7 @@
     <BaseOutputPath>$(SolutionDir)\Build</BaseOutputPath>
     <StartupObject>MainApp.App</StartupObject>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>sm1.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
