@@ -39,20 +39,40 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
 
     // (4) convert the validated value to display
     double calculatedValue_ = valuePassed_;
+    double result_ = 0;
     switch (unit_) {
       case Unit.Percent:
         calculatedValue_ = (valuePassed_ - minValuePassed_) / (maxValuePassed_ - minValuePassed_) * 100;
-        return Math.Round(calculatedValue_, 2).ToString("0.00");
+        result_ = Math.Round(calculatedValue_, 2);
+        break;
       case Unit.Absolute:
         calculatedValue_ = valuePassed_ - minValuePassed_;
-        return Math.Round(calculatedValue_, 2).ToString("0.00");
+        result_ = Math.Round(calculatedValue_, 2);
+        break;
       case Unit.Watts:
         calculatedValue_ = valuePassed_;
-        return Math.Round(calculatedValue_, 2).ToString("0.00");
+        result_ = Math.Round(calculatedValue_, 2);
+        break;
       default:
         calculatedValue_ = valuePassed_;
-        return Math.Round(calculatedValue_, 2).ToString("0.00");
+        result_ = Math.Round(calculatedValue_, 2);
+        break;
     }
+
+    if (result_ is double num) {
+      // Get the current culture's decimal separator
+      string separator = culture.NumberFormat.NumberDecimalSeparator;
+
+      // Format the number to a standard string
+      string[] parts = num.ToString("F2", culture).Split(separator);
+
+      // parameter "int" returns whole number, "dec" returns decimal part
+      if (parameter?.ToString() == "dec") {
+        return separator + parts[1];
+      }
+      return parts[0];
+    }
+    return string.Empty;
   }
 
   public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {

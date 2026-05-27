@@ -6,6 +6,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:MainApp"
         xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
+        xmlns:converters="clr-namespace:ResourceModule.Converters;assembly=ResourceModule"
         xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
         Icon="pack://application:,,,/sm1.ico"
         mc:Ignorable="d" 
@@ -13,6 +14,7 @@
         Background="#333333"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
   <Window.Resources>
+    <converters:WindowStateConverter x:Key="WindowStateConverter"/>
   </Window.Resources>
   
   <!-- Maintain Native Windows Behaviors -->
@@ -23,14 +25,14 @@
                   CornerRadius="0"/>
   </WindowChrome.WindowChrome>
 
-  <Border BorderBrush="Transparent" BorderThickness="2" CornerRadius="5" Margin="3" Background="Transparent">
+  <Border BorderBrush="Transparent" BorderThickness="2" CornerRadius="5" Margin="3" Background="{StaticResource ShellBackgroundSolidBrush}">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="32"/>
           <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
       <!-- Custom Title Bar Panel -->
-      <Grid Grid.Row="0" Background="#181818">
+      <Grid Grid.Row="0" Background="{StaticResource TitleBarBackgroundSolidBrush}">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
           <ColumnDefinition Width="Auto"/>
@@ -38,7 +40,7 @@
 
         <!-- Window Title Text -->
         <TextBlock Grid.Column="0" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" 
-                   Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+                   Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
 
         <!-- Window Caption Buttons Wrapper -->
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -49,9 +51,9 @@
 
           <!-- Maximize / Restore Toggle Button -->
           <Button x:Name="BtnMaximize" Style="{StaticResource TitleBarButtonStyle}" Click="MaximizeButton_Click" ToolTip="Maximize">
-            <TextBlock x:Name="TxtMaximize" Text="&#xE922;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+            <TextBlock x:Name="TxtMaximize" FontFamily="Segoe MDL2 Assets" FontSize="16"
+                       Text="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource WindowStateConverter}}"/>
           </Button>
-
           <!-- Close Button with Custom Red Hover State -->
           <Button Click="CloseButton_Click" ToolTip="Close">
             <Button.Style>

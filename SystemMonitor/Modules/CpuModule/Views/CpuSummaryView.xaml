@@ -198,7 +198,7 @@
             <ColumnDefinition/>
           </Grid.ColumnDefinitions>
           <!-- Load -->
-          <Grid Grid.Row="0" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.1cm">
+          <Grid Grid.Row="0" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.2cm">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
@@ -226,9 +226,9 @@
                                  DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Power -->
-          <Grid Grid.Row="0" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.1cm">
+          <Grid Grid.Row="0" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.2cm">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
@@ -257,9 +257,9 @@
                                  DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Voltage -->
-          <Grid Grid.Row="1" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.1cm">
+          <Grid Grid.Row="1" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.2cm">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
@@ -286,12 +286,12 @@
                                  DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Temperature -->
-          <Grid Grid.Row="1" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.1cm">
+          <Grid Grid.Row="1" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.2cm">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
+            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
               <meter:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel}"
                                 Unit="Celsius"
@@ -312,9 +312,9 @@
                                    DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Clocks -->
-          <Grid Grid.Row="2" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.1cm">
+          <Grid Grid.Row="2" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.2cm">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
@@ -353,7 +353,7 @@
             </ListView.ItemTemplate>
           </ListView>-->
           <!-- Processes -->
-          <Grid Grid.Row="2" Grid.Column="1" Margin=".1cm" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+          <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,.5cm" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="5.00cm"/>
               <ColumnDefinition Width="5.00cm"/>
@@ -369,25 +369,24 @@
 
             <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
               <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
-       Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
+                         Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
               <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
-       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ThreadNum, StringFormat={}{0:N0}}"/>
+                         Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ThreadNum, StringFormat={}{0:N0}}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
               <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
-       Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
+                         Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
               <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
-       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.HandleNum, StringFormat={}{0:N0}}"/>
+                         Text="{Binding LiveViewModel.CpuOverallLiveViewModel.HandleNum, StringFormat={}{0:N0}}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
               <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
-       Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
+                         Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
               <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
-       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
+                         Text="{Binding LiveViewModel.CpuOverallLiveViewModel.UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
             </StackPanel>
-
           </Grid>
         </Grid>
 

@@ -1,5 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <SolidColorBrush x:Key="ShellBackgroundSolidBrush" Color="#FF111122"/>
+  <SolidColorBrush x:Key="TitleBarBackgroundSolidBrush" Color="#FF081818"/>
+  
   <SolidColorBrush x:Key="ModuleContentTitleBrush" Color="#FF878A9F"/>
   <SolidColorBrush x:Key="ModuleContentTextBrush" Color="#FFFFFF"/>
 
@@ -12,11 +15,11 @@
   <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>
   
   <!-- Load -->
-  <SolidColorBrush x:Key="LoadSolidColorBrush" Color="#FF42A5F5"/>
-  <SolidColorBrush x:Key="LoadRangeSolidColorBrush" Color="#1142A5F5"/>
+  <SolidColorBrush x:Key="LoadSolidColorBrush" Color="#FFFF1D6B"/>
+  <SolidColorBrush x:Key="LoadRangeSolidColorBrush" Color="#11FF1D6B"/>
 
-  <Color x:Key="LoadBeginColor" A="#FF" R="#42" G="#A5" B="#F5"/>
-  <Color x:Key="LoadEndColor" A="#11" R="#42" G="#A5" B="#F5"/>
+  <Color x:Key="LoadBeginColor" A="#FF" R="#FF" G="#1D" B="#6B"/>
+  <Color x:Key="LoadEndColor" A="#11" R="#FF" G="#1D" B="#6B"/>
   
   <LinearGradientBrush x:Key="LoadRangeLinearGradientBrush"
                        StartPoint="0,0" EndPoint="0,1">
@@ -64,11 +67,11 @@
   </LinearGradientBrush>
 
   <!-- Clock -->
-  <SolidColorBrush x:Key="ClockSolidColorBrush" Color="#FF42A5F5"/>
-  <SolidColorBrush x:Key="ClockRangeSolidColorBrush" Color="#7742A5F5"/>
+  <SolidColorBrush x:Key="ClockSolidColorBrush" Color="#AAFFFD55"/>
+  <SolidColorBrush x:Key="ClockRangeSolidColorBrush" Color="#77FFFD55"/>
   
-  <Color x:Key="ClockBeginColor" A="#FF" R="#42" G="#A5" B="#F5"/>
-  <Color x:Key="ClockEndColor" A="#11" R="#42" G="#A5" B="#F5"/>
+  <Color x:Key="ClockBeginColor" A="#AA" R="#FF" G="#FD" B="#55"/>
+  <Color x:Key="ClockEndColor" A="#11" R="#FF" G="#FD" B="#55"/>
 
   <LinearGradientBrush x:Key="ClockRangeLinearGradientBrush" 
                        StartPoint="0,0" EndPoint="0,1">

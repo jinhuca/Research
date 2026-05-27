@@ -14,11 +14,11 @@
   </UserControl.Resources>
   <Grid ShowGridLines="False">
     <Grid.RowDefinitions>
-      <RowDefinition Height="60"/>
+      <RowDefinition Height="50"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
     <TextBlock Grid.Row="0" 
-               Margin="0,0,0,20"
+               Margin="0,0,0,0"
                HorizontalAlignment="Center" 
                VerticalAlignment="Top"
                Foreground="{StaticResource ModuleContentTextBrush}" 
@@ -54,15 +54,27 @@
                 Background="Transparent">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
           <TextBlock Foreground="{StaticResource RealTimeValueTextBrush}" HorizontalAlignment="Center" 
-                     VerticalAlignment="Top" Margin="0,0,0,0" FontSize="60" FontWeight="Light">
-            <TextBlock.Text>
-              <MultiBinding Converter="{StaticResource valuesToDisplayConverter}" StringFormat="{}{0:0.00}">
-                <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
-                <Binding Path="MinValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
-                <Binding Path="MaxValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
-                <Binding Path="Unit" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
-              </MultiBinding>
-            </TextBlock.Text>
+                     VerticalAlignment="Top" Margin="10,0,0,0" FontWeight="Light">
+            <Run Style="{StaticResource IntegralRunStyle}">
+              <Run.Text>
+                <MultiBinding Converter="{StaticResource valuesToDisplayConverter}" ConverterParameter="int">
+                  <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                  <Binding Path="MinValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                  <Binding Path="MaxValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                  <Binding Path="Unit" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                </MultiBinding>
+              </Run.Text>
+            </Run>
+            <Run Style="{StaticResource DecimalRunStyle}">
+              <Run.Text>
+                <MultiBinding Converter="{StaticResource valuesToDisplayConverter}" ConverterParameter="dec">
+                  <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                  <Binding Path="MinValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                  <Binding Path="MaxValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                  <Binding Path="Unit" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                </MultiBinding>
+              </Run.Text>
+            </Run>
           </TextBlock>
           <TextBlock Text="{Binding Unit, 
                          RelativeSource={RelativeSource AncestorType=UserControl}, 
