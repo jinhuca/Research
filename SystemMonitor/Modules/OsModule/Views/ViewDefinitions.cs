@@ -2,7 +2,7 @@
 
 public class ViewDefinitions {
   public const string ModuleName = "OS";
-  public const string CaptionTitle = "Caption";
+  public const string CaptionTitle = "Product";
   public const string BuildNumberTitle = "Build Number";
   public const string VersionTitle = "Version";
   public const string LanguageTitle = "Language";

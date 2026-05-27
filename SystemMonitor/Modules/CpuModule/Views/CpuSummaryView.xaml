@@ -25,204 +25,215 @@
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="*"/>
           <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
+          <!--<RowDefinition Height="Auto"/>-->
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}" Margin="0,0,20,0"
-                 Text="{x:Static local:ViewDefinitions.ModuleName}"/>
+        <Grid Grid.Row="0" ShowGridLines="False">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5cm"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0" Style="{StaticResource ModuleTitleTextStyle}"
+                     Text="{x:Static local:ViewDefinitions.ModuleName}"/>
+          <UniformGrid Grid.Column="1" Rows="2" Margin="0,0,0,0">
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.7cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.VendorNameTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.VendorNameViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.7cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.BrandNameTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.BrandNameViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.FamilyTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.FamilyIdViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.ModelTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.ModelIdViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.SteppingTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.SteppingIdViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                         Text="{x:Static local:ViewDefinitions.BaseSpeedTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.BaseSpeedViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                         Text="{x:Static local:ViewDefinitions.BusSpeedTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.BusSpeedViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.VirtualizationTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}" 
+                         Text="{Binding SummaryViewModel.VirtualizationViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                         Text="{x:Static local:ViewDefinitions.SocketNumTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.SocketNumViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                         Text="{x:Static local:ViewDefinitions.PhysicalCoreNumTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.PhysicalCoreNumViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.LogicalCoreNumTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.LogicalCoreNumViewModel}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                         Text="{x:Static local:ViewDefinitions.L1CacheSizeTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}" 
+                         Text="{Binding SummaryViewModel.CacheInfoViewModel.L1_Cache_size}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}"
+                         Text="{x:Static local:ViewDefinitions.L2CacheSizeTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
+                         Text="{Binding SummaryViewModel.CacheInfoViewModel.L2_Cache_size}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.L3CacheSizeTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}" 
+                         Text="{Binding SummaryViewModel.CacheInfoViewModel.L3_Cache_size}"/>
+            </Grid>
+            <Grid Width="6cm">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2cm"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.L1CacheLineSizeTitle}"/>
+              <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}" 
+                         Text="{Binding SummaryViewModel.CacheInfoViewModel.L1_Cache_Line_size}"/>
+            </Grid>
+          </UniformGrid>
+        </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" ShowGridLines="False">
+        <Grid Grid.Row="1" ShowGridLines="False" Background="Transparent" Margin="1cm">
           <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
           </Grid.RowDefinitions>
-          <Grid Grid.Row="0" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" 
-                     Margin="0,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.VendorNameTitle}"/>
-            <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.VendorNameViewModel}"/>
-
-            <TextBlock Grid.Column="2" Style="{StaticResource ModuleContentTitleStyle}" 
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.BrandNameTitle}"/>
-            <TextBlock Grid.Column="3" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.BrandNameViewModel}"/>
-
-            <TextBlock Grid.Column="4" Style="{StaticResource ModuleContentTitleStyle}" 
-                     Margin="30,0"
-                     Text="{x:Static local:ViewDefinitions.FamilyTitle}"/>
-            <TextBlock Grid.Column="5" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.FamilyIdViewModel}"/>
-
-            <TextBlock Grid.Column="6" Style="{StaticResource ModuleContentTitleStyle}" 
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.ModelTitle}"/>
-            <TextBlock Grid.Column="7" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.ModelIdViewModel}"/>
-
-            <TextBlock Grid.Column="8" Style="{StaticResource ModuleContentTitleStyle}" 
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.SteppingTitle}"/>
-            <TextBlock Grid.Column="9" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.SteppingIdViewModel}"/>
-
-            <TextBlock Grid.Column="10" Style="{StaticResource ModuleContentTitleStyle}"
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.BaseSpeedTitle}"/>
-            <TextBlock Grid.Column="11" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.BaseSpeedViewModel}"/>
-
-            <TextBlock Grid.Column="12" Style="{StaticResource ModuleContentTitleStyle}"
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.BusSpeedTitle}"/>
-            <TextBlock Grid.Column="13" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.BusSpeedViewModel}"/>
-
-            <TextBlock Grid.Column="14" Style="{StaticResource ModuleContentTitleStyle}"
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.SocketNumTitle}"/>
-            <TextBlock Grid.Column="15" Style="{StaticResource ModuleContentTextStyle}"
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.SocketNumViewModel}"/>
-
-            <TextBlock Grid.Column="16" Style="{StaticResource ModuleContentTitleStyle}" 
-                     Margin="10,0"
-                     Text="{x:Static local:ViewDefinitions.VirtualizationTitle}"/>
-            <TextBlock Grid.Column="17" Style="{StaticResource ModuleContentTextStyle}" 
-                     Margin="10,0"
-                     Text="{Binding SummaryViewModel.VirtualizationViewModel}"/>
-
-          </Grid>
-          <Grid Grid.Row="1" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Style="{StaticResource ModuleContentTitleStyle}" Margin="0,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.PhysicalCoreNumTitle}"/>
-            <TextBlock Grid.Column="1" Style="{StaticResource ModuleContentTextStyle}" Margin="0,0,10,0"
-                     Text="{Binding SummaryViewModel.PhysicalCoreNumViewModel}"/>
-            <TextBlock Grid.Column="2" Style="{StaticResource ModuleContentTitleStyle}" Margin="0,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.LogicalCoreNumTitle}"/>
-            <TextBlock Grid.Column="3" Style="{StaticResource ModuleContentTextStyle}" Margin="0,0,30,0"
-                     Text="{Binding SummaryViewModel.LogicalCoreNumViewModel}"/>
-            <TextBlock Grid.Column="6" Style="{StaticResource ModuleContentTitleStyle}" Margin="0,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.L1CacheSizeTitle}"/>
-            <TextBlock Grid.Column="7" Style="{StaticResource ModuleContentTextStyle}" Margin="0,0,10,0"
-                     Text="{Binding SummaryViewModel.CacheInfoViewModel.L1_Cache_size}"/>
-            <TextBlock Grid.Column="8" Style="{StaticResource ModuleContentTitleStyle}" Margin="0,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.L2CacheSizeTitle}"/>
-            <TextBlock Grid.Column="9" Style="{StaticResource ModuleContentTextStyle}" Margin="0,0,10,0"
-                     Text="{Binding SummaryViewModel.CacheInfoViewModel.L2_Cache_size}"/>
-            <TextBlock Grid.Column="10" Style="{StaticResource ModuleContentTitleStyle}" Margin="0,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.L3CacheSizeTitle}"/>
-            <TextBlock Grid.Column="11" Style="{StaticResource ModuleContentTextStyle}" Margin="0,0,10,0"
-                     Text="{Binding SummaryViewModel.CacheInfoViewModel.L3_Cache_size}"/>
-            <TextBlock Grid.Column="12" Style="{StaticResource ModuleContentTitleStyle}" Margin="20,0,10,0"
-                     Text="{x:Static local:ViewDefinitions.L1CacheLineSizeTitle}"/>
-            <TextBlock Grid.Column="13" Style="{StaticResource ModuleContentTextStyle}" Margin="0,0,10,0"
-                     Text="{Binding SummaryViewModel.CacheInfoViewModel.L1_Cache_Line_size}"/>
-          </Grid>
-        </Grid>
-
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,10" 
-            HorizontalAlignment="Stretch" VerticalAlignment="Top" ShowGridLines="False">
           <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
           </Grid.ColumnDefinitions>
-          <!-- Voltages -->
-          <Grid Grid.Column="0" ShowGridLines="False">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <!--<RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>-->
-              <!--<RowDefinition Height="Auto"/>-->
-            </Grid.RowDefinitions>
-            <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
-                     Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.VoltageTitle}"/>-->
-            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
-              <meter:MeterControl Label="{x:Static local:ViewDefinitions.VoltageTitle}" 
-                                Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel}"
-                                MinValue="0"
-                                MaxValue="2"
-                                Unit="Volts"
-                                Style="{StaticResource VoltageMeterStyle}"/>
+          <!-- Load -->
+          <Grid Grid.Row="0" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.1cm">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
+              <meter:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}" 
+                                  Value="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel}"
+                                  Style="{StaticResource LoadsMeterStyle}"/>
             </Viewbox>
-            <!--<ListView Grid.Row="3" Margin="0,0,0,0" Background="Transparent" BorderThickness="0"
-                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
-            <ListView.ItemTemplate>
-              <DataTemplate>
-                <ctrl:ValueBar Title="{Binding Name}"
-                               Value="{Binding Voltage.Value, TargetNullValue='0'}"
-                               Minimum="0"
-                               Maximum="2"
-                               Style="{StaticResource VoltageIndicatorStyle}"
-                               
-                               />
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>-->
+            <ploter:PlotterControl Grid.Column="1" 
+                                 Margin="0" 
+                                 
+                                 BorderThickness="0" 
+                                 HorizontalAlignment="Stretch" 
+                                 VerticalAlignment="Stretch" 
+                                 Width="Auto" 
+                                 Height="5cm"
+                                 
+                                 YMin="0" 
+                                 YMax="100" 
+                                 
+                                 TitleText="% Utilization"
+                                 ValueText="100%"
+                                   Style="{StaticResource LoadPlotterStyle}"
+                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
           </Grid>
-          <!-- Powers -->
-          <Grid Grid.Column="1" ShowGridLines="False">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <!--<RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>-->
-              <!--<RowDefinition Height="*"/>-->
-            </Grid.RowDefinitions>
-            <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
-                     Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.PowerTitle}"/>-->
-            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
+          <!-- Power -->
+          <Grid Grid.Row="0" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.1cm">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
               <meter:MeterControl Label="{x:Static local:ViewDefinitions.PowerTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
                                 MinValue="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMinViewModel}"
@@ -230,96 +241,107 @@
                                 Unit="Watts"
                                 Style="{StaticResource PowerMeterStyle}"/>
             </Viewbox>
-            <!--<Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
-            <Grid.RowDefinitions>
-              <RowDefinition/>
-              <RowDefinition/>
-              <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ctrl:ValueBar Grid.Row="0" Margin="0,5"
-                       Title="{x:Static local:ViewDefinitions.PlatFormPowerTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerMaxViewModel}"
-                       Style="{StaticResource PowerIndicatorStyle}"/>
-            <ctrl:ValueBar Grid.Row="0" VerticalAlignment="Center"
-                       Title="{x:Static local:ViewDefinitions.PackagePowerTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackagePowerMaxViewModel}"
-                       Style="{StaticResource PowerIndicatorStyle}"/>
-            <ctrl:ValueBar Grid.Row="1" VerticalAlignment="Center"
-                       Title="{x:Static local:ViewDefinitions.CoresPowerTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoresPowerMaxViewModel}"
-                       Style="{StaticResource PowerIndicatorStyle}"/>
-            <ctrl:ValueBar Grid.Row="2" VerticalAlignment="Center"
-                       Title="{x:Static local:ViewDefinitions.MemoryPowerTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.MemoryPowerMaxViewModel}"
-                       Style="{StaticResource PowerIndicatorStyle}"/>
-          </Grid>-->
-            <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
-                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
-            <ListView.ItemTemplate>
-              <DataTemplate>
-                <ctrl:ValueBar Title="{Binding Name}"
-                               Value="{Binding Power.Value}"
-                               Minimum="{Binding Power.Min}"
-                               Maximum="{Binding Power.Max}"
-                               Style="{StaticResource PowerIndicatorStyle}"
-                               TitleForeground="White"
-                               Margin="0,3,0,3"/>
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>-->
+            <ploter:PlotterControl Grid.Column="1" 
+                                 Margin="0" 
+                                 Background="Transparent"
+                                 BorderThickness="0" 
+                                 HorizontalAlignment="Stretch" 
+                                 VerticalAlignment="Stretch" 
+                                 Width="Auto" 
+                                 Height="5cm"
+                                 
+                                 YMin="0" 
+                                 YMax="100" 
+                                 
+                                 TitleText="Power"
+                                 ValueText="100W"
+                                   Style="{StaticResource PowerPlotterStyle}"
+                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel, TargetNullValue=0}"/>
           </Grid>
-          <!-- Temperatures -->
-          <Grid Grid.Column="2" ShowGridLines="False">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <!--<RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>-->
-              <!--<RowDefinition Height="*"/>-->
-            </Grid.RowDefinitions>
-            <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
-                     Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.TemperatureTitle}"/>-->
-            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
+          <!-- Voltage -->
+          <Grid Grid.Row="1" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.1cm">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
+              <meter:MeterControl Label="{x:Static local:ViewDefinitions.VoltageTitle}" 
+                                Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel}"
+                                MinValue="0"
+                                MaxValue="3"
+                                Unit="Volts"
+                                Style="{StaticResource VoltageMeterStyle}"/>
+            </Viewbox>
+            <ploter:PlotterControl Grid.Column="1" 
+                                 Margin="0" 
+                                 Background="Transparent"
+                                 BorderThickness="0" 
+                                 HorizontalAlignment="Stretch" 
+                                 VerticalAlignment="Stretch" 
+                                 Width="Auto" 
+                                 Height="5cm"
+                                 YMin="0" 
+                                 YMax="3" 
+                                 TitleText="Voltage"
+                                 ValueText="3V"
+                                   Style="{StaticResource VoltagePlotterStyle}"
+                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel, TargetNullValue=0}"/>
+          </Grid>
+          <!-- Temperature -->
+          <Grid Grid.Row="1" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.1cm">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
               <meter:MeterControl Label="{x:Static local:ViewDefinitions.TemperatureTitle}" 
                                 Value="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel}"
                                 Unit="Celsius"
                                 Style="{StaticResource TemperatureMeterStyle}"/>
             </Viewbox>
-            <!--<Grid Grid.Row="2" VerticalAlignment="Stretch" ShowGridLines="True">
-            <Grid.RowDefinitions>
-              <RowDefinition/>
-              <RowDefinition/>
-              <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ctrl:ValueBar Grid.Row="0" Margin="0" VerticalAlignment="Center"
-                       Title="{x:Static local:ViewDefinitions.PackageTemperatureTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.PackageTemperatureMaxViewModel}"
-                       Style="{StaticResource TemperatureIndicatorStyle}"/>
-            <ctrl:ValueBar Grid.Row="1" VerticalAlignment="Center" Margin="0" 
-                       Title="{x:Static local:ViewDefinitions.CoreAvgTemperatureTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreAvgTemperatureMaxViewModel}"
-                       Style="{StaticResource TemperatureIndicatorStyle}"/>
-
-            <ctrl:ValueBar Grid.Row="2" VerticalAlignment="Center" Margin="0"
-                       Title="{x:Static local:ViewDefinitions.CoreMaxTemperatureTitle}"
-                       Value="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureValueViewModel}"
-                       Minimum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMinViewModel}"
-                       Maximum="{Binding LiveViewModel.CpuOverallLiveViewModel.CoreMaxTemperatureMaxViewModel}"
-                       Style="{StaticResource TemperatureIndicatorStyle}"/>
-          </Grid>-->
-            <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
+            <ploter:PlotterControl Grid.Column="1" 
+                                   Background="Transparent" 
+                                   BorderThickness="0" 
+                                   HorizontalAlignment="Stretch" 
+                                   VerticalAlignment="Stretch" 
+                                   Width="Auto" 
+                                   Height="Auto"
+                                   TitleText="Temperature"
+                                   ValueText="120°C"
+                                   YMin="0" 
+                                   YMax="120" 
+                                   Style="{StaticResource TemperaturePlotterStyle}"
+                                   DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel, TargetNullValue=0}"/>
+          </Grid>
+          <!-- Clocks -->
+          <Grid Grid.Row="2" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.1cm">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="5cm"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Style="{StaticResource MeterViewBoxStyle}">
+              <meter:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
+                               Value="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel}"
+                               Style="{StaticResource ClockMeterStyle}"/>
+            </Viewbox>
+            <ploter:PlotterControl Grid.Column="1" 
+                                 Margin="0" 
+                                 Background="Transparent"
+                                 BorderThickness="0" 
+                                 HorizontalAlignment="Stretch" 
+                                 VerticalAlignment="Stretch" 
+                                 Width="Auto" 
+                                 Height="5cm"
+                                 
+                                 YMin="0" 
+                                 YMax="6" 
+                                 
+                                 TitleText="Clock"
+                                 ValueText="6 GHz"
+                                   Style="{StaticResource ClockPlotterStyle}"
+                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel, TargetNullValue=0}"/>
+          </Grid>
+          <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
             <ListView.ItemTemplate>
               <DataTemplate>
@@ -332,111 +354,46 @@
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>-->
-          </Grid>
-          <!-- Clocks -->
-          <Grid Grid.Column="3" ShowGridLines="False">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <!--<RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>-->
-              <!--<RowDefinition Height="Auto"/>-->
-            </Grid.RowDefinitions>
-            <!--<TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
-                     Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.ClockTitle}"/>-->
-            <Viewbox Grid.Row="0" Style="{StaticResource MeterViewBoxStyle}" Width="8.00cm">
-              <meter:MeterControl Label="{x:Static local:ViewDefinitions.SpeedTitle}" 
-                               Value="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel}"
-                               Style="{StaticResource ClockMeterStyle}"/>
-            </Viewbox>
-            <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
-                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
-            <ListView.ItemTemplate>
-              <DataTemplate>
-                <ctrl:ValueBar Title="{Binding Name}"
-                               Value="{Binding Speed.Value, Converter={StaticResource MHzToGHzConverter}}"
-                               Minimum="{Binding Speed.Min, Converter={StaticResource MHzToGHzConverter}}"
-                               Maximum="{Binding Speed.Max, Converter={StaticResource MHzToGHzConverter}}"
-                               Style="{StaticResource ClocksIndicatorStyle}"/>
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>-->
+          <!-- Processes -->
+          <Grid Grid.Row="2" Grid.Column="1" Margin=".1cm" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="5.00cm"/>
+              <ColumnDefinition Width="5.00cm"/>
+              <ColumnDefinition Width="5.00cm"/>
+              <ColumnDefinition Width="6.00cm"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+              <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}" 
+                         Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
+              <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
+                         Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ProcessNum}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+              <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
+       Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
+              <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
+       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ThreadNum}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+              <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
+       Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
+              <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
+       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.HandleNum}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
+              <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
+       Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
+              <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
+       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
+            </StackPanel>
 
           </Grid>
-          <!-- Loads -->
-          <!--<Grid Grid.Column="4" ShowGridLines="True">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="Auto"/>
-          </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"
-                     Style="{StaticResource ModuleSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.LoadsTitle}"/>
-          <Viewbox Grid.Row="1" Style="{StaticResource MeterViewBoxStyle}" Width="120">
-            <meter:MeterControl Label="{x:Static local:ViewDefinitions.UtilizationTitle}" 
-                                Value="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel}"
-                                Style="{StaticResource LoadsMeterStyle}"/>
-          </Viewbox>
-          <ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
-                    ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
-            <ListView.ItemTemplate>
-              <DataTemplate>
-                <ctrl:ValueBar Title="{Binding Name}"
-                               Value="{Binding Load.Value}"
-                               Minimum="{Binding Load.Min}"
-                               Maximum="{Binding Load.Max}"
-                               Style="{StaticResource LoadsIndicatorStyle}"/>
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>
-        </Grid>-->
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,10" 
-            MinHeight="30" Height="7cm">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-          </Grid.ColumnDefinitions>
-          <ploter:PlotterControl Grid.Column="0" 
-                                 Margin="20" 
-                                 Background="Transparent"
-                                 BorderThickness="0" 
-                                 HorizontalAlignment="Stretch" 
-                                 VerticalAlignment="Stretch" 
-                                 Width="Auto" 
-                                 Height="Auto"
-                                 PlotStroke="AliceBlue" 
-                                 YMin="0" 
-                                 YMax="100" 
-                                 RangeAreaBrush="LightSeaGreen"
-                                 TitleText="% Utilization"
-                                 ValueText="100%"
-                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
-          <ploter:PlotterControl Grid.Column="1" 
-                                 Margin="20" 
-                                 Background="Transparent"
-                                 BorderThickness="0" 
-                                 HorizontalAlignment="Stretch" 
-                                 VerticalAlignment="Stretch" 
-                                 Width="Auto" 
-                                 Height="Auto"
-                                 PlotStroke="Coral" 
-                                 RangeAreaBrush="Gray"
-                                 TitleText="Temperature"
-                                 ValueText="120°C"
-                                 YMin="0" 
-                                 YMax="120" 
-                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel, TargetNullValue=0}"/>
-        </Grid>
-
-        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0">
-          <!--<Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>-->
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm">
           <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -467,7 +424,7 @@
                       <Setter Property="Foreground" Value="Gray"/>
                       <Style.Triggers>
                         <DataTrigger Binding="{Binding Value}" Value="True">
-                          <Setter Property="Foreground" Value="{StaticResource ValueBrush}"/>
+                          <Setter Property="Foreground" Value="{StaticResource StaticValueTextBrush}"/>
                         </DataTrigger>
                       </Style.Triggers>
                     </Style>
@@ -477,44 +434,6 @@
             </ItemsControl.ItemTemplate>
           </ItemsControl>
         </Grid>
-
-        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0.5cm" Width="Auto" 
-            VerticalAlignment="Stretch" HorizontalAlignment="Right" ShowGridLines="False">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4.00cm"/>
-            <ColumnDefinition Width="4.00cm"/>
-            <ColumnDefinition Width="4.00cm"/>
-            <ColumnDefinition Width="6.00cm"/>
-          </Grid.ColumnDefinitions>
-          <StackPanel Grid.Column="0" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-            <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-               Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
-            <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-               Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ProcessNum}"/>
-          </StackPanel>
-
-          <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-            <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-               Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
-            <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-               Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ThreadNum}"/>
-          </StackPanel>
-
-          <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-            <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-               Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
-            <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-               Text="{Binding LiveViewModel.CpuOverallLiveViewModel.HandleNum}"/>
-          </StackPanel>
-
-          <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
-            <TextBlock Style="{StaticResource ModuleContentTitleStyle}"
-               Text="{x:Static local:ViewDefinitions.UpTimeTitle}"/>
-            <TextBlock Style="{StaticResource ModuleContentValueStyle}"
-               Text="{Binding LiveViewModel.CpuOverallLiveViewModel.UpTime, StringFormat='{}{0:dd\\.hh\\:mm\\:ss}'}"/>
-          </StackPanel>
-        </Grid>
-
       </Grid>
     </Border>
   </Grid>

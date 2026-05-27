@@ -22,7 +22,7 @@
     <Setter Property="FontSize" Value="0.35cm"/>
     <Setter Property="FontStyle" Value="Normal"/>
     <Setter Property="FontWeight" Value="ExtraLight"/>
-    <Setter Property="Foreground" Value="{StaticResource ValueBrush}"/>
+    <Setter Property="Foreground" Value="{StaticResource StaticValueTextBrush}"/>
     <Setter Property="VerticalAlignment" Value="Top"/>
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="10,0,0,0"/>
@@ -35,9 +35,26 @@
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="1,0,0,0"/>
   </Style>
+
+  <Style TargetType="TextBlock" x:Key="ProcessThreadHandleTitleStyle">
+    <Setter Property="FontSize" Value="0.6cm"/>
+    <Setter Property="Foreground" Value="#FF878A9F"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="Margin" Value="1,0,0,0"/>
+  </Style>
+
+  <Style TargetType="TextBlock" x:Key="ProcessThreadHandleValueStyle">
+    <Setter Property="FontSize" Value="1cm"/>
+    <Setter Property="Foreground" Value="{StaticResource RealTimeValueTextBrush}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="Margin" Value="1,0,0,0"/>
+  </Style>
+  
   <Style TargetType="TextBlock" x:Key="ModuleContentTextStyle">
     <Setter Property="FontSize" Value="0.4cm"/>
-    <Setter Property="Foreground" Value="{StaticResource ValueBrush}"/>
+    <Setter Property="Foreground" Value="{StaticResource StaticValueTextBrush}"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
     <Setter Property="HorizontalAlignment" Value="Left"/>
     <Setter Property="Margin" Value="1,0,0,0"/>

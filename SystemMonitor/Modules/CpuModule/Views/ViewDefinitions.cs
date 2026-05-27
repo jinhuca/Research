@@ -19,7 +19,7 @@ internal static class ViewDefinitions {
   public const string L1CacheLineSizeTitle = "Line Size:";
   public const string L2CacheLineSizeTitle = "Line Size:";
   public const string L3CacheLineSizeTitle = "Line Size:";
-  public const string UtilizationTitle = "Utilization";
+  public const string UtilizationTitle = "Load";
   public const string SpeedTitle = "Speed";
   
   public const string ProcessesTitle = "Processes";
@@ -34,9 +34,9 @@ internal static class ViewDefinitions {
   public const string CoreTemperatureTitle = "Core Temperature";
 
 
-  public const string VoltageTitle = "Voltage (V)";
+  public const string VoltageTitle = "Voltage";
 
-  public const string PowerTitle = "Power (W)";
+  public const string PowerTitle = "Power";
   public const string PlatFormPowerTitle = "Platform";
   public const string PackagePowerTitle = "Package";
   public const string CoresPowerTitle = "Cores";
@@ -44,7 +44,7 @@ internal static class ViewDefinitions {
 
   public const string ClockTitle = "Clocks (GHz)";
 
-  public const string TemperatureTitle = "Temperature (\u00B0\u0043)";
+  public const string TemperatureTitle = "Temperature";
   public const string PackageTemperatureTitle = "Package";
   public const string CoreAvgTemperatureTitle = "Core Avg";
   public const string CoreMaxTemperatureTitle = "Core Max";

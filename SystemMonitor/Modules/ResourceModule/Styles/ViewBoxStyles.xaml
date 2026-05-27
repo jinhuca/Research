@@ -4,7 +4,7 @@
     <Setter Property="Stretch" Value="Uniform"/>
     <Setter Property="HorizontalAlignment" Value="Center"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="Margin" Value="0.4cm"/>
+    <Setter Property="Margin" Value="0,0,0.8cm,0"/>
     <Setter Property="Width" Value="4.00cm"/>
     <Setter Property="Height" Value="4.00cm"/>
   </Style>
