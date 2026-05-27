@@ -53,11 +53,10 @@
       <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"
                 Background="Transparent">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-          <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0"
-                   FontSize="60" FontWeight="Light">
+          <TextBlock Foreground="{StaticResource RealTimeValueTextBrush}" HorizontalAlignment="Center" 
+                     VerticalAlignment="Top" Margin="0,0,0,0" FontSize="60" FontWeight="Light">
             <TextBlock.Text>
-
-              <MultiBinding Converter="{StaticResource valuesToDisplayConverter}">
+              <MultiBinding Converter="{StaticResource valuesToDisplayConverter}" StringFormat="{}{0:0.00}">
                 <Binding Path="Value" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
                 <Binding Path="MinValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
                 <Binding Path="MaxValue" RelativeSource="{RelativeSource AncestorType=UserControl}"/>

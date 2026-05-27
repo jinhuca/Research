@@ -4,9 +4,9 @@
   <SolidColorBrush x:Key="ModuleContentTextBrush" Color="#FFFFFF"/>
 
   <SolidColorBrush x:Key="StaticValueTextBrush" Color="LightGreen"/>
-  <SolidColorBrush x:Key="RealTimeValueTextBrush" Color="#FFFE5611"/>
+  <SolidColorBrush x:Key="RealTimeValueTextBrush" Color="NavajoWhite"/>
   
-  <SolidColorBrush x:Key="SmallValueBrush" Color="Red"/>
+  <SolidColorBrush x:Key="SmallValueBrush" Color="WhiteSmoke"/>
   
   
   <SolidColorBrush x:Key="MeterGaugeColor" Color="#FF878A9F"/>

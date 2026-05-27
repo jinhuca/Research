@@ -25,9 +25,7 @@
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="*"/>
           <RowDefinition Height="Auto"/>
-          <!--<RowDefinition Height="Auto"/>-->
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0" ShowGridLines="False">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.5cm"/>
@@ -366,21 +364,21 @@
               <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}" 
                          Text="{x:Static local:ViewDefinitions.ProcessesTitle}"/>
               <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
-                         Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ProcessNum}"/>
+                         Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ProcessNum, StringFormat={}{0:N0}}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
               <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
        Text="{x:Static local:ViewDefinitions.ThreadsTitle}"/>
               <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
-       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ThreadNum}"/>
+       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.ThreadNum, StringFormat={}{0:N0}}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">
               <TextBlock Style="{StaticResource ProcessThreadHandleTitleStyle}"
        Text="{x:Static local:ViewDefinitions.HandlesTitle}"/>
               <TextBlock Style="{StaticResource ProcessThreadHandleValueStyle}"
-       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.HandleNum}"/>
+       Text="{Binding LiveViewModel.CpuOverallLiveViewModel.HandleNum, StringFormat={}{0:N0}}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="3" Style="{StaticResource TightVerticalKeyValueStackPanelStyle}">

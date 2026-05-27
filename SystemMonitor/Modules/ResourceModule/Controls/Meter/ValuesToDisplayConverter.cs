@@ -42,16 +42,16 @@ public class ValuesToDisplayConverter : IMultiValueConverter {
     switch (unit_) {
       case Unit.Percent:
         calculatedValue_ = (valuePassed_ - minValuePassed_) / (maxValuePassed_ - minValuePassed_) * 100;
-        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
+        return Math.Round(calculatedValue_, 2).ToString("0.00");
       case Unit.Absolute:
         calculatedValue_ = valuePassed_ - minValuePassed_;
-        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
+        return Math.Round(calculatedValue_, 2).ToString("0.00");
       case Unit.Watts:
         calculatedValue_ = valuePassed_;
-        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
+        return Math.Round(calculatedValue_, 2).ToString("0.00");
       default:
         calculatedValue_ = valuePassed_;
-        return Math.Round(calculatedValue_, 2).ToString(CultureInfo.InvariantCulture);
+        return Math.Round(calculatedValue_, 2).ToString("0.00");
     }
   }
 
