@@ -3,7 +3,7 @@
   <Style TargetType="StackPanel" x:Key="VerticalKeyValueStackPanelStyle">
     <Setter Property="Orientation" Value="Vertical"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="Margin" Value="0,0,0.3cm,0"/>
+    <Setter Property="Margin" Value="0,0,0.8cm,0"/>
   </Style>
   <Style TargetType="StackPanel" x:Key="TightVerticalKeyValueStackPanelStyle">
     <Setter Property="Orientation" Value="Vertical"/>

@@ -5,43 +5,102 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:MainApp"
+        xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
         xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
         mc:Ignorable="d" 
-        WindowState="Maximized"
+        WindowStyle="None"
+        WindowState="Normal"
         Background="#333333"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
-  <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="hidden"
-                ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True">
-    <Grid ShowGridLines="False">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="1.60cm"/>
-        <RowDefinition Height="Auto"/>
-        <!--<RowDefinition Height="Auto"/>
+  <Window.Resources>
+  </Window.Resources>
+  
+  <!-- Maintain Native Windows Behaviors -->
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="32" 
+                  ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" 
+                  GlassFrameThickness="0" 
+                  CornerRadius="0"/>
+  </WindowChrome.WindowChrome>
+
+  <Border BorderBrush="Transparent" BorderThickness="2" CornerRadius="5" Margin="3" Background="Transparent">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="32"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+      <!-- Custom Title Bar Panel -->
+      <Grid Grid.Row="0" Background="#181818">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Window Title Text -->
+        <TextBlock Grid.Column="0" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" 
+                   Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+
+        <!-- Window Caption Buttons Wrapper -->
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+          <!-- Minimize Button using Segoe MDL2 Assets Glyph -->
+          <Button Style="{StaticResource TitleBarButtonStyle}" Click="MinimizeButton_Click" ToolTip="Minimize">
+            <TextBlock Text="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0,15,0,0"/>
+          </Button>
+
+          <!-- Maximize / Restore Toggle Button -->
+          <Button x:Name="BtnMaximize" Style="{StaticResource TitleBarButtonStyle}" Click="MaximizeButton_Click" ToolTip="Maximize">
+            <TextBlock x:Name="TxtMaximize" Text="&#xE922;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+          </Button>
+
+          <!-- Close Button with Custom Red Hover State -->
+          <Button Click="CloseButton_Click" ToolTip="Close">
+            <Button.Style>
+              <Style TargetType="Button" BasedOn="{StaticResource TitleBarButtonStyle}">
+                <Style.Triggers>
+                  <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E81123"/>
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </Button.Style>
+            <TextBlock Text="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+          </Button>
+        </StackPanel>
+      </Grid>
+      <Grid Grid.Row="1" ShowGridLines="False">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="1.60cm"/>
+            <RowDefinition Height="Auto"/>
+            <!--<RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>-->
-        <!--<RowDefinition Height="2.80cm"/>-->
-      </Grid.RowDefinitions>
-      <!--<Grid.ColumnDefinitions>
+            <!--<RowDefinition Height="2.80cm"/>-->
+          </Grid.RowDefinitions>
+          <!--<Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>-->
-      <ContentControl x:Name="OsRegion" Grid.Row="0"
+          <ContentControl x:Name="OsRegion" Grid.Row="0"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
-      <!--<ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" 
+          <!--<ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" 
                       prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>-->
-      <ContentControl x:Name="CpuRegion" Grid.Row="1" 
+          <ContentControl x:Name="CpuRegion" Grid.Row="1" 
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
-      <!--<ContentControl x:Name="GpuRegion" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+          <!--<ContentControl x:Name="GpuRegion" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuSummaryRegionName}"/>-->
-      <!--<ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
+          <!--<ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>
       <ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
       <ContentControl x:Name="BiosRegion" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>-->
-      <!--<ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
+          <!--<ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>-->
-    </Grid>
-  </ScrollViewer>
+        </Grid>
+      </Grid>
+    </Border>
+  
 </Window>

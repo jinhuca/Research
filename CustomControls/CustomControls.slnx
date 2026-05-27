@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="CustomControls/CustomControls.csproj" />
+  <Project Path="CustomizeTitleBar/CustomizeTitleBar.csproj" Id="ac694618-a450-47f7-94a6-638cd7666f75" />
 </Solution>

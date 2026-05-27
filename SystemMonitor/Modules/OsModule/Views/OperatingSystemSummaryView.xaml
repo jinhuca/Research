@@ -31,9 +31,9 @@
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+      <!--<TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
                  Style="{StaticResource ModuleTitleTextStyle}" VerticalAlignment="Center"
-                 Text="{x:Static localView:ViewDefinitions.ModuleName}"/>
+                 Text="{x:Static localView:ViewDefinitions.ModuleName}"/>-->
 
       <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" 
                   Style="{StaticResource VerticalKeyValueStackPanelStyle}">

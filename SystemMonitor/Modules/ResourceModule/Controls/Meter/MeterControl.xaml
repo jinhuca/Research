@@ -14,14 +14,16 @@
   </UserControl.Resources>
   <Grid ShowGridLines="False">
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="60"/>
       <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
-    <TextBlock Grid.Row="0"
-      Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat=N2}" 
-               Margin="0,0,0,0"
-                 Foreground="{StaticResource ModuleContentTextBrush}" HorizontalAlignment="Center" 
-                 FontSize="34"/>
+    <TextBlock Grid.Row="0" 
+               Margin="0,0,0,20"
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Top"
+               Foreground="{StaticResource ModuleContentTextBrush}" 
+               FontSize="34"
+               Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat=N2}" />
     <Grid Grid.Row="1" Background="{Binding CtrlBackground, RelativeSource={RelativeSource AncestorType=UserControl}}"
           VerticalAlignment="Bottom">
       <Grid Margin="0,0,0,0">
@@ -50,7 +52,6 @@
       </Grid>
       <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"
                 Background="Transparent">
-
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
           <TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0"
                    FontSize="60" FontWeight="Light">
@@ -67,7 +68,7 @@
           <TextBlock Text="{Binding Unit, 
                          RelativeSource={RelativeSource AncestorType=UserControl}, 
                          Converter={StaticResource unitToDisplayConverter}}" 
-                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-12,0,0"
+                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
                    FontSize="24" FontWeight="ExtraLight"/>
         </StackPanel>
       </StackPanel>

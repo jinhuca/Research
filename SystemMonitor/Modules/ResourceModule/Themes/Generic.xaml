@@ -2,10 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/ResourceModule;component/Styles/SMBrushes.xaml"/>
+    <ResourceDictionary Source="/ResourceModule;component/Styles/ButtonStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Styles/BorderStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Styles/TextBlockStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Styles/StackPanelStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Styles/ViewBoxStyles.xaml"/>
+    
     <ResourceDictionary Source="/ResourceModule;component/Controls/Meter/MeterCtrlStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Controls/ValueBar/ValueBarStyles.xaml"/>
     <ResourceDictionary Source="/ResourceModule;component/Controls/Plotter/PlotterStyles.xaml"/>

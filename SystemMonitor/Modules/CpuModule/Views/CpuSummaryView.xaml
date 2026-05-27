@@ -19,7 +19,7 @@
   </UserControl.Resources>
   <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <Border Style="{StaticResource ModuleBorderStyle}" Width="Auto" Height="Auto">
-      <Grid Margin="0.5cm" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+      <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
@@ -398,8 +398,8 @@
             <RowDefinition/>
             <RowDefinition/>
           </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0" Text="Instruction Set Features: " Style="{StaticResource ModuleContentTitleStyle}"
-             VerticalAlignment="Top" Foreground="Yellow"/>
+          <TextBlock Grid.Row="0" Text="Instruction Set Features Available: " Style="{StaticResource ModuleContentTitleStyle}"
+             VerticalAlignment="Top" Margin="10,0,0,0" Foreground="LightYellow" FontSize="0.5cm"/>
           <ItemsControl Grid.Row="1" ItemsSource="{Binding SummaryViewModel.CpuInstructionsViewModel}"
                 Margin="20,5" Background="Transparent">
             <ItemsControl.ItemsPanel>
