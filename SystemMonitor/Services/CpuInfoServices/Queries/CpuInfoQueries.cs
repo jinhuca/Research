@@ -8,6 +8,7 @@ using System.Management;
 using System.Text.RegularExpressions;
 using System.Linq;
 using static DataStructures.Cpu.Definitions.QueryDefinitions;
+using Serilog;
 
 namespace CpuInfoServices.Queries;
 
@@ -28,13 +29,13 @@ public class CpuInfoQueries {
     computer_.Open();
     try {
       var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
-      if(cpu_ == null) {
+      if (cpu_ == null) {
         return new CpuSummaryInfo();
       }
 
       result_.BrandName = cpu_.Name;
-      foreach(ISensor sensor_ in cpu_.Sensors) {
-        if(sensor_.SensorType == SensorType.Clock && sensor_.Name.Contains("Bus Speed")) {
+      foreach (ISensor sensor_ in cpu_.Sensors) {
+        if (sensor_.SensorType == SensorType.Clock && sensor_.Name.Contains("Bus Speed")) {
           result_.BusSpeed = sensor_.Value;
         }
       }
@@ -50,16 +51,16 @@ public class CpuInfoQueries {
 
       (result_.FamilyId, result_.ModelId, result_.SteppingId) = QueryCpuId.GetCpuFamily();
     }
-    catch(DllNotFoundException ex) {
+    catch (DllNotFoundException ex) {
       Debug.WriteLine(ex.Message);
     }
-    catch(UnauthorizedAccessException ex) {
+    catch (UnauthorizedAccessException ex) {
       Debug.WriteLine(ex.Message);
     }
-    catch(ManagementException ex) {
+    catch (ManagementException ex) {
       Debug.WriteLine(ex.Message);
     }
-    catch(Exception e) {
+    catch (Exception e) {
       Debug.WriteLine(e.Message);
     }
     finally { computer_.Close(); }
@@ -68,14 +69,12 @@ public class CpuInfoQueries {
 
   private static List<ISensor> FetchSensorValues() {
     List<ISensor> sensors_ = new List<ISensor>();
-    lock(_queryCpuLiveInfoLock) {
+    lock (_queryCpuLiveInfoLock) {
       Computer computer_ = new Computer { IsCpuEnabled = true };
       computer_.Open();
-      try
-      {
+      try {
         var cpu_ = computer_.Hardware.FirstOrDefault(hardware => hardware.HardwareType == HardwareType.Cpu);
-        if (cpu_ == null)
-        {
+        if (cpu_ == null) {
           sensors_.Clear();
           return sensors_;
         }
@@ -83,33 +82,27 @@ public class CpuInfoQueries {
         cpu_.Update();
         sensors_ = cpu_.Sensors.ToList();
       }
-      catch (NullReferenceException nre)
-      {
+      catch (NullReferenceException nre) {
         Debug.WriteLine(nre.ToString());
         sensors_.Clear();
       }
-      catch (DllNotFoundException nfe)
-      {
+      catch (DllNotFoundException nfe) {
         Debug.WriteLine(nfe.ToString());
         sensors_.Clear();
       }
-      catch (UnauthorizedAccessException uae)
-      {
+      catch (UnauthorizedAccessException uae) {
         Debug.WriteLine(uae.ToString());
         sensors_.Clear();
       }
-      catch (ManagementException mex)
-      {
+      catch (ManagementException mex) {
         Debug.WriteLine(mex.ToString());
         sensors_.Clear();
       }
-      catch (Exception ex)
-      {
+      catch (Exception ex) {
         Debug.WriteLine(ex.ToString());
         sensors_.Clear();
       }
-      finally
-      {
+      finally {
         computer_.Close();
       }
     }
@@ -118,7 +111,7 @@ public class CpuInfoQueries {
 
   private static ICpuOverallLiveInfo QueryOverallInfo(List<ISensor> sensors) {
     ICpuOverallLiveInfo result_ = new CpuOverallLiveInfo();
-    if(sensors == null || sensors.Count < 1) return result_;
+    if (sensors == null || sensors.Count < 1) return result_;
 
     ISensor? busSpeed_ = sensors.FirstOrDefault(s => s.Name == CpuBusSpeed && s.SensorType == SensorType.Clock);
     result_.BusSpeed = new SensorDataType { Value = busSpeed_?.Value, Min = busSpeed_?.Min, Max = busSpeed_?.Max };
@@ -191,13 +184,19 @@ public class CpuInfoQueries {
   }
 
   private static IOSLiveInfo QueryOSLiveInfo() {
-    var result = new OSLiveInfo {
-      ProcessNum = Process.GetProcesses().Length,
-      ThreadsNum = Process.GetProcesses().Sum(proc => proc.Threads.Count),
-      HandlesNum = Process.GetProcesses().Sum(proc => proc.HandleCount),
-      UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64)
-    };
-
+    OSLiveInfo result;
+    try {
+      result = new OSLiveInfo {
+        ProcessNum = Process.GetProcesses().Length,
+        ThreadsNum = Process.GetProcesses().Sum(proc => proc.Threads.Count),
+        HandlesNum = Process.GetProcesses().Sum(proc => proc.HandleCount),
+        UpTime = TimeSpan.FromMilliseconds(Environment.TickCount64)
+      };
+    }
+    catch (Exception ex) {
+      Log.Logger.Error("Failed to query OS live info: {Message}", ex.Message);
+      result = new OSLiveInfo();
+    }
     return result;
   }
 

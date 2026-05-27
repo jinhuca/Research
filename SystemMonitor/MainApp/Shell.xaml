@@ -7,9 +7,9 @@
         xmlns:local="clr-namespace:MainApp"
         xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
         xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
+        Icon="pack://application:,,,/sm1.ico"
         mc:Ignorable="d" 
-        WindowStyle="None"
-        WindowState="Normal"
+        WindowState="Maximized"
         Background="#333333"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
   <Window.Resources>

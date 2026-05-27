@@ -8,7 +8,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <BaseOutputPath>$(SolutionDir)\Build</BaseOutputPath>
+    <StartupObject>MainApp.App</StartupObject>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="sm1.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Prism.Core" Version="9.0.537" />
@@ -27,6 +33,10 @@
     <ProjectReference Include="..\Modules\ResourceModule\ResourceModule.csproj" />
     <ProjectReference Include="..\Modules\StorageModule\StorageModule.csproj" />
     <ProjectReference Include="..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="sm1.ico" />
   </ItemGroup>
 
 </Project>
