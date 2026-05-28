@@ -10,8 +10,10 @@
         xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
         Icon="pack://application:,,,/sm1.ico"
         mc:Ignorable="d" 
+        WindowStyle="None"
+        AllowsTransparency="True"
         WindowState="Maximized"
-        Background="#333333"
+        Background="Transparent"
         Title="{x:Static shared:TextDefinitions.AppTitle}">
   <Window.Resources>
     <converters:WindowStateConverter x:Key="WindowStateConverter"/>
@@ -22,17 +24,21 @@
     <WindowChrome CaptionHeight="32" 
                   ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" 
                   GlassFrameThickness="0" 
-                  CornerRadius="0"/>
+                  CornerRadius="5"/>
   </WindowChrome.WindowChrome>
 
-  <Border BorderBrush="Transparent" BorderThickness="2" CornerRadius="5" Margin="3" Background="{StaticResource ShellBackgroundSolidBrush}">
-      <Grid>
+  <Border BorderBrush="#FF0088FF" BorderThickness="2" CornerRadius="10" Margin="1" Background="Black">
+    <Border.Effect>
+      <DropShadowEffect Color="#FF00AAFF" BlurRadius="1" ShadowDepth="2" Direction="0" Opacity="1"/>
+    </Border.Effect>
+    <Grid Margin="0,5,0,5">
         <Grid.RowDefinitions>
           <RowDefinition Height="32"/>
           <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
       <!-- Custom Title Bar Panel -->
-      <Grid Grid.Row="0" Background="{StaticResource TitleBarBackgroundSolidBrush}">
+      <Border Grid.Row="0" Background="#FF112255" CornerRadius="10,10,0,0" Margin="0,-5,0,0">
+      <Grid Grid.Row="0" >
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
           <ColumnDefinition Width="Auto"/>
@@ -69,6 +75,7 @@
           </Button>
         </StackPanel>
       </Grid>
+      </Border>
       <Grid Grid.Row="1" ShowGridLines="False">
           <Grid.RowDefinitions>
             <RowDefinition Height="1.60cm"/>
