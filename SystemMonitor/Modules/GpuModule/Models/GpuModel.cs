@@ -1,4 +1,4 @@
-﻿using LibreHardwareMonitor.Hardware;
+﻿using CrystalMonitor.Hardware;
 using SystemManagementProvider.Constants;
 using SystemManagementProvider.Interfaces;
 using System.Threading;

@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Hardware\LibreHardwareMonitorLib\LibreHardwareMonitorLib.csproj" />
+    <ProjectReference Include="..\..\Hardware\CrystalMonitorLib\CrystalMonitorLib.csproj" />
     <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
     <ProjectReference Include="..\..\Shared\DataStructures\DataStructures.csproj" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using LibreHardwareMonitor.Hardware;
+﻿using CrystalMonitor.Hardware;
 
 namespace CpuInfoServices.Queries;
 

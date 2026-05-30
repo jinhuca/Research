@@ -4,7 +4,7 @@ using CpuModule.ViewModels.Definitions;
 using CpuModule.ViewModels.Interfaces;
 using DataStructures.Cpu.Implementations;
 using DataStructures.Cpu.Interfaces;
-using LibreHardwareMonitor.Hardware.Motherboard;
+using CrystalMonitor.Hardware.Motherboard;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;

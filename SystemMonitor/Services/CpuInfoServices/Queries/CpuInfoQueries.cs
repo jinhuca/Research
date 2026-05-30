@@ -2,7 +2,7 @@
 using DataStructures.Cpu.Implementations;
 using DataStructures.Cpu.Interfaces;
 using DataStructures.TypeDefinitions;
-using LibreHardwareMonitor.Hardware;
+using CrystalMonitor.Hardware;
 using System.Diagnostics;
 using System.Management;
 using System.Text.RegularExpressions;

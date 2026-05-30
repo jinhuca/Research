@@ -6,7 +6,7 @@
   </Configurations>
   <Folder Name="/Build/" />
   <Folder Name="/Hardware/">
-    <Project Path="Hardware/LibreHardwareMonitorLib/LibreHardwareMonitorLib.csproj">
+    <Project Path="Hardware/CrystalMonitorLib/CrystalMonitorLib.csproj" Id="0f4dd357-f37f-f9b8-a13e-7b2bfe732eae">
       <Platform Solution="*|Any CPU" Project="x64" />
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
@@ -50,7 +50,7 @@
   </Folder>
   <Folder Name="/Unit Tests/">
     <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
-    <Project Path="Unit Tests/LibreHardwareMonitorLibTests/LibreHardwareMonitorLibTests.csproj">
+    <Project Path="Unit Tests/CrystalMonitorLibTests/CrystalMonitorLibTests.csproj">
       <Build Solution="Debug|*" Project="false" />
     </Project>
     <Project Path="Unit Tests/SystemManagementProviderTests/SystemManagementProviderTests.csproj" Id="9c5eb659-a90a-4271-8233-e5c24b985c25" />

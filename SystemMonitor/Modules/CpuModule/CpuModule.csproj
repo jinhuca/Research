@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Hardware\LibreHardwareMonitorLib\LibreHardwareMonitorLib.csproj" />
+    <ProjectReference Include="..\..\Hardware\CrystalMonitorLib\CrystalMonitorLib.csproj" />
     <ProjectReference Include="..\..\Providers\SystemManagementProvider\SystemManagementProvider.csproj" />
     <ProjectReference Include="..\..\Services\CpuInfoServices\CpuInfoServices.csproj" />
     <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
