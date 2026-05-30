@@ -1,10 +1,4 @@
-﻿// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-// If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// Copyright (C) LibreHardwareMonitor and Contributors.
-// Partial Copyright (C) Michael Möller <mmoeller@openhardwaremonitor.org> and Contributors.
-// All Rights Reserved.
-
-using System;
+﻿using System;
 using System.Text;
 
 namespace LibreHardwareMonitor.Hardware.Cpu;
@@ -35,7 +29,7 @@ public class CpuId {
       throw new ArgumentOutOfRangeException(nameof(thread));
 
     uint maxCpuid;
-    if (OpCode.CpuId(CPUID_0, 0, out uint eax, out uint ebx, out uint ecx, out uint edx)) {
+    if (OpCode.TryCpuId(CPUID_0, 0, out uint eax, out uint ebx, out uint ecx, out uint edx)) {
       if (eax > 0)
         maxCpuid = eax;
       else
@@ -52,7 +46,7 @@ public class CpuId {
         _ => Vendor.Unknown
       };
 
-      if (OpCode.CpuId(CPUID_EXT, 0, out eax, out _, out _, out _)) {
+      if (OpCode.TryCpuId(CPUID_EXT, 0, out eax, out _, out _, out _)) {
         if (eax > CPUID_EXT)
           maxCpuidExt = eax - CPUID_EXT;
         else
@@ -71,7 +65,7 @@ public class CpuId {
 
     Data = new uint[maxCpuid + 1, 4];
     for (uint i = 0; i < maxCpuid + 1; i++) {
-      OpCode.CpuId(CPUID_0 + i, 0, out Data[i, 0], out Data[i, 1], out Data[i, 2], out Data[i, 3]);
+      OpCode.TryCpuId(CPUID_0 + i, 0, out Data[i, 0], out Data[i, 1], out Data[i, 2], out Data[i, 3]);
     }
 
     if (Vendor == Vendor.Intel && maxCpuid >= 0x1A) {
@@ -91,12 +85,12 @@ public class CpuId {
 
     ExtData = new uint[maxCpuidExt + 1, 4];
     for (uint i = 0; i < maxCpuidExt + 1; i++) {
-      OpCode.CpuId(CPUID_EXT + i, 0, out ExtData[i, 0], out ExtData[i, 1], out ExtData[i, 2], out ExtData[i, 3]);
+      OpCode.TryCpuId(CPUID_EXT + i, 0, out ExtData[i, 0], out ExtData[i, 1], out ExtData[i, 2], out ExtData[i, 3]);
     }
 
     StringBuilder nameBuilder = new();
     for (uint i = 2; i <= 4; i++) {
-      if (OpCode.CpuId(CPUID_EXT + i, 0, out eax, out ebx, out ecx, out edx)) {
+      if (OpCode.TryCpuId(CPUID_EXT + i, 0, out eax, out ebx, out ecx, out edx)) {
         AppendRegister(nameBuilder, eax);
         AppendRegister(nameBuilder, ebx);
         AppendRegister(nameBuilder, ecx);

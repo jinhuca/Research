@@ -1,46 +1,23 @@
-﻿// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
-// If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// Copyright (C) LibreHardwareMonitor and Contributors.
-// Partial Copyright (C) Michael Möller <mmoeller@openhardwaremonitor.org> and Contributors.
-// All Rights Reserved.
-
+﻿using LibreHardwareMonitor.Software;
+using Mono.Unix.Native;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-#if !NETFRAMEWORK
-using Mono.Unix.Native;
-#else
-using System.Reflection;
-#endif
 using Windows.Win32;
 using Windows.Win32.System.Memory;
 
-namespace LibreHardwareMonitor.Hardware;
-
 internal static class OpCode {
   private static readonly object _syncLock = new object();
-  public static CpuidDelegate CpuId;
-  public static RdtscDelegate Rdtsc;
-
+  private static CpuidDelegate _cpuId;
+  private static RdtscDelegate _rdtsc;
   private static IntPtr _codeBuffer;
   private static ulong _size;
-
-  // void __stdcall cpuidex(unsigned int index, unsigned int ecxValue,
-  //   unsigned int* eax, unsigned int* ebx, unsigned int* ecx,
-  //   unsigned int* edx)
-  // {
-  //   int info[4];
-  //   __cpuidex(info, index, ecxValue);
-  //   *eax = info[0];
-  //   *ebx = info[1];
-  //   *ecx = info[2];
-  //   *edx = info[3];
-  // }
+  private static int _openCount; // reference count
 
   private static readonly byte[] CpuId32 =
-  [
-      0x55, // push ebp
+[
+  0x55, // push ebp
         0x8B,
         0xEC, // mov ebp, esp
         0x83,
@@ -108,7 +85,7 @@ internal static class OpCode {
         0xC2,
         0x18,
         0x00 // ret 18h
-  ];
+];
 
   private static readonly byte[] CpuId64Linux =
   [
@@ -213,6 +190,7 @@ internal static class OpCode {
   [UnmanagedFunctionPointer(CallingConvention.StdCall)]
   public delegate ulong RdtscDelegate();
 
+
 #if NET
   [RequiresUnreferencedCode("Dynamic code generation for OpCode delegates")]
 #endif
@@ -225,99 +203,147 @@ internal static class OpCode {
     }
     else {
       rdTscCode = Rdtsc64;
-      cpuidCode = Software.OperatingSystem.IsUnix ? CpuId64Linux : CpuId64Windows;
+      cpuidCode = LibreHardwareMonitor.Software.OperatingSystem.IsUnix ? CpuId64Linux : CpuId64Windows;
     }
 
-    _size = (ulong)(rdTscCode.Length + cpuidCode.Length);
-
-    if (Software.OperatingSystem.IsUnix) {
-#if NETFRAMEWORK
-            Assembly assembly = Assembly.Load("Mono.Posix, Version=2.0.0.0, Culture=neutral, " + "PublicKeyToken=0738eb9f132ed756");
-
-            Type sysCall = assembly.GetType("Mono.Unix.Native.Syscall");
-            MethodInfo mmap = sysCall.GetMethod("mmap");
-
-            Type mmapProts = assembly.GetType("Mono.Unix.Native.MmapProts");
-            object mmapProtsParam = Enum.ToObject(mmapProts,
-                                                  (int)mmapProts.GetField("PROT_READ").GetValue(null) |
-                                                  (int)mmapProts.GetField("PROT_WRITE").GetValue(null) |
-                                                  (int)mmapProts.GetField("PROT_EXEC").GetValue(null));
-
-            Type mmapFlags = assembly.GetType("Mono.Unix.Native.MmapFlags");
-            object mmapFlagsParam = Enum.ToObject(mmapFlags,
-                                                  (int)mmapFlags.GetField("MAP_ANONYMOUS").GetValue(null) |
-                                                  (int)mmapFlags.GetField("MAP_PRIVATE").GetValue(null));
-
-            if (mmap != null)
-                _codeBuffer = (IntPtr)mmap.Invoke(null, [IntPtr.Zero, _size, mmapProtsParam, mmapFlagsParam, -1, 0]);
-#else
-      _codeBuffer = Syscall.mmap(IntPtr.Zero, _size,
-          MmapProts.PROT_READ | MmapProts.PROT_WRITE | MmapProts.PROT_EXEC,
-          MmapFlags.MAP_ANONYMOUS | MmapFlags.MAP_PRIVATE, -1, 0);
-#endif
-    }
-    else {
-      _codeBuffer = (IntPtr)PInvoke.VirtualAlloc(null,
-                                                 (UIntPtr)_size,
-                                                 VIRTUAL_ALLOCATION_TYPE.MEM_COMMIT | VIRTUAL_ALLOCATION_TYPE.MEM_RESERVE,
-                                                 PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE);
-    }
+    ulong size = (ulong)(rdTscCode.Length + cpuidCode.Length);
 
     lock (_syncLock) {
+      // Already open — just increment the reference count
+      if (_openCount > 0) {
+        _openCount++;
+        return;
+      }
+
+      if (LibreHardwareMonitor.Software.OperatingSystem.IsUnix) {
+#if NETFRAMEWORK
+                Assembly assembly = Assembly.Load("Mono.Posix, Version=2.0.0.0, Culture=neutral, " + "PublicKeyToken=0738eb9f132ed756");
+
+                Type sysCall = assembly.GetType("Mono.Unix.Native.Syscall");
+                MethodInfo mmap = sysCall.GetMethod("mmap");
+
+                Type mmapProts = assembly.GetType("Mono.Unix.Native.MmapProts");
+                object mmapProtsParam = Enum.ToObject(mmapProts,
+                                                      (int)mmapProts.GetField("PROT_READ").GetValue(null) |
+                                                      (int)mmapProts.GetField("PROT_WRITE").GetValue(null) |
+                                                      (int)mmapProts.GetField("PROT_EXEC").GetValue(null));
+
+                Type mmapFlags = assembly.GetType("Mono.Unix.Native.MmapFlags");
+                object mmapFlagsParam = Enum.ToObject(mmapFlags,
+                                                      (int)mmapFlags.GetField("MAP_ANONYMOUS").GetValue(null) |
+                                                      (int)mmapFlags.GetField("MAP_PRIVATE").GetValue(null));
+
+                if (mmap != null)
+                {
+                    _codeBuffer = (IntPtr)mmap.Invoke(null, [IntPtr.Zero, size, mmapProtsParam, mmapFlagsParam, -1, 0]);
+
+                    if (_codeBuffer == new IntPtr(-1) || _codeBuffer == IntPtr.Zero)
+                    {
+                        _codeBuffer = IntPtr.Zero;
+                        throw new InvalidOperationException("Failed to allocate executable memory via mmap.");
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("mmap method not found in Mono.Posix assembly.");
+                }
+#else
+        _codeBuffer = Syscall.mmap(IntPtr.Zero, size,
+            MmapProts.PROT_READ | MmapProts.PROT_WRITE | MmapProts.PROT_EXEC,
+            MmapFlags.MAP_ANONYMOUS | MmapFlags.MAP_PRIVATE, -1, 0);
+
+        if (_codeBuffer == new IntPtr(-1) || _codeBuffer == IntPtr.Zero) {
+          _codeBuffer = IntPtr.Zero;
+          throw new InvalidOperationException("Failed to allocate executable memory via mmap.");
+        }
+#endif
+      }
+      else {
+        _codeBuffer = (IntPtr)PInvoke.VirtualAlloc(null,
+            (UIntPtr)size,
+            VIRTUAL_ALLOCATION_TYPE.MEM_COMMIT | VIRTUAL_ALLOCATION_TYPE.MEM_RESERVE,
+            PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE);
+
+        if (_codeBuffer == IntPtr.Zero)
+          throw new InvalidOperationException(
+              "Failed to allocate executable memory via VirtualAlloc. " +
+              "This may require administrator privileges or the process may be blocked by security policies (DEP/exploit protection).");
+      }
+
+      _size = size;
+
       Marshal.Copy(rdTscCode, 0, _codeBuffer, rdTscCode.Length);
       try {
-        Rdtsc = Marshal.GetDelegateForFunctionPointer<RdtscDelegate>(_codeBuffer);
+        _rdtsc = Marshal.GetDelegateForFunctionPointer<RdtscDelegate>(_codeBuffer);
         Debug.WriteLine("OpCode.Open: Rdtsc delegate assigned");
       }
       catch (Exception ex) {
         Debug.WriteLine("OpCode.Open: Failed to assign Rdtsc delegate: " + ex);
-        Rdtsc = null;
+        _rdtsc = null;
       }
 
       IntPtr cpuidAddress = (IntPtr)((long)_codeBuffer + rdTscCode.Length);
       Marshal.Copy(cpuidCode, 0, cpuidAddress, cpuidCode.Length);
       try {
-        CpuId = Marshal.GetDelegateForFunctionPointer<CpuidDelegate>(cpuidAddress);
+        _cpuId = Marshal.GetDelegateForFunctionPointer<CpuidDelegate>(cpuidAddress);
         Debug.WriteLine("OpCode.Open: CpuId delegate assigned");
       }
       catch (Exception ex) {
         Debug.WriteLine("OpCode.Open: Failed to assign CpuId delegate: " + ex);
-        CpuId = null;
+        _cpuId = null;
       }
+
+      _openCount = 1;
     }
   }
 
   public static unsafe void Close() {
     lock (_syncLock) {
-      Rdtsc = null;
-      CpuId = null;
+      // Decrement — only actually close when the last caller releases
+      if (_openCount <= 0)
+        return;
+
+      _openCount--;
+
+      if (_openCount > 0) {
+        Debug.WriteLine($"OpCode.Close: reference count now {_openCount}, keeping open");
+        return;
+      }
+
+      // Last caller — actually close
+      _rdtsc = null;
+      _cpuId = null;
       Debug.WriteLine("OpCode.Close: delegates cleared");
-    }
 
-    if (Software.OperatingSystem.IsUnix) {
+      if (_codeBuffer != IntPtr.Zero) {
+        if (LibreHardwareMonitor.Software.OperatingSystem.IsUnix) {
 #if NETFRAMEWORK
-            Assembly assembly = Assembly.Load("Mono.Posix, Version=2.0.0.0, Culture=neutral, " + "PublicKeyToken=0738eb9f132ed756");
-
-            Type sysCall = assembly.GetType("Mono.Unix.Native.Syscall");
-            MethodInfo method = sysCall.GetMethod("munmap");
-            method?.Invoke(null, [_codeBuffer, _size]);
+                    Assembly assembly = Assembly.Load("Mono.Posix, Version=2.0.0.0, Culture=neutral, " + "PublicKeyToken=0738eb9f132ed756");
+                    Type sysCall = assembly.GetType("Mono.Unix.Native.Syscall");
+                    MethodInfo method = sysCall.GetMethod("munmap");
+                    method?.Invoke(null, [_codeBuffer, _size]);
 #else
-      Syscall.munmap(_codeBuffer, _size);
+          Syscall.munmap(_codeBuffer, _size);
 #endif
-    }
-    else {
-      PInvoke.VirtualFree((void*)_codeBuffer, UIntPtr.Zero, VIRTUAL_FREE_TYPE.MEM_RELEASE);
+        }
+        else {
+          PInvoke.VirtualFree((void*)_codeBuffer, UIntPtr.Zero, VIRTUAL_FREE_TYPE.MEM_RELEASE);
+        }
+
+        _codeBuffer = IntPtr.Zero;
+      }
     }
   }
+
   public static bool TryRdtsc(out ulong value) {
     lock (_syncLock) {
-      if (Rdtsc != null) {
+      if (_rdtsc != null) {
         try {
-          value = Rdtsc();
+          value = _rdtsc();
           return true;
         }
         catch (Exception ex) {
-          Debug.WriteLine("OpCode.TryRdtsc: Rdtsc invocation failed: " + ex);
+          Debug.WriteLine("OpCode.TryRdtsc: invocation failed: " + ex);
           value = 0;
           return false;
         }
@@ -325,6 +351,26 @@ internal static class OpCode {
 
       Debug.WriteLine("OpCode.TryRdtsc: Rdtsc delegate is null");
       value = 0;
+      return false;
+    }
+  }
+
+  public static bool TryCpuId(uint index, uint ecxValue,
+      out uint eax, out uint ebx, out uint ecx, out uint edx) {
+    lock (_syncLock) {
+      if (_cpuId != null) {
+        try {
+          return _cpuId(index, ecxValue, out eax, out ebx, out ecx, out edx);
+        }
+        catch (Exception ex) {
+          Debug.WriteLine("OpCode.TryCpuId: invocation failed: " + ex);
+        }
+      }
+      else {
+        Debug.WriteLine("OpCode.TryCpuId: CpuId delegate is null");
+      }
+
+      eax = ebx = ecx = edx = 0;
       return false;
     }
   }

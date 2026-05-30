@@ -90,16 +90,16 @@ public class Computer : IComputer {
   public bool IsBatteryEnabled {
     get { return _batteryEnabled; }
     set {
-      if (_open && value != _batteryEnabled) {
-        if (value) {
-          Add(new BatteryGroup(_settings));
+      lock (_lock) {
+        if (_open && value != _batteryEnabled) {
+          if (value)
+            AddLocked(new BatteryGroup(_settings));
+          else
+            RemoveTypeLocked<BatteryGroup>();
         }
-        else {
-          RemoveType<BatteryGroup>();
-        }
-      }
 
-      _batteryEnabled = value;
+        _batteryEnabled = value;
+      }
     }
   }
 
@@ -107,30 +107,32 @@ public class Computer : IComputer {
   public bool IsControllerEnabled {
     get { return _controllerEnabled; }
     set {
-      if (_open && value != _controllerEnabled) {
-        if (value) {
-          Add(new TBalancerGroup(_settings));
-          Add(new HeatmasterGroup(_settings));
-          Add(new AquaComputerGroup(_settings));
-          Add(new AeroCoolGroup(_settings));
-          Add(new NzxtGroup(_settings));
-          Add(new RazerGroup(_settings));
-          Add(new ArcticGroup(_settings));
-          Add(new MsiGroup(_settings));
+      lock (_lock) {
+        if (_open && value != _controllerEnabled) {
+          if (value) {
+            AddLocked(new TBalancerGroup(_settings));
+            AddLocked(new HeatmasterGroup(_settings));
+            AddLocked(new AquaComputerGroup(_settings));
+            AddLocked(new AeroCoolGroup(_settings));
+            AddLocked(new NzxtGroup(_settings));
+            AddLocked(new RazerGroup(_settings));
+            AddLocked(new ArcticGroup(_settings));
+            AddLocked(new MsiGroup(_settings));
+          }
+          else {
+            RemoveTypeLocked<TBalancerGroup>();
+            RemoveTypeLocked<HeatmasterGroup>();
+            RemoveTypeLocked<AquaComputerGroup>();
+            RemoveTypeLocked<AeroCoolGroup>();
+            RemoveTypeLocked<NzxtGroup>();
+            RemoveTypeLocked<RazerGroup>();
+            RemoveTypeLocked<ArcticGroup>();
+            RemoveTypeLocked<MsiGroup>();
+          }
         }
-        else {
-          RemoveType<TBalancerGroup>();
-          RemoveType<HeatmasterGroup>();
-          RemoveType<AquaComputerGroup>();
-          RemoveType<AeroCoolGroup>();
-          RemoveType<NzxtGroup>();
-          RemoveType<RazerGroup>();
-          RemoveType<ArcticGroup>();
-          RemoveType<MsiGroup>();
-        }
-      }
 
-      _controllerEnabled = value;
+        _controllerEnabled = value;
+      }
     }
   }
 
@@ -138,14 +140,16 @@ public class Computer : IComputer {
   public bool IsCpuEnabled {
     get { return _cpuEnabled; }
     set {
-      if (_open && value != _cpuEnabled) {
-        if (value)
-          Add(new CpuGroup(_settings));
-        else
-          RemoveType<CpuGroup>();
-      }
+      lock (_lock) {
+        if (_open && value != _cpuEnabled) {
+          if (value)
+            AddLocked(new CpuGroup(_settings));
+          else
+            RemoveTypeLocked<CpuGroup>();
+        }
 
-      _cpuEnabled = value;
+        _cpuEnabled = value;
+      }
     }
   }
 
@@ -153,22 +157,24 @@ public class Computer : IComputer {
   public bool IsGpuEnabled {
     get { return _gpuEnabled; }
     set {
-      if (_open && value != _gpuEnabled) {
-        if (value) {
-          Add(new AmdGpuGroup(_settings));
-          Add(new NvidiaGroup(_settings));
+      lock (_lock) {
+        if (_open && value != _gpuEnabled) {
+          if (value) {
+            AddLocked(new AmdGpuGroup(_settings));
+            AddLocked(new NvidiaGroup(_settings));
 
-          if (_cpuEnabled)
-            Add(new IntelGpuGroup(GetIntelCpus(), _settings));
+            if (_cpuEnabled)
+              AddLocked(new IntelGpuGroup(GetIntelCpusLocked(), _settings));
+          }
+          else {
+            RemoveTypeLocked<AmdGpuGroup>();
+            RemoveTypeLocked<NvidiaGroup>();
+            RemoveTypeLocked<IntelGpuGroup>();
+          }
         }
-        else {
-          RemoveType<AmdGpuGroup>();
-          RemoveType<NvidiaGroup>();
-          RemoveType<IntelGpuGroup>();
-        }
+
+        _gpuEnabled = value;
       }
-
-      _gpuEnabled = value;
     }
   }
 
@@ -176,14 +182,16 @@ public class Computer : IComputer {
   public bool IsPowerMonitorEnabled {
     get { return _powerMonitorEnabled; }
     set {
-      if (_open && value != _powerMonitorEnabled) {
-        if (value)
-          Add(new PowerMonitorGroup(_settings));
-        else
-          RemoveType<PowerMonitorGroup>();
-      }
+      lock (_lock) {
+        if (_open && value != _powerMonitorEnabled) {
+          if (value)
+            AddLocked(new PowerMonitorGroup(_settings));
+          else
+            RemoveTypeLocked<PowerMonitorGroup>();
+        }
 
-      _powerMonitorEnabled = value;
+        _powerMonitorEnabled = value;
+      }
     }
   }
 
@@ -191,14 +199,16 @@ public class Computer : IComputer {
   public bool IsMemoryEnabled {
     get { return _memoryEnabled; }
     set {
-      if (_open && value != _memoryEnabled) {
-        if (value)
-          Add(new MemoryGroup(_settings));
-        else
-          RemoveType<MemoryGroup>();
-      }
+      lock (_lock) {
+        if (_open && value != _memoryEnabled) {
+          if (value)
+            AddLocked(new MemoryGroup(_settings));
+          else
+            RemoveTypeLocked<MemoryGroup>();
+        }
 
-      _memoryEnabled = value;
+        _memoryEnabled = value;
+      }
     }
   }
 
@@ -206,14 +216,16 @@ public class Computer : IComputer {
   public bool IsMotherboardEnabled {
     get { return _motherboardEnabled; }
     set {
-      if (_open && value != _motherboardEnabled) {
-        if (value)
-          Add(new MotherboardGroup(_smbios, _settings));
-        else
-          RemoveType<MotherboardGroup>();
-      }
+      lock (_lock) {
+        if (_open && value != _motherboardEnabled) {
+          if (value)
+            AddLocked(new MotherboardGroup(_smbios, _settings));
+          else
+            RemoveTypeLocked<MotherboardGroup>();
+        }
 
-      _motherboardEnabled = value;
+        _motherboardEnabled = value;
+      }
     }
   }
 
@@ -221,14 +233,16 @@ public class Computer : IComputer {
   public bool IsNetworkEnabled {
     get { return _networkEnabled; }
     set {
-      if (_open && value != _networkEnabled) {
-        if (value)
-          Add(new NetworkGroup(_settings));
-        else
-          RemoveType<NetworkGroup>();
-      }
+      lock (_lock) {
+        if (_open && value != _networkEnabled) {
+          if (value)
+            AddLocked(new NetworkGroup(_settings));
+          else
+            RemoveTypeLocked<NetworkGroup>();
+        }
 
-      _networkEnabled = value;
+        _networkEnabled = value;
+      }
     }
   }
 
@@ -236,18 +250,20 @@ public class Computer : IComputer {
   public bool IsPsuEnabled {
     get { return _psuEnabled; }
     set {
-      if (_open && value != _psuEnabled) {
-        if (value) {
-          Add(new CorsairPsuGroup(_settings));
-          Add(new MsiPsuGroup(_settings));
+      lock (_lock) {
+        if (_open && value != _psuEnabled) {
+          if (value) {
+            AddLocked(new CorsairPsuGroup(_settings));
+            AddLocked(new MsiPsuGroup(_settings));
+          }
+          else {
+            RemoveTypeLocked<CorsairPsuGroup>();
+            RemoveTypeLocked<MsiPsuGroup>();
+          }
         }
-        else {
-          RemoveType<CorsairPsuGroup>();
-          RemoveType<MsiPsuGroup>();
-        }
-      }
 
-      _psuEnabled = value;
+        _psuEnabled = value;
+      }
     }
   }
 
@@ -255,14 +271,16 @@ public class Computer : IComputer {
   public bool IsStorageEnabled {
     get { return _storageEnabled; }
     set {
-      if (_open && value != _storageEnabled) {
-        if (value)
-          Add(new StorageGroup(_settings));
-        else
-          RemoveType<StorageGroup>();
-      }
+      lock (_lock) {
+        if (_open && value != _storageEnabled) {
+          if (value)
+            AddLocked(new StorageGroup(_settings));
+          else
+            RemoveTypeLocked<StorageGroup>();
+        }
 
-      _storageEnabled = value;
+        _storageEnabled = value;
+      }
     }
   }
 
@@ -375,9 +393,15 @@ public class Computer : IComputer {
     HardwareRemoved?.Invoke(hardware);
   }
 
+  /// <summary>
+  /// Adds a group to <see cref="_groups"/>. Acquires <see cref="_lock"/> internally —
+  /// do NOT call while already holding the lock; use <see cref="AddLocked"/> instead.
+  /// </summary>
   private void Add(IGroup group) {
     if (group == null)
       return;
+
+    List<IHardware> added;
 
     lock (_lock) {
       if (_groups.Contains(group))
@@ -389,15 +413,39 @@ public class Computer : IComputer {
         hardwareChanged.HardwareAdded += HardwareAddedEvent;
         hardwareChanged.HardwareRemoved += HardwareRemovedEvent;
       }
+
+      added = new List<IHardware>(group.Hardware);
     }
 
     if (HardwareAdded != null) {
-      foreach (IHardware hardware in group.Hardware)
+      foreach (IHardware hardware in added)
         HardwareAdded(hardware);
     }
   }
 
+  /// <summary>
+  /// Adds a group to <see cref="_groups"/>. Must be called while already holding <see cref="_lock"/>.
+  /// Does NOT fire <see cref="HardwareAdded"/> events (caller is responsible if needed).
+  /// </summary>
+  private void AddLocked(IGroup group) {
+    if (group == null || _groups.Contains(group))
+      return;
+
+    _groups.Add(group);
+
+    if (group is IHardwareChanged hardwareChanged) {
+      hardwareChanged.HardwareAdded += HardwareAddedEvent;
+      hardwareChanged.HardwareRemoved += HardwareRemovedEvent;
+    }
+  }
+
+  /// <summary>
+  /// Removes a group and closes it. Acquires <see cref="_lock"/> internally —
+  /// do NOT call while already holding the lock; use <see cref="RemoveLocked"/> instead.
+  /// </summary>
   private void Remove(IGroup group) {
+    List<IHardware> removed;
+
     lock (_lock) {
       if (!_groups.Contains(group))
         return;
@@ -408,14 +456,35 @@ public class Computer : IComputer {
         hardwareChanged.HardwareAdded -= HardwareAddedEvent;
         hardwareChanged.HardwareRemoved -= HardwareRemovedEvent;
       }
+
+      removed = new List<IHardware>(group.Hardware);
     }
 
     if (HardwareRemoved != null) {
-      foreach (IHardware hardware in group.Hardware)
+      foreach (IHardware hardware in removed)
         HardwareRemoved(hardware);
     }
 
     group.Close();
+  }
+
+  /// <summary>
+  /// Removes a group from <see cref="_groups"/> state only. Must be called while already holding <see cref="_lock"/>.
+  /// Does NOT fire <see cref="HardwareRemoved"/> events or call <see cref="IGroup.Close"/>.
+  /// The caller must do both after releasing the lock.
+  /// </summary>
+  private bool RemoveLocked(IGroup group) {
+    if (!_groups.Contains(group))
+      return false;
+
+    _groups.Remove(group);
+
+    if (group is IHardwareChanged hardwareChanged) {
+      hardwareChanged.HardwareAdded -= HardwareAddedEvent;
+      hardwareChanged.HardwareRemoved -= HardwareRemovedEvent;
+    }
+
+    return true;
   }
 
   private void RemoveType<T>() where T : IGroup {
@@ -433,70 +502,93 @@ public class Computer : IComputer {
   }
 
   /// <summary>
+  /// Removes all groups of type <typeparamref name="T"/> from <see cref="_groups"/> state only.
+  /// Must be called while already holding <see cref="_lock"/>.
+  /// Returns the removed groups so the caller can close them after releasing the lock.
+  /// </summary>
+  private List<IGroup> RemoveTypeLocked<T>() where T : IGroup {
+    List<IGroup> removed = [];
+
+    foreach (IGroup group in _groups) {
+      if (group is T)
+        removed.Add(group);
+    }
+
+    foreach (IGroup group in removed)
+      RemoveLocked(group);
+
+    return removed;
+  }
+
+  /// <summary>
   /// If hasn't been opened before, opens <see cref="SMBios" />, <see cref="OpCode" /> and triggers the private <see cref="AddGroups" /> method depending on which categories are
   /// enabled.
   /// </summary>
   public void Open() {
-    if (_open)
-      return;
+    lock (_lock) {
+      if (_open)
+        return;
 
-    _smbios = new SMBios();
+      _smbios = new SMBios();
 
-    if (Software.OperatingSystem.IsWindows8OrGreater)
-      Mutexes.Open();
+      if (Software.OperatingSystem.IsWindows8OrGreater)
+        Mutexes.Open();
 
-    OpCode.Open();
+      OpCode.Open();
 
-    AddGroups();
+      // AddGroups uses AddLocked which assumes _lock is held
+      AddGroups();
 
-    _open = true;
+      _open = true;
+    }
   }
 
   private void AddGroups() {
+    // Must be called while holding _lock. Uses AddLocked throughout.
     if (_motherboardEnabled)
-      Add(new MotherboardGroup(_smbios, _settings));
+      AddLocked(new MotherboardGroup(_smbios, _settings));
 
     if (_cpuEnabled)
-      Add(new CpuGroup(_settings));
+      AddLocked(new CpuGroup(_settings));
 
     if (_memoryEnabled)
-      Add(new MemoryGroup(_settings));
+      AddLocked(new MemoryGroup(_settings));
 
     if (_gpuEnabled) {
-      Add(new AmdGpuGroup(_settings));
-      Add(new NvidiaGroup(_settings));
+      AddLocked(new AmdGpuGroup(_settings));
+      AddLocked(new NvidiaGroup(_settings));
 
       if (_cpuEnabled)
-        Add(new IntelGpuGroup(GetIntelCpus(), _settings));
+        AddLocked(new IntelGpuGroup(GetIntelCpusLocked(), _settings));
     }
 
     if (_powerMonitorEnabled)
-      Add(new PowerMonitorGroup(_settings));
+      AddLocked(new PowerMonitorGroup(_settings));
 
     if (_controllerEnabled) {
-      Add(new TBalancerGroup(_settings));
-      Add(new HeatmasterGroup(_settings));
-      Add(new AquaComputerGroup(_settings));
-      Add(new AeroCoolGroup(_settings));
-      Add(new NzxtGroup(_settings));
-      Add(new RazerGroup(_settings));
-      Add(new ArcticGroup(_settings));
-      Add(new MsiGroup(_settings));
+      AddLocked(new TBalancerGroup(_settings));
+      AddLocked(new HeatmasterGroup(_settings));
+      AddLocked(new AquaComputerGroup(_settings));
+      AddLocked(new AeroCoolGroup(_settings));
+      AddLocked(new NzxtGroup(_settings));
+      AddLocked(new RazerGroup(_settings));
+      AddLocked(new ArcticGroup(_settings));
+      AddLocked(new MsiGroup(_settings));
     }
 
     if (_storageEnabled)
-      Add(new StorageGroup(_settings));
+      AddLocked(new StorageGroup(_settings));
 
     if (_networkEnabled)
-      Add(new NetworkGroup(_settings));
+      AddLocked(new NetworkGroup(_settings));
 
     if (_psuEnabled) {
-      Add(new CorsairPsuGroup(_settings));
-      Add(new MsiPsuGroup(_settings));
+      AddLocked(new CorsairPsuGroup(_settings));
+      AddLocked(new MsiPsuGroup(_settings));
     }
 
     if (_batteryEnabled)
-      Add(new BatteryGroup(_settings));
+      AddLocked(new BatteryGroup(_settings));
   }
 
   private static void NewSection(TextWriter writer) {
@@ -568,49 +660,89 @@ public class Computer : IComputer {
   /// If opened before, removes all <see cref="IGroup" /> and triggers <see cref="OpCode.Close" />.
   /// </summary>
   public void Close() {
-    if (!_open)
-      return;
+    List<IGroup> groupsToClose;
 
     lock (_lock) {
-      while (_groups.Count > 0) {
-        IGroup group = _groups[_groups.Count - 1];
-        Remove(group);
+      if (!_open)
+        return;
+
+      // Snapshot and unregister all groups under the lock
+      groupsToClose = new List<IGroup>(_groups);
+      _groups.Clear();
+
+      foreach (IGroup group in groupsToClose) {
+        if (group is IHardwareChanged hardwareChanged) {
+          hardwareChanged.HardwareAdded -= HardwareAddedEvent;
+          hardwareChanged.HardwareRemoved -= HardwareRemovedEvent;
+        }
       }
+
+      OpCode.Close();
+      Mutexes.Close();
+
+      _smbios = null;
+      _open = false;
     }
 
-    OpCode.Close();
-    Mutexes.Close();
+    // Fire HardwareRemoved events and close groups outside the lock
+    // to avoid deadlocks if event handlers call back into Computer.
+    foreach (IGroup group in groupsToClose) {
+      if (HardwareRemoved != null) {
+        foreach (IHardware hardware in group.Hardware)
+          HardwareRemoved(hardware);
+      }
 
-    _smbios = null;
-    _open = false;
+      group.Close();
+    }
   }
 
   /// <summary>
   /// If opened before, removes all <see cref="IGroup" /> and recreates it.
   /// </summary>
   public void Reset() {
-    if (!_open)
-      return;
+    lock (_lock) {
+      if (!_open)
+        return;
+    }
 
     RemoveGroups();
-    AddGroups();
+
+    lock (_lock) {
+      AddGroups();
+    }
   }
 
   private void RemoveGroups() {
+    List<IGroup> groupsToClose;
+
     lock (_lock) {
-      while (_groups.Count > 0) {
-        IGroup group = _groups[_groups.Count - 1];
-        Remove(group);
+      groupsToClose = new List<IGroup>(_groups);
+      _groups.Clear();
+
+      foreach (IGroup group in groupsToClose) {
+        if (group is IHardwareChanged hardwareChanged) {
+          hardwareChanged.HardwareAdded -= HardwareAddedEvent;
+          hardwareChanged.HardwareRemoved -= HardwareRemovedEvent;
+        }
       }
+    }
+
+    foreach (IGroup group in groupsToClose) {
+      if (HardwareRemoved != null) {
+        foreach (IHardware hardware in group.Hardware)
+          HardwareRemoved(hardware);
+      }
+
+      group.Close();
     }
   }
 
-  private List<IntelCpu> GetIntelCpus() {
-    // Create a temporary cpu group if one has not been added.
-    lock (_lock) {
-      IGroup cpuGroup = _groups.Find(x => x is CpuGroup) ?? new CpuGroup(_settings);
-      return cpuGroup.Hardware.Select(x => x as IntelCpu).ToList();
-    }
+  /// <summary>
+  /// Must be called while already holding <see cref="_lock"/>.
+  /// </summary>
+  private List<IntelCpu> GetIntelCpusLocked() {
+    IGroup cpuGroup = _groups.Find(x => x is CpuGroup) ?? new CpuGroup(_settings);
+    return cpuGroup.Hardware.Select(x => x as IntelCpu).ToList();
   }
 
   /// <summary>
