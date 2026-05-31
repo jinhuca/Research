@@ -1,5 +1,4 @@
-﻿using CrystalMonitor.Software;
-using Mono.Unix.Native;
+﻿using Mono.Unix.Native;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;

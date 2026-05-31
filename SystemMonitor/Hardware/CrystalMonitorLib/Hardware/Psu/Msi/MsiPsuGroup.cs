@@ -1,9 +1,4 @@
-﻿// This Source Code Form is subject to the terms of the GNU Public License, v. 2.0.
-// Copyright (C) 2024 demorfi<demorfi@gmail.com>
-// Copyright (C) CrystalMonitor and Contributors.
-// All Rights Reserved.
-
-using HidSharp;
+﻿using HidSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

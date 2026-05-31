@@ -1,6 +1,4 @@
-﻿//#define ISA_BRIDGE_EC_DEBUG
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace CrystalMonitor.PawnIo {
   public enum MMIOState {
