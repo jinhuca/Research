@@ -298,7 +298,6 @@ internal static class OpCode {
 
   public static unsafe void Close() {
     lock (_syncLock) {
-      // Decrement — only actually close when the last caller releases
       if (_openCount <= 0)
         return;
 
@@ -309,7 +308,9 @@ internal static class OpCode {
         return;
       }
 
-      // Last caller — actually close
+      // Add this:
+      Debug.WriteLine("OpCode.Close: delegates cleared\n" + Environment.StackTrace);
+
       _rdtsc = null;
       _cpuId = null;
       Debug.WriteLine("OpCode.Close: delegates cleared");
@@ -335,42 +336,44 @@ internal static class OpCode {
   }
 
   public static bool TryRdtsc(out ulong value) {
-    lock (_syncLock) {
-      if (_rdtsc != null) {
-        try {
-          value = _rdtsc();
-          return true;
-        }
-        catch (Exception ex) {
-          Debug.WriteLine("OpCode.TryRdtsc: invocation failed: " + ex);
-          value = 0;
-          return false;
-        }
-      }
+    RdtscDelegate fn;
+    lock (_syncLock) { fn = _rdtsc; }
 
-      Debug.WriteLine("OpCode.TryRdtsc: Rdtsc delegate is null");
-      value = 0;
-      return false;
+    if (fn != null) {
+      try {
+        value = fn();
+        return true;
+      }
+      catch (Exception ex) {
+        Debug.WriteLine("OpCode.TryRdtsc: invocation EXCEPTION: " + ex.GetType() + ": " + ex.Message);
+        value = 0;
+        return false;
+      }
     }
+
+    Debug.WriteLine("OpCode.TryRdtsc: delegate is null");
+    value = 0;
+    return false;
   }
 
   public static bool TryCpuId(uint index, uint ecxValue,
       out uint eax, out uint ebx, out uint ecx, out uint edx) {
-    lock (_syncLock) {
-      if (_cpuId != null) {
-        try {
-          return _cpuId(index, ecxValue, out eax, out ebx, out ecx, out edx);
-        }
-        catch (Exception ex) {
-          Debug.WriteLine("OpCode.TryCpuId: invocation failed: " + ex);
-        }
-      }
-      else {
-        Debug.WriteLine("OpCode.TryCpuId: CpuId delegate is null");
-      }
+    CpuidDelegate fn;
+    lock (_syncLock) { fn = _cpuId; }
 
-      eax = ebx = ecx = edx = 0;
-      return false;
+    if (fn != null) {
+      try {
+        return fn(index, ecxValue, out eax, out ebx, out ecx, out edx);
+      }
+      catch (Exception ex) {
+        Debug.WriteLine("OpCode.TryCpuId: invocation failed: " + ex);
+      }
     }
+    else {
+      Debug.WriteLine("OpCode.TryCpuId: CpuId delegate is null");
+    }
+
+    eax = ebx = ecx = edx = 0;
+    return false;
   }
 }

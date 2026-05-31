@@ -49,6 +49,7 @@
     <Project Path="Temporaries/InfoGeneratorTests/InfoGeneratorTests.csproj" Id="bf1e8b9f-9506-472c-9687-d80f19f02553" />
   </Folder>
   <Folder Name="/Unit Tests/">
+    <Project Path="CrystalMonitorTests/CrystalMonitorTests.csproj" Id="747fc341-3f75-4104-86e5-6a0adda59ad4" />
     <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
     <Project Path="Unit Tests/CrystalMonitorLibTests/CrystalMonitorLibTests.csproj">
       <Build Solution="Debug|*" Project="false" />
