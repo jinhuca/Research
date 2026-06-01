@@ -24,7 +24,6 @@
     <Project Path="Modules/StorageModule/StorageModule.csproj" />
   </Folder>
   <Folder Name="/Providers/">
-    <Project Path="Providers/ConsoleApp1/ConsoleApp1.csproj" Id="3352c802-f7fd-4995-b4f0-e852ab1c9a17" />
     <Project Path="Providers/HardwareInfoProvider/HardwareInfoProvider.vcxproj" Id="292a69f1-f6b9-4a3a-ac61-aa3aaf35c9b3" />
     <Project Path="Providers/LibreInfoProvider/LibreInfoProvider.csproj" Id="8f50bd84-7567-406f-b021-5ade0fcc563d" />
     <Project Path="Providers/SystemEnvironmentProvider/SystemEnvironmentProvider.csproj" />

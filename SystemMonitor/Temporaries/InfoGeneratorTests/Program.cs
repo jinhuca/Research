@@ -2,6 +2,48 @@
 
 class Program {
   static void Main(string[] args) {
+    //Test1();
+    testMemory();
+  }
+
+  private static void testMemory() {
+    // 1. Initialize the Computer and enable RAM monitoring
+    Computer computer = new Computer {
+      IsCpuEnabled = true,
+      IsGpuEnabled = true,
+      IsMemoryEnabled = true // Essential for RAM data
+    };
+
+    computer.Open();
+
+    // 2. Loop to continuously fetch and display RAM data
+    //while (true) {
+      computer.Accept(new UpdateVisitor());
+
+      foreach (IHardware hardware in computer.Hardware) {
+        // Look specifically for the RAM/Memory hardware type
+        if (hardware.HardwareType == HardwareType.Memory) {
+          foreach (ISensor sensor in hardware.Sensors) {
+            // "Load" sensors return percentage values (e.g., % of total RAM used)
+            if (sensor.SensorType == SensorType.Load) {
+              Console.WriteLine($"Memory Load: {sensor.Value:F2}%");
+            }
+
+            // "Data" sensors return absolute capacity values (e.g., GB used or available)
+            if (sensor.SensorType == SensorType.Data) {
+              Console.WriteLine($"{sensor.Name}: {sensor.Value:F2} GB");
+            }
+          }
+        }
+        Console.WriteLine();
+      }
+
+      System.Threading.Thread.Sleep(1000); // Wait 1 second before refreshing
+    //}
+  }
+
+
+  private static void Test1() {
     // 1. Initialize the Computer object and enable Motherboard monitoring
     Computer computer = new Computer {
       IsMotherboardEnabled = true // Required for Motherboard/Super I/O data
@@ -49,4 +91,12 @@ class Program {
       Console.WriteLine($"{indent}Sensor: {sensor.Name} | Type: {sensor.SensorType} | Value: {value}");
     }
   }
+}
+
+// Implement an UpdateVisitor to traverse hardware
+public class UpdateVisitor : IVisitor {
+  public void VisitComputer(IComputer computer) { computer.Traverse(this); }
+  public void VisitHardware(IHardware hardware) { hardware.Update(); foreach (var subHardware in hardware.SubHardware) subHardware.Accept(this); }
+  public void VisitSensor(ISensor sensor) { }
+  public void VisitParameter(IParameter parameter) { }
 }
