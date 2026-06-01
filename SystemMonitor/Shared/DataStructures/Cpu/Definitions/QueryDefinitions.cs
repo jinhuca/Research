@@ -1,5 +1,4 @@
 ﻿namespace DataStructures.Cpu.Definitions;
-
 public static class QueryDefinitions {
   public static string CpuBusSpeed = "Bus Speed";
   public static string CpuTotalLoad = "CPU Total";
@@ -11,5 +10,4 @@ public static class QueryDefinitions {
   public static string CPUMemory = "CPU Memory";
   public static string CoreMax = "Core Max";
   public static string CoreAverage = "Core Average";
-
 }
