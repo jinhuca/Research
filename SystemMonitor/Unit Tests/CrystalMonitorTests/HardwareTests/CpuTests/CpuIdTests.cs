@@ -1,6 +1,5 @@
 ﻿using CrystalMonitor.Hardware;
 using CrystalMonitor.Hardware.Cpu;
-using Xunit;
 
 namespace CrystalMonitorTests.HardwareTests.CpuTests;
 

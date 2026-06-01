@@ -1,6 +1,4 @@
-﻿using Xunit;
-using CrystalMonitor.Hardware;
-using CrystalMonitor.Hardware.Cpu;
+﻿using CrystalMonitor.Hardware.Cpu;
 
 namespace CrystalMonitorTests.HardwareTests.CpuTests;
 

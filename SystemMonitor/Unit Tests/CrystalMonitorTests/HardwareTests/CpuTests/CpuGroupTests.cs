@@ -1,5 +1,4 @@
 ﻿using CrystalMonitor.Hardware;
-using Xunit;
 
 namespace CrystalMonitorTests.HardwareTests.CpuTests;
 
@@ -148,4 +147,4 @@ public class CpuGroupTests : IDisposable {
   }
 }
 
-  // -------------------------------
+// -------------------------------
