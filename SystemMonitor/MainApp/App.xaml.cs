@@ -21,14 +21,18 @@ public partial class App : PrismApplication {
   }
 
   protected override void RegisterTypes(IContainerRegistry containerRegistry) {
-    //containerRegistry.Register<ICpuModel, CpuModel>();
-    //containerRegistry.Register<ISMProvider, SMProvider>();
+    containerRegistry.RegisterForNavigation<CpuSummaryView>();
+    containerRegistry.RegisterForNavigation<GpuSummaryView>();
+    containerRegistry.RegisterForNavigation<MemorySummaryView>();
+    containerRegistry.RegisterForNavigation<OperatingSystemSummaryView>();
+    containerRegistry.RegisterForNavigation<StorageSummaryView>();
+    containerRegistry.RegisterForNavigation<BiosSummaryView>();
   }
 
   protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) {
     base.ConfigureModuleCatalog(moduleCatalog);
     moduleCatalog.AddModule<ResourceModule.ResourceModule>();
-    moduleCatalog.AddModule<HomeModule.HomeModule>();
+    //moduleCatalog.AddModule<HomeModule.HomeModule>();
     moduleCatalog.AddModule<OsModule.OsModule>();
     moduleCatalog.AddModule<CpuModule.CpuModule>();
     moduleCatalog.AddModule<GpuModule.GpuModule>();
@@ -40,6 +44,7 @@ public partial class App : PrismApplication {
 
   protected override void ConfigureViewModelLocator() {
     base.ConfigureViewModelLocator();
+    ViewModelLocationProvider.Register<Shell, ShellViewModel>();
     ViewModelLocationProvider.Register<OperatingSystemSummaryView, OperatingSystemViewModel>();
     ViewModelLocationProvider.Register<CpuSummaryView, CpuViewModel>();
     ViewModelLocationProvider.Register<GpuSummaryView, GpuViewModel>();

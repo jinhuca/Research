@@ -6,6 +6,9 @@
   <SolidColorBrush x:Key="ModuleContentTitleBrush" Color="#FF878A9F"/>
   <SolidColorBrush x:Key="ModuleContentTextBrush" Color="#FFFFFF"/>
 
+  <SolidColorBrush x:Key="HomePanelTextBrush" Color="#FFFFFFFF"/>
+  <SolidColorBrush x:Key="HomePanelBorderBrush" Color="#FFFFFFFF"/>
+  
   <SolidColorBrush x:Key="StaticValueTextBrush" Color="LightGreen"/>
   <SolidColorBrush x:Key="RealTimeValueTextBrush" Color="NavajoWhite"/>
   

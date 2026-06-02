@@ -80,34 +80,100 @@
       </Border>
 
       <Grid Grid.Row="1" ShowGridLines="False">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
           <RowDefinition Height="1.60cm"/>
           <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto"/>
           <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ContentControl x:Name="OsRegion" Grid.Row="0" Grid.Column="1"
+        <!--<ContentControl x:Name="OsRegion" Grid.Row="0" Grid.Column="1"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
-        <ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
-                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>
-        <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1"
+                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>-->
+        <!--<ContentControl x:Name="HomeRegion" Grid.Column="0" Grid.RowSpan="2" 
+                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>-->
+        <Border Grid.Column="0" Grid.RowSpan="2"
+                Style="{StaticResource ModuleBorderStyle}" VerticalAlignment="Stretch">
+          <UniformGrid Columns="1" Margin="10" Background="Transparent" VerticalAlignment="Top">
+            <Button Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Static shared:ViewNames.CpuViewName}"
+                    Style="{StaticResource HomePanelButtonStyle}">
+              <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}"/>
+                <TextBlock Grid.Column="1" Text="CPU" Style="{StaticResource HomePanelTextStyle}"/>
+              </Grid>
+            </Button>
+            <Button Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Static shared:ViewNames.MemoryViewName}"
+                    Style="{StaticResource HomePanelButtonStyle}">
+              <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+                </Border>
+                <TextBlock Grid.Column="1" Text="Memory" Style="{StaticResource HomePanelTextStyle}"/>
+              </Grid>
+            </Button>
+            <Grid Margin="0,15,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+              </Border>
+              <TextBlock Grid.Column="1" Text="Disk 0" Style="{StaticResource HomePanelTextStyle}"/>
+            </Grid>
+            <Grid Margin="0,15,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+              </Border>
+              <TextBlock Grid.Column="1" Text="Wi-Fi" Style="{StaticResource HomePanelTextStyle}"/>
+            </Grid>
+            <Grid Margin="0,15,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+              </Border>
+              <TextBlock Grid.Column="1" Text="GPU 0" Style="{StaticResource HomePanelTextStyle}"/>
+            </Grid>
+            
+            <Grid Margin="0,15,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+              </Border>
+              <TextBlock Grid.Column="1" Text="GPU 1" Style="{StaticResource HomePanelTextStyle}"/>
+            </Grid>
+            <Grid Margin="0,15,0,0">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+              </Border>
+              <TextBlock Grid.Column="1" Text="Fans" Style="{StaticResource HomePanelTextStyle}"/>
+            </Grid>
+          </UniformGrid>
+        </Border>
+        <ContentControl x:Name="CpuRegion" Grid.Column="1"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
-        <!--<ContentControl x:Name="GpuRegion" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuSummaryRegionName}"/>-->
-        <!--<ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>-->
-        <!--<ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
-      <ContentControl x:Name="BiosRegion" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>-->
-        <!--<ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>-->
+                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.MainContentRegionName}"/>
       </Grid>
     </Grid>
   </Border>

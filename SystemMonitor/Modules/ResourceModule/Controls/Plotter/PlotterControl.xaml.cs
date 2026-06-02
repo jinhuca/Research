@@ -34,21 +34,24 @@ private readonly List<LineGraph?> _seriesList = new();
 
     this.Loaded += (_, __) => {
       DisablePlotterNavigation();
-      plotter.CentralGrid.Children.Insert(0, areaPath);
-      InitializePlot();
+
+      // ✅ Guard the first insert too
+      if (!plotter.CentralGrid.Children.Contains(areaPath))
+        plotter.CentralGrid.Children.Insert(0, areaPath);
+
+      // ✅ Only initialize once — re-navigation reuses the same instance
+      if (xLineGraph == null)
+        InitializePlot();
 
       plotter.Background = PlotterBackground ?? plotter.Background;
       ApplyPlotStroke(PlotStroke);
 
-      // re-apply DataSource if set before Loaded
-      if(DataSource != null) HandleDataSource(DataSource);
+      if (DataSource != null) HandleDataSource(DataSource);
 
-      if (!plotter.CentralGrid.Children.Contains(areaPath)) {
-        plotter.CentralGrid.Children.Insert(0, areaPath);
-      }
+      // second insert is now redundant — remove it
     };
 
-  areaPath = new Path {
+    areaPath = new Path {
     Fill = RangeAreaBrush ?? new SolidColorBrush(Color.FromArgb(120, 30, 144, 255)),
       Stroke = null,
       IsHitTestVisible = false,
@@ -304,7 +307,12 @@ private readonly List<LineGraph?> _seriesList = new();
     UpdateArea();
   }
 
+  private bool _initialized = false;
+
   private void InitializePlot() {
+    if (_initialized) return;
+    _initialized = true;
+
     xLineGraph = plotter.AddLineGraph(_data.AsDataSource());
     var initialStroke = PlotStroke ?? new SolidColorBrush(Color.FromRgb(173, 216, 230));
     xLineGraph.LinePen = new Pen(initialStroke, 1);
@@ -313,8 +321,6 @@ private readonly List<LineGraph?> _seriesList = new();
     bool HasNonBaselineData() => _data.Any(p => !DoubleEquals(p.Y, Baseline));
 
     _data.CollectionChanged += (s, e) => {
-      // If we are on the UI thread run synchronously to stay in lockstep with plotter updates,
-      // otherwise queue at Render priority.
       if (Dispatcher.CheckAccess()) {
         var has = HasNonBaselineData();
         xLineGraph.Visibility = has ? Visibility.Visible : Visibility.Collapsed;
@@ -331,8 +337,11 @@ private readonly List<LineGraph?> _seriesList = new();
       }
     };
 
-    plotter.Viewport.PropertyChanged += (s, e) => Dispatcher.BeginInvoke((Action)UpdateArea, DispatcherPriority.Render);
-    plotter.SizeChanged += (s, e) => Dispatcher.BeginInvoke((Action)UpdateArea, DispatcherPriority.Render);
+    plotter.Viewport.PropertyChanged += (s, e) =>
+        Dispatcher.BeginInvoke((Action)UpdateArea, DispatcherPriority.Render);
+
+    plotter.SizeChanged += (s, e) =>
+        Dispatcher.BeginInvoke((Action)UpdateArea, DispatcherPriority.Render);
 
     for (int i = 0; i < 60; i++) Add60Point();
 

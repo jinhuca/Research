@@ -19,7 +19,7 @@ public class CpuModule : IModule {
     containerRegistry.Register<ISMProvider, SMProvider>();
     //containerRegistry.Register<ICpuInfoGenerator, CpuInfoGenerator>();
     //containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
-    containerRegistry.RegisterSingleton<ICpuModel, CpuModel>();
+    containerRegistry.Register<ICpuModel, CpuModel>();
 
     _regionManager.RegisterViewWithRegion(CpuRegionName, typeof(CpuSummaryView));
     //_regionManager.RegisterViewWithRegion(StatisticsRegionName, typeof(StatisticsView));
