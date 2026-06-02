@@ -43,9 +43,13 @@
             <ColumnDefinition Width="Auto"/>
           </Grid.ColumnDefinitions>
 
-          <!-- Window Title Text -->
-          <TextBlock Grid.Column="0" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" 
-                   Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+          <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <!-- icon -->
+            <Image Source="/Assets/IconPng.png" Stretch="Uniform" Margin="10,4,5,2"/>
+            <!-- Window Title Text -->
+            <TextBlock Grid.Column="0" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" 
+                       Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+          </StackPanel>
 
           <!-- Window Caption Buttons Wrapper -->
           <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -53,7 +57,6 @@
             <Button Style="{StaticResource TitleBarButtonStyle}" Click="MinimizeButton_Click" ToolTip="Minimize">
               <TextBlock Text="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0,15,0,0"/>
             </Button>
-
             <!-- Maximize / Restore Toggle Button -->
             <Button x:Name="BtnMaximize" Style="{StaticResource TitleBarButtonStyle}" Click="MaximizeButton_Click" ToolTip="Maximize">
               <TextBlock x:Name="TxtMaximize" FontFamily="Segoe MDL2 Assets" FontSize="16"
@@ -75,7 +78,7 @@
           </StackPanel>
         </Grid>
       </Border>
-      
+
       <Grid Grid.Row="1" ShowGridLines="False">
         <Grid.RowDefinitions>
           <RowDefinition Height="1.60cm"/>
