@@ -27,7 +27,6 @@
     <ProjectReference Include="..\Modules\BiosModule\BiosModule.csproj" />
     <ProjectReference Include="..\Modules\CpuModule\CpuModule.csproj" />
     <ProjectReference Include="..\Modules\GpuModule\GpuModule.csproj" />
-    <ProjectReference Include="..\Modules\HomeModule\HomeModule.csproj" />
     <ProjectReference Include="..\Modules\LogModule\LogModule.csproj" />
     <ProjectReference Include="..\Modules\MemoryModule\MemoryModule.csproj" />
     <ProjectReference Include="..\Modules\OsModule\OsModule.csproj" />

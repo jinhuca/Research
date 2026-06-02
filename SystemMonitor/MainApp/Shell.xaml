@@ -109,6 +109,21 @@
                 <TextBlock Grid.Column="1" Text="CPU" Style="{StaticResource HomePanelTextStyle}"/>
               </Grid>
             </Button>
+
+            <Button Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Static shared:ViewNames.GpuViewName}"
+                    Style="{StaticResource HomePanelButtonStyle}">
+              <Grid Margin="0,15,0,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+                </Border>
+                <TextBlock Grid.Column="1" Text="GPU" Style="{StaticResource HomePanelTextStyle}"/>
+              </Grid>
+            </Button>
+            
             <Button Command="{Binding NavigateCommand}" 
                     CommandParameter="{x:Static shared:ViewNames.MemoryViewName}"
                     Style="{StaticResource HomePanelButtonStyle}">
@@ -122,16 +137,22 @@
                 <TextBlock Grid.Column="1" Text="Memory" Style="{StaticResource HomePanelTextStyle}"/>
               </Grid>
             </Button>
-            <Grid Margin="0,15,0,0">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-              </Grid.ColumnDefinitions>
-              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
-              </Border>
-              <TextBlock Grid.Column="1" Text="Disk 0" Style="{StaticResource HomePanelTextStyle}"/>
-            </Grid>
-            <Grid Margin="0,15,0,0">
+
+            <Button Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Static shared:ViewNames.StorageViewName}"
+                    Style="{StaticResource HomePanelButtonStyle}">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+                </Border>
+                <TextBlock Grid.Column="1" Text="Storage" Style="{StaticResource HomePanelTextStyle}"/>
+              </Grid>
+            </Button>
+            
+            <Grid>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -140,25 +161,7 @@
               </Border>
               <TextBlock Grid.Column="1" Text="Wi-Fi" Style="{StaticResource HomePanelTextStyle}"/>
             </Grid>
-            <Grid Margin="0,15,0,0">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-              </Grid.ColumnDefinitions>
-              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
-              </Border>
-              <TextBlock Grid.Column="1" Text="GPU 0" Style="{StaticResource HomePanelTextStyle}"/>
-            </Grid>
-            
-            <Grid Margin="0,15,0,0">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-              </Grid.ColumnDefinitions>
-              <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
-              </Border>
-              <TextBlock Grid.Column="1" Text="GPU 1" Style="{StaticResource HomePanelTextStyle}"/>
-            </Grid>
+
             <Grid Margin="0,15,0,0">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -168,6 +171,7 @@
               </Border>
               <TextBlock Grid.Column="1" Text="Fans" Style="{StaticResource HomePanelTextStyle}"/>
             </Grid>
+            
           </UniformGrid>
         </Border>
         <ContentControl x:Name="CpuRegion" Grid.Column="1"

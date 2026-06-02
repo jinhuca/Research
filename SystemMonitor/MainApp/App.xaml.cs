@@ -32,7 +32,6 @@ public partial class App : PrismApplication {
   protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) {
     base.ConfigureModuleCatalog(moduleCatalog);
     moduleCatalog.AddModule<ResourceModule.ResourceModule>();
-    //moduleCatalog.AddModule<HomeModule.HomeModule>();
     moduleCatalog.AddModule<OsModule.OsModule>();
     moduleCatalog.AddModule<CpuModule.CpuModule>();
     moduleCatalog.AddModule<GpuModule.GpuModule>();
@@ -50,7 +49,6 @@ public partial class App : PrismApplication {
     ViewModelLocationProvider.Register<GpuSummaryView, GpuViewModel>();
     ViewModelLocationProvider.Register<MemorySummaryView, MemoryViewModel>();
     ViewModelLocationProvider.Register<StorageSummaryView, StorageViewModel>();
-    //ViewModelLocationProvider.Register<StatisticsView, CpuViewModel>();
     ViewModelLocationProvider.Register<BiosSummaryView, BiosViewModel>();
   }
 }
