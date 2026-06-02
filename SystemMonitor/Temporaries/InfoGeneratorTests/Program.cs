@@ -1,47 +1,90 @@
 ﻿using CrystalMonitor.Hardware;
+using System.Collections;
 
 class Program {
   static void Main(string[] args) {
     //Test1();
-    testMemory();
+    //testMemory();
+    basicmemoryTest();
+    
   }
 
   private static void testMemory() {
-    // 1. Initialize the Computer and enable RAM monitoring
+    // 1. Initialize Computer and enable Memory tracking
     Computer computer = new Computer {
-      IsCpuEnabled = true,
-      IsGpuEnabled = true,
-      IsMemoryEnabled = true // Essential for RAM data
+      IsMemoryEnabled = true
     };
 
     computer.Open();
 
-    // 2. Loop to continuously fetch and display RAM data
-    //while (true) {
-      computer.Accept(new UpdateVisitor());
+    // 2. Locate the Memory Hardware
+    var memoryHardware = computer.Hardware.FirstOrDefault(h => h.HardwareType == HardwareType.Memory);
 
-      foreach (IHardware hardware in computer.Hardware) {
-        // Look specifically for the RAM/Memory hardware type
-        if (hardware.HardwareType == HardwareType.Memory) {
-          foreach (ISensor sensor in hardware.Sensors) {
-            // "Load" sensors return percentage values (e.g., % of total RAM used)
-            if (sensor.SensorType == SensorType.Load) {
-              Console.WriteLine($"Memory Load: {sensor.Value:F2}%");
-            }
+    if (memoryHardware != null) {
+      // Update sensors so they fetch the latest metrics
+      memoryHardware.Update();
 
-            // "Data" sensors return absolute capacity values (e.g., GB used or available)
-            if (sensor.SensorType == SensorType.Data) {
-              Console.WriteLine($"{sensor.Name}: {sensor.Value:F2} GB");
-            }
-          }
+      foreach (var sensor in memoryHardware.Sensors) {
+        // SensorType.Load captures percentage (e.g., 75.5%)
+        if (sensor.SensorType == SensorType.Load && sensor.Name == "Memory") {
+          Console.WriteLine($"Memory Load: {sensor.Value:F2}%");
         }
-        Console.WriteLine();
-      }
 
-      System.Threading.Thread.Sleep(1000); // Wait 1 second before refreshing
-    //}
+        // SensorType.Data captures sizes in Gigabytes (e.g., RAM Used / Available)
+        if (sensor.SensorType == SensorType.Data) {
+          Console.WriteLine($"{sensor.Name}: {sensor.Value:F2} GB");
+        }
+      }
+    }
+
+    computer.Close();
   }
 
+  private static void MemoryTest() {
+    var computer = new Computer {
+      IsCpuEnabled = true,
+      IsMemoryEnabled = true
+    };
+    foreach (var hardware in computer.Hardware.Where(h => h.HardwareType == HardwareType.Memory)) {
+      hardware.Update();
+      foreach (var sensor in hardware.Sensors.Where(s => s.SensorType == SensorType.Data)) {
+        // Sensor names: "Memory Used", "Memory Available"
+        Console.WriteLine($"{sensor.Name}: {sensor.Value:F2} GB");
+      }
+
+      // Memory load % is also available
+      foreach (var sensor in hardware.Sensors.Where(s => s.SensorType == SensorType.Load)) {
+        Console.WriteLine($"{sensor.Name}: {sensor.Value:F1}%");  // "Memory"
+      }
+    }
+  }
+
+  private static void basicmemoryTest() {
+      var computer = new Computer {
+      //IsCpuEnabled = true,
+      IsMemoryEnabled = true
+    };
+
+    computer.Open();
+    
+      computer.Accept(new UpdateVisitor());
+
+      foreach (var hardware in computer.Hardware) {
+        Console.WriteLine($"Hardware: {hardware.Name} [{hardware.HardwareType}]");
+
+        foreach (var sensor in hardware.Sensors) {
+          if (sensor.SensorType == SensorType.Load)
+            Console.WriteLine($"  Load:   {sensor.Name} = {sensor.Value:F1}%");
+
+          if (sensor.SensorType == SensorType.Data)
+            Console.WriteLine($"  Memory: {sensor.Name} = {sensor.Value:F2} GB");
+        }
+      }
+      Thread.Sleep(1000); // Update every second
+      Console.WriteLine("====");
+    
+    computer.Close();
+  }
 
   private static void Test1() {
     // 1. Initialize the Computer object and enable Motherboard monitoring

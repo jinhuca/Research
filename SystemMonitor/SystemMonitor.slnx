@@ -30,6 +30,7 @@
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
   </Folder>
   <Folder Name="/Services/">
+    <Project Path="RamInfoServices/RamInfoServices.csproj" Id="b2486af3-a49a-4474-9b4e-ff745c0e9f7d" />
     <Project Path="Services/CpuInfoServices/CpuInfoServices.csproj" />
     <Project Path="Services/GpuInfoServices/GpuInfoServices.csproj" Id="d097b3a0-80c3-4dd7-8dcf-c89166c38952" />
   </Folder>

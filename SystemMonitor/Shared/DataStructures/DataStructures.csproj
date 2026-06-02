@@ -18,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Memory\Implementations\" />
-    <Folder Include="Memory\Interfaces\" />
+    <ProjectReference Include="..\..\Hardware\CrystalMonitorLib\CrystalMonitorLib.csproj" />
   </ItemGroup>
 
 </Project>

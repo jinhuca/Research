@@ -309,7 +309,7 @@ internal static class OpCode {
       }
 
       // Add this:
-      Debug.WriteLine("OpCode.Close: delegates cleared\n" + Environment.StackTrace);
+      //Debug.WriteLine("OpCode.Close: delegates cleared\n" + Environment.StackTrace);
 
       _rdtsc = null;
       _cpuId = null;

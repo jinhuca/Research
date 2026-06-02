@@ -18,8 +18,7 @@
   <Window.Resources>
     <converters:WindowStateConverter x:Key="WindowStateConverter"/>
   </Window.Resources>
-  
-  <!-- Maintain Native Windows Behaviors -->
+
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="32" 
                   ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" 
@@ -32,84 +31,82 @@
       <DropShadowEffect Color="#FF00AAFF" BlurRadius="1" ShadowDepth="2" Direction="0" Opacity="1"/>
     </Border.Effect>
     <Grid Margin="0,5,0,5">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="32"/>
-          <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="32"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
       <!-- Custom Title Bar Panel -->
       <Border Grid.Row="0" Background="#FF112255" CornerRadius="10,10,0,0" Margin="0,-5,0,0">
-      <Grid Grid.Row="0" >
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" >
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
 
-        <!-- Window Title Text -->
-        <TextBlock Grid.Column="0" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" 
+          <!-- Window Title Text -->
+          <TextBlock Grid.Column="0" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" 
                    Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
 
-        <!-- Window Caption Buttons Wrapper -->
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-          <!-- Minimize Button using Segoe MDL2 Assets Glyph -->
-          <Button Style="{StaticResource TitleBarButtonStyle}" Click="MinimizeButton_Click" ToolTip="Minimize">
-            <TextBlock Text="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0,15,0,0"/>
-          </Button>
+          <!-- Window Caption Buttons Wrapper -->
+          <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- Minimize Button using Segoe MDL2 Assets Glyph -->
+            <Button Style="{StaticResource TitleBarButtonStyle}" Click="MinimizeButton_Click" ToolTip="Minimize">
+              <TextBlock Text="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="16" Margin="0,15,0,0"/>
+            </Button>
 
-          <!-- Maximize / Restore Toggle Button -->
-          <Button x:Name="BtnMaximize" Style="{StaticResource TitleBarButtonStyle}" Click="MaximizeButton_Click" ToolTip="Maximize">
-            <TextBlock x:Name="TxtMaximize" FontFamily="Segoe MDL2 Assets" FontSize="16"
+            <!-- Maximize / Restore Toggle Button -->
+            <Button x:Name="BtnMaximize" Style="{StaticResource TitleBarButtonStyle}" Click="MaximizeButton_Click" ToolTip="Maximize">
+              <TextBlock x:Name="TxtMaximize" FontFamily="Segoe MDL2 Assets" FontSize="16"
                        Text="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource WindowStateConverter}}"/>
-          </Button>
-          <!-- Close Button with Custom Red Hover State -->
-          <Button Click="CloseButton_Click" ToolTip="Close">
-            <Button.Style>
-              <Style TargetType="Button" BasedOn="{StaticResource TitleBarButtonStyle}">
-                <Style.Triggers>
-                  <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#E81123"/>
-                  </Trigger>
-                </Style.Triggers>
-              </Style>
-            </Button.Style>
-            <TextBlock Text="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
-          </Button>
-        </StackPanel>
-      </Grid>
+            </Button>
+            <!-- Close Button with Custom Red Hover State -->
+            <Button Click="CloseButton_Click" ToolTip="Close">
+              <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource TitleBarButtonStyle}">
+                  <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                      <Setter Property="Background" Value="#E81123"/>
+                    </Trigger>
+                  </Style.Triggers>
+                </Style>
+              </Button.Style>
+              <TextBlock Text="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
+            </Button>
+          </StackPanel>
+        </Grid>
       </Border>
+      
       <Grid Grid.Row="1" ShowGridLines="False">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="1.60cm"/>
-            <RowDefinition Height="Auto"/>
-            <!--<RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>-->
-            <!--<RowDefinition Height="2.80cm"/>-->
-          </Grid.RowDefinitions>
-          <!--<Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>-->
-          <ContentControl x:Name="OsRegion" Grid.Row="0"
+        <Grid.RowDefinitions>
+          <RowDefinition Height="1.60cm"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl x:Name="OsRegion" Grid.Row="0" Grid.Column="1"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="{x:Static shared:RegionNames.OsRegionName}"/>
-          <!--<ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" 
-                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>-->
-          <ContentControl x:Name="CpuRegion" Grid.Row="1" 
+        <ContentControl x:Name="HomeRegion" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
+                      prism:RegionManager.RegionName="{x:Static shared:RegionNames.HomeRegionName}"/>
+        <ContentControl x:Name="CpuRegion" Grid.Row="1" Grid.Column="1"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="{x:Static shared:RegionNames.CpuRegionName}"/>
-          <!--<ContentControl x:Name="GpuRegion" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+        <!--<ContentControl x:Name="GpuRegion" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.GpuSummaryRegionName}"/>-->
-          <!--<ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
-                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>
-      <ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
+        <!--<ContentControl x:Name="MemoryRegion" Grid.Row="2" Grid.Column="1" 
+                    prism:RegionManager.RegionName="{x:Static shared:RegionNames.MemoryRegionName}"/>-->
+        <!--<ContentControl x:Name="StorageRegion" Grid.Row="2" Grid.Column="2" 
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StorageRegionName}"/>
       <ContentControl x:Name="BiosRegion" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.BiosRegionName}"/>-->
-          <!--<ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
+        <!--<ContentControl x:Name="StasticsRegion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch"
                     prism:RegionManager.RegionName="{x:Static shared:RegionNames.StatisticsRegionName}"/>-->
-        </Grid>
       </Grid>
-    </Border>
-  
+    </Grid>
+  </Border>
+
 </Window>

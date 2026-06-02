@@ -18,7 +18,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Providers\SystemManagementProvider\SystemManagementProvider.csproj" />
+    <ProjectReference Include="..\..\RamInfoServices\RamInfoServices.csproj" />
     <ProjectReference Include="..\..\Shared\Converters\Converters.csproj" />
+    <ProjectReference Include="..\..\Shared\DataStructures\DataStructures.csproj" />
     <ProjectReference Include="..\..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
     <ProjectReference Include="..\ResourceModule\ResourceModule.csproj" />
   </ItemGroup>

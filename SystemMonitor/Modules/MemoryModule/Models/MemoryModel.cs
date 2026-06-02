@@ -1,7 +1,20 @@
-﻿namespace MemoryModule.Models;
+﻿using DataStructures.Ram.Implementations;
+using RamInfoServices;
+using RamInfoServices.Observables;
+using System.Diagnostics;
+
+namespace MemoryModule.Models;
 
 public class MemoryModel : BindableBase, IMemoryModel {
+  IObservable<RamSummaryInfo> _memoryModelObservable;
+
   public MemoryModel() {
+    _memoryModelObservable = RamInfoGenerators.GenerateRamSummaryInfo(TimeSpan.FromSeconds(0));
+    IDisposable ramSummaryDispose_ = _memoryModelObservable.Subscribe(
+      newItem => { Debug.WriteLine(newItem.UsagePercentage); },
+      ex => { Debug.WriteLine(ex.Message); },
+        () => { Debug.WriteLine("Subscription disposed."); });
+
     init();
   }
 
