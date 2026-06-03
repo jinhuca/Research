@@ -9,9 +9,11 @@
     <Setter Property="Margin" Value="0"/>
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderBrush" Value="Black"/>
-    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="BorderThickness" Value="0"/>
     <Setter Property="PlotStroke" Value="Black"/>
     <Setter Property="RangeAreaBrush" Value="LightGray"/>
+    <Setter Property="Width" Value="Auto"/>
+    <Setter Property="Height" Value="5.00cm"/>
   </Style>
 
   <Style x:Key="LoadPlotterStyle" 
@@ -19,6 +21,10 @@
        BasedOn="{StaticResource PlotterBaseStyle}">
     <Setter Property="PlotStroke" Value="{StaticResource LoadSolidColorBrush}"/>
     <Setter Property="RangeAreaBrush" Value="{StaticResource LoadRangeLinearGradientBrush}"/>
+    <Setter Property="YMin" Value="0"/>
+    <Setter Property="YMax" Value="100"/>
+    <Setter Property="TitleText" Value="% Utilization"/>
+    <Setter Property="ValueText" Value="100%"/>
   </Style>
 
   <Style x:Key="PowerPlotterStyle" 
@@ -26,6 +32,10 @@
        BasedOn="{StaticResource PlotterBaseStyle}">
     <Setter Property="PlotStroke" Value="{StaticResource PowerSolidColorBrush}"/>
     <Setter Property="RangeAreaBrush" Value="{StaticResource PowerRangeLinearGradientBrush}"/>
+    <Setter Property="YMin" Value="0"/>
+    <Setter Property="YMax" Value="100"/>
+    <Setter Property="TitleText" Value="Power"/>
+    <Setter Property="ValueText" Value="100W"/>
   </Style>
 
   <Style x:Key="VoltagePlotterStyle"
@@ -33,6 +43,10 @@
          BasedOn="{StaticResource PlotterBaseStyle}">
     <Setter Property="PlotStroke" Value="{StaticResource VoltageSolidColorBrush}"/>
     <Setter Property="RangeAreaBrush" Value="{StaticResource VoltageRangeLinearGradientBrush}"/>
+    <Setter Property="YMin" Value="0"/>
+    <Setter Property="YMax" Value="3"/>
+    <Setter Property="TitleText" Value="Voltage"/>
+    <Setter Property="ValueText" Value="3V"/>
   </Style>
 
   <Style x:Key="TemperaturePlotterStyle"
@@ -40,6 +54,10 @@
          BasedOn="{StaticResource PlotterBaseStyle}">
     <Setter Property="PlotStroke" Value="{StaticResource TemperatureSolidColorBrush}"/>
     <Setter Property="RangeAreaBrush" Value="{StaticResource TemperatureRangeLinearGradientBrush}"/>
+    <Setter Property="YMin" Value="0"/>
+    <Setter Property="YMax" Value="120"/>
+    <Setter Property="TitleText" Value="Temperature"/>
+    <Setter Property="ValueText" Value="120°C"/>
   </Style>
 
   <Style x:Key="ClockPlotterStyle"
@@ -47,5 +65,9 @@
          BasedOn="{StaticResource PlotterBaseStyle}">
     <Setter Property="PlotStroke" Value="{StaticResource ClockSolidColorBrush}"/>
     <Setter Property="RangeAreaBrush" Value="{StaticResource ClockRangeLinearGradientBrush}"/>
+    <Setter Property="YMin" Value="0"/>
+    <Setter Property="YMax" Value="6"/>
+    <Setter Property="TitleText" Value="Clock"/>
+    <Setter Property="ValueText" Value="6 GHz"/>
   </Style>
 </ResourceDictionary>

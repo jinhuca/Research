@@ -209,21 +209,8 @@
                                   Style="{StaticResource LoadsMeterStyle}"/>
             </Viewbox>
             <ploter:PlotterControl Grid.Column="1" 
-                                 Margin="0" 
-                                 
-                                 BorderThickness="0" 
-                                 HorizontalAlignment="Stretch" 
-                                 VerticalAlignment="Stretch" 
-                                 Width="Auto" 
-                                 Height="5cm"
-                                 
-                                 YMin="0" 
-                                 YMax="100" 
-                                 
-                                 TitleText="% Utilization"
-                                 ValueText="100%"
                                    Style="{StaticResource LoadPlotterStyle}"
-                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
+                                   DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.LoadViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Power -->
           <Grid Grid.Row="0" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.2cm">
@@ -240,21 +227,8 @@
                                 Style="{StaticResource PowerMeterStyle}"/>
             </Viewbox>
             <ploter:PlotterControl Grid.Column="1" 
-                                 Margin="0" 
-                                 Background="Transparent"
-                                 BorderThickness="0" 
-                                 HorizontalAlignment="Stretch" 
-                                 VerticalAlignment="Stretch" 
-                                 Width="Auto" 
-                                 Height="5cm"
-                                 
-                                 YMin="0" 
-                                 YMax="100" 
-                                 
-                                 TitleText="Power"
-                                 ValueText="100W"
                                    Style="{StaticResource PowerPlotterStyle}"
-                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel, TargetNullValue=0}"/>
+                                   DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformPowerValueViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Voltage -->
           <Grid Grid.Row="1" Grid.Column="0" Margin="0cm,.1cm,1.1cm,.2cm">
@@ -271,19 +245,8 @@
                                 Style="{StaticResource VoltageMeterStyle}"/>
             </Viewbox>
             <ploter:PlotterControl Grid.Column="1" 
-                                 Margin="0" 
-                                 Background="Transparent"
-                                 BorderThickness="0" 
-                                 HorizontalAlignment="Stretch" 
-                                 VerticalAlignment="Stretch" 
-                                 Width="Auto" 
-                                 Height="5cm"
-                                 YMin="0" 
-                                 YMax="3" 
-                                 TitleText="Voltage"
-                                 ValueText="3V"
                                    Style="{StaticResource VoltagePlotterStyle}"
-                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel, TargetNullValue=0}"/>
+                                   DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.PlatformVoltageValueViewModel, TargetNullValue=0}"/>
           </Grid>
           <!-- Temperature -->
           <Grid Grid.Row="1" Grid.Column="1" Margin="0cm,.1cm,1.1cm,.2cm">
@@ -298,16 +261,6 @@
                                 Style="{StaticResource TemperatureMeterStyle}"/>
             </Viewbox>
             <ploter:PlotterControl Grid.Column="1" 
-                                   Background="Transparent" 
-                                   BorderThickness="0" 
-                                   HorizontalAlignment="Stretch" 
-                                   VerticalAlignment="Stretch" 
-                                   Width="Auto" 
-                                   Height="Auto"
-                                   TitleText="Temperature"
-                                   ValueText="120°C"
-                                   YMin="0" 
-                                   YMax="120" 
                                    Style="{StaticResource TemperaturePlotterStyle}"
                                    DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.TemperatureViewModel, TargetNullValue=0}"/>
           </Grid>
@@ -323,21 +276,8 @@
                                Style="{StaticResource ClockMeterStyle}"/>
             </Viewbox>
             <ploter:PlotterControl Grid.Column="1" 
-                                 Margin="0" 
-                                 Background="Transparent"
-                                 BorderThickness="0" 
-                                 HorizontalAlignment="Stretch" 
-                                 VerticalAlignment="Stretch" 
-                                 Width="Auto" 
-                                 Height="5cm"
-                                 
-                                 YMin="0" 
-                                 YMax="6" 
-                                 
-                                 TitleText="Clock"
-                                 ValueText="6 GHz"
                                    Style="{StaticResource ClockPlotterStyle}"
-                                 DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel, TargetNullValue=0}"/>
+                                   DataSource="{Binding LiveViewModel.CpuOverallLiveViewModel.SpeedViewModel, TargetNullValue=0}"/>
           </Grid>
           <!--<ListView Grid.Row="3" Margin="0,10,0,0" Background="Transparent" BorderThickness="0"
                     ItemsSource="{Binding LiveViewModel.CoreLiveViewModel}">
