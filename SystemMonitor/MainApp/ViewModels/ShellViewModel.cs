@@ -1,6 +1,6 @@
 ﻿using SharedDefinitions;
 
-namespace MainApp;
+namespace MainApp.ViewModels;
 
 public class ShellViewModel : BindableBase {
   private readonly IRegionManager _regionManager;

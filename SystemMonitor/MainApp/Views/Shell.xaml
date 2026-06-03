@@ -98,6 +98,12 @@
                 Style="{StaticResource ModuleBorderStyle}" VerticalAlignment="Stretch">
           <UniformGrid Columns="1" Margin="10" Background="Transparent" VerticalAlignment="Top">
             <Button Command="{Binding NavigateCommand}" 
+                    CommandParameter="{x:Static shared:ViewNames.HomeViewName}"
+                    Style="{StaticResource HomePanelButtonStyle}">
+              <TextBlock Text="Home" Style="{StaticResource HomePanelTextStyle}"/>
+            </Button>
+
+            <Button Command="{Binding NavigateCommand}" 
                     CommandParameter="{x:Static shared:ViewNames.CpuViewName}"
                     Style="{StaticResource HomePanelButtonStyle}">
               <Grid Background="Transparent">
@@ -123,7 +129,7 @@
                 <TextBlock Grid.Column="1" Text="GPU" Style="{StaticResource HomePanelTextStyle}"/>
               </Grid>
             </Button>
-            
+
             <Button Command="{Binding NavigateCommand}" 
                     CommandParameter="{x:Static shared:ViewNames.MemoryViewName}"
                     Style="{StaticResource HomePanelButtonStyle}">
@@ -151,7 +157,7 @@
                 <TextBlock Grid.Column="1" Text="Storage" Style="{StaticResource HomePanelTextStyle}"/>
               </Grid>
             </Button>
-            
+
             <Grid>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -171,7 +177,7 @@
               </Border>
               <TextBlock Grid.Column="1" Text="Fans" Style="{StaticResource HomePanelTextStyle}"/>
             </Grid>
-            
+
           </UniformGrid>
         </Border>
         <ContentControl x:Name="CpuRegion" Grid.Column="1"

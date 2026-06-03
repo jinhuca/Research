@@ -4,10 +4,13 @@ using CpuModule.ViewModels.Implementations;
 using CpuModule.Views;
 using GpuModule.ViewModels;
 using GpuModule.Views;
+using MainApp.ViewModels;
+using MainApp.Views;
 using MemoryModule.ViewModels;
 using MemoryModule.Views;
 using OsModule.ViewModels;
 using OsModule.Views;
+using SharedDefinitions;
 using StorageModule.ViewModels;
 using StorageModule.Views;
 using System.Windows;
@@ -20,6 +23,7 @@ public partial class App : PrismApplication {
   }
 
   protected override void RegisterTypes(IContainerRegistry containerRegistry) {
+    containerRegistry.RegisterForNavigation<HomeContentView>();
     containerRegistry.RegisterForNavigation<CpuSummaryView>();
     containerRegistry.RegisterForNavigation<GpuSummaryView>();
     containerRegistry.RegisterForNavigation<MemorySummaryView>();
@@ -43,11 +47,18 @@ public partial class App : PrismApplication {
   protected override void ConfigureViewModelLocator() {
     base.ConfigureViewModelLocator();
     ViewModelLocationProvider.Register<Shell, ShellViewModel>();
+    ViewModelLocationProvider.Register<HomeContentView, HomeContentViewModel>();
     ViewModelLocationProvider.Register<OperatingSystemSummaryView, OperatingSystemViewModel>();
     ViewModelLocationProvider.Register<CpuSummaryView, CpuViewModel>();
     ViewModelLocationProvider.Register<GpuSummaryView, GpuViewModel>();
     ViewModelLocationProvider.Register<MemorySummaryView, MemoryViewModel>();
     ViewModelLocationProvider.Register<StorageSummaryView, StorageViewModel>();
     ViewModelLocationProvider.Register<BiosSummaryView, BiosViewModel>();
+  }
+
+  protected override void OnInitialized() {
+    base.OnInitialized();
+    var regionManager = Container.Resolve<IRegionManager>();
+    regionManager.RequestNavigate(RegionNames.MainContentRegionName, nameof(HomeContentView));
   }
 }

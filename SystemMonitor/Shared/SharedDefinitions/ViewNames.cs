@@ -4,6 +4,7 @@ using System.Text;
 
 namespace SharedDefinitions; 
 public static class ViewNames {
+  public static string HomeViewName { get; set; } = "HomeContentView";
   public static string CpuViewName { get; set; } = "CpuSummaryView";
   public static string MemoryViewName { get; set; } = "MemorySummaryView";
   public static string StorageViewName { get; set; } = "StorageSummaryView";
