@@ -32,6 +32,7 @@
     <ProjectReference Include="..\Modules\OsModule\OsModule.csproj" />
     <ProjectReference Include="..\Modules\ResourceModule\ResourceModule.csproj" />
     <ProjectReference Include="..\Modules\StorageModule\StorageModule.csproj" />
+    <ProjectReference Include="..\Services\CpuInfoServices\CpuInfoServices.csproj" />
     <ProjectReference Include="..\Shared\SharedDefinitions\SharedDefinitions.csproj" />
   </ItemGroup>
 

@@ -2,8 +2,8 @@
 
 namespace CpuModule.ViewModels.Definitions;
 
-internal static class ViewModelConversions {
-  internal static string VendorNameConvert(string name) {
+public static class ViewModelConversions {
+  public static string VendorNameConvert(string name) {
     if (name is null) throw new ArgumentNullException(nameof(name));
     if (name.Contains(Definitions.Intel, StringComparison.OrdinalIgnoreCase)) {
       return Definitions.Intel;
