@@ -21,4 +21,10 @@
     <ProjectReference Include="..\..\Hardware\CrystalMonitorLib\CrystalMonitorLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Gpu\Definitions\" />
+    <Folder Include="Gpu\Implementations\" />
+    <Folder Include="Gpu\Interfaces\" />
+  </ItemGroup>
+
 </Project>

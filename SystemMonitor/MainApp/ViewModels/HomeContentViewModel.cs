@@ -1,5 +1,6 @@
 ﻿using CpuModule.ViewModels.Definitions;
 using DataStructures.Cpu.Interfaces;
+using SharedDefinitions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,10 +8,14 @@ using System.Text;
 namespace MainApp.ViewModels;
 
 public class HomeContentViewModel : BindableBase {
+  private readonly IRegionManager _regionManager;
   private IObservable<ICpuSummaryInfo> _cpuSummaryInfoObservable;
   private IObservable<ICpuLiveInfo> _cpuLiveInfoObservable;
+  public DelegateCommand<string> NavigateCommand { get; }
 
-  public HomeContentViewModel() {
+  public HomeContentViewModel(IRegionManager regionManager) {
+    _regionManager = regionManager;
+    NavigateCommand = new DelegateCommand<string>(Navigate);
     _cpuSummaryInfoObservable = CpuInfoServices.Observables.CpuInfoGenerators.GenerateCpuSummaryInfo(TimeSpan.FromSeconds(0));
     _cpuSummaryInfoObservable.Subscribe(
       info => {
@@ -28,6 +33,12 @@ public class HomeContentViewModel : BindableBase {
       },
       ex => { },
       () => { });
+  }
+
+  private void Navigate(string viewName) {
+    if (!string.IsNullOrEmpty(viewName)) {
+      _regionManager.RequestNavigate(RegionNames.MainContentRegionName, viewName);
+    }
   }
 
   private string _cpuVendor = string.Empty;
