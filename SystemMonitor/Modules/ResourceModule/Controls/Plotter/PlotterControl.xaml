@@ -13,7 +13,7 @@
       <RowDefinition Height="*"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
-    <Grid Grid.Row="0">
+    <Grid Grid.Row="0" Visibility="{Binding IsTitleEnabled, RelativeSource={RelativeSource AncestorType=local:PlotterControl}}">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
@@ -28,12 +28,14 @@
                HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>
     <Border Grid.Row="1" Margin="0" Background="#020202" BorderBrush="#FF1E90FF" BorderThickness="1">
-      <d3:Plotter x:Name="plotter" 
-              Margin="0" Background="#020202" 
-              HorizontalContentAlignment="Center"
-              MainHorizontalAxisVisibility="Collapsed"/>
+      <d3:Plotter x:Name="plotter"
+                  Margin="0" Background="#020202"
+                  VerticalContentAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  MainHorizontalAxisVisibility="Collapsed"
+                  />
     </Border>
-    <Grid Grid.Row="2">
+    <Grid Grid.Row="2" Visibility="{Binding IsTitleEnabled, RelativeSource={RelativeSource AncestorType=local:PlotterControl}}">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>

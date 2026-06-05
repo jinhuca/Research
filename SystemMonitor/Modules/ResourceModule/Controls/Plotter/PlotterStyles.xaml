@@ -19,8 +19,8 @@
   <Style x:Key="LoadPlotterStyle" 
        TargetType="{x:Type local:PlotterControl}"
        BasedOn="{StaticResource PlotterBaseStyle}">
-    <Setter Property="PlotStroke" Value="{StaticResource LoadSolidColorBrush}"/>
-    <Setter Property="RangeAreaBrush" Value="{StaticResource LoadRangeLinearGradientBrush}"/>
+    <Setter Property="PlotStroke" Value="{DynamicResource LoadSolidColorBrush}"/>
+    <Setter Property="RangeAreaBrush" Value="{DynamicResource LoadRangeLinearGradientBrush}"/>
     <Setter Property="YMin" Value="0"/>
     <Setter Property="YMax" Value="100"/>
     <Setter Property="TitleText" Value="% Utilization"/>

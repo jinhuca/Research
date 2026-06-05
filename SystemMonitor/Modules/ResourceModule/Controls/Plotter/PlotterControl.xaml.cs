@@ -60,16 +60,35 @@ private readonly List<LineGraph?> _seriesList = new();
     Panel.SetZIndex(areaPath, -1000);
 
     plotter.Background = PlotterBackground ?? new SolidColorBrush(Color.FromRgb(18, 18, 18));
-    plotter.AxisGrid.GridPath.Stroke = new SolidColorBrush(Color.FromArgb(90, 200, 200, 200));
-    plotter.AxisGrid.GridPath.StrokeDashArray = new DoubleCollection { 1 };
+    plotter.AxisGrid.GridPath.Stroke = AxisGridStroke;
+    plotter.AxisGrid.GridPath.StrokeDashArray = [1];
     
-
     plotter.MainHorizontalAxisVisibility = Visibility.Collapsed;
     plotter.MainVerticalAxisVisibility = Visibility.Collapsed;
     plotter.NewLegendVisible = false;
   }
 
   #region Dependency Properties (expose plotter Background and stroke)
+
+  public Brush AxisGridStroke {
+    get => (Brush)GetValue(AxisGridStrokeProperty);
+    set => SetValue(AxisGridStrokeProperty, value);
+  }
+
+  public static readonly DependencyProperty AxisGridStrokeProperty =
+    DependencyProperty.Register(
+      name: nameof(AxisGridStroke),
+      propertyType: typeof(Brush),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(
+        new SolidColorBrush(Color.FromArgb(90, 100, 100, 100)), 
+        FrameworkPropertyMetadataOptions.None, OnAxisGridStrokeChanged));
+
+  private static void OnAxisGridStrokeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+    var control = (PlotterControl)d;
+    var brush = (Brush)e.NewValue;
+    if (control.plotter != null) control.plotter.AxisGrid.GridPath.Stroke = brush;
+  }
 
   public Brush PlotterBackground {
     get => (Brush)GetValue(PlotterBackgroundProperty);
@@ -188,6 +207,22 @@ private readonly List<LineGraph?> _seriesList = new();
 
     // unsupported types are ignored silently
   }
+
+  #region Enabled Title and Footer Text DPs
+
+  public Visibility IsTitleEnabled {
+    get => (Visibility)GetValue(IsTitleEnabledProperty);
+    set => SetValue(IsTitleEnabledProperty, value);
+  }
+
+  public static readonly DependencyProperty IsTitleEnabledProperty =
+    DependencyProperty.Register(
+      name: nameof(IsTitleEnabled),
+      propertyType: typeof(Visibility),
+      ownerType: typeof(PlotterControl),
+      typeMetadata: new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.None));
+
+  #endregion Enabled Title and Footer Text DPs
 
   #region Title Text Dependency Property
 

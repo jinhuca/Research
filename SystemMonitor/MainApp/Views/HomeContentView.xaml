@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
+             xmlns:plotter="clr-namespace:ResourceModule.Controls.Plotter;assembly=ResourceModule"
+             xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
              xmlns:local="clr-namespace:MainApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -28,8 +30,21 @@
           <ColumnDefinition Width="110"/>
           <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" 
-                   Text="CPU" Style="{StaticResource HomeCaptionTextStyle}"/>
+        <Grid Grid.Column="0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0" Text="CPU" Style="{StaticResource HomeCaptionTextStyle}"/>
+          <plotter:PlotterControl Grid.Row="1" Width="Auto" Height="Auto" 
+                                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                  AxisGridStroke="Transparent"
+                                  Style="{StaticResource LoadPlotterStyle}"
+                                  TitleText=""
+                                  ValueText=""
+                                  IsTitleEnabled="Collapsed"
+                                  DataSource="{Binding CpuLoad}"/>
+        </Grid>
         <Grid Grid.Column="1">
           <Grid.RowDefinitions>
             <RowDefinition/>
@@ -41,23 +56,23 @@
             <ColumnDefinition Width="70"/>
             <ColumnDefinition/>
           </Grid.ColumnDefinitions>
-          <TextBlock Grid.Row="0" Grid.Column="0"
+          <!--<TextBlock Grid.Row="0" Grid.Column="0"
                      Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.VendorName}"/>
+                     Text="{x:Static local:ViewDefinitions.VendorName}"/>-->
           <TextBlock Grid.Row="0" Grid.Column="1"
                    Style="{StaticResource HomeValueTextStyle}"
                    Text="{Binding CpuVendor}"/>
 
-          <TextBlock Grid.Row="1" Grid.Column="0"
+          <!--<TextBlock Grid.Row="1" Grid.Column="0"
                      Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.BrandName}"/>
+                     Text="{x:Static local:ViewDefinitions.BrandName}"/>-->
           <TextBlock Grid.Row="1" Grid.Column="1"
                      Style="{StaticResource HomeValueTextStyle}"
                      Text="{Binding CpuBrand}"/>
 
-          <TextBlock Grid.Row="2" Grid.Column="0" 
+          <!--<TextBlock Grid.Row="2" Grid.Column="0" 
                      Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.ClockInGHz}"/>
+                     Text="{x:Static local:ViewDefinitions.ClockInGHz}"/>-->
           <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Style="{StaticResource HomeValueTextStyle}"
                      Text="{Binding CpuClock}"/>
@@ -65,9 +80,9 @@
                        Text=" GHz"/>
           </StackPanel>
 
-          <TextBlock Grid.Row="3" Grid.Column="0" 
+          <!--<TextBlock Grid.Row="3" Grid.Column="0" 
                      Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.LoadInPercentage}"/>
+                     Text="{x:Static local:ViewDefinitions.LoadInPercentage}"/>-->
           <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Style="{StaticResource HomeValueTextStyle}"
                        Text="{Binding CpuLoad}"/>

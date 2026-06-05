@@ -79,7 +79,7 @@
   <Style x:Key="HomeCaptionTextStyle"
          TargetType="TextBlock">
     <Setter Property="HorizontalAlignment" Value="Left"/>
-    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
     <Setter Property="FontSize" Value="30"/>
     <Setter Property="Foreground" Value="White"/>
     <Setter Property="Margin" Value="30,0,0,0"/>

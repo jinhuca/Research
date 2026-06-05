@@ -23,6 +23,8 @@ public partial class App : PrismApplication {
   }
 
   protected override void RegisterTypes(IContainerRegistry containerRegistry) {
+    containerRegistry.RegisterSingleton<HomeContentViewModel>();
+
     containerRegistry.RegisterForNavigation<HomeContentView>();
     containerRegistry.RegisterForNavigation<CpuSummaryView>();
     containerRegistry.RegisterForNavigation<GpuSummaryView>();

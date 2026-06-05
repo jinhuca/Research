@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:MainApp"
+        xmlns:plotter="clr-namespace:ResourceModule.Controls.Plotter;assembly=ResourceModule"
         xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
         xmlns:converters="clr-namespace:ResourceModule.Converters;assembly=ResourceModule"
-        xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions"
+        xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions" 
+        xmlns:local1="clr-namespace:MainApp.Contents"
         Icon="pack://application:,,,/sm1.ico"
         mc:Ignorable="d" 
         WindowStyle="None"
@@ -111,7 +113,16 @@
                   <ColumnDefinition Width="Auto"/>
                   <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}"/>
+                <Border Grid.Column="0" Style="{StaticResource HomePanelBorderStyle}">
+                  <plotter:PlotterControl Grid.Row="1" Width="Auto" Height="Auto" Background="AliceBlue"
+                                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                          Style="{StaticResource LoadPlotterStyle}"
+                                          TitleText=""
+                                          ValueText=""
+                                          IsTitleEnabled="Collapsed"
+                                          AxisGridStroke="Transparent"
+                                          DataSource="{Binding HomeContentVM.CpuLoad}"/>
+                </Border>
                 <TextBlock Grid.Column="1" Text="CPU" Style="{StaticResource HomePanelTextStyle}"/>
               </Grid>
             </Button>

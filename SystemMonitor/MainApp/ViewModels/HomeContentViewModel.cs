@@ -1,9 +1,8 @@
 ﻿using CpuModule.ViewModels.Definitions;
 using DataStructures.Cpu.Interfaces;
+using GpuModule.ViewModels;
+
 using SharedDefinitions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MainApp.ViewModels;
 
@@ -16,6 +15,7 @@ public class HomeContentViewModel : BindableBase {
   public HomeContentViewModel(IRegionManager regionManager) {
     _regionManager = regionManager;
     NavigateCommand = new DelegateCommand<string>(Navigate);
+
     _cpuSummaryInfoObservable = CpuInfoServices.Observables.CpuInfoGenerators.GenerateCpuSummaryInfo(TimeSpan.FromSeconds(0));
     _cpuSummaryInfoObservable.Subscribe(
       info => {
