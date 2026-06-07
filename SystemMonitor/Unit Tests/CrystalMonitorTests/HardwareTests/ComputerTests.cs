@@ -3,7 +3,7 @@
 namespace CrystalMonitorTests.HardwareTests;
 
 public class ComputerTests : IDisposable {
-  private Computer _computer;
+  private Computer? _computer;
 
   public void Dispose() {
     _computer?.Close();
@@ -147,7 +147,7 @@ public class ComputerTests : IDisposable {
   public void Computer_IsCpuEnabled_WhenDisabledAfterOpen_RemovesCpuHardware() {
     _computer = CreateAndOpen(c => c.IsCpuEnabled = true);
     _computer.IsCpuEnabled = false;
-    Assert.Empty(_computer.Hardware.Where(h => h.HardwareType == HardwareType.Cpu));
+    Assert.DoesNotContain(_computer.Hardware, h => h.HardwareType == HardwareType.Cpu);
   }
 
   // -------------------------------------------------------------------------

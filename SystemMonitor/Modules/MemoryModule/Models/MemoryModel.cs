@@ -1,5 +1,4 @@
 ﻿using DataStructures.Ram.Implementations;
-using RamInfoServices;
 using RamInfoServices.Observables;
 using System.Diagnostics;
 

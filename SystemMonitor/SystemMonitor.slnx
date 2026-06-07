@@ -29,9 +29,10 @@
     <Project Path="Providers/SystemManagementProvider/SystemManagementProvider.csproj" />
   </Folder>
   <Folder Name="/Services/">
-    <Project Path="RamInfoServices/RamInfoServices.csproj" Id="b2486af3-a49a-4474-9b4e-ff745c0e9f7d" />
     <Project Path="Services/CpuInfoServices/CpuInfoServices.csproj" />
     <Project Path="Services/GpuInfoServices/GpuInfoServices.csproj" Id="d097b3a0-80c3-4dd7-8dcf-c89166c38952" />
+    <Project Path="Services/HardwareService/HardwareService.csproj" Id="6bd20f31-ca40-42b8-bc74-2dbec1ec0d02" />
+    <Project Path="Services/RamInfoServices/RamInfoServices.csproj" />
   </Folder>
   <Folder Name="/Shared/">
     <Project Path="Shared/Converters/Converters.csproj" Id="7c6283d6-c0e3-4887-b21f-6117f32593b2" />
@@ -44,12 +45,16 @@
     <File Path=".editorconfig" />
   </Folder>
   <Folder Name="/Temporaries/">
+    <Project Path="LHMtoObservables/LHMtoObservables.csproj" Id="af494290-d6cc-4b74-a9a8-7ca9d2377bd2" />
     <Project Path="Temporaries/ControlTests/ControlTests.csproj" />
+    <Project Path="Temporaries/GpuIObservableDemo/GpuIObservableDemo.csproj" Id="765a6c35-8cc9-403e-a752-0817b0e56aba" />
     <Project Path="Temporaries/InfoGeneratorTests/InfoGeneratorTests.csproj" Id="bf1e8b9f-9506-472c-9687-d80f19f02553" />
+    <Project Path="Temporaries/QueryGpu/QueryGpu.csproj" Id="21f106d6-94dd-49ba-8607-b3ceb4fcdf5e" />
   </Folder>
   <Folder Name="/Unit Tests/">
     <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
     <Project Path="Unit Tests/CrystalMonitorTests/CrystalMonitorTests.csproj" />
+    <Project Path="Unit Tests/HardwareObservableTests/HardwareObservableTests.csproj" Id="87a1a386-8cf4-4184-95a8-9f080de2972b" />
     <Project Path="Unit Tests/SystemManagementProviderTests/SystemManagementProviderTests.csproj" Id="9c5eb659-a90a-4271-8233-e5c24b985c25" />
   </Folder>
   <Project Path="MainApp/MainApp.csproj" />

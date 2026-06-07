@@ -43,6 +43,15 @@ public class GpuModel : BindableBase, IGpuModel {
     Computer computer = new Computer { IsGpuEnabled = true };
     computer.Open();
     foreach(var hardware in computer.Hardware) {
+      if(hardware.HardwareType == HardwareType.GpuIntel) {
+        hardware.Update();
+        foreach (var sensor in hardware.Sensors) {
+          if (sensor.SensorType == SensorType.Load && sensor.Name.Equals("GPU Core", StringComparison.OrdinalIgnoreCase)) {
+            return sensor.Value ?? 0.0f;
+          }
+        }
+      }
+
       if(hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuIntel) {
         hardware.Update();
         foreach(var sensor in hardware.Sensors) {
