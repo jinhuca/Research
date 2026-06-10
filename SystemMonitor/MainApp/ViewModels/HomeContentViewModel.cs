@@ -1,7 +1,5 @@
 ﻿using CpuModule.ViewModels.Definitions;
 using DataStructures.Cpu.Interfaces;
-using GpuModule.ViewModels;
-
 using SharedDefinitions;
 
 namespace MainApp.ViewModels;

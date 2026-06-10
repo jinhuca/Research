@@ -6,9 +6,9 @@ namespace HardwareService;
 
 public static class HardwareObservable {
   /// <summary>
-  /// Returns a cold IObservable that polls ALL hardware sensors at
-  /// <paramref name="interval"/> and emits a complete HardwareSnapshot
-  /// each tick.  Disposes the Computer when the subscription ends.
+  /// Returns a cold IObservable that polls ALL hardware sensors at <paramref name="interval"/> 
+  /// and emits a complete HardwareSnapshot each tick.  
+  /// Disposes the Computer when the subscription ends.
   /// </summary>
   public static IObservable<HardwareSnapshot> PollAll(
     TimeSpan? interval = null,
@@ -18,10 +18,10 @@ public static class HardwareObservable {
     bool storage = true,
     bool motherboard = true,
     bool network = true,
-    bool psu = false,
+    bool psu = true,
     bool battery = true) {
 
-    var period = interval ?? TimeSpan.FromSeconds(1);
+    //var period = interval ?? TimeSpan.FromSeconds(1);
 
     return Observable.Create<HardwareSnapshot>(observer => {
       var computer = new Computer {
@@ -38,10 +38,19 @@ public static class HardwareObservable {
       computer.Open();
 
       var sub = Observable
-          .Interval(period)
-          .StartWith(-1L)
-          .Select(_ => TakeSnapshot(computer))
-          .Subscribe(observer);
+      .Interval(interval ?? TimeSpan.FromSeconds(1))
+      .StartWith(-1L)
+      .SelectMany(_ => {
+        try {
+          return Observable.Return(TakeSnapshot(computer));
+        }
+        catch (Exception ex) {
+          // Log and skip this tick
+          Serilog.Log.Error(ex, "Error taking hardware snapshot");
+          return Observable.Empty<HardwareSnapshot>();
+        }
+      })
+      .Subscribe(observer);
 
       // returned IDisposable is called on unsubscribe
       return Disposable.Create(() => {

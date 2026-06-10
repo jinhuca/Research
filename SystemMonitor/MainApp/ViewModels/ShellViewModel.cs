@@ -23,13 +23,10 @@ public class ShellViewModel : BindableBase {
     _regionManager = regionManager;
     _homeContentViewModel = homeContentViewModel;
     NavigateCommand = new DelegateCommand<string>(Navigate);
-
-     
   }
 
   private void Navigate(string viewName) {
-    if (!string.IsNullOrEmpty(viewName)) {
-      _regionManager.RequestNavigate(RegionNames.MainContentRegionName, viewName);
-    }
+    if (string.IsNullOrEmpty(viewName)) return;
+    _regionManager.RequestNavigate(RegionNames.MainContentRegionName, viewName);
   }
 }

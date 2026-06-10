@@ -176,8 +176,8 @@ internal class Program {
   }
 
   static async Task Main(string[] args) {
-    //Test1_Get_Temperature_Per_Second();
-    await Test2_Async_Snapshot();
+    Test1_Get_Temperature_Per_Second();
+    //await Test2_Async_Snapshot();
     //await Test3_Async_10_second_window();
   }
 }

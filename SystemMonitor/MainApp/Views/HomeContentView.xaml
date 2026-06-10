@@ -20,17 +20,17 @@
     </Grid.ColumnDefinitions>
 
     <!-- CPU -->
-    <Button Style="{StaticResource HomePanelButtonStyle}"
-            Grid.Row="0" Grid.Column="0"
+    <Button Grid.Row="0" Grid.Column="0"
             Width="360" Height="100"
+            Style="{StaticResource HomePanelButtonStyle}"
             Command="{Binding NavigateCommand}" 
             CommandParameter="{x:Static shared:ViewNames.CpuViewName}">
-      <Grid>
+      <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="110"/>
           <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" ShowGridLines="True">
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -45,7 +45,7 @@
                                   IsTitleEnabled="Collapsed"
                                   DataSource="{Binding CpuLoad}"/>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" ShowGridLines="True">
           <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -56,33 +56,15 @@
             <ColumnDefinition Width="70"/>
             <ColumnDefinition/>
           </Grid.ColumnDefinitions>
-          <!--<TextBlock Grid.Row="0" Grid.Column="0"
-                     Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.VendorName}"/>-->
-          <TextBlock Grid.Row="0" Grid.Column="1"
-                   Style="{StaticResource HomeValueTextStyle}"
-                   Text="{Binding CpuVendor}"/>
-
-          <!--<TextBlock Grid.Row="1" Grid.Column="0"
-                     Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.BrandName}"/>-->
           <TextBlock Grid.Row="1" Grid.Column="1"
                      Style="{StaticResource HomeValueTextStyle}"
                      Text="{Binding CpuBrand}"/>
-
-          <!--<TextBlock Grid.Row="2" Grid.Column="0" 
-                     Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.ClockInGHz}"/>-->
           <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Style="{StaticResource HomeValueTextStyle}"
                      Text="{Binding CpuClock}"/>
             <TextBlock Style="{StaticResource HomeValueTextStyle}"
                        Text=" GHz"/>
           </StackPanel>
-
-          <!--<TextBlock Grid.Row="3" Grid.Column="0" 
-                     Style="{StaticResource HomeSubTitleTextStyle}"
-                     Text="{x:Static local:ViewDefinitions.LoadInPercentage}"/>-->
           <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <TextBlock Style="{StaticResource HomeValueTextStyle}"
                        Text="{Binding CpuLoad}"/>
@@ -96,7 +78,9 @@
     <!-- GPU -->
     <Button Grid.Row="0" Grid.Column="1"
             Width="360" Height="100" 
-            Style="{StaticResource HomePanelButtonStyle}">
+            Style="{StaticResource HomePanelButtonStyle}"
+            Command="{Binding NavigateCommand}"
+            CommandParameter="{x:Static shared:ViewNames.GpuViewName}">
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="110"/>
@@ -106,10 +90,18 @@
         <TextBlock Grid.Column="0" 
                    Text="GPU" Style="{StaticResource HomeCaptionTextStyle}"/>
         <Grid Grid.Column="1">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
           
         </Grid>
         <Grid Grid.Column="2">
-
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          
         </Grid>
       </Grid>
     </Button>
