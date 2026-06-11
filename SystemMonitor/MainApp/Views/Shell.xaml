@@ -9,7 +9,6 @@
         xmlns:styles="clr-namespace:ResourceModule;assembly=ResourceModule"
         xmlns:converters="clr-namespace:ResourceModule.Converters;assembly=ResourceModule"
         xmlns:shared="clr-namespace:SharedDefinitions;assembly=SharedDefinitions" 
-        xmlns:local1="clr-namespace:MainApp.Contents"
         Icon="pack://application:,,,/sm1.ico"
         mc:Ignorable="d" 
         WindowStyle="None"

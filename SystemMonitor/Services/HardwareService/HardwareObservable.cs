@@ -65,7 +65,7 @@ public static class HardwareObservable {
     bool cpu = true, bool gpu = true, bool memory = true,
     bool storage = true, bool motherboard = true,
     bool network = true, bool psu = false, bool battery = true)
-    => PollAll(TimeSpan.MaxValue, cpu, gpu, memory, storage, motherboard, network, psu, battery).Take(1);
+    => PollAll(TimeSpan.FromSeconds(1), cpu, gpu, memory, storage, motherboard, network, psu, battery).Take(1);
 
   // ── Flat stream of individual readings (one per sensor per tick) ──────────
   public static IObservable<SensorReading> ReadingStream(TimeSpan? interval = null)
@@ -95,6 +95,8 @@ public static class HardwareObservable {
         sensor.Name,
         sensor.SensorType,
         sensor.Value,
+        sensor.Min,
+        sensor.Max,
         UnitFor(sensor.SensorType)));
 
     foreach (var sub in hw.SubHardware)
