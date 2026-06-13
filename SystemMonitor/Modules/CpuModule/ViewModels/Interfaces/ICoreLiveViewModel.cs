@@ -1,11 +1,11 @@
-﻿using DataStructures.TypeDefinitions;
+﻿using DataStructures.Types;
 
 namespace CpuModule.ViewModels.Interfaces;
 
 public interface ICoreLiveViewModel {
   string Name { get; set; }
-  SensorDataType Voltage { get; set; }
-  SensorDataType Temperature { get; set; }
-  SensorDataType Load { get; set; }
-  SensorDataType Speed { get; set; }
+  SensorReading Voltage { get; set; }
+  SensorReading Temperature { get; set; }
+  SensorReading Load { get; set; }
+  SensorReading Speed { get; set; }
 }

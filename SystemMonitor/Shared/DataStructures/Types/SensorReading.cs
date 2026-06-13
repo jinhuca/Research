@@ -1,5 +1,6 @@
 ﻿using CrystalMonitor.Hardware;
-namespace HardwareService;
+
+namespace DataStructures.Types;
 
 public record SensorReading(
     string HardwareName,
@@ -10,3 +11,4 @@ public record SensorReading(
     float? Min,
     float? Max,
     string? Unit);
+

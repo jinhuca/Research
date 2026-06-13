@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Gpu\Definitions\" />
-    <Folder Include="Gpu\Implementations\" />
-    <Folder Include="Gpu\Interfaces\" />
   </ItemGroup>
 
 </Project>

@@ -45,9 +45,10 @@ public static class TestableHardwareObservable {
   private static void Collect(IHardware hw, List<SensorReading> list) {
     foreach (var s in hw.Sensors)
       list.Add(new SensorReading(
-          hw.Name, hw.HardwareType,
+        hw.Name, 
+        hw.HardwareType,
           s.Name, s.SensorType,
-          s.Value, UnitFor(s.SensorType)));
+          s.Value, s.Min, s.Max, UnitFor(s.SensorType)));
 
     foreach (var sub in hw.SubHardware)
       Collect(sub, list);

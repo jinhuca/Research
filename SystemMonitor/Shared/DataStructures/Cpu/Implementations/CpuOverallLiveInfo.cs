@@ -1,20 +1,21 @@
 ﻿using DataStructures.Cpu.Interfaces;
 using DataStructures.TypeDefinitions;
+using DataStructures.Types;
 
 namespace DataStructures.Cpu.Implementations;
 
 
 public class CpuOverallLiveInfo : ICpuOverallLiveInfo {
-  public SensorDataType BusSpeed { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType CpuSpeed { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType Voltage { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType PlatformPower { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType PackagePower { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType MemoryPower { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType CoresPower { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType PackageTemperature { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType CoreMaxTemperature { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType CoreAvgTemperature { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType TotalLoad { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
-  public SensorDataType CoreMaxLoad { get; set; } = new SensorDataType { Value = 0.0f, Min = 0.0f, Max = 0.0f };
+  public SensorReading BusSpeed { get; set; }
+  public SensorReading CpuSpeed { get; set; }
+  public SensorReading Voltage { get; set; }
+  public SensorReading PlatformPower { get; set; }
+  public SensorReading PackagePower { get; set; }
+  public SensorReading MemoryPower { get; set; }
+  public SensorReading CoresPower { get; set; }
+  public SensorReading PackageTemperature { get; set; }
+  public SensorReading CoreMaxTemperature { get; set; }
+  public SensorReading CoreAvgTemperature { get; set; }
+  public SensorReading TotalLoad { get; set; }
+  public SensorReading CoreMaxLoad { get; set; }
 }

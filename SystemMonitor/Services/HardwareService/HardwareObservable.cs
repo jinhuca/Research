@@ -1,7 +1,7 @@
 ﻿using CrystalMonitor.Hardware;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-
+using static DataStructures.Types.SensorReadingExtensions;
 namespace HardwareService;
 
 public static class HardwareObservable {
@@ -20,8 +20,6 @@ public static class HardwareObservable {
     bool network = true,
     bool psu = true,
     bool battery = true) {
-
-    //var period = interval ?? TimeSpan.FromSeconds(1);
 
     return Observable.Create<HardwareSnapshot>(observer => {
       var computer = new Computer {
@@ -45,14 +43,12 @@ public static class HardwareObservable {
           return Observable.Return(TakeSnapshot(computer));
         }
         catch (Exception ex) {
-          // Log and skip this tick
           Serilog.Log.Error(ex, "Error taking hardware snapshot");
           return Observable.Empty<HardwareSnapshot>();
         }
       })
       .Subscribe(observer);
 
-      // returned IDisposable is called on unsubscribe
       return Disposable.Create(() => {
         sub.Dispose();
         computer.Close();
@@ -103,22 +99,5 @@ public static class HardwareObservable {
       CollectReadings(sub, list);
   }
 
-  private static string? UnitFor(SensorType type) => type switch {
-    SensorType.Temperature => "°C",
-    SensorType.Load => "%",
-    SensorType.Clock => "MHz",
-    SensorType.Power => "W",
-    SensorType.Voltage => "V",
-    SensorType.Current => "A",
-    SensorType.Fan => "RPM",
-    SensorType.Flow => "L/h",
-    SensorType.Control => "%",
-    SensorType.Level => "%",
-    SensorType.Data => "GB",
-    SensorType.SmallData => "MB",
-    SensorType.Throughput => "B/s",
-    SensorType.TimeSpan => "s",
-    SensorType.Energy => "mWh",
-    _ => null
-  };
+  
 }

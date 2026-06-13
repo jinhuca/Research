@@ -8,14 +8,15 @@ internal class Program {
     HardwareService.HardwareObservable.QueryOnce().Subscribe(snapshot => {
       Console.WriteLine("Snapshot taken @ " + snapshot.Timestamp);
       foreach (var hw in snapshot.Readings) {
-        Console.WriteLine($"- {hw.HardwareName} - {hw.HardwareType} - {hw.SensorName} " +
-          $"- Value = {hw.Value}, Min = {hw.Min}, Max = {hw.Max}, {hw.Unit}");
+        Console.WriteLine($"- Hardware Name = {hw.HardwareName}; Hardware Type = {hw.HardwareType}; " +
+          $"Sensor Name = {hw.SensorName}; Sensor Type = {hw.SensorType} " +
+          $"- Value = {hw.Value}, Min = {hw.Min}, Max = {hw.Max}, Unit = {hw.Unit}");
       }
     });
   }
 
   private static void Test2() {
-    HardwareService.HardwareObservable.ReadingStream(TimeSpan.FromSeconds(5))
+    IDisposable disposable = HardwareObservable.ReadingStream(TimeSpan.FromSeconds(5))
       .FilterBy(HardwareType.Cpu)
       .FilterBy(SensorType.Load)
       .Subscribe(reading => {

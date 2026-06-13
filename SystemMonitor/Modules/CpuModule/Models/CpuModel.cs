@@ -1,6 +1,7 @@
 ﻿using DataStructures.Cpu.Implementations;
 using DataStructures.Cpu.Interfaces;
 using DataStructures.TypeDefinitions;
+using DataStructures.Types;
 using System.Diagnostics;
 using System.Reactive.Linq;
 using static CpuInfoServices.Observables.CpuInfoGenerators;
@@ -92,11 +93,16 @@ public class CpuModel : BindableBase, ICpuModel {
       ? MathF.Max(updatedPlatformPower_.Max.Value, _maxPlatformPower.Value)
       : null;
 
-    LiveInfo.CpuOverallLiveInfo.PlatformPower = new SensorDataType {
-      Value = platformPowerValue_,
-      Min = platformPowerMin_,
-      Max = platformPowerMax_
-    };
+    LiveInfo.CpuOverallLiveInfo.PlatformPower = new SensorReading (
+      updatedPlatformPower_.HardwareName,
+      updatedPlatformPower_.HardwareType,
+      updatedPlatformPower_.SensorName,
+      updatedPlatformPower_.SensorType,
+      platformPowerValue_,
+      platformPowerMin_,
+      platformPowerMax_,
+      updatedPlatformPower_.Unit
+    );
 
     // == Update Package Power Record
     // (1) grab the updated record
@@ -135,11 +141,16 @@ public class CpuModel : BindableBase, ICpuModel {
     float? packagePowerMax_ = updatedPackagePower_.Max.HasValue && _maxPackagePower.HasValue
       ? MathF.Max(updatedPackagePower_.Max.Value, _maxPackagePower.Value)
       : null;
-    LiveInfo.CpuOverallLiveInfo.PackagePower = new SensorDataType {
-      Value = packagePowerValue_,
-      Min = packagePowerMin_,
-      Max = packagePowerMax_
-    };
+    LiveInfo.CpuOverallLiveInfo.PackagePower = new SensorReading (
+      updatedPackagePower_.HardwareName,
+      updatedPackagePower_.HardwareType,
+      updatedPackagePower_.SensorName,
+      updatedPackagePower_.SensorType,
+      packagePowerValue_,
+      packagePowerMin_,
+      packagePowerMax_,
+      updatedPackagePower_.Unit
+    );
 
     // == Update Cores Power Record
     // (1) grab the updated record
@@ -177,11 +188,16 @@ public class CpuModel : BindableBase, ICpuModel {
       ? MathF.Max(updatedCoresPower_.Max.Value, _maxCoresPower.Value)
       : null;
 
-    LiveInfo.CpuOverallLiveInfo.CoresPower = new SensorDataType {
-      Value = coresPowerValue_,
-      Min = coresPowerMin_,
-      Max = coresPowerMax_
-    };
+    LiveInfo.CpuOverallLiveInfo.CoresPower = new SensorReading (
+      updatedCoresPower_.HardwareName,
+      updatedCoresPower_.HardwareType,
+      updatedCoresPower_.SensorName,
+      updatedCoresPower_.SensorType,
+      coresPowerValue_,
+      coresPowerMin_,
+      coresPowerMax_,
+      updatedCoresPower_.Unit
+    );
 
     // == Update Memory Power Record
     // (1) grab the updated record
@@ -218,11 +234,17 @@ public class CpuModel : BindableBase, ICpuModel {
     float? memoryPowerMax_ = updatedMemoryPower_.Max.HasValue && _maxMemoryPower.HasValue
       ? MathF.Max(updatedMemoryPower_.Max.Value, _maxMemoryPower.Value)
       : null;
-    LiveInfo.CpuOverallLiveInfo.MemoryPower = new SensorDataType {
-      Value = memoryPowerValue_,
-      Min = memoryPowerMin_,
-      Max = memoryPowerMax_
-    };
+
+    LiveInfo.CpuOverallLiveInfo.MemoryPower = new SensorReading (
+      updatedMemoryPower_.HardwareName,
+      updatedMemoryPower_.HardwareType,
+      updatedMemoryPower_.SensorName,
+      updatedMemoryPower_.SensorType,
+      memoryPowerValue_,
+      memoryPowerMin_,
+      memoryPowerMax_,
+      updatedMemoryPower_.Unit
+    );
 
     // == update package temperature record
     // (1) grab the updated record
@@ -258,11 +280,16 @@ public class CpuModel : BindableBase, ICpuModel {
     float? packageTemperatureMax_ = updatedPackageTemperature_.Max.HasValue && _maxPackageTemperature.HasValue
       ? MathF.Max(updatedPackageTemperature_.Max.Value, _maxPackageTemperature.Value)
       : null;
-    LiveInfo.CpuOverallLiveInfo.PackageTemperature = new SensorDataType {
-      Value = packageTemperatureValue_,
-      Min = packageTemperatureMin_,
-      Max = packageTemperatureMax_
-    };
+    LiveInfo.CpuOverallLiveInfo.PackageTemperature = new SensorReading (
+      updatedPackageTemperature_.HardwareName,
+      updatedPackageTemperature_.HardwareType,
+      updatedPackageTemperature_.SensorName,
+      updatedPackageTemperature_.SensorType,
+      packageTemperatureValue_,
+      packageTemperatureMin_,
+      packageTemperatureMax_,
+      updatedPackageTemperature_.Unit
+    );
 
     // == update Core Avg Temperature record
     // (1) grab
@@ -298,11 +325,16 @@ public class CpuModel : BindableBase, ICpuModel {
     float? coreAverageTemperatureMax_ = updatedCoreAvgTemperature_.Max.HasValue && _maxCoreAvgTemperature.HasValue
       ? MathF.Max(updatedCoreAvgTemperature_.Max.Value, _maxCoreAvgTemperature.Value)
       : null;
-    LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature = new SensorDataType {
-      Value = coreAvgTemperatureValue_,
-      Min = coreAvgTemperatureMin_,
-      Max = coreAverageTemperatureMax_
-    };
+    LiveInfo.CpuOverallLiveInfo.CoreAvgTemperature = new SensorReading (
+      updatedCoreAvgTemperature_.HardwareName,
+      updatedCoreAvgTemperature_.HardwareType,
+      updatedCoreAvgTemperature_.SensorName,
+      updatedCoreAvgTemperature_.SensorType,
+      coreAvgTemperatureValue_,
+      coreAvgTemperatureMin_,
+      coreAverageTemperatureMax_,
+      updatedCoreAvgTemperature_.Unit
+    );
 
     // == update Core Max Temperature record
     // (1) grab 
@@ -338,11 +370,16 @@ public class CpuModel : BindableBase, ICpuModel {
     float? coreMaxTemperatureMax_ = updatedCoreMaxTemperature_.Max.HasValue && _maxCoreMaxTemperature.HasValue
       ? MathF.Max(updatedCoreMaxTemperature_.Max.Value, _maxCoreMaxTemperature.Value)
       : null;
-    LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = new SensorDataType {
-      Value = coreMaxTemperatureValue_,
-      Min = coreAvgTemperatureMin_,
-      Max = coreMaxTemperatureMax_
-    };
+    LiveInfo.CpuOverallLiveInfo.CoreMaxTemperature = new SensorReading (
+      updatedCoreMaxTemperature_.HardwareName,
+      updatedCoreMaxTemperature_.HardwareType,
+      updatedCoreMaxTemperature_.SensorName,
+      updatedCoreMaxTemperature_.SensorType,
+      coreMaxTemperatureValue_,
+      coreMaxTemperatureMin_,
+      coreMaxTemperatureMax_,
+      updatedCoreMaxTemperature_.Unit
+    );
 
     // update core live info
     // ...
