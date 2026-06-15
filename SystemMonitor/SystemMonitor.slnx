@@ -49,6 +49,7 @@
     <Project Path="Temporaries/GpuIObservableDemo/GpuIObservableDemo.csproj" Id="765a6c35-8cc9-403e-a752-0817b0e56aba" />
     <Project Path="Temporaries/InfoGeneratorTests/InfoGeneratorTests.csproj" Id="bf1e8b9f-9506-472c-9687-d80f19f02553" />
     <Project Path="Temporaries/LHMtoObservables/LHMtoObservables.csproj" />
+    <Project Path="Temporaries/MemoryCompositionForm/MemoryCompositionForm.csproj" Id="f826d804-2306-466d-854c-42ba7e24c603" />
     <Project Path="Temporaries/QueryGpu/QueryGpu.csproj" Id="21f106d6-94dd-49ba-8607-b3ceb4fcdf5e" />
     <Project Path="Temporaries/TestHardwareService/TestHardwareService.csproj" Id="248ab32e-78bd-44eb-a647-5827b93cd992" />
   </Folder>

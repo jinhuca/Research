@@ -40,7 +40,7 @@ public class GpuModel : BindableBase, IGpuModel {
   }
 
   private float GetCurrentGpuUsage() {
-    Computer computer = new Computer { IsGpuEnabled = true };
+    Computer computer = new Computer { IsCpuEnabled = true, IsGpuEnabled = true };
     computer.Open();
     foreach(var hardware in computer.Hardware) {
       if(hardware.HardwareType == HardwareType.GpuIntel) {

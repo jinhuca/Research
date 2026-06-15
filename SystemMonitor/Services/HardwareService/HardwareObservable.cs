@@ -8,7 +8,6 @@ public static class HardwareObservable {
   /// <summary>
   /// Returns a cold IObservable that polls ALL hardware sensors at <paramref name="interval"/> 
   /// and emits a complete HardwareSnapshot each tick.  
-  /// Disposes the Computer when the subscription ends.
   /// </summary>
   public static IObservable<HardwareSnapshot> PollAll(
     TimeSpan? interval = null,
@@ -69,10 +68,16 @@ public static class HardwareObservable {
 
   // ── Filter helpers ────────────────────────────────────────────────────────
   public static IObservable<SensorReading> FilterBy(this IObservable<SensorReading> source, SensorType type)
-    => source.Where(r => r.SensorType == type);
+    => source.Where(sensorReading => {
+      ArgumentNullException.ThrowIfNull(sensorReading);
+      return sensorReading.SensorType == type;
+    });
 
   public static IObservable<SensorReading> FilterBy(this IObservable<SensorReading> source, HardwareType type)
-    => source.Where(r => r.HardwareType == type);
+    => source.Where(sensorReading => {
+      ArgumentNullException.ThrowIfNull(sensorReading);
+      return sensorReading.HardwareType == type;
+    });
 
   // ── Internal snapshot builder ─────────────────────────────────────────────
   private static HardwareSnapshot TakeSnapshot(IComputer computer) {
@@ -86,18 +91,16 @@ public static class HardwareObservable {
   private static void CollectReadings(IHardware hw, List<SensorReading> list) {
     foreach (var sensor in hw.Sensors)
       list.Add(new SensorReading(
-        hw.Name,
-        hw.HardwareType,
-        sensor.Name,
-        sensor.SensorType,
-        sensor.Value,
-        sensor.Min,
-        sensor.Max,
-        UnitFor(sensor.SensorType)));
+        HardwareName: hw.Name,
+        HardwareType: hw.HardwareType,
+        SensorName: sensor.Name,
+        SensorType: sensor.SensorType,
+        Value: sensor.Value,
+        Min: sensor.Min,
+        Max: sensor.Max,
+        Unit: UnitFor(sensor.SensorType)));
 
     foreach (var sub in hw.SubHardware)
       CollectReadings(sub, list);
   }
-
-  
 }
