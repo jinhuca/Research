@@ -236,4 +236,206 @@ public class HardwareTypeTests {
 
     Assert.Equal(expectedCategory, category);
   }
+
+  // =========================================================================
+  // Comparison Operations
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_Comparison_LessThan() {
+    Assert.True(HardwareType.Motherboard < HardwareType.Cpu);
+    Assert.False(HardwareType.Cpu < HardwareType.Motherboard);
+  }
+
+  [Fact]
+  public void HardwareType_Comparison_GreaterThan() {
+    Assert.True(HardwareType.PowerMonitor > HardwareType.Cpu);
+    Assert.False(HardwareType.Cpu > HardwareType.PowerMonitor);
+  }
+
+  [Fact]
+  public void HardwareType_Comparison_LessThanOrEqual() {
+    Assert.True(HardwareType.Cpu <= HardwareType.Cpu);
+    Assert.True(HardwareType.Motherboard <= HardwareType.Cpu);
+    Assert.False(HardwareType.PowerMonitor <= HardwareType.Cpu);
+  }
+
+  [Fact]
+  public void HardwareType_Comparison_GreaterThanOrEqual() {
+    Assert.True(HardwareType.Cpu >= HardwareType.Cpu);
+    Assert.True(HardwareType.PowerMonitor >= HardwareType.Cpu);
+    Assert.False(HardwareType.Motherboard >= HardwareType.Cpu);
+  }
+
+  // =========================================================================
+  // Iteration and Enumeration
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_GetValues_ReturnsAllMembers() {
+    var values = Enum.GetValues<HardwareType>();
+    Assert.Equal(14, values.Length);
+  }
+
+  [Fact]
+  public void HardwareType_GetNames_ReturnsCorrectCount() {
+    var names = Enum.GetNames<HardwareType>();
+    Assert.Equal(14, names.Length);
+  }
+
+  [Fact]
+  public void HardwareType_CanEnumerateAllValues() {
+    var allTypes = Enum.GetValues<HardwareType>().ToList();
+    var stringRepresentations = allTypes.Select(t => t.ToString()).ToList();
+
+    Assert.Equal(14, stringRepresentations.Count);
+    Assert.All(stringRepresentations, s => Assert.NotEmpty(s));
+  }
+
+  // =========================================================================
+  // Specific Type Categories
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_ProcessorTypes_IncludesCpuAndGpus() {
+    var processorTypes = new[] {
+      HardwareType.Cpu,
+      HardwareType.GpuNvidia,
+      HardwareType.GpuAmd,
+      HardwareType.GpuIntel
+    };
+
+    Assert.All(processorTypes, pt => Assert.True(Enum.IsDefined(pt)));
+  }
+
+  [Fact]
+  public void HardwareType_StorageAndNetwork_AreDefined() {
+    Assert.True(Enum.IsDefined(HardwareType.Storage));
+    Assert.True(Enum.IsDefined(HardwareType.Network));
+  }
+
+  [Fact]
+  public void HardwareType_ControllerTypes_IncludesCoolerAndPowerMonitor() {
+    var controllerTypes = new[] {
+      HardwareType.Cooler,
+      HardwareType.PowerMonitor,
+      HardwareType.EmbeddedController
+    };
+
+    Assert.All(controllerTypes, ct => Assert.True(Enum.IsDefined(ct)));
+  }
+
+  // =========================================================================
+  // Case Sensitivity Tests
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_Parse_CaseSensitive_FailsForWrongCase() {
+    Assert.Throws<ArgumentException>(() => 
+      Enum.Parse<HardwareType>("cpu", ignoreCase: false));
+  }
+
+  [Fact]
+  public void HardwareType_Parse_CaseInsensitive_SucceedsForWrongCase() {
+    var result = Enum.Parse<HardwareType>("CPU", ignoreCase: true);
+    Assert.Equal(HardwareType.Cpu, result);
+  }
+
+  [Theory]
+  [InlineData("MOTHERBOARD")]
+  [InlineData("superio")]
+  [InlineData("CpU")]
+  [InlineData("mEmOrY")]
+  public void HardwareType_Parse_CaseInsensitive_Succeeds(string input) {
+    var ex = Record.Exception(() => Enum.Parse<HardwareType>(input, ignoreCase: true));
+    Assert.Null(ex);
+  }
+
+  // =========================================================================
+  // Ordering and Sorting
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_CanBeSorted() {
+    var types = new[] {
+      HardwareType.PowerMonitor,
+      HardwareType.Cpu,
+      HardwareType.Motherboard,
+      HardwareType.Memory
+    };
+
+    var sorted = types.OrderBy(t => t).ToArray();
+
+    Assert.Equal(HardwareType.Motherboard, sorted[0]);
+    Assert.Equal(HardwareType.Cpu, sorted[1]);
+    Assert.Equal(HardwareType.Memory, sorted[2]);
+    Assert.Equal(HardwareType.PowerMonitor, sorted[3]);
+  }
+
+  [Fact]
+  public void HardwareType_CanBeSortedDescending() {
+    var types = new[] {
+      HardwareType.Motherboard,
+      HardwareType.Memory,
+      HardwareType.Cpu,
+      HardwareType.PowerMonitor
+    };
+
+    var sorted = types.OrderByDescending(t => t).ToArray();
+
+    Assert.Equal(HardwareType.PowerMonitor, sorted[0]);
+    Assert.Equal(HardwareType.Memory, sorted[1]);
+    Assert.Equal(HardwareType.Cpu, sorted[2]);
+    Assert.Equal(HardwareType.Motherboard, sorted[3]);
+  }
+
+  // =========================================================================
+  // Boundary and Edge Cases
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_Motherboard_IsMinValue() {
+    var minValue = Enum.GetValues<HardwareType>().Min();
+    Assert.Equal(HardwareType.Motherboard, minValue);
+  }
+
+  [Fact]
+  public void HardwareType_PowerMonitor_IsMaxValue() {
+    var maxValue = Enum.GetValues<HardwareType>().Max();
+    Assert.Equal(HardwareType.PowerMonitor, maxValue);
+  }
+
+  [Fact]
+  public void HardwareType_NegativeValue_IsNotDefined() {
+    Assert.False(Enum.IsDefined((HardwareType)(-1)));
+  }
+
+  [Fact]
+  public void HardwareType_ValueBeyondRange_IsNotDefined() {
+    Assert.False(Enum.IsDefined((HardwareType)100));
+  }
+
+  // =========================================================================
+  // ToString Consistency
+  // =========================================================================
+
+  [Fact]
+  public void HardwareType_ToString_Consistent_AcrossMultipleCalls() {
+    var type = HardwareType.Cpu;
+    var str1 = type.ToString();
+    var str2 = type.ToString();
+    var str3 = type.ToString();
+
+    Assert.Equal(str1, str2);
+    Assert.Equal(str2, str3);
+  }
+
+  [Fact]
+  public void HardwareType_ToString_CanBeUsedInHierarchy() {
+    var baseStr = HardwareType.Cpu.ToString();
+    var parts = baseStr.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+    Assert.Single(parts);
+    Assert.Equal("Cpu", parts[0]);
+  }
 }
