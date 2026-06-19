@@ -8,8 +8,8 @@ public sealed class FakeSensor : ISensor {
   public string Name { get; set; } = "Fake Sensor";
   public SensorType SensorType { get; set; } = SensorType.Temperature;
   public float? Value { get; set; } = 42f;
-  public float? Min => Value;
-  public float? Max => Value;
+  public float? Min { get; set; }
+  public float? Max { get; set; }
   public int Index => 0;
   public bool IsDefaultHidden => false;
   public IHardware Hardware => null!;

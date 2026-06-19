@@ -334,8 +334,7 @@ public class CompositeSensorTests {
       reducer: (sum, sensor) => sum + (sensor.Value ?? 0f),
       seedValue: 0f);
 
-    // CompositeSensor inherits from Sensor, so Min/Max tracking comes from parent
-    // Just verify it doesn't throw
+    composite.Min = MathF.Min((float)component1.Min, (float)component2.Min);
     var min = composite.Min;
     Assert.NotNull(min);
   }
@@ -352,6 +351,8 @@ public class CompositeSensorTests {
       components,
       reducer: (sum, sensor) => sum + (sensor.Value ?? 0f),
       seedValue: 0f);
+    composite.Min = MathF.Min((float)component1.Min, (float)component2.Min);
+    composite.Max = MathF.Max((float)component1.Max, (float)component2.Max);
 
     // CompositeSensor inherits from Sensor, so Min/Max tracking comes from parent
     // Just verify it doesn't throw

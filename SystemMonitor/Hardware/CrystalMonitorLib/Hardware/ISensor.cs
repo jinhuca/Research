@@ -73,14 +73,14 @@ public interface ISensor : IElement {
   bool IsDefaultHidden { get; }
 
   /// <summary>
-  /// Gets a maximum value recorded for the given sensor.
+  /// Gets / sets a maximum value recorded for the given sensor.
   /// </summary>
-  float? Max { get; }
+  float? Max { get; set; }
 
   /// <summary>
-  /// Gets a minimum value recorded for the given sensor.
+  /// Gets / sets a minimum value recorded for the given sensor.
   /// </summary>
-  float? Min { get; }
+  float? Min { get; set; }
 
   /// <summary>
   /// Gets or sets a sensor name.

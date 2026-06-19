@@ -72,9 +72,9 @@ internal class Sensor : ISensor {
 
   public bool IsDefaultHidden { get; }
 
-  public float? Max { get; private set; }
+  public float? Max { get; set; }
 
-  public float? Min { get; private set; }
+  public float? Min { get; set; }
 
   public string Name {
     get { return _name; }
