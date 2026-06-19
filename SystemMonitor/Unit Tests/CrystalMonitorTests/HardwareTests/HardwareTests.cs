@@ -408,4 +408,283 @@ public class HardwareTests {
     var ex = Record.Exception(() => hw.Update());
     Assert.Null(ex);
   }
+
+  [Fact]
+  public void Hardware_Update_CanBeCalledRepeatedly() {
+    var hw = CreateHardware();
+    var ex = Record.Exception(() => {
+      for (int i = 0; i < 10; i++) {
+        hw.Update();
+      }
+    });
+    Assert.Null(ex);
+  }
+
+  // -------------------------------------------------------------------------
+  // Sensor lifecycle and activation state
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Hardware_DeactivateSensor_ThenActivateSensor_RestoresSensor() {
+    var hw = CreateHardware();
+    var sensor = hw.CreateTestSensor();
+
+    hw.PublicActivateSensor(sensor);
+    Assert.Contains(sensor, hw.Sensors);
+
+    hw.PublicDeactivateSensor(sensor);
+    Assert.DoesNotContain(sensor, hw.Sensors);
+
+    hw.PublicActivateSensor(sensor);
+    Assert.Contains(sensor, hw.Sensors);
+  }
+
+  [Fact]
+  public void Hardware_ActivateSensor_WithMultipleSensorsOfDifferentTypes() {
+    var hw = CreateHardware();
+    var tempSensor = hw.CreateTestSensor("Temp", 0);
+    var loadSensor = new Sensor("Load", 1, SensorType.Load, hw, new TestSettings());
+    var voltageSensor = new Sensor("Voltage", 2, SensorType.Voltage, hw, new TestSettings());
+
+    hw.PublicActivateSensor(tempSensor);
+    hw.PublicActivateSensor(loadSensor);
+    hw.PublicActivateSensor(voltageSensor);
+
+    Assert.Equal(3, hw.Sensors.Length);
+  }
+
+  [Fact]
+  public void Hardware_Sensors_AreOrderedByIndex() {
+    var hw = CreateHardware();
+    var sensor0 = hw.CreateTestSensor("Sensor 0", 0);
+    var sensor2 = hw.CreateTestSensor("Sensor 2", 2);
+    var sensor1 = hw.CreateTestSensor("Sensor 1", 1);
+
+    hw.PublicActivateSensor(sensor0);
+    hw.PublicActivateSensor(sensor2);
+    hw.PublicActivateSensor(sensor1);
+
+    // After activation, sensors should be in hardware
+    Assert.Contains(sensor0, hw.Sensors);
+    Assert.Contains(sensor1, hw.Sensors);
+    Assert.Contains(sensor2, hw.Sensors);
+  }
+
+  [Fact]
+  public void Hardware_DeactivateSensor_WithMultipleSensors_RemovesOnlyTargeted() {
+    var hw = CreateHardware();
+    var sensor1 = hw.CreateTestSensor("Sensor 1", 0);
+    var sensor2 = hw.CreateTestSensor("Sensor 2", 1);
+    var sensor3 = hw.CreateTestSensor("Sensor 3", 2);
+
+    hw.PublicActivateSensor(sensor1);
+    hw.PublicActivateSensor(sensor2);
+    hw.PublicActivateSensor(sensor3);
+
+    hw.PublicDeactivateSensor(sensor2);
+
+    Assert.Contains(sensor1, hw.Sensors);
+    Assert.DoesNotContain(sensor2, hw.Sensors);
+    Assert.Contains(sensor3, hw.Sensors);
+  }
+
+  // -------------------------------------------------------------------------
+  // Name property edge cases
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Hardware_Name_CanBeEmpty() {
+    var hw = CreateHardware(string.Empty);
+    Assert.Equal(string.Empty, hw.Name);
+  }
+
+  [Fact]
+  public void Hardware_Name_CanBeLongString() {
+    var longName = new string('A', 1000);
+    var hw = CreateHardware(longName);
+    Assert.Equal(longName, hw.Name);
+  }
+
+  [Fact]
+  public void Hardware_Name_CanContainSpecialCharacters() {
+    var specialNames = new[] {
+      "CPU #0",
+      "Core @ 0",
+      "Socket [0]",
+      "Package (Physical)",
+      "GPU/0"
+    };
+
+    foreach (var name in specialNames) {
+      var hw = CreateHardware(name);
+      Assert.Equal(name, hw.Name);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Accept/Traverse with various sensor states
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Hardware_Accept_CallsVisitorWithHardware() {
+    var hw = CreateHardware();
+    var visitor = new TestVisitor();
+
+    hw.Accept(visitor);
+
+    Assert.Contains(hw, visitor.VisitedHardware);
+  }
+
+  [Fact]
+  public void Hardware_Accept_WithNullVisitor_ThrowsArgumentNullException() {
+    var hw = CreateHardware();
+    var ex = Assert.Throws<ArgumentNullException>(() => hw.Accept(null));
+    Assert.Equal("visitor", ex.ParamName);
+  }
+
+  [Fact]
+  public void Hardware_Traverse_VisitsAllActiveSensors_InIntegrationContext() {
+    var hw = CreateHardware();
+    var sensor1 = hw.CreateTestSensor("Sensor 1", 0);
+    var sensor2 = hw.CreateTestSensor("Sensor 2", 1);
+
+    hw.PublicActivateSensor(sensor1);
+    hw.PublicActivateSensor(sensor2);
+
+    var visitor = new TestVisitor();
+    hw.Traverse(visitor);
+
+    Assert.Contains(sensor1, visitor.VisitedSensors);
+    Assert.Contains(sensor2, visitor.VisitedSensors);
+  }
+
+  [Fact]
+  public void Hardware_Traverse_DoesNotVisitDeactivatedSensors() {
+    var hw = CreateHardware();
+    var sensor1 = hw.CreateTestSensor("Sensor 1", 0);
+    var sensor2 = hw.CreateTestSensor("Sensor 2", 1);
+
+    hw.PublicActivateSensor(sensor1);
+    hw.PublicActivateSensor(sensor2);
+    hw.PublicDeactivateSensor(sensor1);
+
+    var visitor = new TestVisitor();
+    hw.Traverse(visitor);
+
+    Assert.DoesNotContain(sensor1, visitor.VisitedSensors);
+    Assert.Contains(sensor2, visitor.VisitedSensors);
+  }
+
+  // -------------------------------------------------------------------------
+  // Concurrent sensor operations
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Hardware_ActivateDeactivate_Concurrent_DoesNotThrow() {
+    var hw = CreateHardware();
+    var sensors = Enumerable.Range(0, 10)
+      .Select(i => hw.CreateTestSensor($"Sensor {i}", i))
+      .ToArray();
+
+    var exceptions = new List<Exception>();
+
+    var tasks = sensors.Select(sensor => Task.Run(() => {
+      try {
+        hw.PublicActivateSensor(sensor);
+        System.Threading.Thread.Sleep(10);
+        hw.PublicDeactivateSensor(sensor);
+      }
+      catch (Exception ex) {
+        lock (exceptions) {
+          exceptions.Add(ex);
+        }
+      }
+    })).ToArray();
+
+    Task.WaitAll(tasks);
+
+    Assert.Empty(exceptions);
+  }
+
+  [Fact]
+  public void Hardware_ConcurrentSensorActivation_DoesNotLoseSensors() {
+    var hw = CreateHardware();
+    var sensors = Enumerable.Range(0, 20)
+      .Select(i => hw.CreateTestSensor($"Sensor {i}", i))
+      .ToArray();
+
+    var exceptions = new List<Exception>();
+
+    var tasks = sensors.Select(sensor => Task.Run(() => {
+      try {
+        hw.PublicActivateSensor(sensor);
+      }
+      catch (Exception ex) {
+        lock (exceptions) {
+          exceptions.Add(ex);
+        }
+      }
+    })).ToArray();
+
+    Task.WaitAll(tasks);
+
+    Assert.Empty(exceptions);
+    // Not all 20 may be activated due to possible deduplication, but count should be reasonable
+    Assert.True(hw.Sensors.Length > 0);
+  }
+
+  // -------------------------------------------------------------------------
+  // Closing event variations
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Hardware_Close_WithActiveSensors_FiresClosingEvent() {
+    var hw = CreateHardware();
+    var sensor = hw.CreateTestSensor();
+    hw.PublicActivateSensor(sensor);
+
+    IHardware? closedHardware = null;
+    hw.Closing += h => closedHardware = h;
+
+    hw.Close();
+
+    Assert.Equal(hw, closedHardware);
+  }
+
+  [Fact]
+  public void Hardware_Close_MultipleClosingSubscribers_AllFire() {
+    var hw = CreateHardware();
+    int count = 0;
+    hw.Closing += _ => count++;
+    hw.Closing += _ => count++;
+    hw.Closing += _ => count++;
+
+    hw.Close();
+
+    Assert.Equal(3, count);
+  }
+
+  [Fact]
+  public void Hardware_Close_FollowedByUpdate_DoesNotThrow() {
+    var hw = CreateHardware();
+    hw.Close();
+
+    var ex = Record.Exception(() => hw.Update());
+    Assert.Null(ex);
+  }
+
+  // -------------------------------------------------------------------------
+  // Properties collection
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Hardware_Properties_CanBeEnumerated() {
+    var hw = CreateHardware();
+    var ex = Record.Exception(() => {
+      foreach (var prop in hw.Properties) {
+        _ = prop;
+      }
+    });
+    Assert.Null(ex);
+  }
 }

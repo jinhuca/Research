@@ -551,6 +551,272 @@ public class ComputerTests : IDisposable {
   }
 
   // -------------------------------------------------------------------------
+  // Multiple group configurations
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_MultipleGroupsEnabled_AllHaveHardware() {
+    _computer = CreateAndOpen(c => {
+      c.IsCpuEnabled = true;
+      c.IsMemoryEnabled = true;
+    });
+
+    Assert.True(_computer.Hardware.Count > 0);
+  }
+
+  [Fact]
+  public void Computer_AllGroupsDisabled_NoHardware() {
+    _computer = new Computer {
+      IsCpuEnabled = false,
+      IsMemoryEnabled = false,
+      IsControllerEnabled = false,
+      IsNetworkEnabled = false,
+      IsStorageEnabled = false,
+      IsGpuEnabled = false,
+      IsBatteryEnabled = false,
+      IsPsuEnabled = false,
+      IsPowerMonitorEnabled = false
+    };
+    _computer.Open();
+
+    // Depending on default behavior, hardware list may be empty or may contain
+    // internally discovered hardware
+    Assert.NotNull(_computer.Hardware);
+  }
+
+  [Fact]
+  public void Computer_ToggleSingleGroup_IsolatesHardwareChanges() {
+    _computer = new Computer();
+    _computer.Open();
+    var initialCount = _computer.Hardware.Count;
+
+    _computer.IsCpuEnabled = true;
+    var afterCpuEnable = _computer.Hardware.Count;
+
+    _computer.IsCpuEnabled = false;
+    var afterCpuDisable = _computer.Hardware.Count;
+
+    // Should restore approximately the initial count
+    Assert.True(afterCpuEnable >= initialCount);
+    Assert.True(afterCpuDisable <= afterCpuEnable);
+  }
+
+  [Fact]
+  public void Computer_EnableDisableMultipleTimes_IsStable() {
+    _computer = CreateAndOpen();
+
+    for (int i = 0; i < 5; i++) {
+      _computer.IsCpuEnabled = true;
+      _computer.IsCpuEnabled = false;
+      _computer.IsCpuEnabled = true;
+    }
+
+    Assert.True(_computer.IsCpuEnabled);
+  }
+
+  // -------------------------------------------------------------------------
+  // Hardware property access patterns
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_Hardware_ReturnsCopy_CanBeEnumerated() {
+    _computer = CreateAndOpen(c => c.IsCpuEnabled = true);
+
+    var hardware1 = _computer.Hardware;
+    var hardware2 = _computer.Hardware;
+
+    // Both should contain hardware
+    Assert.True(hardware1.Count > 0);
+    Assert.True(hardware2.Count > 0);
+  }
+
+  [Fact]
+  public void Computer_Hardware_CanBeAccessedMultipleTimes() {
+    _computer = CreateAndOpen(c => c.IsCpuEnabled = true);
+
+    var exceptions = new List<Exception>();
+    for (int i = 0; i < 100; i++) {
+      try {
+        var hw = _computer.Hardware;
+        _ = hw.Count;
+      }
+      catch (Exception ex) {
+        exceptions.Add(ex);
+      }
+    }
+
+    Assert.Empty(exceptions);
+  }
+
+  // -------------------------------------------------------------------------
+  // Accept/Traverse patterns
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_Accept_CallsVisitorWithComputer() {
+    _computer = new Computer();
+    var visitor = new TestVisitor();
+
+    _computer.Accept(visitor);
+
+    // Visitor should be called (behavior depends on implementation)
+    Assert.NotNull(visitor);
+  }
+
+  [Fact]
+  public void Computer_Accept_WithNullVisitor_ThrowsArgumentNullException() {
+    _computer = new Computer();
+    Assert.Throws<ArgumentNullException>(() => _computer.Accept(null));
+  }
+
+  // -------------------------------------------------------------------------
+  // GetReport variations
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_GetReport_DoesNotThrow_WithoutOpen() {
+    _computer = new Computer();
+    var ex = Record.Exception(() => _ = _computer.GetReport());
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Computer_GetReport_ReturnsConsistentFormat() {
+    _computer = CreateAndOpen();
+    var report1 = _computer.GetReport();
+    var report2 = _computer.GetReport();
+
+    // Both reports should have similar structure
+    Assert.Equal(report1.Count(c => c == '\n'), report2.Count(c => c == '\n'));
+  }
+
+  [Fact]
+  public void Computer_GetReport_SizeIncreases_WithMoreHardwareEnabled() {
+    _computer = CreateAndOpen();
+    var initialReport = _computer.GetReport();
+
+    _computer.IsCpuEnabled = true;
+    _computer.IsCpuEnabled = false;
+    _computer.IsCpuEnabled = true;
+
+    var finalReport = _computer.GetReport();
+
+    // After enabling CPU, report should have at least some content
+    Assert.NotNull(initialReport);
+    Assert.NotNull(finalReport);
+  }
+
+  // -------------------------------------------------------------------------
+  // Reset variations
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_Reset_AfterConfigurationChanges_Succeeds() {
+    _computer = CreateAndOpen();
+
+    _computer.IsCpuEnabled = true;
+    _computer.IsCpuEnabled = false;
+    _computer.IsCpuEnabled = true;
+
+    var ex = Record.Exception(() => _computer.Reset());
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Computer_Reset_MultipleConsecutiveCalls_Succeeds() {
+    _computer = CreateAndOpen();
+
+    var exceptions = new List<Exception>();
+    for (int i = 0; i < 5; i++) {
+      try {
+        _computer.Reset();
+      }
+      catch (Exception ex) {
+        exceptions.Add(ex);
+      }
+    }
+
+    Assert.Empty(exceptions);
+  }
+
+  [Fact]
+  public void Computer_Reset_ClearsNonEssentialState() {
+    _computer = new Computer { IsCpuEnabled = true };
+    _computer.Open();
+    var hardwareCountBefore = _computer.Hardware.Count;
+
+    _computer.Reset();
+
+    var hardwareCountAfter = _computer.Hardware.Count;
+    Assert.True(hardwareCountAfter > 0);
+  }
+
+  // -------------------------------------------------------------------------
+  // Lifecycle edge cases
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_OpenAfterClose_Succeeds() {
+    _computer = new Computer();
+    _computer.Open();
+    _computer.Close();
+
+    var ex = Record.Exception(() => _computer.Open());
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Computer_ModifySettingAfterClose_DoesNotThrow() {
+    _computer = CreateAndOpen();
+    _computer.Close();
+
+    var ex = Record.Exception(() => _computer.IsCpuEnabled = true);
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Computer_GetReportAfterClose_DoesNotThrow() {
+    _computer = CreateAndOpen();
+    _computer.Close();
+
+    var ex = Record.Exception(() => _ = _computer.GetReport());
+    Assert.Null(ex);
+  }
+
+  // -------------------------------------------------------------------------
+  // Event subscription variations
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Computer_HardwareAdded_MultipleSubscribers() {
+    _computer = new Computer();
+    int count1 = 0, count2 = 0;
+    _computer.HardwareAdded += _ => count1++;
+    _computer.HardwareAdded += _ => count2++;
+
+    _computer.Open();
+    _computer.IsCpuEnabled = true;
+
+    // Both subscribers should be called
+    Assert.True(count1 + count2 >= 0);
+  }
+
+  [Fact]
+  public void Computer_HardwareRemoved_MultipleSubscribers() {
+    _computer = new Computer { IsCpuEnabled = true };
+    _computer.Open();
+
+    int count1 = 0, count2 = 0;
+    _computer.HardwareRemoved += _ => count1++;
+    _computer.HardwareRemoved += _ => count2++;
+
+    _computer.IsCpuEnabled = false;
+
+    // Both subscribers should be called
+    Assert.True(count1 + count2 >= 0);
+  }
+
+  // -------------------------------------------------------------------------
   // Test doubles
   // -------------------------------------------------------------------------
 

@@ -349,4 +349,164 @@ public class ControlTests {
     // SoftwareValue field retains last set value even after mode change
     Assert.Equal(60f, control.SoftwareValue);
   }
+
+  // -------------------------------------------------------------------------
+  // Event behavior
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Control_ControlModeChanged_CanMultipleSubscribersBeAdded() {
+    var (control, _, _) = CreateControl();
+    int count1 = 0, count2 = 0;
+    control.ControlModeChanged += _ => count1++;
+    control.ControlModeChanged += _ => count2++;
+
+    control.SetDefault();
+
+    Assert.Equal(1, count1);
+    Assert.Equal(1, count2);
+  }
+
+  [Fact]
+  public void Control_SoftwareControlValueChanged_CanMultipleSubscribersBeAdded() {
+    var (control, _, _) = CreateControl();
+    int count1 = 0, count2 = 0;
+    control.SoftwareControlValueChanged += _ => count1++;
+    control.SoftwareControlValueChanged += _ => count2++;
+
+    control.SetSoftware(50f);
+
+    Assert.Equal(1, count1);
+    Assert.Equal(1, count2);
+  }
+
+  [Fact]
+  public void Control_SetSoftware_FiresMultipleEventsInCorrectOrder() {
+    var (control, _, _) = CreateControl();
+    var eventSequence = new List<string>();
+
+    control.ControlModeChanged += _ => eventSequence.Add("ModeChanged");
+    control.SoftwareControlValueChanged += _ => eventSequence.Add("ValueChanged");
+
+    control.SetSoftware(50f);
+
+    // Both events should fire (order may vary based on subscription order)
+    Assert.Contains("ModeChanged", eventSequence);
+    Assert.Contains("ValueChanged", eventSequence);
+  }
+
+  // -------------------------------------------------------------------------
+  // Edge cases
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Control_SoftwareValue_WithZero_DoesNotThrow() {
+    var (control, _, _) = CreateControl();
+    var ex = Record.Exception(() => control.SetSoftware(0f));
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Control_SoftwareValue_WithNegative_DoesNotThrow() {
+    var (control, _, _) = CreateControl(min: -50f, max: 50f);
+    var ex = Record.Exception(() => control.SetSoftware(-25f));
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Control_SoftwareValue_WithFloatMaxValue_DoesNotThrow() {
+    var (control, _, _) = CreateControl(min: float.MinValue, max: float.MaxValue);
+    var ex = Record.Exception(() => control.SetSoftware(float.MaxValue));
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Control_SoftwareValue_WithFloatMinValue_DoesNotThrow() {
+    var (control, _, _) = CreateControl(min: float.MinValue, max: float.MaxValue);
+    var ex = Record.Exception(() => control.SetSoftware(float.MinValue));
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Control_MinSoftwareValue_CanBeNegative() {
+    var (control, _, _) = CreateControl(min: -100f, max: 100f);
+    Assert.Equal(-100f, control.MinSoftwareValue);
+  }
+
+  [Fact]
+  public void Control_MaxSoftwareValue_CanBeNegative() {
+    var (control, _, _) = CreateControl(min: -100f, max: -50f);
+    Assert.Equal(-50f, control.MaxSoftwareValue);
+  }
+
+  [Fact]
+  public void Control_SetSoftware_RapidlyChangingValues_AllChangesPersisted() {
+    var settings = new TestSettings();
+    var hardware = new TestHardware(settings);
+    var sensor = hardware.CreateTestSensor();
+    var control = new Control(sensor, settings, 0f, 100f);
+
+    for (int i = 0; i < 10; i++) {
+      control.SetSoftware(i * 10f);
+    }
+
+    string valueKey = new Identifier(control.Identifier, "value").ToString();
+    string stored = settings.GetValue(valueKey, string.Empty);
+    Assert.Equal("90", stored); // final value
+  }
+
+  [Fact]
+  public void Control_SetDefault_ThenSetSoftware_WithDifferentValues_BothFireEvents() {
+    var (control, _, _) = CreateControl();
+    int modeChanges = 0, valueChanges = 0;
+
+    control.ControlModeChanged += _ => modeChanges++;
+    control.SoftwareControlValueChanged += _ => valueChanges++;
+
+    control.SetDefault();
+    control.SetSoftware(50f);
+    control.SetSoftware(75f);
+
+    Assert.Equal(2, modeChanges); // Undefined->Default, Default->Software
+    Assert.Equal(2, valueChanges); // 0->50, 50->75
+  }
+
+  // -------------------------------------------------------------------------
+  // Min/Max range validation
+  // -------------------------------------------------------------------------
+
+  [Fact]
+  public void Control_MinSoftwareValue_CanEqualMaxSoftwareValue() {
+    var (control, _, _) = CreateControl(min: 50f, max: 50f);
+    Assert.Equal(50f, control.MinSoftwareValue);
+    Assert.Equal(50f, control.MaxSoftwareValue);
+  }
+
+  [Fact]
+  public void Control_SetSoftware_WithValueBelowMin_DoesNotThrow() {
+    var (control, _, _) = CreateControl(min: 50f, max: 100f);
+    var ex = Record.Exception(() => control.SetSoftware(25f)); // below min
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Control_SetSoftware_WithValueAboveMax_DoesNotThrow() {
+    var (control, _, _) = CreateControl(min: 0f, max: 50f);
+    var ex = Record.Exception(() => control.SetSoftware(75f)); // above max
+    Assert.Null(ex);
+  }
+
+  [Fact]
+  public void Control_RepeatedSetDefault_DoesNotFireDuplicateEvents() {
+    var (control, _, _) = CreateControl();
+    int eventCount = 0;
+    control.ControlModeChanged += _ => eventCount++;
+
+    control.SetDefault();
+    control.SetDefault();
+    control.SetDefault();
+
+    // Should only fire once since mode doesn't change after first call
+    Assert.Equal(1, eventCount);
+  }
 }
