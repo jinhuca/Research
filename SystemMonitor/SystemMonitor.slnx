@@ -54,10 +54,8 @@
     <Project Path="Temporaries/TestHardwareService/TestHardwareService.csproj" Id="248ab32e-78bd-44eb-a647-5827b93cd992" />
   </Folder>
   <Folder Name="/Unit Tests/">
-    <Project Path="Unit Tests/ConverterTests/ConverterTests.csproj" Id="a32c8ebd-7183-4d07-b3b1-98d85615a5ed" />
     <Project Path="Unit Tests/CrystalMonitorTests/CrystalMonitorTests.csproj" />
     <Project Path="Unit Tests/HardwareObservableTests/HardwareObservableTests.csproj" Id="87a1a386-8cf4-4184-95a8-9f080de2972b" />
-    <Project Path="Unit Tests/SystemManagementProviderTests/SystemManagementProviderTests.csproj" Id="9c5eb659-a90a-4271-8233-e5c24b985c25" />
   </Folder>
   <Project Path="MainApp/MainApp.csproj" />
 </Solution>

@@ -274,20 +274,28 @@ public class D3DDisplayDeviceTests {
     if (!IsWindows) return;
 
     var ids = D3DDisplayDevice.GetDeviceIdentifiers();
-    if (ids == null || ids.Length == 0) return;
+    Assert.NotNull(ids);
+    Assert.NotEmpty(ids);
+
+    bool testedAtLeastOnce = false;
 
     foreach (var id in ids) {
-      if (!D3DDisplayDevice.GetDeviceInfoByIdentifier(id, out var info)) continue;
+      if (!D3DDisplayDevice.GetDeviceInfoByIdentifier(id, out var info))
+        continue;
+
+      testedAtLeastOnce = true;
 
       if (info.GpuSharedMax > 0)
         Assert.True(info.GpuSharedUsed <= info.GpuSharedMax,
-          $"GpuSharedUsed {info.GpuSharedUsed} exceeds GpuSharedMax {info.GpuSharedMax}.");
+            $"Device {id}: GpuSharedUsed {info.GpuSharedUsed} exceeds GpuSharedMax {info.GpuSharedMax}.");
 
       if (info.GpuDedicatedMax > 0)
         Assert.True(info.GpuDedicatedUsed <= info.GpuDedicatedMax,
-          $"GpuDedicatedUsed {info.GpuDedicatedUsed} exceeds GpuDedicatedMax {info.GpuDedicatedMax}.");
-      return;
+            $"Device {id}: GpuDedicatedUsed {info.GpuDedicatedUsed} exceeds GpuDedicatedMax {info.GpuDedicatedMax}.");
     }
+
+    // Ensure we actually tested at least one device
+    Assert.True(testedAtLeastOnce, "No devices were tested - all GetDeviceInfoByIdentifier calls returned false.");
   }
 
   // -------------------------------------------------------------------------

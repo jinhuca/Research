@@ -119,6 +119,19 @@ internal static class D3DDisplayDevice {
       }
     }
 
+    // VALIDATION: Sanity check GPU memory values
+    // In rare cases, especially with certain drivers (e.g., NVIDIA), BytesResident across multiple
+    // segments can exceed BytesCommitted due to:
+    // - Memory overlaps when aggregating multiple segments
+    // - Driver-specific semantics (BytesResident = working set vs BytesCommitted = virtual allocation)
+    // - Multi-process GPU memory usage between queries
+    // Cap the used values to their maximum to prevent logical inconsistencies.
+    if (deviceInfo.GpuSharedUsed > deviceInfo.GpuSharedMax && deviceInfo.GpuSharedMax > 0)
+      deviceInfo.GpuSharedUsed = deviceInfo.GpuSharedMax;
+
+    if (deviceInfo.GpuDedicatedUsed > deviceInfo.GpuDedicatedMax && deviceInfo.GpuDedicatedMax > 0)
+      deviceInfo.GpuDedicatedUsed = deviceInfo.GpuDedicatedMax;
+
     CloseAdapter(out status, adapter);
     return status == NTSTATUS.STATUS_SUCCESS;
   }
@@ -248,9 +261,13 @@ internal static class D3DDisplayDevice {
     }
   }
 
+  private static void CloseAdapter(out NTSTATUS status, D3DKMT_CLOSEADAPTER closeAdapter) {
+    status = Windows.Wdk.PInvoke.D3DKMTCloseAdapter(closeAdapter);
+  }
+
   private static void CloseAdapter(out NTSTATUS status, D3DKMT_OPENADAPTERFROMDEVICENAME adapter) {
     var closeAdapter = new D3DKMT_CLOSEADAPTER { hAdapter = adapter.hAdapter };
-    status = Windows.Wdk.PInvoke.D3DKMTCloseAdapter(closeAdapter);
+    CloseAdapter(out status, closeAdapter);
   }
 
   public struct D3DDeviceNodeInfo {
