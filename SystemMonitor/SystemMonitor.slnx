@@ -43,6 +43,7 @@
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
+    <File Path=".runsettings" />
   </Folder>
   <Folder Name="/Temporaries/">
     <Project Path="Temporaries/ControlTests/ControlTests.csproj" />
