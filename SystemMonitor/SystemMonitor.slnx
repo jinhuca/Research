@@ -53,10 +53,11 @@
     <Project Path="Temporaries/QueryGpu/QueryGpu.csproj" Id="21f106d6-94dd-49ba-8607-b3ceb4fcdf5e" />
     <Project Path="Temporaries/TestHardwareService/TestHardwareService.csproj" Id="248ab32e-78bd-44eb-a647-5827b93cd992" />
   </Folder>
-  <Folder Name="/Unit Tests/">
-    <Project Path="Unit Tests/Crystal.Plot2D.Tests/Crystal.Plot2D.Tests.csproj" Id="36c0be92-5930-4873-9190-2721eb992477" />
-    <Project Path="Unit Tests/CrystalMonitorTests/CrystalMonitorTests.csproj" />
-    <Project Path="Unit Tests/HardwareObservableTests/HardwareObservableTests.csproj" Id="87a1a386-8cf4-4184-95a8-9f080de2972b" />
+  <Folder Name="/UnitTests/">
+    <Project Path="UnitTests/CrystalMonitorTests/CrystalMonitorTests.csproj" />
+    <Project Path="UnitTests/CrystalPlot2DTests/CrystalPlot2DTests.csproj" />
+    <Project Path="UnitTests/DataStructuresTests/DataStructuresTests.csproj" />
+    <Project Path="UnitTests/HardwareObservableTests/HardwareObservableTests.csproj" />
   </Folder>
   <Project Path="MainApp/MainApp.csproj" />
 </Solution>

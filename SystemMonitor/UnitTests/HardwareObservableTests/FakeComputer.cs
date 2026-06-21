@@ -18,8 +18,14 @@ public sealed class FakeComputer : IComputer {
   public bool IsPsuEnabled => false;
   public bool IsStorageEnabled => true;
 
+  /// <summary>When set, Accept throws this instead of visiting — used to test OnError propagation.</summary>
+  public Exception? ThrowOnAccept { get; set; }
+
   public string GetReport() => string.Empty;
-  public void Accept(IVisitor v) => v.VisitComputer(this);
+  public void Accept(IVisitor v) {
+    if (ThrowOnAccept is not null) throw ThrowOnAccept;
+    v.VisitComputer(this);
+  }
   public void Traverse(IVisitor v) { foreach (var hw in Hardware) hw.Accept(v); }
 
 #pragma warning disable CS0067
