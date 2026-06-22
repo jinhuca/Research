@@ -1,4 +1,5 @@
 ﻿using CrystalMonitor.Hardware;
+using System.Diagnostics;
 
 namespace CrystalMonitorTests.HardwareTests.CpuTests;
 
@@ -34,14 +35,20 @@ public class IntelCpuTests : IDisposable {
 
   [Fact]
   public void IntelCpu_WhenPresent_IsDetectedAsCpuHardwareType() {
-    if (!_isIntel) return; // skip gracefully
+    if (!_isIntel) {
+      Debug.WriteLine("Skipping test: No Intel CPU detected.");
+      return;
+    }
 
     Assert.Equal(HardwareType.Cpu, _intelCpu!.HardwareType);
   }
 
   [Fact]
   public void IntelCpu_WhenPresent_HasNonEmptyName() {
-    if (!_isIntel) return;
+    if (!_isIntel) {
+      Debug.WriteLine("Skipping test: No Intel CPU detected.");
+      return;
+    }
 
     Assert.False(string.IsNullOrWhiteSpace(_intelCpu!.Name),
       "Intel CPU name should not be null or empty.");

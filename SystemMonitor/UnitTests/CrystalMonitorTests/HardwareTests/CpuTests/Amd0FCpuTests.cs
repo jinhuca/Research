@@ -1,4 +1,5 @@
 ﻿using CrystalMonitor.Hardware;
+using System.Diagnostics;
 
 namespace CrystalMonitorTests.HardwareTests.CpuTests;
 
@@ -39,7 +40,10 @@ public class Amd0FCpuTests : IDisposable {
 
   [Fact]
   public void Amd0FCpu_WhenPresent_IsDetectedAsCpuHardwareType() {
-    if (ShouldSkip) return;
+    if (ShouldSkip) {
+      Debug.WriteLine("Skipping test: No AMD family 0F CPU detected.");
+      return;
+    }
 
     Assert.Equal(HardwareType.Cpu, _amd0FCpu!.HardwareType);
   }
