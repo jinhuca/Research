@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Modules\ResourceModule\ResourceModule.csproj" />
 		<ProjectReference Include="..\..\Shared\Crystal.Plot2D\Crystal.Plot2D.csproj" />
 	</ItemGroup>
 

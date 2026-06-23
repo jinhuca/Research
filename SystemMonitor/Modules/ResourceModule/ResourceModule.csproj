@@ -10,9 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="Controls\Bar\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="Controls\Bar\**" />
+    <None Remove="bin\**" />
     <None Remove="Controls\Bar\**" />
+    <Page Remove="bin\**" />
     <Page Remove="Controls\Bar\**" />
   </ItemGroup>
 
