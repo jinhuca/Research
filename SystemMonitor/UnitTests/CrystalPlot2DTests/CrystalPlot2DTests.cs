@@ -23,6 +23,7 @@ namespace Crystal.Plot2D.Tests;
 // RingArray<T>  – pure .NET, no WPF
 // ─────────────────────────────────────────────────────────────
 public class RingArrayTests {
+
   [Fact]
   public void Constructor_SetsCapacityAndZeroCount() {
     RingArray<int> ra = new(5);
@@ -87,7 +88,8 @@ public class RingArrayTests {
   public void Contains_ReturnsTrueForPresentItem() {
     RingArray<int> ra = new(4);
     ra.Add(42); ra.Add(7);
-    Assert.True(ra.Contains(42)); Assert.True(ra.Contains(7));
+    Assert.True(ra.Contains(42)); 
+    Assert.True(ra.Contains(7));
   }
 
   [Fact]
@@ -1051,12 +1053,14 @@ public class HsbColorTests {
     HsbColor a = HsbColor.FromArgb(argb), b = HsbColor.FromArgbColor(c);
     Assert.Equal(a.Hue, b.Hue, 5); Assert.Equal(a.Saturation, b.Saturation, 5);
   }
+
   [Fact]
   public void ToArgbColor_RoundTrip_Approximate() {
     Color o = Color.FromArgb(255, 128, 64, 32);
     Color b = HsbColor.FromArgbColor(o).ToArgbColor();
     Assert.True(Math.Abs(o.R - b.R) <= 2); Assert.True(Math.Abs(o.G - b.G) <= 2); Assert.True(Math.Abs(o.B - b.B) <= 2);
   }
+
   [Theory]
   [InlineData(0.0)]
   [InlineData(60.0)]
@@ -1066,35 +1070,43 @@ public class HsbColorTests {
   [InlineData(300.0)]
   public void ToArgbColor_AllSixSectors_DoNotThrow(double hue) =>
     _ = new HsbColor(hue, 1.0, 1.0).ToArgbColor();
+
   [Fact]
   public void ToArgbColor_ZeroSat_IsGrey() {
     Color col = new HsbColor(180, 0, 0.5).ToArgbColor();
     Assert.Equal(col.R, col.G); Assert.Equal(col.G, col.B);
   }
+
   [Fact]
   public void ToArgb_MatchesToArgbColor() {
     HsbColor c = new(90, 0.8, 0.9);
     Assert.Equal(c.ToArgbColor().ToArgb(), c.ToArgb());
   }
+
   [Fact]
   public void ColorExtensions_ToHsbColor_MatchesFromArgbColor() {
     Color col = Colors.Green;
     HsbColor a = col.ToHsbColor(), b = HsbColor.FromArgbColor(col);
     Assert.Equal(a.Hue, b.Hue, 5); Assert.Equal(a.Saturation, b.Saturation, 5);
   }
+
   [Fact]
   public void Equality_SameValues() {
     Assert.True(new HsbColor(120, 0.5, 0.8, 0.9) == new HsbColor(120, 0.5, 0.8, 0.9));
   }
+
   [Fact]
   public void Inequality_DifferentHue() =>
     Assert.True(new HsbColor(120, 0.5, 0.8) != new HsbColor(200, 0.5, 0.8));
+
   [Fact]
   public void Equals_Boxed_True() =>
     Assert.True(new HsbColor(90, 0.3, 0.7, 0.5).Equals((object)new HsbColor(90, 0.3, 0.7, 0.5)));
+
   [Fact]
   public void Equals_WrongType_False() =>
     Assert.False(new HsbColor(90, 0.3, 0.7).Equals("not a color"));
+
   [Fact]
   public void GetHashCode_SameValues_SameHash() =>
     Assert.Equal(new HsbColor(45, 0.6, 0.9, 1.0).GetHashCode(), new HsbColor(45, 0.6, 0.9, 1.0).GetHashCode());
