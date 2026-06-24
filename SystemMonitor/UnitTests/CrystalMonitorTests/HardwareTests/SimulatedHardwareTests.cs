@@ -16,11 +16,7 @@
 //   Parameter  – constructor, Value setter, IsDefault setter, Accept, Traverse
 //   CompositeSensor – Value getter (reducer), Value setter throws
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CrystalMonitor.Hardware;
-using Xunit;
 
 namespace CrystalMonitorTests.HardwareTests;
 
