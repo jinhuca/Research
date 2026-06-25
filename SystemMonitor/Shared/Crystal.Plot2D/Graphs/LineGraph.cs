@@ -2,8 +2,6 @@
 using Crystal.Plot2D.Common;
 using Crystal.Plot2D.Common.Auxiliary;
 using Crystal.Plot2D.DataSources.OneDimensional;
-using Crystal.Plot2D.Descriptions;
-using Crystal.Plot2D.LegendItems;
 using Crystal.Plot2D.Transforms;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,18 +18,6 @@ namespace Crystal.Plot2D.Graphs;
 public sealed class LineGraph : PointsGraphBase {
   static LineGraph() {
     var thisType = typeof(LineGraph);
-    Legend.DescriptionProperty.OverrideMetadata(forType: thisType, typeMetadata: new FrameworkPropertyMetadata(defaultValue: "LineGraph"));
-    Legend.LegendItemsBuilderProperty.OverrideMetadata(forType: thisType, typeMetadata: new FrameworkPropertyMetadata(defaultValue: new LegendItemsBuilder(DefaultLegendItemsBuilder)));
-  }
-
-  private static IEnumerable<FrameworkElement> DefaultLegendItemsBuilder(IPlotterElement plotterElement) {
-    var lineGraph = (LineGraph)plotterElement;
-    Line line = new() { X1 = 0, Y1 = 10, X2 = 20, Y2 = 0, Stretch = Stretch.Fill, DataContext = lineGraph };
-    line.SetBinding(dp: Shape.StrokeProperty, path: "LinePen.Brush");
-    line.SetBinding(dp: Shape.StrokeThicknessProperty, path: "LinePen.Thickness");
-    Legend.SetVisualContent(obj: lineGraph, value: line);
-    var legendItem = LegendItemsHelper.BuildDefaultLegendItem(chart: lineGraph);
-    yield return legendItem;
   }
 
   /// <summary>Provides access to filters collection</summary>
@@ -57,9 +43,7 @@ public sealed class LineGraph : PointsGraphBase {
     FilteredPoints = null;
     Update();
   }
-
-  protected override Description CreateDefaultDescription() => new PenDescription();
-
+    
   #region OutlinePen
 
   /*

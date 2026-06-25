@@ -2,7 +2,6 @@
 using Crystal.Plot2D.Common.Auxiliary;
 using Crystal.Plot2D.DataSources.OneDimensional;
 using Crystal.Plot2D.Graphs;
-using Crystal.Plot2D.LegendItems;
 using Crystal.Plot2D.Transforms;
 using System;
 using System.Collections.Generic;
@@ -24,19 +23,8 @@ namespace Crystal.Plot2D.Charts;
 public class NewLineGraph : Canvas, IPlotterElement {
   static NewLineGraph() {
     var thisType_ = typeof(NewLineGraph);
-    Legend.DescriptionProperty.OverrideMetadata(forType: thisType_, typeMetadata: new FrameworkPropertyMetadata(defaultValue: "LineGraph"));
-    Legend.LegendItemsBuilderProperty.OverrideMetadata(forType: thisType_, typeMetadata: new FrameworkPropertyMetadata(defaultValue: new LegendItemsBuilder(DefaultLegendItemsBuilder)));
   }
 
-  private static IEnumerable<FrameworkElement> DefaultLegendItemsBuilder(IPlotterElement plotterElement) {
-    var lineGraph_ = (NewLineGraph)plotterElement;
-    Line line_ = new() { X1 = 0, Y1 = 10, X2 = 20, Y2 = 0, Stretch = Stretch.Fill, DataContext = lineGraph_ };
-    line_.SetBinding(dp: Shape.StrokeProperty, path: "Stroke");
-    line_.SetBinding(dp: Shape.StrokeThicknessProperty, path: "StrokeThickness");
-    Legend.SetVisualContent(obj: lineGraph_, value: line_);
-    var legendItem_ = LegendItemsHelper.BuildDefaultLegendItem(chart: lineGraph_);
-    yield return legendItem_;
-  }
 
   private readonly FilterCollection filters = new();
 

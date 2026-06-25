@@ -3,7 +3,6 @@ using Crystal.Plot2D.Axes.Numeric;
 using Crystal.Plot2D.Common;
 using Crystal.Plot2D.DataSources.OneDimensional;
 using Crystal.Plot2D.Graphs;
-using Crystal.Plot2D.Navigation;
 using Crystal.Plot2D.Transforms;
 using System;
 using System.Collections.Generic;
@@ -33,7 +32,7 @@ private readonly List<LineGraph?> _seriesList = new();
     InitializeComponent();
 
     this.Loaded += (_, __) => {
-      DisablePlotterNavigation();
+      //DisablePlotterNavigation();
 
       // ✅ Guard the first insert too
       if (!plotter.CentralGrid.Children.Contains(areaPath))
@@ -65,7 +64,6 @@ private readonly List<LineGraph?> _seriesList = new();
     
     plotter.MainHorizontalAxisVisibility = Visibility.Collapsed;
     plotter.MainVerticalAxisVisibility = Visibility.Collapsed;
-    plotter.NewLegendVisible = false;
   }
 
   #region Dependency Properties (expose plotter Background and stroke)
@@ -466,31 +464,31 @@ private readonly List<LineGraph?> _seriesList = new();
     Dispatcher.BeginInvoke((Action)UpdateArea, DispatcherPriority.Render);
   }
 
-  private void DisablePlotterNavigation() {
-    if(plotter == null) return;
-    RemoveNavigationChildren();
-    plotter.Children.CollectionChanged += (s, e) => {
-      if(e.NewItems == null) return;
-      var toRemove = e.NewItems.OfType<IPlotterElement>()
-        .Where(it => it is NavigationBase || it is KeyboardNavigation || it is TouchpadScroll)
-        .ToList();
-      if(toRemove.Count == 0) return;
-      Dispatcher.BeginInvoke((Action)(() => {
-        foreach(var item in toRemove) {
-          if(plotter.Children.Contains(item)) plotter.Children.Remove(item);
-        }
-      }), DispatcherPriority.Normal);
-    };
-  }
+  //private void DisablePlotterNavigation() {
+  //  if(plotter == null) return;
+  //  RemoveNavigationChildren();
+  //  plotter.Children.CollectionChanged += (s, e) => {
+  //    if(e.NewItems == null) return;
+  //    var toRemove = e.NewItems.OfType<IPlotterElement>()
+  //      .Where(it => it is NavigationBase || it is KeyboardNavigation || it is TouchpadScroll)
+  //      .ToList();
+  //    if(toRemove.Count == 0) return;
+  //    Dispatcher.BeginInvoke((Action)(() => {
+  //      foreach(var item in toRemove) {
+  //        if(plotter.Children.Contains(item)) plotter.Children.Remove(item);
+  //      }
+  //    }), DispatcherPriority.Normal);
+  //  };
+  //}
 
-  private void RemoveNavigationChildren() {
-    var navs = plotter.Children
-      .OfType<IPlotterElement>()
-      .Where(it => it is NavigationBase || it is KeyboardNavigation || it is TouchpadScroll)
-      .ToList();
+  //private void RemoveNavigationChildren() {
+  //  var navs = plotter.Children
+  //    .OfType<IPlotterElement>()
+  //    .Where(it => it is NavigationBase || it is KeyboardNavigation || it is TouchpadScroll)
+  //    .ToList();
 
-    foreach(var nav in navs) {
-      if(plotter.Children.Contains(nav)) plotter.Children.Remove(nav);
-    }
-  }
+  //  foreach(var nav in navs) {
+  //    if(plotter.Children.Contains(nav)) plotter.Children.Remove(nav);
+  //  }
+  //}
 }

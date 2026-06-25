@@ -8,8 +8,8 @@
                     xmlns:markupExtensions="clr-namespace:Crystal.Plot2D.Common.Auxiliary.MarkupExtensions">
 
   <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary Source="/Crystal.Plot2D;component/LegendItems/LegendResources.xaml"/>
-    <ResourceDictionary Source="/Crystal.Plot2D;component/Navigation/DefaultContextMenu.xaml"/>
+    <!--<ResourceDictionary Source="/Crystal.Plot2D;component/LegendItems/LegendResources.xaml"/>-->
+    <!--<ResourceDictionary Source="/Crystal.Plot2D;component/Navigation/DefaultContextMenu.xaml"/>-->
   </ResourceDictionary.MergedDictionaries>
 
   <!--Draggable Point-->

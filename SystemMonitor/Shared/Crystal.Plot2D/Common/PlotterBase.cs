@@ -1,7 +1,6 @@
 ﻿using Crystal.Plot2D.Common.Auxiliary;
 using Crystal.Plot2D.Common.NotifyingPanels;
 using Crystal.Plot2D.Common.UndoSystem;
-using Crystal.Plot2D.Navigation;
 using Crystal.Plot2D.Transforms;
 using System;
 using System.Collections.Generic;
@@ -135,7 +134,7 @@ public abstract class PlotterBase : ContentControl {
   public override bool ShouldSerializeContent() => false;
 
   protected override bool ShouldSerializeProperty(DependencyProperty dp) {
-    if(dp == ContextMenuProperty && Children.Any(predicate: element => element is DefaultContextMenu)) {
+    if(dp == ContextMenuProperty) {
       return false;
     }
     if(dp == TemplateProperty || dp == ContentProperty) {

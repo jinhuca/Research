@@ -38,17 +38,6 @@ public class PlotterInitializationTests : WPFTestBase {
   }
 
   [Fact]
-  public void Plotter_HasLegend() {
-    RunTest(() => {
-      // Arrange & Act
-      var plotter = new Plotter();
-
-      // Assert
-      Assert.NotNull(plotter.Legend);
-    });
-  }
-
-  [Fact]
   public void Plotter_HasAxisGrid() {
     RunTest(() => {
       // Arrange & Act
@@ -56,25 +45,6 @@ public class PlotterInitializationTests : WPFTestBase {
 
       // Assert
       Assert.NotNull(plotter.AxisGrid);
-    });
-  }
-
-  [Fact]
-  public void Plotter_HasMouseNavigation() {
-    RunTest(() => {
-      var plotter = new Plotter();
-      Assert.NotNull(plotter.MouseNavigation);
-    });
-  }
-
-  [Fact]
-  public void Plotter_HasKeyboardNavigation() {
-    RunTest(() => {
-      // Arrange & Act
-      var plotter = new Plotter();
-
-      // Assert
-      Assert.NotNull(plotter.KeyboardNavigation);
     });
   }
 }

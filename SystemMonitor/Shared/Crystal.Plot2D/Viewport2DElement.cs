@@ -1,5 +1,4 @@
 ﻿using Crystal.Plot2D.Common;
-using Crystal.Plot2D.Descriptions;
 using Crystal.Plot2D.Transforms;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -66,56 +65,7 @@ public abstract class Viewport2DElement : FrameworkElement, IPlotterElement, INo
 
   #endregion
 
-  #region Description
-
-  /// <summary>
-  /// Creates the default description.
-  /// </summary>
-  /// <returns></returns>
-  protected virtual Description CreateDefaultDescription() {
-    return new StandardDescription();
-  }
-
-  private Description description;
-  /// <summary>
-  /// Gets or sets the description.
-  /// </summary>
-  /// <value>The description.</value>
-  public Description Description {
-    get {
-      if(description == null) {
-        description = CreateDefaultDescription();
-        description.Attach(element: this);
-      }
-      return description;
-    }
-    set {
-      if(description != null) {
-        description.Detach();
-      }
-      description = value;
-      if(description != null) {
-        description.Attach(element: this);
-      }
-      RaisePropertyChanged();
-    }
-  }
-
-  public override string ToString() {
-    return GetType().Name + ": " + Description.Brief;
-  }
-
-  #endregion
-
   protected internal Vector Offset { get; set; }
-
-  //bool SizeEqual(Diameter s1, Diameter s2, double eps)
-  //{
-  //    double width = Math.Min(s1.Width, s2.Width);
-  //    double height = Math.Min(s1.Height, s2.Height);
-  //    return Math.Abs(s1.Width - s2.Width) < width * eps &&
-  //           Math.Abs(s1.Height - s2.Height) < height * eps;
-  //}
 
   protected virtual void OnVisibleChanged(DataRect newRect, DataRect oldRect) {
     if(newRect.Size == oldRect.Size) {

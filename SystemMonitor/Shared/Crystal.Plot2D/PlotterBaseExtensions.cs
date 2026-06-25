@@ -1,11 +1,8 @@
 ﻿using Crystal.Plot2D.Charts;
 using Crystal.Plot2D.Common;
 using Crystal.Plot2D.DataSources.OneDimensional;
-using Crystal.Plot2D.Descriptions;
 using Crystal.Plot2D.Filters;
 using Crystal.Plot2D.Graphs;
-using Crystal.Plot2D.LegendItems;
-using Crystal.Plot2D.Navigation;
 using Crystal.Plot2D.PointMarkers;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -20,9 +17,9 @@ public static class PlotterBaseExtensions {
   extension(PlotterBase plotter) {
     #region [-- Cursor Coordinate Graphs --]
 
-    public void AddCursor(CursorCoordinateGraph cursorGraph) {
-      plotter.Children.Add(content: cursorGraph);
-    }
+    //public void AddCursor(CursorCoordinateGraph cursorGraph) {
+    //  plotter.Children.Add(content: cursorGraph);
+    //}
 
     #endregion [-- Cursor Coordinate Graphs --]
 
@@ -32,8 +29,8 @@ public static class PlotterBaseExtensions {
       return AddLineGraph(
         plotter,
         pointDataSource,
-        new Pen { Brush = new SolidColorBrush(Colors.Black), Thickness = 1 },
-        new PenDescription(nameof(pointDataSource)));
+        new Pen { Brush = new SolidColorBrush(Colors.Black), Thickness = 1 }
+      );
     }
 
     /// <summary>
@@ -44,15 +41,14 @@ public static class PlotterBaseExtensions {
     /// <param name="linePen">Optional OutlinePen</param>
     /// <param name="descriptionForPen">Optional descriptionForPen for OutlinePen</param>
     /// <returns>LineGraph</returns>
-    public LineGraph AddLineGraph(IPointDataSource pointSource, Pen linePen, PenDescription descriptionForPen) {
+    public LineGraph AddLineGraph(IPointDataSource pointSource, Pen linePen) {
       ArgumentNullException.ThrowIfNull(pointSource);
 
       linePen ??= new Pen { Brush = new SolidColorBrush(color: Colors.Black), Thickness = 1 };
-      descriptionForPen ??= new PenDescription(description: nameof(pointSource));
 
-      var lineGraph_ = new LineGraph { DataSource = pointSource, LinePen = linePen, Description = descriptionForPen };
+      var lineGraph_ = new LineGraph { DataSource = pointSource, LinePen = linePen};
 
-      Legend.SetDescription(obj: lineGraph_, value: descriptionForPen.Brief);
+      //Legend.SetDescription(obj: lineGraph_, value: descriptionForPen.Brief);
       lineGraph_.Filters.Add(item: new FrequencyFilter());
       plotter.Children.Add(content: lineGraph_);
 
@@ -73,14 +69,12 @@ public static class PlotterBaseExtensions {
     /// <returns></returns>
     public MarkerPointsGraph AddMarkerPointsGraph(
       IPointDataSource pointSource,
-      PointMarker marker = default,
-      Description description = default) {
+      PointMarker marker = default) {
       ArgumentNullException.ThrowIfNull(pointSource);
       marker ??= new CirclePointMarker();
       var markerPointGraph_ = new MarkerPointsGraph {
         DataSource = pointSource,
-        Marker = marker,
-        Description = description
+        Marker = marker
       };
       plotter.Children.Add(content: markerPointGraph_);
       return markerPointGraph_;
@@ -88,8 +82,7 @@ public static class PlotterBaseExtensions {
 
     public MarkerPointsGraph AddMarkerGraph<TMarker>(
       IPointDataSource pointSource,
-      TMarker marker = default,
-      Description description = default)
+      TMarker marker = default)
       where TMarker : PointMarker {
       var res_ = new MarkerPointsGraph();
       switch(marker) {
@@ -120,8 +113,7 @@ public static class PlotterBaseExtensions {
     public LineAndMarker<MarkerPointsGraph> AddLineAndMarkerGraph(
       IPointDataSource pointSource,
       Pen penForDrawingLine,
-      PointMarker marker,
-      Description description) {
+      PointMarker marker) {
       ArgumentNullException.ThrowIfNull(pointSource);
 
       var res_ = new LineAndMarker<MarkerPointsGraph>();
@@ -132,10 +124,6 @@ public static class PlotterBaseExtensions {
           DataSource = pointSource,
           LinePen = penForDrawingLine
         };
-        if(description != null) {
-          Legend.SetDescription(obj: graph_, value: description.Brief);
-          graph_.Description = description;
-        }
         if(marker == null) {
           // Add inclination filter only to graphs without markers
           // graph.Filters.Add(new InclinationFilter());
@@ -174,8 +162,7 @@ public static class PlotterBaseExtensions {
     [SuppressMessage(category: "Microsoft.Design", checkId: "CA1011:ConsiderPassingBaseTypesAsParameters")]
     public ElementMarkerPointsGraph AddElementMarkerPointsGraph(
       IPointDataSource pointSource,
-      ElementPointMarker marker,
-      Description description) {
+      ElementPointMarker marker) {
       ArgumentNullException.ThrowIfNull(pointSource);
       ArgumentNullException.ThrowIfNull(marker);
 
@@ -206,8 +193,7 @@ public static class PlotterBaseExtensions {
 
       var markerGraph_ = new ElementMarkerPointsGraph {
         DataSource = pointSource,
-        Marker = marker,
-        Description = description
+        Marker = marker
       };
       plotter.Children.Add(content: markerGraph_);
       return markerGraph_;
@@ -217,7 +203,7 @@ public static class PlotterBaseExtensions {
 
     #region Attaching LineGraphs
 
-    public void AttachLineGraph(IPointDataSource pointSource, Pen linePen, PointMarker marker, Description desc) {
+    public void AttachLineGraph(IPointDataSource pointSource, Pen linePen, PointMarker marker) {
     }
   }
 

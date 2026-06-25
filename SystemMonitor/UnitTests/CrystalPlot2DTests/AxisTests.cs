@@ -105,27 +105,4 @@ public class AxisTests : WPFTestBase {
       Assert.Same(newAxis, plotter.MainVerticalAxis);
     });
   }
-
-  [Fact]
-  public void Plotter_HasDefaultContextMenu() {
-    RunTest(() => {
-      // Arrange & Act
-      var plotter = new Plotter();
-
-      // Assert
-      Assert.NotNull(plotter.DefaultContextMenu);
-    });
-  }
-
-  [Fact]
-  public void Plotter_HasAxisNavigation() {
-    RunTest(() => {
-      // Arrange & Act
-      var plotter = new Plotter();
-
-      // Assert
-      Assert.NotNull(plotter.HorizontalAxisNavigation);
-      Assert.NotNull(plotter.VerticalAxisNavigation);
-    });
-  }
 }

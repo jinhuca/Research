@@ -19,10 +19,10 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Version>2.1.0.2</Version>
     <Authors>Jin Hu</Authors>
-    <Description>Library for Scientific Data Visualization.</Description>
+    <Description></Description>
     <PackageProjectUrl>https://github.com/jinhuca/Crystal.Plot2D</PackageProjectUrl>
     <PackageIcon>CrystalPlot2D.png</PackageIcon>
     <PackageTags>.NET;Visualization</PackageTags>
@@ -58,9 +58,29 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="Descriptions\**" />
+    <Compile Remove="Isolines\**" />
+    <Compile Remove="LegendItems\**" />
+    <Compile Remove="Navigation\**" />
     <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="Descriptions\**" />
+    <EmbeddedResource Remove="Isolines\**" />
+    <EmbeddedResource Remove="LegendItems\**" />
+    <EmbeddedResource Remove="Navigation\**" />
     <EmbeddedResource Remove="obj\**" />
+    <None Remove="bin\**" />
+    <None Remove="Descriptions\**" />
+    <None Remove="Isolines\**" />
+    <None Remove="LegendItems\**" />
+    <None Remove="Navigation\**" />
     <None Remove="obj\**" />
+    <Page Remove="bin\**" />
+    <Page Remove="Descriptions\**" />
+    <Page Remove="Isolines\**" />
+    <Page Remove="LegendItems\**" />
+    <Page Remove="Navigation\**" />
     <Page Remove="obj\**" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +121,8 @@
     <Compile Remove="Axes\DateTimeTicksProviderBase.cs" />
     <Compile Remove="Axes\DefaultNumericTicksProvider.cs" />
     <Compile Remove="Charts\Legend.xaml.cs" />
+    <Compile Remove="Charts\LegendItem.cs" />
+    <Compile Remove="Charts\LineLegendItem.xaml.cs" />
     <Compile Remove="Charts\MarkerPointGraph.cs" />
     <Compile Remove="Common\BindableBase.cs" />
     <Compile Remove="Common\ObservableUIElementCollection.cs" />
@@ -108,16 +130,6 @@
     <Compile Remove="Common\PropertySupport.cs" />
     <Compile Remove="InjectedPlotter.cs" />
     <Compile Remove="InjectedPlotterVerticalSyncConverter.cs" />
-    <Compile Remove="Navigation\Navigation\ChartCommands.cs" />
-    <Compile Remove="Navigation\Navigation\DefaultContextMenu.cs" />
-    <Compile Remove="Navigation\Navigation\InertialMouseNavigation.cs" />
-    <Compile Remove="Navigation\Navigation\KeyboardNavigation.cs" />
-    <Compile Remove="Navigation\Navigation\MessagesHelper.cs" />
-    <Compile Remove="Navigation\Navigation\MouseNavigation.cs" />
-    <Compile Remove="Navigation\Navigation\NavigationBase.cs" />
-    <Compile Remove="Navigation\Navigation\RectangleSelectionAdorner.cs" />
-    <Compile Remove="Navigation\Navigation\TouchPadScroll.cs" />
-    <Compile Remove="Navigation\Navigation\WindowsMessages.cs" />
     <Compile Remove="Properties\Resources.Designer.cs" />
     <Compile Remove="Strings\Exceptions.ru-ru.Designer.cs" />
     <Compile Remove="Strings\UIResources.ru-ru.Designer.cs" />
@@ -126,6 +138,16 @@
     <EmbeddedResource Remove="Strings\UIResources.ru-ru.resx" />
     <None Remove="Resources\CrystalPlot2D.png" />
     <Page Remove="Charts\Legend.xaml" />
+
+    <!-- Additional removes: Isoline-related sources and resources -->
+    <Compile Remove="Charts\Isoline.cs" />
+    <Compile Remove="Charts\IsolineRenderer.cs" />
+    <Compile Remove="Charts\IsolineSeries.cs" />
+    <Compile Remove="Charts\IsolineControl.xaml.cs" />
+    <Page Remove="Charts\IsolineControl.xaml" />
+    <Page Remove="Charts\LineLegendItem.xaml" />
+    <EmbeddedResource Remove="Resources\LegendIcon.png" />
+    <EmbeddedResource Remove="Resources\IsolineTexture.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CrystalPlot2D.png">
