@@ -27,7 +27,7 @@
                Margin="0,0,8,0"
                HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>
-    <Border Grid.Row="1" Margin="0" Background="#020202" BorderBrush="#FF1E90FF" BorderThickness="1">
+    <Border Grid.Row="1" Margin="0" Background="#020202" BorderBrush="#FF1E90FF" BorderThickness=".8">
       <d3:Plotter x:Name="plotter"
                   Margin="0" Background="#020202"
                   VerticalContentAlignment="Stretch"
